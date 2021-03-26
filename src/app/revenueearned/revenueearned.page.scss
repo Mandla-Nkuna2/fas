@@ -1,0 +1,55 @@
+ion-content
+{
+    .top-info
+    {
+        margin: 16px 0;
+        .card
+        {
+            background: white;
+            border: 1px solid #B3C6E2 !important;
+
+            p
+            {
+                color: #7D91AF;
+                font-family: 'Regular';
+                font-size: 16px;
+                margin: 0;
+            }
+
+            h4
+            {
+                color: #2F3F51;
+                font-family: 'Bold';
+                font-size: 18px;
+                margin: 5px 0;
+            }
+        }
+    }
+
+    .grid-holder
+    {
+        .top-toolbar
+        {
+            h3
+            {
+                font-size: 16px;
+            }
+        }
+        .title-row
+        {
+            h4
+            {
+                font-size: 12px !important;
+            }
+        }
+
+
+        .value-row
+        {
+            p
+            {
+                font-size: 11px !important;
+            }
+        }
+    }
+}

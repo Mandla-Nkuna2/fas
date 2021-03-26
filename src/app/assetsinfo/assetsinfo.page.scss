@@ -1,0 +1,29 @@
+ion-content
+{
+
+    .grid-holder
+    {
+        margin: 10px 0;
+    }
+    .value-row
+    {
+        border-bottom: 1px solid #B3C6E2;
+        ion-button
+        {
+            --background: transparent;
+            --box-shadow: none;
+            --color: #7D91AF;
+            width: fit-content !important;
+        }
+    }
+
+    .title-row,.value-row
+    {
+        padding: 0 10px !important;
+
+        h4
+        {
+            margin: 10px 0;
+        }
+    }
+}

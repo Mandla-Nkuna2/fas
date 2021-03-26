@@ -1,0 +1,45 @@
+ion-content
+{
+    .content
+    {
+       .section
+       {
+           margin-bottom: 10px;
+        .title
+        {
+            margin: 16px 0 10px 0;
+            h3
+            {
+                color: #2F3F51;
+                font-family: 'Bold';
+                font-size: 18px;
+                margin: 0;
+            }
+        }
+
+        .the-form
+        {
+            ion-col
+            {
+                margin-bottom: 10px !important;
+            }
+        }
+       }
+
+       .bottom
+       {
+           margin: 0 !important;
+
+           .btn-holder
+           {
+               margin-right: 10px;
+               ion-button
+               {
+                   --border-radius: 10px;
+                   height: 2.5rem;
+                   --color: white;
+               }
+           }
+       }
+    }
+}

@@ -1,0 +1,14 @@
+ion-content
+{
+    .cat-holder
+    {
+        margin-top: 20px;
+        ion-button
+        {
+            --background: var(--ion-color-primary);
+            --color: #FACD01;
+            font-family: 'Bold';
+            height: 5rem;
+        }
+    }
+}

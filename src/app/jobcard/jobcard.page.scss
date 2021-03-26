@@ -1,0 +1,98 @@
+ion-content
+{
+    .content
+    {
+       .section
+       {
+           margin-bottom: 10px;
+        .title
+        {
+            margin: 16px 0 10px 0;
+            h3
+            {
+                color: #2F3F51;
+                font-family: 'Bold';
+                font-size: 18px;
+                margin: 0;
+            }
+        }
+
+        .the-form
+        {
+            ion-col
+            {
+                margin-bottom: 10px !important;
+            }
+        }
+       }
+
+       .grid-holder
+       {
+           margin-top: 20px;
+           .header
+           {
+               background:  #F6F9FF;
+               border: 1px solid #B3C6E2;
+               border-top-left-radius: 10px;
+               border-top-right-radius: 10px;
+               padding: 10px;
+               ion-col
+               {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                margin-bottom: 0 !important;
+               }
+               h4
+               {
+                   color: #2F3F51;
+                   font-family: 'Regular';
+                   font-size: 18px;
+                   margin: 0;
+               }
+           }
+
+           .values
+           {
+               background:  #F9FCFF;
+               border: 1px solid #B3C6E2;
+               padding: 5px;
+               p
+               {
+                color: #7D91AF;
+                font-family: 'Regular';
+                font-size: 16px;
+                margin: 0;
+               }
+           }
+       }
+
+       
+       .btn-holder
+       {
+           margin-top: 16px;
+           ion-button
+           {
+               --border-radius: 5px;
+               height: 2.5rem;
+               --color: white;
+           }
+       }
+
+       .bottom
+       {
+           margin: 0 !important;
+
+           .btn-holder
+           {
+               margin-right: 10px;
+               ion-button
+               {
+                   --border-radius: 10px;
+                   height: 2.5rem;
+                   --color: white;
+               }
+           }
+       }
+    }
+}

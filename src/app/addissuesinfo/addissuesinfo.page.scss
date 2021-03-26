@@ -1,0 +1,28 @@
+ion-content
+{
+    .the-list
+    {
+        width: 100% !important;
+        margin-top: 16px;
+        .the-form
+        {
+            width: 100% !important;
+            .item-input
+            {
+                ion-button
+                {
+                    --box-shadow: none;
+                    --border-radius: 10px !important;
+                    height: 3rem;
+                    margin: 0;
+                    width: 100%;
+                }
+                ion-item
+                {
+                    --inner-padding-end:0;
+                }
+              
+            }
+        }
+    }
+}

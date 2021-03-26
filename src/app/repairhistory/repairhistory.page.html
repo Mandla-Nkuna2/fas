@@ -1,0 +1,254 @@
+<ion-content class="ion-padding">
+    <div class="title-holder flex al-center">
+        <h2>Repair History</h2>
+        <div class="date-holder">
+            <div class="itm flex al-center">
+              <div class="thumb">
+                  <ion-icon slot="icon-only" src="assets/imgs/icn-calender.svg"></ion-icon>
+              </div>
+              <ion-datetime display-format="MMM DD YYYY" value="Sep 16 2020, 12:02 "></ion-datetime>
+              <p>to</p>
+              <ion-datetime display-format="MMM DD YYYY" value="Sep 16 2020, 12:02 "></ion-datetime>
+          </div>
+          </div>
+    </div>
+    <div class="section">
+        <div class="grid-holder">
+            <div class="top-toolbar flex al-center jc-between">
+                <h3>Monthly Vehicle Report</h3>
+                <div class="btns-holder flex al-center">
+                    <ion-button>
+                        <ion-icon slot="icon-only" name="options-outline"></ion-icon>
+                    </ion-button>
+
+                    <ion-button>
+                        <ion-icon slot="icon-only" name="search-outline"></ion-icon>
+                    </ion-button>
+                </div>
+            </div>
+            <ion-grid fixed>
+                <ion-row class="title-row">
+                    <ion-col size="0.5" class="flex al-center jc-center">
+
+                    </ion-col>
+                    <ion-col size="2.5" class="flex al-center jc-center">
+                        <h4>Vehicle</h4>
+                    </ion-col>
+                    <ion-col size="2.5" class="flex al-center jc-center">
+                        <h4>date</h4>
+                    </ion-col>
+                    <ion-col size="3" class="flex al-center jc-center">
+                        <h4>Tasks</h4>
+                    </ion-col>
+                    <ion-col size="3.5" class="flex al-center jc-center">
+                        <h4>cost</h4>
+                    </ion-col>
+                </ion-row>
+                <div class="values">
+                    <ion-row class="value-row" (click)="goDetail()">
+                        <ion-col size="0.5" class="flex al-center jc-center">
+                            <ion-checkbox></ion-checkbox>
+                        </ion-col>
+                        <ion-col size="2.5" class="flex al-center jc-center">
+                            <p>NPC6600</p>
+                        </ion-col>
+                        <ion-col size="2.5" class="flex al-center jc-center">
+                            <p>23 JAN 2006</p>
+                        </ion-col>
+                        <ion-col size="3" class="flex al-center jc-center">
+                            <p>Oil Change, Engine Examination</p>
+                        </ion-col>
+                        <ion-col size="2.5" class="flex al-center jc-center">
+                            <p>R 1200</p>
+                        </ion-col>
+                        <ion-col size="1" class="flex al-center jc-start">
+                            <ion-button>
+                                <ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon>
+                            </ion-button>
+                        </ion-col>
+                    </ion-row>
+                    <div class="more">
+                        <div class="divider"></div>
+                        <ion-row>
+                            <ion-col size="5.5">
+
+                            </ion-col>
+                            <ion-col size="3" class="status">
+                                <div class="st flex al-center" id="status">
+                                    <ion-icon src="assets/imgs/icn-donegray.svg"></ion-icon>
+                                    <p>&nbsp;&nbsp;Oil Change</p>
+                                </div>
+                                <div class="st flex al-center" id="status">
+                                    <ion-icon src="assets/imgs/icn-donegray.svg"></ion-icon>
+                                    <p>&nbsp;&nbsp;Engine Examination</p>
+                                </div>
+                            </ion-col>
+                            <ion-col size="2.5" class="flex flexd al-center jc-center">
+                                <div class="cost">
+                                    <p>R 500</p>
+                                </div>
+                                <div class="cost">
+                                    <p>R 700</p>
+                                </div>
+                            </ion-col>
+                        </ion-row>
+                    </div>
+                </div>
+                <div class="values">
+                    <ion-row class="value-row">
+                        <ion-col size="0.5" class="flex al-center jc-center">
+                            <ion-checkbox></ion-checkbox>
+                        </ion-col>
+                        <ion-col size="2.5" class="flex al-center jc-center">
+                            <p>NPC6600</p>
+                        </ion-col>
+                        <ion-col size="2.5" class="flex al-center jc-center">
+                            <p>23 JAN 2006</p>
+                        </ion-col>
+                        <ion-col size="3" class="flex al-center jc-center">
+                            <p>Oil Change, Engine Examination</p>
+                        </ion-col>
+                        <ion-col size="2.5" class="flex al-center jc-center">
+                            <p>R 1200</p>
+                        </ion-col>
+                        <ion-col size="1" class="flex al-center jc-start">
+                            <ion-button>
+                                <ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon>
+                            </ion-button>
+                        </ion-col>
+                    </ion-row>
+                </div>
+                <div class="values">
+                    <ion-row class="value-row">
+                        <ion-col size="0.5" class="flex al-center jc-center">
+                            <ion-checkbox></ion-checkbox>
+                        </ion-col>
+                        <ion-col size="2.5" class="flex al-center jc-center">
+                            <p>NPC6600</p>
+                        </ion-col>
+                        <ion-col size="2.5" class="flex al-center jc-center">
+                            <p>23 JAN 2006</p>
+                        </ion-col>
+                        <ion-col size="3" class="flex al-center jc-center">
+                            <p>Oil Change, Engine Examination</p>
+                        </ion-col>
+                        <ion-col size="2.5" class="flex al-center jc-center">
+                            <p>R 1200</p>
+                        </ion-col>
+                        <ion-col size="1" class="flex al-center jc-start">
+                            <ion-button>
+                                <ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon>
+                            </ion-button>
+                        </ion-col>
+                    </ion-row>
+                </div>
+                <div class="values">
+                    <ion-row class="value-row">
+                        <ion-col size="0.5" class="flex al-center jc-center">
+                            <ion-checkbox></ion-checkbox>
+                        </ion-col>
+                        <ion-col size="2.5" class="flex al-center jc-center">
+                            <p>NPC6600</p>
+                        </ion-col>
+                        <ion-col size="2.5" class="flex al-center jc-center">
+                            <p>23 JAN 2006</p>
+                        </ion-col>
+                        <ion-col size="3" class="flex al-center jc-center">
+                            <p>Oil Change, Engine Examination</p>
+                        </ion-col>
+                        <ion-col size="2.5" class="flex al-center jc-center">
+                            <p>R 1200</p>
+                        </ion-col>
+                        <ion-col size="1" class="flex al-center jc-start">
+                            <ion-button>
+                                <ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon>
+                            </ion-button>
+                        </ion-col>
+                    </ion-row>
+                </div>
+                <div class="values">
+                    <ion-row class="value-row">
+                        <ion-col size="0.5" class="flex al-center jc-center">
+                            <ion-checkbox></ion-checkbox>
+                        </ion-col>
+                        <ion-col size="2.5" class="flex al-center jc-center">
+                            <p>NPC6600</p>
+                        </ion-col>
+                        <ion-col size="2.5" class="flex al-center jc-center">
+                            <p>23 JAN 2006</p>
+                        </ion-col>
+                        <ion-col size="3" class="flex al-center jc-center">
+                            <p>Oil Change, Engine Examination</p>
+                        </ion-col>
+                        <ion-col size="2.5" class="flex al-center jc-center">
+                            <p>R 1200</p>
+                        </ion-col>
+                        <ion-col size="1" class="flex al-center jc-start">
+                            <ion-button>
+                                <ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon>
+                            </ion-button>
+                        </ion-col>
+                    </ion-row>
+                </div>
+                <div class="values">
+                    <ion-row class="value-row">
+                        <ion-col size="0.5" class="flex al-center jc-center">
+                            <ion-checkbox></ion-checkbox>
+                        </ion-col>
+                        <ion-col size="2.5" class="flex al-center jc-center">
+                            <p>NPC6600</p>
+                        </ion-col>
+                        <ion-col size="2.5" class="flex al-center jc-center">
+                            <p>23 JAN 2006</p>
+                        </ion-col>
+                        <ion-col size="3" class="flex al-center jc-center">
+                            <p>Oil Change, Engine Examination</p>
+                        </ion-col>
+                        <ion-col size="2.5" class="flex al-center jc-center">
+                            <p>R 1200</p>
+                        </ion-col>
+                        <ion-col size="1" class="flex al-center jc-start">
+                            <ion-button>
+                                <ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon>
+                            </ion-button>
+                        </ion-col>
+                    </ion-row>
+                </div>
+            </ion-grid>
+        </div>
+        <div class="nav-holder">
+            <ion-row>
+                <ion-col size="8"></ion-col>
+                <ion-col size="4">
+                    <div class="nav-btns flex al-center">
+                        <ion-button>
+                            First
+                        </ion-button>
+                        <ion-button>
+                            Previous
+                        </ion-button>
+                        <ion-button id="active">
+                            1
+                        </ion-button>
+                        <ion-button>
+                            2
+                        </ion-button>
+                        <ion-button>
+                            3
+                        </ion-button>
+                        <ion-button>
+                            4
+                        </ion-button>
+                        <ion-button>
+                            Next
+                        </ion-button>
+                        <ion-button>
+                            Last
+                        </ion-button>
+                    </div>
+                </ion-col>
+            </ion-row>
+        </div>
+    </div>
+
+</ion-content>

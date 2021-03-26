@@ -1,0 +1,249 @@
+<ion-content class="ion-padding">
+  <div class="title-holder flex al-center">
+    <h2>Fleet Details</h2>
+    <div class="date-holder">
+      <ion-item lines="none">
+        <div class="thumb" slot="start">
+          <ion-icon slot="icon-only" src="assets/imgs/icn-calender.svg"></ion-icon>
+        </div>
+        <ion-datetime display-format="MMM DD YYYY hh:mm a" value="Sep 16 2020, 12:02 "></ion-datetime>
+      </ion-item>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="grid-holder">
+      <div class="top-toolbar flex al-center jc-between">
+        <h3>Fleet</h3>
+        <div class="btns-holder flex al-center">
+          <ion-button >
+            <ion-icon slot="icon-only" name="options-outline"></ion-icon>
+          </ion-button>
+
+          <ion-button >
+            <ion-icon slot="icon-only" name="search-outline"></ion-icon>
+          </ion-button>
+        </div>
+    </div>
+      <ion-grid fixed>
+        <ion-row class="title-row">
+          <ion-col size="0.5" class="flex al-center jc-center">
+
+          </ion-col>
+          <ion-col size="1.5" class="flex al-center jc-center">
+            <h4>Vehicle</h4>
+          </ion-col>
+          <ion-col size="2" class="flex al-center jc-center">
+            <h4>Type</h4>
+          </ion-col>
+          <ion-col size="2" class="flex al-center jc-center">
+            <h4>status</h4>
+          </ion-col>
+          <ion-col size="2" class="flex al-center jc-center">
+            <h4>driver</h4>
+          </ion-col>
+          <ion-col size="2" class="flex al-center jc-center">
+            <h4>health</h4>
+          </ion-col>
+          <ion-col size="2" class="flex al-center jc-center">
+            <h4>errors</h4>
+          </ion-col>
+        </ion-row>
+        <ion-row class="value-row">
+          <ion-col size="0.5" class="flex al-center jc-center">
+            <ion-checkbox></ion-checkbox>
+          </ion-col>
+          <ion-col size="1.5" class="flex al-center jc-center">
+            <div>
+              <p>TRUCK \ HOIST \ 7</p>
+              <h6>8253103</h6>
+            </div>
+          </ion-col>
+          <ion-col size="2" class="flex al-center jc-center">
+            <p>Truck</p>
+          </ion-col>
+          <ion-col size="2" class="flex al-center jc-center">
+            <ion-badge  mode="ios" id="onroute">
+              On Route
+            </ion-badge>
+          </ion-col>
+          <ion-col size="2" class="flex al-center jc-center">
+            <p>Brooke Cagle</p>
+          </ion-col>
+          <ion-col size="2" class="flex flexd al-center jc-center">
+            <small>90%</small>
+            <ion-progress-bar value="0.9"></ion-progress-bar>
+          </ion-col>
+          <ion-col size="2" class="flex al-center jc-center">
+            <div class="flex al-center" id="status">
+              <ion-icon src="assets/imgs/icn-done.svg"></ion-icon>
+              <p>&nbsp;&nbsp;No Error</p>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row class="value-row">
+          <ion-col size="0.5" class="flex al-center jc-center">
+            <ion-checkbox></ion-checkbox>
+          </ion-col>
+          <ion-col size="1.5" class="flex al-center jc-center">
+            <div>
+              <p>TRUCK \ HOIST \ 7</p>
+              <h6>8253103</h6>
+            </div>
+          </ion-col>
+          <ion-col size="2" class="flex al-center jc-center">
+            <p>Truck</p>
+          </ion-col>
+          <ion-col size="2" class="flex al-center jc-center">
+            <ion-badge  mode="ios" id="available">
+              Available
+            </ion-badge>
+          </ion-col>
+          <ion-col size="2" class="flex al-center jc-center">
+            <p>Brooke Cagle</p>
+          </ion-col>
+          <ion-col size="2" class="flex flexd al-center jc-center">
+            <small>65%</small>
+            <ion-progress-bar value="0.65" color="warning"></ion-progress-bar>
+          </ion-col>
+          <ion-col size="2" class="flex al-center jc-center">
+            <div class="flex al-center" id="status">
+              <ion-icon src="assets/imgs/icn-done.svg"></ion-icon>
+              <p>&nbsp;&nbsp;No Error</p>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row class="value-row">
+          <ion-col size="0.5" class="flex al-center jc-center">
+            <ion-checkbox></ion-checkbox>
+          </ion-col>
+          <ion-col size="1.5" class="flex al-center jc-center">
+            <div>
+              <p>TRUCK \ HOIST \ 7</p>
+              <h6>8253103</h6>
+            </div>
+          </ion-col>
+          <ion-col size="2" class="flex al-center jc-center">
+            <p>Truck</p>
+          </ion-col>
+          <ion-col size="2" class="flex al-center jc-center">
+            <ion-badge  mode="ios" id="outofservice">
+              Out of Service
+            </ion-badge>
+          </ion-col>
+          <ion-col size="2" class="flex al-center jc-center">
+            <p>Brooke Cagle</p>
+          </ion-col>
+          <ion-col size="2" class="flex flexd al-center jc-center">
+            <small>25%</small>
+            <ion-progress-bar value="0.25" color="danger"></ion-progress-bar>
+          </ion-col>
+          <ion-col size="2" class="flex al-center jc-center">
+            <div class="flex al-center" id="status">
+              <ion-icon src="assets/imgs/icn-done.svg"></ion-icon>
+              <p>&nbsp;&nbsp;No Error</p>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row class="value-row">
+          <ion-col size="0.5" class="flex al-center jc-center">
+            <ion-checkbox></ion-checkbox>
+          </ion-col>
+          <ion-col size="1.5" class="flex al-center jc-center">
+            <div>
+              <p>TRUCK \ HOIST \ 7</p>
+              <h6>8253103</h6>
+            </div>
+          </ion-col>
+          <ion-col size="2" class="flex al-center jc-center">
+            <p>Truck</p>
+          </ion-col>
+          <ion-col size="2" class="flex al-center jc-center">
+            <ion-badge  mode="ios" id="onroute">
+              On Route
+            </ion-badge>
+          </ion-col>
+          <ion-col size="2" class="flex al-center jc-center">
+            <p>Brooke Cagle</p>
+          </ion-col>
+          <ion-col size="2" class="flex flexd al-center jc-center">
+            <small>90%</small>
+            <ion-progress-bar value="0.9"></ion-progress-bar>
+          </ion-col>
+          <ion-col size="2" class="flex al-center jc-center">
+            <div class="flex al-center" id="status">
+              <ion-icon src="assets/imgs/icn-done.svg"></ion-icon>
+              <p>&nbsp;&nbsp;No Error</p>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row class="value-row">
+          <ion-col size="0.5" class="flex al-center jc-center">
+            <ion-checkbox></ion-checkbox>
+          </ion-col>
+          <ion-col size="1.5" class="flex al-center jc-center">
+            <div>
+              <p>TRUCK \ HOIST \ 7</p>
+              <h6>8253103</h6>
+            </div>
+          </ion-col>
+          <ion-col size="2" class="flex al-center jc-center">
+            <p>Truck</p>
+          </ion-col>
+          <ion-col size="2" class="flex al-center jc-center">
+            <ion-badge  mode="ios" id="available">
+              Available
+            </ion-badge>
+          </ion-col>
+          <ion-col size="2" class="flex al-center jc-center">
+            <p>Brooke Cagle</p>
+          </ion-col>
+          <ion-col size="2" class="flex flexd al-center jc-center">
+            <small>65%</small>
+            <ion-progress-bar value="0.65" color="warning"></ion-progress-bar>
+          </ion-col>
+          <ion-col size="2" class="flex al-center jc-center">
+            <div class="flex al-center" id="status">
+              <ion-icon src="assets/imgs/icn-done.svg"></ion-icon>
+              <p>&nbsp;&nbsp;No Error</p>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row class="value-row">
+          <ion-col size="0.5" class="flex al-center jc-center">
+            <ion-checkbox></ion-checkbox>
+          </ion-col>
+          <ion-col size="1.5" class="flex al-center jc-center">
+            <div>
+              <p>TRUCK \ HOIST \ 7</p>
+              <h6>8253103</h6>
+            </div>
+          </ion-col>
+          <ion-col size="2" class="flex al-center jc-center">
+            <p>Truck</p>
+          </ion-col>
+          <ion-col size="2" class="flex al-center jc-center">
+            <ion-badge  mode="ios" id="outofservice">
+              Out of Service
+            </ion-badge>
+          </ion-col>
+          <ion-col size="2" class="flex al-center jc-center">
+            <p>Brooke Cagle</p>
+          </ion-col>
+          <ion-col size="2" class="flex flexd al-center jc-center">
+            <small>25%</small>
+            <ion-progress-bar value="0.25" color="danger"></ion-progress-bar>
+          </ion-col>
+          <ion-col size="2" class="flex al-center jc-center">
+            <div class="flex al-center" id="status">
+              <ion-icon src="assets/imgs/icn-done.svg"></ion-icon>
+              <p>&nbsp;&nbsp;No Error</p>
+            </div>
+          </ion-col>
+        </ion-row>
+        
+      </ion-grid>
+    </div>
+  </div>
+
+</ion-content>

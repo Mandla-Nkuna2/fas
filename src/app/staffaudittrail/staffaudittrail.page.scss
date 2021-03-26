@@ -1,0 +1,61 @@
+ion-content
+{
+    .grid-holder
+    {
+        margin-top: 20px;
+
+        ion-grid
+        {
+            border: none !important
+        }
+
+
+        .title-row
+        {
+            border: 1px solid #B3C6E2;
+            h4
+            {
+                font-size: 14px;
+            }
+        }
+    
+        .value-row
+        {
+            border: 1px solid #B3C6E2;
+            border-top: none !important;
+            p
+            {
+                font-size: 13px;
+            }
+        }
+    
+    }
+  
+    .nav-holder
+    {
+        margin-right: 14%;
+        .nav-btns
+        {
+
+            #active
+            {
+                --background:#C7D0E5;
+                --color: white;
+            }
+            ion-button
+            {
+                --background: transparent;
+                --border-color: #C7D0E5;
+                --border-style: solid;
+                --border-width: 1px;
+                --box-shadow: none;
+                --color: #C7D0E5;
+                font-family: 'Regular';
+                font-size: 12px !important;
+                height: 2rem;
+                margin-right: 10px;
+
+            }
+        }
+    }
+}

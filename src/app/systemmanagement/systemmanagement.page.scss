@@ -1,0 +1,102 @@
+ion-content
+{
+    .grid-holder
+    {
+        margin-top: 20px;
+    }
+
+    .divider
+    {
+        margin-bottom: 10px !important;
+    }
+
+    .more
+    {
+        margin-bottom: 10px;
+
+        h4
+        {
+            margin: 0 0 0 10px;
+        }
+        ion-grid
+        {
+            border: none !important;
+            margin: 10px 10px 0 10px !important;
+            .sub-header
+            {
+        
+                h5
+                {
+                    margin: 5px 0 !important;
+                }
+               ion-col
+               {
+                border-top: 1px solid #B3C6E2;
+                border-bottom: 1px solid #B3C6E2;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+               }
+
+               ion-col:nth-child(1)
+               {
+                border-left: 1px solid #B3C6E2;
+               }
+
+               ion-col:nth-last-child(1)
+               {
+                border-right: 1px solid #B3C6E2;
+               }
+            }
+            
+
+            #com
+            {
+                border-bottom: 1px solid #B3C6E2;
+            }
+            #coms
+            {
+                border-left: 1px solid #B3C6E2;
+                border-bottom: 1px solid #B3C6E2;
+            }
+
+            #coml
+            {
+                border-right: 1px solid #B3C6E2;
+                border-bottom: 1px solid #B3C6E2;
+            }
+        
+            
+            .sub-values
+            {
+               
+                #first
+                {
+                    border: 1px solid #B3C6E2;
+                    border-top:none !important;
+                }
+
+                #morelast
+                {
+                    border-right: 1px solid #B3C6E2;
+                }
+
+              
+                ion-col
+                {
+                    
+                    border-bottom: 1px solid #B3C6E2;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+        
+                    h5,p
+                    {
+                        font-size: 14px !important;
+                        margin: 5px 0;
+                    }
+                }
+            }
+        }
+    }
+}

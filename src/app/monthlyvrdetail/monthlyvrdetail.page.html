@@ -1,0 +1,255 @@
+<ion-content class="ion-padding">
+  <div class="title-holder flex al-center">
+    <ion-back-button defaultHref="monthlyvehiclereport" mode="ios" text=""></ion-back-button>
+    <h2>Monthly Vehicle Report</h2>
+    <div class="date-holder">
+      <div class="itm flex al-center">
+        <div class="thumb">
+            <ion-icon slot="icon-only" src="assets/imgs/icn-calender.svg"></ion-icon>
+        </div>
+        <ion-datetime display-format="MMM DD YYYY" value="Sep 16 2020, 12:02 "></ion-datetime>
+        <p>to</p>
+        <ion-datetime display-format="MMM DD YYYY" value="Sep 16 2020, 12:02 "></ion-datetime>
+    </div>
+    </div>
+  </div>
+
+  <div class="top-info">
+    <ion-row>
+      <ion-col size="2" class="card flex al-center jc-center">
+        <div>
+          <p>Registration</p>
+          <h4>NP117354</h4>
+        </div>
+      </ion-col>
+      <ion-col size="2" class="card flex al-center jc-center">
+        <div>
+          <p>Vehicle</p>
+          <h4>TRUCK</h4>
+        </div>
+      </ion-col>
+      <ion-col size="3" class="card flex al-center jc-center">
+        <div>
+          <p>Type</p>
+          <h4>SEDAN \ 4 DOOR \ 1300</h4>
+        </div>
+      </ion-col>
+      <ion-col size="3" class="card flex al-center jc-center">
+        <div>
+          <p>Make & MOD.</p>
+          <h4>TOYOTA COROLLA 1300GL</h4>
+        </div>
+      </ion-col>
+    </ion-row>
+  </div>
+
+
+  <div class="section">
+    <div class="grid-holder">
+      <div class="top-toolbar">
+        <h3>SEDAN \ 4 DOOR \ 1300</h3>
+      </div>
+      <ion-grid fixed>
+        <ion-row class="title-row">
+
+          <ion-col size="0.4" class="main-col flex al-center jc-center">
+            <h4>tl.</h4>
+          </ion-col>
+          <ion-col size="0.7" class="main-col flex ion-text-center al-center jc-center">
+            <h4>LOG NO.</h4>
+          </ion-col>
+          <ion-col size="1" class="main-col ion-no-padding flex al-center jc-center ">
+            <div>
+              <ion-row class="sub-row-first">
+                <ion-col size="12" class="ion-no-padding ion-text-center">
+                  <H4>utilization <br> days</H4>
+                </ion-col>
+              </ion-row>
+              <ion-row class="sub-row">
+                <ion-col size="5.5" class="ion-text-center" id="right">
+                  <h4>this mth</h4>
+                </ion-col>
+                <ion-col size="6.5" class="ion-text-center">
+                  <h4>mth avg ltd</h4>
+                </ion-col>
+              </ion-row>
+            </div>
+          </ion-col>
+          <ion-col size="1.8" class="main-col ion-no-padding flex al-center jc-center">
+            <div>
+              <ion-row class="sub-row-first">
+                <ion-col size="12" class="ion-no-padding flex jc-center">
+                  <h4> kilometers travelled</h4>
+                </ion-col>
+              </ion-row>
+              <ion-row class="sub-row">
+                <ion-col size="4" class="flex al-center jc-center" id="right">
+                  <h4>this mth</h4>
+                </ion-col>
+                <ion-col size="4" class="ion-text-center">
+                  <h4>mth avg ltd</h4>
+                </ion-col>
+                <ion-col size="4" id="left">
+                  <h4>min mth</h4>
+                </ion-col>
+              </ion-row>
+            </div>
+          </ion-col>
+          <ion-col size="1.2" class="main-col ion-no-padding flex al-center jc-center">
+            <div>
+              <ion-row class="sub-row-first">
+                <ion-col size="12" class="ion-no-padding flex jc-center">
+                  <h4>Last service</h4>
+                </ion-col>
+              </ion-row>
+              <ion-row class="sub-row">
+                <ion-col size="6" class="flex al-center jc-center" id="right">
+                  <h4>At</h4>
+                </ion-col>
+                <ion-col size="6" class="flex jc-center">
+                  <h4>ON</h4>
+                </ion-col>
+              </ion-row>
+            </div>
+          </ion-col>
+          <ion-col size="0.8" class="main-col ion-no-padding flex al-center jc-center">
+            <h4>Next <br> Service <br>
+              Reading</h4>
+          </ion-col>
+          <ion-col size="0.6" class="main-col ion-no-padding flex al-center jc-center">
+            <h4>latest <br> service <br>
+              reading</h4>
+          </ion-col>
+          <ion-col size="0.6" class="main-col ion-no-padding ion-text-center flex al-center jc-center">
+            <h4>hrs <br> repair</h4>
+          </ion-col>
+          <ion-col size="0.6" class="main-col ion-no-padding ion-text-center flex al-center jc-center">
+            <h4>Mech avail %</h4>
+          </ion-col>
+          <ion-col size="0.6" class="main-col ion-no-padding ion-text-center flex al-center jc-center">
+            <h4>fuel used
+              (ltrs)</h4>
+          </ion-col>
+          <ion-col size="1.5" class="main-col ion-no-padding flex al-center jc-center">
+            <div>
+              <ion-row class="sub-row-first">
+                <ion-col size="12" class="ion-text-center">
+                  <h4> fuel consumption
+                    <br>
+                    ltrs/100 km
+                  </h4>
+                </ion-col>
+              </ion-row>
+              <ion-row class="sub-row">
+                <ion-col size="4" id="right">
+                  <h4>curr mth</h4>
+                </ion-col>
+                <ion-col size="3.5" class="flex al-center jc-center">
+                  <h4>ltd</h4>
+                </ion-col>
+                <ion-col size="4.5" class="ion-text-center" id="left">
+                  <h4>max accept</h4>
+                </ion-col>
+              </ion-row>
+            </div>
+          </ion-col>
+          <ion-col size="0.8" class="main-col ion-no-padding ion-text-center flex al-center">
+            <h4>kms <br> travelled ltd</h4>
+          </ion-col>
+          <ion-col size="0.6" class="main-col ion-no-padding ion-text-center flex al-center jc-center">
+            <h4>oil<br>used<br> service</h4>
+          </ion-col>
+          <ion-col size="0.8" class="main-col ion-no-padding ion-text-center flex jc-center al-center">
+            <h4>top up</h4>
+          </ion-col>
+        </ion-row>
+
+
+        <ion-row class="value-row">
+          <ion-col size="0.4" class="flex al-center jc-center">
+            <p>04</p>
+          </ion-col>
+          <ion-col size="0.7" class="flex al-center jc-center">
+            <p>836456</p>
+          </ion-col>
+          <ion-col size="1" class="flex al-center jc-center no-padding">
+            <ion-row class="sub-row-first">
+              <ion-col size="5.5" class="ion-text-center">
+                <p>10</p>
+              </ion-col>
+              <ion-col size="6.5" class="ion-text-center">
+                <p>06</p>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+          <ion-col size="1.8" class="flex al-center jc-center">
+            <ion-row class="sub-row-first">
+              <ion-col size="4" class="ion-text-center">
+                <p>N/A</p>
+              </ion-col>
+              <ion-col size="4" class="ion-text-center">
+                <p>2019</p>
+              </ion-col>
+              <ion-col size="4" class="ion-text-center">
+                <p>1629</p>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+          <ion-col size="1.2" class="flex al-center jc-center no-padding">
+            <ion-row class="sub-row-first">
+              <ion-col size="5.5" class="ion-text-center">
+                <p>99627</p>
+              </ion-col>
+              <ion-col size="6.5" class="ion-text-center">
+                <p>26 NOV 2008</p>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+          <ion-col size="0.8" class="ion-text-center flex al-center jc-center">
+            <p>109627</p>
+          </ion-col>
+          <ion-col size="0.6" class="flex al-center jc-center">
+            <p>100.00</p>
+          </ion-col>
+          <ion-col size="0.6" class="flex al-center jc-center">
+            <p>35</p>
+          </ion-col>
+          <ion-col size="0.6" class="flex al-center jc-center">
+            <p>78</p>
+          </ion-col>
+          <ion-col size="0.6" class="flex al-center jc-center">
+            <p>143.8</p>
+          </ion-col>
+          <ion-col size="1.5" class="flex al-center jc-center">
+            <ion-row class="sub-row-first">
+              <ion-col size="4" class="ion-text-center">
+                <p>6.9</p>
+              </ion-col>
+              <ion-col size="4" class="ion-text-center">
+                <p>10.2</p>
+              </ion-col>
+              <ion-col size="4" class="ion-text-center">
+                <p>10.0</p>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+          <ion-col size="0.8" class="flex al-center jc-center">
+            <p>105579</p>
+          </ion-col>
+          <ion-col size="0.6" class="flex al-center jc-center">
+            <p>4</p>
+          </ion-col>
+          <ion-col size="0.8" class="flex al-center jc-center">
+            <p>N/A</p>
+          </ion-col>
+        </ion-row>
+
+        
+
+   
+
+      </ion-grid>
+    </div>
+  </div>
+
+</ion-content>

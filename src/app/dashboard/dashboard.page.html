@@ -1,0 +1,637 @@
+<ion-content class="ion-padding">
+    <div class="title-holder flex al-center">
+        <h2>Dashboard</h2>
+        <div class="date-holder">
+            <ion-item lines="none">
+                <div class="thumb" slot="start">
+                    <ion-icon slot="icon-only" src="assets/imgs/icn-calender.svg"></ion-icon>
+                </div>
+                <ion-datetime display-format="MMM DD YYYY hh:mm a" value="Sep 16 2020, 12:02 "></ion-datetime>
+            </ion-item>
+        </div>
+    </div>
+
+    <div class="top-infocard-holder flex al-center jc-between">
+        <div class="card">
+            <ion-item lines="none">
+                <div class="round flex al-center jc-center" slot="start" id="first">
+                    <img src="assets/imgs/icn-lorry.svg" alt="">
+                </div>
+                <ion-label>
+                    <h1>251</h1>
+                    <p>Total Vehicles</p>
+                </ion-label>
+            </ion-item>
+        </div>
+        <div class="card">
+            <ion-item lines="none">
+                <div class="round flex al-center jc-center" slot="start" id="second">
+                    <img src="assets/imgs/icn-warn.svg" alt="">
+                </div>
+                <ion-label>
+                    <h1>20</h1>
+                    <p>Vehicles with Warnings</p>
+                </ion-label>
+            </ion-item>
+        </div>
+        <div class="card">
+            <ion-item lines="none">
+                <div class="round flex al-center jc-center" slot="start" id="third">
+                    <img src="assets/imgs/icn-lorry.svg" alt="">
+                </div>
+                <ion-label>
+                    <h1>125</h1>
+                    <p>Vehicles on Route</p>
+                </ion-label>
+            </ion-item>
+        </div>
+        <div class="card">
+            <ion-item lines="none">
+                <div class="round flex al-center jc-center" slot="start" id="fourth">
+                    <img src="assets/imgs/icn-stop.svg" alt="">
+                </div>
+                <ion-label>
+                    <h1>23</h1>
+                    <p>Vehicles Parked</p>
+                </ion-label>
+            </ion-item>
+        </div>
+    </div>
+
+    <div class="charts-holder">
+        <ion-row>
+            <ion-col size="8">
+                <div class="pie-charts-holder">
+                    <ion-row>
+                        <ion-col size="5.5" class="flex al-center">
+                            <div class="card">
+                                <div class="title">
+                                    <h3>Vehicles</h3>
+                                </div>
+                                <div class="content">
+                                    <ion-row>
+                                        <ion-col size="5" class="ion-no-padding">
+                                            <div class="chart">
+                                                <div class="chartWrapper">
+                                                    <div class="chartAreaWrapper">
+                                                        <canvas id="myChart" width="800" height="450"
+                                                            #lineCanvas></canvas>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </ion-col>
+                                        <ion-col size="6" class="ion-no-padding al-center flex jc-end">
+                                            <div class="legend">
+                                                <div class="detail flex al-center" id="first">
+                                                    <div class="bar">
+
+                                                    </div>
+                                                    <div class="desc">
+                                                        <h5>On Route</h5>
+                                                        <p>135</p>
+                                                    </div>
+                                                </div>
+                                                <div class="detail flex al-center" id="second">
+                                                    <div class="bar">
+
+                                                    </div>
+                                                    <div class="desc">
+                                                        <h5>Available</h5>
+                                                        <p>36</p>
+                                                    </div>
+                                                </div>
+                                                <div class="detail flex al-center" id="third">
+                                                    <div class="bar">
+
+                                                    </div>
+                                                    <div class="desc">
+                                                        <h5>Need Maintenance</h5>
+                                                        <p>15</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ion-col>
+                                    </ion-row>
+                                </div>
+                            </div>
+                        </ion-col>
+                        <ion-col size="5.5" offset="0.5" class="flex al-center">
+                            <div class="card">
+
+                                <div class="title">
+                                    <h3>Vehicle Condition</h3>
+                                </div>
+                                <div class="content">
+                                    <ion-row>
+                                        <ion-col size="5" class="ion-no-padding">
+                                            <div class="chart">
+                                                <div class="chartWrapper">
+                                                    <div class="chartAreaWrapper">
+                                                        <canvas id="myChart" width="800" height="450"
+                                                            #lineCanvas2></canvas>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </ion-col>
+                                        <ion-col size="6" class="ion-no-padding flex al-center jc-end">
+                                            <div class="legend">
+                                                <div class="detail flex al-center" id="first">
+                                                    <div class="dot">
+
+                                                    </div>
+                                                    <div class="desc">
+                                                        <h6>75 Vehicles</h6>
+                                                    </div>
+                                                </div>
+                                                <div class="detail flex al-center" id="second">
+                                                    <div class="dot">
+
+                                                    </div>
+                                                    <div class="desc">
+                                                        <h6>10 Vehicles</h6>
+                                                    </div>
+                                                </div>
+                                                <div class="detail flex al-center" id="third">
+                                                    <div class="dot">
+
+                                                    </div>
+                                                    <div class="desc">
+                                                        <h6>35 Vehicles</h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ion-col>
+                                    </ion-row>
+
+                                    <ion-row>
+                                        <ion-col size="4">
+                                            <div class="legend">
+                                                <div class="detail flex al-center" id="first">
+                                                    <div class="dot">
+
+                                                    </div>
+                                                    <div class="desc">
+                                                        <h6>75 Vehicles</h6>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </ion-col>
+                                        <ion-col size="4">
+                                            <div class="legend">
+                                                <div class="detail flex al-center" id="second">
+                                                    <div class="dot">
+
+                                                    </div>
+                                                    <div class="desc">
+                                                        <h6>10 Vehicles</h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ion-col>
+                                        <ion-col size="4">
+                                            <div class="legend">
+                                                <div class="detail flex al-center" id="third">
+                                                    <div class="dot">
+
+                                                    </div>
+                                                    <div class="desc">
+                                                        <h6>35 Vehicles</h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ion-col>
+                                    </ion-row>
+
+
+                                </div>
+                            </div>
+                        </ion-col>
+                    </ion-row>
+                </div>
+            </ion-col>
+            <ion-col size="4">
+                <div class="area-charts-holder">
+                    <div class="card">
+                        <div class="title">
+                            <h3>Revenue</h3>
+                        </div>
+                        <div class="chartAreaWrapper">
+                            <canvas id="myChart3" width="700" height="180" #lineCanvas3></canvas>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="title">
+                            <h3>Fuel Consumption</h3>
+                        </div>
+                        <div class="chartAreaWrapper">
+                            <canvas id="myChart3" width="750" height="180" #lineCanvas4></canvas>
+                        </div>
+                    </div>
+                </div>
+
+            </ion-col>
+        </ion-row>
+
+    </div>
+
+    <div class="section">
+        <div class="grid-holder">
+            <div class="top-toolbar">
+                <h3>Recently Added Assets</h3>
+            </div>
+            <ion-grid fixed>
+                <ion-row class="title-row">
+                    <ion-col size="0.5" class="flex al-center jc-center">
+
+                    </ion-col>
+                    <ion-col size="1.5" class="flex al-center jc-center">
+                        <h4>Item No.</h4>
+                    </ion-col>
+                    <ion-col size="2" class="flex al-center jc-center">
+                        <h4>Asset type</h4>
+                    </ion-col>
+                    <ion-col size="2" class="flex al-center jc-center">
+                        <h4>Asset Category</h4>
+                    </ion-col>
+                    <ion-col size="2" class="flex al-center jc-center">
+                        <h4>Make & Modal</h4>
+                    </ion-col>
+                    <ion-col size="2" class="flex al-center jc-center">
+                        <h4>Purchase Date</h4>
+                    </ion-col>
+                    <ion-col size="2" class="flex al-center jc-center">
+                        <h4>Licence Date</h4>
+                    </ion-col>
+                </ion-row>
+                <div class="values">
+                    <ion-row class="value-row">
+                        <ion-col size="0.5" class="flex al-center jc-center">
+                            <ion-checkbox></ion-checkbox>
+                        </ion-col>
+                        <ion-col size="1.5" class="flex al-center jc-center">
+                            <p>NPC7502</p>
+                        </ion-col>
+                        <ion-col size="2" class="flex al-center jc-center">
+                            <p>Compressor</p>
+                        </ion-col>
+                        <ion-col size="2" class="flex al-center jc-center">
+                            <p>Major Equipment</p>
+                        </ion-col>
+                        <ion-col size="2" class="flex al-center jc-center">
+                            <p>Ingersoll Rand P180SD</p>
+                        </ion-col>
+                        <ion-col size="2" class="flex al-center jc-center">
+                            <p>01 dec 2008</p>
+                        </ion-col>
+                        <ion-col size="2" class="flex al-center jc-center">
+                            <p>31 Jan 2010</p>
+                        </ion-col>
+                    </ion-row>
+                    <div class="more">
+                        <div class="divider"></div>
+                        <h4>More Details</h4>
+                        <ion-row>
+                            <ion-col size="3">
+                                <ion-row>
+                                    <ion-col size="6">
+                                        <h5>Engine No. :</h5>
+                                    </ion-col>
+                                    <ion-col size="6">
+                                        <p>8253103</p>
+                                    </ion-col>
+                                </ion-row>
+                                <ion-row>
+                                    <ion-col size="6">
+                                        <h5>Chassie No. :</h5>
+                                    </ion-col>
+                                    <ion-col size="6">
+                                        <p>204778E92337</p>
+                                    </ion-col>
+                                </ion-row>
+                            </ion-col>
+                            <ion-col size="4">
+                                <ion-row>
+                                    <ion-col size="6">
+                                        <h5>Location:</h5>
+                                    </ion-col>
+                                    <ion-col size="6">
+                                        <p>Stores</p>
+                                    </ion-col>
+                                </ion-row>
+                                <ion-row>
+                                    <ion-col size="6">
+                                        <h5>Meter Reading as at:</h5>
+                                    </ion-col>
+                                    <ion-col size="6">
+                                        <p>432, 01 Nov 2009</p>
+                                    </ion-col>
+                                </ion-row>
+                            </ion-col>
+                        </ion-row>
+                    </div>
+                </div>
+                <div class="values">
+                    <ion-row class="value-row">
+                        <ion-col size="0.5" class="flex al-center jc-center">
+                            <ion-checkbox></ion-checkbox>
+                        </ion-col>
+                        <ion-col size="1.5" class="flex al-center jc-center">
+                            <p>NPC7502</p>
+                        </ion-col>
+                        <ion-col size="2" class="flex al-center jc-center">
+                            <p>Compressor</p>
+                        </ion-col>
+                        <ion-col size="2" class="flex al-center jc-center">
+                            <p>Major Equipment</p>
+                        </ion-col>
+                        <ion-col size="2" class="flex al-center jc-center">
+                            <p>Ingersoll Rand P180SD</p>
+                        </ion-col>
+                        <ion-col size="2" class="flex al-center jc-center">
+                            <p>01 dec 2008</p>
+                        </ion-col>
+                        <ion-col size="2" class="flex al-center jc-center">
+                            <p>31 Jan 2010</p>
+                        </ion-col>
+                    </ion-row>
+                </div>
+                <div class="values">
+                    <ion-row class="value-row">
+                        <ion-col size="0.5" class="flex al-center jc-center">
+                            <ion-checkbox></ion-checkbox>
+                        </ion-col>
+                        <ion-col size="1.5" class="flex al-center jc-center">
+                            <p>NPC7502</p>
+                        </ion-col>
+                        <ion-col size="2" class="flex al-center jc-center">
+                            <p>Compressor</p>
+                        </ion-col>
+                        <ion-col size="2" class="flex al-center jc-center">
+                            <p>Major Equipment</p>
+                        </ion-col>
+                        <ion-col size="2" class="flex al-center jc-center">
+                            <p>Ingersoll Rand P180SD</p>
+                        </ion-col>
+                        <ion-col size="2" class="flex al-center jc-center">
+                            <p>01 dec 2008</p>
+                        </ion-col>
+                        <ion-col size="2" class="flex al-center jc-center">
+                            <p>31 Jan 2010</p>
+                        </ion-col>
+                    </ion-row>
+                </div>
+                <div class="values">
+                    <ion-row class="value-row">
+                        <ion-col size="0.5" class="flex al-center jc-center">
+                            <ion-checkbox></ion-checkbox>
+                        </ion-col>
+                        <ion-col size="1.5" class="flex al-center jc-center">
+                            <p>NPC7502</p>
+                        </ion-col>
+                        <ion-col size="2" class="flex al-center jc-center">
+                            <p>Compressor</p>
+                        </ion-col>
+                        <ion-col size="2" class="flex al-center jc-center">
+                            <p>Major Equipment</p>
+                        </ion-col>
+                        <ion-col size="2" class="flex al-center jc-center">
+                            <p>Ingersoll Rand P180SD</p>
+                        </ion-col>
+                        <ion-col size="2" class="flex al-center jc-center">
+                            <p>01 dec 2008</p>
+                        </ion-col>
+                        <ion-col size="2" class="flex al-center jc-center">
+                            <p>31 Jan 2010</p>
+                        </ion-col>
+                    </ion-row>
+                </div>
+
+            </ion-grid>
+        </div>
+    </div>
+
+    <div class="section">
+        <ion-grid fixed>
+            <ion-row>
+                <ion-col size="4" class="flex al-center jc-center">
+                    <div class="legends-holder">
+                        <div class="card">
+                            <ion-item lines="none" class="header">
+                                <div class="icn flex al-center jc-center" slot="start">
+                                    <img src="assets/imgs/icn-license.svg" alt="">
+                                </div>
+                                <ion-label>Licence Renewal</ion-label>
+                            </ion-item>
+
+                            <div class="list ion-padding-horizontal">
+                                <ion-item lines="none" id="first">
+                                    <div class="bar" slot="start">
+
+                                    </div>
+                                    <ion-label>Expired</ion-label>
+                                    <div class="end-slot flex al-center jc-center" slot="end">
+                                        <p>05</p>
+                                    </div>
+                                </ion-item>
+                                <ion-item lines="none" id="second">
+                                    <div class="bar" slot="start">
+
+                                    </div>
+                                    <ion-label>About to Expire</ion-label>
+                                    <div class="end-slot flex al-center jc-center" slot="end">
+                                        <p>10</p>
+                                    </div>
+                                </ion-item>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <ion-item lines="none" class="header">
+                                <div class="icn flex al-center jc-center" slot="start">
+                                    <img src="assets/imgs/icn-lorrry.svg" alt="">
+                                </div>
+                                <ion-label>Accidents</ion-label>
+                            </ion-item>
+
+                            <div class="list ion-padding-horizontal">
+                                <ion-item lines="none" id="first">
+                                    <div class="bar" slot="start">
+
+                                    </div>
+                                    <ion-label>2 Vehicles</ion-label>
+                                    <div class="end-slot flex al-center jc-center" slot="end" id="non">
+                                        <p>Need Evacuation</p>
+                                    </div>
+                                </ion-item>
+                                <ion-item lines="none" id="second">
+                                    <div class="bar" slot="start">
+
+                                    </div>
+                                    <ion-label>4 Vehicles</ion-label>
+                                    <div class="end-slot flex al-center jc-center" slot="end" id="non">
+                                        <p>Evacuated</p>
+                                    </div>
+                                </ion-item>
+                            </div>
+                        </div>
+                    </div>
+                </ion-col>
+                <ion-col size="8">
+                    <div class="grid-holder">
+                        <div class="top-toolbar">
+                            <h3>Fleets</h3>
+                        </div>
+                        <ion-grid fixed>
+                            <ion-row class="title-row">
+                                <ion-col size="2.5" class="flex al-center jc-center">
+                                    <h4>Driver</h4>
+                                </ion-col>
+                                <ion-col size="2" class="flex al-center jc-center">
+                                    <h4>Driver ID</h4>
+                                </ion-col>
+                                <ion-col size="2.5" class="flex al-center jc-center">
+                                    <h4>Vehicle</h4>
+                                </ion-col>
+                                <ion-col size="2.5" class="flex al-center jc-center">
+                                    <h4>Status</h4>
+                                </ion-col>
+                                <ion-col size="2.5" class="flex al-center jc-center">
+                                    <h4>Phone No.</h4>
+                                </ion-col>
+                            </ion-row>
+               
+                            <ion-row class="value-row">
+                                <ion-col size="2.5" class="flex al-center jc-center">
+                                    <ion-item lines="none">
+                                        <ion-avatar slot="start">
+                                            <img src="assets/imgs/dp.jpg" alt="">
+                                        </ion-avatar>
+                                        <ion-label>Brooke Cagle</ion-label>
+                                    </ion-item>
+                                </ion-col>
+                                <ion-col size="2" class="flex al-center jc-center">
+                                    <p>023012541</p>
+                                </ion-col>
+                                <ion-col size="2.5" class="flex al-center jc-center">
+                                    <p>TRUCK \ HOIST \ 7 <br> 8253103</p>
+                                </ion-col>
+                                <ion-col size="2.5" class="flex al-center jc-center">
+                                    <div class="status" id="running">
+                                        <p>Running</p>
+                                    </div>
+                                </ion-col>
+                                <ion-col size="2.5" class="flex al-center jc-center">
+                                    <p>+27 5284 1452 01</p>
+                                </ion-col>
+                            </ion-row>
+
+                            <ion-row class="value-row">
+                                <ion-col size="2.5" class="flex al-center jc-center">
+                                    <ion-item lines="none">
+                                        <ion-avatar slot="start">
+                                            <img src="assets/imgs/dp.jpg" alt="">
+                                        </ion-avatar>
+                                        <ion-label>Brooke Cagle</ion-label>
+                                    </ion-item>
+                                </ion-col>
+                                <ion-col size="2" class="flex al-center jc-center">
+                                    <p>023012541</p>
+                                </ion-col>
+                                <ion-col size="2.5" class="flex al-center jc-center">
+                                    <p>TRUCK \ HOIST \ 7 <br> 8253103</p>
+                                </ion-col>
+                                <ion-col size="2.5" class="flex al-center jc-center">
+                                    <div class="status" id="stopped">
+                                        <p>Stopped</p>
+                                    </div>
+                                </ion-col>
+                                <ion-col size="2.5" class="flex al-center jc-center">
+                                    <p>+27 5284 1452 01</p>
+                                </ion-col>
+                            </ion-row>
+
+                            <ion-row class="value-row">
+                                <ion-col size="2.5" class="flex al-center jc-center">
+                                    <ion-item lines="none">
+                                        <ion-avatar slot="start">
+                                            <img src="assets/imgs/dp.jpg" alt="">
+                                        </ion-avatar>
+                                        <ion-label>Brooke Cagle</ion-label>
+                                    </ion-item>
+                                </ion-col>
+                                <ion-col size="2" class="flex al-center jc-center">
+                                    <p>023012541</p>
+                                </ion-col>
+                                <ion-col size="2.5" class="flex al-center jc-center">
+                                    <p>TRUCK \ HOIST \ 7 <br> 8253103</p>
+                                </ion-col>
+                                <ion-col size="2.5" class="flex al-center jc-center">
+                                    <div class="status" id="parked">
+                                        <p>Parked</p>
+                                    </div>
+                                </ion-col>
+                                <ion-col size="2.5" class="flex al-center jc-center">
+                                    <p>+27 5284 1452 01</p>
+                                </ion-col>
+                            </ion-row>
+
+                            <ion-row class="value-row">
+                                <ion-col size="2.5" class="flex al-center jc-center">
+                                    <ion-item lines="none">
+                                        <ion-avatar slot="start">
+                                            <img src="assets/imgs/dp.jpg" alt="">
+                                        </ion-avatar>
+                                        <ion-label>Brooke Cagle</ion-label>
+                                    </ion-item>
+                                </ion-col>
+                                <ion-col size="2" class="flex al-center jc-center">
+                                    <p>023012541</p>
+                                </ion-col>
+                                <ion-col size="2.5" class="flex al-center jc-center">
+                                    <p>TRUCK \ HOIST \ 7 <br> 8253103</p>
+                                </ion-col>
+                                <ion-col size="2.5" class="flex al-center jc-center">
+                                    <div class="status" id="running">
+                                        <p>Running</p>
+                                    </div>
+                                </ion-col>
+                                <ion-col size="2.5" class="flex al-center jc-center">
+                                    <p>+27 5284 1452 01</p>
+                                </ion-col>
+                            </ion-row>
+
+                            <ion-row class="value-row">
+                                <ion-col size="2.5" class="flex al-center jc-center">
+                                    <ion-item lines="none">
+                                        <ion-avatar slot="start">
+                                            <img src="assets/imgs/dp.jpg" alt="">
+                                        </ion-avatar>
+                                        <ion-label>Brooke Cagle</ion-label>
+                                    </ion-item>
+                                </ion-col>
+                                <ion-col size="2" class="flex al-center jc-center">
+                                    <p>023012541</p>
+                                </ion-col>
+                                <ion-col size="2.5" class="flex al-center jc-center">
+                                    <p>TRUCK \ HOIST \ 7 <br> 8253103</p>
+                                </ion-col>
+                                <ion-col size="2.5" class="flex al-center jc-center">
+                                    <div class="status" id="stopped">
+                                        <p>Stopped</p>
+                                    </div>
+                                </ion-col>
+                                <ion-col size="2.5" class="flex al-center jc-center">
+                                    <p>+27 5284 1452 01</p>
+                                </ion-col>
+                            </ion-row>
+            
+                        </ion-grid>
+                    </div>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+</ion-content>
