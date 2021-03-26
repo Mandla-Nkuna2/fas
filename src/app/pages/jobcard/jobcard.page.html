@@ -29,7 +29,7 @@
               <div class="item-input">
                 <ion-label>Reported Date</ion-label>
                 <ion-item lines="none">
-                  <ion-datetime display-format="MMM DD YYYY hh:mm a" value="Sep 16 2020, 12:02 "></ion-datetime>
+                  <ion-datetime display-format="MMM DD YYYY hh:mm a" value="Sep 16 2020, 12:02 " [(ngModel)]="jobCard.reportedDate" [ionChange]="onchange($event)"></ion-datetime>
                 </ion-item>
               </div>
             </ion-col>
