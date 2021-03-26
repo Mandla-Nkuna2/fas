@@ -5,16 +5,24 @@
       <div class="date-holder">
         <div class="itm flex al-center">
           <div class="thumb">
-              <ion-icon slot="icon-only" src="assets/imgs/icn-calender.svg"></ion-icon>
+            <ion-icon
+              slot="icon-only"
+              src="assets/imgs/icn-calender.svg"
+            ></ion-icon>
           </div>
-          <ion-datetime display-format="MMM DD YYYY" value="Sep 16 2020, 12:02 "></ion-datetime>
+          <ion-datetime
+            display-format="MMM DD YYYY"
+            value="Sep 16 2020, 12:02 "
+          ></ion-datetime>
           <p>to</p>
-          <ion-datetime display-format="MMM DD YYYY" value="Sep 16 2020, 12:02 "></ion-datetime>
-      </div>
+          <ion-datetime
+            display-format="MMM DD YYYY"
+            value="Sep 16 2020, 12:02 "
+          ></ion-datetime>
+        </div>
       </div>
     </div>
   </div>
-
 
   <div class="content">
     <div class="section">
@@ -29,7 +37,12 @@
               <div class="item-input">
                 <ion-label>Reported Date</ion-label>
                 <ion-item lines="none">
-                  <ion-datetime display-format="MMM DD YYYY hh:mm a" value="Sep 16 2020, 12:02 " [(ngModel)]="jobCard.reportedDate" [ionChange]="onchange($event)"></ion-datetime>
+                  <ion-datetime
+                    display-format="MMM DD YYYY hh:mm a"
+                    value="Sep 16 2020, 12:02 "
+                    [(ngModel)]="jobCard.reportedDate"
+                    [ionChange]="onchange($event)"
+                  ></ion-datetime>
                 </ion-item>
               </div>
             </ion-col>
@@ -37,7 +50,10 @@
               <div class="item-input">
                 <ion-label>Start Date</ion-label>
                 <ion-item lines="none">
-                  <ion-datetime display-format="MMM DD YYYY hh:mm a" value="Sep 16 2020, 12:02 "></ion-datetime>
+                  <ion-datetime
+                    display-format="MMM DD YYYY hh:mm a"
+                    value="Sep 16 2020, 12:02 "
+                  ></ion-datetime>
                 </ion-item>
               </div>
             </ion-col>
@@ -45,7 +61,10 @@
               <div class="item-input">
                 <ion-label>Complete Date</ion-label>
                 <ion-item lines="none">
-                  <ion-datetime display-format="MMM DD YYYY hh:mm a" value="Sep 16 2020, 12:02 "></ion-datetime>
+                  <ion-datetime
+                    display-format="MMM DD YYYY hh:mm a"
+                    value="Sep 16 2020, 12:02 "
+                  ></ion-datetime>
                 </ion-item>
               </div>
             </ion-col>
@@ -53,8 +72,14 @@
               <div class="item-input">
                 <ion-label>Reported By</ion-label>
                 <ion-item lines="none">
-                  <ion-select value="MAZDA323200E" multiple="false" placeholder="Please select">
-                    <ion-select-option value="MAZDA323200E">MAZDA 323 200E</ion-select-option>
+                  <ion-select
+                    value="MAZDA323200E"
+                    multiple="false"
+                    placeholder="Please select"
+                  >
+                    <ion-select-option value="MAZDA323200E"
+                      >MAZDA 323 200E</ion-select-option
+                    >
                     <ion-select-option value="hawaii">Hawaii</ion-select-option>
                   </ion-select>
                 </ion-item>
@@ -64,8 +89,14 @@
               <div class="item-input">
                 <ion-label>Driver / Operator</ion-label>
                 <ion-item lines="none">
-                  <ion-select value="MAZDA323200E" multiple="false" placeholder="Please select">
-                    <ion-select-option value="MAZDA323200E">MAZDA 323 200E</ion-select-option>
+                  <ion-select
+                    value="MAZDA323200E"
+                    multiple="false"
+                    placeholder="Please select"
+                  >
+                    <ion-select-option value="MAZDA323200E"
+                      >MAZDA 323 200E</ion-select-option
+                    >
                     <ion-select-option value="hawaii">Hawaii</ion-select-option>
                   </ion-select>
                 </ion-item>
@@ -75,7 +106,6 @@
         </ion-grid>
       </div>
     </div>
-
 
     <div class="section">
       <div class="title">
@@ -135,12 +165,14 @@
               </div>
             </ion-col>
 
-
             <ion-col size="3.5">
               <div class="item-input">
                 <ion-label>Meter Reading Date</ion-label>
                 <ion-item lines="none">
-                  <ion-datetime display-format="MMM DD YYYY hh:mm a" value="Sep 16 2020, 12:02 "></ion-datetime>
+                  <ion-datetime
+                    display-format="MMM DD YYYY hh:mm a"
+                    value="Sep 16 2020, 12:02 "
+                  ></ion-datetime>
                 </ion-item>
               </div>
             </ion-col>
@@ -149,11 +181,13 @@
               <div class="item-input">
                 <ion-label>Manufacture Date</ion-label>
                 <ion-item lines="none">
-                  <ion-datetime display-format="MMM DD YYYY hh:mm a" value="Sep 16 2020, 12:02 "></ion-datetime>
+                  <ion-datetime
+                    display-format="MMM DD YYYY hh:mm a"
+                    value="Sep 16 2020, 12:02 "
+                  ></ion-datetime>
                 </ion-item>
               </div>
             </ion-col>
-
 
             <ion-col size="3.5" offset="0.5">
               <div class="item-input">
@@ -168,7 +202,10 @@
               <div class="item-input">
                 <ion-label>Warranty Expiry Date</ion-label>
                 <ion-item lines="none">
-                  <ion-datetime display-format="MMM DD YYYY hh:mm a" value="Sep 16 2020, 12:02 "></ion-datetime>
+                  <ion-datetime
+                    display-format="MMM DD YYYY hh:mm a"
+                    value="Sep 16 2020, 12:02 "
+                  ></ion-datetime>
                 </ion-item>
               </div>
             </ion-col>
@@ -194,7 +231,6 @@
         </ion-grid>
       </div>
     </div>
-
 
     <div class="section">
       <div class="title">
@@ -230,7 +266,6 @@
                 </ion-item>
               </div>
             </ion-col>
-
           </ion-row>
 
           <ion-row>
@@ -273,17 +308,10 @@
               </div>
 
               <div class="btn-holder ion-text-right">
-                <ion-button>
-                  Add More Componenets
-                </ion-button>
+                <ion-button> Add More Componenets </ion-button>
               </div>
             </ion-col>
           </ion-row>
-
-
-
-
-
 
           <ion-row>
             <ion-col size="3.5">
@@ -333,9 +361,7 @@
 
             <ion-col size="3.5" offset="0.5" class="flex al-end jc-end">
               <div class="btn-holder ion-text-right">
-                <ion-button>
-                  Add More
-                </ion-button>
+                <ion-button> Add More </ion-button>
               </div>
             </ion-col>
 
@@ -384,16 +410,12 @@
               </div>
             </ion-col>
 
-
             <ion-col size="11.5">
               <div class="btn-holder ion-text-left">
-                <ion-button>
-                  Add More
-                </ion-button>
+                <ion-button> Add More </ion-button>
               </div>
             </ion-col>
           </ion-row>
-
 
           <ion-row>
             <div class="title">
@@ -456,13 +478,10 @@
               </div>
 
               <div class="btn-holder ion-text-right">
-                <ion-button>
-                  Add More
-                </ion-button>
+                <ion-button> Add More </ion-button>
               </div>
             </ion-col>
           </ion-row>
-
 
           <ion-row>
             <div class="title">
@@ -506,9 +525,7 @@
               </div>
 
               <div class="btn-holder ion-text-right">
-                <ion-button>
-                  Add More
-                </ion-button>
+                <ion-button> Add More </ion-button>
               </div>
             </ion-col>
           </ion-row>
@@ -546,21 +563,15 @@
               </div>
 
               <div class="btn-holder ion-text-right">
-                <ion-button>
-                  Add More
-                </ion-button>
+                <ion-button> Add More </ion-button>
               </div>
             </ion-col>
           </ion-row>
-
         </ion-grid>
       </div>
     </div>
 
-
-
     <div class="section">
-
       <div class="the-form">
         <ion-grid fixed>
           <ion-row>
@@ -594,7 +605,7 @@
                 <ion-item lines="none">
                   <ion-input type="text" value="upload"></ion-input>
                   <div class="end-slot" slot="end">
-                    <img src="assets/imgs/icn-upload.svg" alt="">
+                    <img src="assets/imgs/icn-upload.svg" alt="" />
                   </div>
                 </ion-item>
               </div>
@@ -606,7 +617,7 @@
                 <ion-item lines="none">
                   <ion-input type="text" value="upload"></ion-input>
                   <div class="end-slot" slot="end">
-                    <img src="assets/imgs/icn-upload.svg" alt="">
+                    <img src="assets/imgs/icn-upload.svg" alt="" />
                   </div>
                 </ion-item>
               </div>
@@ -618,12 +629,11 @@
                 <ion-item lines="none">
                   <ion-input type="text" value="upload"></ion-input>
                   <div class="end-slot" slot="end">
-                    <img src="assets/imgs/icn-upload.svg" alt="">
+                    <img src="assets/imgs/icn-upload.svg" alt="" />
                   </div>
                 </ion-item>
               </div>
             </ion-col>
-
           </ion-row>
         </ion-grid>
       </div>
@@ -631,13 +641,10 @@
       <ion-row>
         <ion-col size="11.5" class="ion-no-padding">
           <div class="btn-holder ion-text-right">
-            <ion-button>
-              Mark as Completed
-            </ion-button>
+            <ion-button> Mark as Completed </ion-button>
           </div>
         </ion-col>
       </ion-row>
     </div>
   </div>
-
 </ion-content>
