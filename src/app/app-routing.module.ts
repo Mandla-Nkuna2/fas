@@ -118,6 +118,10 @@ const routes: Routes = [
   {
     path: 'fuelbrowsenoilctrl',
     loadChildren: () => import('./pages/fuelbrowsenoilctrl/fuelbrowsenoilctrl.module').then( m => m.FuelbrowsenoilctrlPageModule)
+  },
+  {
+    path: 'sign-in',
+    loadChildren: () => import('./pages/sign-in/sign-in.module').then( m => m.SignInPageModule)
   }
 ];
 
