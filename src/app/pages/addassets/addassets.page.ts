@@ -1,3 +1,4 @@
+import { Asset, GeneralInformation, MeterInformation, OtherInformation, RateInformation } from './../../models/Asset.model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,8 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./addassets.page.scss'],
 })
 export class AddassetsPage implements OnInit {
+  asset: Asset
 
-  constructor() { }
+  constructor() {
+    this.asset = new Asset();
+    this.asset.generalInformation = new GeneralInformation();
+    this.asset.meterInformation = new MeterInformation();
+    this.asset.rateInformation = new RateInformation();
+    this.asset.otherInformation = new OtherInformation();
+   }
 
   ngOnInit() {
   }

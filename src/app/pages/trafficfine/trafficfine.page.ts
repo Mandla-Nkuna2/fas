@@ -1,3 +1,4 @@
+import { Trafficfine } from './../../models/Trafficfine.model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./trafficfine.page.scss'],
 })
 export class TrafficfinePage implements OnInit {
+  trafficfine: Trafficfine
 
-  constructor() { }
+  constructor() {
+    this.trafficfine = new Trafficfine();
+  }
 
   ngOnInit() {
+  }
+
+  onMarkAsComplete(){
+
   }
 
 }

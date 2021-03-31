@@ -39,9 +39,7 @@
                 <ion-item lines="none">
                   <ion-datetime
                     display-format="MMM DD YYYY hh:mm a"
-                    value="Sep 16 2020, 12:02 "
-                    [(ngModel)]="jobCard.reportedDate"
-                    [ionChange]="onchange($event)"
+                    [(ngModel)]="jobCard.generalInformation.ReportedDate"
                   ></ion-datetime>
                 </ion-item>
               </div>
@@ -52,7 +50,7 @@
                 <ion-item lines="none">
                   <ion-datetime
                     display-format="MMM DD YYYY hh:mm a"
-                    value="Sep 16 2020, 12:02 "
+                    [(ngModel)]="jobCard.generalInformation.StartedDate"
                   ></ion-datetime>
                 </ion-item>
               </div>
@@ -63,7 +61,7 @@
                 <ion-item lines="none">
                   <ion-datetime
                     display-format="MMM DD YYYY hh:mm a"
-                    value="Sep 16 2020, 12:02 "
+                    [(ngModel)]="jobCard.generalInformation.CompletedDate"
                   ></ion-datetime>
                 </ion-item>
               </div>
@@ -72,15 +70,11 @@
               <div class="item-input">
                 <ion-label>Reported By</ion-label>
                 <ion-item lines="none">
-                  <ion-select
-                    value="MAZDA323200E"
-                    multiple="false"
-                    placeholder="Please select"
-                  >
-                    <ion-select-option value="MAZDA323200E"
-                      >MAZDA 323 200E</ion-select-option
+                  <ion-select multiple="false" placeholder="Please select">
+                    <ion-select-option
+                      *ngFor="let captureName of jobCard.generalInformation.CaptureName"
+                      >{{captureName}}</ion-select-option
                     >
-                    <ion-select-option value="hawaii">Hawaii</ion-select-option>
                   </ion-select>
                 </ion-item>
               </div>
@@ -89,15 +83,11 @@
               <div class="item-input">
                 <ion-label>Driver / Operator</ion-label>
                 <ion-item lines="none">
-                  <ion-select
-                    value="MAZDA323200E"
-                    multiple="false"
-                    placeholder="Please select"
-                  >
-                    <ion-select-option value="MAZDA323200E"
-                      >MAZDA 323 200E</ion-select-option
+                  <ion-select multiple="false" placeholder="Please select">
+                    <ion-select-option
+                      *ngFor="let driverOrOperator of jobCard.generalInformation.driverOrOperator"
+                      >{{driverOrOperator}}</ion-select-option
                     >
-                    <ion-select-option value="hawaii">Hawaii</ion-select-option>
                   </ion-select>
                 </ion-item>
               </div>
@@ -119,7 +109,9 @@
               <div class="item-input">
                 <ion-label>Registration No.</ion-label>
                 <ion-item lines="none">
-                  <ion-input>NPC6022</ion-input>
+                  <ion-input
+                    [(ngModel)]="jobCard.vehicleInformation.registrationNo"
+                  ></ion-input>
                 </ion-item>
               </div>
             </ion-col>
@@ -127,7 +119,9 @@
               <div class="item-input">
                 <ion-label>Make & Model</ion-label>
                 <ion-item lines="none">
-                  <ion-input value="CASE 580SK"></ion-input>
+                  <ion-input
+                    [(ngModel)]="jobCard.vehicleInformation.makeAndModel"
+                  ></ion-input>
                 </ion-item>
               </div>
             </ion-col>
@@ -135,7 +129,9 @@
               <div class="item-input">
                 <ion-label>Type</ion-label>
                 <ion-item lines="none">
-                  <ion-input value="BACKHOE \ 4X4 \ 6100"></ion-input>
+                  <ion-input
+                    [(ngModel)]="jobCard.vehicleInformation.type"
+                  ></ion-input>
                 </ion-item>
               </div>
             </ion-col>
@@ -144,7 +140,9 @@
               <div class="item-input">
                 <ion-label>Engine No.</ion-label>
                 <ion-item lines="none">
-                  <ion-input>S2155504</ion-input>
+                  <ion-input
+                    [(ngModel)]="jobCard.vehicleInformation.engineNo"
+                  ></ion-input>
                 </ion-item>
               </div>
             </ion-col>
@@ -152,7 +150,9 @@
               <div class="item-input">
                 <ion-label>Chassie No.</ion-label>
                 <ion-item lines="none">
-                  <ion-input value="JJH005044"></ion-input>
+                  <ion-input
+                    [(ngModel)]="jobCard.vehicleInformation.chassieNo"
+                  ></ion-input>
                 </ion-item>
               </div>
             </ion-col>
@@ -160,7 +160,9 @@
               <div class="item-input">
                 <ion-label>Meter Reading</ion-label>
                 <ion-item lines="none">
-                  <ion-input value="4561"></ion-input>
+                  <ion-input
+                    [(ngModel)]="jobCard.vehicleInformation.meterReading"
+                  ></ion-input>
                 </ion-item>
               </div>
             </ion-col>
@@ -171,7 +173,7 @@
                 <ion-item lines="none">
                   <ion-datetime
                     display-format="MMM DD YYYY hh:mm a"
-                    value="Sep 16 2020, 12:02 "
+                    [(ngModel)]="jobCard.vehicleInformation.meterReadingDate"
                   ></ion-datetime>
                 </ion-item>
               </div>
@@ -183,7 +185,7 @@
                 <ion-item lines="none">
                   <ion-datetime
                     display-format="MMM DD YYYY hh:mm a"
-                    value="Sep 16 2020, 12:02 "
+                    [(ngModel)]="jobCard.vehicleInformation.manufacturerDate"
                   ></ion-datetime>
                 </ion-item>
               </div>
@@ -193,7 +195,9 @@
               <div class="item-input">
                 <ion-label>Warranty Period</ion-label>
                 <ion-item lines="none">
-                  <ion-input value="36 Mths"></ion-input>
+                  <ion-input
+                    [(ngModel)]="jobCard.vehicleInformation.warrantyPeriod"
+                  ></ion-input>
                 </ion-item>
               </div>
             </ion-col>
@@ -204,7 +208,7 @@
                 <ion-item lines="none">
                   <ion-datetime
                     display-format="MMM DD YYYY hh:mm a"
-                    value="Sep 16 2020, 12:02 "
+                    [(ngModel)]="jobCard.vehicleInformation.warrantyExpiryDate"
                   ></ion-datetime>
                 </ion-item>
               </div>
@@ -214,7 +218,9 @@
               <div class="item-input">
                 <ion-label>Alternate ID 1</ion-label>
                 <ion-item lines="none">
-                  <ion-input value="A145"></ion-input>
+                  <ion-input
+                    [(ngModel)]="jobCard.vehicleInformation.alternateId1"
+                  ></ion-input>
                 </ion-item>
               </div>
             </ion-col>
@@ -223,7 +229,9 @@
               <div class="item-input">
                 <ion-label>Location</ion-label>
                 <ion-item lines="none">
-                  <ion-input value="PT CONSTRUCTION \ MIDWAY"></ion-input>
+                  <ion-input
+                    [(ngModel)]="jobCard.vehicleInformation.location"
+                  ></ion-input>
                 </ion-item>
               </div>
             </ion-col>

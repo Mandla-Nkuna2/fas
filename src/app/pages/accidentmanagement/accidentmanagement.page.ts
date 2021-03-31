@@ -1,3 +1,4 @@
+import { AccidentManagement } from './../../models/AccidentManagement.model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./accidentmanagement.page.scss'],
 })
 export class AccidentmanagementPage implements OnInit {
+  accidentManagement: AccidentManagement
 
-  constructor() { }
+  constructor() {
+    this.accidentManagement = new AccidentManagement();
+   }
 
   ngOnInit() {
+  }
+
+  onMarkAsComplete(){
+
   }
 
 }

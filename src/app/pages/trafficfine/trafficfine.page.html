@@ -4,13 +4,18 @@
     <div class="date-holder">
       <ion-item lines="none">
         <div class="thumb" slot="start">
-          <ion-icon slot="icon-only" src="assets/imgs/icn-calender.svg"></ion-icon>
+          <ion-icon
+            slot="icon-only"
+            src="assets/imgs/icn-calender.svg"
+          ></ion-icon>
         </div>
-        <ion-datetime display-format="MMM DD YYYY hh:mm a" value="Sep 16 2020, 12:02 "></ion-datetime>
+        <ion-datetime
+          display-format="MMM DD YYYY hh:mm a"
+          value="Sep 16 2020, 12:02 "
+        ></ion-datetime>
       </ion-item>
     </div>
   </div>
-
 
   <div class="content">
     <div class="section">
@@ -25,7 +30,10 @@
               <div class="item-input">
                 <ion-label>Fine Number</ion-label>
                 <ion-item lines="none">
-                  <ion-input disabled> 1541/485/4458</ion-input>
+                  <ion-input
+                    disabled
+                    [(ngModel)]="trafficfine.Fineno"
+                  ></ion-input>
                 </ion-item>
               </div>
             </ion-col>
@@ -33,7 +41,11 @@
               <div class="item-input">
                 <ion-label>Date Fine Received</ion-label>
                 <ion-item lines="none">
-                  <ion-datetime disabled display-format="MMM DD YYYY hh:mm a" value="Sep 16 2020, 12:02 ">
+                  <ion-datetime
+                    disabled
+                    display-format="MMM DD YYYY hh:mm a"
+                    [(ngModel)]="trafficfine.FineRecDate"
+                  >
                   </ion-datetime>
                 </ion-item>
               </div>
@@ -42,7 +54,10 @@
               <div class="item-input">
                 <ion-label>Date handed to Supervisor</ion-label>
                 <ion-item lines="none">
-                  <ion-datetime display-format="MMM DD YYYY hh:mm a" value="Sep 16 2020, 12:02 "></ion-datetime>
+                  <ion-datetime
+                    display-format="MMM DD YYYY hh:mm a"
+                    [(ngModel)]="trafficfine.SuperDate"
+                  ></ion-datetime>
                 </ion-item>
               </div>
             </ion-col>
@@ -50,8 +65,14 @@
               <div class="item-input">
                 <ion-label>Supervisor</ion-label>
                 <ion-item lines="none">
-                  <ion-select value="AnthonyJ-599915" multiple="false" placeholder="Please select">
-                    <ion-select-option value="AnthonyJ-599915">AnthonyJ-599915</ion-select-option>
+                  <ion-select
+                    value="AnthonyJ-599915"
+                    multiple="false"
+                    placeholder="Please select"
+                  >
+                    <ion-select-option value="AnthonyJ-599915"
+                      >AnthonyJ-599915</ion-select-option
+                    >
                     <ion-select-option value="hawaii">Hawaii</ion-select-option>
                   </ion-select>
                 </ion-item>
@@ -61,7 +82,7 @@
               <div class="item-input">
                 <ion-label>Action taken by Supervisor</ion-label>
                 <ion-item lines="none">
-                  <ion-input value="MAZDA 323 200E"></ion-input>
+                  <ion-input [(ngModel)]="trafficfine.SuperAction"></ion-input>
                 </ion-item>
               </div>
             </ion-col>
@@ -69,9 +90,10 @@
               <div class="item-input">
                 <ion-label>Registration</ion-label>
                 <ion-item lines="none">
-                  <ion-select value="MAZDA323200E" multiple="false" placeholder="Please select">
-                    <ion-select-option value="MAZDA323200E">MAZDA 323 200E</ion-select-option>
-                    <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                  <ion-select multiple="false" placeholder="Please select">
+                    <ion-select-option *ngFor="let reg of trafficfine.RegIndex"
+                      >{{reg}}</ion-select-option
+                    >
                   </ion-select>
                 </ion-item>
               </div>
@@ -81,32 +103,42 @@
               <div class="item-input">
                 <ion-label>Driver</ion-label>
                 <ion-item lines="none">
-                  <ion-select value="ChamaneB-587745" multiple="false" placeholder="Please select">
-                    <ion-select-option value="ChamaneB-587745">Chamane B - 587745</ion-select-option>
+                  <ion-select
+                    value="ChamaneB-587745"
+                    multiple="false"
+                    placeholder="Please select"
+                  >
+                    <ion-select-option value="ChamaneB-587745"
+                      >Chamane B - 587745</ion-select-option
+                    >
                     <ion-select-option value="hawaii">Hawaii</ion-select-option>
                   </ion-select>
                 </ion-item>
               </div>
             </ion-col>
 
-            <ion-col size="3.5" offset="0.5">
-              
-            </ion-col>
+            <ion-col size="3.5" offset="0.5"> </ion-col>
 
             <ion-col size="3.5">
               <div class="item-input">
                 <ion-label>Date of Offense</ion-label>
                 <ion-item lines="none">
-                  <ion-datetime display-format="MMM DD YYYY hh:mm a" value="Sep 16 2020, 12:02 "></ion-datetime>
+                  <ion-datetime
+                    display-format="MMM DD YYYY hh:mm a"
+                    [(ngModel)]="trafficfine.OffenceDate"
+                  ></ion-datetime>
                 </ion-item>
               </div>
             </ion-col>
 
-            <ion-col size="3.5"  offset="0.5">
+            <ion-col size="3.5" offset="0.5">
               <div class="item-input">
                 <ion-label>Time of offense</ion-label>
                 <ion-item lines="none">
-                  <ion-datetime display-format="MMM DD YYYY hh:mm a" value=""></ion-datetime>
+                  <ion-datetime
+                    display-format="MMM DD YYYY hh:mm a"
+                    [(ngModel)]="trafficfine.offenceTime"
+                  ></ion-datetime>
                 </ion-item>
               </div>
             </ion-col>
@@ -115,7 +147,10 @@
               <div class="item-input">
                 <ion-label>Cost of fine</ion-label>
                 <ion-item lines="none" class="end">
-                  <ion-input type="text" value="300.00"></ion-input>
+                  <ion-input
+                    type="text"
+                    [(ngModel)]="trafficfine.Cost"
+                  ></ion-input>
                   <div class="end-slot flex al-center jc-center" slot="end">
                     <p>R</p>
                   </div>
@@ -127,7 +162,10 @@
               <div class="item-input">
                 <ion-label>Trial Date</ion-label>
                 <ion-item lines="none">
-                  <ion-datetime display-format="MMM DD YYYY hh:mm a" value="Sep 16 2020, 12:02 "></ion-datetime>
+                  <ion-datetime
+                    display-format="MMM DD YYYY hh:mm a"
+                    [(ngModel)]="trafficfine.TrialDate"
+                  ></ion-datetime>
                 </ion-item>
               </div>
             </ion-col>
@@ -136,32 +174,41 @@
               <div class="item-input">
                 <ion-label>Date Fine Paid</ion-label>
                 <ion-item lines="none">
-                  <ion-datetime display-format="MMM DD YYYY hh:mm a" value="Sep 16 2020, 12:02 "></ion-datetime>
+                  <ion-datetime
+                    display-format="MMM DD YYYY hh:mm a"
+                    [(ngModel)]="trafficfine.PaymentDate"
+                  ></ion-datetime>
                 </ion-item>
               </div>
             </ion-col>
-
 
             <ion-col size="11.5">
               <div class="item-input">
                 <ion-label>Comment</ion-label>
                 <ion-item lines="none">
-                  <ion-textarea rows="5" placeholder="MAZDA 323 200E"></ion-textarea>
+                  <ion-textarea
+                    rows="5"
+                    placeholder="MAZDA 323 200E"
+                    [(ngModel)]="trafficfine.Comment"
+                  ></ion-textarea>
                 </ion-item>
               </div>
             </ion-col>
           </ion-row>
           <ion-row>
             <ion-col size="11.5" class="ion-text-right">
-              <ion-button id="btn" style="width: fit-content !important;">
+              <ion-button
+                id="btn"
+                [disabled]="trafficfine.completedState"
+                (click)="onMarkAsComplete()"
+                style="width: fit-content !important"
+              >
                 Mark as Completed
               </ion-button>
             </ion-col>
-           
           </ion-row>
         </ion-grid>
       </div>
     </div>
   </div>
-
 </ion-content>

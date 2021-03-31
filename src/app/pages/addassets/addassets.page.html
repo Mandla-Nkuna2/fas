@@ -4,13 +4,18 @@
     <div class="date-holder">
       <ion-item lines="none">
         <div class="thumb" slot="start">
-          <ion-icon slot="icon-only" src="assets/imgs/icn-calender.svg"></ion-icon>
+          <ion-icon
+            slot="icon-only"
+            src="assets/imgs/icn-calender.svg"
+          ></ion-icon>
         </div>
-        <ion-datetime display-format="MMM DD YYYY hh:mm a" value="Sep 16 2020, 12:02 "></ion-datetime>
+        <ion-datetime
+          display-format="MMM DD YYYY hh:mm a"
+          value="Sep 16 2020, 12:02 "
+        ></ion-datetime>
       </ion-item>
     </div>
   </div>
-
 
   <div class="content">
     <div class="section">
@@ -25,7 +30,10 @@
               <div class="item-input">
                 <ion-label>Registration</ion-label>
                 <ion-item lines="none">
-                  <ion-input disabled> MAZDA 323 200E</ion-input>
+                  <ion-input
+                    disabled
+                    [(ngModel)]="asset.generalInformation.Reg"
+                  ></ion-input>
                 </ion-item>
               </div>
             </ion-col>
@@ -33,9 +41,11 @@
               <div class="item-input">
                 <ion-label>Make and Modal</ion-label>
                 <ion-item lines="none">
-                  <ion-select value="MAZDA323200E" multiple="false" placeholder="Please select">
-                    <ion-select-option value="MAZDA323200E">MAZDA 323 200E</ion-select-option>
-                    <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                  <ion-select multiple="false" placeholder="Please select">
+                    <ion-select-option
+                      *ngFor="let item of asset.generalInformation.ItemMakModGuid"
+                      >{{item}}</ion-select-option
+                    >
                   </ion-select>
                 </ion-item>
               </div>
@@ -44,9 +54,11 @@
               <div class="item-input">
                 <ion-label>Type</ion-label>
                 <ion-item lines="none">
-                  <ion-select value="MAZDA323200E" multiple="false" placeholder="Please select">
-                    <ion-select-option value="MAZDA323200E">MAZDA 323 200E</ion-select-option>
-                    <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                  <ion-select multiple="false" placeholder="Please select">
+                    <ion-select-option
+                      *ngFor="let item of asset.generalInformation.ItemTypeGuid"
+                      >{{item}}</ion-select-option
+                    >
                   </ion-select>
                 </ion-item>
               </div>
@@ -55,9 +67,11 @@
               <div class="item-input">
                 <ion-label>Category</ion-label>
                 <ion-item lines="none">
-                  <ion-select value="MAZDA323200E" multiple="false" placeholder="Please select">
-                    <ion-select-option value="MAZDA323200E">MAZDA 323 200E</ion-select-option>
-                    <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                  <ion-select multiple="false" placeholder="Please select">
+                    <ion-select-option
+                      *ngFor="let item of asset.generalInformation.ItemCatg"
+                      >{{item}}</ion-select-option
+                    >
                   </ion-select>
                 </ion-item>
               </div>
@@ -66,9 +80,11 @@
               <div class="item-input">
                 <ion-label>Colour</ion-label>
                 <ion-item lines="none">
-                  <ion-select value="red" multiple="false" placeholder="Please select">
-                    <ion-select-option value="red">Red</ion-select-option>
-                    <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                  <ion-select multiple="false" placeholder="Please select">
+                    <ion-select-option
+                      *ngFor="let item of asset.generalInformation.ColourGuid"
+                      >{{item}}
+                    </ion-select-option>
                   </ion-select>
                 </ion-item>
               </div>
@@ -77,9 +93,11 @@
               <div class="item-input">
                 <ion-label>Chassie Number</ion-label>
                 <ion-item lines="none">
-                  <ion-select value="MAZDA323200E" multiple="false" placeholder="Please select">
-                    <ion-select-option value="MAZDA323200E">MAZDA 323 200E</ion-select-option>
-                    <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                  <ion-select multiple="false" placeholder="Please select">
+                    <ion-select-option
+                      *ngFor="let item of asset.generalInformation.ChassisNo"
+                      >{{item}}
+                    </ion-select-option>
                   </ion-select>
                 </ion-item>
               </div>
@@ -88,9 +106,11 @@
               <div class="item-input">
                 <ion-label>Engine Number</ion-label>
                 <ion-item lines="none">
-                  <ion-select value="MAZDA323200E" multiple="false" placeholder="Please select">
-                    <ion-select-option value="MAZDA323200E">MAZDA 323 200E</ion-select-option>
-                    <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                  <ion-select multiple="false" placeholder="Please select">
+                    <ion-select-option
+                      *ngFor="let item of asset.generalInformation.EngineNo"
+                      >{{item}}</ion-select-option
+                    >
                   </ion-select>
                 </ion-item>
               </div>
@@ -99,9 +119,11 @@
               <div class="item-input">
                 <ion-label>Battery</ion-label>
                 <ion-item lines="none">
-                  <ion-select value="MAZDA323200E" multiple="false" placeholder="Please select">
-                    <ion-select-option value="MAZDA323200E">MAZDA 323 200E</ion-select-option>
-                    <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                  <ion-select multiple="false" placeholder="Please select">
+                    <ion-select-option
+                      *ngFor="let item of asset.generalInformation.BatteryGuid"
+                      >{{item}}
+                    </ion-select-option>
                   </ion-select>
                 </ion-item>
               </div>
@@ -110,8 +132,14 @@
               <div class="item-input">
                 <ion-label>Driver</ion-label>
                 <ion-item lines="none">
-                  <ion-select value="BOthaT" multiple="false" placeholder="Please select">
-                    <ion-select-option value="BOthaT">BOtha T</ion-select-option>
+                  <ion-select
+                    value="BOthaT"
+                    multiple="false"
+                    placeholder="Please select"
+                  >
+                    <ion-select-option value="BOthaT"
+                      >BOtha T</ion-select-option
+                    >
                     <ion-select-option value="hawaii">Hawaii</ion-select-option>
                   </ion-select>
                 </ion-item>
@@ -121,8 +149,14 @@
               <div class="item-input">
                 <ion-label>Front Tyres</ion-label>
                 <ion-item lines="none">
-                  <ion-select value="MAZDA323200E" multiple="false" placeholder="Please select">
-                    <ion-select-option value="MAZDA323200E">MAZDA 323 200E</ion-select-option>
+                  <ion-select
+                    value="MAZDA323200E"
+                    multiple="false"
+                    placeholder="Please select"
+                  >
+                    <ion-select-option value="MAZDA323200E"
+                      >MAZDA 323 200E</ion-select-option
+                    >
                     <ion-select-option value="hawaii">Hawaii</ion-select-option>
                   </ion-select>
                 </ion-item>
@@ -132,19 +166,23 @@
               <div class="item-input">
                 <ion-label>Front Tyres</ion-label>
                 <ion-item lines="none">
-                  <ion-select value="MAZDA323200E" multiple="false" placeholder="Please select">
-                    <ion-select-option value="MAZDA323200E">MAZDA 323 200E</ion-select-option>
+                  <ion-select
+                    value="MAZDA323200E"
+                    multiple="false"
+                    placeholder="Please select"
+                  >
+                    <ion-select-option value="MAZDA323200E"
+                      >MAZDA 323 200E</ion-select-option
+                    >
                     <ion-select-option value="hawaii">Hawaii</ion-select-option>
                   </ion-select>
                 </ion-item>
               </div>
             </ion-col>
-
           </ion-row>
         </ion-grid>
       </div>
     </div>
-
 
     <div class="section">
       <div class="title">
@@ -156,10 +194,16 @@
           <ion-row>
             <ion-col size="3.5">
               <div class="item-input">
-                <ion-label>Make and Modal</ion-label>
+                <ion-label>Meter type</ion-label>
                 <ion-item lines="none">
-                  <ion-select value="MAZDA323200E" multiple="false" placeholder="Please select">
-                    <ion-select-option value="MAZDA323200E">MAZDA 323 200E</ion-select-option>
+                  <ion-select
+                    value="MAZDA323200E"
+                    multiple="false"
+                    placeholder="Please select"
+                  >
+                    <ion-select-option value="MAZDA323200E"
+                      >MAZDA 323 200E</ion-select-option
+                    >
                     <ion-select-option value="hawaii">Hawaii</ion-select-option>
                   </ion-select>
                 </ion-item>
@@ -195,16 +239,17 @@
               <div class="item-input">
                 <ion-label>Licence Expiry Date</ion-label>
                 <ion-item lines="none">
-                  <ion-datetime display-format="MMM DD YYYY hh:mm a" value="Sep 16 2020, 12:02 "></ion-datetime>
+                  <ion-datetime
+                    display-format="MMM DD YYYY hh:mm a"
+                    value="Sep 16 2020, 12:02 "
+                  ></ion-datetime>
                 </ion-item>
               </div>
             </ion-col>
-
           </ion-row>
         </ion-grid>
       </div>
     </div>
-
 
     <div class="section">
       <div class="title">
@@ -265,8 +310,6 @@
         </ion-grid>
       </div>
     </div>
-    
-
 
     <div class="section">
       <div class="title">
@@ -280,7 +323,10 @@
               <div class="item-input">
                 <ion-label>Date of Manufacture</ion-label>
                 <ion-item lines="none">
-                  <ion-datetime display-format="MMM DD YYYY hh:mm a" value="Sep 16 2020, 12:02 "></ion-datetime>
+                  <ion-datetime
+                    display-format="MMM DD YYYY hh:mm a"
+                    value="Sep 16 2020, 12:02 "
+                  ></ion-datetime>
                 </ion-item>
               </div>
             </ion-col>
@@ -289,7 +335,10 @@
               <div class="item-input">
                 <ion-label>Terminal Year</ion-label>
                 <ion-item lines="none">
-                  <ion-datetime display-format="MMM DD YYYY hh:mm a" value="Sep 16 2020, 12:02 "></ion-datetime>
+                  <ion-datetime
+                    display-format="MMM DD YYYY hh:mm a"
+                    value="Sep 16 2020, 12:02 "
+                  ></ion-datetime>
                 </ion-item>
               </div>
             </ion-col>
@@ -303,7 +352,7 @@
               </div>
             </ion-col>
 
-            <ion-col size="3.5" >
+            <ion-col size="3.5">
               <div class="item-input">
                 <ion-label>Budget for Item</ion-label>
                 <ion-item lines="none">
@@ -334,7 +383,6 @@
       </div>
     </div>
 
-
     <div class="section bottom">
       <div class="check-holder">
         <ion-row>
@@ -356,20 +404,15 @@
               <ion-checkbox slot="start"></ion-checkbox>
             </ion-item>
           </ion-col>
-          <ion-col size="1">
-          </ion-col>
+          <ion-col size="1"> </ion-col>
           <ion-col size="2.6">
             <div class="btn-holder ion-text-right">
-              <ion-button expand="block">
-                Add
-              </ion-button>
+              <ion-button expand="block"> Add </ion-button>
             </div>
           </ion-col>
-          <ion-col size="0.4">
-          </ion-col>
+          <ion-col size="0.4"> </ion-col>
         </ion-row>
       </div>
     </div>
   </div>
-
 </ion-content>

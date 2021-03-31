@@ -4,13 +4,18 @@
     <div class="date-holder">
       <ion-item lines="none">
         <div class="thumb" slot="start">
-          <ion-icon slot="icon-only" src="assets/imgs/icn-calender.svg"></ion-icon>
+          <ion-icon
+            slot="icon-only"
+            src="assets/imgs/icn-calender.svg"
+          ></ion-icon>
         </div>
-        <ion-datetime display-format="MMM DD YYYY hh:mm a" value="Sep 16 2020, 12:02 "></ion-datetime>
+        <ion-datetime
+          display-format="MMM DD YYYY hh:mm a"
+          value="Sep 16 2020, 12:02 "
+        ></ion-datetime>
       </ion-item>
     </div>
   </div>
-
 
   <div class="content">
     <div class="section">
@@ -25,7 +30,10 @@
               <div class="item-input">
                 <ion-label>Loss Control No.</ion-label>
                 <ion-item lines="none">
-                  <ion-input disabled> MAZDA 323 200E</ion-input>
+                  <ion-input
+                    disabled
+                    [(ngModel)]="accidentManagement.LossControlNo"
+                  ></ion-input>
                 </ion-item>
               </div>
             </ion-col>
@@ -33,7 +41,11 @@
               <div class="item-input">
                 <ion-label>Date Record Opened</ion-label>
                 <ion-item lines="none">
-                  <ion-datetime disabled display-format="MMM DD YYYY hh:mm a" value="Sep 16 2020, 12:02 ">
+                  <ion-datetime
+                    disabled
+                    display-format="MMM DD YYYY hh:mm a"
+                    [(ngModel)]="accidentManagement.DateOpen"
+                  >
                   </ion-datetime>
                 </ion-item>
               </div>
@@ -42,7 +54,10 @@
               <div class="item-input">
                 <ion-label>Date Record Closed</ion-label>
                 <ion-item lines="none">
-                  <ion-datetime display-format="MMM DD YYYY hh:mm a" value="Sep 16 2020, 12:02 "></ion-datetime>
+                  <ion-datetime
+                    display-format="MMM DD YYYY hh:mm a"
+                    [(ngModel)]="accidentManagement.DateClosed"
+                  ></ion-datetime>
                 </ion-item>
               </div>
             </ion-col>
@@ -50,9 +65,11 @@
               <div class="item-input">
                 <ion-label>Agent</ion-label>
                 <ion-item lines="none">
-                  <ion-select value="MAZDA323200E" multiple="false" placeholder="Please select">
-                    <ion-select-option value="MAZDA323200E">MAZDA 323 200E</ion-select-option>
-                    <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                  <ion-select multiple="false" placeholder="Please select">
+                    <ion-select-option
+                      *ngFor="let name of accidentManagement.agentName"
+                      >{{name}}</ion-select-option
+                    >
                   </ion-select>
                 </ion-item>
               </div>
@@ -61,9 +78,11 @@
               <div class="item-input">
                 <ion-label>Registration</ion-label>
                 <ion-item lines="none">
-                  <ion-select value="MAZDA323200E" multiple="false" placeholder="Please select">
-                    <ion-select-option value="MAZDA323200E">MAZDA 323 200E</ion-select-option>
-                    <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                  <ion-select multiple="false" placeholder="Please select">
+                    <ion-select-option
+                      *ngFor="let reg of accidentManagement.registration"
+                      >{{reg}}</ion-select-option
+                    >
                   </ion-select>
                 </ion-item>
               </div>
@@ -77,9 +96,10 @@
               <div class="item-input">
                 <ion-label>Loss Type</ion-label>
                 <ion-item lines="none">
-                  <ion-select value="MAZDA323200E" multiple="false" placeholder="Please select">
-                    <ion-select-option value="MAZDA323200E">MAZDA 323 200E</ion-select-option>
-                    <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                  <ion-select multiple="false" placeholder="Please select">
+                    <ion-select-option
+                      *ngFor="let ltype of accidentManagement.lossType"
+                    ></ion-select-option>
                   </ion-select>
                 </ion-item>
               </div>
@@ -88,36 +108,46 @@
               <div class="item-input">
                 <ion-label>Loss Date</ion-label>
                 <ion-item lines="none">
-                  <ion-datetime display-format="MMM DD YYYY hh:mm a" value="Sep 16 2020, 12:02 "></ion-datetime>
+                  <ion-datetime
+                    display-format="MMM DD YYYY hh:mm a"
+                    [(ngModel)]="accidentManagement.LossDate"
+                  ></ion-datetime>
                 </ion-item>
               </div>
             </ion-col>
-            <ion-col size="3.5" offset="0.5">
-              
-            </ion-col>
+            <ion-col size="3.5" offset="0.5"> </ion-col>
             <ion-col size="11.5">
               <div class="item-input">
                 <ion-label>Loss details/comments</ion-label>
                 <ion-item lines="none">
-                  <ion-textarea rows="5" placeholder="MAZDA 323 200E"></ion-textarea>
+                  <ion-textarea
+                    rows="5"
+                    [(ngModel)]="accidentManagement.LossDetails"
+                  ></ion-textarea>
                 </ion-item>
               </div>
             </ion-col>
 
-            <ion-col size="3.5">
+            <!-- <ion-col size="3.5">
               <div class="item-input">
                 <ion-label>Reported</ion-label>
                 <ion-item lines="none">
-                  <ion-datetime display-format="YYYY" value="2020"></ion-datetime>
+                  <ion-datetime
+                    display-format="YYYY"
+                    value="2020"
+                  ></ion-datetime>
                 </ion-item>
               </div>
-            </ion-col>
+            </ion-col> -->
 
             <ion-col size="3.5" offset="0.5">
               <div class="item-input">
                 <ion-label>Reported Date</ion-label>
                 <ion-item lines="none">
-                  <ion-datetime display-format="MMM DD YYYY hh:mm a" value="Sep 16 2020, 12:02 "></ion-datetime>
+                  <ion-datetime
+                    display-format="MMM DD YYYY hh:mm a"
+                    [(ngModel)]="accidentManagement.DateReported"
+                  ></ion-datetime>
                 </ion-item>
               </div>
             </ion-col>
@@ -126,7 +156,9 @@
               <div class="item-input">
                 <ion-label>Reported By</ion-label>
                 <ion-item lines="none">
-                  <ion-input value="David A-42211"></ion-input>
+                  <ion-input
+                    [(ngModel)]="accidentManagement.reportedBy"
+                  ></ion-input>
                 </ion-item>
               </div>
             </ion-col>
@@ -135,9 +167,11 @@
               <div class="item-input">
                 <ion-label>Driver's Name</ion-label>
                 <ion-item lines="none">
-                  <ion-select value="PalframanC-27833" multiple="false" placeholder="Please select">
-                    <ion-select-option value="PalframanC-27833">Palframan C - 27833</ion-select-option>
-                    <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                  <ion-select multiple="false" placeholder="Please select">
+                    <ion-select-option
+                      *ngFor="let driver of accidentManagement.driverName"
+                      >{{driver}}</ion-select-option
+                    >
                   </ion-select>
                 </ion-item>
               </div>
@@ -147,7 +181,9 @@
               <div class="item-input">
                 <ion-label>Driver ID</ion-label>
                 <ion-item lines="none">
-                  <ion-input value="71025485110"></ion-input>
+                  <ion-input
+                    [(ngModel)]="accidentManagement.DriverID"
+                  ></ion-input>
                 </ion-item>
               </div>
             </ion-col>
@@ -162,9 +198,11 @@
               <div class="item-input">
                 <ion-label>Trip Authority</ion-label>
                 <ion-item lines="none">
-                  <ion-select value="Number" multiple="false" placeholder="Please select">
-                    <ion-select-option value="Number">Number</ion-select-option>
-                    <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                  <ion-select multiple="false" placeholder="Please select">
+                    <ion-select-option
+                      *ngFor="let tripA of accidentManagement.TripAut"
+                      >{{tripA}}</ion-select-option
+                    >
                   </ion-select>
                 </ion-item>
               </div>
@@ -174,7 +212,10 @@
               <div class="item-input">
                 <ion-label>Date reported to Police</ion-label>
                 <ion-item lines="none">
-                  <ion-datetime display-format="MMM DD YYYY" value=""></ion-datetime>
+                  <ion-datetime
+                    display-format="MMM DD YYYY"
+                    [(ngModel)]="accidentManagement.Policerepdate"
+                  ></ion-datetime>
                 </ion-item>
               </div>
             </ion-col>
@@ -183,7 +224,9 @@
               <div class="item-input">
                 <ion-label>Police Station</ion-label>
                 <ion-item lines="none">
-                  <ion-input value=""></ion-input>
+                  <ion-input
+                    [(ngModel)]="accidentManagement.PoliceStation"
+                  ></ion-input>
                 </ion-item>
               </div>
             </ion-col>
@@ -192,7 +235,9 @@
               <div class="item-input">
                 <ion-label>Case Number</ion-label>
                 <ion-item lines="none">
-                  <ion-input value="02152001"></ion-input>
+                  <ion-input
+                    [(ngModel)]="accidentManagement.Casenumber"
+                  ></ion-input>
                 </ion-item>
               </div>
             </ion-col>
@@ -203,9 +248,12 @@
                   <div class="item-input">
                     <ion-label>Accident/Incident Report</ion-label>
                     <ion-item lines="none">
-                      <ion-select value="Number" multiple="false" placeholder="Please select">
-                        <ion-select-option value="Number">Number</ion-select-option>
-                        <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                      <ion-select multiple="false" placeholder="Please select">
+                        <ion-select-option
+                          *ngFor="let rep of accidentManagement.AccidentRep"
+                          >{{rep}}</ion-select-option
+                        >
+                        >
                       </ion-select>
                     </ion-item>
                   </div>
@@ -214,7 +262,10 @@
                   <div class="item-input">
                     <ion-label>Date report received</ion-label>
                     <ion-item lines="none">
-                      <ion-datetime display-format="MMM DD YYYY hh:mm a" value="Sep 16 2020, 12:02 "></ion-datetime>
+                      <ion-datetime
+                        display-format="MMM DD YYYY hh:mm a"
+                        [(ngModel)]="accidentManagement.AccRepDate"
+                      ></ion-datetime>
                     </ion-item>
                   </div>
                 </ion-col>
@@ -224,9 +275,11 @@
                   <div class="item-input">
                     <ion-label>Forefeiture</ion-label>
                     <ion-item lines="none">
-                      <ion-select value="Number" multiple="false" placeholder="Please select">
-                        <ion-select-option value="Number">Number</ion-select-option>
-                        <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                      <ion-select multiple="false" placeholder="Please select">
+                        <ion-select-option
+                          *ngFor="let ff of accidentManagement.Forfeiture"
+                          >{{ff}}</ion-select-option
+                        >
                       </ion-select>
                     </ion-item>
                   </div>
@@ -235,9 +288,11 @@
                   <div class="item-input">
                     <ion-label>Determination of liability</ion-label>
                     <ion-item lines="none">
-                      <ion-select value="Number" multiple="false" placeholder="Please select">
-                        <ion-select-option value="Number">Number</ion-select-option>
-                        <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                      <ion-select multiple="false" placeholder="Please select">
+                        <ion-select-option
+                          *ngFor="let dol of accidentManagement.Det_Liability"
+                          >{{dol}}</ion-select-option
+                        >
                       </ion-select>
                     </ion-item>
                   </div>
@@ -251,21 +306,25 @@
                   <div class="item-input">
                     <ion-label>Other Vehicle Party</ion-label>
                     <ion-item lines="none">
-                      <ion-textarea rows="7" placeholder="MAZDA 323 200E"></ion-textarea>
+                      <ion-textarea
+                        rows="7"
+                        [(ngModel)]="accidentManagement.OtherVeh_Party"
+                      ></ion-textarea>
                     </ion-item>
                   </div>
                 </ion-col>
               </ion-row>
             </ion-col>
 
-
             <ion-col size="3.5">
               <div class="item-input">
                 <ion-label>Costing Document</ion-label>
                 <ion-item lines="none">
-                  <ion-select value="Number" multiple="false" placeholder="Please select">
-                    <ion-select-option value="Number">Number</ion-select-option>
-                    <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                  <ion-select multiple="false" placeholder="Please select">
+                    <ion-select-option
+                      *ngFor="let cDoc of accidentManagement.Costingdocs"
+                      >{{cDoc}}</ion-select-option
+                    >
                   </ion-select>
                 </ion-item>
               </div>
@@ -275,9 +334,11 @@
               <div class="item-input">
                 <ion-label>Action Taken</ion-label>
                 <ion-item lines="none">
-                  <ion-select value="RTSA" multiple="false" placeholder="Please select">
-                    <ion-select-option value="RTSA">Referred to State Attorney</ion-select-option>
-                    <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                  <ion-select multiple="false" placeholder="Please select">
+                    <ion-select-option
+                      *ngFor="let acTaken of accidentManagement.lossContAction"
+                      >{{acTaken}}</ion-select-option
+                    >
                   </ion-select>
                 </ion-item>
               </div>
@@ -287,7 +348,10 @@
               <div class="item-input">
                 <ion-label>Amount</ion-label>
                 <ion-item lines="none" class="end">
-                  <ion-input type="text" value="15520.00"></ion-input>
+                  <ion-input
+                    type="text"
+                    [(ngModel)]="accidentManagement.amount"
+                  ></ion-input>
                   <div class="end-slot flex al-center jc-center" slot="end">
                     <p>R</p>
                   </div>
@@ -299,34 +363,35 @@
               <div class="item-input">
                 <ion-label>Amount Recovered</ion-label>
                 <ion-item lines="none">
-                  <ion-select value="Number" multiple="false" placeholder="Please select">
-                    <ion-select-option value="Number">Number</ion-select-option>
-                    <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                  <ion-select multiple="false" placeholder="Please select">
+                    <ion-select-option
+                      *ngFor="let amtRec of accidentManagement.AmountRec"
+                      >{{amtRec}}</ion-select-option
+                    >
                   </ion-select>
                 </ion-item>
               </div>
             </ion-col>
 
-
             <ion-col size="3.5" offset="0.5">
               <div class="item-input">
-                <ion-label>File Number  </ion-label>
+                <ion-label>File Number </ion-label>
                 <ion-item lines="none">
-                  <ion-input value="1548/458/TFG"></ion-input>
+                  <ion-input
+                    [(ngModel)]="accidentManagement.FileNumber"
+                  ></ion-input>
                 </ion-item>
               </div>
             </ion-col>
 
             <ion-col size="2.5" offset="1.5" class="flex al-end">
-              <ion-button expand="block" id="btn">
+              <ion-button expand="block" id="btn" (click)="onMarkAsComplete()">
                 Mark as Completed
               </ion-button>
             </ion-col>
-            
           </ion-row>
         </ion-grid>
       </div>
     </div>
   </div>
-
 </ion-content>
