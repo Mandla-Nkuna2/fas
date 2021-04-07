@@ -180,6 +180,6 @@ export class AppComponent {
       ]
     },
   ];
-  
+
   constructor() {}
 }
