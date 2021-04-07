@@ -1,0 +1,42 @@
+<ion-content class="ion-padding">
+  <!-- <div class="headingDiv">
+    <h1 style="color: white;">Wifi in a box</h1>
+  </div> -->
+  <div class="mainLoginDiv">
+    <ion-row>
+      <ion-col sizeXs="12">
+        <ion-text color="primary" style="font-size: 2em;">
+          SIGN IN
+        </ion-text>
+      </ion-col>
+      <ion-col sizeXs="12">
+        <ion-text class="intro" style="color: black;">
+          Sign into your account to continue.
+        </ion-text>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col sizeXs="12">
+        <ion-input style="color: black;" placeholder="Email" type="Email" [(ngModel)]="email"></ion-input>
+      </ion-col>
+      <ion-col sizeXs="12">
+        <ion-input style="color: black;" placeholder="Password" type="Password" [(ngModel)]="password"></ion-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-margin-top" style="margin-top: 10vh;">
+      <ion-button class="login-btn" (click)="login()">
+        <span>Login</span>
+      </ion-button>
+    </ion-row>
+    
+  </div>
+</ion-content>
+
+<ion-footer class="ion-no-border">
+  <!-- <ion-row class="ion-margin-top ion-justify-content-center">
+    <ion-text>Don't have an Account? </ion-text>
+    <ion-text class="register" routerLink="/register"> Register here.</ion-text>
+  </ion-row> -->
+</ion-footer>
