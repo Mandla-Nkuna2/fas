@@ -1,0 +1,32 @@
+export default class LossControl {
+  LossContGuid: string
+  LossControlNo: number
+  DateOpen: string
+  DateClosed: string
+  Agentguid: string
+  Itemguid: string
+  LossTypeguid: string
+  LossDate: string
+  LossDetails: string
+  Reported: string
+  DateReported: string
+  Reportbyguid: string
+  DriverGuid: string
+  DriverID: string
+  Policerepdate: string
+  PoliceStation: string
+  Casenumber: string
+  AccidentRep: string
+  AccRepDate: string
+  OtherVeh_Party: string
+  Forfeiture: string
+  Det_Liability: string
+  Costingdocs: string
+  LossContActguid: string
+  amount: number
+  FileNumber: string
+  Capturedate: string
+  Capturename: string
+  TripAut: string
+  AmountRec: number
+};

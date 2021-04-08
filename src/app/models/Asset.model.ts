@@ -19,10 +19,10 @@ export class GeneralInformation {
   ChassisNo : string[]
   EngineNo : string[]
   BatteryGuid : string[]
-  FrontTyreGuid : string
-  RearTyreGuid : string
+  FrontTyreGuid : string[]
+  RearTyreGuid : string[]
   COFDate : string
-  DriverName : string
+  DriverName : string[]
   PlantUsage : string
   Refurb : string
   Archive : string
