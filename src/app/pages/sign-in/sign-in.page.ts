@@ -3,7 +3,7 @@ import { NavController } from '@ionic/angular';
 import { LoadingService } from 'src/app/services/loading-service/loading.service';
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 import { AngularFireAuth} from '@angular/fire/auth';
-import { AngularFirestore } from '@angular/fire/firestore/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { Storage } from '@ionic/storage';
 
 @Component({
@@ -41,10 +41,10 @@ export class SignInPage implements OnInit {
         console.log(ss.user.uid);
         this.afs.collection('users').doc(ss.user.uid).ref.get().then((user) => {
           this.storage.set('user', user.data()).then(() =>  {
-            
+
           })
         })
-        
+
       })
     })
   }
