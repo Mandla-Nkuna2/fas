@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { NavController } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -180,6 +184,29 @@ export class AppComponent {
       ]
     },
   ];
-
-  constructor() {}
+  showMenu = false;
+  constructor(
+    private storage: Storage,
+    private auth: AngularFireAuth,
+    private nav: NavController
+  ) {}
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    this.loginCheck();
+  }
+  loginCheck()  {
+    let x = this.auth.authState;
+    console.log('this is the mmmmm');
+    x.subscribe((rand) => {
+      console.log(rand);
+      if(!rand) {
+        this.showMenu = false
+        this.nav.navigateRoot('sign-in')
+      }
+      else  {
+        this.showMenu = true;
+      }
+    })
+  }
 }
