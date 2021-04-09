@@ -1,12 +1,12 @@
-<ion-app>
-  <ion-header class="ion-no-border">
+<ion-app >
+  <ion-header class="ion-no-border" *ngIf="showMenu">
     <ion-toolbar>
       <ion-title>Akhatech</ion-title>
       <ion-buttons slot="end">
         <ion-item lines="none">
           <div class="start-slot flex al-center jc-center" slot="start">
             <ion-icon  name="chevron-down"></ion-icon>
-          </div> 
+          </div>
           <ion-avatar slot="end">
           <img src="assets/imgs/dp.jpg" alt="">
           </ion-avatar>
@@ -19,8 +19,8 @@
     </ion-toolbar>
   </ion-header>
   <ion-split-pane contentId="main-content">
-    <ion-menu contentId="main-content" type="overlay">
-      <ion-content>
+    <ion-menu contentId="main-content" type="overlay" >
+      <ion-content *ngIf="showMenu">
         <div class="the-toolbar ion-text-center">
           <h3>Akhatech</h3>
         </div>

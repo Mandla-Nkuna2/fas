@@ -22,7 +22,8 @@ export class SignInPage implements OnInit {
     private popUp: PopupHelper,
     public afAuth: AngularFireAuth,
     private afs: AngularFirestore,
-    private storage: Storage
+    private storage: Storage,
+    private nav: NavController
   ) { }
 
   ngOnInit() {
@@ -41,10 +42,17 @@ export class SignInPage implements OnInit {
         console.log(ss.user.uid);
         this.afs.collection('users').doc(ss.user.uid).ref.get().then((user) => {
           this.storage.set('user', user.data()).then(() =>  {
-
+            this.popUp.dismissLoading().then(() =>  {
+              this.popUp.showToast('login success')
+              this.nav.navigateForward('dashboard')
+            })
           })
         })
 
+      }).catch((error) => {
+        this.popUp.dismissLoading().then(() =>  {
+          this.popUp.showError(error)
+        })
       })
     })
   }
