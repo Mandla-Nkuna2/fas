@@ -1,3 +1,5 @@
+import { PopupHelper } from 'src/app/services/helpers/popup-helper';
+import { FirebaseService } from './../../services/firebase-service/firebase-service.service';
 import { Trafficfine } from './../../models/Trafficfine.model';
 import { Component, OnInit } from '@angular/core';
 
@@ -9,15 +11,19 @@ import { Component, OnInit } from '@angular/core';
 export class TrafficfinePage implements OnInit {
   trafficfine: Trafficfine
 
-  constructor() {
+  constructor(private firebaseService: FirebaseService, private popUp: PopupHelper) {
     this.trafficfine = new Trafficfine();
   }
 
   ngOnInit() {
   }
 
-  onMarkAsComplete(){
-
+  onAdd(){
+    this.firebaseService.saveTrafficfine(this.trafficfine).then(() => {
+      this.popUp.showAlert('Success', 'Data saved successfully =)')
+    }).catch((err) => {
+      this.popUp.showError(err);
+    })
   }
 
 }

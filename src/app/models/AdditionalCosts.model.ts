@@ -1,4 +1,4 @@
-export default class AdditionalCosts {
+export class AdditionalCosts {
   AddCostGuid: string
   Capturedate: string
   Capturename: string
