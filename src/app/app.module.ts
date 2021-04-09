@@ -13,6 +13,7 @@ import { IonicStorageModule } from '@ionic/storage';
 
 import { firebaseConfig } from './app.firebase.config';
 import { AngularFirestoreModule, AngularFirestore } from '@angular/fire/firestore';
+import { FirebaseGetService } from './services/firebase-service/firebase-get.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -31,6 +32,7 @@ import { AngularFirestoreModule, AngularFirestore } from '@angular/fire/firestor
     ToastService,
     EventService,
     AngularFirestore,
+    FirebaseGetService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent],
