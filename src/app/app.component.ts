@@ -200,9 +200,9 @@ export class AppComponent {
     console.log('this is the mmmmm');
     x.subscribe((rand) => {
       console.log(rand);
-      if(!rand) {
-        this.showMenu = false
-        this.nav.navigateRoot('sign-in')
+      if (!rand) {
+        this.showMenu = false;
+        this.nav.navigateRoot('sign-in');
       }
       else  {
         this.showMenu = true;
