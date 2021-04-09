@@ -185,7 +185,7 @@ constructor(private afs: AngularFirestore, private loading: LoadingService)   {}
     public writeData(myData: any, id: string){
       const promise = new Promise((resolve, reject) => {
         this.loading.present('loading...').then(() => {
-          this.afs.collection('myTest2').doc(id).set(myData).then(() => {
+          this.afs.collection('myTest3').doc(id).set(myData).then(() => {
             this.loading.dismiss()
             resolve('done')
           }).catch((err) => {
