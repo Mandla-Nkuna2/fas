@@ -54,7 +54,7 @@ constructor(private afs: AngularFirestore, private loading: LoadingService)   {}
 
     public saveAsset(testAsset: Asset){
       let res: any
-      return res = this.writeData(Object.assign({}, testAsset), testAsset.generalInformation.ItemGuidReg)
+      return res = this.writeData(Object.assign({}, testAsset), testAsset.generalInformation.ItemGuid)
     }
 
     public saveAutoCardDetails(testAsset: AutoCardDetails){
@@ -185,7 +185,7 @@ constructor(private afs: AngularFirestore, private loading: LoadingService)   {}
     public writeData(myData: any, id: string){
       const promise = new Promise((resolve, reject) => {
         this.loading.present('loading...').then(() => {
-          this.afs.collection('myTest3').doc(id).set(myData).then(() => {
+          this.afs.collection('myTest').doc(id).set(myData).then(() => {
             this.loading.dismiss()
             resolve('done')
           }).catch((err) => {

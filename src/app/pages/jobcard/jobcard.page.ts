@@ -2,7 +2,7 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 import { FirebaseService } from './../../services/firebase-service/firebase-service.service';
 import { Component, OnInit } from '@angular/core';
 import {JobCard, GeneralInformation, VehicleInformation} from '../../models/JobCard.model';
-import {FirebaseGetService} from '../../services/firebase-service/firebase-get.service'; 
+import {FirebaseGetService} from '../../services/firebase-service/firebase-get.service';
 @Component({
   selector: 'app-jobcard',
   templateUrl: './jobcard.page.html',
@@ -14,8 +14,9 @@ export class JobcardPage implements OnInit {
   oilGrades: any = [];
   oilMakes: any = [];
   loadingComplete = false
+
   constructor(
-    private firebaseService: FirebaseService, 
+    private firebaseService: FirebaseService,
     private popUp: PopupHelper,
     private firebaseGet: FirebaseGetService
     ) {
@@ -35,6 +36,7 @@ export class JobcardPage implements OnInit {
       this.popUp.showError(err)
     })
   }
+
   getData() {
     this.popUp.showLoading('getting data...').then(() =>  {
       this.firebaseGet.getOilGrade().then((oilGrades) => {

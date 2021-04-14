@@ -197,9 +197,7 @@ export class AppComponent {
   }
   loginCheck()  {
     let x = this.auth.authState;
-    console.log('this is the mmmmm');
     x.subscribe((rand) => {
-      console.log(rand);
       if (!rand) {
         this.showMenu = false;
         this.nav.navigateRoot('sign-in');

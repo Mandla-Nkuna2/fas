@@ -1,6 +1,6 @@
 <ion-content class="ion-padding">
   <div class="title-holder flex al-center">
-    <h2>Asset Details</h2>
+    <h2>Asset</h2>
     <div class="date-holder">
       <ion-item lines="none">
         <div class="thumb" slot="start">
@@ -41,11 +41,16 @@
               <div class="item-input">
                 <ion-label>Make and Modal</ion-label>
                 <ion-item lines="none">
-                  <ion-select multiple="false" placeholder="Please select">
+                  <ion-select
+                    [(ngModel)]="asset.generalInformation.ItemMakModGuid"
+                    multiple="false"
+                    placeholder="Please select"
+                  >
                     <ion-select-option
-                      *ngFor="let item of asset.generalInformation.ItemMakModGuid"
-                      >{{item}}</ion-select-option
-                    >
+                      *ngFor="let item of makesAndModels"
+                      value="{{item.guid}}"
+                      >{{item.make}} {{item.model}}
+                    </ion-select-option>
                   </ion-select>
                 </ion-item>
               </div>
@@ -54,7 +59,11 @@
               <div class="item-input">
                 <ion-label>Type</ion-label>
                 <ion-item lines="none">
-                  <ion-select multiple="false" placeholder="Please select">
+                  <ion-select
+                    [(ngModel)]="asset.generalInformation.ItemTypeGuid"
+                    multiple="false"
+                    placeholder="Please select"
+                  >
                     <ion-select-option
                       *ngFor="let item of asset.generalInformation.ItemTypeGuid"
                       >{{item}}</ion-select-option
@@ -67,9 +76,12 @@
               <div class="item-input">
                 <ion-label>Category</ion-label>
                 <ion-item lines="none">
-                  <ion-select multiple="false" placeholder="Please select">
-                    <ion-select-option
-                      *ngFor="let item of asset.generalInformation.ItemCatg"
+                  <ion-select
+                    [(ngModel)]="asset.generalInformation.ItemCatg"
+                    multiple="false"
+                    placeholder="Please select"
+                  >
+                    <ion-select-option *ngFor="let item of category"
                       >{{item}}</ion-select-option
                     >
                   </ion-select>
@@ -80,10 +92,16 @@
               <div class="item-input">
                 <ion-label>Colour</ion-label>
                 <ion-item lines="none">
-                  <ion-select multiple="false" placeholder="Please select">
+                  <ion-select
+                    [(ngModel)]="asset.generalInformation.ColourGuid"
+                    (ionChange)="onChange()"
+                    multiple="false"
+                    placeholder="Please select"
+                  >
                     <ion-select-option
-                      *ngFor="let item of asset.generalInformation.ColourGuid"
-                      >{{item}}
+                      *ngFor="let item of colors"
+                      value="{{item.colorGuid}}"
+                      >{{item.color}}
                     </ion-select-option>
                   </ion-select>
                 </ion-item>
@@ -93,12 +111,9 @@
               <div class="item-input">
                 <ion-label>Chassie Number</ion-label>
                 <ion-item lines="none">
-                  <ion-select multiple="false" placeholder="Please select">
-                    <ion-select-option
-                      *ngFor="let item of asset.generalInformation.ChassisNo"
-                      >{{item}}
-                    </ion-select-option>
-                  </ion-select>
+                  <ion-input
+                    [(ngModel)]="asset.generalInformation.ChassisNo"
+                  ></ion-input>
                 </ion-item>
               </div>
             </ion-col>
@@ -106,12 +121,9 @@
               <div class="item-input">
                 <ion-label>Engine Number</ion-label>
                 <ion-item lines="none">
-                  <ion-select multiple="false" placeholder="Please select">
-                    <ion-select-option
-                      *ngFor="let item of asset.generalInformation.EngineNo"
-                      >{{item}}</ion-select-option
-                    >
-                  </ion-select>
+                  <ion-input
+                    [(ngModel)]="asset.generalInformation.EngineNo"
+                  ></ion-input>
                 </ion-item>
               </div>
             </ion-col>
@@ -145,10 +157,16 @@
               <div class="item-input">
                 <ion-label>Front Tyres</ion-label>
                 <ion-item lines="none">
-                  <ion-select multiple="false" placeholder="Please select">
+                  <ion-select
+                    [(ngModel)]="asset.generalInformation.FrontTyreGuid"
+                    (ionChange)="onChange()"
+                    multiple="false"
+                    placeholder="Please select"
+                  >
                     <ion-select-option
-                      *ngFor="let item of asset.generalInformation.FrontTyreGuid"
-                      >{{item}}
+                      *ngFor="let item of tyreSizes"
+                      value="{{item.sGuid}}"
+                      >{{item.tSize}}
                     </ion-select-option>
                   </ion-select>
                 </ion-item>
@@ -425,7 +443,7 @@
           <ion-col size="1"> </ion-col>
           <ion-col size="2.6">
             <div class="btn-holder ion-text-right">
-              <ion-button expand="block"> Add </ion-button>
+              <ion-button (click)="onAdd()" expand="block"> Add </ion-button>
             </div>
           </ion-col>
           <ion-col size="0.4"> </ion-col>

@@ -6,23 +6,23 @@ export class Asset {
 }
 
 export class GeneralInformation {
-  ItemGuidReg : string
+  ItemGuid : string
   Reg: string
   Old_Reg : string
   Reg_changeDate : string
   CaptureDate : string
   DataCapturerName : string
-  ItemMakModGuid : string[]
-  ItemTypeGuid : string[]
-  ItemCatg : string[]
-  ColourGuid : string[]
-  ChassisNo : string[]
-  EngineNo : string[]
-  BatteryGuid : string[]
-  FrontTyreGuid : string[]
-  RearTyreGuid : string[]
+  ItemMakModGuid : string
+  ItemTypeGuid : string
+  ItemCatg : string
+  ColourGuid : string
+  ChassisNo : string
+  EngineNo : string
+  BatteryGuid : string
+  FrontTyreGuid : string
+  RearTyreGuid : string
   COFDate : string
-  DriverName : string[]
+  DriverName : string
   PlantUsage : string
   Refurb : string
   Archive : string
