@@ -159,7 +159,6 @@
                 <ion-item lines="none">
                   <ion-select
                     [(ngModel)]="asset.generalInformation.FrontTyreGuid"
-                    (ionChange)="onChange()"
                     multiple="false"
                     placeholder="Please select"
                   >
@@ -176,10 +175,15 @@
               <div class="item-input">
                 <ion-label>Rear Tyres</ion-label>
                 <ion-item lines="none">
-                  <ion-select multiple="false" placeholder="Please select">
+                  <ion-select
+                    [(ngModel)]="asset.generalInformation.RearTyreGuid"
+                    multiple="false"
+                    placeholder="Please select"
+                  >
                     <ion-select-option
-                      *ngFor="let item of asset.generalInformation.RearTyreGuid"
-                      >{{item}}
+                      *ngFor="let item of tyreSizes"
+                      value="{{item.sGuid}}"
+                      >{{item.tSize}}
                     </ion-select-option>
                   </ion-select>
                 </ion-item>
@@ -202,9 +206,13 @@
               <div class="item-input">
                 <ion-label>Meter type</ion-label>
                 <ion-item lines="none">
-                  <ion-select multiple="false" placeholder="Please select">
-                    <ion-select-option
-                      *ngFor="let item of asset.meterInformation.MeterType"
+                  <ion-select
+                    [(ngModel)]="asset.meterInformation.MeterType"
+                    (ionChange)="onChange()"
+                    multiple="false"
+                    placeholder="Please select"
+                  >
+                    <ion-select-option *ngFor="let item of meterTypes"
                       >{{item}}
                     </ion-select-option>
                   </ion-select>
@@ -216,7 +224,6 @@
                 <ion-label>Meter Reading</ion-label>
                 <ion-item lines="none">
                   <ion-input
-                    disabled
                     [(ngModel)]="asset.meterInformation.MeterRead"
                   ></ion-input>
                 </ion-item>
@@ -226,11 +233,10 @@
               <div class="item-input">
                 <ion-label>Meter Read Date</ion-label>
                 <ion-item lines="none">
-                  <ion-input
-                    disabled
+                  <ion-datetime
+                    display-format="MMM DD YYYY hh:mm a"
                     [(ngModel)]="asset.meterInformation.MeterReadDate"
-                  ></ion-input
-                  ><ion-input disabled> MAZDA 323 200E</ion-input>
+                  ></ion-datetime>
                 </ion-item>
               </div>
             </ion-col>
@@ -240,7 +246,6 @@
                 <ion-label>Meter Offset</ion-label>
                 <ion-item lines="none">
                   <ion-input
-                    disabled
                     [(ngModel)]="asset.meterInformation.MeterOffset"
                   ></ion-input>
                 </ion-item>
@@ -425,19 +430,31 @@
           <ion-col size="8" class="flex al-center jc-between">
             <ion-item lines="none">
               <ion-label>Autocard</ion-label>
-              <ion-checkbox slot="start"></ion-checkbox>
+              <ion-checkbox
+                [(ngModel)]="asset.otherInformation.Autocard"
+                slot="start"
+              ></ion-checkbox>
             </ion-item>
             <ion-item lines="none">
               <ion-label>Refurbished</ion-label>
-              <ion-checkbox slot="start"></ion-checkbox>
+              <ion-checkbox
+                [(ngModel)]="asset.otherInformation.Refurb"
+                slot="start"
+              ></ion-checkbox>
             </ion-item>
             <ion-item lines="none">
               <ion-label>Rental Vehicle</ion-label>
-              <ion-checkbox slot="start"></ion-checkbox>
+              <ion-checkbox
+                [(ngModel)]="asset.otherInformation.rentalVehicle"
+                slot="start"
+              ></ion-checkbox>
             </ion-item>
             <ion-item lines="none">
               <ion-label>Government Subsidised Vehicle</ion-label>
-              <ion-checkbox slot="start"></ion-checkbox>
+              <ion-checkbox
+                [(ngModel)]="asset.otherInformation.govSubsidisedVeh"
+                slot="start"
+              ></ion-checkbox>
             </ion-item>
           </ion-col>
           <ion-col size="1"> </ion-col>

@@ -105,6 +105,21 @@ export class FirebaseGetService {
     return promise
   }
 
+  getMeterType(){
+    const promise = new Promise((resolve, reject) => {
+      this.afs.collection('/test3/Mst_Item/tables/').ref.get().then((mNm) => {
+        let mType = [];
+        mNm.docs.forEach((mNm) => {
+          mType.push(mNm.get('MeterType'))
+        })
+        resolve(mType)
+      }).catch((err) => {
+        reject(err)
+      })
+    })
+    return promise
+  }
+
   public getAsset(){
     const promise = new Promise((resolve, reject) => {
       this.afs.collection('test3/Mst_Item/tables').ref.get().then((asset) => {
@@ -120,33 +135,22 @@ export class FirebaseGetService {
     return promise
   }
 
-    public getOilGrade() {
-        const promise = new Promise((resolve, reject) => {
-            this.afs.collection('test3/Sup_OilGrade/tables').ref.get().then((oilGrades) => {
-                let newOilGrades = [];
-                oilGrades.docs.forEach((oilGrade) => {
-                    newOilGrades.push(oilGrade.data())
-                })
-                resolve(newOilGrades);
-            }).catch((error) => {
-                reject(error);
-            })
+  getStaffGuid(){
+    const promise = new Promise((resolve, reject) => {
+      this.afs.collection('/test3/Mst_StaffDetails/tables/').ref.get().then((obj) => {
+        let data = [];
+        obj.docs.forEach((obj) => {
+          data.push({
+            guid: obj.get('StaffGuid'),
+            code: obj.get('StaffCode')
+          })
         })
-        return promise;
-    }
+        resolve(data)
+      }).catch((err) => {
+        reject(err)
+      })
+    })
+    return promise
+  }
 
-    public getOilMake() {
-        const promise = new Promise((resolve, reject) => {
-            this.afs.collection('test3/Sup_OilMake/tables').ref.get().then((oilGrades) => {
-                let newOilGrades = [];
-                oilGrades.docs.forEach((oilGrade) => {
-                    newOilGrades.push(oilGrade.data())
-                })
-                resolve(newOilGrades);
-            }).catch((error) => {
-                reject(error);
-            })
-        })
-        return promise;
-    }
 }

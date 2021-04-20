@@ -14,17 +14,23 @@ import { IonicStorageModule } from '@ionic/storage';
 import { firebaseConfig } from './app.firebase.config';
 import { AngularFirestoreModule, AngularFirestore } from '@angular/fire/firestore';
 import { FirebaseGetService } from './services/firebase-service/firebase-get.service';
+import { SignaturePadModule } from 'angular2-signaturepad';
+//import { SignPadComp } from './pages/jobcard/signature/signature.component'
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+    //SignPadComp
+  ],
   entryComponents: [],
   imports: [
-    BrowserModule, 
-    IonicModule.forRoot({mode:'md'}), 
+    BrowserModule,
+    IonicModule.forRoot({mode:'md'}),
     AppRoutingModule,
     IonicStorageModule.forRoot(),
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    SignaturePadModule
   ],
   providers: [
     PopupHelper,

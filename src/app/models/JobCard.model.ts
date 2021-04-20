@@ -11,15 +11,14 @@ export class GeneralInformation    {
     CompletedDate: string
     StaffGuid: string
     ItemGuid: string
-    Defects: string
-    CaptureName: string[] = ["MAZDA323200E", "hawaii"]
+    CaptureName: string
     CaptureDate: string
     ServTypeGuid: string
     Item: string
     RegIndex: string
     EstCost: number
     EstCompDate: string
-    driverOrOperator: string[] = ["MAZDA323200E", "hawaii"]
+    driverOrOpGuid: string
 }
 export class VehicleInformation    {
   registrationNo: string
@@ -36,16 +35,24 @@ export class VehicleInformation    {
   location: string
 }
 export class ServiceInformation    {
-  workDescription: string
+  Defects: string
   serviceType: string
   type: string
   componentOfCar: ComponentOfCar
+  outWork: OutWork
+  partsAndConsumablesIssued: PartsAndConsumablesIssued
+  workDone_MechanicsReport: WorkDone_MechanicsReport
+  partsForServType: string[] = ['','','','','']
 }
 
 export class ComponentOfCar {
   componentName: string
+  engine: string
+  transmission: string
   warranty: number
   expiryDate: string
+  oilGrade: string
+  oilCapLtrs: string
 }
 export class OutWork    {
 
@@ -55,5 +62,9 @@ export class PartsAndConsumablesIssued    {
 }
 
 export class WorkDone_MechanicsReport    {
-
+  meterReading: number
+  totalHours: number
+  mechanicSignature: string
+  foremanSignature: string
+  operatorSignature: string
 }

@@ -87,7 +87,7 @@ export class AppComponent {
         {
           title: 'Tyre Tracking',
           url: 'tiretracking',
-        },
+        }
       ]
     },
     {

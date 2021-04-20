@@ -24,12 +24,10 @@ export class GeneralInformation {
   COFDate : string
   DriverName : string
   PlantUsage : string
-  Refurb : string
   Archive : string
   ArchiveDate : string
   RentalVehicle : string
   SubsidisedVehicle : string
-  Autocard : string
   LogType : string
   CaptureName : string
   StaffGuid : string
@@ -45,7 +43,7 @@ export class GeneralInformation {
 export class MeterInformation {
   MeterType : string
   MeterRead : number
-  MeterReadDate : string
+  MeterReadDate : string = new Date().toString()
   MeterOffset : number
   LicenceDate : string
 }
@@ -64,5 +62,9 @@ export class OtherInformation {
   ItemBud : number
   MechAvail : number
   MonthlyAveKM : number
+  Refurb : boolean
+  Autocard : boolean
+  rentalVehicle: boolean
+  govSubsidisedVeh: boolean
 }
 

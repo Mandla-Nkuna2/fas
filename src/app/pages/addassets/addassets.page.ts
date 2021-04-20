@@ -13,10 +13,12 @@ import { Component, OnInit } from '@angular/core';
 export class AddassetsPage implements OnInit {
   asset: Asset
   assets: any = [];
+  loadingComplete = false
   makesAndModels: any = []
   category: any = []
   colors: any = []
   tyreSizes: any = []
+  meterTypes: any = []
 
   constructor(private firebaseService: FirebaseService, private popUp: PopupHelper, private firebaseGetServ: FirebaseGetService) {
     this.asset = new Asset();
@@ -24,13 +26,14 @@ export class AddassetsPage implements OnInit {
     this.asset.meterInformation = new MeterInformation();
     this.asset.rateInformation = new RateInformation();
     this.asset.otherInformation = new OtherInformation();
-   }
+  }
 
   ngOnInit() {
     //this.onMakeAndModel();
     //this.onCategory();
     //this.onColor();
-    this.onTireSizes();
+    //this.onTireSizes();
+    //this.onMeterType();
   }
 
   onlyUnique(value, index, self) {
@@ -42,12 +45,6 @@ export class AddassetsPage implements OnInit {
       this.popUp.showAlert('Success', 'Data saved successfully =)')
     }).catch((err) => {
       this.popUp.showError(err)
-    })
-  }
-
-  onGetAsset(){
-    this.firebaseGetServ.getAsset().then((asset) => {
-      console.log(asset);
     })
   }
 
@@ -81,8 +78,23 @@ export class AddassetsPage implements OnInit {
     })
   }
 
-  onChange(){
-    console.log(this.asset.generalInformation.FrontTyreGuid);
+  onMeterType(){
+    this.firebaseGetServ.getMeterType().then((mType: any) => {
+      this.meterTypes = mType.filter(this.onlyUnique)
+    })
   }
 
+  getData() {
+    this.popUp.showLoading('getting data...').then(() =>  {
+      this.firebaseGetServ.getAsset().then((assets) => {
+        this.assets = assets;
+          this.loadingComplete = true;
+          this.popUp.dismissLoading();
+        })
+      })
+  }
+
+  onChange(){
+    console.log(this.asset.meterInformation.MeterType);
+  }
 }

@@ -1,8 +1,10 @@
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 import { FirebaseService } from './../../services/firebase-service/firebase-service.service';
-import { Component, OnInit } from '@angular/core';
-import {JobCard, GeneralInformation, VehicleInformation} from '../../models/JobCard.model';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import {JobCard, GeneralInformation, VehicleInformation, ServiceInformation, ComponentOfCar} from '../../models/JobCard.model';
 import {FirebaseGetService} from '../../services/firebase-service/firebase-get.service';
+import { SignaturePad } from 'angular2-signaturepad/signature-pad';
+
 @Component({
   selector: 'app-jobcard',
   templateUrl: './jobcard.page.html',
@@ -10,23 +12,48 @@ import {FirebaseGetService} from '../../services/firebase-service/firebase-get.s
 })
 
 export class JobcardPage implements OnInit {
+  @ViewChild('signatureCanvas', { static: false }) signaturePad: SignaturePad;
+
   jobCard: JobCard;
-  oilGrades: any = [];
-  oilMakes: any = [];
-  loadingComplete = false
+  loadingComplete = false;
+  staffGuids: any = [];
 
   constructor(
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
-    private firebaseGet: FirebaseGetService
+    private firebaseGetServ: FirebaseGetService
     ) {
     this.jobCard = new JobCard();
     this.jobCard.generalInformation = new GeneralInformation();
     this.jobCard.vehicleInformation = new VehicleInformation();
+    this.jobCard.serviceInformation = new ServiceInformation();
+    this.jobCard.serviceInformation.componentOfCar = new ComponentOfCar();
   }
 
   ngOnInit() {
-    this.getData();
+    //this.onStaff();
+  }
+
+  public signaturePadOptions: Object = { // passed through to szimek/signature_pad constructor
+    'minWidth': 5,
+    'canvasWidth': 150,
+    'canvasHeight': 150
+  };
+
+  ngAfterViewInit() {
+    // this.signaturePad is now available
+    this.signaturePad.set('minWidth', 5); // set szimek/signature_pad options at runtime
+    this.signaturePad.clear(); // invoke functions from szimek/signature_pad API
+  }
+
+  drawComplete() {
+    // will be notified of szimek/signature_pad's onEnd event
+    console.log(this.signaturePad.toDataURL());
+  }
+
+  drawStart() {
+    // will be notified of szimek/signature_pad's onBegin event
+    console.log('begin drawing');
   }
 
   onAdd(){
@@ -37,16 +64,13 @@ export class JobcardPage implements OnInit {
     })
   }
 
-  getData() {
-    this.popUp.showLoading('getting data...').then(() =>  {
-      this.firebaseGet.getOilGrade().then((oilGrades) => {
-        this.oilGrades = oilGrades;
-        this.firebaseGet.getOilMake().then((oilMakes) =>  {
-          this.oilMakes = oilMakes;
-          this.loadingComplete = true;
-          this.popUp.dismissLoading();
-        })
-      })
+  onStaff(){
+    this.firebaseGetServ.getStaffGuid().then((staffGuids) => {
+      this.staffGuids = staffGuids
     })
+  }
+
+  onChange(){
+
   }
 }

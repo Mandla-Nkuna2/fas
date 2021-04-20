@@ -7,14 +7,19 @@ import { IonicModule } from '@ionic/angular';
 import { JobcardPageRoutingModule } from './jobcard-routing.module';
 
 import { JobcardPage } from './jobcard.page';
+import { SignaturePadModule } from 'angular2-signaturepad';
+
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    JobcardPageRoutingModule
+    JobcardPageRoutingModule,
+    SignaturePadModule
   ],
-  declarations: [JobcardPage]
+  declarations: [
+    JobcardPage
+  ]
 })
 export class JobcardPageModule {}
