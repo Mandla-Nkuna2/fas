@@ -1,0 +1,49 @@
+ion-content
+{
+    .title-holder
+    {
+        ion-back-button
+        {
+            margin-right: 10px !important;
+        }
+    }
+  
+
+
+    .the-form
+    {
+        ion-item
+        {
+            ion-button
+            {
+                --background: #B1C1CF;
+                --border-radius: 0;
+                border-bottom-right-radius: 10px !important;
+                border-top-right-radius: 10px !important;
+                height: 100%;
+                margin: 0 !important;
+              
+               
+            }
+        }
+    }
+
+    .btn-holder
+    {
+        ion-button
+        {
+            width: fit-content !important;
+            margin-left: 10px;
+        }
+    }
+
+    .info
+    {
+        p
+        {
+            color: #7D91AF;
+            font-size: 14px;
+            font-family: 'Regular';
+        }
+    }
+}

@@ -19,6 +19,130 @@ export class AppComponent {
       icona:'assets/imgs/dasha.svg'
     },
     {
+      title: 'New pages',
+      url: 'additionalcosts',
+      icon:'assets/imgs/dash.svg',
+      icona:'assets/imgs/dasha.svg',
+      children:[
+        {
+          title: 'Additional Costs',
+          url: 'additionalcosts',
+        },
+        {
+          title: 'Autocard details',
+          url: 'autocardetails',
+        },
+        {
+          title: 'bowsertransactions',
+          url: 'browsertransactions',
+        },
+        {
+          title: 'bowsertransfer',
+          url: 'browsertransfer',
+        },
+        {
+          title: 'fixedcostdetails',
+          url: 'fixedcostdetails',
+        },
+        {
+          title: 'fixedcostransfer',
+          url: 'fixedcostransfer',
+        },
+        {
+          title: 'fuelissues',
+          url: 'fuelissues',
+        },
+        {
+          title: 'itemcomponents',
+          url: 'itemcomponents',
+        },
+        {
+          title: 'items',
+          url: 'items',
+        },
+        {
+          title: 'licensecor',
+          url: 'licensecor',
+        },
+        {
+          title: 'losscontrol',
+          url: 'losscontrol',
+        },
+        {
+          title: 'maintaincevent',
+          url: 'maintaincevent',
+        },
+        {
+          title: 'oilissues',
+          url: 'oilissues',
+        },
+        {
+          title: 'oilstoretrans',
+          url: 'oilstoretrans',
+        },
+        {
+          title: 'oiltransafer',
+          url: 'oiltransafer',
+        },
+        {
+          title: 'overheadtrans',
+          url: 'overheadtrans',
+        },
+        {
+          title: 'stafftimesheets',
+          url: 'stafftimesheets',
+        },
+        {
+          title: 'storeissue',
+          url: 'storeissue',
+        },
+        {
+          title: 'supdeposit',
+          url: 'supdeposit',
+        },
+        {
+          title: 'fuelnoilprice',
+          url: 'fuelnoilprice',
+        },
+        {
+          title: 'dailyoperationrecord',
+          url: 'dailyoperationrecord',
+        },
+      ]
+    },
+    {
+      title: 'Imports',
+      url: 'absaimport',
+      icon:'assets/imgs/asts.svg',
+      icona:'assets/imgs/astsa.svg',
+      children:[
+        {
+          title: 'absaimport',
+          url: 'absaimport',
+        },
+        {
+          title: 'fueltransimport',
+          url: 'fueltransimport',
+        },
+        {
+          title: 'importlogtransfor',
+          url: 'importlogtransfor',
+        },
+        {
+          title: 'importfirstautotrans',
+          url: 'importfirstautotrans',
+        },
+        {
+          title: 'importgeotab',
+          url: 'importgeotab',
+        },
+        {
+          title: 'stannicimport',
+          url: 'stannicimport',
+        },
+      ]
+    },
+    {
       title: 'Assets',
       url: 'addassetsinfo',
       icon:'assets/imgs/asts.svg',
@@ -67,12 +191,12 @@ export class AppComponent {
       url: '',
       icon:'assets/imgs/trips.svg',
       icona:'assets/imgs/tripsa.svg',
-      children:[
-        {
-          title: 'Send Messege',
-          url: 'sendmsg',
-        },
-      ]
+      // children:[
+      //   {
+      //     title: 'Send Messege',
+      //     url: 'sendmsg',
+      //   },
+      // ]
     },
     {
       title: 'Inspections',
@@ -113,7 +237,7 @@ export class AppComponent {
       title: 'Revenue',
       icon:'assets/imgs/revenue.svg',
       icona:'assets/imgs/revenuea.svg',
-      url:'revenueearned',
+      url:'revenue',
       children:[
         {
           title: 'Revenue Earned',
@@ -122,7 +246,7 @@ export class AppComponent {
         {
           title: 'Costs',
           url: 'revenucosts',
-        }
+        },
       ]
     },
     {

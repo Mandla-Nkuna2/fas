@@ -1,0 +1,527 @@
+<ion-content class="ion-padding">
+  <div class="title-holder flex al-center">
+    <ion-back-button defaultHref="licensecor" mode="ios" text=""></ion-back-button>
+    <h2>Loss Control</h2>
+    <div class="date-holder">
+      <div class="itm flex al-center">
+        <div class="thumb">
+          <ion-icon slot="icon-only" src="assets/imgs/icn-calender.svg"></ion-icon>
+        </div>
+        <ion-datetime display-format="MMM DD YYYY" value="Sep 16 2020, 12:02 "></ion-datetime>
+        <p>to</p>
+        <ion-datetime display-format="MMM DD YYYY" value="Sep 16 2020, 12:02 "></ion-datetime>
+      </div>
+
+    </div>
+  </div>
+  <div class="section">
+    <div class="grid-holder">
+      <div class="top-toolbar flex al-center jc-between">
+        <h3>Loss Control</h3>
+        <div class="btns-holder flex al-center">
+          <ion-button>
+            <ion-icon slot="icon-only" name="options-outline"></ion-icon>
+          </ion-button>
+
+          <ion-button>
+            <ion-icon slot="icon-only" name="search-outline"></ion-icon>
+          </ion-button>
+        </div>
+      </div>
+      <ion-grid fixed>
+        <ion-row class="title-row">
+          <ion-col size="0.5" class="flex al-center jc-center">
+
+          </ion-col>
+          <ion-col size="1.4" class="flex al-center jc-center">
+            <h4>Loss Cont. No.</h4>
+          </ion-col>
+          <ion-col size="1.4" class="flex al-center jc-center">
+            <h4>Date Opened</h4>
+          </ion-col>
+          <ion-col size="1" class="flex al-center jc-center">
+            <h4>Date closed</h4>
+          </ion-col>
+          <ion-col size="1.4" class="flex al-center jc-center">
+            <h4>agent</h4>
+          </ion-col>
+          <ion-col size="1" class="flex al-center jc-center">
+            <h4>registration</h4>
+          </ion-col>
+          <ion-col size="1" class="flex al-center jc-center">
+            <h4>Loss type</h4>
+          </ion-col>
+          <ion-col size="1.4" class="flex al-center jc-center">
+            <h4>Chassis no.</h4>
+          </ion-col>
+          <ion-col size="1.4" class="flex al-center jc-center">
+            <h4>driver</h4>
+          </ion-col>
+          <ion-col size="1.4" class="flex al-center jc-center">
+            <h4>cost center</h4>
+          </ion-col>
+        </ion-row>
+        <div class="values">
+          <ion-row class="value-row" (click)="goMEvent()">
+            <ion-col size="0.5" class="flex al-center jc-center">
+              <ion-checkbox></ion-checkbox>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>BVY343429921AD</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p class="ion-text-wrap">02 Jan 2019</p>
+            </ion-col>
+            <ion-col size="1" class="flex al-center jc-center">
+              <p>02 Jan 2019</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>02 Jan 2019</p>
+            </ion-col>
+            <ion-col size="1" class="flex al-center jc-center">
+              <p>SEDAN\2DR...</p>
+            </ion-col>
+            <ion-col size="1" class="flex al-center jc-center">
+              <p>187656</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>31/06/2019</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>3493303</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>3493303</p>
+            </ion-col>
+          </ion-row>
+        </div>
+        <div class="values">
+          <ion-row class="value-row">
+            <ion-col size="0.5" class="flex al-center jc-center">
+              <ion-checkbox></ion-checkbox>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>BVY343429921AD</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p class="ion-text-wrap">02 Jan 2019</p>
+            </ion-col>
+            <ion-col size="1" class="flex al-center jc-center">
+              <p>02 Jan 2019</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>02 Jan 2019</p>
+            </ion-col>
+            <ion-col size="1" class="flex al-center jc-center">
+              <p>SEDAN\2DR...</p>
+            </ion-col>
+            <ion-col size="1" class="flex al-center jc-center">
+              <p>187656</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>31/06/2019</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>3493303</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>3493303</p>
+            </ion-col>
+          </ion-row>
+        </div>
+        <div class="values">
+          <ion-row class="value-row">
+            <ion-col size="0.5" class="flex al-center jc-center">
+              <ion-checkbox></ion-checkbox>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>BVY343429921AD</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p class="ion-text-wrap">02 Jan 2019</p>
+            </ion-col>
+            <ion-col size="1" class="flex al-center jc-center">
+              <p>02 Jan 2019</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>02 Jan 2019</p>
+            </ion-col>
+            <ion-col size="1" class="flex al-center jc-center">
+              <p>SEDAN\2DR...</p>
+            </ion-col>
+            <ion-col size="1" class="flex al-center jc-center">
+              <p>187656</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>31/06/2019</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>3493303</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>3493303</p>
+            </ion-col>
+          </ion-row>
+        </div>
+      </ion-grid>
+    </div>
+  </div>
+
+  <div class="section">
+
+    <div class="title">
+      <h3>Add</h3>
+    </div>
+
+    <div class="the-form">
+      <ion-grid fixed>
+        <ion-row>
+
+          <ion-col size="5">
+            <div class="item-input">
+              <ion-row>
+                <ion-col size="8.5" class="ion-no-padding">
+                  <ion-label>Loss Control No.</ion-label>
+                  <ion-item lines="none">
+                    <ion-select value="Registration" multiple="false" placeholder="Registration" disabled>
+                      <ion-select-option value="Registration">Registration</ion-select-option>
+                      <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                </ion-col>
+      
+                <ion-col size="3" offset="0.5" class="flex al-end jc-end">
+                  <ion-button expand="block" id="inline">
+                    Generate
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+      
+            </div>
+          </ion-col>
+          
+      
+          <ion-col size="3.5">
+            <div class="item-input">
+              <ion-label>Date Record Opened</ion-label>
+              <ion-item lines="none">
+                <ion-datetime display-format="MMM DD YYYY" value="Sep 16 2020, 12:02 "></ion-datetime>
+              </ion-item>
+            </div>
+          </ion-col>
+
+          <ion-col size="3" offset="0.5">
+            <div class="item-input">
+              <ion-label>Date Record Closed</ion-label>
+              <ion-item lines="none">
+                <ion-datetime display-format="MMM DD YYYY" value="Sep 16 2020, 12:02 "></ion-datetime>
+              </ion-item>
+            </div>
+          </ion-col>
+
+          <ion-col size="3.5">
+            <div class="item-input">
+              <ion-label>Agent</ion-label>
+              <ion-item lines="none">
+                <ion-select value="Registration" multiple="false" placeholder="Agent">
+                  <ion-select-option value="Agent">Agent</ion-select-option>
+                  <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </div>
+          </ion-col>
+
+          <ion-col size="8" offset="0.5">
+            <div class="item-input">
+              <ion-row>
+                <ion-col size="7" class="ion-no-padding">
+                  <ion-label>Registration</ion-label>
+                  <ion-item lines="none">
+                    <ion-select value="Registration" multiple="false" placeholder="Registration">
+                      <ion-select-option value="Registration">Registration</ion-select-option>
+                      <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                </ion-col>
+      
+                <ion-col size="4.5" offset="0.5" class="flex al-end jc-end">
+                  <ion-button expand="block" id="inline">
+                    Check Make & Model and Location
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+      
+            </div>
+          </ion-col>
+
+          <ion-col size="3.5">
+            <div class="item-input">
+              <ion-label>Loss Type</ion-label>
+              <ion-item lines="none">
+                <ion-select value="MAZDA323200E" multiple="false" placeholder="Please select">
+                  <ion-select-option value="MAZDA323200E">MAZDA 323 200E</ion-select-option>
+                  <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </div>
+          </ion-col>
+
+          <ion-col size="3.5" offset="0.5">
+            <div class="item-input">
+              <ion-label>Loss Date</ion-label>
+              <ion-item lines="none">
+                <ion-datetime display-format="MMM DD YYYY hh:mm a" value="Sep 16 2020, 12:02 "></ion-datetime>
+              </ion-item>
+            </div>
+          </ion-col>
+
+          <ion-col size="3.5" offset="0.5">
+           
+          </ion-col>
+
+          <ion-col size="12">
+            <div class="item-input">
+              <ion-label>Loss details/comments</ion-label>
+              <ion-item lines="none">
+                <ion-textarea rows="5" placeholder="MAZDA 323 200E"></ion-textarea>
+              </ion-item>
+            </div>
+          </ion-col>
+
+          <ion-col size="2.8">
+            <div class="item-input">
+              <ion-label>Reported</ion-label>
+              <ion-item lines="none">
+                <ion-select value="Reported" multiple="false" placeholder="Reported">
+                  <ion-select-option value="Reported">Reported</ion-select-option>
+                  <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </div>
+          </ion-col>
+
+          <ion-col size="2.8" offset="0.25">
+            <div class="item-input">
+              <ion-label>Reported Date</ion-label>
+              <ion-item lines="none">
+                <ion-datetime display-format="MMM DD YYYY" value=""></ion-datetime>
+              </ion-item>
+            </div>
+          </ion-col>
+
+          <ion-col size="2.8" offset="0.25">
+            <div class="item-input">
+              <ion-label>Reported By</ion-label>
+              <ion-item lines="none">
+                <ion-select value="Reported" multiple="false" placeholder="Reported">
+                  <ion-select-option value="Reported">Reported</ion-select-option>
+                  <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </div>
+          </ion-col>
+
+          <ion-col size="2.8" offset="0.25">
+            <div class="item-input">
+              <ion-label>Driver Name</ion-label>
+              <ion-item lines="none">
+                <ion-select value="Reported" multiple="false" placeholder="Reported">
+                  <ion-select-option value="Reported">Reported</ion-select-option>
+                  <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </div>
+          </ion-col>
+
+          <ion-col size="2.8">
+            <div class="item-input">
+              <ion-label>Driver's ID No.</ion-label>
+              <ion-item lines="none">
+                <ion-input type="text" placeholder="Id"></ion-input>
+              </ion-item>
+            </div>
+          </ion-col>
+
+          <ion-col size="6.5" offset="0.25">
+            <div class="item-input">
+              <ion-row>
+                <ion-col size="5" class="ion-no-padding">
+                  <ion-label>Tip Authority</ion-label>
+                  <ion-item lines="none">
+                    <ion-select value="" multiple="false" placeholder="Registration" disabled>
+                      <ion-select-option value="Registration">Registration</ion-select-option>
+                      <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                </ion-col>
+      
+                <ion-col size="5.5" offset="0.5" class="flex al-end jc-end">
+                  <ion-button expand="block" id="inline">
+                    Check Employee No.
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+      
+            </div>
+          </ion-col>
+
+          <ion-col size="3.5">
+            <div class="item-input">
+              <ion-label>Date Reported to Police</ion-label>
+              <ion-item lines="none">
+                <ion-datetime display-format="MMM DD YYYY" value="Sep 16 2020, 12:02 "></ion-datetime>
+              </ion-item>
+            </div>
+          </ion-col>
+
+          <ion-col size="3.5" offset="0.5">
+            <div class="item-input">
+              <ion-label>Police Station</ion-label>
+              <ion-item lines="none">
+                <ion-select value="Reported" multiple="false" placeholder="Reported">
+                  <ion-select-option value="Reported">Reported</ion-select-option>
+                  <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </div>
+          </ion-col>
+
+          <ion-col size="3.5" offset="0.5">
+            <div class="item-input">
+              <ion-label>Case Number</ion-label>
+              <ion-item lines="none">
+                <ion-input type="text" placeholder="Staff Code"></ion-input>
+              </ion-item>
+            </div>
+          </ion-col>
+
+          <ion-col size="3.5" >
+            <div class="item-input">
+              <ion-label>Accident/Incident Report</ion-label>
+              <ion-item lines="none">
+                <ion-input type="text" placeholder="Staff Code"></ion-input>
+              </ion-item>
+            </div>
+          </ion-col>
+
+          <ion-col size="3.5" offset="0.5">
+            <div class="item-input">
+              <ion-label>Date Report Received</ion-label>
+              <ion-item lines="none">
+                <ion-datetime display-format="MMM DD YYYY" value="Sep 16 2020, 12:02 "></ion-datetime>
+              </ion-item>
+            </div>
+          </ion-col>
+
+          <ion-col size="3.5" offset="0.5">
+            <div class="item-input">
+              <ion-label>Other Vehicle/Party</ion-label>
+              <ion-item lines="none">
+                <ion-input type="text" placeholder="Hrs"></ion-input>
+              </ion-item>
+            </div>
+          </ion-col>
+
+          <ion-col size="2.7" >
+            <div class="item-input">
+              <ion-label>Forifeiture</ion-label>
+              <ion-item lines="none">
+                <ion-select value="Reported" multiple="false" placeholder="Reported">
+                  <ion-select-option value="Reported">hrs</ion-select-option>
+                  <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </div>
+          </ion-col>
+
+
+          <ion-col size="2.7" offset="0.3">
+            <div class="item-input">
+              <ion-label>Determination of liability</ion-label>
+              <ion-item lines="none">
+                <ion-select value="Reported" multiple="false" placeholder="Reported">
+                  <ion-select-option value="Reported">hrs</ion-select-option>
+                  <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </div>
+          </ion-col>
+
+          <ion-col size="2.8" offset="0.3">
+            <div class="item-input">
+              <ion-label>Costing Documents</ion-label>
+              <ion-item lines="none">
+                <ion-select value="Reported" multiple="false" placeholder="Reported">
+                  <ion-select-option value="Reported">hrs</ion-select-option>
+                  <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </div>
+          </ion-col>
+
+          <ion-col size="2.8" offset="0.3">
+            <div class="item-input">
+              <ion-label>Action Taken</ion-label>
+              <ion-item lines="none">
+                <ion-select value="Reported" multiple="false" placeholder="Reported">
+                  <ion-select-option value="Reported">hrs</ion-select-option>
+                  <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </div>
+          </ion-col>
+      
+
+          <ion-col size="3.5">
+            <div class="item-input">
+              <ion-label>Amount</ion-label>
+              <ion-item lines="none" class="end">
+                <ion-input type="text" value="0.00"></ion-input>
+                <div class="end-slot flex al-center jc-center" slot="end">
+                  <p>R</p>
+                </div>
+              </ion-item>
+            </div>
+          </ion-col>
+
+          <ion-col size="3.5" offset="0.5">
+            <div class="item-input">
+              <ion-label>Amount Recovered</ion-label>
+              <ion-item lines="none">
+                <ion-input type="text" placeholder="Staff Code"></ion-input>
+              </ion-item>
+            </div>
+          </ion-col>
+
+          <ion-col size="4" offset="0.25">
+            <div class="item-input">
+              <ion-row>
+                <ion-col size="7" class="ion-no-padding">
+                  <ion-label>File Number</ion-label>
+                  <ion-item lines="none">
+                    <ion-select value="" multiple="false" placeholder="Registration">
+                      <ion-select-option value="Registration">Registration</ion-select-option>
+                      <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                </ion-col>
+      
+                <ion-col size="4.5" offset="0.5" class="flex al-end jc-end">
+                  <ion-button expand="block" id="inline">
+                    Add 
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+      
+            </div>
+          </ion-col>
+
+         
+        </ion-row>
+      </ion-grid>
+    </div>
+
+   
+  </div>
+
+</ion-content>

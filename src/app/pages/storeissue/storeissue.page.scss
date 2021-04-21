@@ -1,0 +1,146 @@
+ion-content
+{
+    .title-holder
+    {
+        ion-back-button
+        {
+            margin-right: 10px !important;
+        }
+    }
+    .section
+    {
+        margin-top: 20px;
+
+        .grid-holder
+        {
+
+            .top-toolbar
+            {
+                padding: 5px 20px !important;
+            }
+          
+            .values
+            {
+                border-bottom: 0 !important;
+                padding: 0 !important;
+            }
+            ion-grid
+            {
+                border: none !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            .title-row
+            {
+                border: 1px solid #B3C6E2 ;
+                h4
+                {
+                    font-size: 13px !important;
+                }
+            }
+    
+    
+            .value-row
+            {
+                border-bottom: 1px solid #B3C6E2 ;
+                border-left: 1px solid #B3C6E2 ;
+                border-right: 1px solid #B3C6E2 ;
+                p
+                {
+                    font-size: 13px !important;
+                }
+            }
+        }
+
+        .title
+        {
+            h3
+            {
+                color: #2F3F51;
+                font-family: 'Bold';
+                font-size: 18px;
+                margin: 0;
+            }
+        }
+
+        .the-form
+        {
+            ion-col
+            {
+                margin-bottom: 10px !important;
+            }
+
+            h5
+            {
+                color: #7D91AF;
+                font-size: 0.7rem;
+                margin-top: 5px;
+            }
+
+            #inline
+            {
+                --border-radius: 10px;
+                height: 3rem !important;
+                margin-top: 27px;
+                width: 100%;
+            }
+            
+
+            .check-holder
+            {
+                ion-item
+                {
+                    margin-top: 10px !important;
+                }
+            }
+        }
+    }
+
+    .nav-holder
+    {
+        margin-right: 18%;
+        .nav-btns
+        {
+
+            #active
+            {
+                --background:#C7D0E5;
+                --color: white;
+            }
+            ion-button
+            {
+                --background: transparent;
+                --border-color: #C7D0E5;
+                --border-style: solid;
+                --border-width: 1px;
+                --box-shadow: none;
+                --color: #C7D0E5;
+                font-size: 0.8rem;
+                height: 1.5rem;
+             
+                margin-right: 10px;
+
+            }
+        }
+    }
+
+    .btn-holder
+    {
+        ion-button
+        {
+            width: 120px !important;
+            margin-left: 10px;
+        }
+    }
+
+    .info
+    {
+        background: #D9E1E9;
+        border-radius: 10px;
+
+        p
+        {
+            font-size: 18px;
+        }
+    }
+}

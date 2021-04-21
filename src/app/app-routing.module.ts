@@ -8,12 +8,12 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'folder/:id',
-    loadChildren: () => import('./pages/folder/folder.module').then( m => m.FolderPageModule)
+    path: 'dashboard',
+    loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardPageModule)
   },
   {
-    path: 'dashboard',
-    loadChildren: () => import('./pages/dashboard/dashboard.module').then( m => m.DashboardPageModule)
+    path: 'folder/:id',
+    loadChildren: () => import('./pages/folder/folder.module').then( m => m.FolderPageModule)
   },
   {
     path: 'assetdetail',
@@ -120,8 +120,116 @@ const routes: Routes = [
     loadChildren: () => import('./pages/fuelbrowsenoilctrl/fuelbrowsenoilctrl.module').then( m => m.FuelbrowsenoilctrlPageModule)
   },
   {
-    path: 'sign-in',
-    loadChildren: () => import('./pages/sign-in/sign-in.module').then( m => m.SignInPageModule)
+    path: 'additionalcosts',
+    loadChildren: () => import('./pages/additionalcosts/additionalcosts.module').then( m => m.AdditionalcostsPageModule)
+  },
+  {
+    path: 'autocardetails',
+    loadChildren: () => import('./pages/autocardetails/autocardetails.module').then( m => m.AutocardetailsPageModule)
+  },
+  {
+    path: 'browsertransactions',
+    loadChildren: () => import('./pages/browsertransactions/browsertransactions.module').then( m => m.BrowsertransactionsPageModule)
+  },
+  {
+    path: 'browsertransfer',
+    loadChildren: () => import('./pages/browsertransfer/browsertransfer.module').then( m => m.BrowsertransferPageModule)
+  },
+  {
+    path: 'dailyoperationrecord',
+    loadChildren: () => import('./pages/dailyoperationsrecord/dailyoperationrecord.module').then( m => m.DailyoperationrecordPageModule)
+  },
+  {
+    path: 'fixedcostdetails',
+    loadChildren: () => import('./pages/fixedcostdetails/fixedcostdetails.module').then( m => m.FixedcostdetailsPageModule)
+  },
+  {
+    path: 'fixedcostransfer',
+    loadChildren: () => import('./pages/fixedcostransfer/fixedcostransfer.module').then( m => m.FixedcostransferPageModule)
+  },
+  {
+    path: 'fuelissues',
+    loadChildren: () => import('./pages/fuelissues/fuelissues.module').then( m => m.FuelissuesPageModule)
+  },
+  {
+    path: 'itemcomponents',
+    loadChildren: () => import('./pages/itemcomponents/itemcomponents.module').then( m => m.ItemcomponentsPageModule)
+  },
+  {
+    path: 'items',
+    loadChildren: () => import('./pages/items/items.module').then( m => m.ItemsPageModule)
+  },
+  {
+    path: 'losscontrol',
+    loadChildren: () => import('./pages/losscontrol/losscontrol.module').then( m => m.LosscontrolPageModule)
+  },
+  {
+    path: 'licensecor',
+    loadChildren: () => import('./pages/licensecor/licensecor.module').then( m => m.LicensecorPageModule)
+  },
+  {
+    path: 'maintaincevent',
+    loadChildren: () => import('./pages/maintaincevent/maintaincevent.module').then( m => m.MaintainceventPageModule)
+  },
+  {
+    path: 'oilissues',
+    loadChildren: () => import('./pages/oilissues/oilissues.module').then( m => m.OilissuesPageModule)
+  },
+  {
+    path: 'oilstoretrans',
+    loadChildren: () => import('./pages/oilstoretrans/oilstoretrans.module').then( m => m.OilstoretransPageModule)
+  },
+  {
+    path: 'oiltransafer',
+    loadChildren: () => import('./pages/oiltransafer/oiltransafer.module').then( m => m.OiltransaferPageModule)
+  },
+  {
+    path: 'overheadtrans',
+    loadChildren: () => import('./pages/overheadtrans/overheadtrans.module').then( m => m.OverheadtransPageModule)
+  },
+  {
+    path: 'stafftimesheets',
+    loadChildren: () => import('./pages/stafftimesheets/stafftimesheets.module').then( m => m.StafftimesheetsPageModule)
+  },
+  {
+    path: 'revenue',
+    loadChildren: () => import('./pages/revenue/revenue.module').then( m => m.RevenuePageModule)
+  },
+  {
+    path: 'storeissue',
+    loadChildren: () => import('./pages/storeissue/storeissue.module').then( m => m.StoreissuePageModule)
+  },
+  {
+    path: 'supdeposit',
+    loadChildren: () => import('./pages/supdeposit/supdeposit.module').then( m => m.SupdepositPageModule)
+  },
+  {
+    path: 'fuelnoilprice',
+    loadChildren: () => import('./pages/fuelnoilprice/fuelnoilprice.module').then( m => m.FuelnoilpricePageModule)
+  },
+  {
+    path: 'absaimport',
+    loadChildren: () => import('./pages/absaimport/absaimport.module').then( m => m.AbsaimportPageModule)
+  },
+  {
+    path: 'fueltransimport',
+    loadChildren: () => import('./pages/fueltransimport/fueltransimport.module').then( m => m.FueltransimportPageModule)
+  },
+  {
+    path: 'importlogtransfor',
+    loadChildren: () => import('./pages/importlogtransfor/importlogtransfor.module').then( m => m.ImportlogtransforPageModule)
+  },
+  {
+    path: 'importfirstautotrans',
+    loadChildren: () => import('./pages/importfirstautotrans/importfirstautotrans.module').then( m => m.ImportfirstautotransPageModule)
+  },
+  {
+    path: 'importgeotab',
+    loadChildren: () => import('./pages/importgeotab/importgeotab.module').then( m => m.ImportgeotabPageModule)
+  },
+  {
+    path: 'stannicimport',
+    loadChildren: () => import('./pages/stannicimport/stannicimport.module').then( m => m.StannicimportPageModule)
   }
 ];
 
