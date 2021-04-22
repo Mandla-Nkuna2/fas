@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import BowserTransaction from 'src/app/models/BowserTransaction.model';
 
 @Component({
   selector: 'app-browsertransactions',
@@ -7,8 +8,11 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./browsertransactions.page.scss'],
 })
 export class BrowsertransactionsPage implements OnInit {
+  bowserTransaction: BowserTransaction
 
-  constructor(private navCtrl: NavController) { }
+  constructor(private navCtrl: NavController) {
+    this.bowserTransaction = new BowserTransaction()
+   }
 
   ngOnInit() {
   }
@@ -16,6 +20,9 @@ export class BrowsertransactionsPage implements OnInit {
   goBrowserTransfer()
   {
     this.navCtrl.navigateForward('browsertransfer');
+  }
+
+  onAdd(){
   }
 
 }

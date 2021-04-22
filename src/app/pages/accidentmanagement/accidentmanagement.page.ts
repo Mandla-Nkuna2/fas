@@ -26,4 +26,8 @@ export class AccidentmanagementPage implements OnInit {
   })
  }
 
+ onMarkAsComplete(){
+
+ }
+
 }

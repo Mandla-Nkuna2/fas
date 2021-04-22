@@ -1,17 +1,29 @@
 <ion-content class="ion-padding">
   <div class="title-holder flex al-center">
-    <ion-back-button defaultHref="fuelissues" mode="ios" text=""></ion-back-button>
+    <ion-back-button
+      defaultHref="fuelissues"
+      mode="ios"
+      text=""
+    ></ion-back-button>
     <h2>Item Components</h2>
     <div class="date-holder">
       <div class="itm flex al-center">
         <div class="thumb">
-          <ion-icon slot="icon-only" src="assets/imgs/icn-calender.svg"></ion-icon>
+          <ion-icon
+            slot="icon-only"
+            src="assets/imgs/icn-calender.svg"
+          ></ion-icon>
         </div>
-        <ion-datetime display-format="MMM DD YYYY" value="Sep 16 2020, 12:02 "></ion-datetime>
+        <ion-datetime
+          display-format="MMM DD YYYY"
+          value="Sep 16 2020, 12:02 "
+        ></ion-datetime>
         <p>to</p>
-        <ion-datetime display-format="MMM DD YYYY" value="Sep 16 2020, 12:02 "></ion-datetime>
+        <ion-datetime
+          display-format="MMM DD YYYY"
+          value="Sep 16 2020, 12:02 "
+        ></ion-datetime>
       </div>
-
     </div>
   </div>
   <div class="section">
@@ -30,9 +42,7 @@
       </div>
       <ion-grid fixed>
         <ion-row class="title-row">
-          <ion-col size="0.5" class="flex al-center jc-center">
-
-          </ion-col>
+          <ion-col size="0.5" class="flex al-center jc-center"> </ion-col>
           <ion-col size="1.4" class="flex al-center jc-center">
             <h4>Registration</h4>
           </ion-col>
@@ -244,13 +254,11 @@
             </ion-col>
           </ion-row>
         </div>
-
       </ion-grid>
     </div>
   </div>
 
   <div class="section">
-
     <div class="title">
       <h3>Add</h3>
     </div>
@@ -262,9 +270,13 @@
             <div class="item-input">
               <ion-label>Registration</ion-label>
               <ion-item lines="none">
-                <ion-select value="Registration" multiple="false" placeholder="Registration" disabled>
-                  <ion-select-option value="Registration">Registration</ion-select-option>
-                  <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                <ion-select
+                  multiple="false"
+                  [(ngModel)]="itemComponent.ItemCompGuid"
+                >
+                  <ion-select-option value="Registration"
+                    >Registration</ion-select-option
+                  >
                 </ion-select>
               </ion-item>
             </div>
@@ -274,34 +286,26 @@
             <div class="item-input">
               <ion-label>Make & Model</ion-label>
               <ion-item lines="none">
-                <ion-input type="text" placeholder="Voucher"></ion-input>
+                <ion-select
+                  multiple="false"
+                  [(ngModel)]="itemComponent.ItemMakeModelGuid"
+                >
+                  <ion-select-option value="Registration"
+                    >Registration</ion-select-option
+                  >
+                </ion-select>
               </ion-item>
             </div>
           </ion-col>
 
-          <ion-col size="1.5" offset="0.5">
+          <ion-col size="4" offset="0.5">
             <div class="item-input">
               <ion-label>Date</ion-label>
               <ion-item lines="none">
-                <ion-datetime display-format="MMM DD YYYY" placeholder="Date"></ion-datetime>
-              </ion-item>
-            </div>
-          </ion-col>
-
-          <ion-col size="1" offset="0.25">
-            <div class="item-input">
-              <ion-label>&nbsp;</ion-label>
-              <ion-item lines="none">
-                <ion-datetime display-format="HH" placeholder="HH"></ion-datetime>
-              </ion-item>
-            </div>
-          </ion-col>
-
-          <ion-col size="1" offset="0.125">
-            <div class="item-input">
-              <ion-label>&nbsp;</ion-label>
-              <ion-item lines="none">
-                <ion-datetime display-format="mm" placeholder="MM"></ion-datetime>
+                <ion-datetime
+                  display-format="MMM DD YYYY HH MM"
+                  [(ngModel)]="itemComponent.CaptureDate"
+                ></ion-datetime>
               </ion-item>
             </div>
           </ion-col>
@@ -310,9 +314,11 @@
             <div class="item-input">
               <ion-label>Component Name</ion-label>
               <ion-item lines="none">
-                <ion-select value="Bowser" multiple="false" placeholder="Bowser">
+                <ion-select
+                  multiple="false"
+                  [(ngModel)]="itemComponent.CompNameGuid"
+                >
                   <ion-select-option value="Bowser">Bowser</ion-select-option>
-                  <ion-select-option value="hawaii">Hawaii</ion-select-option>
                 </ion-select>
               </ion-item>
             </div>
@@ -322,7 +328,12 @@
             <div class="item-input">
               <ion-label>Componanent Make</ion-label>
               <ion-item lines="none" class="end">
-                <ion-input type="text" value="0.00"></ion-input>
+                <ion-select
+                  multiple="false"
+                  [(ngModel)]="itemComponent.CompMakeGuid"
+                >
+                  <ion-select-option value="Bowser">Bowser</ion-select-option>
+                </ion-select>
               </ion-item>
             </div>
           </ion-col>
@@ -331,7 +342,12 @@
             <div class="item-input">
               <ion-label>Component Model</ion-label>
               <ion-item lines="none">
-                <ion-input type="text" value="Staff Code"></ion-input>
+                <ion-select
+                  multiple="false"
+                  [(ngModel)]="itemComponent.CompModelGuid"
+                >
+                  <ion-select-option value="Bowser">Bowser</ion-select-option>
+                </ion-select>
               </ion-item>
             </div>
           </ion-col>
@@ -340,7 +356,10 @@
             <div class="item-input">
               <ion-label>Serial No.</ion-label>
               <ion-item lines="none">
-                <ion-input type="text" placeholder="Meter Reading"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="itemComponent.SerialNo"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -349,7 +368,12 @@
             <div class="item-input">
               <ion-label>Service Interval</ion-label>
               <ion-item lines="none">
-                <ion-input type="text" placeholder="Staff Code"></ion-input>
+                <ion-select
+                  multiple="false"
+                  [(ngModel)]="itemComponent.ServIntvalGuid"
+                >
+                  <ion-select-option value="Bowser">Bowser</ion-select-option>
+                </ion-select>
               </ion-item>
             </div>
           </ion-col>
@@ -359,7 +383,10 @@
               <ion-label>&nbsp;</ion-label>
               <ion-item lines="none">
                 <ion-label>Oil Welted</ion-label>
-                <ion-checkbox slot="start"></ion-checkbox>
+                <ion-checkbox
+                  slot="start"
+                  [(ngModel)]="itemComponent.OilWetted"
+                ></ion-checkbox>
               </ion-item>
             </div>
           </ion-col>
@@ -368,7 +395,10 @@
             <div class="item-input">
               <ion-label>Service Parts(Filters, Plugs etc.)</ion-label>
               <ion-item lines="none">
-                <ion-input type="text"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="itemComponent.ServParts1"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -377,7 +407,10 @@
             <div class="item-input">
               <ion-label>&nbsp;</ion-label>
               <ion-item lines="none">
-                <ion-input type="text"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="itemComponent.ServParts2"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -386,7 +419,10 @@
             <div class="item-input">
               <ion-label>&nbsp;</ion-label>
               <ion-item lines="none">
-                <ion-input type="text"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="itemComponent.ServParts3"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -395,7 +431,10 @@
             <div class="item-input">
               <ion-label>&nbsp;</ion-label>
               <ion-item lines="none">
-                <ion-input type="text"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="itemComponent.ServParts4"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -404,7 +443,10 @@
             <div class="item-input">
               <ion-label>&nbsp;</ion-label>
               <ion-item lines="none">
-                <ion-input type="text"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="itemComponent.ServParts5"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -413,7 +455,10 @@
             <div class="item-input">
               <ion-label>&nbsp;</ion-label>
               <ion-item lines="none">
-                <ion-input type="text"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="itemComponent.ServParts6"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -422,7 +467,10 @@
             <div class="item-input">
               <ion-label>&nbsp;</ion-label>
               <ion-item lines="none">
-                <ion-input type="text"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="itemComponent.ServParts7"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -431,7 +479,10 @@
             <div class="item-input">
               <ion-label>&nbsp;</ion-label>
               <ion-item lines="none">
-                <ion-input type="text"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="itemComponent.ServParts8"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -442,12 +493,9 @@
     <ion-row>
       <ion-col size="12" class="ion-no-padding">
         <div class="btn-holder ion-text-right">
-          <ion-button>
-            Add
-          </ion-button>
+          <ion-button> Add </ion-button>
         </div>
       </ion-col>
     </ion-row>
   </div>
-
 </ion-content>

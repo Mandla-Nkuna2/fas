@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import LossControl from 'src/app/models/LossControl.model';
 
 @Component({
   selector: 'app-losscontrol',
@@ -7,8 +8,11 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./losscontrol.page.scss'],
 })
 export class LosscontrolPage implements OnInit {
+  lossControl: LossControl
 
-  constructor(private navCtrl: NavController) { }
+  constructor(private navCtrl: NavController) {
+    this.lossControl = new LossControl()
+  }
 
   ngOnInit() {
   }

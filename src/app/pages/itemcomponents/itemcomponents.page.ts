@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import ItemComponent from 'src/app/models/ItemComponent.model';
 
 @Component({
   selector: 'app-itemcomponents',
@@ -7,8 +8,11 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./itemcomponents.page.scss'],
 })
 export class ItemcomponentsPage implements OnInit {
+  itemComponent: ItemComponent
 
-  constructor(private navCtrl: NavController) { }
+  constructor(private navCtrl: NavController) {
+    this.itemComponent = new ItemComponent()
+   }
 
   ngOnInit() {
   }

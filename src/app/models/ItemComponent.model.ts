@@ -1,11 +1,11 @@
-export default class ItemComponents {
+export default class ItemComponent {
   ItemCompGuid: string
   ItemGuid: string
   CompNameGuid: string
   CompMakeGuid: string
   CompModelGuid: string
   ServIntvalGuid: string
-  OilWetted: string
+  OilWetted: boolean
   OilCap: number
   OilTypeGuid: string
   SerialNo: string

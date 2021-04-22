@@ -1,3 +1,4 @@
+import { AdditionalCost } from '../../models/AdditionalCost.model';
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 
@@ -7,8 +8,11 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./additionalcosts.page.scss'],
 })
 export class AdditionalcostsPage implements OnInit {
+  additionalCost: AdditionalCost
 
-  constructor(private navCtrl: NavController) { }
+  constructor(private navCtrl: NavController) {
+    this.additionalCost = new AdditionalCost();
+   }
 
   ngOnInit() {
   }
@@ -16,6 +20,22 @@ export class AdditionalcostsPage implements OnInit {
   goAutoCard()
   {
     this.navCtrl.navigateForward('autocardetails');
+  }
+
+  onAdd(){
+
+  }
+
+  onDelete(){
+
+  }
+
+  onClear(){
+
+  }
+
+  onModify(){
+
   }
 
 }

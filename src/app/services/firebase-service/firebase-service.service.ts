@@ -1,22 +1,22 @@
-import { AdditionalCosts } from './../../models/AdditionalCosts.model';
+import { AdditionalCost } from '../../models/AdditionalCost.model';
 import { AccidentManagement } from './../../models/AccidentManagement.model';
 import { TestAssets } from './../../models/TestAssets.model';
 import { Injectable, EventEmitter } from '@angular/core';
 import { AlertController, LoadingController, ToastController } from '@ionic/angular';
 import {  AngularFirestore } from '@angular/fire/firestore';
 import {Asset} from '../../models/Asset.model';
-import AutoCardDetails from '../../models/AutoCardDetails.model';
-import BowserTransactions from '../../models/BowserTransactions.model';
+import AutoCard from '../../models/Autocard.model';
+import BowserTransaction from '../../models/BowserTransaction.model';
 import BowserTransfer from '../../models/BowserTransfer.model';
 import DailyOperationRec from '../../models/DailyOperationRec.model';
 import FixedCostsDet from '../../models/FixedCostsDet.model';
 import FixedCostTransfer from '../../models/FixedCostTransfer.model';
-import FuelIssues from '../../models/FuelIssues.model';
+import FuelIssue from '../../models/FuelIssue.model';
 import FuelType from '../../models/FuelType.model';
-import ItemComponents from '../../models/ItemComponents.model';
-import Items from '../../models/Items.model';
+import ItemComponent from '../../models/ItemComponent.model';
+import Item from '../../models/Item.model';
 import {JobCard} from '../../models/JobCard.model';
-import LicCorAndSafInspcDates from '../../models/LicCorAndSafInspcDates.models';
+import LicCorAndSafInspcDates from '../../models/LicCorAndSafInspcDates.model';
 import LossControl from '../../models/LossControl.model';
 import MaintenanceEvent from '../../models/MaintenanceEvent.model';
 import OilIssues from '../../models/OilIssues.model';
@@ -47,7 +47,7 @@ constructor(private afs: AngularFirestore, private loading: LoadingService)   {}
       return res = this.writeData(Object.assign({}, testAsset), testAsset.LossContGuid)
     }
 
-    public saveAdditionalCosts(testAsset: AdditionalCosts){
+    public saveAdditionalCosts(testAsset: AdditionalCost){
       let res: any
       return res = this.writeData(Object.assign({}, testAsset), testAsset.AddCostGuid)
     }
@@ -57,12 +57,12 @@ constructor(private afs: AngularFirestore, private loading: LoadingService)   {}
       return res = this.writeData(Object.assign({}, testAsset), testAsset.generalInformation.ItemGuid)
     }
 
-    public saveAutoCardDetails(testAsset: AutoCardDetails){
+    public saveAutoCardDetails(testAsset: AutoCard){
       let res: any
-      return res = this.writeData(Object.assign({}, testAsset), testAsset.AutoCardGuidItemGuid)
+      return res = this.writeData(Object.assign({}, testAsset), testAsset.AutoCardGuid)
     }
 
-    public saveBowserTransactions(testAsset: BowserTransactions){
+    public saveBowserTransactions(testAsset: BowserTransaction){
       let res: any
       return res = this.writeData(Object.assign({}, testAsset), testAsset.BowserTrnGuid)
     }
@@ -84,10 +84,10 @@ constructor(private afs: AngularFirestore, private loading: LoadingService)   {}
 
     public saveFixedCostTransfer(testAsset: FixedCostTransfer){
       let res: any
-      return res = this.writeData(Object.assign({}, testAsset), testAsset.TItemGuid)
+      return res = this.writeData(Object.assign({}, testAsset), testAsset.FixedcostTransGuid)
     }
 
-    public saveFuelIssues(testAsset: FuelIssues){
+    public saveFuelIssues(testAsset: FuelIssue){
       let res: any
       return res = this.writeData(Object.assign({}, testAsset), testAsset.FuelIssueGuid)
     }
@@ -97,12 +97,12 @@ constructor(private afs: AngularFirestore, private loading: LoadingService)   {}
       return res = this.writeData(Object.assign({}, testAsset), testAsset.FuelTypeGuid)
     }
 
-    public saveItemComponents(testAsset: ItemComponents){
+    public saveItemComponents(testAsset: ItemComponent){
       let res: any
       return res = this.writeData(Object.assign({}, testAsset), testAsset.ItemCompGuid)
     }
 
-    public saveItems(testAsset: Items){
+    public saveItems(testAsset: Item){
       let res: any
       return res = this.writeData(Object.assign({}, testAsset), testAsset.ItemGuid)
     }

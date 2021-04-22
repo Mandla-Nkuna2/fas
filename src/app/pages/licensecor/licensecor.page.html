@@ -5,13 +5,21 @@
     <div class="date-holder">
       <div class="itm flex al-center">
         <div class="thumb">
-          <ion-icon slot="icon-only" src="assets/imgs/icn-calender.svg"></ion-icon>
+          <ion-icon
+            slot="icon-only"
+            src="assets/imgs/icn-calender.svg"
+          ></ion-icon>
         </div>
-        <ion-datetime display-format="MMM DD YYYY" value="Sep 16 2020, 12:02 "></ion-datetime>
+        <ion-datetime
+          display-format="MMM DD YYYY"
+          value="Sep 16 2020, 12:02 "
+        ></ion-datetime>
         <p>to</p>
-        <ion-datetime display-format="MMM DD YYYY" value="Sep 16 2020, 12:02 "></ion-datetime>
+        <ion-datetime
+          display-format="MMM DD YYYY"
+          value="Sep 16 2020, 12:02 "
+        ></ion-datetime>
       </div>
-
     </div>
   </div>
   <div class="section">
@@ -30,9 +38,7 @@
       </div>
       <ion-grid fixed>
         <ion-row class="title-row">
-          <ion-col size="0.5" class="flex al-center jc-center">
-
-          </ion-col>
+          <ion-col size="0.5" class="flex al-center jc-center"> </ion-col>
           <ion-col size="1.4" class="flex al-center jc-center">
             <h4>Registration</h4>
           </ion-col>
@@ -213,14 +219,11 @@
             </ion-col>
           </ion-row>
         </div>
-      
-
       </ion-grid>
     </div>
   </div>
 
   <div class="section">
-
     <div class="title">
       <h3>Add</h3>
     </div>
@@ -232,9 +235,13 @@
             <div class="item-input">
               <ion-label>Registration</ion-label>
               <ion-item lines="none">
-                <ion-select value="Registration" multiple="false" placeholder="Registration" disabled>
-                  <ion-select-option value="Registration">Registration</ion-select-option>
-                  <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                <ion-select
+                  multiple="false"
+                  [(ngModel)]="licCorAndSafInspec.Itemguid"
+                >
+                  <ion-select-option value="Registration"
+                    >Registration</ion-select-option
+                  >
                 </ion-select>
               </ion-item>
             </div>
@@ -244,7 +251,10 @@
             <div class="item-input">
               <ion-label>Licence Expiry Date</ion-label>
               <ion-item lines="none">
-                <ion-datetime display-format="MMM DD YYYY" value="Sep 16 2020, 12:02 "></ion-datetime>
+                <ion-datetime
+                  display-format="MMM DD YYYY"
+                  [(ngModel)]="licCorAndSafInspec.LicDate"
+                ></ion-datetime>
               </ion-item>
             </div>
           </ion-col>
@@ -253,7 +263,10 @@
             <div class="item-input">
               <ion-label>C.O.R Inspection Date</ion-label>
               <ion-item lines="none">
-                <ion-datetime display-format="MMM DD YYYY" value="Sep 16 2020, 12:02 "></ion-datetime>
+                <ion-datetime
+                  display-format="MMM DD YYYY"
+                  [(ngModel)]="licCorAndSafInspec.corInspecDate"
+                ></ion-datetime>
               </ion-item>
               <h5>Date of actual C.O.R Inspection</h5>
             </div>
@@ -263,21 +276,31 @@
             <div class="item-input">
               <ion-label>Safety Inspection Date</ion-label>
               <ion-item lines="none">
-                <ion-datetime display-format="MMM DD YYYY" value="Sep 16 2020, 12:02 "></ion-datetime>
+                <ion-datetime
+                  display-format="MMM DD YYYY"
+                  [(ngModel)]="licCorAndSafInspec.safetyInspecDate"
+                ></ion-datetime>
               </ion-item>
-              <h5>Equipment Requiring safety checks eg. Lifting Equip or Pressure Vessels</h5>
+              <h5>
+                Equipment Requiring safety checks eg. Lifting Equip or Pressure
+                Vessels
+              </h5>
             </div>
           </ion-col>
 
-          <ion-col size="4.5">
-          
-          </ion-col>
+          <ion-col size="4.5"> </ion-col>
 
           <ion-col size="3.5">
             <div class="item-input">
               <ion-label>Disk Received from motor licencing bureau?</ion-label>
               <ion-item lines="none">
-                <ion-input type="text" placeholder="Staff Code"></ion-input>
+                <ion-select
+                  multiple="false"
+                  [(ngModel)]="licCorAndSafInspec.diskFromLicBureau"
+                >
+                  <ion-select-option value="Y">Yes</ion-select-option>
+                  <ion-select-option value="N">No</ion-select-option>
+                </ion-select>
               </ion-item>
             </div>
           </ion-col>
@@ -286,7 +309,10 @@
             <div class="item-input">
               <ion-label>Licence Cost</ion-label>
               <ion-item lines="none" class="end">
-                <ion-input type="text"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="licCorAndSafInspec.LicCost"
+                ></ion-input>
                 <div class="end-slot flex al-center jc-center" slot="end">
                   <p>R</p>
                 </div>
@@ -298,15 +324,16 @@
             <div class="item-input">
               <ion-label>Any additional Cost eg. Penalties</ion-label>
               <ion-item lines="none" class="end">
-                <ion-input type="text"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="licCorAndSafInspec.LicAddCost"
+                ></ion-input>
                 <div class="end-slot flex al-center jc-center" slot="end">
                   <p>R</p>
                 </div>
               </ion-item>
             </div>
           </ion-col>
-
-
         </ion-row>
       </ion-grid>
     </div>
@@ -314,12 +341,9 @@
     <ion-row>
       <ion-col size="12" class="ion-no-padding">
         <div class="btn-holder ion-text-right">
-          <ion-button>
-            Add
-          </ion-button>
+          <ion-button (click)="onAdd()"> Add </ion-button>
         </div>
       </ion-col>
     </ion-row>
   </div>
-
 </ion-content>

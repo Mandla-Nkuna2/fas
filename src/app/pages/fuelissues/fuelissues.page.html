@@ -1,416 +1,436 @@
 <ion-content class="ion-padding">
-    <div class="title-holder flex al-center">
-        <ion-back-button defaultHref="fuelconsumption" mode="ios" text=""></ion-back-button>
-        <h2>Fuel Issues</h2>
-        <div class="date-holder">
-            <div class="itm flex al-center">
-                <div class="thumb">
-                    <ion-icon slot="icon-only" src="assets/imgs/icn-calender.svg"></ion-icon>
-                </div>
-                <ion-datetime display-format="MMM DD YYYY" value="Sep 16 2020, 12:02 "></ion-datetime>
-                <p>to</p>
-                <ion-datetime display-format="MMM DD YYYY" value="Sep 16 2020, 12:02 "></ion-datetime>
-            </div>
-
+  <div class="title-holder flex al-center">
+    <ion-back-button
+      defaultHref="fuelconsumption"
+      mode="ios"
+      text=""
+    ></ion-back-button>
+    <h2>Fuel Issues</h2>
+    <div class="date-holder">
+      <div class="itm flex al-center">
+        <div class="thumb">
+          <ion-icon
+            slot="icon-only"
+            src="assets/imgs/icn-calender.svg"
+          ></ion-icon>
         </div>
+        <ion-datetime
+          display-format="MMM DD YYYY"
+          value="Sep 16 2020, 12:02 "
+        ></ion-datetime>
+        <p>to</p>
+        <ion-datetime
+          display-format="MMM DD YYYY"
+          value="Sep 16 2020, 12:02 "
+        ></ion-datetime>
+      </div>
     </div>
-    <div class="section">
-        <div class="grid-holder">
-            <div class="top-toolbar flex al-center jc-between">
-                <h3>Fuel Issues</h3>
-                <div class="btns-holder flex al-center">
-                    <ion-button>
-                        <ion-icon slot="icon-only" name="options-outline"></ion-icon>
-                    </ion-button>
+  </div>
+  <div class="section">
+    <div class="grid-holder">
+      <div class="top-toolbar flex al-center jc-between">
+        <h3>Fuel Issues</h3>
+        <div class="btns-holder flex al-center">
+          <ion-button>
+            <ion-icon slot="icon-only" name="options-outline"></ion-icon>
+          </ion-button>
 
-                    <ion-button>
-                        <ion-icon slot="icon-only" name="search-outline"></ion-icon>
-                    </ion-button>
-                </div>
-            </div>
-            <ion-grid fixed>
-                <ion-row class="title-row">
-                    <ion-col size="0.5" class="flex al-center jc-center">
-
-                    </ion-col>
-                    <ion-col size="1.4" class="flex al-center jc-center">
-                        <h4>Registration</h4>
-                    </ion-col>
-                    <ion-col size="1.4" class="flex al-center jc-center">
-                        <h4>Meter Read</h4>
-                    </ion-col>
-                    <ion-col size="1.4" class="flex al-center jc-center">
-                        <h4>date</h4>
-                    </ion-col>
-                    <ion-col size="1.4" class="flex al-center jc-center">
-                        <h4>voucher no.</h4>
-                    </ion-col>
-                    <ion-col size="1.4" class="flex al-center jc-center">
-                        <h4>bowser.supplier</h4>
-                    </ion-col>
-                    <ion-col size="1.4" class="flex al-center jc-center">
-                        <h4>fuel qty</h4>
-                    </ion-col>
-                    <ion-col size="1.4" class="flex al-center jc-center">
-                        <h4>total cost</h4>
-                    </ion-col>
-                    <ion-col size="1.4" class="flex al-center jc-center">
-                        <h4>invoice cost</h4>
-                    </ion-col>
-                </ion-row>
-                <div class="values">
-                    <ion-row class="value-row" (click)="goItemCompo()">
-                        <ion-col size="0.5" class="flex al-center jc-center">
-                            <ion-checkbox></ion-checkbox>
-                        </ion-col>
-                        <ion-col size="1.4" class="flex al-center jc-center">
-                            <p>NP117354</p>
-                        </ion-col>
-                        <ion-col size="1.4" class="flex al-center jc-center">
-                            <p class="ion-text-wrap">0215112</p>
-                        </ion-col>
-                        <ion-col size="1.4" class="flex al-center jc-center">
-                            <p>02541</p>
-                        </ion-col>
-                        <ion-col size="1.4" class="flex al-center jc-center">
-                            <p>01 Jan 2006</p>
-                        </ion-col>
-                        <ion-col size="1.4" class="flex al-center jc-center">
-                            <p>02 Jan 2006</p>
-                        </ion-col>
-                        <ion-col size="1.4" class="flex al-center jc-center">
-                            <p>Y</p>
-                        </ion-col>
-                        <ion-col size="1.4" class="flex al-center jc-center">
-                            <p>02 Jan 2006</p>
-                        </ion-col>
-                        <ion-col size="1.4" class="flex al-center jc-center">
-                            <p>Comment here</p>
-                        </ion-col>
-                    </ion-row>
-                </div>
-                <div class="values">
-                    <ion-row class="value-row">
-                        <ion-col size="0.5" class="flex al-center jc-center">
-                            <ion-checkbox></ion-checkbox>
-                        </ion-col>
-                        <ion-col size="1.4" class="flex al-center jc-center">
-                            <p>NP117354</p>
-                        </ion-col>
-                        <ion-col size="1.4" class="flex al-center jc-center">
-                            <p class="ion-text-wrap">0215112</p>
-                        </ion-col>
-                        <ion-col size="1.4" class="flex al-center jc-center">
-                            <p>02541</p>
-                        </ion-col>
-                        <ion-col size="1.4" class="flex al-center jc-center">
-                            <p>01 Jan 2006</p>
-                        </ion-col>
-                        <ion-col size="1.4" class="flex al-center jc-center">
-                            <p>02 Jan 2006</p>
-                        </ion-col>
-                        <ion-col size="1.4" class="flex al-center jc-center">
-                            <p>Y</p>
-                        </ion-col>
-                        <ion-col size="1.4" class="flex al-center jc-center">
-                            <p>02 Jan 2006</p>
-                        </ion-col>
-                        <ion-col size="1.4" class="flex al-center jc-center">
-                            <p>Comment here</p>
-                        </ion-col>
-                    </ion-row>
-                </div>
-                <div class="values">
-                    <ion-row class="value-row">
-                        <ion-col size="0.5" class="flex al-center jc-center">
-                            <ion-checkbox></ion-checkbox>
-                        </ion-col>
-                        <ion-col size="1.4" class="flex al-center jc-center">
-                            <p>NP117354</p>
-                        </ion-col>
-                        <ion-col size="1.4" class="flex al-center jc-center">
-                            <p class="ion-text-wrap">0215112</p>
-                        </ion-col>
-                        <ion-col size="1.4" class="flex al-center jc-center">
-                            <p>02541</p>
-                        </ion-col>
-                        <ion-col size="1.4" class="flex al-center jc-center">
-                            <p>01 Jan 2006</p>
-                        </ion-col>
-                        <ion-col size="1.4" class="flex al-center jc-center">
-                            <p>02 Jan 2006</p>
-                        </ion-col>
-                        <ion-col size="1.4" class="flex al-center jc-center">
-                            <p>Y</p>
-                        </ion-col>
-                        <ion-col size="1.4" class="flex al-center jc-center">
-                            <p>02 Jan 2006</p>
-                        </ion-col>
-                        <ion-col size="1.4" class="flex al-center jc-center">
-                            <p>Comment here</p>
-                        </ion-col>
-                    </ion-row>
-                </div>
-                <div class="values">
-                    <ion-row class="value-row">
-                        <ion-col size="0.5" class="flex al-center jc-center">
-                            <ion-checkbox></ion-checkbox>
-                        </ion-col>
-                        <ion-col size="1.4" class="flex al-center jc-center">
-                            <p>NP117354</p>
-                        </ion-col>
-                        <ion-col size="1.4" class="flex al-center jc-center">
-                            <p class="ion-text-wrap">0215112</p>
-                        </ion-col>
-                        <ion-col size="1.4" class="flex al-center jc-center">
-                            <p>02541</p>
-                        </ion-col>
-                        <ion-col size="1.4" class="flex al-center jc-center">
-                            <p>01 Jan 2006</p>
-                        </ion-col>
-                        <ion-col size="1.4" class="flex al-center jc-center">
-                            <p>02 Jan 2006</p>
-                        </ion-col>
-                        <ion-col size="1.4" class="flex al-center jc-center">
-                            <p>Y</p>
-                        </ion-col>
-                        <ion-col size="1.4" class="flex al-center jc-center">
-                            <p>02 Jan 2006</p>
-                        </ion-col>
-                        <ion-col size="1.4" class="flex al-center jc-center">
-                            <p>Comment here</p>
-                        </ion-col>
-                    </ion-row>
-                </div>
-                <div class="values">
-                    <ion-row class="value-row">
-                        <ion-col size="0.5" class="flex al-center jc-center">
-                            <ion-checkbox></ion-checkbox>
-                        </ion-col>
-                        <ion-col size="1.4" class="flex al-center jc-center">
-                            <p>NP117354</p>
-                        </ion-col>
-                        <ion-col size="1.4" class="flex al-center jc-center">
-                            <p class="ion-text-wrap">0215112</p>
-                        </ion-col>
-                        <ion-col size="1.4" class="flex al-center jc-center">
-                            <p>02541</p>
-                        </ion-col>
-                        <ion-col size="1.4" class="flex al-center jc-center">
-                            <p>01 Jan 2006</p>
-                        </ion-col>
-                        <ion-col size="1.4" class="flex al-center jc-center">
-                            <p>02 Jan 2006</p>
-                        </ion-col>
-                        <ion-col size="1.4" class="flex al-center jc-center">
-                            <p>Y</p>
-                        </ion-col>
-                        <ion-col size="1.4" class="flex al-center jc-center">
-                            <p>02 Jan 2006</p>
-                        </ion-col>
-                        <ion-col size="1.4" class="flex al-center jc-center">
-                            <p>Comment here</p>
-                        </ion-col>
-                    </ion-row>
-                </div>
-                <div class="values">
-                    <ion-row class="value-row">
-                        <ion-col size="0.5" class="flex al-center jc-center">
-                            <ion-checkbox></ion-checkbox>
-                        </ion-col>
-                        <ion-col size="1.4" class="flex al-center jc-center">
-                            <p>NP117354</p>
-                        </ion-col>
-                        <ion-col size="1.4" class="flex al-center jc-center">
-                            <p class="ion-text-wrap">0215112</p>
-                        </ion-col>
-                        <ion-col size="1.4" class="flex al-center jc-center">
-                            <p>02541</p>
-                        </ion-col>
-                        <ion-col size="1.4" class="flex al-center jc-center">
-                            <p>01 Jan 2006</p>
-                        </ion-col>
-                        <ion-col size="1.4" class="flex al-center jc-center">
-                            <p>02 Jan 2006</p>
-                        </ion-col>
-                        <ion-col size="1.4" class="flex al-center jc-center">
-                            <p>Y</p>
-                        </ion-col>
-                        <ion-col size="1.4" class="flex al-center jc-center">
-                            <p>02 Jan 2006</p>
-                        </ion-col>
-                        <ion-col size="1.4" class="flex al-center jc-center">
-                            <p>Comment here</p>
-                        </ion-col>
-                    </ion-row>
-                </div>
-
-            </ion-grid>
+          <ion-button>
+            <ion-icon slot="icon-only" name="search-outline"></ion-icon>
+          </ion-button>
         </div>
-    </div>
-
-    <div class="section">
-
-        <div class="title">
-            <h3>Add</h3>
-        </div>
-
-        <div class="the-form">
-            <ion-grid fixed>
-                <ion-row>
-                    <ion-col size="3.5">
-                        <div class="item-input">
-                            <ion-label>Registration</ion-label>
-                            <ion-item lines="none">
-                                <ion-select value="Registration" multiple="false" placeholder="Registration" disabled>
-                                    <ion-select-option value="Registration">Registration</ion-select-option>
-                                    <ion-select-option value="hawaii">Hawaii</ion-select-option>
-                                </ion-select>
-                            </ion-item>
-                        </div>
-                    </ion-col>
-
-                    <ion-col size="3.5" offset="0.5">
-                        <div class="item-input">
-                            <ion-label>Voucher No.</ion-label>
-                            <ion-item lines="none">
-                                <ion-input type="text" value="Voucher"></ion-input>
-                            </ion-item>
-                        </div>
-                    </ion-col>
-
-                    <ion-col size="1.5" offset="0.5">
-                        <div class="item-input">
-                            <ion-label>Date</ion-label>
-                            <ion-item lines="none">
-                                <ion-datetime display-format="MMM DD YYYY" placeholder="Date"></ion-datetime>
-                            </ion-item>
-                        </div>
-                    </ion-col>
-
-                    <ion-col size="1" offset="0.25">
-                        <div class="item-input">
-                            <ion-label>&nbsp;</ion-label>
-                            <ion-item lines="none">
-                                <ion-datetime display-format="HH" placeholder="HH"></ion-datetime>
-                            </ion-item>
-                        </div>
-                    </ion-col>
-
-                    <ion-col size="1" offset="0.125">
-                        <div class="item-input">
-                            <ion-label>&nbsp;</ion-label>
-                            <ion-item lines="none">
-                                <ion-datetime display-format="mm" placeholder="MM"></ion-datetime>
-                            </ion-item>
-                        </div>
-                    </ion-col>
-
-                    <ion-col size="3.5">
-                        <div class="item-input">
-                            <ion-label>Bowser</ion-label>
-                            <ion-item lines="none">
-                                <ion-select value="Bowser" multiple="false" placeholder="Bowser">
-                                    <ion-select-option value="Bowser">Bowser</ion-select-option>
-                                    <ion-select-option value="hawaii">Hawaii</ion-select-option>
-                                </ion-select>
-                            </ion-item>
-                        </div>
-                    </ion-col>
-
-                    <ion-col size="3.5" offset="0.5">
-                        <div class="item-input">
-                            <ion-label>Supplier</ion-label>
-                            <ion-item lines="none" class="end">
-                                <ion-input type="text" value="0.00"></ion-input>
-                            </ion-item>
-                        </div>
-                    </ion-col>
-
-                    <ion-col size="4" offset="0.5">
-                        <div class="item-input">
-                            <ion-label>Meter Reading</ion-label>
-                            <ion-item lines="none">
-                                <ion-input type="text" value="Staff Code"></ion-input>
-                            </ion-item>
-                        </div>
-                    </ion-col>
-
-                    <ion-col size="3.5">
-                        <div class="item-input">
-                            <ion-label>Meter Reading</ion-label>
-                            <ion-item lines="none">
-                                <ion-input type="text" placeholder="Meter Reading"></ion-input>
-                            </ion-item>
-                        </div>
-                    </ion-col>
-
-                    <ion-col size="3.5" offset="0.5">
-                        <div class="item-input">
-                            <ion-label>Fuel Quantity</ion-label>
-                            <ion-item lines="none">
-                                <ion-input type="text" value="Qty"></ion-input>
-                            </ion-item>
-                        </div>
-                    </ion-col>
-
-                    <ion-col size="4" offset="0.5">
-                        <div class="item-input">
-                            <ion-label>Total Cost of Fuel</ion-label>
-                            <ion-item lines="none" class="end">
-                                <ion-input type="text" value="Amount"></ion-input>
-                                <div class="end-slot flex al-center jc-center" slot="end">
-                                    <p>R</p>
-                                </div>
-                            </ion-item>
-                        </div>
-                    </ion-col>
-
-                    <ion-col size="3.5">
-                        <div class="item-input">
-                            <ion-label>Invoice Amount</ion-label>
-                            <ion-item lines="none" class="end">
-                                <ion-input type="text" value="Amount"></ion-input>
-                                <div class="end-slot flex al-center jc-center" slot="end">
-                                    <p>R</p>
-                                </div>
-                            </ion-item>
-                        </div>
-                    </ion-col>
-
-                    <ion-col size="3.5" offset="0.5">
-                        <div class="item-input">
-                            <ion-label>Staff Code</ion-label>
-                            <ion-item lines="none">
-                                <ion-input type="text" placeholder="Staff Code"></ion-input>
-                            </ion-item>
-                        </div>
-                    </ion-col>
-
-                    <ion-col size="4" offset="0.5">
-                        <div class="item-input">
-                            <ion-label>Cost Center</ion-label>
-                            <ion-item lines="none">
-                                <ion-select value="StaffCode" multiple="false" placeholder="Registration">
-                                    <ion-select-option value="StaffCode">Staff Code</ion-select-option>
-                                    <ion-select-option value="hawaii">Hawaii</ion-select-option>
-                                </ion-select>
-                            </ion-item>
-                        </div>
-                    </ion-col>
-                </ion-row>
-            </ion-grid>
-        </div>
-
-        <ion-row>
-            <ion-col size="12" class="ion-no-padding">
-                <div class="btn-holder ion-text-right">
-                    <ion-button>
-                        Add
-                    </ion-button>
-                </div>
-            </ion-col>
+      </div>
+      <ion-grid fixed>
+        <ion-row class="title-row">
+          <ion-col size="0.5" class="flex al-center jc-center"> </ion-col>
+          <ion-col size="1.4" class="flex al-center jc-center">
+            <h4>Registration</h4>
+          </ion-col>
+          <ion-col size="1.4" class="flex al-center jc-center">
+            <h4>Meter Read</h4>
+          </ion-col>
+          <ion-col size="1.4" class="flex al-center jc-center">
+            <h4>date</h4>
+          </ion-col>
+          <ion-col size="1.4" class="flex al-center jc-center">
+            <h4>voucher no.</h4>
+          </ion-col>
+          <ion-col size="1.4" class="flex al-center jc-center">
+            <h4>bowser.supplier</h4>
+          </ion-col>
+          <ion-col size="1.4" class="flex al-center jc-center">
+            <h4>fuel qty</h4>
+          </ion-col>
+          <ion-col size="1.4" class="flex al-center jc-center">
+            <h4>total cost</h4>
+          </ion-col>
+          <ion-col size="1.4" class="flex al-center jc-center">
+            <h4>invoice cost</h4>
+          </ion-col>
         </ion-row>
+        <div class="values">
+          <ion-row class="value-row" (click)="goItemCompo()">
+            <ion-col size="0.5" class="flex al-center jc-center">
+              <ion-checkbox></ion-checkbox>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>NP117354</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p class="ion-text-wrap">0215112</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>02541</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>01 Jan 2006</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>02 Jan 2006</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>Y</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>02 Jan 2006</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>Comment here</p>
+            </ion-col>
+          </ion-row>
+        </div>
+        <div class="values">
+          <ion-row class="value-row">
+            <ion-col size="0.5" class="flex al-center jc-center">
+              <ion-checkbox></ion-checkbox>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>NP117354</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p class="ion-text-wrap">0215112</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>02541</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>01 Jan 2006</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>02 Jan 2006</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>Y</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>02 Jan 2006</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>Comment here</p>
+            </ion-col>
+          </ion-row>
+        </div>
+        <div class="values">
+          <ion-row class="value-row">
+            <ion-col size="0.5" class="flex al-center jc-center">
+              <ion-checkbox></ion-checkbox>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>NP117354</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p class="ion-text-wrap">0215112</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>02541</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>01 Jan 2006</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>02 Jan 2006</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>Y</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>02 Jan 2006</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>Comment here</p>
+            </ion-col>
+          </ion-row>
+        </div>
+        <div class="values">
+          <ion-row class="value-row">
+            <ion-col size="0.5" class="flex al-center jc-center">
+              <ion-checkbox></ion-checkbox>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>NP117354</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p class="ion-text-wrap">0215112</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>02541</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>01 Jan 2006</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>02 Jan 2006</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>Y</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>02 Jan 2006</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>Comment here</p>
+            </ion-col>
+          </ion-row>
+        </div>
+        <div class="values">
+          <ion-row class="value-row">
+            <ion-col size="0.5" class="flex al-center jc-center">
+              <ion-checkbox></ion-checkbox>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>NP117354</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p class="ion-text-wrap">0215112</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>02541</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>01 Jan 2006</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>02 Jan 2006</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>Y</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>02 Jan 2006</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>Comment here</p>
+            </ion-col>
+          </ion-row>
+        </div>
+        <div class="values">
+          <ion-row class="value-row">
+            <ion-col size="0.5" class="flex al-center jc-center">
+              <ion-checkbox></ion-checkbox>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>NP117354</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p class="ion-text-wrap">0215112</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>02541</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>01 Jan 2006</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>02 Jan 2006</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>Y</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>02 Jan 2006</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>Comment here</p>
+            </ion-col>
+          </ion-row>
+        </div>
+      </ion-grid>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="title">
+      <h3>Add</h3>
     </div>
 
+    <div class="the-form">
+      <ion-grid fixed>
+        <ion-row>
+          <ion-col size="3.5">
+            <div class="item-input">
+              <ion-label>Registration</ion-label>
+              <ion-item lines="none">
+                <ion-select multiple="false" [(ngModel)]="fuelIssue.ItemGuid">
+                  <ion-select-option value="Registration"
+                    >Registration</ion-select-option
+                  >
+                </ion-select>
+              </ion-item>
+            </div>
+          </ion-col>
+
+          <ion-col size="3.5" offset="0.5">
+            <div class="item-input">
+              <ion-label>Voucher No.</ion-label>
+              <ion-item lines="none">
+                <ion-input
+                  type="text"
+                  [(ngModel)]="fuelIssue.FuelIssueGuid"
+                ></ion-input>
+              </ion-item>
+            </div>
+          </ion-col>
+
+          <ion-col size="4" offset="0.5">
+            <div class="item-input">
+              <ion-label>Date</ion-label>
+              <ion-item lines="none">
+                <ion-datetime
+                  display-format="MMM DD YYYY hh:mm a"
+                  [(ngModel)]="fuelIssue.FuelIssuedate"
+                ></ion-datetime>
+              </ion-item>
+            </div>
+          </ion-col>
+
+          <ion-col size="3.5">
+            <div class="item-input">
+              <ion-label>Bowser</ion-label>
+              <ion-item lines="none">
+                <ion-select multiple="false" [(ngModel)]="fuelIssue.BowserGuid">
+                  <ion-select-option value="Bowser">Bowser</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </div>
+          </ion-col>
+
+          <ion-col size="3.5" offset="0.5">
+            <div class="item-input">
+              <ion-label>Supplier</ion-label>
+              <ion-item lines="none" class="end">
+                <ion-select
+                  multiple="false"
+                  [(ngModel)]="fuelIssue.SupplierGuid"
+                >
+                  <ion-select-option value="Bowser">Bowser</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </div>
+          </ion-col>
+
+          <ion-col size="4" offset="0.5">
+            <div class="item-input">
+              <ion-label>Bowser Meter accumulated</ion-label>
+              <ion-item lines="none">
+                <ion-input
+                  type="text"
+                  [(ngModel)]="fuelIssue.PumpReading"
+                ></ion-input>
+              </ion-item>
+            </div>
+          </ion-col>
+
+          <ion-col size="3.5">
+            <div class="item-input">
+              <ion-label>Meter Reading</ion-label>
+              <ion-item lines="none">
+                <ion-input
+                  type="text"
+                  [(ngModel)]="fuelIssue.MeterRead"
+                ></ion-input>
+              </ion-item>
+            </div>
+          </ion-col>
+
+          <ion-col size="3.5" offset="0.5">
+            <div class="item-input">
+              <ion-label>Fuel Quantity</ion-label>
+              <ion-item lines="none">
+                <ion-input
+                  type="text"
+                  [(ngModel)]="fuelIssue.FuelQty"
+                ></ion-input>
+              </ion-item>
+            </div>
+          </ion-col>
+
+          <ion-col size="4" offset="0.5">
+            <div class="item-input">
+              <ion-label>Total Cost of Fuel</ion-label>
+              <ion-item lines="none" class="end">
+                <ion-input
+                  type="text"
+                  [(ngModel)]="fuelIssue.FuelTotalCost"
+                ></ion-input>
+                <div class="end-slot flex al-center jc-center" slot="end">
+                  <p>R</p>
+                </div>
+              </ion-item>
+            </div>
+          </ion-col>
+
+          <ion-col size="3.5">
+            <div class="item-input">
+              <ion-label>Invoice Amount</ion-label>
+              <ion-item lines="none" class="end">
+                <ion-input
+                  type="text"
+                  [(ngModel)]="fuelIssue.InvAmt"
+                ></ion-input>
+                <div class="end-slot flex al-center jc-center" slot="end">
+                  <p>R</p>
+                </div>
+              </ion-item>
+            </div>
+          </ion-col>
+
+          <ion-col size="3.5" offset="0.5">
+            <div class="item-input">
+              <ion-label>Staff Code</ion-label>
+              <ion-item lines="none">
+                <ion-select multiple="false" [(ngModel)]="fuelIssue.StaffGuid">
+                  <ion-select-option value="Bowser">Bowser</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </div>
+          </ion-col>
+
+          <ion-col size="4" offset="0.5">
+            <div class="item-input">
+              <ion-label>Cost Center</ion-label>
+              <ion-item lines="none">
+                <ion-select
+                  multiple="false"
+                  [(ngModel)]="fuelIssue.CostCentGuid"
+                >
+                  <ion-select-option value="StaffCode"
+                    >Staff Code</ion-select-option
+                  >
+                  <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+    <ion-row>
+      <ion-col size="12" class="ion-no-padding">
+        <div class="btn-holder ion-text-right">
+          <ion-button> Add </ion-button>
+        </div>
+      </ion-col>
+    </ion-row>
+  </div>
 </ion-content>

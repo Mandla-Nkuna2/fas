@@ -1,4 +1,4 @@
-export default class FuelIssues {
+export default class FuelIssue {
   FuelIssueGuid: string
   FuelIssuedate: string
   CaptureDate: string

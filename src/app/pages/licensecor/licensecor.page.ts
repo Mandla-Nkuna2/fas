@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import LicCorAndSafInspcDates from 'src/app/models/LicCorAndSafInspcDates.model';
 
 @Component({
   selector: 'app-licensecor',
@@ -7,8 +8,11 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./licensecor.page.scss'],
 })
 export class LicensecorPage implements OnInit {
+  licCorAndSafInspec: LicCorAndSafInspcDates
 
-  constructor(private navCtrl: NavController) { }
+  constructor(private navCtrl: NavController) {
+    this.licCorAndSafInspec = new LicCorAndSafInspcDates()
+  }
 
   ngOnInit() {
   }
@@ -16,6 +20,10 @@ export class LicensecorPage implements OnInit {
   goLossControl()
   {
     this.navCtrl.navigateForward('losscontrol');
+  }
+
+  onAdd(){
+
   }
 
 }

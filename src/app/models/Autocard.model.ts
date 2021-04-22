@@ -1,5 +1,6 @@
-export default class AutoCardDetails {
-  AutoCardGuidItemGuid: string
+export default class AutoCard {
+  AutoCardGuid: string
+  ItemGuid: string
   CardNo: string
   SeqNo: string
   IssueDate: string

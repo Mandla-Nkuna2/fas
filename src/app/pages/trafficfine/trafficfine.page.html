@@ -66,13 +66,9 @@
                 <ion-label>Supervisor</ion-label>
                 <ion-item lines="none">
                   <ion-select
-                    value="AnthonyJ-599915"
                     multiple="false"
-                    placeholder="Please select"
+                    [(ngModel)]="trafficfine.SuperGuid"
                   >
-                    <ion-select-option value="AnthonyJ-599915"
-                      >AnthonyJ-599915</ion-select-option
-                    >
                     <ion-select-option value="hawaii">Hawaii</ion-select-option>
                   </ion-select>
                 </ion-item>
@@ -104,13 +100,9 @@
                 <ion-label>Driver</ion-label>
                 <ion-item lines="none">
                   <ion-select
-                    value="ChamaneB-587745"
                     multiple="false"
-                    placeholder="Please select"
+                    [(ngModel)]="trafficfine.Driverguid"
                   >
-                    <ion-select-option value="ChamaneB-587745"
-                      >Chamane B - 587745</ion-select-option
-                    >
                     <ion-select-option value="hawaii">Hawaii</ion-select-option>
                   </ion-select>
                 </ion-item>
@@ -199,7 +191,6 @@
             <ion-col size="11.5" class="ion-text-right">
               <ion-button
                 id="btn"
-                [disabled]="trafficfine.completedState"
                 (click)="onMarkAsComplete()"
                 style="width: fit-content !important"
               >

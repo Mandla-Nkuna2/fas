@@ -1,4 +1,4 @@
-export default class BowserTransactions {
+export default class BowserTransaction {
   BowserTrnGuid: string
   BowserGuid: string
   BowserTrnDate: string

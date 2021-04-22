@@ -8,7 +8,7 @@ export default class LossControl {
   LossTypeguid: string
   LossDate: string
   LossDetails: string
-  Reported: string
+  Reported: boolean
   DateReported: string
   Reportbyguid: string
   DriverGuid: string
@@ -16,17 +16,17 @@ export default class LossControl {
   Policerepdate: string
   PoliceStation: string
   Casenumber: string
-  AccidentRep: string
+  AccidentRep: boolean
   AccRepDate: string
   OtherVeh_Party: string
-  Forfeiture: string
-  Det_Liability: string
-  Costingdocs: string
+  Forfeiture: boolean
+  Det_Liability: boolean
+  Costingdocs: boolean
   LossContActguid: string
   amount: number
   FileNumber: string
   Capturedate: string
   Capturename: string
-  TripAut: string
+  TripAut: boolean
   AmountRec: number
 };

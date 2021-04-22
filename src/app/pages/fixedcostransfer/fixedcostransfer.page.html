@@ -1,17 +1,29 @@
 <ion-content class="ion-padding">
   <div class="title-holder flex al-center">
-    <ion-back-button defaultHref="fixedcostdetails" mode="ios" text=""></ion-back-button>
+    <ion-back-button
+      defaultHref="fixedcostdetails"
+      mode="ios"
+      text=""
+    ></ion-back-button>
     <h2>FIXED COST DETAILS</h2>
     <div class="date-holder">
       <div class="itm flex al-center">
         <div class="thumb">
-          <ion-icon slot="icon-only" src="assets/imgs/icn-calender.svg"></ion-icon>
+          <ion-icon
+            slot="icon-only"
+            src="assets/imgs/icn-calender.svg"
+          ></ion-icon>
         </div>
-        <ion-datetime display-format="MMM DD YYYY" value="Sep 16 2020, 12:02 "></ion-datetime>
+        <ion-datetime
+          display-format="MMM DD YYYY"
+          value="Sep 16 2020, 12:02 "
+        ></ion-datetime>
         <p>to</p>
-        <ion-datetime display-format="MMM DD YYYY" value="Sep 16 2020, 12:02 "></ion-datetime>
+        <ion-datetime
+          display-format="MMM DD YYYY"
+          value="Sep 16 2020, 12:02 "
+        ></ion-datetime>
       </div>
-
     </div>
   </div>
   <div class="section">
@@ -30,9 +42,7 @@
       </div>
       <ion-grid fixed>
         <ion-row class="title-row">
-          <ion-col size="0.5" class="flex al-center jc-center">
-
-          </ion-col>
+          <ion-col size="0.5" class="flex al-center jc-center"> </ion-col>
           <ion-col size="1.5" class="flex al-center jc-center">
             <h4>Registration</h4>
           </ion-col>
@@ -181,13 +191,11 @@
             </ion-col>
           </ion-row>
         </div>
-
       </ion-grid>
     </div>
   </div>
 
   <div class="section">
-
     <div class="title">
       <h3>FIXED COST TRANSFER DETAILS</h3>
     </div>
@@ -199,8 +207,12 @@
             <div class="item-input">
               <ion-label>Registration</ion-label>
               <ion-item lines="none">
-                <ion-datetime display-format="DD MMM YYYY" placeholder="Date" value="02 Jan 2006">
-                </ion-datetime>
+                <ion-select
+                  multiple="false"
+                  [(ngModel)]="fixedCostTransf.ItemGuid"
+                >
+                  <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                </ion-select>
               </ion-item>
             </div>
           </ion-col>
@@ -209,7 +221,10 @@
             <div class="item-input">
               <ion-label>Date</ion-label>
               <ion-item lines="none">
-                <ion-datetime display-format="DD MMM YYYY" placeholder="Date" value="02 Jan 2006">
+                <ion-datetime
+                  display-format="DD MMM YYYY"
+                  [(ngModel)]="fixedCostTransf.TransDate"
+                >
                 </ion-datetime>
               </ion-item>
             </div>
@@ -219,8 +234,10 @@
             <div class="item-input">
               <ion-label>Cost Center</ion-label>
               <ion-item lines="none">
-                <ion-select value="02154458" multiple="false" placeholder="Registration">
-                  <ion-select-option value="02154458">02154458</ion-select-option>
+                <ion-select
+                  multiple="false"
+                  [(ngModel)]="fixedCostTransf.CostCentGuid"
+                >
                   <ion-select-option value="hawaii">Hawaii</ion-select-option>
                 </ion-select>
               </ion-item>
@@ -231,7 +248,10 @@
             <div class="item-input">
               <ion-label>Depreciation Amount</ion-label>
               <ion-item lines="none" class="end">
-                <ion-input type="text" value="0.00"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="fixedCostTransf.Deprec_Amt"
+                ></ion-input>
                 <div class="end-slot flex al-center jc-center" slot="end">
                   <p>R</p>
                 </div>
@@ -243,7 +263,10 @@
             <div class="item-input">
               <ion-label>Lease Amount</ion-label>
               <ion-item lines="none" class="end">
-                <ion-input type="text" value="0.00"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="fixedCostTransf.Lease_Amt"
+                ></ion-input>
                 <div class="end-slot flex al-center jc-center" slot="end">
                   <p>R</p>
                 </div>
@@ -255,7 +278,10 @@
             <div class="item-input">
               <ion-label>Insurance Amount</ion-label>
               <ion-item lines="none" class="end">
-                <ion-input type="text" value="0.00"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="fixedCostTransf.Insur_Amt"
+                ></ion-input>
                 <div class="end-slot flex al-center jc-center" slot="end">
                   <p>R</p>
                 </div>
@@ -269,12 +295,9 @@
     <ion-row>
       <ion-col size="12" class="ion-no-padding">
         <div class="btn-holder ion-text-right">
-          <ion-button>
-            Add
-          </ion-button>
+          <ion-button> Add </ion-button>
         </div>
       </ion-col>
     </ion-row>
   </div>
-
 </ion-content>

@@ -26,4 +26,8 @@ export class TrafficfinePage implements OnInit {
     })
   }
 
+  onMarkAsComplete(){
+
+  }
+
 }

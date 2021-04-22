@@ -1,17 +1,29 @@
 <ion-content class="ion-padding">
   <div class="title-holder flex al-center">
-    <ion-back-button defaultHref="itemcomponents" mode="ios" text=""></ion-back-button>
+    <ion-back-button
+      defaultHref="itemcomponents"
+      mode="ios"
+      text=""
+    ></ion-back-button>
     <h2>Items</h2>
     <div class="date-holder">
       <div class="itm flex al-center">
         <div class="thumb">
-          <ion-icon slot="icon-only" src="assets/imgs/icn-calender.svg"></ion-icon>
+          <ion-icon
+            slot="icon-only"
+            src="assets/imgs/icn-calender.svg"
+          ></ion-icon>
         </div>
-        <ion-datetime display-format="MMM DD YYYY" value="Sep 16 2020, 12:02 "></ion-datetime>
+        <ion-datetime
+          display-format="MMM DD YYYY"
+          value="Sep 16 2020, 12:02 "
+        ></ion-datetime>
         <p>to</p>
-        <ion-datetime display-format="MMM DD YYYY" value="Sep 16 2020, 12:02 "></ion-datetime>
+        <ion-datetime
+          display-format="MMM DD YYYY"
+          value="Sep 16 2020, 12:02 "
+        ></ion-datetime>
       </div>
-
     </div>
   </div>
   <div class="section">
@@ -30,14 +42,12 @@
       </div>
       <ion-grid fixed>
         <ion-row class="title-row">
-          <ion-col size="0.5" class="flex al-center jc-center">
-
-          </ion-col>
+          <ion-col size="0.5" class="flex al-center jc-center"> </ion-col>
           <ion-col size="1.4" class="flex al-center jc-center">
             <h4>Registration</h4>
           </ion-col>
           <ion-col size="1.4" class="flex al-center jc-center">
-            <h4>make & model </h4>
+            <h4>make & model</h4>
           </ion-col>
           <ion-col size="1" class="flex al-center jc-center">
             <h4>catg</h4>
@@ -164,7 +174,7 @@
           </ion-row>
         </div>
         <div class="values">
-          <ion-row class="value-row" >
+          <ion-row class="value-row">
             <ion-col size="0.5" class="flex al-center jc-center">
               <ion-checkbox></ion-checkbox>
             </ion-col>
@@ -197,13 +207,11 @@
             </ion-col>
           </ion-row>
         </div>
-
       </ion-grid>
     </div>
   </div>
 
   <div class="section">
-
     <div class="title">
       <h3>Add</h3>
     </div>
@@ -215,9 +223,10 @@
             <div class="item-input">
               <ion-label>Registration</ion-label>
               <ion-item lines="none">
-                <ion-select value="Registration" multiple="false" placeholder="Registration" disabled>
-                  <ion-select-option value="Registration">Registration</ion-select-option>
-                  <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                <ion-select multiple="false" [(ngModel)]="item.Reg">
+                  <ion-select-option value="Registration"
+                    >Registration</ion-select-option
+                  >
                 </ion-select>
               </ion-item>
             </div>
@@ -227,7 +236,11 @@
             <div class="item-input">
               <ion-label>Make & Model</ion-label>
               <ion-item lines="none">
-                <ion-input type="text" placeholder="Voucher"></ion-input>
+                <ion-select multiple="false" [(ngModel)]="item.ItemMakModGuid">
+                  <ion-select-option value="Registration"
+                    >Registration</ion-select-option
+                  >
+                </ion-select>
               </ion-item>
             </div>
           </ion-col>
@@ -236,9 +249,10 @@
             <div class="item-input">
               <ion-label>Type</ion-label>
               <ion-item lines="none">
-                <ion-select value="Description" multiple="false" placeholder="Description">
-                  <ion-select-option value="Bowser">Description</ion-select-option>
-                  <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                <ion-select multiple="false" [(ngModel)]="item.ItemTypeGuid">
+                  <ion-select-option value="Bowser"
+                    >Description</ion-select-option
+                  >
                 </ion-select>
               </ion-item>
             </div>
@@ -248,9 +262,10 @@
             <div class="item-input">
               <ion-label>Catregory</ion-label>
               <ion-item lines="none">
-                <ion-select value="Catregory" multiple="false" placeholder="Catregory">
-                  <ion-select-option value="Bowser">Catregory</ion-select-option>
-                  <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                <ion-select multiple="false" [(ngModel)]="item.ItemCatg">
+                  <ion-select-option value="Bowser"
+                    >Catregory</ion-select-option
+                  >
                 </ion-select>
               </ion-item>
             </div>
@@ -260,9 +275,8 @@
             <div class="item-input">
               <ion-label>Colour</ion-label>
               <ion-item lines="none">
-                <ion-select value="red" multiple="false" placeholder="Colour">
+                <ion-select multiple="false" [(ngModel)]="item.ColourGuid">
                   <ion-select-option value="red">Red</ion-select-option>
-                  <ion-select-option value="hawaii">Hawaii</ion-select-option>
                 </ion-select>
               </ion-item>
             </div>
@@ -272,7 +286,7 @@
             <div class="item-input">
               <ion-label>Chassis No.</ion-label>
               <ion-item lines="none" class="end">
-                <ion-input type="text" value="Cost Centre"></ion-input>
+                <ion-input type="text" [(ngModel)]="item.ChassisNo"></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -281,19 +295,19 @@
             <div class="item-input">
               <ion-label>Engine No.</ion-label>
               <ion-item lines="none">
-                <ion-input type="text" value="Staff Code"></ion-input>
+                <ion-input type="text" [(ngModel)]="item.EngineNo"></ion-input>
               </ion-item>
             </div>
           </ion-col>
-
 
           <ion-col size="3.5" offset="0.5">
             <div class="item-input">
               <ion-label>Battery</ion-label>
               <ion-item lines="none">
-                <ion-select value="Supplier" multiple="false" placeholder="Supplier">
-                  <ion-select-option value="Supplier">Supplier</ion-select-option>
-                  <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                <ion-select multiple="false" [(ngModel)]="item.BatteryGuid">
+                  <ion-select-option value="Supplier"
+                    >Supplier</ion-select-option
+                  >
                 </ion-select>
               </ion-item>
             </div>
@@ -303,9 +317,8 @@
             <div class="item-input">
               <ion-label>Front Tyre Size</ion-label>
               <ion-item lines="none">
-                <ion-select value="Voucher" multiple="false" placeholder="Voucher">
+                <ion-select multiple="false" [(ngModel)]="item.FrontTyreGuid">
                   <ion-select-option value="Voucher">Voucher</ion-select-option>
-                  <ion-select-option value="hawaii">Hawaii</ion-select-option>
                 </ion-select>
               </ion-item>
             </div>
@@ -315,9 +328,8 @@
             <div class="item-input">
               <ion-label>Rear Tyre Size</ion-label>
               <ion-item lines="none">
-                <ion-select value="Voucher" multiple="false" placeholder="Voucher">
+                <ion-select multiple="false" [(ngModel)]="item.RearTyreGuid">
                   <ion-select-option value="Voucher">Voucher</ion-select-option>
-                  <ion-select-option value="hawaii">Hawaii</ion-select-option>
                 </ion-select>
               </ion-item>
             </div>
@@ -327,9 +339,8 @@
             <div class="item-input">
               <ion-label>Driver</ion-label>
               <ion-item lines="none">
-                <ion-select value="Driver" multiple="false" placeholder="Driver">
+                <ion-select multiple="false" [(ngModel)]="item.DriverName">
                   <ion-select-option value="Driver">Driver</ion-select-option>
-                  <ion-select-option value="hawaii">Hawaii</ion-select-option>
                 </ion-select>
               </ion-item>
             </div>
@@ -339,7 +350,10 @@
             <div class="item-input">
               <ion-label>Date of Manufacture</ion-label>
               <ion-item lines="none">
-                <ion-datetime display-format="YYYY" value="2020"></ion-datetime>
+                <ion-datetime
+                  display-format="YYYY"
+                  [(ngModel)]="item.ManufYear"
+                ></ion-datetime>
               </ion-item>
             </div>
           </ion-col>
@@ -348,7 +362,10 @@
             <div class="item-input">
               <ion-label>Terminal Year</ion-label>
               <ion-item lines="none">
-                <ion-datetime display-format="YYYY" value="2020"></ion-datetime>
+                <ion-datetime
+                  display-format="YYYY"
+                  [(ngModel)]="item.TerminalYear"
+                ></ion-datetime>
               </ion-item>
             </div>
           </ion-col>
@@ -357,20 +374,20 @@
             <div class="item-input">
               <ion-label>Min. Mech. Avail %</ion-label>
               <ion-item lines="none">
-                <ion-input type="text" placeholder="Min. Mech. Avail %"></ion-input>
+                <ion-input type="text" [(ngModel)]="item.MechAvail"></ion-input>
               </ion-item>
             </div>
           </ion-col>
 
-          <ion-col size="3.5" offset="0.5">
-          
-          </ion-col>
+          <ion-col size="3.5" offset="0.5"> </ion-col>
 
           <ion-col size="2.7">
             <div class="item-input">
               <ion-label>Meter Type</ion-label>
               <ion-item lines="none">
-                <ion-input type="text" placeholder="Meter Type"></ion-input>
+                <ion-select multiple="false" [(ngModel)]="item.MeterType">
+                  <ion-select-option value="Driver">Driver</ion-select-option>
+                </ion-select>
               </ion-item>
             </div>
           </ion-col>
@@ -379,7 +396,7 @@
             <div class="item-input">
               <ion-label>Meter Reading</ion-label>
               <ion-item lines="none">
-                <ion-input type="text" placeholder="Meter Reading"></ion-input>
+                <ion-input type="text" [(ngModel)]="item.MeterRead"></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -388,7 +405,10 @@
             <div class="item-input">
               <ion-label>Meter Read. Date</ion-label>
               <ion-item lines="none">
-                <ion-datetime display-format="YYYY" value="2020"></ion-datetime>
+                <ion-datetime
+                  display-format="YYYY"
+                  [(ngModel)]="item.MeterReadDate"
+                ></ion-datetime>
               </ion-item>
             </div>
           </ion-col>
@@ -397,7 +417,10 @@
             <div class="item-input">
               <ion-label>Meter Offset</ion-label>
               <ion-item lines="none">
-                <ion-input type="text"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="item.MeterOffset"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -406,7 +429,7 @@
             <div class="item-input">
               <ion-label>Hourly Rate</ion-label>
               <ion-item lines="none" class="end">
-                <ion-input type="text"></ion-input>
+                <ion-input type="text" [(ngModel)]="item.HourRate"></ion-input>
                 <div class="end-slot flex al-center jc-center" slot="end">
                   <p>R</p>
                 </div>
@@ -418,7 +441,7 @@
             <div class="item-input">
               <ion-label>Km Rate</ion-label>
               <ion-item lines="none" class="end">
-                <ion-input type="text"></ion-input>
+                <ion-input type="text" [(ngModel)]="item.KmRate"></ion-input>
                 <div class="end-slot flex al-center jc-center" slot="end">
                   <p>R</p>
                 </div>
@@ -430,7 +453,7 @@
             <div class="item-input">
               <ion-label>Daily Rate</ion-label>
               <ion-item lines="none" class="end">
-                <ion-input type="text"></ion-input>
+                <ion-input type="text" [(ngModel)]="item.DailyRate"></ion-input>
                 <div class="end-slot flex al-center jc-center" slot="end">
                   <p>R</p>
                 </div>
@@ -442,7 +465,10 @@
             <div class="item-input">
               <ion-label>Standby Rate</ion-label>
               <ion-item lines="none" class="end">
-                <ion-input type="text"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="item.StandbyRate"
+                ></ion-input>
                 <div class="end-slot flex al-center jc-center" slot="end">
                   <p>R</p>
                 </div>
@@ -450,26 +476,22 @@
             </div>
           </ion-col>
 
-
           <ion-col size="3.5">
             <div class="item-input">
               <ion-label>Votecode</ion-label>
               <ion-item lines="none">
-                <ion-select value="Voucher" multiple="false" placeholder="Voucher">
+                <ion-select multiple="false" [(ngModel)]="item.Votecode">
                   <ion-select-option value="Voucher">Voucher</ion-select-option>
-                  <ion-select-option value="hawaii">Hawaii</ion-select-option>
                 </ion-select>
               </ion-item>
             </div>
           </ion-col>
 
-     
-
           <ion-col size="3.5" offset="0.5">
             <div class="item-input">
               <ion-label>Budget for item</ion-label>
               <ion-item lines="none">
-                <ion-input type="text" value="Voucher"></ion-input>
+                <ion-input type="text" [(ngModel)]="item.ItemBud"></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -479,7 +501,10 @@
               <ion-label>&nbsp;</ion-label>
               <ion-item lines="none">
                 <ion-label>Autocard</ion-label>
-                <ion-checkbox slot="start"></ion-checkbox>
+                <ion-checkbox
+                  slot="start"
+                  [(ngModel)]="item.Autocard"
+                ></ion-checkbox>
               </ion-item>
             </div>
           </ion-col>
@@ -489,7 +514,10 @@
               <ion-label>&nbsp;</ion-label>
               <ion-item lines="none">
                 <ion-label>Refurbished</ion-label>
-                <ion-checkbox slot="start"></ion-checkbox>
+                <ion-checkbox
+                  slot="start"
+                  [(ngModel)]="item.Refurb"
+                ></ion-checkbox>
               </ion-item>
             </div>
           </ion-col>
@@ -500,12 +528,9 @@
     <ion-row>
       <ion-col size="12" class="ion-no-padding">
         <div class="btn-holder ion-text-right">
-          <ion-button>
-            Add
-          </ion-button>
+          <ion-button> Add </ion-button>
         </div>
       </ion-col>
     </ion-row>
   </div>
-
 </ion-content>

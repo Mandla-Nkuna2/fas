@@ -330,7 +330,10 @@
             <div class="item-input">
               <ion-label>&nbsp;</ion-label>
               <ion-item lines="none" class="end">
-                <ion-input type="text" value="0.00"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="revenue.HourRate"
+                ></ion-input>
                 <div class="end-slot flex al-center jc-center" slot="end">
                   <p>R</p>
                 </div>
@@ -342,7 +345,10 @@
             <div class="item-input">
               <ion-label>No. of Overtime Hours</ion-label>
               <ion-item lines="none">
-                <ion-input type="text" value=""></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="revenue.NoOvertime"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -351,7 +357,10 @@
             <div class="item-input">
               <ion-label>&nbsp;</ion-label>
               <ion-item lines="none" class="end">
-                <ion-input type="text" value="0.00"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="revenue.OvertimeRate"
+                ></ion-input>
                 <div class="end-slot flex al-center jc-center" slot="end">
                   <p>R</p>
                 </div>
@@ -363,7 +372,10 @@
             <div class="item-input">
               <ion-label>No. of Weekend Hours</ion-label>
               <ion-item lines="none">
-                <ion-input type="text" value=""></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="revenue.NoWeekend"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -372,7 +384,10 @@
             <div class="item-input">
               <ion-label>&nbsp;</ion-label>
               <ion-item lines="none" class="end">
-                <ion-input type="text" value="0.00"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="revenue.WeekendRate"
+                ></ion-input>
                 <div class="end-slot flex al-center jc-center" slot="end">
                   <p>R</p>
                 </div>
@@ -384,7 +399,7 @@
             <div class="item-input">
               <ion-label>No. of Rain Hours</ion-label>
               <ion-item lines="none">
-                <ion-input type="text" value=""></ion-input>
+                <ion-input type="text" [(ngModel)]="revenue.NoRain"></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -393,7 +408,10 @@
             <div class="item-input">
               <ion-label>&nbsp;</ion-label>
               <ion-item lines="none" class="end">
-                <ion-input type="text" value="0.00"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="revenue.RainRate"
+                ></ion-input>
                 <div class="end-slot flex al-center jc-center" slot="end">
                   <p>R</p>
                 </div>
@@ -405,7 +423,10 @@
             <div class="item-input">
               <ion-label>No. of Standby Hours</ion-label>
               <ion-item lines="none">
-                <ion-input type="text" value=""></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="revenue.StandbyHours"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -414,7 +435,10 @@
             <div class="item-input">
               <ion-label>&nbsp;</ion-label>
               <ion-item lines="none" class="end">
-                <ion-input type="text" value="0.00"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="revenue.StandbyRate"
+                ></ion-input>
                 <div class="end-slot flex al-center jc-center" slot="end">
                   <p>R</p>
                 </div>
@@ -426,7 +450,7 @@
             <div class="item-input">
               <ion-label>No. of Days</ion-label>
               <ion-item lines="none">
-                <ion-input type="text" value=""></ion-input>
+                <ion-input type="text" [(ngModel)]="revenue.NoDays"></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -435,7 +459,10 @@
             <div class="item-input">
               <ion-label>&nbsp;</ion-label>
               <ion-item lines="none" class="end">
-                <ion-input type="text" value="0.00"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="revenue.DailyRate"
+                ></ion-input>
                 <div class="end-slot flex al-center jc-center" slot="end">
                   <p>R</p>
                 </div>
@@ -447,7 +474,10 @@
             <div class="item-input">
               <ion-label>Other Revenue</ion-label>
               <ion-item lines="none" class="end">
-                <ion-input type="text" value=""></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="revenue.OtherRevenue"
+                ></ion-input>
                 <div class="end-slot flex al-center jc-center" slot="end">
                   <p>R</p>
                 </div>
@@ -459,7 +489,10 @@
             <div class="item-input">
               <ion-label>Other Revenue Comment</ion-label>
               <ion-item lines="none">
-                <ion-input type="text" value=""></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="revenue.OtherRevenueComm"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -468,7 +501,10 @@
             <div class="item-input">
               <ion-label>Deductions</ion-label>
               <ion-item lines="none" class="end">
-                <ion-input type="text" value=""></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="revenue.Deductions"
+                ></ion-input>
                 <div class="end-slot flex al-center jc-center" slot="end">
                   <p>R</p>
                 </div>
@@ -480,7 +516,10 @@
             <div class="item-input">
               <ion-label>Deduction Comment</ion-label>
               <ion-item lines="none">
-                <ion-input type="text" value=""></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="revenue.DeductionsComm"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -489,7 +528,10 @@
             <div class="item-input">
               <ion-label>Discount</ion-label>
               <ion-item lines="none" class="end">
-                <ion-input type="text" value=""></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="revenue.Discount"
+                ></ion-input>
                 <div class="end-slot flex al-center jc-center" slot="end">
                   <p>%</p>
                 </div>
@@ -501,7 +543,7 @@
             <div class="item-input">
               <ion-label>VAT</ion-label>
               <ion-item lines="none" class="end">
-                <ion-input type="text" value=""></ion-input>
+                <ion-input type="text" [(ngModel)]="revenue.Vat"></ion-input>
                 <div class="end-slot flex al-center jc-center" slot="end">
                   <p>%</p>
                 </div>
@@ -513,7 +555,7 @@
             <div class="item-input">
               <ion-label>Include in Total?</ion-label>
               <ion-item lines="none" class="end">
-                <ion-input type="text" value=""></ion-input>
+                <ion-input type="text" [(ngModel)]="revenue.IncVat"></ion-input>
                 <div class="end-slot flex al-center jc-center" slot="end">
                   <p>%</p>
                 </div>
@@ -525,7 +567,7 @@
             <div class="item-input">
               <ion-label>Total</ion-label>
               <ion-item lines="none" class="end">
-                <ion-input type="text" value=""></ion-input>
+                <ion-input type="text" [(ngModel)]="revenue.Total"></ion-input>
                 <div class="end-slot flex al-center jc-center" slot="end">
                   <p>%</p>
                 </div>

@@ -1,9 +1,13 @@
 export default class FixedCostTransfer {
-  TItemGuid: string
-  TDeprec_Amt: number
-  TInsur_Amt: number
-  TLease_Amt: number
-  TLic_Amt: number
-  TTransDate: string
-  TID: string
+  FixedcostTransGuid : string
+  ItemGuid: string
+  Deprec_Amt: number
+  Insur_Amt: number
+  Lease_Amt: number
+  Lic_Amt: number
+  TransDate: string
+  CaptureName: string
+  CaptureDate: string
+  RegIndex: string
+  CostCentGuid: string
 };

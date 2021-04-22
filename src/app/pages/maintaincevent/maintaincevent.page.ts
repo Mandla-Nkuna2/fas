@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import MaintenanceEvent from 'src/app/models/MaintenanceEvent.model';
 
 @Component({
   selector: 'app-maintaincevent',
@@ -7,8 +8,11 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./maintaincevent.page.scss'],
 })
 export class MaintainceventPage implements OnInit {
+  maintenanceEvent: MaintenanceEvent
 
-  constructor(private navCtrl: NavController) { }
+  constructor(private navCtrl: NavController) {
+    this.maintenanceEvent = new MaintenanceEvent()
+   }
 
   ngOnInit() {
   }

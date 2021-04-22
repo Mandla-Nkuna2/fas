@@ -1,17 +1,29 @@
 <ion-content class="ion-padding">
   <div class="title-holder flex al-center">
-    <ion-back-button defaultHref="browsertransactions" mode="ios" text=""></ion-back-button>
+    <ion-back-button
+      defaultHref="browsertransactions"
+      mode="ios"
+      text=""
+    ></ion-back-button>
     <h2>Bowser Transfer</h2>
     <div class="date-holder">
       <div class="itm flex al-center">
         <div class="thumb">
-          <ion-icon slot="icon-only" src="assets/imgs/icn-calender.svg"></ion-icon>
+          <ion-icon
+            slot="icon-only"
+            src="assets/imgs/icn-calender.svg"
+          ></ion-icon>
         </div>
-        <ion-datetime display-format="MMM DD YYYY" value="Sep 16 2020, 12:02 "></ion-datetime>
+        <ion-datetime
+          display-format="MMM DD YYYY"
+          value="Sep 16 2020, 12:02 "
+        ></ion-datetime>
         <p>to</p>
-        <ion-datetime display-format="MMM DD YYYY" value="Sep 16 2020, 12:02 "></ion-datetime>
+        <ion-datetime
+          display-format="MMM DD YYYY"
+          value="Sep 16 2020, 12:02 "
+        ></ion-datetime>
       </div>
-
     </div>
   </div>
   <div class="section">
@@ -30,9 +42,7 @@
       </div>
       <ion-grid fixed>
         <ion-row class="title-row">
-          <ion-col size="0.5" class="flex al-center jc-center">
-
-          </ion-col>
+          <ion-col size="0.5" class="flex al-center jc-center"> </ion-col>
           <ion-col size="1.5" class="flex al-center jc-center">
             <h4>Voucher no.</h4>
           </ion-col>
@@ -178,13 +188,11 @@
             </ion-col>
           </ion-row>
         </div>
-
       </ion-grid>
     </div>
   </div>
 
   <div class="section">
-
     <div class="title">
       <h3>Add</h3>
     </div>
@@ -196,7 +204,10 @@
             <div class="item-input">
               <ion-label>Transfer Date</ion-label>
               <ion-item lines="none">
-                <ion-datetime display-format="DD MMM YYYY" placeholder="Date" value="02 Jan 2006">
+                <ion-datetime
+                  display-format="DD MMM YYYY"
+                  [(ngModel)]="bowserTRansfer.FuelTransferDate"
+                >
                 </ion-datetime>
               </ion-item>
             </div>
@@ -206,9 +217,13 @@
             <div class="item-input">
               <ion-label>Voucher No.</ion-label>
               <ion-item lines="none">
-                <ion-select value="Description" multiple="false" placeholder="Description">
-                  <ion-select-option value="Description">Description</ion-select-option>
-                  <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                <ion-select
+                  multiple="false"
+                  [(ngModel)]="bowserTRansfer.FuelTransferDate"
+                >
+                  <ion-select-option value="Description"
+                    >Description</ion-select-option
+                  >
                 </ion-select>
               </ion-item>
             </div>
@@ -216,10 +231,10 @@
 
           <ion-col size="3.5">
             <div class="item-input">
-              <ion-label>Browse From</ion-label>
+              <ion-label>Bowser From</ion-label>
               <ion-item lines="none">
-                <ion-datetime display-format="DD MMM YYYY" placeholder="Date" value="02 Jan 2006">
-                </ion-datetime>
+                <ion-input [(ngModel)]="bowserTRansfer.BowserFromGuid">
+                </ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -228,7 +243,10 @@
             <div class="item-input">
               <ion-label>Browse from pump meter reading</ion-label>
               <ion-item lines="none" class="end">
-                <ion-input type="text" value="0.00"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="bowserTRansfer.BowserFromPump"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -237,7 +255,10 @@
             <div class="item-input">
               <ion-label>Browse to</ion-label>
               <ion-item lines="none" class="end">
-                <ion-input type="text" value="Cost Centre"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="bowserTRansfer.BowserToGuid"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -246,16 +267,22 @@
             <div class="item-input">
               <ion-label>Browse to pump meter reading</ion-label>
               <ion-item lines="none" class="end">
-                <ion-input type="text" value="Staff Code"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="bowserTRansfer.BowserToPump"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
 
           <ion-col size="3.5" offset="0.5">
             <div class="item-input">
-              <ion-label>Field Quantity</ion-label>
+              <ion-label>Fuel Quantity</ion-label>
               <ion-item lines="none" class="end">
-                <ion-input type="text" value="Supplier"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="bowserTRansfer.FuelQty"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -264,15 +291,17 @@
             <div class="item-input">
               <ion-label>Cost Center</ion-label>
               <ion-item lines="none">
-                <ion-select value="CostCenter" multiple="false" placeholder="Description">
-                  <ion-select-option value="CostCenter">Cost Center</ion-select-option>
-                  <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                <ion-select
+                  multiple="false"
+                  [(ngModel)]="bowserTRansfer.CostCentGuid"
+                >
+                  <ion-select-option value="CostCenter"
+                    >Cost Center</ion-select-option
+                  >
                 </ion-select>
               </ion-item>
             </div>
           </ion-col>
-
-
         </ion-row>
       </ion-grid>
     </div>
@@ -280,12 +309,9 @@
     <ion-row>
       <ion-col size="12" class="ion-no-padding">
         <div class="btn-holder ion-text-right">
-          <ion-button>
-            Add
-          </ion-button>
+          <ion-button> Add </ion-button>
         </div>
       </ion-col>
     </ion-row>
   </div>
-
 </ion-content>

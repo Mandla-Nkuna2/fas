@@ -1,4 +1,4 @@
-export default class Items {
+export default class Item {
   ItemGuid: string
   Reg: string
   Old_Reg: string
@@ -15,7 +15,7 @@ export default class Items {
   MeterType: string
   MeterRead: number
   MeterReadDate: string
-  MeterOffset: string
+  MeterOffset: number
   TerminalYear: string
   BatteryGuid: string
   FrontTyreGuid: string
@@ -26,17 +26,17 @@ export default class Items {
   MechAvail: string
   MonthlyAveKM: string
   PlantUsage: string
-  Refurb: string
+  Refurb: boolean
   Archive: string
   ArchiveDate: string
   RentalVehicle: string
   SubsidisedVehicle: string
-  Autocard: string
-  HourRate: string
-  DailyRate: string
-  KmRate: string
-  StandbyRate: string
-  ItemBud: string
+  Autocard: boolean
+  HourRate: number
+  DailyRate: number
+  KmRate: number
+  StandbyRate: number
+  ItemBud: number
   LogType: string
   CaptureName: string
   StaffGuid: string

@@ -4,9 +4,9 @@ export default class LicCorAndSafInspcDates {
   LicDate: string
   corInspecDate: string
   safetyInspecDate: string
-  diskFromLicBureau: string
-  LicCost: string
-  LicAddCost: string
+  diskFromLicBureau: boolean
+  LicCost: number
+  LicAddCost: number
   RegIndex: string
   Capturename: string
   Capturedate: string

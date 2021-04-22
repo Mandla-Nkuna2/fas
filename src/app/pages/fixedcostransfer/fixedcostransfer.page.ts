@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import FixedCostTransfer from 'src/app/models/FixedCostTransfer.model';
 
 @Component({
   selector: 'app-fixedcostransfer',
@@ -6,8 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./fixedcostransfer.page.scss'],
 })
 export class FixedcostransferPage implements OnInit {
+  fixedCostTransf: FixedCostTransfer
 
-  constructor() { }
+  constructor() {
+    this.fixedCostTransf = new FixedCostTransfer()
+   }
 
   ngOnInit() {
   }

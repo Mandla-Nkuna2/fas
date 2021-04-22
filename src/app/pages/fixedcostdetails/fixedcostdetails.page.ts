@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import FixedCostsDet from 'src/app/models/FixedCostsDet.model';
 
 @Component({
   selector: 'app-fixedcostdetails',
@@ -7,8 +8,11 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./fixedcostdetails.page.scss'],
 })
 export class FixedcostdetailsPage implements OnInit {
+  fixedCost: FixedCostsDet
 
-  constructor( private navCtrl: NavController ) { }
+  constructor( private navCtrl: NavController ) {
+    this.fixedCost = new FixedCostsDet()
+   }
 
   ngOnInit() {
   }
