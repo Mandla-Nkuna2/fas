@@ -1,4 +1,4 @@
-export default class OverheadTransactions {
+export default class OverheadTransaction {
   OverheadGuid: string
   OverheadDate: string
   OverheadAmt: number

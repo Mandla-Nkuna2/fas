@@ -1,17 +1,29 @@
 <ion-content class="ion-padding">
   <div class="title-holder flex al-center">
-    <ion-back-button defaultHref="oilissues" mode="ios" text=""></ion-back-button>
+    <ion-back-button
+      defaultHref="oilissues"
+      mode="ios"
+      text=""
+    ></ion-back-button>
     <h2>Oil Store Transanctions</h2>
     <div class="date-holder">
       <div class="itm flex al-center">
         <div class="thumb">
-          <ion-icon slot="icon-only" src="assets/imgs/icn-calender.svg"></ion-icon>
+          <ion-icon
+            slot="icon-only"
+            src="assets/imgs/icn-calender.svg"
+          ></ion-icon>
         </div>
-        <ion-datetime display-format="MMM DD YYYY" value="Sep 16 2020, 12:02 "></ion-datetime>
+        <ion-datetime
+          display-format="MMM DD YYYY"
+          value="Sep 16 2020, 12:02 "
+        ></ion-datetime>
         <p>to</p>
-        <ion-datetime display-format="MMM DD YYYY" value="Sep 16 2020, 12:02 "></ion-datetime>
+        <ion-datetime
+          display-format="MMM DD YYYY"
+          value="Sep 16 2020, 12:02 "
+        ></ion-datetime>
       </div>
-
     </div>
   </div>
   <div class="section">
@@ -30,9 +42,7 @@
       </div>
       <ion-grid fixed>
         <ion-row class="title-row">
-          <ion-col size="0.5" class="flex al-center jc-center">
-
-          </ion-col>
+          <ion-col size="0.5" class="flex al-center jc-center"> </ion-col>
           <ion-col size="1.4" class="flex al-center jc-center">
             <h4>action</h4>
           </ion-col>
@@ -222,7 +232,6 @@
   </div>
 
   <div class="section">
-
     <div class="title">
       <h3>Add</h3>
     </div>
@@ -230,66 +239,151 @@
     <div class="the-form">
       <ion-grid fixed>
         <ion-row>
-          <ion-col size="3.5">
+          <ion-col size="4">
             <div class="item-input">
               <ion-label>Select Oil Store</ion-label>
               <ion-item lines="none">
-                <ion-select value="" multiple="false" placeholder="Voucher No.">
-                  <ion-select-option value="Agent">Agent</ion-select-option>
+                <ion-select
+                  multiple="false"
+                  [(ngModel)]="oilstoreTrans.OilStoreGuid"
+                >
                   <ion-select-option value="hawaii">Hawaii</ion-select-option>
                 </ion-select>
               </ion-item>
             </div>
           </ion-col>
+        </ion-row>
 
-          <ion-col size="3.5" offset="0.5">
+        <ion-row>
+          <ion-col size="4">
             <div class="item-input">
               <ion-label>Transanction Date</ion-label>
               <ion-item lines="none">
-                <ion-datetime display-format="MMM DD YYYY" value="Sep 16 2020, 12:02 "></ion-datetime>
+                <ion-datetime
+                  display-format="MMM DD YYYY"
+                  [(ngModel)]="oilstoreTrans.OilStoreTrnDate"
+                ></ion-datetime>
               </ion-item>
             </div>
-          </ion-col>
+            <!-- </ion-col> -->
 
-          <ion-col size="3.5" offset="0.5">
-           
-          </ion-col>
+            <!-- <ion-col size="3.5" offset="0.5"> </ion-col>
+          <ion-col size="3.5" offset="0.5"> </ion-col> -->
 
-      
+            <ion-radio-group [(ngModel)]="oilstoreTrans.Purc_or_Count">
+              <ion-row>
+                <ion-col size="6">
+                  <ion-item>
+                    <ion-label>Stockcount</ion-label>
+                    <ion-radio
+                      slot="start"
+                      mode="md"
+                      item-left
+                      value="S"
+                    ></ion-radio>
+                  </ion-item>
+                </ion-col>
 
-          <ion-col size="3.5" class="check-holder flex al-center">
-            <div>
-              <ion-label>&nbsp;</ion-label>
-              <ion-item lines="none">
-                <ion-label>Stockcount</ion-label>
-                <ion-checkbox slot="start"></ion-checkbox>
-              </ion-item>
-            </div>
+                <ion-col size="6">
+                  <ion-item>
+                    <ion-label>Purchase</ion-label>
+                    <ion-radio
+                      slot="start"
+                      mode="md"
+                      item-left
+                      value="P"
+                    ></ion-radio>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+            </ion-radio-group>
 
-            <div>
-              <ion-label>&nbsp;</ion-label>
-              <ion-item lines="none">
-                <ion-label>Purchase</ion-label>
-                <ion-checkbox slot="start"></ion-checkbox>
-              </ion-item>
-            </div>
-          </ion-col>
+            <!-- <ion-col size="8" offset="0.5"> </ion-col> -->
 
-
-          <ion-col size="8" offset="0.5">
-           
-          </ion-col>
-
-
-
-          <ion-col size="3.5" >
+            <!-- <ion-col size="3.5"> -->
             <div class="item-input">
               <ion-label>Oil Type</ion-label>
               <ion-item lines="none">
-                <ion-select value="" multiple="false" placeholder="Please select">
-                  <ion-select-option value="MAZDA323200E">MAZDA 323 200E</ion-select-option>
+                <ion-select
+                  multiple="false"
+                  [(ngModel)]="oilstoreTrans.OilTypeguid"
+                >
                   <ion-select-option value="hawaii">Hawaii</ion-select-option>
                 </ion-select>
+              </ion-item>
+            </div>
+          </ion-col>
+
+          <ion-col size="3.5"> </ion-col>
+
+          <ion-col size="4" *ngIf="oilstoreTrans.Purc_or_Count === 'P'">
+            <h6>Oil Store purchase details:</h6>
+
+            <div class="item-input">
+              <ion-label>Purchase quantity</ion-label>
+              <ion-item lines="none">
+                <ion-input
+                  type="text"
+                  [(ngModel)]="oilstoreTrans.OilQtyPurc"
+                ></ion-input>
+              </ion-item>
+            </div>
+
+            <div class="item-input">
+              <ion-label>Total Oil cost</ion-label>
+              <ion-item lines="none">
+                <ion-input
+                  type="text"
+                  [(ngModel)]="oilstoreTrans.OilCost"
+                ></ion-input>
+              </ion-item>
+            </div>
+
+            <div class="item-input">
+              <ion-label>Order No.</ion-label>
+              <ion-item lines="none">
+                <ion-input
+                  type="text"
+                  [(ngModel)]="oilstoreTrans.OrderNo"
+                ></ion-input>
+              </ion-item>
+            </div>
+
+            <div class="item-input">
+              <ion-label>Supplier</ion-label>
+              <ion-item lines="none">
+                <ion-select
+                  multiple="false"
+                  [(ngModel)]="oilstoreTrans.SuppGuid"
+                >
+                  <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </div>
+
+            <div class="item-input">
+              <ion-label>Cost centre</ion-label>
+              <ion-item lines="none">
+                <ion-select
+                  multiple="false"
+                  [(ngModel)]="oilstoreTrans.CostCentGuid"
+                >
+                  <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row *ngIf="oilstoreTrans.Purc_or_Count === 'S'">
+          <ion-col size="4">
+            <div class="item-input">
+              <ion-label>Stockcount quantity</ion-label>
+              <ion-item lines="none">
+                <ion-input
+                  type="text"
+                  [(ngModel)]="oilstoreTrans.OilQtyinStore"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -298,16 +392,11 @@
         <ion-row>
           <ion-col size="12" class="ion-no-padding">
             <div class="btn-holder ion-text-left">
-              <ion-button>
-                Add
-              </ion-button>
+              <ion-button> Add </ion-button>
             </div>
           </ion-col>
         </ion-row>
       </ion-grid>
     </div>
-
-
   </div>
-
 </ion-content>

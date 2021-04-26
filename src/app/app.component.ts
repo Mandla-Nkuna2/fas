@@ -100,10 +100,10 @@ export class AppComponent {
           title: 'supdeposit',
           url: 'supdeposit',
         },
-        {
-          title: 'fuelnoilprice',
-          url: 'fuelnoilprice',
-        },
+        // {
+        //   title: 'fuelnoilprice',
+        //   url: 'fuelnoilprice',
+        // },
         {
           title: 'dailyoperationrecord',
           url: 'dailyoperationrecord',

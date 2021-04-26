@@ -19,14 +19,14 @@ import {JobCard} from '../../models/JobCard.model';
 import LicCorAndSafInspcDates from '../../models/LicCorAndSafInspcDates.model';
 import LossControl from '../../models/LossControl.model';
 import MaintenanceEvent from '../../models/MaintenanceEvent.model';
-import OilIssues from '../../models/OilIssues.model';
+import OilIssue from '../../models/OilIssue.model';
 import OilOrFluidType from '../../models/OilOrFluidType.model';
-import OilStoreTransactions from '../../models/OilStoreTransactions.model';
+import OilStoreTransaction from '../../models/OilStoreTransaction.model';
 import OilStoreTransfer from '../../models/OilStoreTransfer.model';
-import OverheadTransactions from '../../models/OverheadTransactions.model';
+import OverheadTransaction from '../../models/OverheadTransaction.model';
 import Revenue from '../../models/Revenue.model';
-import StaffTimesheets from '../../models/StaffTimesheets.model';
-import StoreIssues from '../../models/StoreIssues.model';
+import StaffTimesheet from '../../models/StaffTimesheet.model';
+import StoreIssue from '../../models/StoreIssue.model';
 import SupplierDeposit from '../../models/SupplierDeposit.model';
 import {LoadingService} from '../../services/loading-service/loading.service';
 import {Trafficfine} from '../../models/Trafficfine.model';
@@ -47,7 +47,7 @@ constructor(private afs: AngularFirestore, private loading: LoadingService)   {}
       return res = this.writeData(Object.assign({}, testAsset), testAsset.LossContGuid)
     }
 
-    public saveAdditionalCosts(testAsset: AdditionalCost){
+    public saveAdditionalCost(testAsset: AdditionalCost){
       let res: any
       return res = this.writeData(Object.assign({}, testAsset), testAsset.AddCostGuid)
     }
@@ -57,12 +57,12 @@ constructor(private afs: AngularFirestore, private loading: LoadingService)   {}
       return res = this.writeData(Object.assign({}, testAsset), testAsset.generalInformation.ItemGuid)
     }
 
-    public saveAutoCardDetails(testAsset: AutoCard){
+    public saveAutoCardDetail(testAsset: AutoCard){
       let res: any
       return res = this.writeData(Object.assign({}, testAsset), testAsset.AutoCardGuid)
     }
 
-    public saveBowserTransactions(testAsset: BowserTransaction){
+    public saveBowserTransaction(testAsset: BowserTransaction){
       let res: any
       return res = this.writeData(Object.assign({}, testAsset), testAsset.BowserTrnGuid)
     }
@@ -74,7 +74,7 @@ constructor(private afs: AngularFirestore, private loading: LoadingService)   {}
 
     public saveDailyOperationRec(testAsset: DailyOperationRec){
       let res: any
-      return res = this.writeData(Object.assign({}, testAsset), testAsset.registration)
+      return res = this.writeData(Object.assign({}, testAsset), testAsset.Itemguid)
     }
 
     public saveFixedCostsDet(testAsset: FixedCostsDet){
@@ -87,7 +87,7 @@ constructor(private afs: AngularFirestore, private loading: LoadingService)   {}
       return res = this.writeData(Object.assign({}, testAsset), testAsset.FixedcostTransGuid)
     }
 
-    public saveFuelIssues(testAsset: FuelIssue){
+    public saveFuelIssue(testAsset: FuelIssue){
       let res: any
       return res = this.writeData(Object.assign({}, testAsset), testAsset.FuelIssueGuid)
     }
@@ -97,7 +97,7 @@ constructor(private afs: AngularFirestore, private loading: LoadingService)   {}
       return res = this.writeData(Object.assign({}, testAsset), testAsset.FuelTypeGuid)
     }
 
-    public saveItemComponents(testAsset: ItemComponent){
+    public saveItemComponent(testAsset: ItemComponent){
       let res: any
       return res = this.writeData(Object.assign({}, testAsset), testAsset.ItemCompGuid)
     }
@@ -127,7 +127,7 @@ constructor(private afs: AngularFirestore, private loading: LoadingService)   {}
       return res = this.writeData(Object.assign({}, testAsset), testAsset.MaintEvntGuid)
     }
 
-    public saveOilIssues(testAsset: OilIssues){
+    public saveOilIssue(testAsset: OilIssue){
       let res: any
       return res = this.writeData(Object.assign({}, testAsset), testAsset.OilIssueGuid)
     }
@@ -137,7 +137,7 @@ constructor(private afs: AngularFirestore, private loading: LoadingService)   {}
       return res = this.writeData(Object.assign({}, testAsset), testAsset.OilGuid)
     }
 
-    public saveOilStoreTransactions(testAsset: OilStoreTransactions){
+    public saveOilStoreTransaction(testAsset: OilStoreTransaction){
       let res: any
       return res = this.writeData(Object.assign({}, testAsset), testAsset.OilStoreTrnGuid)
     }
@@ -147,7 +147,7 @@ constructor(private afs: AngularFirestore, private loading: LoadingService)   {}
       return res = this.writeData(Object.assign({}, testAsset), testAsset.OilStoreTrnGuid)
     }
 
-    public saveOverheadTransactions(testAsset: OverheadTransactions){
+    public saveOverheadTransaction(testAsset: OverheadTransaction){
       let res: any
       return res = this.writeData(Object.assign({}, testAsset), testAsset.OverheadGuid)
     }
@@ -157,12 +157,12 @@ constructor(private afs: AngularFirestore, private loading: LoadingService)   {}
       return res = this.writeData(Object.assign({}, testAsset), testAsset.RevenueGuid)
     }
 
-    public saveStaffTimesheets(testAsset: StaffTimesheets){
+    public saveStaffTimesheet(testAsset: StaffTimesheet){
       let res: any
       return res = this.writeData(Object.assign({}, testAsset), testAsset.Staff_TrnGuid)
     }
 
-    public saveStoreIssues(testAsset: StoreIssues){
+    public saveStoreIssue(testAsset: StoreIssue){
       let res: any
       return res = this.writeData(Object.assign({}, testAsset), testAsset.StoreIssueGuid)
     }

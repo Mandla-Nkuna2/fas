@@ -1,4 +1,4 @@
-export default class StaffTimesheets {
+export default class StaffTimesheet {
   Staff_TrnGuid: string
   Staff_TrnDate: string
   CaptureDate: string

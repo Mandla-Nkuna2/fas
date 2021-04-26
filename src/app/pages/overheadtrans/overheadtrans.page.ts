@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import OverheadTransaction from 'src/app/models/OverheadTransaction.model';
 
 @Component({
   selector: 'app-overheadtrans',
@@ -7,8 +8,11 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./overheadtrans.page.scss'],
 })
 export class OverheadtransPage implements OnInit {
+  overheadTrans: OverheadTransaction
 
-  constructor(private navCtrl: NavController) { }
+  constructor(private navCtrl: NavController) {
+    this.overheadTrans = new OverheadTransaction()
+   }
 
   ngOnInit() {
   }

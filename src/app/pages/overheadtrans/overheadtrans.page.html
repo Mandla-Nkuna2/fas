@@ -1,17 +1,29 @@
 <ion-content class="ion-padding">
   <div class="title-holder flex al-center">
-    <ion-back-button defaultHref="oiltransafer" mode="ios" text=""></ion-back-button>
+    <ion-back-button
+      defaultHref="oiltransafer"
+      mode="ios"
+      text=""
+    ></ion-back-button>
     <h2>Overhead Transanctions</h2>
     <div class="date-holder">
       <div class="itm flex al-center">
         <div class="thumb">
-          <ion-icon slot="icon-only" src="assets/imgs/icn-calender.svg"></ion-icon>
+          <ion-icon
+            slot="icon-only"
+            src="assets/imgs/icn-calender.svg"
+          ></ion-icon>
         </div>
-        <ion-datetime display-format="MMM DD YYYY" value="Sep 16 2020, 12:02 "></ion-datetime>
+        <ion-datetime
+          display-format="MMM DD YYYY"
+          value="Sep 16 2020, 12:02 "
+        ></ion-datetime>
         <p>to</p>
-        <ion-datetime display-format="MMM DD YYYY" value="Sep 16 2020, 12:02 "></ion-datetime>
+        <ion-datetime
+          display-format="MMM DD YYYY"
+          value="Sep 16 2020, 12:02 "
+        ></ion-datetime>
       </div>
-
     </div>
   </div>
   <div class="section">
@@ -30,9 +42,7 @@
       </div>
       <ion-grid fixed>
         <ion-row class="title-row">
-          <ion-col size="0.5" class="flex al-center jc-center">
-
-          </ion-col>
+          <ion-col size="0.5" class="flex al-center jc-center"> </ion-col>
           <ion-col size="1.4" class="flex al-center jc-center">
             <h4>Overhead type</h4>
           </ion-col>
@@ -231,13 +241,11 @@
             </ion-col>
           </ion-row>
         </div>
-
       </ion-grid>
     </div>
   </div>
 
   <div class="section">
-
     <div class="title">
       <h3>Add</h3>
     </div>
@@ -249,17 +257,24 @@
             <div class="item-input">
               <ion-label>Transanction Date</ion-label>
               <ion-item lines="none">
-                <ion-datetime display-format="MMM DD YYYY" value="Sep 16 2020, 12:02 "></ion-datetime>
+                <ion-datetime
+                  display-format="MMM DD YYYY"
+                  [(ngModel)]="overheadTrans.OverheadDate"
+                ></ion-datetime>
               </ion-item>
             </div>
           </ion-col>
           <ion-col size="8" offset="0.5">
             <div class="item-input">
-              <ion-label>Place/Destination</ion-label>
+              <ion-label>Place / Destination</ion-label>
               <ion-item lines="none">
-                <ion-select value="" multiple="false" placeholder="Description">
-                  <ion-select-option value="Description">Description</ion-select-option>
-                  <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                <ion-select
+                  multiple="false"
+                  [(ngModel)]="overheadTrans.OverheadLoc"
+                >
+                  <ion-select-option value="Description"
+                    >Description</ion-select-option
+                  >
                 </ion-select>
               </ion-item>
             </div>
@@ -269,9 +284,12 @@
             <div class="item-input">
               <ion-label>Overhead Type</ion-label>
               <ion-item lines="none">
-                <ion-select value="" multiple="false" placeholder="Oil Quantity">
+                <ion-select
+                  value=""
+                  multiple="false"
+                  [(ngModel)]="overheadTrans.OverheadTypeGuid"
+                >
                   <ion-select-option value="Agent">Agent</ion-select-option>
-                  <ion-select-option value="hawaii">Hawaii</ion-select-option>
                 </ion-select>
               </ion-item>
             </div>
@@ -281,8 +299,10 @@
             <div class="item-input">
               <ion-label>Cost Centre</ion-label>
               <ion-item lines="none">
-                <ion-select value="" multiple="false" placeholder="Oil Type">
-                  <ion-select-option value="Agent">Agent</ion-select-option>
+                <ion-select
+                  multiple="false"
+                  [(ngModel)]="overheadTrans.CostCentGuid"
+                >
                   <ion-select-option value="hawaii">Hawaii</ion-select-option>
                 </ion-select>
               </ion-item>
@@ -293,7 +313,10 @@
             <div class="item-input">
               <ion-label>Amount</ion-label>
               <ion-item lines="none" class="end">
-                <ion-input type="text" value="0.00"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="overheadTrans.OverheadAmt"
+                ></ion-input>
                 <div class="end-slot flex al-center jc-center" slot="end">
                   <p>R</p>
                 </div>
@@ -303,22 +326,26 @@
 
           <ion-col size="3.5">
             <div class="item-input">
-              <ion-label>Reference/Voucher No.</ion-label>
+              <ion-label>Reference / Voucher No.</ion-label>
               <ion-item lines="none">
-                <ion-input type="text" value="Staff Code"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="overheadTrans.OverheadRef"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
 
-          <ion-col size="8">
-
-          </ion-col>
+          <ion-col size="8"> </ion-col>
 
           <ion-col size="12">
             <div class="item-input">
               <ion-label>Comment</ion-label>
               <ion-item lines="none">
-                <ion-textarea rows="5" placeholder="Comment Goes here"></ion-textarea>
+                <ion-textarea
+                  rows="5"
+                  [(ngModel)]="overheadTrans.OverheadComm"
+                ></ion-textarea>
               </ion-item>
             </div>
           </ion-col>
@@ -327,16 +354,11 @@
         <ion-row>
           <ion-col size="12" class="ion-no-padding">
             <div class="btn-holder ion-text-right">
-              <ion-button>
-                Add
-              </ion-button>
+              <ion-button> Add </ion-button>
             </div>
           </ion-col>
         </ion-row>
       </ion-grid>
     </div>
-
-
   </div>
-
 </ion-content>

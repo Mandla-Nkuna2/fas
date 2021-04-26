@@ -1,17 +1,29 @@
 <ion-content class="ion-padding">
   <div class="title-holder flex al-center">
-    <ion-back-button defaultHref="overheadtrans" mode="ios" text=""></ion-back-button>
+    <ion-back-button
+      defaultHref="overheadtrans"
+      mode="ios"
+      text=""
+    ></ion-back-button>
     <h2>Staff Timesheets</h2>
     <div class="date-holder">
       <div class="itm flex al-center">
         <div class="thumb">
-          <ion-icon slot="icon-only" src="assets/imgs/icn-calender.svg"></ion-icon>
+          <ion-icon
+            slot="icon-only"
+            src="assets/imgs/icn-calender.svg"
+          ></ion-icon>
         </div>
-        <ion-datetime display-format="MMM DD YYYY" value="Sep 16 2020, 12:02 "></ion-datetime>
+        <ion-datetime
+          display-format="MMM DD YYYY"
+          value="Sep 16 2020, 12:02 "
+        ></ion-datetime>
         <p>to</p>
-        <ion-datetime display-format="MMM DD YYYY" value="Sep 16 2020, 12:02 "></ion-datetime>
+        <ion-datetime
+          display-format="MMM DD YYYY"
+          value="Sep 16 2020, 12:02 "
+        ></ion-datetime>
       </div>
-
     </div>
   </div>
   <div class="section">
@@ -30,9 +42,7 @@
       </div>
       <ion-grid fixed>
         <ion-row class="title-row">
-          <ion-col size="0.5" class="flex al-center jc-center">
-
-          </ion-col>
+          <ion-col size="0.5" class="flex al-center jc-center"> </ion-col>
           <ion-col size="1.4" class="flex al-center jc-center">
             <h4>staff member</h4>
           </ion-col>
@@ -76,7 +86,7 @@
               <p>02541</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
-              <p>R 5.60 </p>
+              <p>R 5.60</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
               <p>3493303</p>
@@ -110,7 +120,7 @@
               <p>02541</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
-              <p>R 5.60 </p>
+              <p>R 5.60</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
               <p>3493303</p>
@@ -144,7 +154,7 @@
               <p>02541</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
-              <p>R 5.60 </p>
+              <p>R 5.60</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
               <p>3493303</p>
@@ -178,7 +188,7 @@
               <p>02541</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
-              <p>R 5.60 </p>
+              <p>R 5.60</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
               <p>3493303</p>
@@ -212,7 +222,7 @@
               <p>02541</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
-              <p>R 5.60 </p>
+              <p>R 5.60</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
               <p>3493303</p>
@@ -231,13 +241,11 @@
             </ion-col>
           </ion-row>
         </div>
-
       </ion-grid>
     </div>
   </div>
 
   <div class="section">
-
     <div class="title">
       <h3>Add</h3>
     </div>
@@ -249,9 +257,13 @@
             <div class="item-input">
               <ion-label>Staff Member</ion-label>
               <ion-item lines="none">
-                <ion-select value="" multiple="false" placeholder="Registration">
-                  <ion-select-option value="Description">Registration</ion-select-option>
-                  <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                <ion-select
+                  multiple="false"
+                  [(ngModel)]="staffTimesheet.StaffGuid"
+                >
+                  <ion-select-option value="Description"
+                    >Registration</ion-select-option
+                  >
                 </ion-select>
               </ion-item>
             </div>
@@ -260,19 +272,19 @@
             <div class="item-input">
               <ion-label>Date</ion-label>
               <ion-item lines="none">
-                <ion-datetime display-format="MMM DD YYYY" value="Sep 16 2020, 12:02 "></ion-datetime>
+                <ion-datetime
+                  display-format="MMM DD YYYY"
+                  [(ngModel)]="staffTimesheet.Staff_TrnDate"
+                ></ion-datetime>
               </ion-item>
             </div>
           </ion-col>
         </ion-row>
       </ion-grid>
     </div>
-
-
   </div>
 
   <div class="section">
-
     <div class="title">
       <h3>Time Allocations</h3>
     </div>
@@ -284,7 +296,10 @@
             <div class="item-input">
               <ion-label>Sick Leave</ion-label>
               <ion-item lines="none" class="end">
-                <ion-datetime display-format="HH" placeholder="Date"></ion-datetime>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="staffTimesheet.Sick_leave"
+                ></ion-input>
                 <div class="end-slot flex al-center jc-center" slot="end">
                   <p>hrs</p>
                 </div>
@@ -295,7 +310,10 @@
             <div class="item-input">
               <ion-label>Leave</ion-label>
               <ion-item lines="none" class="end">
-                <ion-datetime display-format="HH" placeholder="Date"></ion-datetime>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="staffTimesheet.Leave"
+                ></ion-input>
                 <div class="end-slot flex al-center jc-center" slot="end">
                   <p>hrs</p>
                 </div>
@@ -306,7 +324,10 @@
             <div class="item-input">
               <ion-label>AWOL </ion-label>
               <ion-item lines="none" class="end">
-                <ion-datetime display-format="HH" placeholder="Date"></ion-datetime>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="staffTimesheet.AWOL"
+                ></ion-input>
                 <div class="end-slot flex al-center jc-center" slot="end">
                   <p>hrs</p>
                 </div>
@@ -317,7 +338,10 @@
             <div class="item-input">
               <ion-label>Non Productive</ion-label>
               <ion-item lines="none" class="end">
-                <ion-datetime display-format="HH" placeholder="Date"></ion-datetime>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="staffTimesheet.Non_Productive"
+                ></ion-input>
                 <div class="end-slot flex al-center jc-center" slot="end">
                   <p>hrs</p>
                 </div>
@@ -328,19 +352,10 @@
             <div class="item-input">
               <ion-label>Supervisor</ion-label>
               <ion-item lines="none" class="end">
-                <ion-datetime display-format="HH" placeholder="Date"></ion-datetime>
-                <div class="end-slot flex al-center jc-center" slot="end">
-                  <p>hrs </p>
-                </div>
-              </ion-item>
-            </div>
-          </ion-col>
-
-          <ion-col size="4" offset="0.5">
-            <div class="item-input">
-              <ion-label>AWOL </ion-label>
-              <ion-item lines="none" class="end">
-                <ion-datetime display-format="HH" placeholder="Date"></ion-datetime>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="staffTimesheet.Supervisor"
+                ></ion-input>
                 <div class="end-slot flex al-center jc-center" slot="end">
                   <p>hrs</p>
                 </div>
@@ -352,29 +367,30 @@
             <div class="item-input">
               <ion-label>Comment</ion-label>
               <ion-item lines="none">
-                <ion-textarea rows="5" placeholder="Comment Goes here"></ion-textarea>
+                <ion-textarea
+                  rows="5"
+                  [(ngModel)]="staffTimesheet.Prod_Comm"
+                ></ion-textarea>
               </ion-item>
             </div>
           </ion-col>
         </ion-row>
       </ion-grid>
     </div>
-
-
   </div>
 
   <div class="info ion-text-center ion-padding">
-    The time below comes from the WS Productive Time Screen and cannot be modified on this screen.
+    The time below come from the WS Productive Time Screen and cannot be
+    modified on this screen.
   </div>
 
   <div class="section">
-
     <ion-row class="sub-t">
       <ion-col size="6">
         <p>Time which is linked to individual items in the system</p>
       </ion-col>
       <ion-col size="6">
-        <p>Time which is linked to individual items in the system</p>
+        <p>Time which is not linked to individual items in the system</p>
       </ion-col>
     </ion-row>
 
@@ -385,7 +401,11 @@
             <div class="item-input">
               <ion-label>Productive (1)</ion-label>
               <ion-item lines="none" class="end">
-                <ion-datetime display-format="HH" placeholder="Date"></ion-datetime>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="staffTimesheet.Productive"
+                  disabled
+                ></ion-input>
                 <div class="end-slot flex al-center jc-center" slot="end">
                   <p>hrs</p>
                 </div>
@@ -396,7 +416,11 @@
             <div class="item-input">
               <ion-label>Overtime (1)</ion-label>
               <ion-item lines="none" class="end">
-                <ion-datetime display-format="HH" placeholder="Date"></ion-datetime>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="staffTimesheet.Overtime"
+                  disabled
+                ></ion-input>
                 <div class="end-slot flex al-center jc-center" slot="end">
                   <p>hrs</p>
                 </div>
@@ -407,7 +431,11 @@
             <div class="item-input">
               <ion-label>Productive (2)</ion-label>
               <ion-item lines="none" class="end">
-                <ion-datetime display-format="HH" placeholder="Date"></ion-datetime>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="staffTimesheet.Non_Productive"
+                  disabled
+                ></ion-input>
                 <div class="end-slot flex al-center jc-center" slot="end">
                   <p>hrs</p>
                 </div>
@@ -418,7 +446,11 @@
             <div class="item-input">
               <ion-label>Overtime (2)</ion-label>
               <ion-item lines="none" class="end">
-                <ion-datetime display-format="HH" placeholder="Date"></ion-datetime>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="staffTimesheet.Overtime_NonItem"
+                  disabled
+                ></ion-input>
                 <div class="end-slot flex al-center jc-center" slot="end">
                   <p>hrs</p>
                 </div>
@@ -429,7 +461,11 @@
             <div class="item-input">
               <ion-label>Travel (1)</ion-label>
               <ion-item lines="none" class="end">
-                <ion-datetime display-format="HH" placeholder="Date"></ion-datetime>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="staffTimesheet.Travel"
+                  disabled
+                ></ion-input>
                 <div class="end-slot flex al-center jc-center" slot="end">
                   <p>hrs</p>
                 </div>
@@ -440,9 +476,13 @@
             <div class="item-input">
               <ion-label>Overtravel (1)</ion-label>
               <ion-item lines="none" class="end">
-                <ion-datetime display-format="HH" placeholder="Date"></ion-datetime>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="staffTimesheet.OTTravel1"
+                  disabled
+                ></ion-input>
                 <div class="end-slot flex al-center jc-center" slot="end">
-                  <p>hrs </p>
+                  <p>hrs</p>
                 </div>
               </ion-item>
             </div>
@@ -452,7 +492,11 @@
             <div class="item-input">
               <ion-label>Travel (2)</ion-label>
               <ion-item lines="none" class="end">
-                <ion-datetime display-format="HH" placeholder="Date"></ion-datetime>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="staffTimesheet.Travel_NonItem"
+                  disabled
+                ></ion-input>
                 <div class="end-slot flex al-center jc-center" slot="end">
                   <p>hrs</p>
                 </div>
@@ -463,9 +507,13 @@
             <div class="item-input">
               <ion-label>Overtravel (2)</ion-label>
               <ion-item lines="none" class="end">
-                <ion-datetime display-format="HH" placeholder="Date"></ion-datetime>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="staffTimesheet.OTTravel2"
+                  disabled
+                ></ion-input>
                 <div class="end-slot flex al-center jc-center" slot="end">
-                  <p>hrs </p>
+                  <p>hrs</p>
                 </div>
               </ion-item>
             </div>
@@ -475,16 +523,11 @@
         <ion-row>
           <ion-col size="11.5" class="ion-no-padding">
             <div class="btn-holder ion-text-right">
-              <ion-button>
-                Add
-              </ion-button>
+              <ion-button> Add </ion-button>
             </div>
           </ion-col>
         </ion-row>
       </ion-grid>
     </div>
-
-
   </div>
-
 </ion-content>

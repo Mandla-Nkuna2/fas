@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import OilStoreTransfer from 'src/app/models/OilStoreTransfer.model';
 
 @Component({
   selector: 'app-oiltransafer',
@@ -7,8 +8,11 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./oiltransafer.page.scss'],
 })
 export class OiltransaferPage implements OnInit {
+  oilStoreTransf: OilStoreTransfer
 
-  constructor( private navCtrl: NavController ) { }
+  constructor( private navCtrl: NavController ) {
+    this.oilStoreTransf = new OilStoreTransfer()
+   }
 
   ngOnInit() {
   }

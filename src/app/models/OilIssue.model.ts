@@ -1,4 +1,4 @@
-export default class OilIssues {
+export default class OilIssue {
   OilIssueGuid: string
   OilIssueDate: string
   CaptureDate: string
@@ -17,7 +17,7 @@ export default class OilIssues {
   CaptureName: string
   RegIndex: string
   Flag_Trans: string
-  Top_Serv: string
+  Top_Serv: boolean
   CostCentGuid: string
   InvAmt: number
   StaffGuid: string

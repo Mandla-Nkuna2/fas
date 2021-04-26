@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import SupplierDeposit from 'src/app/models/SupplierDeposit.model';
 
 @Component({
   selector: 'app-supdeposit',
@@ -7,8 +8,11 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./supdeposit.page.scss'],
 })
 export class SupdepositPage implements OnInit {
+  supplierDeposit: SupplierDeposit
 
-  constructor(private navCtrl: NavController) { }
+  constructor(private navCtrl: NavController) {
+    this.supplierDeposit = new SupplierDeposit()
+   }
 
   ngOnInit() {
   }

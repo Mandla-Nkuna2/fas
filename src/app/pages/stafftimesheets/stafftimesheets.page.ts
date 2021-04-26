@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import StaffTimesheet from 'src/app/models/StaffTimesheet.model';
 
 @Component({
   selector: 'app-stafftimesheets',
@@ -7,8 +8,11 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./stafftimesheets.page.scss'],
 })
 export class StafftimesheetsPage implements OnInit {
+  staffTimesheet: StaffTimesheet
 
-  constructor(private navCtrl: NavController) { }
+  constructor(private navCtrl: NavController) {
+    this.staffTimesheet = new StaffTimesheet();
+   }
 
   ngOnInit() {
   }

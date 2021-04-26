@@ -1,30 +1,34 @@
 export default class DailyOperationRec {
-  registration: string
-  location: string
-  date: string
-  rate: number
-  voucherNo: string
-  orderNo: string
-  refNo: string
-  openMeterReading: number
-  closeMeterReading: number
-  meterReadingDiff: number
-  costCentre: string
-  rainHours: number
-  standbyHours: number
-  breakdownHours: number
-  otherHours: number
-  reasonForOtherHrs: string
-  kmOrHoursWorked: number
-  weekendKmOrHrsWorked: number
-  loadCapacity: number
+  PlantSheetguid : string
+  Voucherno: string
+  Itemguid: string
+  PlantSheetDate: string
+  OpenOdo: number
+  CloseOdo: number
+  CalWrkKmHr: number
+  WrkKmHr: number
+  WeekendKmHr: number
+  RainHrs: number
+  StandHrs: number
+  BreakHrs: number
+  OtherHrs: number
+  Reason: string
+  CostCentreguid: string
+  LoadCapacity: number
+  RegIndex: string
+  Capturedate: string
+  CaptureName: string
+  LoadUnit: string
+  OrdNumber: number
+  RefNumber: string
+  LocItemCode: string
   operator: Operator
 };
 
 export class Operator {
-  name: string
-  startTime: string
-  endTime: string
-  authorizedOperationHrs: number
+  StaffGuid: string
+  Starttime: string
+  Endtime: string
+  BreakTime: number
 };
 

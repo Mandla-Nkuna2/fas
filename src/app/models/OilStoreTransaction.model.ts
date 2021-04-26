@@ -1,9 +1,9 @@
-export default class OilStoreTransactions {
+export default class OilStoreTransaction {
   OilStoreTrnGuid: string
   OilStoreTrnDate: string
   CaptureDate: string
   OilStoreGuid: string
-  Purc_or_Count: number
+  Purc_or_Count: string
   OilTypeguid: string
   OilQtyinStore: number
   OilQtyPurc: number

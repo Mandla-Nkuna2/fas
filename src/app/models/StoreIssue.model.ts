@@ -1,4 +1,4 @@
-export default class StoreIssues {
+export default class StoreIssue {
   StoreIssueGuid: string
   StoreIssuedate: string
   CaptureDate: string

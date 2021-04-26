@@ -1,17 +1,29 @@
 <ion-content class="ion-padding">
   <div class="title-holder flex al-center">
-    <ion-back-button defaultHref="dailyoperations" mode="ios" text=""></ion-back-button>
+    <ion-back-button
+      defaultHref="dailyoperations"
+      mode="ios"
+      text=""
+    ></ion-back-button>
     <h2>Daily Operation Record</h2>
     <div class="date-holder">
       <div class="itm flex al-center">
         <div class="thumb">
-          <ion-icon slot="icon-only" src="assets/imgs/icn-calender.svg"></ion-icon>
+          <ion-icon
+            slot="icon-only"
+            src="assets/imgs/icn-calender.svg"
+          ></ion-icon>
         </div>
-        <ion-datetime display-format="MMM DD YYYY" value="Sep 16 2020, 12:02 "></ion-datetime>
+        <ion-datetime
+          display-format="MMM DD YYYY"
+          value="Sep 16 2020, 12:02 "
+        ></ion-datetime>
         <p>to</p>
-        <ion-datetime display-format="MMM DD YYYY" value="Sep 16 2020, 12:02 "></ion-datetime>
+        <ion-datetime
+          display-format="MMM DD YYYY"
+          value="Sep 16 2020, 12:02 "
+        ></ion-datetime>
       </div>
-
     </div>
   </div>
   <div class="section">
@@ -30,9 +42,7 @@
       </div>
       <ion-grid fixed>
         <ion-row class="title-row">
-          <ion-col size="0.5" class="flex al-center jc-center">
-
-          </ion-col>
+          <ion-col size="0.5" class="flex al-center jc-center"> </ion-col>
           <ion-col size="1.2" class="flex al-center jc-center">
             <h4>Registration</h4>
           </ion-col>
@@ -46,10 +56,16 @@
             <h4>close meter</h4>
           </ion-col>
           <ion-col size="1.2" class="flex al-center jc-center">
-            <h4>Km/hr <br> worked</h4>
+            <h4>
+              Km/hr <br />
+              worked
+            </h4>
           </ion-col>
           <ion-col size="1.4" class="flex al-center jc-center">
-            <h4>wkend k/h <br> worked</h4>
+            <h4>
+              wkend k/h <br />
+              worked
+            </h4>
           </ion-col>
           <ion-col size="1.2" class="flex al-center jc-center">
             <h4>voucher no.</h4>
@@ -79,7 +95,7 @@
               <p>03521</p>
             </ion-col>
             <ion-col size="1.2" class="flex al-center jc-center">
-              <p>150 </p>
+              <p>150</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
               <p>1000</p>
@@ -113,7 +129,7 @@
               <p>03521</p>
             </ion-col>
             <ion-col size="1.2" class="flex al-center jc-center">
-              <p>150 </p>
+              <p>150</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
               <p>1000</p>
@@ -147,7 +163,7 @@
               <p>03521</p>
             </ion-col>
             <ion-col size="1.2" class="flex al-center jc-center">
-              <p>150 </p>
+              <p>150</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
               <p>1000</p>
@@ -163,13 +179,11 @@
             </ion-col>
           </ion-row>
         </div>
-
       </ion-grid>
     </div>
   </div>
 
   <div class="section">
-
     <div class="title">
       <h3>Add</h3>
     </div>
@@ -181,8 +195,7 @@
             <div class="item-input">
               <ion-label>Registration</ion-label>
               <ion-item lines="none">
-                <ion-select value="Registration" multiple="false" placeholder="Registration" disabled>
-                  <ion-select-option value="Registration">Registration</ion-select-option>
+                <ion-select multiple="false" [(ngModel)]="dOpsRec.Itemguid">
                   <ion-select-option value="hawaii">Hawaii</ion-select-option>
                 </ion-select>
               </ion-item>
@@ -191,10 +204,9 @@
 
           <ion-col size="8" offset="0.5">
             <div class="item-input">
-              <ion-label>Loaction</ion-label>
+              <ion-label>Location</ion-label>
               <ion-item lines="none">
-                <ion-select value="Description" multiple="false" placeholder="Description">
-                  <ion-select-option value="Description">Description</ion-select-option>
+                <ion-select multiple="false" [(ngModel)]="dOpsRec.Itemguid">
                   <ion-select-option value="hawaii">Hawaii</ion-select-option>
                 </ion-select>
               </ion-item>
@@ -205,13 +217,16 @@
             <div class="item-input">
               <ion-label>Date</ion-label>
               <ion-item lines="none">
-                <ion-datetime display-format="DD MMM YYYY" placeholder="Date" value="">
+                <ion-datetime
+                  display-format="DD MMM YYYY"
+                  [(ngModel)]="dOpsRec.PlantSheetDate"
+                >
                 </ion-datetime>
               </ion-item>
             </div>
           </ion-col>
 
-          <ion-col size="3.5" offset="0.5">
+          <!-- <ion-col size="3.5" offset="0.5">
             <div class="item-input">
               <ion-label>Date</ion-label>
               <ion-item lines="none" class="end">
@@ -221,13 +236,16 @@
                 </div>
               </ion-item>
             </div>
-          </ion-col>
+          </ion-col> -->
 
           <ion-col size="4" offset="0.5">
             <div class="item-input">
               <ion-label>Voucher No.</ion-label>
               <ion-item lines="none" class="end">
-                <ion-input type="text" value="" placeholder="Cost Centre"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="dOpsRec.Voucherno"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -236,16 +254,22 @@
             <div class="item-input">
               <ion-label>Order No.</ion-label>
               <ion-item lines="none" class="end">
-                <ion-input type="text" value="" placeholder="Staff Code"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="dOpsRec.OrdNumber"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
 
-          <ion-col size="3.5" offset="0.5">
+          <ion-col size="3.5">
             <div class="item-input">
               <ion-label>Ref. No.</ion-label>
               <ion-item lines="none">
-                <ion-input type="text" placeholder="Supplier"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="dOpsRec.RefNumber"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -254,7 +278,10 @@
             <div class="item-input">
               <ion-label>Open Meter Reading</ion-label>
               <ion-item lines="none">
-                <ion-input type="text" placeholder="Voucher"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="dOpsRec.OpenOdo"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -263,16 +290,22 @@
             <div class="item-input">
               <ion-label>Close Meter Reading</ion-label>
               <ion-item lines="none">
-                <ion-input type="text" placeholder="Voucher"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="dOpsRec.CloseOdo"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
 
-          <ion-col size="3.5" offset="0.5">
+          <ion-col size="3.5">
             <div class="item-input">
               <ion-label>Diff. Btw Meter Reading</ion-label>
               <ion-item lines="none">
-                <ion-input type="text" placeholder="Voucher"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="dOpsRec.CalWrkKmHr"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -281,8 +314,10 @@
             <div class="item-input">
               <ion-label>Cost Center</ion-label>
               <ion-item lines="none">
-                <ion-select value="CostCenter" multiple="false" placeholder="Description">
-                  <ion-select-option value="CostCenter">Cost Center</ion-select-option>
+                <ion-select
+                  multiple="false"
+                  [(ngModel)]="dOpsRec.CostCentreguid"
+                >
                   <ion-select-option value="hawaii">Hawaii</ion-select-option>
                 </ion-select>
               </ion-item>
@@ -293,16 +328,22 @@
             <div class="item-input">
               <ion-label>Rain Hrs.</ion-label>
               <ion-item lines="none">
-                <ion-input type="text" placeholder="Hrs"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="dOpsRec.RainHrs"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
 
-          <ion-col size="2.5" offset="0.5">
+          <ion-col size="2.5">
             <div class="item-input">
               <ion-label>Standby Hrs.</ion-label>
               <ion-item lines="none">
-                <ion-input type="text" placeholder="Hrs"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="dOpsRec.StandHrs"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -311,7 +352,10 @@
             <div class="item-input">
               <ion-label>Breakdown Hrs</ion-label>
               <ion-item lines="none">
-                <ion-input type="text" placeholder="Hrs"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="dOpsRec.BreakHrs"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -320,7 +364,10 @@
             <div class="item-input">
               <ion-label>Other Hrs.</ion-label>
               <ion-item lines="none">
-                <ion-input type="text" placeholder="Hrs"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="dOpsRec.OtherHrs"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -329,16 +376,19 @@
             <div class="item-input">
               <ion-label>Reason for other hours</ion-label>
               <ion-item lines="none">
-                <ion-input type="text" placeholder="Hrs"></ion-input>
+                <ion-input type="text" [(ngModel)]="dOpsRec.Reason"></ion-input>
               </ion-item>
             </div>
           </ion-col>
 
           <ion-col size="2.5" offset="0.5">
             <div class="item-input">
-              <ion-label>Km/Hrs Worked</ion-label>
+              <ion-label>Km / Hrs Worked</ion-label>
               <ion-item lines="none">
-                <ion-input type="text" placeholder="Hrs"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="dOpsRec.WrkKmHr"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -347,7 +397,10 @@
             <div class="item-input">
               <ion-label>Weekend Km/Hrs Worked</ion-label>
               <ion-item lines="none">
-                <ion-input type="text" placeholder="Hrs"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="dOpsRec.WeekendKmHr"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -356,9 +409,8 @@
             <div class="item-input">
               <ion-label>Load Capacity</ion-label>
               <ion-item lines="none">
-                <ion-select value="Voucher" multiple="false" placeholder="Voucher">
+                <ion-select multiple="false" [(ngModel)]="dOpsRec.LoadCapacity">
                   <ion-select-option value="Voucher">Voucher</ion-select-option>
-                  <ion-select-option value="hawaii">Hawaii</ion-select-option>
                 </ion-select>
               </ion-item>
             </div>
@@ -368,9 +420,8 @@
             <div class="item-input">
               <ion-label>Voucher</ion-label>
               <ion-item lines="none">
-                <ion-select value="Voucher" multiple="false" placeholder="Voucher">
+                <ion-select multiple="false" placeholder="Voucher">
                   <ion-select-option value="Voucher">Voucher</ion-select-option>
-                  <ion-select-option value="hawaii">Hawaii</ion-select-option>
                 </ion-select>
               </ion-item>
             </div>
@@ -380,9 +431,7 @@
     </div>
   </div>
 
-
   <div class="section">
-
     <div class="title">
       <h3>Operator</h3>
     </div>
@@ -390,36 +439,28 @@
     <div class="the-form">
       <ion-grid fixed>
         <ion-row>
-
-
           <ion-col size="3.5">
             <div class="item-input">
               <ion-label>Name</ion-label>
               <ion-item lines="none">
-                <ion-select value="Registration" multiple="false" placeholder="Registration" disabled>
-                  <ion-select-option value="Registration">Registration</ion-select-option>
+                <ion-select
+                  multiple="false"
+                  [(ngModel)]="dOpsRec.operator.StaffGuid"
+                >
                   <ion-select-option value="hawaii">Hawaii</ion-select-option>
                 </ion-select>
               </ion-item>
             </div>
           </ion-col>
 
-
           <ion-col size="1" offset="0.25">
             <div class="item-input">
               <ion-label>Start Time</ion-label>
               <ion-item lines="none">
-                <ion-datetime display-format="HH" placeholder="HH" value="">
-                </ion-datetime>
-              </ion-item>
-            </div>
-          </ion-col>
-
-          <ion-col size="1" offset="0.125">
-            <div class="item-input">
-              <ion-label>&nbsp;</ion-label>
-              <ion-item lines="none">
-                <ion-datetime display-format="mm" placeholder="mm" value="">
+                <ion-datetime
+                  display-format="HH mm"
+                  [(ngModel)]="dOpsRec.operator.Starttime"
+                >
                 </ion-datetime>
               </ion-item>
             </div>
@@ -429,17 +470,10 @@
             <div class="item-input">
               <ion-label>End Time</ion-label>
               <ion-item lines="none">
-                <ion-datetime display-format="HH" placeholder="HH" value="">
-                </ion-datetime>
-              </ion-item>
-            </div>
-          </ion-col>
-
-          <ion-col size="1" offset="0.125">
-            <div class="item-input">
-              <ion-label>&nbsp;</ion-label>
-              <ion-item lines="none">
-                <ion-datetime display-format="mm" placeholder="mm" value="">
+                <ion-datetime
+                  display-format="HH mm"
+                  [(ngModel)]="dOpsRec.operator.Endtime"
+                >
                 </ion-datetime>
               </ion-item>
             </div>
@@ -449,14 +483,13 @@
             <div class="item-input">
               <ion-label>Autorized Operators Hours</ion-label>
               <ion-item lines="none">
-                <ion-input type="text" placeholder="Autorized Operators Hours"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="dOpsRec.operator.BreakTime"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
-
-
-
-
         </ion-row>
       </ion-grid>
     </div>
@@ -464,12 +497,9 @@
     <ion-row>
       <ion-col size="12" class="ion-no-padding">
         <div class="btn-holder ion-text-right">
-          <ion-button>
-            Add
-          </ion-button>
+          <ion-button> Add </ion-button>
         </div>
       </ion-col>
     </ion-row>
   </div>
-
 </ion-content>
