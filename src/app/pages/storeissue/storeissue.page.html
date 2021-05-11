@@ -22,6 +22,89 @@
       </div>
     </div>
   </div>
+
+  <div class="navbar" class="ion-text-center">
+    <ion-button
+      fill="clear"
+      routerLink="/addissuesinfo"
+      routerDirection="root"
+      routerLinkActive="active-link"
+      class="link"
+    >
+      Add information
+    </ion-button>
+
+    <ion-button
+      fill="clear"
+      routerLink="/accidentmanagement"
+      routerDirection="root"
+      routerLinkActive="active-link"
+      class="link"
+    >
+      Accident management
+    </ion-button>
+
+    <ion-button
+      fill="clear"
+      routerLink="/oilissues"
+      routerDirection="root"
+      routerLinkActive="active-link"
+      class="link"
+    >
+      Oil Issues
+    </ion-button>
+
+    <ion-button
+      fill="clear"
+      routerLink="/fuelissues"
+      routerDirection="root"
+      routerLinkActive="active-link"
+      class="link"
+    >
+      Fuel Issues
+    </ion-button>
+
+    <ion-button
+      fill="clear"
+      routerLink="/oilstoretrans"
+      routerDirection="root"
+      routerLinkActive="active-link"
+      class="link"
+    >
+      Oil store transactions
+    </ion-button>
+
+    <ion-button
+      fill="clear"
+      routerLink="/oiltransafer"
+      routerDirection="root"
+      routerLinkActive="active-link"
+      class="link"
+    >
+      Oil store transfer
+    </ion-button>
+
+    <ion-button
+      fill="clear"
+      routerLink="/browsertransactions"
+      routerDirection="root"
+      routerLinkActive="active-link"
+      class="link"
+    >
+      Bowser transactions
+    </ion-button>
+
+    <ion-button
+      fill="clear"
+      routerLink="/browsertransfer"
+      routerDirection="root"
+      routerLinkActive="active-link"
+      class="link"
+    >
+      Bowser transfer
+    </ion-button>
+  </div>
+
   <div class="section">
     <div class="grid-holder">
       <div class="top-toolbar flex al-center jc-between">
@@ -234,12 +317,17 @@
           <ion-col size="3.5">
             <div class="item-input">
               <ion-label>Registration</ion-label>
-              <ion-item lines="none">
-                <ion-select multiple="false" [(ngModel)]="storeIssue.ItemGuid">
-                  <ion-select-option value="Registration"
-                    >Registration</ion-select-option
-                  >
-                </ion-select>
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="storeIssue"
+                  [items]="registration"
+                  itemValueField="ColourGuid"
+                  itemTextField="Colour"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onRegistrationLeft()"
+                >
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>
@@ -289,13 +377,17 @@
           <ion-col size="3.5" offset="0.5">
             <div class="item-input">
               <ion-label>Maintenance Event Ref. No.</ion-label>
-              <ion-item lines="none">
-                <ion-select
-                  multiple="false"
-                  [(ngModel)]="storeIssue.MaintEvntGuid"
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="storeIssue"
+                  [items]="registration"
+                  itemValueField="ColourGuid"
+                  itemTextField="Colour"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onRegistrationLeft()"
                 >
-                  <ion-select-option value="hawaii">Hawaii</ion-select-option>
-                </ion-select>
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>
@@ -303,10 +395,17 @@
           <ion-col size="4" offset="0.5">
             <div class="item-input">
               <ion-label>Supplier</ion-label>
-              <ion-item lines="none">
-                <ion-select multiple="false" [(ngModel)]="storeIssue.SuppGuid">
-                  <ion-select-option value="hawaii">Hawaii</ion-select-option>
-                </ion-select>
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="storeIssue"
+                  [items]="registration"
+                  itemValueField="ColourGuid"
+                  itemTextField="Colour"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onRegistrationLeft()"
+                >
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>
@@ -314,13 +413,17 @@
           <ion-col size="3.5">
             <div class="item-input">
               <ion-label>Store Item</ion-label>
-              <ion-item lines="none">
-                <ion-select
-                  multiple="false"
-                  [(ngModel)]="storeIssue.StoreCatgItemGuid"
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="storeIssue"
+                  [items]="registration"
+                  itemValueField="ColourGuid"
+                  itemTextField="Colour"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onRegistrationLeft()"
                 >
-                  <ion-select-option value="hawaii">Hawaii</ion-select-option>
-                </ion-select>
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>

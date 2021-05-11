@@ -5,7 +5,7 @@
       mode="ios"
       text=""
     ></ion-back-button>
-    <h2>FIXED COST DETAILS</h2>
+    <h2>FIXED COST Transfer</h2>
     <div class="date-holder">
       <div class="itm flex al-center">
         <div class="thumb">
@@ -206,13 +206,17 @@
           <ion-col size="3.5">
             <div class="item-input">
               <ion-label>Registration</ion-label>
-              <ion-item lines="none">
-                <ion-select
-                  multiple="false"
-                  [(ngModel)]="fixedCostTransf.ItemGuid"
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="fixedCostTransf"
+                  [items]="registration"
+                  itemValueField="ColourGuid"
+                  itemTextField="Colour"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onRegistrationLeft()"
                 >
-                  <ion-select-option value="hawaii">Hawaii</ion-select-option>
-                </ion-select>
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>
@@ -233,13 +237,17 @@
           <ion-col size="4" offset="0.5">
             <div class="item-input">
               <ion-label>Cost Center</ion-label>
-              <ion-item lines="none">
-                <ion-select
-                  multiple="false"
-                  [(ngModel)]="fixedCostTransf.CostCentGuid"
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="fixedCostTransf"
+                  [items]="registration"
+                  itemValueField="ColourGuid"
+                  itemTextField="Colour"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onRegistrationLeft()"
                 >
-                  <ion-select-option value="hawaii">Hawaii</ion-select-option>
-                </ion-select>
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>

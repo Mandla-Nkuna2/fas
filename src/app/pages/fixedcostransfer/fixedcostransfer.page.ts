@@ -9,6 +9,8 @@ import FixedCostTransfer from 'src/app/models/FixedCostTransfer.model';
 export class FixedcostransferPage implements OnInit {
   fixedCostTransf: FixedCostTransfer
 
+  registration: any[]
+
   constructor() {
     this.fixedCostTransf = new FixedCostTransfer()
    }
@@ -16,4 +18,11 @@ export class FixedcostransferPage implements OnInit {
   ngOnInit() {
   }
 
+  onRegistration(){}
+  onRegistrationLeft(){}
+
+  onCostCentre(){}
+  onCostCentreLeft(){}
+
+  onRegistrationSel(obj){}
 }

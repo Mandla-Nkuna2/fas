@@ -1,45 +1,63 @@
-ion-content
-{
-    .content
-    {
-       .section
-       {
-           margin-bottom: 10px;
-        .title
-        {
-            margin: 16px 0 10px 0;
-            h3
-            {
-                color: #2F3F51;
-                font-family: 'Bold';
-                font-size: 18px;
-                margin: 0;
-            }
+ion-content {
+  .content {
+    .section {
+      margin-bottom: 10px;
+      .title {
+        margin: 16px 0 10px 0;
+        h3 {
+          color: #2f3f51;
+          font-family: "Bold";
+          font-size: 18px;
+          margin: 0;
         }
+      }
 
-        .the-form
-        {
-            ion-col
-            {
-                margin-bottom: 10px !important;
-            }
+      .the-form {
+        ion-col {
+          margin-bottom: 10px !important;
         }
-       }
-
-       .bottom
-       {
-           margin: 0 !important;
-
-           .btn-holder
-           {
-               margin-right: 10px;
-               ion-button
-               {
-                   --border-radius: 10px;
-                   height: 2.5rem;
-                   --color: white;
-               }
-           }
-       }
+      }
     }
+
+    .bottom {
+      margin: 0 !important;
+
+      .btn-holder {
+        margin-right: 10px;
+        ion-button {
+          --border-radius: 10px;
+          height: 2.5rem;
+          --color: white;
+        }
+      }
+    }
+  }
+}
+
+.dropdown {
+  display: table;
+}
+
+.dropdown-content {
+  display: none;
+  border: 3px solid gray;
+}
+
+.dropdown-content .normal-option .option,
+.dropdown-content .option {
+  border-top: 1px solid gray;
+  text-align: center;
+  padding: 2px 10px;
+  cursor: pointer;
+}
+
+.dropdown-content .normal-option .option:hover,
+.dropdown-content .option:hover {
+  background-color: lightgray;
+}
+
+.dropdown-header {
+  border: 3px solid gray;
+  padding: 10px 20px;
+  cursor: pointer;
 }

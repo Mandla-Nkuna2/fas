@@ -10,6 +10,8 @@ import { Component, OnInit } from '@angular/core';
 export class DailyoperationrecordPage implements OnInit {
   dOpsRec: DailyOperationRec
 
+  registration: any []
+
   constructor() {
     this.dOpsRec = new DailyOperationRec()
     this.dOpsRec.operator = new Operator()
@@ -17,5 +19,22 @@ export class DailyoperationrecordPage implements OnInit {
 
   ngOnInit() {
   }
+
+  onRegistration(){}
+  onRegistrationLeft(){}
+
+  onLoccation(){}
+  onLoccationLeft(){}
+
+  onCostCentre(){}
+  onCostCentreLeft(){}
+
+  onVoucher(){}
+  onVoucherLeft(){}
+
+  onOperatorName(){}
+  onOperatorNameLeft(){}
+
+  onRegistrationSel(obj){}
 
 }

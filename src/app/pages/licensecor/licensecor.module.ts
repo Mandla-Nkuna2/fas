@@ -7,13 +7,17 @@ import { IonicModule } from '@ionic/angular';
 import { LicensecorPageRoutingModule } from './licensecor-routing.module';
 
 import { LicensecorPage } from './licensecor.page';
+import { ComponentsModule } from 'src/app/components/components.module';
+import { IonicSelectableModule } from 'ionic-selectable';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    LicensecorPageRoutingModule
+    LicensecorPageRoutingModule,
+    ComponentsModule,
+    IonicSelectableModule
   ],
   declarations: [LicensecorPage]
 })

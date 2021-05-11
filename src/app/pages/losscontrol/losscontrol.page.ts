@@ -10,6 +10,8 @@ import LossControl from 'src/app/models/LossControl.model';
 export class LosscontrolPage implements OnInit {
   lossControl: LossControl
 
+  agent: any []
+
   constructor(private navCtrl: NavController) {
     this.lossControl = new LossControl()
   }
@@ -21,5 +23,40 @@ export class LosscontrolPage implements OnInit {
   {
     this.navCtrl.navigateForward('maintaincevent');
   }
+
+  onAgent(){}
+  onAgentLeft(){}
+
+  onRegistration(){}
+  onRegistrationLeft(){}
+
+  onLossType(){}
+  onLossTypeLeft(){}
+
+  onReported(){}
+  onReportedLeft(){}
+
+  onReportedBy(){}
+  onReportedByLeft(){}
+
+  onDriverName(){}
+  onDriverNameLeft(){}
+
+  onTripAuth(){}
+  onTripAuthLeft(){}
+
+  onForfeiture(){}
+  onForfeitureLeft(){}
+
+  onDetermnOfLiab(){}
+  onDetermnOfLiabLeft(){}
+
+  onCostingDocs(){}
+  onCostingDocsLeft(){}
+
+  onActionTaken(){}
+  onActionTakenLeft(){}
+
+  agentSelect(obj){}
 
 }

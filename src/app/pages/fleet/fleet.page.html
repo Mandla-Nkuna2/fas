@@ -4,11 +4,47 @@
     <div class="date-holder">
       <ion-item lines="none">
         <div class="thumb" slot="start">
-          <ion-icon slot="icon-only" src="assets/imgs/icn-calender.svg"></ion-icon>
+          <ion-icon
+            slot="icon-only"
+            src="assets/imgs/icn-calender.svg"
+          ></ion-icon>
         </div>
-        <ion-datetime display-format="MMM DD YYYY hh:mm a" value="Sep 16 2020, 12:02 "></ion-datetime>
+        <ion-datetime
+          display-format="MMM DD YYYY hh:mm a"
+          value="Sep 16 2020, 12:02 "
+        ></ion-datetime>
       </ion-item>
     </div>
+  </div>
+
+  <div class="navbar" class="ion-text-center">
+    <ion-button
+      fill="clear"
+      routerLink="/dailyoperations"
+      routerDirection="root"
+      routerLinkActive="active-link"
+      class="link"
+    >
+      Daily Operations
+    </ion-button>
+    <ion-button
+      fill="clear"
+      routerLink="/dailyoperationrecord"
+      routerDirection="root"
+      routerLinkActive="active-link"
+      class="link"
+    >
+      Daily Operation record
+    </ion-button>
+    <ion-button
+      fill="clear"
+      routerLink="/systemmanagement"
+      routerDirection="root"
+      routerLinkActive="active-link"
+      class="link"
+    >
+      System management
+    </ion-button>
   </div>
 
   <div class="section">
@@ -16,20 +52,18 @@
       <div class="top-toolbar flex al-center jc-between">
         <h3>Fleet</h3>
         <div class="btns-holder flex al-center">
-          <ion-button >
+          <ion-button>
             <ion-icon slot="icon-only" name="options-outline"></ion-icon>
           </ion-button>
 
-          <ion-button >
+          <ion-button>
             <ion-icon slot="icon-only" name="search-outline"></ion-icon>
           </ion-button>
         </div>
-    </div>
+      </div>
       <ion-grid fixed>
         <ion-row class="title-row">
-          <ion-col size="0.5" class="flex al-center jc-center">
-
-          </ion-col>
+          <ion-col size="0.5" class="flex al-center jc-center"> </ion-col>
           <ion-col size="1.5" class="flex al-center jc-center">
             <h4>Vehicle</h4>
           </ion-col>
@@ -63,9 +97,7 @@
             <p>Truck</p>
           </ion-col>
           <ion-col size="2" class="flex al-center jc-center">
-            <ion-badge  mode="ios" id="onroute">
-              On Route
-            </ion-badge>
+            <ion-badge mode="ios" id="onroute"> On Route </ion-badge>
           </ion-col>
           <ion-col size="2" class="flex al-center jc-center">
             <p>Brooke Cagle</p>
@@ -95,9 +127,7 @@
             <p>Truck</p>
           </ion-col>
           <ion-col size="2" class="flex al-center jc-center">
-            <ion-badge  mode="ios" id="available">
-              Available
-            </ion-badge>
+            <ion-badge mode="ios" id="available"> Available </ion-badge>
           </ion-col>
           <ion-col size="2" class="flex al-center jc-center">
             <p>Brooke Cagle</p>
@@ -127,9 +157,7 @@
             <p>Truck</p>
           </ion-col>
           <ion-col size="2" class="flex al-center jc-center">
-            <ion-badge  mode="ios" id="outofservice">
-              Out of Service
-            </ion-badge>
+            <ion-badge mode="ios" id="outofservice"> Out of Service </ion-badge>
           </ion-col>
           <ion-col size="2" class="flex al-center jc-center">
             <p>Brooke Cagle</p>
@@ -159,9 +187,7 @@
             <p>Truck</p>
           </ion-col>
           <ion-col size="2" class="flex al-center jc-center">
-            <ion-badge  mode="ios" id="onroute">
-              On Route
-            </ion-badge>
+            <ion-badge mode="ios" id="onroute"> On Route </ion-badge>
           </ion-col>
           <ion-col size="2" class="flex al-center jc-center">
             <p>Brooke Cagle</p>
@@ -191,9 +217,7 @@
             <p>Truck</p>
           </ion-col>
           <ion-col size="2" class="flex al-center jc-center">
-            <ion-badge  mode="ios" id="available">
-              Available
-            </ion-badge>
+            <ion-badge mode="ios" id="available"> Available </ion-badge>
           </ion-col>
           <ion-col size="2" class="flex al-center jc-center">
             <p>Brooke Cagle</p>
@@ -223,9 +247,7 @@
             <p>Truck</p>
           </ion-col>
           <ion-col size="2" class="flex al-center jc-center">
-            <ion-badge  mode="ios" id="outofservice">
-              Out of Service
-            </ion-badge>
+            <ion-badge mode="ios" id="outofservice"> Out of Service </ion-badge>
           </ion-col>
           <ion-col size="2" class="flex al-center jc-center">
             <p>Brooke Cagle</p>
@@ -241,9 +263,7 @@
             </div>
           </ion-col>
         </ion-row>
-        
       </ion-grid>
     </div>
   </div>
-
 </ion-content>

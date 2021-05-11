@@ -11,11 +11,26 @@ import { Component, OnInit } from '@angular/core';
 export class TrafficfinePage implements OnInit {
   trafficfine: Trafficfine
 
+  supervisor: any []
+
   constructor(private firebaseService: FirebaseService, private popUp: PopupHelper) {
     this.trafficfine = new Trafficfine();
   }
 
   ngOnInit() {
+  }
+
+  onSupervisor(){}
+  onSupervisorLeft(){}
+
+  onRegistration(){}
+  onRegistrationLeft(){}
+
+  onDriver(){}
+  onDriverLeft(){}
+
+  onSupervisorSel(obj){
+
   }
 
   onAdd(){

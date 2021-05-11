@@ -10,6 +10,8 @@ import Revenue from 'src/app/models/Revenue.model';
 export class RevenuePage implements OnInit {
   revenue: Revenue
 
+  registrations: any []
+
   constructor(private navCtrl: NavController) {
     this.revenue = new Revenue();
    }
@@ -20,6 +22,19 @@ export class RevenuePage implements OnInit {
   storeIssue()
   {
     this.navCtrl.navigateForward('storeissue');
+  }
+
+  onRegistration(){}
+  onRegistrationLeft(){}
+
+  onClient(){}
+  onClientLeft(){}
+
+  onCostCeentre(){}
+  onCostCeentreLeft(){}
+
+  onRegistrationSel(obj){
+
   }
 
 }

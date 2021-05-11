@@ -64,26 +64,34 @@
             <ion-col size="3.5">
               <div class="item-input">
                 <ion-label>Agent</ion-label>
-                <ion-item lines="none">
-                  <ion-select multiple="false" placeholder="Please select">
-                    <ion-select-option
-                      *ngFor="let name of accidentManagement.agentName"
-                      >{{name}}</ion-select-option
-                    >
-                  </ion-select>
+                <ion-item>
+                  <ionic-selectable
+                    [(ngModel)]="accidentManagement"
+                    [items]="agent"
+                    itemValueField="ColourGuid"
+                    itemTextField="Colour"
+                    [canSearch]="true"
+                    [hasInfiniteScroll]="true"
+                    (onInfiniteScroll)="onAgentLeft()"
+                  >
+                  </ionic-selectable>
                 </ion-item>
               </div>
             </ion-col>
             <ion-col size="3.5" offset="0.5">
               <div class="item-input">
                 <ion-label>Registration</ion-label>
-                <ion-item lines="none">
-                  <ion-select multiple="false" placeholder="Please select">
-                    <ion-select-option
-                      *ngFor="let reg of accidentManagement.registration"
-                      >{{reg}}</ion-select-option
-                    >
-                  </ion-select>
+                <ion-item>
+                  <ionic-selectable
+                    [(ngModel)]="accidentManagement"
+                    [items]="agent"
+                    itemValueField="ColourGuid"
+                    itemTextField="Colour"
+                    [canSearch]="true"
+                    [hasInfiniteScroll]="true"
+                    (onInfiniteScroll)="onAgentLeft()"
+                  >
+                  </ionic-selectable>
                 </ion-item>
               </div>
             </ion-col>
@@ -95,12 +103,17 @@
             <ion-col size="3.5">
               <div class="item-input">
                 <ion-label>Loss Type</ion-label>
-                <ion-item lines="none">
-                  <ion-select multiple="false" placeholder="Please select">
-                    <ion-select-option
-                      *ngFor="let ltype of accidentManagement.lossType"
-                    ></ion-select-option>
-                  </ion-select>
+                <ion-item>
+                  <ionic-selectable
+                    [(ngModel)]="accidentManagement"
+                    [items]="agent"
+                    itemValueField="ColourGuid"
+                    itemTextField="Colour"
+                    [canSearch]="true"
+                    [hasInfiniteScroll]="true"
+                    (onInfiniteScroll)="onAgentLeft()"
+                  >
+                  </ionic-selectable>
                 </ion-item>
               </div>
             </ion-col>
@@ -166,13 +179,17 @@
             <ion-col size="3.5">
               <div class="item-input">
                 <ion-label>Driver's Name</ion-label>
-                <ion-item lines="none">
-                  <ion-select multiple="false" placeholder="Please select">
-                    <ion-select-option
-                      *ngFor="let driver of accidentManagement.driverName"
-                      >{{driver}}</ion-select-option
-                    >
-                  </ion-select>
+                <ion-item>
+                  <ionic-selectable
+                    [(ngModel)]="accidentManagement"
+                    [items]="agent"
+                    itemValueField="ColourGuid"
+                    itemTextField="Colour"
+                    [canSearch]="true"
+                    [hasInfiniteScroll]="true"
+                    (onInfiniteScroll)="onAgentLeft()"
+                  >
+                  </ionic-selectable>
                 </ion-item>
               </div>
             </ion-col>
@@ -197,13 +214,17 @@
             <ion-col size="3.5">
               <div class="item-input">
                 <ion-label>Trip Authority</ion-label>
-                <ion-item lines="none">
-                  <ion-select multiple="false" placeholder="Please select">
-                    <ion-select-option
-                      *ngFor="let tripA of accidentManagement.TripAut"
-                      >{{tripA}}</ion-select-option
-                    >
-                  </ion-select>
+                <ion-item>
+                  <ionic-selectable
+                    [(ngModel)]="accidentManagement"
+                    [items]="agent"
+                    itemValueField="ColourGuid"
+                    itemTextField="Colour"
+                    [canSearch]="true"
+                    [hasInfiniteScroll]="true"
+                    (onInfiniteScroll)="onAgentLeft()"
+                  >
+                  </ionic-selectable>
                 </ion-item>
               </div>
             </ion-col>
@@ -274,26 +295,34 @@
                 <ion-col size="5.5">
                   <div class="item-input">
                     <ion-label>Forefeiture</ion-label>
-                    <ion-item lines="none">
-                      <ion-select multiple="false" placeholder="Please select">
-                        <ion-select-option
-                          *ngFor="let ff of accidentManagement.Forfeiture"
-                          >{{ff}}</ion-select-option
-                        >
-                      </ion-select>
+                    <ion-item>
+                      <ionic-selectable
+                        [(ngModel)]="accidentManagement"
+                        [items]="agent"
+                        itemValueField="ColourGuid"
+                        itemTextField="Colour"
+                        [canSearch]="true"
+                        [hasInfiniteScroll]="true"
+                        (onInfiniteScroll)="onAgentLeft()"
+                      >
+                      </ionic-selectable>
                     </ion-item>
                   </div>
                 </ion-col>
                 <ion-col size="5.5" offset="0.5">
                   <div class="item-input">
                     <ion-label>Determination of liability</ion-label>
-                    <ion-item lines="none">
-                      <ion-select multiple="false" placeholder="Please select">
-                        <ion-select-option
-                          *ngFor="let dol of accidentManagement.Det_Liability"
-                          >{{dol}}</ion-select-option
-                        >
-                      </ion-select>
+                    <ion-item>
+                      <ionic-selectable
+                        [(ngModel)]="accidentManagement"
+                        [items]="agent"
+                        itemValueField="ColourGuid"
+                        itemTextField="Colour"
+                        [canSearch]="true"
+                        [hasInfiniteScroll]="true"
+                        (onInfiniteScroll)="onAgentLeft()"
+                      >
+                      </ionic-selectable>
                     </ion-item>
                   </div>
                 </ion-col>
@@ -319,13 +348,17 @@
             <ion-col size="3.5">
               <div class="item-input">
                 <ion-label>Costing Document</ion-label>
-                <ion-item lines="none">
-                  <ion-select multiple="false" placeholder="Please select">
-                    <ion-select-option
-                      *ngFor="let cDoc of accidentManagement.Costingdocs"
-                      >{{cDoc}}</ion-select-option
-                    >
-                  </ion-select>
+                <ion-item>
+                  <ionic-selectable
+                    [(ngModel)]="accidentManagement"
+                    [items]="agent"
+                    itemValueField="ColourGuid"
+                    itemTextField="Colour"
+                    [canSearch]="true"
+                    [hasInfiniteScroll]="true"
+                    (onInfiniteScroll)="onAgentLeft()"
+                  >
+                  </ionic-selectable>
                 </ion-item>
               </div>
             </ion-col>
@@ -333,13 +366,17 @@
             <ion-col size="3.5" offset="0.5">
               <div class="item-input">
                 <ion-label>Action Taken</ion-label>
-                <ion-item lines="none">
-                  <ion-select multiple="false" placeholder="Please select">
-                    <ion-select-option
-                      *ngFor="let acTaken of accidentManagement.lossContAction"
-                      >{{acTaken}}</ion-select-option
-                    >
-                  </ion-select>
+                <ion-item>
+                  <ionic-selectable
+                    [(ngModel)]="accidentManagement"
+                    [items]="agent"
+                    itemValueField="ColourGuid"
+                    itemTextField="Colour"
+                    [canSearch]="true"
+                    [hasInfiniteScroll]="true"
+                    (onInfiniteScroll)="onAgentLeft()"
+                  >
+                  </ionic-selectable>
                 </ion-item>
               </div>
             </ion-col>
@@ -362,13 +399,17 @@
             <ion-col size="3.5">
               <div class="item-input">
                 <ion-label>Amount Recovered</ion-label>
-                <ion-item lines="none">
-                  <ion-select multiple="false" placeholder="Please select">
-                    <ion-select-option
-                      *ngFor="let amtRec of accidentManagement.AmountRec"
-                      >{{amtRec}}</ion-select-option
-                    >
-                  </ion-select>
+                <ion-item>
+                  <ionic-selectable
+                    [(ngModel)]="accidentManagement"
+                    [items]="agent"
+                    itemValueField="ColourGuid"
+                    itemTextField="Colour"
+                    [canSearch]="true"
+                    [hasInfiniteScroll]="true"
+                    (onInfiniteScroll)="onAgentLeft()"
+                  >
+                  </ionic-selectable>
                 </ion-item>
               </div>
             </ion-col>

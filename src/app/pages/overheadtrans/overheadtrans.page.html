@@ -267,15 +267,17 @@
           <ion-col size="8" offset="0.5">
             <div class="item-input">
               <ion-label>Place / Destination</ion-label>
-              <ion-item lines="none">
-                <ion-select
-                  multiple="false"
-                  [(ngModel)]="overheadTrans.OverheadLoc"
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="overheadTrans"
+                  [items]="placeOrDest"
+                  itemValueField="ColourGuid"
+                  itemTextField="Colour"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onPlaceOrDestLeft()"
                 >
-                  <ion-select-option value="Description"
-                    >Description</ion-select-option
-                  >
-                </ion-select>
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>
@@ -283,14 +285,17 @@
           <ion-col size="3.5">
             <div class="item-input">
               <ion-label>Overhead Type</ion-label>
-              <ion-item lines="none">
-                <ion-select
-                  value=""
-                  multiple="false"
-                  [(ngModel)]="overheadTrans.OverheadTypeGuid"
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="overheadTrans"
+                  [items]="placeOrDest"
+                  itemValueField="ColourGuid"
+                  itemTextField="Colour"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onPlaceOrDestLeft()"
                 >
-                  <ion-select-option value="Agent">Agent</ion-select-option>
-                </ion-select>
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>
@@ -298,13 +303,17 @@
           <ion-col size="3.5" offset="0.5">
             <div class="item-input">
               <ion-label>Cost Centre</ion-label>
-              <ion-item lines="none">
-                <ion-select
-                  multiple="false"
-                  [(ngModel)]="overheadTrans.CostCentGuid"
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="overheadTrans"
+                  [items]="placeOrDest"
+                  itemValueField="ColourGuid"
+                  itemTextField="Colour"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onPlaceOrDestLeft()"
                 >
-                  <ion-select-option value="hawaii">Hawaii</ion-select-option>
-                </ion-select>
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>

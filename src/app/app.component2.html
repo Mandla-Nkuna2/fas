@@ -1,0 +1,86 @@
+<ion-app>
+  <ion-header class="ion-no-border" *ngIf="showMenu">
+    <ion-toolbar>
+      <ion-title>Akhatech</ion-title>
+      <ion-buttons slot="end">
+        <ion-item lines="none">
+          <div class="start-slot flex al-center jc-center" slot="start">
+            <ion-icon name="chevron-down"></ion-icon>
+          </div>
+          <ion-avatar slot="end">
+            <img src="assets/imgs/dp.jpg" alt="" />
+          </ion-avatar>
+          <ion-label>
+            <h2>Mikali Duran</h2>
+            <p>mikaliduran@gmail.com</p>
+          </ion-label>
+        </ion-item>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <ion-split-pane contentId="main-content">
+    <ion-menu contentId="main-content" type="overlay">
+      <ion-content *ngIf="showMenu">
+        <div class="the-toolbar ion-text-center">
+          <h3>Akhatech</h3>
+        </div>
+        <ion-list class="main-list" style="height: fit-content !important">
+          <div *ngFor="let p of appPages; let i = index">
+            <ion-menu-toggle menuToggle auto-hide="false" *ngIf="!p.children">
+              <ion-item
+                routerDirection="root"
+                [routerLink]="[p.url]"
+                lines="none"
+                detail="false"
+                routerLinkActive="active-parent"
+              >
+                <ion-icon
+                  slot="start"
+                  [src]="p.icon"
+                  *ngIf="!p.open"
+                ></ion-icon>
+                <ion-icon
+                  slot="start"
+                  [src]="p.icona"
+                  *ngIf="p.open"
+                ></ion-icon>
+                <ion-label>{{ p.title }}</ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+
+            <ion-item
+              [class.active-parent]="p.open"
+              button
+              *ngIf="p.children"
+              (click)="p.open = !p.open"
+              routerDirection="root"
+              [routerLink]="[p.url]"
+              lines="none"
+              detail="false"
+            >
+              <ion-icon slot="start" [src]="p.icon" *ngIf="!p.open"></ion-icon>
+              <ion-icon slot="start" [src]="p.icona" *ngIf="p.open"></ion-icon>
+              <ion-label>{{ p.title }}</ion-label>
+            </ion-item>
+
+            <ion-list *ngIf="p.open && p.children" class="sub-list">
+              <ion-menu-toggle auto-hide="false" *ngFor="let sub of p.children">
+                <ion-item
+                  class="sub"
+                  routerDirection="root"
+                  [routerLink]="[sub.url]"
+                  lines="none"
+                  detail="false"
+                  routerLinkActive="active"
+                >
+                  <ion-label>{{ sub.title }}</ion-label>
+                </ion-item>
+              </ion-menu-toggle>
+            </ion-list>
+          </div>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>

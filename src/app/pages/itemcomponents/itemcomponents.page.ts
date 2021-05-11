@@ -10,6 +10,8 @@ import ItemComponent from 'src/app/models/ItemComponent.model';
 export class ItemcomponentsPage implements OnInit {
   itemComponent: ItemComponent
 
+  registration: any []
+
   constructor(private navCtrl: NavController) {
     this.itemComponent = new ItemComponent()
    }
@@ -20,6 +22,28 @@ export class ItemcomponentsPage implements OnInit {
   goItem()
   {
     this.navCtrl.navigateForward('items');
+  }
+
+  onRegistration(){}
+  onRegistrationLeft(){}
+
+  onMakeModel(){}
+  onMakeModelLeft(){}
+
+  onComponentName(){}
+  onComponentNameLeft(){}
+
+  onComponentMake(){}
+  onComponentMakeLeft(){}
+
+  onComponentModel(){}
+  onComponentModelLeft(){}
+
+  onServiceIntv(){}
+  onServiceIntvLeft(){}
+
+  registrationSel(obj){
+
   }
 
 }

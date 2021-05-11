@@ -10,6 +10,8 @@ import StoreIssue from 'src/app/models/StoreIssue.model';
 export class StoreissuePage implements OnInit {
   storeIssue: StoreIssue
 
+  registration: any[]
+
   constructor(private navCtrl: NavController) {
     this.storeIssue = new StoreIssue()
    }
@@ -21,5 +23,19 @@ export class StoreissuePage implements OnInit {
   {
     this.navCtrl.navigateForward('supdeposit');
   }
+
+  onRegistration(){}
+  onRegistrationLeft(){}
+
+  onMaintEvRefNo(){}
+  onMaintEvRefNoLeft(){}
+
+  onSupplier(){}
+  onSupplierleft(){}
+
+  onStoreItem(){}
+  onStoreItemLeft(){}
+
+  onRegistrationSel(obj){}
 
 }

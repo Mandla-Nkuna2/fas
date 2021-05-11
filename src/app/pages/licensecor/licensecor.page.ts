@@ -10,6 +10,8 @@ import LicCorAndSafInspcDates from 'src/app/models/LicCorAndSafInspcDates.model'
 export class LicensecorPage implements OnInit {
   licCorAndSafInspec: LicCorAndSafInspcDates
 
+  registration: any[]
+
   constructor(private navCtrl: NavController) {
     this.licCorAndSafInspec = new LicCorAndSafInspcDates()
   }
@@ -25,5 +27,13 @@ export class LicensecorPage implements OnInit {
   onAdd(){
 
   }
+
+  onRegistration(){}
+  onRegistrationLeft(){}
+
+  onDiskFroLicB(){}
+  onDiskFroLicBLeft(){}
+
+  onRegistrationSel(obj){}
 
 }

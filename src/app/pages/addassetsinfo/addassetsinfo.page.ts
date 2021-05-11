@@ -2,6 +2,7 @@ import { TestAssets } from './../../models/TestAssets.model';
 import { Component, OnInit } from '@angular/core';
 import {FirebaseService } from '../../services/firebase-service/firebase-service.service';
 import {PopupHelper} from '../../services/helpers/popup-helper';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-addassetsinfo',
@@ -15,9 +16,7 @@ testAsset: TestAssets
     this.testAsset = new TestAssets('1001', 'qwe', 'ewq', 'weq');
   }
 
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
 
   onAdd(){
     this.firebaseSevice.saveAssetss(this.testAsset).then(() => {

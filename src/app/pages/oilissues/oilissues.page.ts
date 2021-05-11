@@ -10,6 +10,8 @@ import OilIssue from 'src/app/models/OilIssue.model';
 export class OilissuesPage implements OnInit {
   oilIssue: OilIssue
 
+  voucherNo: any[]
+
   constructor( private navCtrl: NavController ) {
     this.oilIssue = new OilIssue()
    }
@@ -21,6 +23,32 @@ export class OilissuesPage implements OnInit {
   {
     this.navCtrl.navigateForward('oilstoretrans');
   }
+
+  onVoucherNo(){}
+  onVoucherNoLeft(){}
+
+  onRegistration(){}
+  onRegistrationLeft(){}
+
+  onComponent(){}
+  onComponentLeft(){}
+
+  onOilStore(){}
+  onOilStoreLeft(){}
+
+  onSupplier(){}
+  onSupplierLeft(){}
+
+  onOilType(){}
+  onOilTypeLeft(){}
+
+  onCostCentre(){}
+  CostCentreLeft(){}
+
+  onStaffCode(){}
+  onStaffCodeLeft(){}
+
+  onVoucherNoSel(obj){}
 
   onAdd(){
   }

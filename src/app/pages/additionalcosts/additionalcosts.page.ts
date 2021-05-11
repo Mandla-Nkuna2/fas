@@ -10,6 +10,8 @@ import { NavController } from '@ionic/angular';
 export class AdditionalcostsPage implements OnInit {
   additionalCost: AdditionalCost
 
+  additionalCostDesc: any []
+
   constructor(private navCtrl: NavController) {
     this.additionalCost = new AdditionalCost();
    }
@@ -20,6 +22,13 @@ export class AdditionalcostsPage implements OnInit {
   goAutoCard()
   {
     this.navCtrl.navigateForward('autocardetails');
+  }
+
+  onAdditionalCostDesc(){}
+  onAdditionalCostDescLeft(){}
+
+  onAdditionalCostSel(obj){
+
   }
 
   onAdd(){

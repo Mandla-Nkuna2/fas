@@ -1,293 +1,349 @@
 <ion-content class="ion-padding">
-    <div class="title-holder flex al-center">
-        <h2>Costs</h2>
-        <div class="date-holder">
-            <ion-item lines="none">
-                <div class="thumb" slot="start">
-                    <ion-icon slot="icon-only" src="assets/imgs/icn-calender.svg"></ion-icon>
-                </div>
-                <ion-datetime display-format="MMM DD YYYY hh:mm a" value="Sep 16 2020, 12:02 "></ion-datetime>
-            </ion-item>
+  <div class="title-holder flex al-center">
+    <h2>Costs</h2>
+    <div class="date-holder">
+      <ion-item lines="none">
+        <div class="thumb" slot="start">
+          <ion-icon
+            slot="icon-only"
+            src="assets/imgs/icn-calender.svg"
+          ></ion-icon>
         </div>
+        <ion-datetime
+          display-format="MMM DD YYYY hh:mm a"
+          value="Sep 16 2020, 12:02 "
+        ></ion-datetime>
+      </ion-item>
     </div>
+  </div>
 
+  <div class="navbar" class="ion-text-center">
+    <ion-button
+      fill="clear"
+      routerLink="/fixedcostdetails"
+      routerDirection="root"
+      routerLinkActive="active-link"
+      class="link"
+    >
+      Fixed cost details
+    </ion-button>
 
+    <ion-button
+      fill="clear"
+      routerLink="/fixedcostransfer"
+      routerDirection="root"
+      routerLinkActive="active-link"
+      class="link"
+    >
+      Fixed cost transfer
+    </ion-button>
 
-    <div class="section">
-        <div class="grid-holder">
-            <div class="top-toolbar">
-                <h3>Running Costs Report - Vehicles</h3>
+    <ion-button
+      fill="clear"
+      routerLink="/overheadtrans"
+      routerDirection="root"
+      routerLinkActive="active-link"
+      class="link"
+    >
+      Overhead transfer
+    </ion-button>
+
+    <ion-button
+      fill="clear"
+      routerLink="/additionalcosts"
+      routerDirection="root"
+      routerLinkActive="active-link"
+      class="link"
+    >
+      Additional costs
+    </ion-button>
+
+    <ion-button
+      fill="clear"
+      routerLink="/supdeposit"
+      routerDirection="root"
+      routerLinkActive="active-link"
+      class="link"
+    >
+      Supplier deposit
+    </ion-button>
+
+    <ion-button
+      fill="clear"
+      routerLink="/autocardetails"
+      routerDirection="root"
+      routerLinkActive="active-link"
+      class="link"
+    >
+      Autocard details
+    </ion-button>
+
+    <ion-button
+      fill="clear"
+      routerLink="/trafficfine"
+      routerDirection="root"
+      routerLinkActive="active-link"
+      class="link"
+    >
+      Traffic fines
+    </ion-button>
+  </div>
+
+  <div class="section">
+    <div class="grid-holder">
+      <div class="top-toolbar">
+        <h3>Running Costs Report - Vehicles</h3>
+      </div>
+      <ion-grid fixed>
+        <ion-row class="title-row">
+          <ion-col size="0.5" class="flex al-center jc-center"> </ion-col>
+          <ion-col size="1.5" class="flex al-center jc-center">
+            <h4>Registration</h4>
+          </ion-col>
+          <ion-col size="2" class="flex al-center jc-center">
+            <h4>Type</h4>
+          </ion-col>
+          <ion-col size="2" class="flex al-center jc-center">
+            <h4>Loc. Name</h4>
+          </ion-col>
+          <ion-col size="2" class="flex al-center jc-center">
+            <h4>Make & Mod.</h4>
+          </ion-col>
+          <ion-col size="2" class="flex al-center jc-center">
+            <h4>Meter Offset</h4>
+          </ion-col>
+          <ion-col size="2" class="flex al-center jc-center">
+            <h4>Meter read</h4>
+          </ion-col>
+        </ion-row>
+        <div class="values">
+          <ion-row class="value-row">
+            <ion-col size="0.5" class="flex al-center jc-center">
+              <ion-checkbox></ion-checkbox>
+            </ion-col>
+            <ion-col size="1.5" class="flex al-center jc-center">
+              <p>NPC7502</p>
+            </ion-col>
+            <ion-col size="2" class="flex al-center jc-center">
+              <p>SEDAN \ 4 DOOR \ 1300</p>
+            </ion-col>
+            <ion-col size="2" class="flex al-center jc-center">
+              <p>POOL</p>
+            </ion-col>
+            <ion-col size="2" class="flex al-center jc-center">
+              <p>MAZDA 323</p>
+            </ion-col>
+            <ion-col size="2" class="flex al-center jc-center">
+              <p>N/A</p>
+            </ion-col>
+            <ion-col size="2" class="flex al-center jc-center">
+              <p>600333</p>
+            </ion-col>
+          </ion-row>
+          <div class="more">
+            <div class="divider"></div>
+            <div class="titleh flex al-center">
+              <h4>More Details</h4>
+              <ion-icon name="chevron-down"></ion-icon>
             </div>
-            <ion-grid fixed>
-                <ion-row class="title-row">
-                    <ion-col size="0.5" class="flex al-center jc-center">
-
-                    </ion-col>
-                    <ion-col size="1.5" class="flex al-center jc-center">
-                        <h4>Registration</h4>
-                    </ion-col>
-                    <ion-col size="2" class="flex al-center jc-center">
-                        <h4>Type</h4>
-                    </ion-col>
-                    <ion-col size="2" class="flex al-center jc-center">
-                        <h4>Loc. Name</h4>
-                    </ion-col>
-                    <ion-col size="2" class="flex al-center jc-center">
-                        <h4>Make & Mod.</h4>
-                    </ion-col>
-                    <ion-col size="2" class="flex al-center jc-center">
-                        <h4>Meter Offset</h4>
-                    </ion-col>
-                    <ion-col size="2" class="flex al-center jc-center">
-                        <h4>Meter read</h4>
-                    </ion-col>
-                </ion-row>
-                <div class="values">
-                    <ion-row class="value-row">
-                        <ion-col size="0.5" class="flex al-center jc-center">
-                            <ion-checkbox></ion-checkbox>
-                        </ion-col>
-                        <ion-col size="1.5" class="flex al-center jc-center">
-                            <p>NPC7502</p>
-                        </ion-col>
-                        <ion-col size="2" class="flex al-center jc-center">
-                            <p>SEDAN \ 4 DOOR \ 1300</p>
-                        </ion-col>
-                        <ion-col size="2" class="flex al-center jc-center">
-                            <p>POOL</p>
-                        </ion-col>
-                        <ion-col size="2" class="flex al-center jc-center">
-                            <p>MAZDA 323</p>
-                        </ion-col>
-                        <ion-col size="2" class="flex al-center jc-center">
-                            <p>N/A</p>
-                        </ion-col>
-                        <ion-col size="2" class="flex al-center jc-center">
-                            <p>600333</p>
-                        </ion-col>
-                    </ion-row>
-                    <div class="more">
-                        <div class="divider"></div>
-                        <div class=" titleh flex al-center">
-                            <h4>More Details</h4>
-                            <ion-icon name="chevron-down"></ion-icon>
-                          </div>
-                        <ion-grid fixed class="ion-no-padding">
-                            <ion-row class="sub-header">
-                                <ion-col size="1.4">
-                                    <h5>kms trvld</h5>
-                                </ion-col>
-                                <ion-col size="1.2">
-                                    <h5>Fuel(r)</h5>
-                                </ion-col>
-                                <ion-col size="1">
-                                    <h5>oil(r)</h5>
-                                </ion-col>
-                                <ion-col size="1.2">
-                                    <h5>repair(r)</h5>
-                                </ion-col>
-                                <ion-col size="1.2">
-                                    <h5>service(R)</h5>
-                                </ion-col>
-                                <ion-col size="1.2">
-                                    <h5>accident(r)</h5>
-                                </ion-col>
-                                <ion-col size="1.2">
-                                    <h5>tyre/track(r)</h5>
-                                </ion-col>
-                                <ion-col size="1.2">
-                                    <h5>other(r)</h5>
-                                </ion-col>
-                                <ion-col size="1">
-                                    <h5>cost ltd (r)</h5>
-                                </ion-col>
-                                <ion-col size="1.2">
-                                    <h5>cost/km (ltd)</h5>
-                                </ion-col>
-                            </ion-row>
-                            <ion-row>
-                                <ion-col size="9.6" class="ion-no-padding">
-                                    <ion-row class="sub-values" id="first-row">
-                                        <ion-col size="0.7" id="first">
-                                            <h5>YTD</h5>
-                                        </ion-col>
-                                        <ion-col size="1.02">
-                                            <p>3463</p>
-                                        </ion-col>
-                                        <ion-col size="1.46">
-                                            <p>1908.54</p>
-                                        </ion-col>
-                                        <ion-col size="1.27">
-                                            <p>83.45</p>
-                                        </ion-col>
-                                        <ion-col size="1.47">
-                                            <p>N/A</p>
-                                        </ion-col>
-                                        <ion-col size="1.47">
-                                            <p>464.06</p>
-                                        </ion-col>
-                                        <ion-col size="1.47">
-                                          <p>N/A</p>
-                                        </ion-col>
-                                        <ion-col size="1.47">
-                                            <p>N/A</p>
-                                        </ion-col>
-                                        <ion-col size="1.47">
-                                            <p>N/A</p>
-                                        </ion-col>
-                                    </ion-row>
-
-                                    <ion-row class="sub-values">
-                                        <ion-col size="0.7" id="first">
-                                            <h5>LTD</h5>
-                                        </ion-col>
-                                        <ion-col size="1.02">
-                                            <p>3463</p>
-                                        </ion-col>
-                                        <ion-col size="1.46">
-                                            <p>1908.54</p>
-                                        </ion-col>
-                                        <ion-col size="1.27">
-                                            <p>83.45</p>
-                                        </ion-col>
-                                        <ion-col size="1.47">
-                                            <p>N/A</p>
-                                        </ion-col>
-                                        <ion-col size="1.47">
-                                            <p>464.06</p>
-                                        </ion-col>
-                                        <ion-col size="1.47">
-                                          <p>N/A</p>
-                                        </ion-col>
-                                        <ion-col size="1.47">
-                                            <p>N/A</p>
-                                        </ion-col>
-                                        <ion-col size="1.47">
-                                            <p>N/A</p>
-                                        </ion-col>
-                                    </ion-row>
-                                  
-                                </ion-col>
-                                <ion-col size="1.1" class="flex al-center jc-center" id="com1">
-                                <p>2446.05</p>
-                                </ion-col>
-                                <ion-col size="1.1" class="flex al-center jc-center" id="com2">
-                                    <p>0.71</p>
-                                </ion-col>
-                            </ion-row>
-                      
-                        </ion-grid>
-                    </div>
-                </div>
-                <div class="values">
-                    <ion-row class="value-row">
-                        <ion-col size="0.5" class="flex al-center jc-center">
-                            <ion-checkbox></ion-checkbox>
-                        </ion-col>
-                        <ion-col size="1.5" class="flex al-center jc-center">
-                            <p>NPC7502</p>
-                        </ion-col>
-                        <ion-col size="2" class="flex al-center jc-center">
-                            <p>SEDAN \ 4 DOOR \ 1300</p>
-                        </ion-col>
-                        <ion-col size="2" class="flex al-center jc-center">
-                            <p>POOL</p>
-                        </ion-col>
-                        <ion-col size="2" class="flex al-center jc-center">
-                            <p>MAZDA 323</p>
-                        </ion-col>
-                        <ion-col size="2" class="flex al-center jc-center">
-                            <p>N/A</p>
-                        </ion-col>
-                        <ion-col size="2" class="flex al-center jc-center">
-                            <p>600333</p>
-                        </ion-col>
-                    </ion-row>
-                </div>
-                <div class="values">
-                    <ion-row class="value-row">
-                        <ion-col size="0.5" class="flex al-center jc-center">
-                            <ion-checkbox></ion-checkbox>
-                        </ion-col>
-                        <ion-col size="1.5" class="flex al-center jc-center">
-                            <p>NPC7502</p>
-                        </ion-col>
-                        <ion-col size="2" class="flex al-center jc-center">
-                            <p>SEDAN \ 4 DOOR \ 1300</p>
-                        </ion-col>
-                        <ion-col size="2" class="flex al-center jc-center">
-                            <p>POOL</p>
-                        </ion-col>
-                        <ion-col size="2" class="flex al-center jc-center">
-                            <p>MAZDA 323</p>
-                        </ion-col>
-                        <ion-col size="2" class="flex al-center jc-center">
-                            <p>N/A</p>
-                        </ion-col>
-                        <ion-col size="2" class="flex al-center jc-center">
-                            <p>600333</p>
-                        </ion-col>
-                    </ion-row>
-                </div>
-                <div class="values">
-                    <ion-row class="value-row">
-                        <ion-col size="0.5" class="flex al-center jc-center">
-                            <ion-checkbox></ion-checkbox>
-                        </ion-col>
-                        <ion-col size="1.5" class="flex al-center jc-center">
-                            <p>NPC7502</p>
-                        </ion-col>
-                        <ion-col size="2" class="flex al-center jc-center">
-                            <p>SEDAN \ 4 DOOR \ 1300</p>
-                        </ion-col>
-                        <ion-col size="2" class="flex al-center jc-center">
-                            <p>POOL</p>
-                        </ion-col>
-                        <ion-col size="2" class="flex al-center jc-center">
-                            <p>MAZDA 323</p>
-                        </ion-col>
-                        <ion-col size="2" class="flex al-center jc-center">
-                            <p>N/A</p>
-                        </ion-col>
-                        <ion-col size="2" class="flex al-center jc-center">
-                            <p>600333</p>
-                        </ion-col>
-                    </ion-row>
-                </div>
-            </ion-grid>
-        </div>
-        <div class="nav-holder">
-            <ion-row>
-                <ion-col size="8"></ion-col>
-                <ion-col size="4">
-                    <div class="nav-btns flex al-center">
-                        <ion-button>
-                            First
-                        </ion-button>
-                        <ion-button>
-                            Previous
-                        </ion-button>
-                        <ion-button id="active">
-                            1
-                        </ion-button>
-                        <ion-button>
-                            2
-                        </ion-button>
-                        <ion-button>
-                            3
-                        </ion-button>
-                        <ion-button>
-                            4
-                        </ion-button>
-                        <ion-button>
-                            Next
-                        </ion-button>
-                        <ion-button>
-                            Last
-                        </ion-button>
-                    </div>
+            <ion-grid fixed class="ion-no-padding">
+              <ion-row class="sub-header">
+                <ion-col size="1.4">
+                  <h5>kms trvld</h5>
                 </ion-col>
-            </ion-row>
+                <ion-col size="1.2">
+                  <h5>Fuel(r)</h5>
+                </ion-col>
+                <ion-col size="1">
+                  <h5>oil(r)</h5>
+                </ion-col>
+                <ion-col size="1.2">
+                  <h5>repair(r)</h5>
+                </ion-col>
+                <ion-col size="1.2">
+                  <h5>service(R)</h5>
+                </ion-col>
+                <ion-col size="1.2">
+                  <h5>accident(r)</h5>
+                </ion-col>
+                <ion-col size="1.2">
+                  <h5>tyre/track(r)</h5>
+                </ion-col>
+                <ion-col size="1.2">
+                  <h5>other(r)</h5>
+                </ion-col>
+                <ion-col size="1">
+                  <h5>cost ltd (r)</h5>
+                </ion-col>
+                <ion-col size="1.2">
+                  <h5>cost/km (ltd)</h5>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="9.6" class="ion-no-padding">
+                  <ion-row class="sub-values" id="first-row">
+                    <ion-col size="0.7" id="first">
+                      <h5>YTD</h5>
+                    </ion-col>
+                    <ion-col size="1.02">
+                      <p>3463</p>
+                    </ion-col>
+                    <ion-col size="1.46">
+                      <p>1908.54</p>
+                    </ion-col>
+                    <ion-col size="1.27">
+                      <p>83.45</p>
+                    </ion-col>
+                    <ion-col size="1.47">
+                      <p>N/A</p>
+                    </ion-col>
+                    <ion-col size="1.47">
+                      <p>464.06</p>
+                    </ion-col>
+                    <ion-col size="1.47">
+                      <p>N/A</p>
+                    </ion-col>
+                    <ion-col size="1.47">
+                      <p>N/A</p>
+                    </ion-col>
+                    <ion-col size="1.47">
+                      <p>N/A</p>
+                    </ion-col>
+                  </ion-row>
+
+                  <ion-row class="sub-values">
+                    <ion-col size="0.7" id="first">
+                      <h5>LTD</h5>
+                    </ion-col>
+                    <ion-col size="1.02">
+                      <p>3463</p>
+                    </ion-col>
+                    <ion-col size="1.46">
+                      <p>1908.54</p>
+                    </ion-col>
+                    <ion-col size="1.27">
+                      <p>83.45</p>
+                    </ion-col>
+                    <ion-col size="1.47">
+                      <p>N/A</p>
+                    </ion-col>
+                    <ion-col size="1.47">
+                      <p>464.06</p>
+                    </ion-col>
+                    <ion-col size="1.47">
+                      <p>N/A</p>
+                    </ion-col>
+                    <ion-col size="1.47">
+                      <p>N/A</p>
+                    </ion-col>
+                    <ion-col size="1.47">
+                      <p>N/A</p>
+                    </ion-col>
+                  </ion-row>
+                </ion-col>
+                <ion-col size="1.1" class="flex al-center jc-center" id="com1">
+                  <p>2446.05</p>
+                </ion-col>
+                <ion-col size="1.1" class="flex al-center jc-center" id="com2">
+                  <p>0.71</p>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </div>
         </div>
+        <div class="values">
+          <ion-row class="value-row">
+            <ion-col size="0.5" class="flex al-center jc-center">
+              <ion-checkbox></ion-checkbox>
+            </ion-col>
+            <ion-col size="1.5" class="flex al-center jc-center">
+              <p>NPC7502</p>
+            </ion-col>
+            <ion-col size="2" class="flex al-center jc-center">
+              <p>SEDAN \ 4 DOOR \ 1300</p>
+            </ion-col>
+            <ion-col size="2" class="flex al-center jc-center">
+              <p>POOL</p>
+            </ion-col>
+            <ion-col size="2" class="flex al-center jc-center">
+              <p>MAZDA 323</p>
+            </ion-col>
+            <ion-col size="2" class="flex al-center jc-center">
+              <p>N/A</p>
+            </ion-col>
+            <ion-col size="2" class="flex al-center jc-center">
+              <p>600333</p>
+            </ion-col>
+          </ion-row>
+        </div>
+        <div class="values">
+          <ion-row class="value-row">
+            <ion-col size="0.5" class="flex al-center jc-center">
+              <ion-checkbox></ion-checkbox>
+            </ion-col>
+            <ion-col size="1.5" class="flex al-center jc-center">
+              <p>NPC7502</p>
+            </ion-col>
+            <ion-col size="2" class="flex al-center jc-center">
+              <p>SEDAN \ 4 DOOR \ 1300</p>
+            </ion-col>
+            <ion-col size="2" class="flex al-center jc-center">
+              <p>POOL</p>
+            </ion-col>
+            <ion-col size="2" class="flex al-center jc-center">
+              <p>MAZDA 323</p>
+            </ion-col>
+            <ion-col size="2" class="flex al-center jc-center">
+              <p>N/A</p>
+            </ion-col>
+            <ion-col size="2" class="flex al-center jc-center">
+              <p>600333</p>
+            </ion-col>
+          </ion-row>
+        </div>
+        <div class="values">
+          <ion-row class="value-row">
+            <ion-col size="0.5" class="flex al-center jc-center">
+              <ion-checkbox></ion-checkbox>
+            </ion-col>
+            <ion-col size="1.5" class="flex al-center jc-center">
+              <p>NPC7502</p>
+            </ion-col>
+            <ion-col size="2" class="flex al-center jc-center">
+              <p>SEDAN \ 4 DOOR \ 1300</p>
+            </ion-col>
+            <ion-col size="2" class="flex al-center jc-center">
+              <p>POOL</p>
+            </ion-col>
+            <ion-col size="2" class="flex al-center jc-center">
+              <p>MAZDA 323</p>
+            </ion-col>
+            <ion-col size="2" class="flex al-center jc-center">
+              <p>N/A</p>
+            </ion-col>
+            <ion-col size="2" class="flex al-center jc-center">
+              <p>600333</p>
+            </ion-col>
+          </ion-row>
+        </div>
+      </ion-grid>
     </div>
+    <div class="nav-holder">
+      <ion-row>
+        <ion-col size="8"></ion-col>
+        <ion-col size="4">
+          <div class="nav-btns flex al-center">
+            <ion-button> First </ion-button>
+            <ion-button> Previous </ion-button>
+            <ion-button id="active"> 1 </ion-button>
+            <ion-button> 2 </ion-button>
+            <ion-button> 3 </ion-button>
+            <ion-button> 4 </ion-button>
+            <ion-button> Next </ion-button>
+            <ion-button> Last </ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </div>
+  </div>
 </ion-content>

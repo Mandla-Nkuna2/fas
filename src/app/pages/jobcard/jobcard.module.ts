@@ -8,7 +8,8 @@ import { JobcardPageRoutingModule } from './jobcard-routing.module';
 
 import { JobcardPage } from './jobcard.page';
 import { SignaturePadModule } from 'angular2-signaturepad';
-
+import { ComponentsModule } from 'src/app/components/components.module';
+import { IonicSelectableModule } from 'ionic-selectable';
 
 @NgModule({
   imports: [
@@ -16,7 +17,9 @@ import { SignaturePadModule } from 'angular2-signaturepad';
     FormsModule,
     IonicModule,
     JobcardPageRoutingModule,
-    SignaturePadModule
+    SignaturePadModule,
+    ComponentsModule,
+    IonicSelectableModule,
   ],
   declarations: [
     JobcardPage

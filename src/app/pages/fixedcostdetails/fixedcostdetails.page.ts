@@ -10,6 +10,8 @@ import FixedCostsDet from 'src/app/models/FixedCostsDet.model';
 export class FixedcostdetailsPage implements OnInit {
   fixedCost: FixedCostsDet
 
+  fixedCostType: any []
+
   constructor( private navCtrl: NavController ) {
     this.fixedCost = new FixedCostsDet()
    }
@@ -22,4 +24,16 @@ export class FixedcostdetailsPage implements OnInit {
     this.navCtrl.navigateForward('fixedcostransfer');
   }
 
+  onFixedCostType(){}
+  onFixedCostTypeLeft(){}
+
+  onRegistraion(){}
+  onRegistraionLeft(){}
+
+  onCalculatePer(){}
+  onCalculatePerLeft(){}
+
+  onFixedCostTypeSel(obj){
+
+  }
 }

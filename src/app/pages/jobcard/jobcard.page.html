@@ -69,36 +69,34 @@
             <ion-col size="3.5">
               <div class="item-input">
                 <ion-label>Reported By</ion-label>
-                <ion-item lines="none">
-                  <ion-select
+                <ion-item>
+                  <ionic-selectable
                     [(ngModel)]="jobCard.generalInformation.StaffGuid"
-                    multiple="false"
-                    placeholder="Please select"
+                    [items]="staff"
+                    itemValueField="StaffGuid"
+                    itemTextField="StaffCode"
+                    [canSearch]="true"
+                    [hasInfiniteScroll]="true"
+                    (onInfiniteScroll)="onReportedByLeft()"
                   >
-                    <ion-select-option
-                      *ngFor="let item of staffGuids"
-                      value="{{item.guid}}"
-                      >{{item.code}}</ion-select-option
-                    >
-                  </ion-select>
+                  </ionic-selectable>
                 </ion-item>
               </div>
             </ion-col>
             <ion-col size="3.5" offset="0.5">
               <div class="item-input">
                 <ion-label>Driver / Operator</ion-label>
-                <ion-item lines="none">
-                  <ion-select
-                    [(ngModel)]="jobCard.generalInformation.driverOrOpGuid"
-                    multiple="false"
-                    placeholder="Please select"
+                <ion-item>
+                  <ionic-selectable
+                    [(ngModel)]="jobCard.generalInformation.StaffGuid"
+                    [items]="staff"
+                    itemValueField="StaffGuid"
+                    itemTextField="StaffCode"
+                    [canSearch]="true"
+                    [hasInfiniteScroll]="true"
+                    (onInfiniteScroll)="onReportedByLeft()"
                   >
-                    <ion-select-option
-                      *ngFor="let item of staffGuids"
-                      value="{{item.guid}}"
-                      >{{item.code}}</ion-select-option
-                    >
-                  </ion-select>
+                  </ionic-selectable>
                 </ion-item>
               </div>
             </ion-col>

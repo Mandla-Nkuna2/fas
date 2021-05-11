@@ -10,6 +10,8 @@ import StaffTimesheet from 'src/app/models/StaffTimesheet.model';
 export class StafftimesheetsPage implements OnInit {
   staffTimesheet: StaffTimesheet
 
+  staffMember: any[]
+
   constructor(private navCtrl: NavController) {
     this.staffTimesheet = new StaffTimesheet();
    }
@@ -21,5 +23,10 @@ export class StafftimesheetsPage implements OnInit {
   {
     this.navCtrl.navigateForward('revenue');
   }
+
+  onStaffMember(){}
+  onStaffMemberLeft(){}
+
+  onStaffMemberSel(obj){}
 
 }

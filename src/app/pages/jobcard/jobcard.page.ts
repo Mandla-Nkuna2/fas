@@ -16,7 +16,7 @@ export class JobcardPage implements OnInit {
 
   jobCard: JobCard;
   loadingComplete = false;
-  staffGuids: any = [];
+  staff: any = [];
 
   constructor(
     private firebaseService: FirebaseService,
@@ -31,7 +31,7 @@ export class JobcardPage implements OnInit {
   }
 
   ngOnInit() {
-    //this.onStaff();
+    this.onReportedBy();
   }
 
   public signaturePadOptions: Object = { // passed through to szimek/signature_pad constructor
@@ -64,10 +64,26 @@ export class JobcardPage implements OnInit {
     })
   }
 
-  onStaff(){
-    this.firebaseGetServ.getStaffGuid().then((staffGuids) => {
-      this.staffGuids = staffGuids
+  onReportedBy(){
+    this.firebaseGetServ.getStaff().then((staff) => {
+      this.staff = staff
     })
+  }
+  onReportedByLeft(){
+    this.firebaseGetServ.getStaffLeft().then((staff) => {
+      this.staff = staff
+    })
+  }
+
+  onDriver(){}
+  onDriverLeft(){}
+
+  onReportedBySel(obj){
+    this.jobCard.generalInformation.StaffGuid = obj.StaffGuid
+  }
+
+  onDriverSel(obj){
+    this.jobCard.generalInformation.driverOrOpGuid = obj.StaffGuid
   }
 
   onChange(){

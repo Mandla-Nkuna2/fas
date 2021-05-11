@@ -7,13 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { AdditionalcostsPageRoutingModule } from './additionalcosts-routing.module';
 
 import { AdditionalcostsPage } from './additionalcosts.page';
-
+import { ComponentsModule } from 'src/app/components/components.module';
+import { IonicSelectableModule } from 'ionic-selectable';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AdditionalcostsPageRoutingModule
+    AdditionalcostsPageRoutingModule,
+    ComponentsModule,
+    IonicSelectableModule,
   ],
   declarations: [AdditionalcostsPage]
 })

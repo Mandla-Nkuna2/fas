@@ -5,7 +5,7 @@
       mode="ios"
       text=""
     ></ion-back-button>
-    <h2>Item Components</h2>
+    <h2>Asset Components</h2>
     <div class="date-holder">
       <div class="itm flex al-center">
         <div class="thumb">
@@ -269,15 +269,17 @@
           <ion-col size="3.5">
             <div class="item-input">
               <ion-label>Registration</ion-label>
-              <ion-item lines="none">
-                <ion-select
-                  multiple="false"
-                  [(ngModel)]="itemComponent.ItemCompGuid"
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="itemComponent"
+                  [items]="registration"
+                  itemValueField="ColourGuid"
+                  itemTextField="Colour"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onRegistrationLeft()"
                 >
-                  <ion-select-option value="Registration"
-                    >Registration</ion-select-option
-                  >
-                </ion-select>
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>
@@ -285,15 +287,17 @@
           <ion-col size="3.5" offset="0.5">
             <div class="item-input">
               <ion-label>Make & Model</ion-label>
-              <ion-item lines="none">
-                <ion-select
-                  multiple="false"
-                  [(ngModel)]="itemComponent.ItemMakeModelGuid"
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="itemComponent"
+                  [items]="registration"
+                  itemValueField="ColourGuid"
+                  itemTextField="Colour"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onRegistrationLeft()"
                 >
-                  <ion-select-option value="Registration"
-                    >Registration</ion-select-option
-                  >
-                </ion-select>
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>
@@ -313,13 +317,17 @@
           <ion-col size="3.5">
             <div class="item-input">
               <ion-label>Component Name</ion-label>
-              <ion-item lines="none">
-                <ion-select
-                  multiple="false"
-                  [(ngModel)]="itemComponent.CompNameGuid"
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="itemComponent"
+                  [items]="registration"
+                  itemValueField="ColourGuid"
+                  itemTextField="Colour"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onRegistrationLeft()"
                 >
-                  <ion-select-option value="Bowser">Bowser</ion-select-option>
-                </ion-select>
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>
@@ -327,13 +335,17 @@
           <ion-col size="3.5" offset="0.5">
             <div class="item-input">
               <ion-label>Componanent Make</ion-label>
-              <ion-item lines="none" class="end">
-                <ion-select
-                  multiple="false"
-                  [(ngModel)]="itemComponent.CompMakeGuid"
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="itemComponent"
+                  [items]="registration"
+                  itemValueField="ColourGuid"
+                  itemTextField="Colour"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onRegistrationLeft()"
                 >
-                  <ion-select-option value="Bowser">Bowser</ion-select-option>
-                </ion-select>
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>
@@ -341,13 +353,17 @@
           <ion-col size="4" offset="0.5">
             <div class="item-input">
               <ion-label>Component Model</ion-label>
-              <ion-item lines="none">
-                <ion-select
-                  multiple="false"
-                  [(ngModel)]="itemComponent.CompModelGuid"
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="itemComponent"
+                  [items]="registration"
+                  itemValueField="ColourGuid"
+                  itemTextField="Colour"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onRegistrationLeft()"
                 >
-                  <ion-select-option value="Bowser">Bowser</ion-select-option>
-                </ion-select>
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>
@@ -367,13 +383,17 @@
           <ion-col size="3.5" offset="0.5">
             <div class="item-input">
               <ion-label>Service Interval</ion-label>
-              <ion-item lines="none">
-                <ion-select
-                  multiple="false"
-                  [(ngModel)]="itemComponent.ServIntvalGuid"
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="itemComponent"
+                  [items]="registration"
+                  itemValueField="ColourGuid"
+                  itemTextField="Colour"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onRegistrationLeft()"
                 >
-                  <ion-select-option value="Bowser">Bowser</ion-select-option>
-                </ion-select>
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>

@@ -250,13 +250,17 @@
           <ion-col size="3.5" offset="0.5">
             <div class="item-input">
               <ion-label>Supplier name</ion-label>
-              <ion-item lines="none" class="end">
-                <ion-select
-                  multiple="false"
-                  [(ngModel)]="supplierDeposit.SuppGuid"
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="supplierDeposit"
+                  [items]="supplier"
+                  itemValueField="ColourGuid"
+                  itemTextField="Colour"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onSupplierNameLeft()"
                 >
-                  <ion-select-option value="hawaii">hawaii</ion-select-option>
-                </ion-select>
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>

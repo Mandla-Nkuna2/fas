@@ -10,6 +10,8 @@ import SupplierDeposit from 'src/app/models/SupplierDeposit.model';
 export class SupdepositPage implements OnInit {
   supplierDeposit: SupplierDeposit
 
+  supplier: any[]
+
   constructor(private navCtrl: NavController) {
     this.supplierDeposit = new SupplierDeposit()
    }
@@ -21,5 +23,10 @@ export class SupdepositPage implements OnInit {
   {
     this.navCtrl.navigateForward('fuelnoilprice');
   }
+
+  onSupplierName(){}
+  onSupplierNameLeft(){}
+
+  onSupplierSel(obj){}
 
 }

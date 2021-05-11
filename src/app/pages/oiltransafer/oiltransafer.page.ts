@@ -10,6 +10,8 @@ import OilStoreTransfer from 'src/app/models/OilStoreTransfer.model';
 export class OiltransaferPage implements OnInit {
   oilStoreTransf: OilStoreTransfer
 
+  voucherNo: any[]
+
   constructor( private navCtrl: NavController ) {
     this.oilStoreTransf = new OilStoreTransfer()
    }
@@ -22,5 +24,21 @@ export class OiltransaferPage implements OnInit {
     this.navCtrl.navigateForward('overheadtrans');
   }
 
+  onVoucherNo(){}
+  onVoucherNoLeft(){}
+
+  onOilType(){}
+  onOilTypeLeft(){}
+
+  onOilStoreFrom(){}
+  onOilStoreFromLeft(){}
+
+  onOilStoreTo(){}
+  onOilStoreToLeft(){}
+
+  onCostCentre(){}
+  onCostCentreLeft(){}
+
+  onVoucherNoSel(obj){}
 
 }

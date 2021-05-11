@@ -1,470 +1,487 @@
 <ion-content class="ion-padding">
-  <div class="title-holder flex al-center">
-    <h2>Asset</h2>
-    <div class="date-holder">
-      <ion-item lines="none">
-        <div class="thumb" slot="start">
-          <ion-icon
-            slot="icon-only"
-            src="assets/imgs/icn-calender.svg"
-          ></ion-icon>
+  <div (click)="onDomClick()">
+    <div class="title-holder flex al-center">
+      <h2>Asset</h2>
+      <div class="date-holder">
+        <ion-item lines="none">
+          <div class="thumb" slot="start">
+            <ion-icon
+              slot="icon-only"
+              src="assets/imgs/icn-calender.svg"
+            ></ion-icon>
+          </div>
+          <ion-datetime
+            display-format="MMM DD YYYY hh:mm a"
+            value="Sep 16 2020, 12:02 "
+          ></ion-datetime>
+        </ion-item>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="section">
+        <div class="title">
+          <h3>General Information</h3>
         </div>
-        <ion-datetime
-          display-format="MMM DD YYYY hh:mm a"
-          value="Sep 16 2020, 12:02 "
-        ></ion-datetime>
-      </ion-item>
-    </div>
-  </div>
 
-  <div class="content">
-    <div class="section">
-      <div class="title">
-        <h3>General Information</h3>
-      </div>
+        <!-- <ion-item>
+          <ion-label>Port</ion-label>
+          <ionic-selectable
+            [items]="colors"
+            itemTextField="color"
+            [canSearch]="true"
+            (onChange)="onDropChange($event)"
+          >
+          </ionic-selectable>
+        </ion-item> -->
 
-      <div class="the-form">
-        <ion-grid fixed>
-          <ion-row>
-            <ion-col size="3.5">
-              <div class="item-input">
-                <ion-label>Registration</ion-label>
-                <ion-item lines="none">
-                  <ion-input
-                    disabled
-                    [(ngModel)]="asset.generalInformation.Reg"
-                  ></ion-input>
-                </ion-item>
-              </div>
-            </ion-col>
-            <ion-col size="3.5" offset="0.5">
-              <div class="item-input">
-                <ion-label>Make and Modal</ion-label>
-                <ion-item lines="none">
-                  <ion-select
-                    [(ngModel)]="asset.generalInformation.ItemMakModGuid"
-                    multiple="false"
-                    placeholder="Please select"
-                  >
-                    <ion-select-option
-                      *ngFor="let item of makesAndModels"
-                      value="{{item.guid}}"
-                      >{{item.make}} {{item.model}}
-                    </ion-select-option>
-                  </ion-select>
-                </ion-item>
-              </div>
-            </ion-col>
-            <ion-col size="3.5" offset="0.5">
-              <div class="item-input">
-                <ion-label>Type</ion-label>
-                <ion-item lines="none">
-                  <ion-select
-                    [(ngModel)]="asset.generalInformation.ItemTypeGuid"
-                    multiple="false"
-                    placeholder="Please select"
-                  >
-                    <ion-select-option
-                      *ngFor="let item of asset.generalInformation.ItemTypeGuid"
-                      >{{item}}</ion-select-option
+        <div class="the-form">
+          <ion-grid fixed>
+            <ion-row>
+              <ion-col size="3.5">
+                <div class="item-input">
+                  <ion-label>Registration</ion-label>
+                  <ion-item lines="none">
+                    <ion-input
+                      disabled
+                      [(ngModel)]="asset.generalInformation.ItemGuid"
+                    ></ion-input>
+                  </ion-item>
+                </div>
+              </ion-col>
+              <ion-col size="3.5" offset="0.5">
+                <div class="item-input">
+                  <ion-label>Make and Model</ion-label>
+                  <ion-item>
+                    <ionic-selectable
+                      [(ngModel)]="asset.generalInformation.ItemMakModGuid"
+                      [items]="makesAndModels"
+                      itemValueField="ItemMakModGuid"
+                      itemTextField="ItemMakMod"
+                      [canSearch]="true"
+                      [hasInfiniteScroll]="true"
+                      (onInfiniteScroll)="onMakeAndModelLeft()"
                     >
-                  </ion-select>
-                </ion-item>
-              </div>
-            </ion-col>
-            <ion-col size="3.5">
-              <div class="item-input">
-                <ion-label>Category</ion-label>
-                <ion-item lines="none">
-                  <ion-select
-                    [(ngModel)]="asset.generalInformation.ItemCatg"
-                    multiple="false"
-                    placeholder="Please select"
-                  >
-                    <ion-select-option *ngFor="let item of category"
-                      >{{item}}</ion-select-option
+                    </ionic-selectable>
+                  </ion-item>
+                </div>
+              </ion-col>
+              <ion-col size="3.5" offset="0.5">
+                <div class="item-input">
+                  <ion-label>Type</ion-label>
+                  <ion-item>
+                    <ionic-selectable
+                      [(ngModel)]="asset.generalInformation.ItemTypeGuid"
+                      [items]="meterTypes"
+                      itemValueField="ItemMakModGuid"
+                      itemTextField="ItemMakMod"
+                      [canSearch]="true"
+                      [hasInfiniteScroll]="true"
+                      (onInfiniteScroll)="onTypeLeft()"
                     >
-                  </ion-select>
-                </ion-item>
-              </div>
-            </ion-col>
-            <ion-col size="3.5" offset="0.5">
-              <div class="item-input">
-                <ion-label>Colour</ion-label>
-                <ion-item lines="none">
-                  <ion-select
-                    [(ngModel)]="asset.generalInformation.ColourGuid"
-                    (ionChange)="onChange()"
-                    multiple="false"
-                    placeholder="Please select"
-                  >
-                    <ion-select-option
-                      *ngFor="let item of colors"
-                      value="{{item.colorGuid}}"
-                      >{{item.color}}
-                    </ion-select-option>
-                  </ion-select>
-                </ion-item>
-              </div>
-            </ion-col>
-            <ion-col size="3.5" offset="0.5">
-              <div class="item-input">
-                <ion-label>Chassie Number</ion-label>
-                <ion-item lines="none">
-                  <ion-input
-                    [(ngModel)]="asset.generalInformation.ChassisNo"
-                  ></ion-input>
-                </ion-item>
-              </div>
-            </ion-col>
-            <ion-col size="3.5">
-              <div class="item-input">
-                <ion-label>Engine Number</ion-label>
-                <ion-item lines="none">
-                  <ion-input
-                    [(ngModel)]="asset.generalInformation.EngineNo"
-                  ></ion-input>
-                </ion-item>
-              </div>
-            </ion-col>
-            <ion-col size="3.5" offset="0.5">
-              <div class="item-input">
-                <ion-label>Battery</ion-label>
-                <ion-item lines="none">
-                  <ion-select multiple="false" placeholder="Please select">
-                    <ion-select-option
-                      *ngFor="let item of asset.generalInformation.BatteryGuid"
-                      >{{item}}
-                    </ion-select-option>
-                  </ion-select>
-                </ion-item>
-              </div>
-            </ion-col>
-            <ion-col size="3.5" offset="0.5">
-              <div class="item-input">
-                <ion-label>Driver</ion-label>
-                <ion-item lines="none">
-                  <ion-select multiple="false" placeholder="Please select">
-                    <ion-select-option
-                      *ngFor="let item of asset.generalInformation.DriverName"
-                      >{{item}}
-                    </ion-select-option>
-                  </ion-select>
-                </ion-item>
-              </div>
-            </ion-col>
-            <ion-col size="3.5">
-              <div class="item-input">
-                <ion-label>Front Tyres</ion-label>
-                <ion-item lines="none">
-                  <ion-select
-                    [(ngModel)]="asset.generalInformation.FrontTyreGuid"
-                    multiple="false"
-                    placeholder="Please select"
-                  >
-                    <ion-select-option
-                      *ngFor="let item of tyreSizes"
-                      value="{{item.sGuid}}"
-                      >{{item.tSize}}
-                    </ion-select-option>
-                  </ion-select>
-                </ion-item>
-              </div>
-            </ion-col>
-            <ion-col size="3.5" offset="0.5">
-              <div class="item-input">
-                <ion-label>Rear Tyres</ion-label>
-                <ion-item lines="none">
-                  <ion-select
-                    [(ngModel)]="asset.generalInformation.RearTyreGuid"
-                    multiple="false"
-                    placeholder="Please select"
-                  >
-                    <ion-select-option
-                      *ngFor="let item of tyreSizes"
-                      value="{{item.sGuid}}"
-                      >{{item.tSize}}
-                    </ion-select-option>
-                  </ion-select>
-                </ion-item>
-              </div>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
+                    </ionic-selectable>
+                  </ion-item>
+                </div>
+              </ion-col>
+              <ion-col size="3.5">
+                <div class="item-input">
+                  <ion-label>Category</ion-label>
+                  <ion-item>
+                    <ionic-selectable
+                      [(ngModel)]="asset.generalInformation.ItemCatg"
+                      [items]="category"
+                      itemValueField="ItemCatg"
+                      itemTextField="ItemCatg"
+                      [canSearch]="true"
+                      [hasInfiniteScroll]="true"
+                      (onInfiniteScroll)="onColorLeft()"
+                    >
+                    </ionic-selectable>
+                  </ion-item>
+                </div>
+              </ion-col>
+              <ion-col size="3.5" offset="0.5">
+                <div class="item-input">
+                  <ion-label>Color</ion-label>
+                  <ion-item>
+                    <ionic-selectable
+                      [(ngModel)]="asset.generalInformation.ColourGuid"
+                      [items]="colors"
+                      itemValueField="ColourGuid"
+                      itemTextField="Colour"
+                      [canSearch]="true"
+                      [hasInfiniteScroll]="true"
+                      (onInfiniteScroll)="onColorLeft()"
+                    >
+                    </ionic-selectable>
+                  </ion-item>
+                </div>
+              </ion-col>
+              <ion-col size="3.5" offset="0.5">
+                <div class="item-input">
+                  <ion-label>Chassie Number</ion-label>
+                  <ion-item lines="none">
+                    <ion-input
+                      [(ngModel)]="asset.generalInformation.ChassisNo"
+                    ></ion-input>
+                  </ion-item>
+                </div>
+              </ion-col>
+              <ion-col size="3.5">
+                <div class="item-input">
+                  <ion-label>Engine Number</ion-label>
+                  <ion-item lines="none">
+                    <ion-input
+                      [(ngModel)]="asset.generalInformation.EngineNo"
+                    ></ion-input>
+                  </ion-item>
+                </div>
+              </ion-col>
+              <ion-col size="3.5" offset="0.5">
+                <div class="item-input">
+                  <ion-label>Battery</ion-label>
+                  <ion-item>
+                    <ionic-selectable
+                      [(ngModel)]="asset.generalInformation.BatteryGuid"
+                      [items]="batteries"
+                      itemValueField="ColourGuid"
+                      itemTextField="color"
+                      [canSearch]="true"
+                      [hasInfiniteScroll]="true"
+                      (onInfiniteScroll)="onBatteryLeft()"
+                    >
+                    </ionic-selectable>
+                  </ion-item>
+                </div>
+              </ion-col>
+              <ion-col size="3.5" offset="0.5">
+                <div class="item-input">
+                  <ion-label>Driver</ion-label>
+                  <ion-item>
+                    <ionic-selectable
+                      [(ngModel)]="asset.generalInformation.StaffGuid"
+                      [items]="driver"
+                      itemValueField="StaffGuid"
+                      itemTextField="StaffCode"
+                      [canSearch]="true"
+                      [hasInfiniteScroll]="true"
+                      (onInfiniteScroll)="onDriverLeft()"
+                    >
+                    </ionic-selectable>
+                  </ion-item>
+                </div>
+              </ion-col>
+              <ion-col size="3.5">
+                <div class="item-input">
+                  <ion-label>Front Tyres</ion-label>
+                  <ion-item>
+                    <ionic-selectable
+                      [(ngModel)]="asset.generalInformation.FrontTyreGuid"
+                      [items]="tyreSizes"
+                      itemValueField="TyreSizeGuid"
+                      itemTextField="TyreSize"
+                      [canSearch]="true"
+                      [hasInfiniteScroll]="true"
+                      (onInfiniteScroll)="onTireSizesLeft()"
+                    >
+                    </ionic-selectable>
+                  </ion-item>
+                </div>
+              </ion-col>
+              <ion-col size="3.5" offset="0.5">
+                <div class="item-input">
+                  <ion-label>Rear Tyres</ion-label>
+                  <ion-item>
+                    <ionic-selectable
+                      [(ngModel)]="asset.generalInformation.RearTyreGuid"
+                      [items]="tyreSizes"
+                      itemValueField="TyreSizeGuid"
+                      itemTextField="TyreSize"
+                      [canSearch]="true"
+                      [hasInfiniteScroll]="true"
+                      (onInfiniteScroll)="onTireSizesLeft()"
+                    >
+                    </ionic-selectable>
+                  </ion-item>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
       </div>
-    </div>
 
-    <div class="section">
-      <div class="title">
-        <h3>Meter Information</h3>
+      <div class="section">
+        <div class="title">
+          <h3>Meter Information</h3>
+        </div>
+
+        <div class="the-form">
+          <ion-grid fixed>
+            <ion-row>
+              <ion-col size="3.5">
+                <div class="item-input">
+                  <ion-label>Meter type</ion-label>
+                  <ion-item>
+                    <ionic-selectable
+                      [(ngModel)]="asset.meterInformation.MeterType"
+                      [items]="meterTypes"
+                      itemValueField="MeterType"
+                      itemTextField="MeterType"
+                      [canSearch]="true"
+                      [hasInfiniteScroll]="true"
+                      (onInfiniteScroll)="onMeterTypeLeft()"
+                    >
+                    </ionic-selectable>
+                  </ion-item>
+                </div>
+              </ion-col>
+              <ion-col size="3.5" offset="0.5">
+                <div class="item-input">
+                  <ion-label>Meter Reading</ion-label>
+                  <ion-item lines="none">
+                    <ion-input
+                      [(ngModel)]="asset.meterInformation.MeterRead"
+                    ></ion-input>
+                  </ion-item>
+                </div>
+              </ion-col>
+              <ion-col size="3.5" offset="0.5">
+                <div class="item-input">
+                  <ion-label>Meter Read Date</ion-label>
+                  <ion-item lines="none">
+                    <ion-datetime
+                      display-format="MMM DD YYYY hh:mm a"
+                      [(ngModel)]="asset.meterInformation.MeterReadDate"
+                    ></ion-datetime>
+                  </ion-item>
+                </div>
+              </ion-col>
+
+              <ion-col size="3.5">
+                <div class="item-input">
+                  <ion-label>Meter Offset</ion-label>
+                  <ion-item lines="none">
+                    <ion-input
+                      [(ngModel)]="asset.meterInformation.MeterOffset"
+                    ></ion-input>
+                  </ion-item>
+                </div>
+              </ion-col>
+
+              <ion-col size="3.5" offset="0.5">
+                <div class="item-input">
+                  <ion-label>Licence Expiry Date</ion-label>
+                  <ion-item lines="none">
+                    <ion-datetime
+                      display-format="MMM DD YYYY hh:mm a"
+                      [(ngModel)]="asset.meterInformation.LicenceDate"
+                    ></ion-datetime>
+                  </ion-item>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
       </div>
 
-      <div class="the-form">
-        <ion-grid fixed>
+      <div class="section">
+        <div class="title">
+          <h3>Rate Information</h3>
+        </div>
+
+        <div class="the-form">
+          <ion-grid fixed>
+            <ion-row>
+              <ion-col size="3.5">
+                <div class="item-input">
+                  <ion-label>Hourly Rate</ion-label>
+                  <ion-item lines="none" class="end">
+                    <ion-input
+                      type="text"
+                      [(ngModel)]="asset.rateInformation.HourRate"
+                    ></ion-input>
+                    <div class="end-slot flex al-center jc-center" slot="end">
+                      <p>R</p>
+                    </div>
+                  </ion-item>
+                </div>
+              </ion-col>
+
+              <ion-col size="3.5" offset="0.5">
+                <div class="item-input">
+                  <ion-label>KM Rate</ion-label>
+                  <ion-item lines="none" class="end">
+                    <ion-input
+                      type="text"
+                      [(ngModel)]="asset.rateInformation.KmRate"
+                    ></ion-input>
+                    <div class="end-slot flex al-center jc-center" slot="end">
+                      <p>R</p>
+                    </div>
+                  </ion-item>
+                </div>
+              </ion-col>
+
+              <ion-col size="3.5" offset="0.5">
+                <div class="item-input">
+                  <ion-label>Daily Rate</ion-label>
+                  <ion-item lines="none" class="end">
+                    <ion-input
+                      type="text"
+                      [(ngModel)]="asset.rateInformation.DailyRate"
+                    ></ion-input>
+                    <div class="end-slot flex al-center jc-center" slot="end">
+                      <p>R</p>
+                    </div>
+                  </ion-item>
+                </div>
+              </ion-col>
+
+              <ion-col size="3.5">
+                <div class="item-input">
+                  <ion-label>Standby Rate</ion-label>
+                  <ion-item lines="none" class="end">
+                    <ion-input
+                      type="text"
+                      [(ngModel)]="asset.rateInformation.StandbyRate"
+                    ></ion-input>
+                    <div class="end-slot flex al-center jc-center" slot="end">
+                      <p>R</p>
+                    </div>
+                  </ion-item>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="title">
+          <h3>Other Information</h3>
+        </div>
+
+        <div class="the-form">
+          <ion-grid fixed>
+            <ion-row>
+              <ion-col size="3.5">
+                <div class="item-input">
+                  <ion-label>Date of Manufacture</ion-label>
+                  <ion-item lines="none">
+                    <ion-datetime
+                      display-format="MMM DD YYYY hh:mm a"
+                      [(ngModel)]="asset.otherInformation.ManufYear"
+                    ></ion-datetime>
+                  </ion-item>
+                </div>
+              </ion-col>
+
+              <ion-col size="3.5" offset="0.5">
+                <div class="item-input">
+                  <ion-label>Terminal Year</ion-label>
+                  <ion-item lines="none">
+                    <ion-datetime
+                      display-format="MMM DD YYYY hh:mm a"
+                      [(ngModel)]="asset.otherInformation.TerminalYear"
+                    ></ion-datetime>
+                  </ion-item>
+                </div>
+              </ion-col>
+
+              <ion-col size="3.5" offset="0.5">
+                <div class="item-input">
+                  <ion-label>Votecode</ion-label>
+                  <ion-item lines="none">
+                    <ion-input
+                      type="text"
+                      [(ngModel)]="asset.otherInformation.Votecode"
+                    ></ion-input>
+                  </ion-item>
+                </div>
+              </ion-col>
+
+              <ion-col size="3.5">
+                <div class="item-input">
+                  <ion-label>Budget for Item</ion-label>
+                  <ion-item lines="none">
+                    <ion-input
+                      type="text"
+                      [(ngModel)]="asset.otherInformation.ItemBud"
+                    ></ion-input>
+                  </ion-item>
+                </div>
+              </ion-col>
+
+              <ion-col size="3.5" offset="0.5">
+                <div class="item-input">
+                  <ion-label>Min Mech. Avail %</ion-label>
+                  <ion-item lines="none">
+                    <ion-input
+                      type="text"
+                      [(ngModel)]="asset.otherInformation.MechAvail"
+                    ></ion-input>
+                  </ion-item>
+                </div>
+              </ion-col>
+
+              <ion-col size="3.5" offset="0.5">
+                <div class="item-input">
+                  <ion-label>Min. Monthly Ave. Km</ion-label>
+                  <ion-item lines="none">
+                    <ion-input
+                      type="text"
+                      [(ngModel)]="asset.otherInformation.MonthlyAveKM"
+                    ></ion-input>
+                  </ion-item>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+      </div>
+
+      <div class="section bottom">
+        <div class="check-holder">
           <ion-row>
-            <ion-col size="3.5">
-              <div class="item-input">
-                <ion-label>Meter type</ion-label>
-                <ion-item lines="none">
-                  <ion-select
-                    [(ngModel)]="asset.meterInformation.MeterType"
-                    (ionChange)="onChange()"
-                    multiple="false"
-                    placeholder="Please select"
-                  >
-                    <ion-select-option *ngFor="let item of meterTypes"
-                      >{{item}}
-                    </ion-select-option>
-                  </ion-select>
-                </ion-item>
+            <ion-col size="8" class="flex al-center jc-between">
+              <ion-item lines="none">
+                <ion-label>Autocard</ion-label>
+                <ion-checkbox
+                  [(ngModel)]="asset.otherInformation.Autocard"
+                  slot="start"
+                ></ion-checkbox>
+              </ion-item>
+              <ion-item lines="none">
+                <ion-label>Refurbished</ion-label>
+                <ion-checkbox
+                  [(ngModel)]="asset.otherInformation.Refurb"
+                  slot="start"
+                ></ion-checkbox>
+              </ion-item>
+              <ion-item lines="none">
+                <ion-label>Rental Vehicle</ion-label>
+                <ion-checkbox
+                  [(ngModel)]="asset.otherInformation.rentalVehicle"
+                  slot="start"
+                ></ion-checkbox>
+              </ion-item>
+              <ion-item lines="none">
+                <ion-label>Government Subsidised Vehicle</ion-label>
+                <ion-checkbox
+                  [(ngModel)]="asset.otherInformation.govSubsidisedVeh"
+                  slot="start"
+                ></ion-checkbox>
+              </ion-item>
+            </ion-col>
+            <ion-col size="1"> </ion-col>
+            <ion-col size="2.6">
+              <div class="btn-holder ion-text-right">
+                <ion-button (click)="onAdd()" expand="block"> Add </ion-button>
               </div>
             </ion-col>
-            <ion-col size="3.5" offset="0.5">
-              <div class="item-input">
-                <ion-label>Meter Reading</ion-label>
-                <ion-item lines="none">
-                  <ion-input
-                    [(ngModel)]="asset.meterInformation.MeterRead"
-                  ></ion-input>
-                </ion-item>
-              </div>
-            </ion-col>
-            <ion-col size="3.5" offset="0.5">
-              <div class="item-input">
-                <ion-label>Meter Read Date</ion-label>
-                <ion-item lines="none">
-                  <ion-datetime
-                    display-format="MMM DD YYYY hh:mm a"
-                    [(ngModel)]="asset.meterInformation.MeterReadDate"
-                  ></ion-datetime>
-                </ion-item>
-              </div>
-            </ion-col>
-
-            <ion-col size="3.5">
-              <div class="item-input">
-                <ion-label>Meter Offset</ion-label>
-                <ion-item lines="none">
-                  <ion-input
-                    [(ngModel)]="asset.meterInformation.MeterOffset"
-                  ></ion-input>
-                </ion-item>
-              </div>
-            </ion-col>
-
-            <ion-col size="3.5" offset="0.5">
-              <div class="item-input">
-                <ion-label>Licence Expiry Date</ion-label>
-                <ion-item lines="none">
-                  <ion-datetime
-                    display-format="MMM DD YYYY hh:mm a"
-                    [(ngModel)]="asset.meterInformation.LicenceDate"
-                  ></ion-datetime>
-                </ion-item>
-              </div>
-            </ion-col>
+            <ion-col size="0.4"> </ion-col>
           </ion-row>
-        </ion-grid>
-      </div>
-    </div>
-
-    <div class="section">
-      <div class="title">
-        <h3>Rate Information</h3>
-      </div>
-
-      <div class="the-form">
-        <ion-grid fixed>
-          <ion-row>
-            <ion-col size="3.5">
-              <div class="item-input">
-                <ion-label>Hourly Rate</ion-label>
-                <ion-item lines="none" class="end">
-                  <ion-input
-                    type="text"
-                    [(ngModel)]="asset.rateInformation.HourRate"
-                  ></ion-input>
-                  <div class="end-slot flex al-center jc-center" slot="end">
-                    <p>R</p>
-                  </div>
-                </ion-item>
-              </div>
-            </ion-col>
-
-            <ion-col size="3.5" offset="0.5">
-              <div class="item-input">
-                <ion-label>KM Rate</ion-label>
-                <ion-item lines="none" class="end">
-                  <ion-input
-                    type="text"
-                    [(ngModel)]="asset.rateInformation.KmRate"
-                  ></ion-input>
-                  <div class="end-slot flex al-center jc-center" slot="end">
-                    <p>R</p>
-                  </div>
-                </ion-item>
-              </div>
-            </ion-col>
-
-            <ion-col size="3.5" offset="0.5">
-              <div class="item-input">
-                <ion-label>Daily Rate</ion-label>
-                <ion-item lines="none" class="end">
-                  <ion-input
-                    type="text"
-                    [(ngModel)]="asset.rateInformation.DailyRate"
-                  ></ion-input>
-                  <div class="end-slot flex al-center jc-center" slot="end">
-                    <p>R</p>
-                  </div>
-                </ion-item>
-              </div>
-            </ion-col>
-
-            <ion-col size="3.5">
-              <div class="item-input">
-                <ion-label>Standby Rate</ion-label>
-                <ion-item lines="none" class="end">
-                  <ion-input
-                    type="text"
-                    [(ngModel)]="asset.rateInformation.StandbyRate"
-                  ></ion-input>
-                  <div class="end-slot flex al-center jc-center" slot="end">
-                    <p>R</p>
-                  </div>
-                </ion-item>
-              </div>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </div>
-    </div>
-
-    <div class="section">
-      <div class="title">
-        <h3>Other Information</h3>
-      </div>
-
-      <div class="the-form">
-        <ion-grid fixed>
-          <ion-row>
-            <ion-col size="3.5">
-              <div class="item-input">
-                <ion-label>Date of Manufacture</ion-label>
-                <ion-item lines="none">
-                  <ion-datetime
-                    display-format="MMM DD YYYY hh:mm a"
-                    [(ngModel)]="asset.otherInformation.ManufYear"
-                  ></ion-datetime>
-                </ion-item>
-              </div>
-            </ion-col>
-
-            <ion-col size="3.5" offset="0.5">
-              <div class="item-input">
-                <ion-label>Terminal Year</ion-label>
-                <ion-item lines="none">
-                  <ion-datetime
-                    display-format="MMM DD YYYY hh:mm a"
-                    [(ngModel)]="asset.otherInformation.TerminalYear"
-                  ></ion-datetime>
-                </ion-item>
-              </div>
-            </ion-col>
-
-            <ion-col size="3.5" offset="0.5">
-              <div class="item-input">
-                <ion-label>Votecode</ion-label>
-                <ion-item lines="none">
-                  <ion-input
-                    type="text"
-                    [(ngModel)]="asset.otherInformation.Votecode"
-                  ></ion-input>
-                </ion-item>
-              </div>
-            </ion-col>
-
-            <ion-col size="3.5">
-              <div class="item-input">
-                <ion-label>Budget for Item</ion-label>
-                <ion-item lines="none">
-                  <ion-input
-                    type="text"
-                    [(ngModel)]="asset.otherInformation.ItemBud"
-                  ></ion-input>
-                </ion-item>
-              </div>
-            </ion-col>
-
-            <ion-col size="3.5" offset="0.5">
-              <div class="item-input">
-                <ion-label>Min Mech. Avail %</ion-label>
-                <ion-item lines="none">
-                  <ion-input
-                    type="text"
-                    [(ngModel)]="asset.otherInformation.MechAvail"
-                  ></ion-input>
-                </ion-item>
-              </div>
-            </ion-col>
-
-            <ion-col size="3.5" offset="0.5">
-              <div class="item-input">
-                <ion-label>Min. Monthly Ave. Km</ion-label>
-                <ion-item lines="none">
-                  <ion-input
-                    type="text"
-                    [(ngModel)]="asset.otherInformation.MonthlyAveKM"
-                  ></ion-input>
-                </ion-item>
-              </div>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </div>
-    </div>
-
-    <div class="section bottom">
-      <div class="check-holder">
-        <ion-row>
-          <ion-col size="8" class="flex al-center jc-between">
-            <ion-item lines="none">
-              <ion-label>Autocard</ion-label>
-              <ion-checkbox
-                [(ngModel)]="asset.otherInformation.Autocard"
-                slot="start"
-              ></ion-checkbox>
-            </ion-item>
-            <ion-item lines="none">
-              <ion-label>Refurbished</ion-label>
-              <ion-checkbox
-                [(ngModel)]="asset.otherInformation.Refurb"
-                slot="start"
-              ></ion-checkbox>
-            </ion-item>
-            <ion-item lines="none">
-              <ion-label>Rental Vehicle</ion-label>
-              <ion-checkbox
-                [(ngModel)]="asset.otherInformation.rentalVehicle"
-                slot="start"
-              ></ion-checkbox>
-            </ion-item>
-            <ion-item lines="none">
-              <ion-label>Government Subsidised Vehicle</ion-label>
-              <ion-checkbox
-                [(ngModel)]="asset.otherInformation.govSubsidisedVeh"
-                slot="start"
-              ></ion-checkbox>
-            </ion-item>
-          </ion-col>
-          <ion-col size="1"> </ion-col>
-          <ion-col size="2.6">
-            <div class="btn-holder ion-text-right">
-              <ion-button (click)="onAdd()" expand="block"> Add </ion-button>
-            </div>
-          </ion-col>
-          <ion-col size="0.4"> </ion-col>
-        </ion-row>
+        </div>
       </div>
     </div>
   </div>

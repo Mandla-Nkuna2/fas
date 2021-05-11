@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
@@ -15,14 +15,18 @@ import { firebaseConfig } from './app.firebase.config';
 import { AngularFirestoreModule, AngularFirestore } from '@angular/fire/firestore';
 import { FirebaseGetService } from './services/firebase-service/firebase-get.service';
 import { SignaturePadModule } from 'angular2-signaturepad';
-//import { SignPadComp } from './pages/jobcard/signature/signature.component'
+import { ClickOutsideDirective } from './shared/clickOutside.directive'
+import { DropdownDirective } from './shared/dropdown.directive'
+import { ClickOutsideModule } from 'ng-click-outside';
+import { ComponentsModule } from './components/components.module';
+import { myDropdownComponent } from './components/dropdownComponent/myDropdown.component';
+import { IonicSelectableModule } from 'ionic-selectable';
 
 @NgModule({
   declarations: [
     AppComponent,
-    //SignPadComp
   ],
-  entryComponents: [],
+
   imports: [
     BrowserModule,
     IonicModule.forRoot({mode:'md'}),
@@ -30,7 +34,10 @@ import { SignaturePadModule } from 'angular2-signaturepad';
     IonicStorageModule.forRoot(),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
-    SignaturePadModule
+    SignaturePadModule,
+    ClickOutsideModule,
+    ComponentsModule,
+    IonicSelectableModule,
   ],
   providers: [
     PopupHelper,
@@ -42,5 +49,6 @@ import { SignaturePadModule } from 'angular2-signaturepad';
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule {}

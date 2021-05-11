@@ -2,7 +2,8 @@ import { FirebaseGetService } from './../../services/firebase-service/firebase-g
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 import { FirebaseService } from './../../services/firebase-service/firebase-service.service';
 import { Asset, GeneralInformation, MeterInformation, OtherInformation, RateInformation } from './../../models/Asset.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { myDropdownComponent } from '../../components/dropdownComponent/myDropdown.component'
 
 @Component({
   selector: 'app-addassets',
@@ -19,6 +20,10 @@ export class AddassetsPage implements OnInit {
   colors: any = []
   tyreSizes: any = []
   meterTypes: any = []
+  batteries: any = []
+  driver: any = []
+
+  drop: false
 
   constructor(private firebaseService: FirebaseService, private popUp: PopupHelper, private firebaseGetServ: FirebaseGetService) {
     this.asset = new Asset();
@@ -34,10 +39,21 @@ export class AddassetsPage implements OnInit {
     //this.onColor();
     //this.onTireSizes();
     //this.onMeterType();
+    //this.onDriver()
   }
 
   onlyUnique(value, index, self) {
     return self.indexOf(value) === index;
+  }
+
+  getDataDynamic() {
+    this.popUp.showLoading('getting data...').then(() =>  {
+      this.firebaseGetServ.getAsset().then((assets) => {
+        this.assets = assets;
+          this.loadingComplete = true;
+          this.popUp.dismissLoading();
+        })
+      })
   }
 
   onAdd(){
@@ -53,9 +69,20 @@ export class AddassetsPage implements OnInit {
       this.makesAndModels = mNm;
     })
   }
+  onMakeAndModelLeft(){
+    console.log('loading more')
+    this.firebaseGetServ.getMakeAndModelLeft().then((mNm: any) => {
+      this.makesAndModels = mNm;
+    })
+  }
 
   onType(){
     this.firebaseGetServ.getType().then((mNm: any) => {
+      this.makesAndModels = mNm;
+    })
+  }
+  onTypeLeft(){
+    this.firebaseGetServ.getTypeLeft().then((mNm: any) => {
       this.makesAndModels = mNm;
     })
   }
@@ -65,15 +92,47 @@ export class AddassetsPage implements OnInit {
       this.category = cat.filter(this.onlyUnique)
     })
   }
+  onCategoryLeft(){
+    this.firebaseGetServ.getCategoryLeft().then((cat: any) => {
+      this.category = cat.filter(this.onlyUnique)
+    })
+  }
 
   onColor(){
     this.firebaseGetServ.getColor().then((col: any) => {
       this.colors = col;
     })
   }
+  onColorLeft(){
+      this.firebaseGetServ.getColorLeft().then((col: any) => {
+        this.colors = col;
+      })
+  }
+
+  onBattery(){}
+  onBatteryLeft(){
+
+  }
+
+  onDriver(){
+    this.firebaseGetServ.getDriver().then((col: any) => {
+      this.driver = col
+      // col.forEach(obj => {
+      //   if (obj.StaffCatgGuid == '7E55FF15-8B93-4CC4-B488-BC0E6FE2971E') {
+      //     this.driver.push(obj)
+      //   }
+      // });
+    })
+  }
+  onDriverLeft(){}
 
   onTireSizes(){
     this.firebaseGetServ.getTyreSize().then((size: any) => {
+      this.tyreSizes = size
+    })
+  }
+  onTireSizesLeft(){
+    this.firebaseGetServ.getTyreSizeLeft().then((size: any) => {
       this.tyreSizes = size
     })
   }
@@ -83,18 +142,50 @@ export class AddassetsPage implements OnInit {
       this.meterTypes = mType.filter(this.onlyUnique)
     })
   }
-
-  getData() {
-    this.popUp.showLoading('getting data...').then(() =>  {
-      this.firebaseGetServ.getAsset().then((assets) => {
-        this.assets = assets;
-          this.loadingComplete = true;
-          this.popUp.dismissLoading();
-        })
-      })
+  onMeterTypeLeft(){
+    this.firebaseGetServ.getMeterTypeLeft().then((mType: any) => {
+      this.meterTypes = mType.filter(this.onlyUnique)
+    })
   }
 
-  onChange(){
-    console.log(this.asset.meterInformation.MeterType);
+  onChange(obj){
+    console.log(obj.value)
+    console.log(this.asset.generalInformation.ColourGuid)
+  }
+
+  onColorSelected(colObj){
+    this.asset.generalInformation.ColourGuid = colObj.colorGuid
+  }
+
+  onMakeModelSel(colObj){
+    this.asset.generalInformation.ItemMakModGuid = colObj.ItemMakModGuid
+  }
+
+  onTypeSel(colObj){
+    this.asset.generalInformation.ItemTypeGuid = colObj.ItemTypeGuid
+  }
+
+  onCategorySel(colObj){
+    this.asset.generalInformation.ItemCatg = colObj.ItemCatg
+  }
+
+  onBatterySel(colObj){
+    this.asset.generalInformation.BatteryGuid = colObj.BatteryGuid
+  }
+
+  onDriverSel(colObj){
+    this.asset.generalInformation.DriverName = colObj.DriverName
+  }
+
+  onFrontTyreSel(colObj){
+    this.asset.generalInformation.FrontTyreGuid = colObj.FrontTyreGuid
+  }
+
+  onRearTyreSel(colObj){
+    this.asset.generalInformation.RearTyreGuid = colObj.RearTyreGuid
+  }
+
+  onDomClick(){
+    //this.child.onParentClick();
   }
 }

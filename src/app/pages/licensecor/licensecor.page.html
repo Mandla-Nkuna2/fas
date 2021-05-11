@@ -234,15 +234,17 @@
           <ion-col size="3.5">
             <div class="item-input">
               <ion-label>Registration</ion-label>
-              <ion-item lines="none">
-                <ion-select
-                  multiple="false"
-                  [(ngModel)]="licCorAndSafInspec.Itemguid"
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="licCorAndSafInspec"
+                  [items]="registration"
+                  itemValueField="ColourGuid"
+                  itemTextField="Colour"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onRegistrationLeft()"
                 >
-                  <ion-select-option value="Registration"
-                    >Registration</ion-select-option
-                  >
-                </ion-select>
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>
@@ -293,14 +295,17 @@
           <ion-col size="3.5">
             <div class="item-input">
               <ion-label>Disk Received from motor licencing bureau?</ion-label>
-              <ion-item lines="none">
-                <ion-select
-                  multiple="false"
-                  [(ngModel)]="licCorAndSafInspec.diskFromLicBureau"
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="licCorAndSafInspec"
+                  [items]="registration"
+                  itemValueField="ColourGuid"
+                  itemTextField="Colour"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onRegistrationLeft()"
                 >
-                  <ion-select-option value="Y">Yes</ion-select-option>
-                  <ion-select-option value="N">No</ion-select-option>
-                </ion-select>
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>

@@ -26,6 +26,49 @@
       </div>
     </div>
   </div>
+
+  <div class="navbar" class="ion-text-center">
+    <ion-button
+      fill="clear"
+      routerLink="/staffaudittrail"
+      routerDirection="root"
+      routerLinkActive="active-link"
+      class="link"
+    >
+      Staff Audit Trail
+    </ion-button>
+
+    <ion-button
+      fill="clear"
+      routerLink="/staffproreport"
+      routerDirection="root"
+      routerLinkActive="active-link"
+      class="link"
+    >
+      Staff productivity report
+    </ion-button>
+
+    <ion-button
+      fill="clear"
+      routerLink="/schedulestprorepo"
+      routerDirection="root"
+      routerLinkActive="active-link"
+      class="link"
+    >
+      Schedule
+    </ion-button>
+
+    <ion-button
+      fill="clear"
+      routerLink="/driverslicense"
+      routerDirection="root"
+      routerLinkActive="active-link"
+      class="link"
+    >
+      Drivers Licence
+    </ion-button>
+  </div>
+
   <div class="section">
     <div class="grid-holder">
       <div class="top-toolbar flex al-center jc-between">
@@ -256,15 +299,17 @@
           <ion-col size="3.5">
             <div class="item-input">
               <ion-label>Staff Member</ion-label>
-              <ion-item lines="none">
-                <ion-select
-                  multiple="false"
-                  [(ngModel)]="staffTimesheet.StaffGuid"
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="staffTimesheet"
+                  [items]="staffMember"
+                  itemValueField="ColourGuid"
+                  itemTextField="Colour"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onStaffMemberLeft()"
                 >
-                  <ion-select-option value="Description"
-                    >Registration</ion-select-option
-                  >
-                </ion-select>
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>

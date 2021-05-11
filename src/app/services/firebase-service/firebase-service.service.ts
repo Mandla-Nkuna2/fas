@@ -37,149 +37,149 @@ import {Trafficfine} from '../../models/Trafficfine.model';
 export class FirebaseService {
 constructor(private afs: AngularFirestore, private loading: LoadingService)   {}
 
-    public saveAssetss(testAsset: TestAssets){
+    public saveAssetss(saveData: TestAssets){
       let res: any
-      return res = this.writeData(Object.assign({}, testAsset), testAsset.id)
+      return res = this.writeData(Object.assign({}, saveData), saveData.id)
     }
 
-    public saveAccidentManagement(testAsset: AccidentManagement){
+    public saveAccidentManagement(saveData: AccidentManagement){
       let res: any
-      return res = this.writeData(Object.assign({}, testAsset), testAsset.LossContGuid)
+      return res = this.writeData(Object.assign({}, saveData), saveData.LossContGuid)
     }
 
-    public saveAdditionalCost(testAsset: AdditionalCost){
+    public saveAdditionalCost(saveData: AdditionalCost){
       let res: any
-      return res = this.writeData(Object.assign({}, testAsset), testAsset.AddCostGuid)
+      return res = this.writeData(Object.assign({}, saveData), saveData.AddCostGuid)
     }
 
-    public saveAsset(testAsset: Asset){
+    public saveAsset(saveData: Asset){
       let res: any
-      return res = this.writeData(Object.assign({}, testAsset), testAsset.generalInformation.ItemGuid)
+      return res = this.writeData(Object.assign({}, saveData), saveData.generalInformation.ItemGuid)
     }
 
-    public saveAutoCardDetail(testAsset: AutoCard){
+    public saveAutoCardDetail(saveData: AutoCard){
       let res: any
-      return res = this.writeData(Object.assign({}, testAsset), testAsset.AutoCardGuid)
+      return res = this.writeData(Object.assign({}, saveData), saveData.AutoCardGuid)
     }
 
-    public saveBowserTransaction(testAsset: BowserTransaction){
+    public saveBowserTransaction(saveData: BowserTransaction){
       let res: any
-      return res = this.writeData(Object.assign({}, testAsset), testAsset.BowserTrnGuid)
+      return res = this.writeData(Object.assign({}, saveData), saveData.BowserTrnGuid)
     }
 
-    public saveBowserTransfer(testAsset: BowserTransfer){
+    public saveBowserTransfer(saveData: BowserTransfer){
       let res: any
-      return res = this.writeData(Object.assign({}, testAsset), testAsset.FuelTransferGuid)
+      return res = this.writeData(Object.assign({}, saveData), saveData.FuelTransferGuid)
     }
 
-    public saveDailyOperationRec(testAsset: DailyOperationRec){
+    public saveDailyOperationRec(saveData: DailyOperationRec){
       let res: any
-      return res = this.writeData(Object.assign({}, testAsset), testAsset.Itemguid)
+      return res = this.writeData(Object.assign({}, saveData), saveData.Itemguid)
     }
 
-    public saveFixedCostsDet(testAsset: FixedCostsDet){
+    public saveFixedCostsDet(saveData: FixedCostsDet){
       let res: any
-      return res = this.writeData(Object.assign({}, testAsset), testAsset.FixedCostGuid)
+      return res = this.writeData(Object.assign({}, saveData), saveData.FixedCostGuid)
     }
 
-    public saveFixedCostTransfer(testAsset: FixedCostTransfer){
+    public saveFixedCostTransfer(saveData: FixedCostTransfer){
       let res: any
-      return res = this.writeData(Object.assign({}, testAsset), testAsset.FixedcostTransGuid)
+      return res = this.writeData(Object.assign({}, saveData), saveData.FixedcostTransGuid)
     }
 
-    public saveFuelIssue(testAsset: FuelIssue){
+    public saveFuelIssue(saveData: FuelIssue){
       let res: any
-      return res = this.writeData(Object.assign({}, testAsset), testAsset.FuelIssueGuid)
+      return res = this.writeData(Object.assign({}, saveData), saveData.FuelIssueGuid)
     }
 
-    public saveFuelType(testAsset: FuelType){
+    public saveFuelType(saveData: FuelType){
       let res: any
-      return res = this.writeData(Object.assign({}, testAsset), testAsset.FuelTypeGuid)
+      return res = this.writeData(Object.assign({}, saveData), saveData.FuelTypeGuid)
     }
 
-    public saveItemComponent(testAsset: ItemComponent){
+    public saveItemComponent(saveData: ItemComponent){
       let res: any
-      return res = this.writeData(Object.assign({}, testAsset), testAsset.ItemCompGuid)
+      return res = this.writeData(Object.assign({}, saveData), saveData.ItemCompGuid)
     }
 
-    public saveItems(testAsset: Item){
+    public saveItems(saveData: Item){
       let res: any
-      return res = this.writeData(Object.assign({}, testAsset), testAsset.ItemGuid)
+      return res = this.writeData(Object.assign({}, saveData), saveData.ItemGuid)
     }
 
-    public saveJobCard(testAsset: JobCard){
+    public saveJobCard(saveData: JobCard){
       let res: any
-      return res = this.writeData(Object.assign({}, testAsset), testAsset.generalInformation.JobCardNo)
+      return res = this.writeData(Object.assign({}, saveData), saveData.generalInformation.JobCardNo)
     }
 
-    public saveLicCorAndSafInspcDates(testAsset: LicCorAndSafInspcDates){
+    public saveLicCorAndSafInspcDates(saveData: LicCorAndSafInspcDates){
       let res: any
-      return res = this.writeData(Object.assign({}, testAsset), testAsset.LicHistIndex)
+      return res = this.writeData(Object.assign({}, saveData), saveData.LicHistIndex)
     }
 
-    public saveLossControl(testAsset: LossControl){
+    public saveLossControl(saveData: LossControl){
       let res: any
-      return res = this.writeData(Object.assign({}, testAsset), testAsset.LossContGuid)
+      return res = this.writeData(Object.assign({}, saveData), saveData.LossContGuid)
     }
 
-    public saveMaintenanceEvent(testAsset: MaintenanceEvent){
+    public saveMaintenanceEvent(saveData: MaintenanceEvent){
       let res: any
-      return res = this.writeData(Object.assign({}, testAsset), testAsset.MaintEvntGuid)
+      return res = this.writeData(Object.assign({}, saveData), saveData.MaintEvntGuid)
     }
 
-    public saveOilIssue(testAsset: OilIssue){
+    public saveOilIssue(saveData: OilIssue){
       let res: any
-      return res = this.writeData(Object.assign({}, testAsset), testAsset.OilIssueGuid)
+      return res = this.writeData(Object.assign({}, saveData), saveData.OilIssueGuid)
     }
 
-    public saveOilOrFluidType(testAsset: OilOrFluidType){
+    public saveOilOrFluidType(saveData: OilOrFluidType){
       let res: any
-      return res = this.writeData(Object.assign({}, testAsset), testAsset.OilGuid)
+      return res = this.writeData(Object.assign({}, saveData), saveData.OilGuid)
     }
 
-    public saveOilStoreTransaction(testAsset: OilStoreTransaction){
+    public saveOilStoreTransaction(saveData: OilStoreTransaction){
       let res: any
-      return res = this.writeData(Object.assign({}, testAsset), testAsset.OilStoreTrnGuid)
+      return res = this.writeData(Object.assign({}, saveData), saveData.OilStoreTrnGuid)
     }
 
-    public saveOilStoreTransfer(testAsset: OilStoreTransfer){
+    public saveOilStoreTransfer(saveData: OilStoreTransfer){
       let res: any
-      return res = this.writeData(Object.assign({}, testAsset), testAsset.OilStoreTrnGuid)
+      return res = this.writeData(Object.assign({}, saveData), saveData.OilStoreTrnGuid)
     }
 
-    public saveOverheadTransaction(testAsset: OverheadTransaction){
+    public saveOverheadTransaction(saveData: OverheadTransaction){
       let res: any
-      return res = this.writeData(Object.assign({}, testAsset), testAsset.OverheadGuid)
+      return res = this.writeData(Object.assign({}, saveData), saveData.OverheadGuid)
     }
 
-    public saveRevenue(testAsset: Revenue){
+    public saveRevenue(saveData: Revenue){
       let res: any
-      return res = this.writeData(Object.assign({}, testAsset), testAsset.RevenueGuid)
+      return res = this.writeData(Object.assign({}, saveData), saveData.RevenueGuid)
     }
 
-    public saveStaffTimesheet(testAsset: StaffTimesheet){
+    public saveStaffTimesheet(saveData: StaffTimesheet){
       let res: any
-      return res = this.writeData(Object.assign({}, testAsset), testAsset.Staff_TrnGuid)
+      return res = this.writeData(Object.assign({}, saveData), saveData.Staff_TrnGuid)
     }
 
-    public saveStoreIssue(testAsset: StoreIssue){
+    public saveStoreIssue(saveData: StoreIssue){
       let res: any
-      return res = this.writeData(Object.assign({}, testAsset), testAsset.StoreIssueGuid)
+      return res = this.writeData(Object.assign({}, saveData), saveData.StoreIssueGuid)
     }
 
-    public saveSupplierDeposit(testAsset: SupplierDeposit){
+    public saveSupplierDeposit(saveData: SupplierDeposit){
       let res: any
-      return res = this.writeData(Object.assign({}, testAsset), testAsset.SupBalguid)
+      return res = this.writeData(Object.assign({}, saveData), saveData.SupBalguid)
     }
 
-    public saveTestAssets(testAsset: TestAssets){
+    public saveTestAssets(saveData: TestAssets){
       let res: any
-      return res = this.writeData(Object.assign({}, testAsset), testAsset.id)
+      return res = this.writeData(Object.assign({}, saveData), saveData.id)
     }
 
-    public saveTrafficfine(testAsset: Trafficfine){
+    public saveTrafficfine(saveData: Trafficfine){
       let res: any
-      return res = this.writeData(Object.assign({}, testAsset), testAsset.TrafficFineGuid)
+      return res = this.writeData(Object.assign({}, saveData), saveData.TrafficFineGuid)
     }
 
     public writeData(myData: any, id: string){
@@ -196,5 +196,4 @@ constructor(private afs: AngularFirestore, private loading: LoadingService)   {}
       })
       return promise
     }
-
 }

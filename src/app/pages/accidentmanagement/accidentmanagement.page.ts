@@ -11,6 +11,8 @@ import { Component, OnInit } from '@angular/core';
 export class AccidentmanagementPage implements OnInit {
   accidentManagement: AccidentManagement
 
+  agent: any []
+
   constructor(private firebaseService: FirebaseService, private popUp: PopupHelper) {
     this.accidentManagement = new AccidentManagement();
    }
@@ -24,6 +26,40 @@ export class AccidentmanagementPage implements OnInit {
   }).catch((err) => {
     this.popUp.showError(err);
   })
+ }
+
+ onAgent(){}
+ onAgentLeft(){}
+
+ onRegistration(){}
+ onRegistrationLeft(){}
+
+ onLossType(){}
+ onLossTypeLeft(){}
+
+ onDriverName(){}
+ onDriverNameLeft(){}
+
+ onTripAuthority(){}
+ onTripAuthorityLeft(){}
+
+ onForfeiture(){}
+ onForfeitureLeft(){}
+
+ onDetermOfLiab(){}
+ onDetermOfLiabLeft(){}
+
+ onCostingDocs(){}
+ onCostingDocsLeft(){}
+
+ onActionTaken(){}
+ onActionTakenLeft(){}
+
+ onAmountRecov(){}
+ onAmountRecovLeft(){}
+
+ onAgentSel(obj){
+
  }
 
  onMarkAsComplete(){

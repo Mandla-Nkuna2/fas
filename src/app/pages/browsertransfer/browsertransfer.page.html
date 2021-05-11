@@ -206,7 +206,7 @@
               <ion-item lines="none">
                 <ion-datetime
                   display-format="DD MMM YYYY"
-                  [(ngModel)]="bowserTRansfer.FuelTransferDate"
+                  [(ngModel)]="bowserTransfer.FuelTransferDate"
                 >
                 </ion-datetime>
               </ion-item>
@@ -216,15 +216,17 @@
           <ion-col size="8" offset="0.5">
             <div class="item-input">
               <ion-label>Voucher No.</ion-label>
-              <ion-item lines="none">
-                <ion-select
-                  multiple="false"
-                  [(ngModel)]="bowserTRansfer.FuelTransferDate"
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="bowserTransfer"
+                  [items]="voucherNo"
+                  itemValueField="ColourGuid"
+                  itemTextField="Colour"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onVoucherNoLeft()"
                 >
-                  <ion-select-option value="Description"
-                    >Description</ion-select-option
-                  >
-                </ion-select>
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>
@@ -233,7 +235,7 @@
             <div class="item-input">
               <ion-label>Bowser From</ion-label>
               <ion-item lines="none">
-                <ion-input [(ngModel)]="bowserTRansfer.BowserFromGuid">
+                <ion-input [(ngModel)]="bowserTransfer.BowserFromGuid">
                 </ion-input>
               </ion-item>
             </div>
@@ -245,7 +247,7 @@
               <ion-item lines="none" class="end">
                 <ion-input
                   type="text"
-                  [(ngModel)]="bowserTRansfer.BowserFromPump"
+                  [(ngModel)]="bowserTransfer.BowserFromPump"
                 ></ion-input>
               </ion-item>
             </div>
@@ -257,7 +259,7 @@
               <ion-item lines="none" class="end">
                 <ion-input
                   type="text"
-                  [(ngModel)]="bowserTRansfer.BowserToGuid"
+                  [(ngModel)]="bowserTransfer.BowserToGuid"
                 ></ion-input>
               </ion-item>
             </div>
@@ -269,7 +271,7 @@
               <ion-item lines="none" class="end">
                 <ion-input
                   type="text"
-                  [(ngModel)]="bowserTRansfer.BowserToPump"
+                  [(ngModel)]="bowserTransfer.BowserToPump"
                 ></ion-input>
               </ion-item>
             </div>
@@ -281,7 +283,7 @@
               <ion-item lines="none" class="end">
                 <ion-input
                   type="text"
-                  [(ngModel)]="bowserTRansfer.FuelQty"
+                  [(ngModel)]="bowserTransfer.FuelQty"
                 ></ion-input>
               </ion-item>
             </div>
@@ -290,15 +292,17 @@
           <ion-col size="3.5" offset="0.5">
             <div class="item-input">
               <ion-label>Cost Center</ion-label>
-              <ion-item lines="none">
-                <ion-select
-                  multiple="false"
-                  [(ngModel)]="bowserTRansfer.CostCentGuid"
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="bowserTransfer"
+                  [items]="voucherNo"
+                  itemValueField="ColourGuid"
+                  itemTextField="Colour"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onVoucherNoLeft()"
                 >
-                  <ion-select-option value="CostCenter"
-                    >Cost Center</ion-select-option
-                  >
-                </ion-select>
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>

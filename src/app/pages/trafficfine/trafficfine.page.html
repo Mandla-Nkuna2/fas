@@ -64,13 +64,17 @@
             <ion-col size="3.5">
               <div class="item-input">
                 <ion-label>Supervisor</ion-label>
-                <ion-item lines="none">
-                  <ion-select
-                    multiple="false"
-                    [(ngModel)]="trafficfine.SuperGuid"
+                <ion-item>
+                  <ionic-selectable
+                    [(ngModel)]="trafficfine"
+                    [items]="supervisor"
+                    itemValueField="ColourGuid"
+                    itemTextField="Colour"
+                    [canSearch]="true"
+                    [hasInfiniteScroll]="true"
+                    (onInfiniteScroll)="onRegistrationLeft()"
                   >
-                    <ion-select-option value="hawaii">Hawaii</ion-select-option>
-                  </ion-select>
+                  </ionic-selectable>
                 </ion-item>
               </div>
             </ion-col>
@@ -85,12 +89,17 @@
             <ion-col size="3.5">
               <div class="item-input">
                 <ion-label>Registration</ion-label>
-                <ion-item lines="none">
-                  <ion-select multiple="false" placeholder="Please select">
-                    <ion-select-option *ngFor="let reg of trafficfine.RegIndex"
-                      >{{reg}}</ion-select-option
-                    >
-                  </ion-select>
+                <ion-item>
+                  <ionic-selectable
+                    [(ngModel)]="trafficfine"
+                    [items]="supervisor"
+                    itemValueField="ColourGuid"
+                    itemTextField="Colour"
+                    [canSearch]="true"
+                    [hasInfiniteScroll]="true"
+                    (onInfiniteScroll)="onRegistrationLeft()"
+                  >
+                  </ionic-selectable>
                 </ion-item>
               </div>
             </ion-col>
@@ -98,13 +107,17 @@
             <ion-col size="3.5" offset="0.5">
               <div class="item-input">
                 <ion-label>Driver</ion-label>
-                <ion-item lines="none">
-                  <ion-select
-                    multiple="false"
-                    [(ngModel)]="trafficfine.Driverguid"
+                <ion-item>
+                  <ionic-selectable
+                    [(ngModel)]="trafficfine"
+                    [items]="supervisor"
+                    itemValueField="ColourGuid"
+                    itemTextField="Colour"
+                    [canSearch]="true"
+                    [hasInfiniteScroll]="true"
+                    (onInfiniteScroll)="onRegistrationLeft()"
                   >
-                    <ion-select-option value="hawaii">Hawaii</ion-select-option>
-                  </ion-select>
+                  </ionic-selectable>
                 </ion-item>
               </div>
             </ion-col>

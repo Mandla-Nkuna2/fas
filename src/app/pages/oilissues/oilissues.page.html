@@ -222,10 +222,17 @@
           <ion-col size="3.5">
             <div class="item-input">
               <ion-label>Voucher No.</ion-label>
-              <ion-item lines="none">
-                <ion-select multiple="false" [(ngModel)]="oilIssue.VoucherNo">
-                  <ion-select-option value="hawaii">Hawaii</ion-select-option>
-                </ion-select>
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="oilIssue"
+                  [items]="voucherNo"
+                  itemValueField="ColourGuid"
+                  itemTextField="Colour"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onVoucherNoLeft()"
+                >
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>
@@ -233,10 +240,17 @@
           <ion-col size="3.5" offset="0.5">
             <div class="item-input">
               <ion-label>Registration</ion-label>
-              <ion-item lines="none">
-                <ion-select multiple="false" [(ngModel)]="oilIssue.ItemGuid">
-                  <ion-select-option value="hawaii">Hawaii</ion-select-option>
-                </ion-select>
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="oilIssue"
+                  [items]="voucherNo"
+                  itemValueField="ColourGuid"
+                  itemTextField="Colour"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onVoucherNoLeft()"
+                >
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>
@@ -244,14 +258,17 @@
           <ion-col size="3.5" offset="0.5">
             <div class="item-input">
               <ion-label>Component</ion-label>
-              <ion-item lines="none">
-                <ion-select
-                  value=""
-                  multiple="false"
-                  [(ngModel)]="oilIssue.ItemCompGuid"
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="oilIssue"
+                  [items]="voucherNo"
+                  itemValueField="ColourGuid"
+                  itemTextField="Colour"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onVoucherNoLeft()"
                 >
-                  <ion-select-option value="hawaii">Hawaii</ion-select-option>
-                </ion-select>
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>
@@ -259,14 +276,17 @@
           <ion-col size="3.5">
             <div class="item-input">
               <ion-label>Oil Store</ion-label>
-              <ion-item lines="none">
-                <ion-select
-                  value=""
-                  multiple="false"
-                  [(ngModel)]="oilIssue.OilStoreGuid"
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="oilIssue"
+                  [items]="voucherNo"
+                  itemValueField="ColourGuid"
+                  itemTextField="Colour"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onVoucherNoLeft()"
                 >
-                  <ion-select-option value="hawaii">Hawaii</ion-select-option>
-                </ion-select>
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>
@@ -274,14 +294,17 @@
           <ion-col size="3.5" offset="0.5">
             <div class="item-input">
               <ion-label>Supplier</ion-label>
-              <ion-item lines="none">
-                <ion-select
-                  value=""
-                  multiple="false"
-                  [(ngModel)]="oilIssue.SupplierGuid"
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="oilIssue"
+                  [items]="voucherNo"
+                  itemValueField="ColourGuid"
+                  itemTextField="Colour"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onVoucherNoLeft()"
                 >
-                  <ion-select-option value="hawaii">Hawaii</ion-select-option>
-                </ion-select>
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>
@@ -289,14 +312,17 @@
           <ion-col size="3.5" offset="0.5">
             <div class="item-input">
               <ion-label>Oil Type</ion-label>
-              <ion-item lines="none">
-                <ion-select
-                  value=""
-                  multiple="false"
-                  [(ngModel)]="oilIssue.OilTypeGuid"
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="oilIssue"
+                  [items]="voucherNo"
+                  itemValueField="ColourGuid"
+                  itemTextField="Colour"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onVoucherNoLeft()"
                 >
-                  <ion-select-option value="hawaii">Hawaii</ion-select-option>
-                </ion-select>
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>
@@ -414,13 +440,17 @@
           <ion-col size="3.5" offset="0.5">
             <div class="item-input">
               <ion-label>Cost Center</ion-label>
-              <ion-item lines="none">
-                <ion-select
-                  multiple="false"
-                  [(ngModel)]="oilIssue.CostCentGuid"
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="oilIssue"
+                  [items]="voucherNo"
+                  itemValueField="ColourGuid"
+                  itemTextField="Colour"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onVoucherNoLeft()"
                 >
-                  <ion-select-option value="hawaii">Hawaii</ion-select-option>
-                </ion-select>
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>
@@ -428,10 +458,17 @@
           <ion-col size="3.5" offset="0.5">
             <div class="item-input">
               <ion-label>Staff Code</ion-label>
-              <ion-item lines="none">
-                <ion-select multiple="false" [(ngModel)]="oilIssue.StaffGuid">
-                  <ion-select-option value="hawaii">Hawaii</ion-select-option>
-                </ion-select>
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="oilIssue"
+                  [items]="voucherNo"
+                  itemValueField="ColourGuid"
+                  itemTextField="Colour"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onVoucherNoLeft()"
+                >
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>

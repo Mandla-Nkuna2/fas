@@ -10,6 +10,8 @@ import FuelIssue from 'src/app/models/FuelIssue.model';
 export class FuelissuesPage implements OnInit {
   fuelIssue: FuelIssue
 
+  registration: any[]
+
   constructor(private navCtrl: NavController) {
     this.fuelIssue = new FuelIssue()
    }
@@ -22,5 +24,22 @@ export class FuelissuesPage implements OnInit {
   {
     this.navCtrl.navigateForward('itemcomponents');
   }
+
+  onRegistration(){}
+  onRegistrationLeft(){}
+
+  onBowser(){}
+  onBowserLeft(){}
+
+  onSupplier(){}
+  onSupplierLeft(){}
+
+  onStaffCode(){}
+  onStaffCodeLeft(){}
+
+  onCostCentre(){}
+  onCostCentreLeft(){}
+
+  onRegistrationSel(obj){}
 
 }

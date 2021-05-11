@@ -10,6 +10,8 @@ import MaintenanceEvent from 'src/app/models/MaintenanceEvent.model';
 export class MaintainceventPage implements OnInit {
   maintenanceEvent: MaintenanceEvent
 
+  jobCardNo: any []
+
   constructor(private navCtrl: NavController) {
     this.maintenanceEvent = new MaintenanceEvent()
    }
@@ -22,4 +24,28 @@ export class MaintainceventPage implements OnInit {
     this.navCtrl.navigateForward('oilissues');
   }
 
+  onJobCardNo(){}
+  onJobCardNoLeft(){}
+
+  onRegistration(){}
+  onRegistrationLeft(){}
+
+  onMaintType(){}
+  onMaintTypeLeft(){}
+
+  onMaintReason(){}
+  onMaintReasonLeft(){}
+
+  onSupplier(){}
+  onSupplierLeft(){}
+
+  onRequestedBy(){}
+  onRequestedByLeft(){}
+
+  onConstCentre(){}
+  onConstCentreLeft(){}
+
+  onJobCardNoSel(obj){
+
+  }
 }

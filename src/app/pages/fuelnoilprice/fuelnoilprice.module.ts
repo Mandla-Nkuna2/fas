@@ -7,13 +7,14 @@ import { IonicModule } from '@ionic/angular';
 import { FuelnoilpricePageRoutingModule } from './fuelnoilprice-routing.module';
 
 import { FuelnoilpricePage } from './fuelnoilprice.page';
-
+import { IonicSelectableModule } from 'ionic-selectable';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    FuelnoilpricePageRoutingModule
+    FuelnoilpricePageRoutingModule,
+    IonicSelectableModule,
   ],
   declarations: [FuelnoilpricePage]
 })

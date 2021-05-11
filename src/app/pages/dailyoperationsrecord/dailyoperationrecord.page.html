@@ -194,10 +194,17 @@
           <ion-col size="3.5">
             <div class="item-input">
               <ion-label>Registration</ion-label>
-              <ion-item lines="none">
-                <ion-select multiple="false" [(ngModel)]="dOpsRec.Itemguid">
-                  <ion-select-option value="hawaii">Hawaii</ion-select-option>
-                </ion-select>
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="dOpsRec"
+                  [items]="registration"
+                  itemValueField="ColourGuid"
+                  itemTextField="Colour"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onRegistrationLeft()"
+                >
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>
@@ -205,10 +212,17 @@
           <ion-col size="8" offset="0.5">
             <div class="item-input">
               <ion-label>Location</ion-label>
-              <ion-item lines="none">
-                <ion-select multiple="false" [(ngModel)]="dOpsRec.Itemguid">
-                  <ion-select-option value="hawaii">Hawaii</ion-select-option>
-                </ion-select>
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="dOpsRec"
+                  [items]="registration"
+                  itemValueField="ColourGuid"
+                  itemTextField="Colour"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onRegistrationLeft()"
+                >
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>
@@ -313,13 +327,17 @@
           <ion-col size="4" offset="0.5">
             <div class="item-input">
               <ion-label>Cost Center</ion-label>
-              <ion-item lines="none">
-                <ion-select
-                  multiple="false"
-                  [(ngModel)]="dOpsRec.CostCentreguid"
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="dOpsRec"
+                  [items]="registration"
+                  itemValueField="ColourGuid"
+                  itemTextField="Colour"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onRegistrationLeft()"
                 >
-                  <ion-select-option value="hawaii">Hawaii</ion-select-option>
-                </ion-select>
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>
@@ -419,10 +437,17 @@
           <ion-col size="2" offset="0.5">
             <div class="item-input">
               <ion-label>Voucher</ion-label>
-              <ion-item lines="none">
-                <ion-select multiple="false" placeholder="Voucher">
-                  <ion-select-option value="Voucher">Voucher</ion-select-option>
-                </ion-select>
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="dOpsRec"
+                  [items]="registration"
+                  itemValueField="ColourGuid"
+                  itemTextField="Colour"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onRegistrationLeft()"
+                >
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>
@@ -442,13 +467,17 @@
           <ion-col size="3.5">
             <div class="item-input">
               <ion-label>Name</ion-label>
-              <ion-item lines="none">
-                <ion-select
-                  multiple="false"
-                  [(ngModel)]="dOpsRec.operator.StaffGuid"
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="dOpsRec"
+                  [items]="registration"
+                  itemValueField="ColourGuid"
+                  itemTextField="Colour"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onRegistrationLeft()"
                 >
-                  <ion-select-option value="hawaii">Hawaii</ion-select-option>
-                </ion-select>
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>

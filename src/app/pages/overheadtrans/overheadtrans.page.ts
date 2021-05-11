@@ -10,6 +10,8 @@ import OverheadTransaction from 'src/app/models/OverheadTransaction.model';
 export class OverheadtransPage implements OnInit {
   overheadTrans: OverheadTransaction
 
+  placeOrDest: any[]
+
   constructor(private navCtrl: NavController) {
     this.overheadTrans = new OverheadTransaction()
    }
@@ -22,4 +24,14 @@ export class OverheadtransPage implements OnInit {
     this.navCtrl.navigateForward('stafftimesheets');
   }
 
+  onPlaceOrDest(){}
+  onPlaceOrDestLeft(){}
+
+  onOverheadType(){}
+  onOverheadTypeLeft(){}
+
+  onCostCentre(){}
+  onCostCentreLeft(){}
+
+  onPlaceOrDestSel(obj){}
 }

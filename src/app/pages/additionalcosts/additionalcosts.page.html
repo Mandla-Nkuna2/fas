@@ -257,15 +257,17 @@
           <ion-col size="8" offset="0.5">
             <div class="item-input">
               <ion-label>Additional Cost Description</ion-label>
-              <ion-item lines="none">
-                <ion-select
-                  multiple="false"
-                  [(ngModel)]="additionalCost.Itemguid"
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="additionalCost"
+                  [items]="additionalCostDesc"
+                  itemValueField="ColourGuid"
+                  itemTextField="Colour"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onAdditionalCostDescLeft()"
                 >
-                  <ion-select-option value="Description"
-                    >Description</ion-select-option
-                  >
-                </ion-select>
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>

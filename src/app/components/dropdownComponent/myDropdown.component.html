@@ -1,0 +1,35 @@
+<div (clickOutside)="outsideClick()">
+  <ion-row>
+    <ion-col>
+      <ion-button (click)="onDrop()" style="width: 100%"
+        >{{ ddText
+        }}<ion-icon name="caret-down-outline" style="float: right"></ion-icon
+      ></ion-button>
+    </ion-col>
+  </ion-row>
+
+  <div appDropdown>
+    <ion-row *ngIf="displayBool">
+      <ion-col>
+        <div class="custom-dropdown">
+          <ion-row *ngFor="let obj of objs">
+            <ion-col>
+              <a
+                style="color: white; cursor: pointer; width: 100%"
+                (click)="onSelect($event, obj)"
+                >{{ obj[objKey] }}</a
+              >
+            </ion-col>
+          </ion-row>
+          <div (click)="onLoadmore()">
+            <a
+              *ngIf="!loadmore && objs.length > 0"
+              style="color: white; cursor: pointer"
+              >Load more</a
+            >
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </div>
+</div>

@@ -2,6 +2,37 @@
   <ion-header class="ion-no-border" *ngIf="showMenu">
     <ion-toolbar>
       <ion-title>Akhatech</ion-title>
+
+      <div class="navbar" class="ion-text-center">
+        <ion-button
+          fill="clear"
+          routerLink="assetdetail"
+          routerDirection="root"
+          routerLinkActive="active-link"
+          class="link"
+        >
+          Reports
+        </ion-button>
+        <ion-button
+          fill="clear"
+          routerLink="/tabs/tab2"
+          routerDirection="root"
+          routerLinkActive="active-link"
+          class="link"
+        >
+          System management
+        </ion-button>
+        <ion-button
+          fill="clear"
+          routerLink="/tabs/tab3"
+          routerDirection="root"
+          routerLinkActive="active-link"
+          class="link"
+        >
+          Support data
+        </ion-button>
+      </div>
+
       <ion-buttons slot="end">
         <ion-item lines="none">
           <div class="start-slot flex al-center jc-center" slot="start">
@@ -18,6 +49,53 @@
       </ion-buttons>
     </ion-toolbar>
   </ion-header>
+
+  <!-- <ion-navbar>
+    <ion-tabs>
+      <ion-tab-bar slot="bottom">
+        <ion-tab-button (click)="goAddAssetsInfo()">
+          <ion-icon name="map"></ion-icon>
+          <ion-label>Assets</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button (click)="goFleet()">
+          <ion-icon name="map"></ion-icon>
+          <ion-label>Vehicle</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button (click)="goMaintanance()">
+          <ion-icon name="map"></ion-icon>
+          <ion-label>Maintanance</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button (click)="goRevenue()">
+          <ion-icon name="map"></ion-icon>
+          <ion-label>Revenue</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button (click)="goCosts()">
+          <ion-icon name="map"></ion-icon>
+          <ion-label>Costs</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button (click)="goIssues()">
+          <ion-icon name="map"></ion-icon>
+          <ion-label>Issue</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button (click)="goStaff()">
+          <ion-icon name="map"></ion-icon>
+          <ion-label>Staff</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button (click)="goImports()">
+          <ion-icon name="map"></ion-icon>
+          <ion-label>Imports</ion-label>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-navbar> -->
+
   <ion-split-pane contentId="main-content">
     <ion-menu contentId="main-content" type="overlay">
       <ion-content *ngIf="showMenu">

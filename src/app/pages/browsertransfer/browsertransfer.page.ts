@@ -7,13 +7,23 @@ import BowserTransfer from 'src/app/models/BowserTransfer.model';
   styleUrls: ['./browsertransfer.page.scss'],
 })
 export class BrowsertransferPage implements OnInit {
-  bowserTRansfer: BowserTransfer
+  bowserTransfer: BowserTransfer
+
+  voucherNo: any[]
 
   constructor() {
-    this.bowserTRansfer = new BowserTransfer()
+    this.bowserTransfer = new BowserTransfer()
    }
 
   ngOnInit() {
   }
+
+  onVoucherNo(){}
+  onVoucherNoLeft(){}
+
+  onCostCentre(){}
+  onCostCentreLeft(){}
+
+  onVoucherNoSel(obj){}
 
 }

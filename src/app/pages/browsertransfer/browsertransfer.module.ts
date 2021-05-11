@@ -7,13 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { BrowsertransferPageRoutingModule } from './browsertransfer-routing.module';
 
 import { BrowsertransferPage } from './browsertransfer.page';
-
+import { ComponentsModule } from 'src/app/components/components.module';
+import { IonicSelectableModule } from 'ionic-selectable';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    BrowsertransferPageRoutingModule
+    BrowsertransferPageRoutingModule,
+    ComponentsModule,
+    IonicSelectableModule,
   ],
   declarations: [BrowsertransferPage]
 })

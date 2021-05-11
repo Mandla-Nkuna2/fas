@@ -26,6 +26,19 @@
       </div>
     </div>
   </div>
+
+  <div class="navbar" class="ion-text-center">
+    <ion-button
+      fill="clear"
+      routerLink="/revenueearned"
+      routerDirection="root"
+      routerLinkActive="active-link"
+      class="link"
+    >
+      Revenue earned
+    </ion-button>
+  </div>
+
   <div class="section">
     <div class="grid-holder">
       <div class="top-toolbar flex al-center jc-between">
@@ -280,12 +293,17 @@
           <ion-col size="4" offset="0.5">
             <div class="item-input">
               <ion-label>Registration</ion-label>
-              <ion-item lines="none">
-                <ion-select multiple="false" [(ngModel)]="revenue.RegIndex">
-                  <ion-select-option value="Description"
-                    >Description</ion-select-option
-                  >
-                </ion-select>
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="revenue"
+                  [items]="registrations"
+                  itemValueField="ColourGuid"
+                  itemTextField="StaffCode"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onRegistrationLeft()"
+                >
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>
@@ -293,10 +311,17 @@
           <ion-col size="3.5">
             <div class="item-input">
               <ion-label>Client</ion-label>
-              <ion-item lines="none">
-                <ion-select multiple="false" [(ngModel)]="revenue.ClientGuid">
-                  <ion-select-option value="client">client</ion-select-option>
-                </ion-select>
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="revenue"
+                  [items]="registrations"
+                  itemValueField="ColourGuid"
+                  itemTextField="StaffCode"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onRegistrationLeft()"
+                >
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>
@@ -304,10 +329,17 @@
           <ion-col size="3.5" offset="0.5">
             <div class="item-input">
               <ion-label>Cost Centre</ion-label>
-              <ion-item lines="none">
-                <ion-select multiple="false" [(ngModel)]="revenue.CostCentguid">
-                  <ion-select-option value="Agent">Agent</ion-select-option>
-                </ion-select>
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="revenue"
+                  [items]="registrations"
+                  itemValueField="ColourGuid"
+                  itemTextField="StaffCode"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onRegistrationLeft()"
+                >
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>

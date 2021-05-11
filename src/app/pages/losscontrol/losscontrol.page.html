@@ -232,13 +232,17 @@
           <ion-col size="3.5">
             <div class="item-input">
               <ion-label>Agent</ion-label>
-              <ion-item lines="none">
-                <ion-select
-                  multiple="false"
-                  [(ngModel)]="lossControl.Agentguid"
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="lossControl"
+                  [items]="agent"
+                  itemValueField="ColourGuid"
+                  itemTextField="Colour"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onRegistrationLeft()"
                 >
-                  <ion-select-option value="Agent">Agent</ion-select-option>
-                </ion-select>
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>
@@ -248,15 +252,17 @@
               <ion-row>
                 <ion-col size="7" class="ion-no-padding">
                   <ion-label>Registration</ion-label>
-                  <ion-item lines="none">
-                    <ion-select
-                      multiple="false"
-                      [(ngModel)]="lossControl.Itemguid"
+                  <ion-item>
+                    <ionic-selectable
+                      [(ngModel)]="lossControl"
+                      [items]="agent"
+                      itemValueField="ColourGuid"
+                      itemTextField="Colour"
+                      [canSearch]="true"
+                      [hasInfiniteScroll]="true"
+                      (onInfiniteScroll)="onRegistrationLeft()"
                     >
-                      <ion-select-option value="Registration"
-                        >Registration</ion-select-option
-                      >
-                    </ion-select>
+                    </ionic-selectable>
                   </ion-item>
                 </ion-col>
 
@@ -272,13 +278,17 @@
           <ion-col size="3.5">
             <div class="item-input">
               <ion-label>Loss Type</ion-label>
-              <ion-item lines="none">
-                <ion-select
-                  multiple="false"
-                  [(ngModel)]="lossControl.LossTypeguid"
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="lossControl"
+                  [items]="agent"
+                  itemValueField="ColourGuid"
+                  itemTextField="Colour"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onRegistrationLeft()"
                 >
-                  <ion-select-option value="hawaii">Hawaii</ion-select-option>
-                </ion-select>
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>
@@ -312,11 +322,17 @@
           <ion-col size="2.8">
             <div class="item-input">
               <ion-label>Reported</ion-label>
-              <ion-item lines="none">
-                <ion-select multiple="false" [(ngModel)]="lossControl.Reported">
-                  <ion-select-option value="Y">Yes</ion-select-option>
-                  <ion-select-option value="N">No</ion-select-option>
-                </ion-select>
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="lossControl"
+                  [items]="agent"
+                  itemValueField="ColourGuid"
+                  itemTextField="Colour"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onRegistrationLeft()"
+                >
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>
@@ -336,15 +352,17 @@
           <ion-col size="2.8" offset="0.25">
             <div class="item-input">
               <ion-label>Reported By</ion-label>
-              <ion-item lines="none">
-                <ion-select
-                  multiple="false"
-                  [(ngModel)]="lossControl.Reportbyguid"
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="lossControl"
+                  [items]="agent"
+                  itemValueField="ColourGuid"
+                  itemTextField="Colour"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onRegistrationLeft()"
                 >
-                  <ion-select-option value="Reported"
-                    >Reported</ion-select-option
-                  >
-                </ion-select>
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>
@@ -352,13 +370,17 @@
           <ion-col size="2.8" offset="0.25">
             <div class="item-input">
               <ion-label>Driver Name</ion-label>
-              <ion-item lines="none">
-                <ion-select
-                  multiple="false"
-                  [(ngModel)]="lossControl.DriverGuid"
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="lossControl"
+                  [items]="agent"
+                  itemValueField="ColourGuid"
+                  itemTextField="Colour"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onRegistrationLeft()"
                 >
-                  <ion-select-option value="hawaii">Hawaii</ion-select-option>
-                </ion-select>
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>
@@ -380,14 +402,17 @@
               <ion-row>
                 <ion-col size="5" class="ion-no-padding">
                   <ion-label>Trip Authority</ion-label>
-                  <ion-item lines="none">
-                    <ion-select
-                      multiple="false"
-                      [(ngModel)]="lossControl.TripAut"
+                  <ion-item>
+                    <ionic-selectable
+                      [(ngModel)]="lossControl"
+                      [items]="agent"
+                      itemValueField="ColourGuid"
+                      itemTextField="Colour"
+                      [canSearch]="true"
+                      [hasInfiniteScroll]="true"
+                      (onInfiniteScroll)="onRegistrationLeft()"
                     >
-                      <ion-select-option value="Y">Yes</ion-select-option>
-                      <ion-select-option value="N">No</ion-select-option>
-                    </ion-select>
+                    </ionic-selectable>
                   </ion-item>
                 </ion-col>
 
@@ -473,14 +498,17 @@
           <ion-col size="2.7">
             <div class="item-input">
               <ion-label>Forifeiture</ion-label>
-              <ion-item lines="none">
-                <ion-select
-                  multiple="false"
-                  [(ngModel)]="lossControl.Forfeiture"
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="lossControl"
+                  [items]="agent"
+                  itemValueField="ColourGuid"
+                  itemTextField="Colour"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onRegistrationLeft()"
                 >
-                  <ion-select-option value="Y">Yes</ion-select-option>
-                  <ion-select-option value="N">No</ion-select-option>
-                </ion-select>
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>
@@ -488,14 +516,17 @@
           <ion-col size="2.7" offset="0.3">
             <div class="item-input">
               <ion-label>Determination of liability</ion-label>
-              <ion-item lines="none">
-                <ion-select
-                  multiple="false"
-                  [(ngModel)]="lossControl.Det_Liability"
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="lossControl"
+                  [items]="agent"
+                  itemValueField="ColourGuid"
+                  itemTextField="Colour"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onRegistrationLeft()"
                 >
-                  <ion-select-option value="Y">Yes</ion-select-option>
-                  <ion-select-option value="N">No</ion-select-option>
-                </ion-select>
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>
@@ -503,14 +534,17 @@
           <ion-col size="2.8" offset="0.3">
             <div class="item-input">
               <ion-label>Costing Documents</ion-label>
-              <ion-item lines="none">
-                <ion-select
-                  multiple="false"
-                  [(ngModel)]="lossControl.Costingdocs"
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="lossControl"
+                  [items]="agent"
+                  itemValueField="ColourGuid"
+                  itemTextField="Colour"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onRegistrationLeft()"
                 >
-                  <ion-select-option value="Y">Yes</ion-select-option>
-                  <ion-select-option value="N">No</ion-select-option>
-                </ion-select>
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>
@@ -518,13 +552,17 @@
           <ion-col size="2.8" offset="0.3">
             <div class="item-input">
               <ion-label>Action Taken</ion-label>
-              <ion-item lines="none">
-                <ion-select
-                  multiple="false"
-                  [(ngModel)]="lossControl.LossContActguid"
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="lossControl"
+                  [items]="agent"
+                  itemValueField="ColourGuid"
+                  itemTextField="Colour"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onRegistrationLeft()"
                 >
-                  <ion-select-option value="hawaii">Hawaii</ion-select-option>
-                </ion-select>
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>
