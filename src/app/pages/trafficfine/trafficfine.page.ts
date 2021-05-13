@@ -2,6 +2,7 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 import { FirebaseService } from './../../services/firebase-service/firebase-service.service';
 import { Trafficfine } from './../../models/Trafficfine.model';
 import { Component, OnInit } from '@angular/core';
+import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
 
 @Component({
   selector: 'app-trafficfine',
@@ -12,26 +13,49 @@ export class TrafficfinePage implements OnInit {
   trafficfine: Trafficfine
 
   supervisor: any []
+  registration: any [];
+  driver: any []
 
-  constructor(private firebaseService: FirebaseService, private popUp: PopupHelper) {
+  constructor(private firebaseService: FirebaseService,
+    private popUp: PopupHelper, private firebaseGetServ:
+    FirebaseGetService) {
     this.trafficfine = new Trafficfine();
   }
 
   ngOnInit() {
+    // this.onSupervisor()
+    // this.onRegistration()
+    // this.onDriver()
   }
 
-  onSupervisor(){}
-  onSupervisorLeft(){}
+  onSupervisor(){
+    this.firebaseGetServ.getStaff().then((mNm: any) => {
+      this.supervisor = mNm
+    })
+  }
+  onSupervisorLeft(){
+    this.firebaseGetServ.getStaffLeft().then((mNm: any) => {
+      this.supervisor = mNm
+    })
+  }
 
-  onRegistration(){}
-  onRegistrationLeft(){}
+  onRegistration(){
+    this.firebaseGetServ.getRegistration().then((mNm: any) => {
+      this.registration = mNm
+    })
+  }
+  onRegistrationLeft(){
+    this.firebaseGetServ.getRegistrationLeft().then((mNm: any) => {
+      this.registration = mNm
+    })
+  }
 
-  onDriver(){}
+  onDriver(){
+    this.firebaseGetServ.getDriver().then((mNm: any) => {
+      this.driver = mNm
+    })
+  }
   onDriverLeft(){}
-
-  onSupervisorSel(obj){
-
-  }
 
   onAdd(){
     this.firebaseService.saveTrafficfine(this.trafficfine).then(() => {

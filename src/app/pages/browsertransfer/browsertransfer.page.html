@@ -217,16 +217,10 @@
             <div class="item-input">
               <ion-label>Voucher No.</ion-label>
               <ion-item>
-                <ionic-selectable
-                  [(ngModel)]="bowserTransfer"
-                  [items]="voucherNo"
-                  itemValueField="ColourGuid"
-                  itemTextField="Colour"
-                  [canSearch]="true"
-                  [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onVoucherNoLeft()"
-                >
-                </ionic-selectable>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="bowserTransfer.VoucherNo"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -294,13 +288,12 @@
               <ion-label>Cost Center</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="bowserTransfer"
-                  [items]="voucherNo"
-                  itemValueField="ColourGuid"
-                  itemTextField="Colour"
+                  [(ngModel)]="bowserTransfer.CostCentGuid"
+                  [items]="costCentre"
+                  itemValueField="CostCentGuid"
+                  itemTextField="CostCentName"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onVoucherNoLeft()"
                 >
                 </ionic-selectable>
               </ion-item>

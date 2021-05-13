@@ -269,16 +269,17 @@
           <ion-col size="3.5">
             <div class="item-input">
               <ion-label>Registration</ion-label>
-              <ion-item lines="none">
-                <ion-select
+              <ion-item>
+                <ionic-selectable
                   [(ngModel)]="autocard.ItemGuid"
-                  multiple="false"
-                  disabled
+                  [items]="registration"
+                  itemValueField="ItemGuid"
+                  itemTextField="Reg"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onRegistrationLeft()"
                 >
-                  <ion-select-option value="Registration"
-                    >Registration</ion-select-option
-                  >
-                </ion-select>
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>
@@ -287,11 +288,10 @@
             <div class="item-input">
               <ion-label>Card No.</ion-label>
               <ion-item lines="none">
-                <ion-select [(ngModel)]="autocard.CardNo" multiple="false">
-                  <ion-select-option value="Description"
-                    >Description</ion-select-option
-                  >
-                </ion-select>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="autocard.CardNo"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>

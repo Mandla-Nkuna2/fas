@@ -88,13 +88,13 @@
                 <ion-label>Driver / Operator</ion-label>
                 <ion-item>
                   <ionic-selectable
-                    [(ngModel)]="jobCard.generalInformation.StaffGuid"
-                    [items]="staff"
+                    [(ngModel)]="jobCard.generalInformation.driverOrOpGuid"
+                    [items]="driver"
                     itemValueField="StaffGuid"
                     itemTextField="StaffCode"
                     [canSearch]="true"
                     [hasInfiniteScroll]="true"
-                    (onInfiniteScroll)="onReportedByLeft()"
+                    (onInfiniteScroll)="onDriverLeft()"
                   >
                   </ionic-selectable>
                 </ion-item>

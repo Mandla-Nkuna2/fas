@@ -2,6 +2,7 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 import { FirebaseService } from './../../services/firebase-service/firebase-service.service';
 import { AccidentManagement } from './../../models/AccidentManagement.model';
 import { Component, OnInit } from '@angular/core';
+import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
 
 @Component({
   selector: 'app-accidentmanagement',
@@ -12,12 +13,23 @@ export class AccidentmanagementPage implements OnInit {
   accidentManagement: AccidentManagement
 
   agent: any []
+  lossType: any []
+  reportedBy: any []
+  driver: any []
+  yesNo = ['Y', 'N']
+  registration: any [];
 
-  constructor(private firebaseService: FirebaseService, private popUp: PopupHelper) {
+  constructor(private firebaseService: FirebaseService,
+    private popUp: PopupHelper, private firebaseGetServ:
+    FirebaseGetService) {
     this.accidentManagement = new AccidentManagement();
    }
 
   ngOnInit() {
+    // this.onAgent()
+    // this.onRegistration()
+    // this.onReportedBy()
+    // this.onDriverName()
   }
 
  onAdd(){
@@ -28,39 +40,67 @@ export class AccidentmanagementPage implements OnInit {
   })
  }
 
- onAgent(){}
- onAgentLeft(){}
+ onAgent(){
+  this.firebaseGetServ.getStaff().then((mNm: any) => {
+    this.agent = mNm
+  })
+}
+onAgentLeft(){
+  this.firebaseGetServ.getStaffLeft().then((mNm: any) => {
+    this.agent = mNm
+  })
+}
 
- onRegistration(){}
- onRegistrationLeft(){}
+onRegistration(){
+  this.firebaseGetServ.getRegistration().then((mNm: any) => {
+    this.registration = mNm
+  })
+}
+onRegistrationLeft(){
+  this.firebaseGetServ.getRegistrationLeft().then((mNm: any) => {
+    this.registration = mNm
+  })
+}
 
- onLossType(){}
- onLossTypeLeft(){}
+onReportedBy(){
+  this.firebaseGetServ.getStaff().then((mNm: any) => {
+    this.reportedBy = mNm
+  })
+}
+onReportedByLeft(){
+  this.firebaseGetServ.getStaffLeft().then((mNm: any) => {
+    this.reportedBy = mNm
+  })
+}
 
- onDriverName(){}
- onDriverNameLeft(){}
+onLossType(){
+  // this.firebaseGetServ.getLossType().then((mNm: any) => {
+  //   this.registration = mNm
+  // })
+}
+onLossTypeLeft(){
+  //this.firebaseGetServ.getLossType().then((mNm: any) => {
+    //   this.registration = mNm
+    // })
+}
 
- onTripAuthority(){}
- onTripAuthorityLeft(){}
 
- onForfeiture(){}
- onForfeitureLeft(){}
+ onDriverName(){
+  this.firebaseGetServ.getDriver().then((mNm: any) => {
+    this.driver = mNm
+  })
+}
 
- onDetermOfLiab(){}
- onDetermOfLiabLeft(){}
-
- onCostingDocs(){}
- onCostingDocsLeft(){}
-
- onActionTaken(){}
- onActionTakenLeft(){}
-
- onAmountRecov(){}
- onAmountRecovLeft(){}
-
- onAgentSel(obj){
-
- }
+ onActionTaken(){
+  // this.firebaseGetServ.getLossCntrlAct().then((mNm: any) => {
+  //   this.lossCntrlAction = mNm
+  // })
+}
+onActionTakenLeft(){
+   // this.firebaseGetServ.getLossCntrlActLeft().then((mNm: any) => {
+  //   this.lossCntrlAction = mNm
+  // })
+}
 
  onMarkAsComplete(){
 

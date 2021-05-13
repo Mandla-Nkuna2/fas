@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import Revenue from 'src/app/models/Revenue.model';
+import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
+import { FirebaseService } from 'src/app/services/firebase-service/firebase-service.service';
+import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 
 @Component({
   selector: 'app-revenue',
@@ -10,13 +13,21 @@ import Revenue from 'src/app/models/Revenue.model';
 export class RevenuePage implements OnInit {
   revenue: Revenue
 
-  registrations: any []
+  registration: any []
+  client: any[];
+  costCentre: any [];
 
-  constructor(private navCtrl: NavController) {
+  constructor(private navCtrl: NavController,
+    private firebaseService: FirebaseService,
+    private popUp: PopupHelper,
+    private firebaseGetServ: FirebaseGetService) {
     this.revenue = new Revenue();
    }
 
   ngOnInit() {
+    // this.onRegistration()
+    // this.onClient()
+    // this.onCostCentre()
   }
 
   storeIssue()
@@ -24,17 +35,27 @@ export class RevenuePage implements OnInit {
     this.navCtrl.navigateForward('storeissue');
   }
 
-  onRegistration(){}
-  onRegistrationLeft(){}
+  onRegistration(){
+    this.firebaseGetServ.getRegistration().then((staff: any) => {
+      this.registration = staff
+    })
+  }
+  onRegistrationLeft(){
+    this.firebaseGetServ.getRegistrationLeft().then((staff: any) => {
+      this.registration = staff
+    })
+  }
 
-  onClient(){}
-  onClientLeft(){}
+  onClient(){
+    // this.firebaseGetServ.getClient().then((staff: any) => {
+    //   this.client = staff
+    // })
+  }
 
-  onCostCeentre(){}
-  onCostCeentreLeft(){}
-
-  onRegistrationSel(obj){
-
+  onCostCentre(){
+    this.firebaseGetServ.getCostCentre().then((staff: any) => {
+      this.costCentre = staff
+    })
   }
 
 }

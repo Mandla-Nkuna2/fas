@@ -213,17 +213,9 @@
           <ion-col size="8" offset="0.5">
             <div class="item-input">
               <ion-label>Voucher No.</ion-label>
-              <ion-item>
-                <ionic-selectable
-                  [(ngModel)]="oilStoreTransf"
-                  [items]="voucherNo"
-                  itemValueField="ColourGuid"
-                  itemTextField="Colour"
-                  [canSearch]="true"
-                  [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onVoucherNoLeft()"
-                >
-                </ionic-selectable>
+              <ion-item lines="none">
+                <ion-input type="text" [(ngModel)]="oilStoreTransf.VoucherNo">
+                </ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -261,13 +253,12 @@
               <ion-label>Oil Store From</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="oilStoreTransf"
-                  [items]="voucherNo"
-                  itemValueField="ColourGuid"
-                  itemTextField="Colour"
+                  [(ngModel)]="oilStoreTransf.OilStoreFromGuid"
+                  [items]="oilStoreFrom"
+                  itemValueField="OilStoreGuid"
+                  itemTextField="OilStoreName"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onVoucherNoLeft()"
                 >
                 </ionic-selectable>
               </ion-item>
@@ -279,13 +270,12 @@
               <ion-label>Oil Store to</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="oilStoreTransf"
-                  [items]="voucherNo"
-                  itemValueField="ColourGuid"
-                  itemTextField="Colour"
+                  [(ngModel)]="oilStoreTransf.OilStoreToGuid"
+                  [items]="oilStoreTo"
+                  itemValueField="OilStoreGuid"
+                  itemTextField="OilStoreName"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onVoucherNoLeft()"
                 >
                 </ionic-selectable>
               </ion-item>
@@ -297,13 +287,12 @@
               <ion-label>Cost Center</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="oilStoreTransf"
-                  [items]="voucherNo"
-                  itemValueField="ColourGuid"
-                  itemTextField="Colour"
+                  [(ngModel)]="oilStoreTransf.CostCentGuid"
+                  [items]="costCentre"
+                  itemValueField="CostCentGuid"
+                  itemTextField="CostCentName"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onVoucherNoLeft()"
                 >
                 </ionic-selectable>
               </ion-item>

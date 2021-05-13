@@ -208,10 +208,10 @@
               <ion-label>Registration</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="fixedCostTransf"
+                  [(ngModel)]="fixedCostTransf.ItemGuid"
                   [items]="registration"
-                  itemValueField="ColourGuid"
-                  itemTextField="Colour"
+                  itemValueField="ItemGuid"
+                  itemTextField="Reg"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"
                   (onInfiniteScroll)="onRegistrationLeft()"
@@ -239,13 +239,12 @@
               <ion-label>Cost Center</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="fixedCostTransf"
-                  [items]="registration"
-                  itemValueField="ColourGuid"
-                  itemTextField="Colour"
+                  [(ngModel)]="fixedCostTransf.CostCentGuid"
+                  [items]="costCentre"
+                  itemValueField="CostCentGuid"
+                  itemTextField="CostCentName"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onRegistrationLeft()"
                 >
                 </ionic-selectable>
               </ion-item>

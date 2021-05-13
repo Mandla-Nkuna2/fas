@@ -252,10 +252,10 @@
               <ion-label>Supplier name</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="supplierDeposit"
+                  [(ngModel)]="supplierDeposit.SuppGuid"
                   [items]="supplier"
-                  itemValueField="ColourGuid"
-                  itemTextField="Colour"
+                  itemValueField="SuppGuid"
+                  itemTextField="SuppName"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"
                   (onInfiniteScroll)="onSupplierNameLeft()"

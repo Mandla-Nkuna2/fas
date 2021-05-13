@@ -38,8 +38,8 @@ export class AddassetsPage implements OnInit {
     //this.onCategory();
     //this.onColor();
     //this.onTireSizes();
-    //this.onMeterType();
     //this.onDriver()
+    //this.onMeterType();
   }
 
   onlyUnique(value, index, self) {

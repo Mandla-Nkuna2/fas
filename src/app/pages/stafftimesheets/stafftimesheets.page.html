@@ -301,10 +301,10 @@
               <ion-label>Staff Member</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="staffTimesheet"
+                  [(ngModel)]="staffTimesheet.StaffGuid"
                   [items]="staffMember"
-                  itemValueField="ColourGuid"
-                  itemTextField="Colour"
+                  itemValueField="StaffGuid"
+                  itemTextField="StaffCode"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"
                   (onInfiniteScroll)="onStaffMemberLeft()"

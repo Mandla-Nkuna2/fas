@@ -295,10 +295,10 @@
               <ion-label>Registration</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="revenue"
-                  [items]="registrations"
-                  itemValueField="ColourGuid"
-                  itemTextField="StaffCode"
+                  [(ngModel)]="revenue.ItemGuid"
+                  [items]="registration"
+                  itemValueField="ItemGuid"
+                  itemTextField="Reg"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"
                   (onInfiniteScroll)="onRegistrationLeft()"
@@ -313,13 +313,12 @@
               <ion-label>Client</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="revenue"
-                  [items]="registrations"
+                  [(ngModel)]="revenue.ClientGuid"
+                  [items]="client"
                   itemValueField="ColourGuid"
                   itemTextField="StaffCode"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onRegistrationLeft()"
                 >
                 </ionic-selectable>
               </ion-item>
@@ -331,13 +330,12 @@
               <ion-label>Cost Centre</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="revenue"
-                  [items]="registrations"
-                  itemValueField="ColourGuid"
-                  itemTextField="StaffCode"
+                  [(ngModel)]="revenue.CostCentguid"
+                  [items]="costCentre"
+                  itemValueField="CostCentGuid"
+                  itemTextField="CostCentName"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onRegistrationLeft()"
                 >
                 </ionic-selectable>
               </ion-item>

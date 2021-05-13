@@ -66,10 +66,10 @@
                 <ion-label>Agent</ion-label>
                 <ion-item>
                   <ionic-selectable
-                    [(ngModel)]="accidentManagement"
+                    [(ngModel)]="accidentManagement.Agentguid"
                     [items]="agent"
-                    itemValueField="ColourGuid"
-                    itemTextField="Colour"
+                    itemValueField="StaffGuid"
+                    itemTextField="StaffCode"
                     [canSearch]="true"
                     [hasInfiniteScroll]="true"
                     (onInfiniteScroll)="onAgentLeft()"
@@ -83,13 +83,13 @@
                 <ion-label>Registration</ion-label>
                 <ion-item>
                   <ionic-selectable
-                    [(ngModel)]="accidentManagement"
-                    [items]="agent"
-                    itemValueField="ColourGuid"
-                    itemTextField="Colour"
+                    [(ngModel)]="accidentManagement.Itemguid"
+                    [items]="registration"
+                    itemValueField="ItemGuid"
+                    itemTextField="Reg"
                     [canSearch]="true"
                     [hasInfiniteScroll]="true"
-                    (onInfiniteScroll)="onAgentLeft()"
+                    (onInfiniteScroll)="onRegistrationLeft()"
                   >
                   </ionic-selectable>
                 </ion-item>
@@ -105,8 +105,8 @@
                 <ion-label>Loss Type</ion-label>
                 <ion-item>
                   <ionic-selectable
-                    [(ngModel)]="accidentManagement"
-                    [items]="agent"
+                    [(ngModel)]="accidentManagement.LossTypeguid"
+                    [items]="lossType"
                     itemValueField="ColourGuid"
                     itemTextField="Colour"
                     [canSearch]="true"
@@ -168,10 +168,17 @@
             <ion-col size="3.5" offset="0.5">
               <div class="item-input">
                 <ion-label>Reported By</ion-label>
-                <ion-item lines="none">
-                  <ion-input
-                    [(ngModel)]="accidentManagement.reportedBy"
-                  ></ion-input>
+                <ion-item>
+                  <ionic-selectable
+                    [(ngModel)]="accidentManagement.Reportbyguid"
+                    [items]="reportedBy"
+                    itemValueField="StaffGuid"
+                    itemTextField="StaffCode"
+                    [canSearch]="true"
+                    [hasInfiniteScroll]="true"
+                    (onInfiniteScroll)="onRegistrationLeft()"
+                  >
+                  </ionic-selectable>
                 </ion-item>
               </div>
             </ion-col>
@@ -181,13 +188,12 @@
                 <ion-label>Driver's Name</ion-label>
                 <ion-item>
                   <ionic-selectable
-                    [(ngModel)]="accidentManagement"
-                    [items]="agent"
-                    itemValueField="ColourGuid"
-                    itemTextField="Colour"
+                    [(ngModel)]="accidentManagement.DriverGuid"
+                    [items]="driver"
+                    itemValueField="StaffGuid"
+                    itemTextField="StaffCode"
                     [canSearch]="true"
                     [hasInfiniteScroll]="true"
-                    (onInfiniteScroll)="onAgentLeft()"
                   >
                   </ionic-selectable>
                 </ion-item>
@@ -216,13 +222,10 @@
                 <ion-label>Trip Authority</ion-label>
                 <ion-item>
                   <ionic-selectable
-                    [(ngModel)]="accidentManagement"
-                    [items]="agent"
-                    itemValueField="ColourGuid"
-                    itemTextField="Colour"
+                    [(ngModel)]="accidentManagement.TripAut"
+                    [items]="yesNo"
                     [canSearch]="true"
                     [hasInfiniteScroll]="true"
-                    (onInfiniteScroll)="onAgentLeft()"
                   >
                   </ionic-selectable>
                 </ion-item>
@@ -297,13 +300,10 @@
                     <ion-label>Forefeiture</ion-label>
                     <ion-item>
                       <ionic-selectable
-                        [(ngModel)]="accidentManagement"
-                        [items]="agent"
-                        itemValueField="ColourGuid"
-                        itemTextField="Colour"
+                        [(ngModel)]="accidentManagement.Forfeiture"
+                        [items]="yesNo"
                         [canSearch]="true"
                         [hasInfiniteScroll]="true"
-                        (onInfiniteScroll)="onAgentLeft()"
                       >
                       </ionic-selectable>
                     </ion-item>
@@ -314,13 +314,10 @@
                     <ion-label>Determination of liability</ion-label>
                     <ion-item>
                       <ionic-selectable
-                        [(ngModel)]="accidentManagement"
-                        [items]="agent"
-                        itemValueField="ColourGuid"
-                        itemTextField="Colour"
+                        [(ngModel)]="accidentManagement.Det_Liability"
+                        [items]="yesNo"
                         [canSearch]="true"
                         [hasInfiniteScroll]="true"
-                        (onInfiniteScroll)="onAgentLeft()"
                       >
                       </ionic-selectable>
                     </ion-item>
@@ -350,13 +347,10 @@
                 <ion-label>Costing Document</ion-label>
                 <ion-item>
                   <ionic-selectable
-                    [(ngModel)]="accidentManagement"
-                    [items]="agent"
-                    itemValueField="ColourGuid"
-                    itemTextField="Colour"
+                    [(ngModel)]="accidentManagement.Costingdocs"
+                    [items]="yesNo"
                     [canSearch]="true"
                     [hasInfiniteScroll]="true"
-                    (onInfiniteScroll)="onAgentLeft()"
                   >
                   </ionic-selectable>
                 </ion-item>
@@ -368,7 +362,7 @@
                 <ion-label>Action Taken</ion-label>
                 <ion-item>
                   <ionic-selectable
-                    [(ngModel)]="accidentManagement"
+                    [(ngModel)]="accidentManagement.LossContActguid"
                     [items]="agent"
                     itemValueField="ColourGuid"
                     itemTextField="Colour"
@@ -401,13 +395,10 @@
                 <ion-label>Amount Recovered</ion-label>
                 <ion-item>
                   <ionic-selectable
-                    [(ngModel)]="accidentManagement"
-                    [items]="agent"
-                    itemValueField="ColourGuid"
-                    itemTextField="Colour"
+                    [(ngModel)]="accidentManagement.AmountRec"
+                    [items]="yesNo"
                     [canSearch]="true"
                     [hasInfiniteScroll]="true"
-                    (onInfiniteScroll)="onAgentLeft()"
                   >
                   </ionic-selectable>
                 </ion-item>

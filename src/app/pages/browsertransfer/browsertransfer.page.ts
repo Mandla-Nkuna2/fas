@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import BowserTransfer from 'src/app/models/BowserTransfer.model';
+import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
+import { FirebaseService } from 'src/app/services/firebase-service/firebase-service.service';
+import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 
 @Component({
   selector: 'app-browsertransfer',
@@ -10,20 +13,21 @@ export class BrowsertransferPage implements OnInit {
   bowserTransfer: BowserTransfer
 
   voucherNo: any[]
+  costCentre: any;
 
-  constructor() {
+  constructor(private firebaseService: FirebaseService,
+    private popUp: PopupHelper, private firebaseGetServ:
+    FirebaseGetService) {
     this.bowserTransfer = new BowserTransfer()
    }
 
   ngOnInit() {
+    // this.onCostCentre()
   }
 
-  onVoucherNo(){}
-  onVoucherNoLeft(){}
-
-  onCostCentre(){}
-  onCostCentreLeft(){}
-
-  onVoucherNoSel(obj){}
-
+  onCostCentre(){
+    this.firebaseGetServ.getCostCentre().then((mNm: any) => {
+      this.costCentre = mNm
+    })
+  }
 }

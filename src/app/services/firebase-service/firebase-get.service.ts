@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
-
-@Injectable({
+import { AngularFirestore } from '@angular/fire/firestore';@Injectable({
     providedIn: 'root',
 })
 
@@ -54,7 +52,6 @@ export class FirebaseGetService {
     })
     return promise
   }
-
   getMakeAndModelLeft(){
     const promise = new Promise((resolve, reject) => {
       this.afs.collection('test3/Sup_ItemMakMod/tables').ref.get().then((mNm) => {
@@ -97,7 +94,6 @@ export class FirebaseGetService {
     })
     return promise
   }
-
   getTypeLeft(){
     const promise = new Promise((resolve, reject) => {
       this.afs.collection('test3/Sup_ItemMakMod/tables').ref.get().then((mNm) => {
@@ -133,7 +129,6 @@ export class FirebaseGetService {
     })
     return promise
   }
-
   getCategoryLeft(){
     const promise = new Promise((resolve, reject) => {
       this.afs.collection('test3/Mst_Item/tables').ref.get().then((mNm) => {
@@ -185,8 +180,10 @@ export class FirebaseGetService {
   }
 
   getDriver(){
+    var mechanicGuid = '7E55FF15-8B93-4CC4-B488-BC0E6FE2971E'
     const promise = new Promise((resolve, reject) => {
-      this.afs.collection('/test3/Mst_StaffDetails/tables/').ref.limit(this.limVal).get().then((obj) => {
+      this.afs.collection('/test3/Mst_StaffDetails/tables/')
+      .ref.where('StaffCatgGuid', '==', mechanicGuid).get().then((obj) => {
         let data = [];
         obj.docs.forEach((obj) => {
           data.push({
@@ -219,7 +216,6 @@ export class FirebaseGetService {
     })
     return promise
   }
-
   getTyreSizeLeft(){
     const promise = new Promise((resolve, reject) => {
       this.afs.collection('/test3/Sup_TyreSize/tables/').ref.get().then((mNm) => {
@@ -252,7 +248,6 @@ export class FirebaseGetService {
     })
     return promise
   }
-
   getMeterTypeLeft(){
     const promise = new Promise((resolve, reject) => {
       this.afs.collection('/test3/Mst_Item/tables/').ref.get().then((mNm) => {
@@ -300,7 +295,6 @@ export class FirebaseGetService {
     })
     return promise
   }
-
   getStaffLeft(){
     const promise = new Promise((resolve, reject) => {
       this.afs.collection('/test3/Mst_StaffDetails/tables/').ref.get().then((obj) => {
@@ -309,6 +303,411 @@ export class FirebaseGetService {
           data.push({
             StaffGuid: obj.get('StaffGuid'),
             StaffCode: obj.get('StaffCode')
+          })
+        })
+        resolve(data)
+      }).catch((err) => {
+        reject(err)
+      })
+    })
+    return promise
+  }
+
+  getRegistration(){
+    const promise = new Promise((resolve, reject) => {
+      this.afs.collection('/test3/Mst_Item/tables/').ref.limit(this.limVal).get().then((obj) => {
+        let data = [];
+        obj.docs.forEach((obj) => {
+          data.push({
+            ItemGuid: obj.get('ItemGuid'),
+            Reg: obj.get('Reg')
+          })
+        })
+        resolve(data)
+      }).catch((err) => {
+        reject(err)
+      })
+    })
+    return promise
+  }
+  getRegistrationLeft(){
+    const promise = new Promise((resolve, reject) => {
+      this.afs.collection('/test3/Mst_Item/tables/').ref.get().then((obj) => {
+        let data = [];
+        obj.docs.forEach((obj) => {
+          data.push({
+            ItemGuid: obj.get('ItemGuid'),
+            Reg: obj.get('Reg')
+          })
+        })
+        resolve(data)
+      }).catch((err) => {
+        reject(err)
+      })
+    })
+    return promise
+  }
+
+  getAssetCompName(){
+    const promise = new Promise((resolve, reject) => {
+      this.afs.collection('/test3/Sup_CompName/tables').ref.limit(this.limVal).get().then((obj) => {
+        let data = [];
+        obj.docs.forEach((obj) => {
+          data.push({
+            CompNameGuid: obj.get('CompNameGuid'),
+            CompName: obj.get('CompName')
+          })
+        })
+        resolve(data)
+      }).catch((err) => {
+        reject(err)
+      })
+    })
+    return promise
+  }
+  getAssetCompNameLeft(){
+    const promise = new Promise((resolve, reject) => {
+      this.afs.collection('/test3/Sup_CompName/tables').ref.get().then((obj) => {
+        let data = [];
+        obj.docs.forEach((obj) => {
+          data.push({
+            CompNameGuid: obj.get('CompNameGuid'),
+            CompName: obj.get('CompName')
+          })
+        })
+        resolve(data)
+      }).catch((err) => {
+        reject(err)
+      })
+    })
+    return promise
+  }
+
+  getAssetCompMake(){
+    const promise = new Promise((resolve, reject) => {
+      this.afs.collection('/test3/Sup_CompMake/tables').ref.limit(this.limVal).get().then((obj) => {
+        let data = [];
+        obj.docs.forEach((obj) => {
+          data.push({
+            CompMakeGuid: obj.get('CompMakeGuid'),
+            CompMake: obj.get('CompMake')
+          })
+        })
+        resolve(data)
+      }).catch((err) => {
+        reject(err)
+      })
+    })
+    return promise
+  }
+  getAssetCompMakeLeft(){
+    const promise = new Promise((resolve, reject) => {
+      this.afs.collection('/test3/Sup_CompMake/tables').ref.get().then((obj) => {
+        let data = [];
+        obj.docs.forEach((obj) => {
+          data.push({
+            CompMakeGuid: obj.get('CompMakeGuid'),
+            CompMake: obj.get('CompMake')
+          })
+        })
+        resolve(data)
+      }).catch((err) => {
+        reject(err)
+      })
+    })
+    return promise
+  }
+
+  getAssetCompModel(){
+    const promise = new Promise((resolve, reject) => {
+      this.afs.collection('/test3/Sup_CompModel/tables').ref.limit(this.limVal).get().then((obj) => {
+        let data = [];
+        obj.docs.forEach((obj) => {
+          data.push({
+            CompModelGuid: obj.get('CompModelGuid'),
+            CompModel: obj.get('CompModel')
+          })
+        })
+        resolve(data)
+      }).catch((err) => {
+        reject(err)
+      })
+    })
+    return promise
+  }
+  getAssetCompModelLeft(){
+    const promise = new Promise((resolve, reject) => {
+      this.afs.collection('/test3/Sup_CompModel/tables').ref.get().then((obj) => {
+        let data = [];
+        obj.docs.forEach((obj) => {
+          data.push({
+            CompModelGuid: obj.get('CompModelGuid'),
+            CompModel: obj.get('CompModel')
+          })
+        })
+        resolve(data)
+      }).catch((err) => {
+        reject(err)
+      })
+    })
+    return promise
+  }
+
+  getServiceIntvl(){
+    const promise = new Promise((resolve, reject) => {
+      this.afs.collection('/test3/Sup_ServIntval/tables').ref.get().then((obj) => {
+        let data = [];
+        obj.docs.forEach((obj) => {
+          data.push({
+            ServIntvalGuid: obj.get('ServIntvalGuid'),
+            ServIntval: Number(obj.get('ServIntval'))
+          })
+        })
+        resolve(data)
+      }).catch((err) => {
+        reject(err)
+      })
+    })
+    return promise
+  }
+  getServiceIntvlLeft(){}
+
+  getLossType(){}
+  getLossTypeLeft(){}
+
+  getLossCntrlAct(){}
+  getLossCntrlActLeft(){}
+
+  getLocation(){
+    const promise = new Promise((resolve, reject) => {
+      this.afs.collection('/test3/Mst_Location/tables').ref.limit(this.limVal).get().then((obj) => {
+        let data = [];
+        obj.docs.forEach((obj) => {
+          data.push({
+            LocGuid: obj.get('LocGuid'),
+            LocFullName: obj.get('LocFullName')
+          })
+        })
+        resolve(data)
+      }).catch((err) => {
+        reject(err)
+      })
+    })
+    return promise
+  }
+  getLocationLeft(){
+    const promise = new Promise((resolve, reject) => {
+      this.afs.collection('/test3/Mst_Location/tables').ref.get().then((obj) => {
+        let data = [];
+        obj.docs.forEach((obj) => {
+          data.push({
+            LocGuid: obj.get('LocGuid'),
+            LocFullName: obj.get('LocFullName')
+          })
+        })
+        resolve(data)
+      }).catch((err) => {
+        reject(err)
+      })
+    })
+    return promise
+  }
+
+  getCostCentre(){
+    const promise = new Promise((resolve, reject) => {
+      this.afs.collection('/test3/Sup_CostCentre/tables').ref.get().then((obj) => {
+        let data = [];
+        obj.docs.forEach((obj) => {
+          data.push({
+            CostCentGuid: obj.get('CostCentGuid'),
+            CostCentName: obj.get('CostCentName')
+          })
+        })
+        resolve(data)
+      }).catch((err) => {
+        reject(err)
+      })
+    })
+    return promise
+  }
+
+  getJobCardNos(){}
+  getJobCardNosLeft(){}
+
+  getMaintananceType(){
+    const promise = new Promise((resolve, reject) => {
+      this.afs.collection('/test3/Sup_MaintType/tables').ref.get().then((obj) => {
+        let data = [];
+        obj.docs.forEach((obj) => {
+          data.push({
+            MaintTypeGuid: obj.get('MaintTypeGuid'),
+            MaintType: obj.get('MaintType')
+          })
+        })
+        resolve(data)
+      }).catch((err) => {
+        reject(err)
+      })
+    })
+    return promise
+  }
+
+  getMaintananceRzn(){
+    const promise = new Promise((resolve, reject) => {
+      this.afs.collection('/test3/Sup_MaintReason/tables').ref.get().then((obj) => {
+        let data = [];
+        obj.docs.forEach((obj) => {
+          data.push({
+            MaintReasonGuid: obj.get('MaintReasonGuid'),
+            MaintReason: obj.get('MaintReason')
+          })
+        })
+        resolve(data)
+      }).catch((err) => {
+        reject(err)
+      })
+    })
+    return promise
+  }
+
+  getSupplier(){
+    const promise = new Promise((resolve, reject) => {
+      this.afs.collection('/test3/Mst_Supplier/tables').ref.limit(this.limVal).get().then((obj) => {
+        let data = [];
+        obj.docs.forEach((obj) => {
+          data.push({
+            SuppGuid: obj.get('SuppGuid'),
+            SuppName: obj.get('SuppName')
+          })
+        })
+        resolve(data)
+      }).catch((err) => {
+        reject(err)
+      })
+    })
+    return promise
+  }
+  getSupplierLeft(){
+    const promise = new Promise((resolve, reject) => {
+      this.afs.collection('/test3/Mst_Supplier/tables').ref.get().then((obj) => {
+        let data = [];
+        obj.docs.forEach((obj) => {
+          data.push({
+            SuppGuid: obj.get('SuppGuid'),
+            SuppName: obj.get('SuppName')
+          })
+        })
+        resolve(data)
+      }).catch((err) => {
+        reject(err)
+      })
+    })
+    return promise
+  }
+
+  getClient(){}
+
+  getFixedCostType(){
+    const promise = new Promise((resolve, reject) => {
+      this.afs.collection('/test3/Sup_FixedCostType/tables').ref.get().then((obj) => {
+        let data = [];
+        obj.docs.forEach((obj) => {
+          data.push({
+            FixedCostTypeGuid: obj.get('FixedCostTypeGuid'),
+            FixedCostType: obj.get('FixedCostType')
+          })
+        })
+        resolve(data)
+      }).catch((err) => {
+        reject(err)
+      })
+    })
+    return promise
+  }
+
+  getOverheadType(){}
+
+  getAddittionalCost(){}
+
+  getMaintEvRefNo(){
+    const promise = new Promise((resolve, reject) => {
+      this.afs.collection('/test3/Trn_MaintEvnt/tables').ref.limit(this.limVal).get().then((obj) => {
+        let data = [];
+        obj.docs.forEach((obj) => {
+          data.push({
+            MaintEvntGuid: obj.get('MaintEvntGuid'),
+            RefNo: obj.get('RefNo')
+          })
+        })
+        resolve(data)
+      }).catch((err) => {
+        reject(err)
+      })
+    })
+    return promise
+  }
+  getMaintEvRefNoLeft(){
+    const promise = new Promise((resolve, reject) => {
+      this.afs.collection('/test3/Trn_MaintEvnt/tables').ref.get().then((obj) => {
+        let data = [];
+        obj.docs.forEach((obj) => {
+          data.push({
+            MaintEvntGuid: obj.get('MaintEvntGuid'),
+            RefNo: obj.get('RefNo')
+          })
+        })
+        resolve(data)
+      }).catch((err) => {
+        reject(err)
+      })
+    })
+    return promise
+  }
+
+  getStoreItem(){
+    const promise = new Promise((resolve, reject) => {
+      this.afs.collection('/test3/Sup_StoreCatgItem/tables').ref.get().then((obj) => {
+        let data = [];
+        obj.docs.forEach((obj) => {
+          data.push({
+            StoreCatgGuid: obj.get('StoreCatgGuid'),
+            StoreCatgItem: obj.get('StoreCatgItem')
+          })
+        })
+        resolve(data)
+      }).catch((err) => {
+        reject(err)
+      })
+    })
+    return promise
+  }
+
+  getOilStore(){
+    const promise = new Promise((resolve, reject) => {
+      this.afs.collection('/test3/Mst_OilStore/tables').ref.get().then((obj) => {
+        let data = [];
+        obj.docs.forEach((obj) => {
+          data.push({
+            OilStoreGuid: obj.get('OilStoreGuid'),
+            OilStoreName: obj.get('OilStoreName')
+          })
+        })
+        resolve(data)
+      }).catch((err) => {
+        reject(err)
+      })
+    })
+    return promise
+  }
+
+  getBowser() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs.collection('/test3/Mst_Bowser/tables').ref.get().then((obj) => {
+        let data = [];
+        obj.docs.forEach((obj) => {
+          data.push({
+            BowserGuid: obj.get('BowserGuid'),
+            BowserName: obj.get('BowserName')
           })
         })
         resolve(data)

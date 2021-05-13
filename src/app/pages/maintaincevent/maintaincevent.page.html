@@ -224,7 +224,7 @@
               <ion-label>Job Card No.</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="maintenanceEvent"
+                  [(ngModel)]="maintenanceEvent.JobCardGuid"
                   [items]="jobCardNo"
                   itemValueField="ColourGuid"
                   itemTextField="Colour"
@@ -254,13 +254,13 @@
               <ion-label>Registration</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="maintenanceEvent"
-                  [items]="jobCardNo"
-                  itemValueField="ColourGuid"
-                  itemTextField="Colour"
+                  [(ngModel)]="maintenanceEvent.ItemGuid"
+                  [items]="registration"
+                  itemValueField="ItemGuid"
+                  itemTextField="Reg"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onJobCardNoLeft()"
+                  (onInfiniteScroll)="onRegistrationLeft()"
                 >
                 </ionic-selectable>
               </ion-item>
@@ -272,13 +272,12 @@
               <ion-label>Maintenance Type</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="maintenanceEvent"
-                  [items]="jobCardNo"
-                  itemValueField="ColourGuid"
-                  itemTextField="Colour"
+                  [(ngModel)]="maintenanceEvent.MaintTypeGuid"
+                  [items]="maintanceReason"
+                  itemValueField="MaintReasonGuid"
+                  itemTextField="MaintReason"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onJobCardNoLeft()"
                 >
                 </ionic-selectable>
               </ion-item>
@@ -290,7 +289,7 @@
               <ion-label>Maintenance Reason</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="maintenanceEvent"
+                  [(ngModel)]="maintenanceEvent.MaintReasonGuid"
                   [items]="jobCardNo"
                   itemValueField="ColourGuid"
                   itemTextField="Colour"
@@ -356,13 +355,13 @@
               <ion-label>Supplier</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="maintenanceEvent"
-                  [items]="jobCardNo"
-                  itemValueField="ColourGuid"
-                  itemTextField="Colour"
+                  [(ngModel)]="maintenanceEvent.SuppGuid"
+                  [items]="supplier"
+                  itemValueField="SuppGuid"
+                  itemTextField="SuppName"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onJobCardNoLeft()"
+                  (onInfiniteScroll)="onSupplierLeft()"
                 >
                 </ionic-selectable>
               </ion-item>
@@ -374,13 +373,13 @@
               <ion-label>Requested By</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="maintenanceEvent"
-                  [items]="jobCardNo"
-                  itemValueField="ColourGuid"
-                  itemTextField="Colour"
+                  [(ngModel)]="maintenanceEvent.RequestByGuid"
+                  [items]="requestedBy"
+                  itemValueField="StaffGuid"
+                  itemTextField="StaffCode"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onJobCardNoLeft()"
+                  (onInfiniteScroll)="onRequestedByLeft()"
                 >
                 </ionic-selectable>
               </ion-item>
@@ -392,13 +391,12 @@
               <ion-label>Cost Center</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="maintenanceEvent"
-                  [items]="jobCardNo"
-                  itemValueField="ColourGuid"
-                  itemTextField="Colour"
+                  [(ngModel)]="maintenanceEvent.CostCentGuid"
+                  [items]="costCentre"
+                  itemValueField="CostCentGuid"
+                  itemTextField="CostCentName"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onJobCardNoLeft()"
                 >
                 </ionic-selectable>
               </ion-item>

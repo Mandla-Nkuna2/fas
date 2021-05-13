@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import AutoCard from 'src/app/models/Autocard.model';
+import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
+import { FirebaseService } from 'src/app/services/firebase-service/firebase-service.service';
+import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 
 @Component({
   selector: 'app-autocardetails',
@@ -10,11 +13,17 @@ import AutoCard from 'src/app/models/Autocard.model';
 export class AutocardetailsPage implements OnInit {
   autocard: AutoCard
 
-  constructor(private navCtrl: NavController) {
+  registration: any []
+
+  constructor(private navCtrl: NavController,
+    private firebaseService: FirebaseService,
+    private popUp: PopupHelper, private firebaseGetServ:
+    FirebaseGetService) {
     this.autocard = new AutoCard()
    }
 
   ngOnInit() {
+    // this.onRegistration()
   }
 
   goBrowserTransactions()
@@ -22,4 +31,14 @@ export class AutocardetailsPage implements OnInit {
     this.navCtrl.navigateForward('browsertransactions');
   }
 
+  onRegistration(){
+    this.firebaseGetServ.getRegistration().then((mNm: any) => {
+      this.registration = mNm
+    })
+  }
+  onRegistrationLeft(){
+    this.firebaseGetServ.getRegistrationLeft().then((mNm: any) => {
+      this.registration = mNm
+    })
+  }
 }

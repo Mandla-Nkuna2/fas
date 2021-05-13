@@ -240,16 +240,17 @@
           <ion-col size="3.5">
             <div class="item-input">
               <ion-label>Registration</ion-label>
-              <ion-item lines="none">
-                <ion-select
-                  multiple="false"
+              <ion-item>
+                <ionic-selectable
                   [(ngModel)]="additionalCost.Itemguid"
-                  disabled
+                  [items]="registration"
+                  itemValueField="ItemGuid"
+                  itemTextField="Reg"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onRegistrationLeft()"
                 >
-                  <ion-select-option value="Registration"
-                    >Registration</ion-select-option
-                  >
-                </ion-select>
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>
@@ -259,13 +260,12 @@
               <ion-label>Additional Cost Description</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="additionalCost"
+                  [(ngModel)]="additionalCost.AddCostDescGuid"
                   [items]="additionalCostDesc"
                   itemValueField="ColourGuid"
                   itemTextField="Colour"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onAdditionalCostDescLeft()"
                 >
                 </ionic-selectable>
               </ion-item>
@@ -302,11 +302,16 @@
           <ion-col size="4" offset="0.5">
             <div class="item-input">
               <ion-label>Cost Centre</ion-label>
-              <ion-item lines="none">
-                <ion-input
-                  type="text"
+              <ion-item>
+                <ionic-selectable
                   [(ngModel)]="additionalCost.CostCentreGuid"
-                ></ion-input>
+                  [items]="costCentre"
+                  itemValueField="CostCentGuid"
+                  itemTextField="CostCentName"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                >
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>
@@ -314,11 +319,17 @@
           <ion-col size="3.5">
             <div class="item-input">
               <ion-label>Staff Code</ion-label>
-              <ion-item lines="none">
-                <ion-input
-                  type="text"
+              <ion-item>
+                <ionic-selectable
                   [(ngModel)]="additionalCost.StaffGuid"
-                ></ion-input>
+                  [items]="staffcode"
+                  itemValueField="StaffGuid"
+                  itemTextField="StaffCode"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onStaffCodeLeft()"
+                >
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>
@@ -326,11 +337,17 @@
           <ion-col size="3.5" offset="0.5">
             <div class="item-input">
               <ion-label>Supplier</ion-label>
-              <ion-item lines="none">
-                <ion-input
-                  type="text"
+              <ion-item>
+                <ionic-selectable
                   [(ngModel)]="additionalCost.Suppguid"
-                ></ion-input>
+                  [items]="supplier"
+                  itemValueField="SuppGuid"
+                  itemTextField="SuppName"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onSupplierLeft()"
+                >
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>

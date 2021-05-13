@@ -66,13 +66,13 @@
                 <ion-label>Supervisor</ion-label>
                 <ion-item>
                   <ionic-selectable
-                    [(ngModel)]="trafficfine"
+                    [(ngModel)]="trafficfine.SuperGuid"
                     [items]="supervisor"
-                    itemValueField="ColourGuid"
-                    itemTextField="Colour"
+                    itemValueField="StaffGuid"
+                    itemTextField="StaffCode"
                     [canSearch]="true"
                     [hasInfiniteScroll]="true"
-                    (onInfiniteScroll)="onRegistrationLeft()"
+                    (onInfiniteScroll)="onSupervisorLeft()"
                   >
                   </ionic-selectable>
                 </ion-item>
@@ -91,10 +91,10 @@
                 <ion-label>Registration</ion-label>
                 <ion-item>
                   <ionic-selectable
-                    [(ngModel)]="trafficfine"
-                    [items]="supervisor"
-                    itemValueField="ColourGuid"
-                    itemTextField="Colour"
+                    [(ngModel)]="trafficfine.ItemGuid"
+                    [items]="registration"
+                    itemValueField="ItemGuid"
+                    itemTextField="Reg"
                     [canSearch]="true"
                     [hasInfiniteScroll]="true"
                     (onInfiniteScroll)="onRegistrationLeft()"
@@ -109,13 +109,12 @@
                 <ion-label>Driver</ion-label>
                 <ion-item>
                   <ionic-selectable
-                    [(ngModel)]="trafficfine"
-                    [items]="supervisor"
-                    itemValueField="ColourGuid"
-                    itemTextField="Colour"
+                    [(ngModel)]="trafficfine.Driverguid"
+                    [items]="driver"
+                    itemValueField="StaffGuid"
+                    itemTextField="StaffCode"
                     [canSearch]="true"
                     [hasInfiniteScroll]="true"
-                    (onInfiniteScroll)="onRegistrationLeft()"
                   >
                   </ionic-selectable>
                 </ion-item>

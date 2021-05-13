@@ -271,10 +271,10 @@
               <ion-label>Registration</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="fuelIssue"
+                  [(ngModel)]="fuelIssue.ItemGuid"
                   [items]="registration"
-                  itemValueField="ColourGuid"
-                  itemTextField="Colour"
+                  itemValueField="ItemGuid"
+                  itemTextField="Reg"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"
                   (onInfiniteScroll)="onRegistrationLeft()"
@@ -313,13 +313,12 @@
               <ion-label>Bowser</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="fuelIssue"
-                  [items]="registration"
-                  itemValueField="ColourGuid"
-                  itemTextField="Colour"
+                  [(ngModel)]="fuelIssue.BowserGuid"
+                  [items]="bowser"
+                  itemValueField="BowserGuid"
+                  itemTextField="BowserName"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onRegistrationLeft()"
                 >
                 </ionic-selectable>
               </ion-item>
@@ -331,13 +330,13 @@
               <ion-label>Supplier</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="fuelIssue"
-                  [items]="registration"
-                  itemValueField="ColourGuid"
-                  itemTextField="Colour"
+                  [(ngModel)]="fuelIssue.SupplierGuid"
+                  [items]="supplier"
+                  itemValueField="SuppGuid"
+                  itemTextField="SuppName"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onRegistrationLeft()"
+                  (onInfiniteScroll)="onSupplierLeft()"
                 >
                 </ionic-selectable>
               </ion-item>
@@ -415,13 +414,13 @@
               <ion-label>Staff Code</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="fuelIssue"
-                  [items]="registration"
-                  itemValueField="ColourGuid"
-                  itemTextField="Colour"
+                  [(ngModel)]="fuelIssue.StaffGuid"
+                  [items]="staffCode"
+                  itemValueField="StaffGuid"
+                  itemTextField="StaffCode"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onRegistrationLeft()"
+                  (onInfiniteScroll)="onStaffCodeLeft()"
                 >
                 </ionic-selectable>
               </ion-item>
@@ -433,13 +432,12 @@
               <ion-label>Cost Center</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="fuelIssue"
-                  [items]="registration"
-                  itemValueField="ColourGuid"
-                  itemTextField="Colour"
+                  [(ngModel)]="fuelIssue.CostCentGuid"
+                  [items]="costCentre"
+                  itemValueField="CostCentGuid"
+                  itemTextField="CostCentName"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onRegistrationLeft()"
                 >
                 </ionic-selectable>
               </ion-item>

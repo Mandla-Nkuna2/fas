@@ -319,10 +319,10 @@
               <ion-label>Registration</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="storeIssue"
+                  [(ngModel)]="storeIssue.ItemGuid"
                   [items]="registration"
-                  itemValueField="ColourGuid"
-                  itemTextField="Colour"
+                  itemValueField="ItemGuid"
+                  itemTextField="Reg"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"
                   (onInfiniteScroll)="onRegistrationLeft()"
@@ -379,13 +379,13 @@
               <ion-label>Maintenance Event Ref. No.</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="storeIssue"
-                  [items]="registration"
-                  itemValueField="ColourGuid"
-                  itemTextField="Colour"
+                  [(ngModel)]="storeIssue.MaintEvntGuid"
+                  [items]="MaintEvRefNo"
+                  itemValueField="MaintEvntGuid"
+                  itemTextField="RefNo"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onRegistrationLeft()"
+                  (onInfiniteScroll)="onMaintEvRefNoLeft()"
                 >
                 </ionic-selectable>
               </ion-item>
@@ -397,13 +397,13 @@
               <ion-label>Supplier</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="storeIssue"
-                  [items]="registration"
-                  itemValueField="ColourGuid"
-                  itemTextField="Colour"
+                  [(ngModel)]="storeIssue.SuppGuid"
+                  [items]="supplier"
+                  itemValueField="SuppGuid"
+                  itemTextField="SuppName"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onRegistrationLeft()"
+                  (onInfiniteScroll)="onSupplierleft()"
                 >
                 </ionic-selectable>
               </ion-item>
@@ -415,13 +415,12 @@
               <ion-label>Store Item</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="storeIssue"
-                  [items]="registration"
-                  itemValueField="ColourGuid"
-                  itemTextField="Colour"
+                  [(ngModel)]="storeIssue.StoreCatgItemGuid"
+                  [items]="storeItem"
+                  itemValueField="StoreCatgGuid"
+                  itemTextField="StoreCatgItem"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onRegistrationLeft()"
                 >
                 </ionic-selectable>
               </ion-item>

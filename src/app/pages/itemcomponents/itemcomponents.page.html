@@ -271,10 +271,10 @@
               <ion-label>Registration</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="itemComponent"
+                  [(ngModel)]="itemComponent.ItemCompGuid"
                   [items]="registration"
-                  itemValueField="ColourGuid"
-                  itemTextField="Colour"
+                  itemValueField="ItemGuid"
+                  itemTextField="Reg"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"
                   (onInfiniteScroll)="onRegistrationLeft()"
@@ -284,8 +284,8 @@
             </div>
           </ion-col>
 
-          <ion-col size="3.5" offset="0.5">
-            <div class="item-input">
+          <!-- <ion-col size="3.5" offset="0.5">
+          <div class="item-input">
               <ion-label>Make & Model</ion-label>
               <ion-item>
                 <ionic-selectable
@@ -300,7 +300,7 @@
                 </ionic-selectable>
               </ion-item>
             </div>
-          </ion-col>
+          </ion-col> -->
 
           <ion-col size="4" offset="0.5">
             <div class="item-input">
@@ -314,18 +314,20 @@
             </div>
           </ion-col>
 
+          <ion-col size="3.5" offset="0.5"> </ion-col>
+
           <ion-col size="3.5">
             <div class="item-input">
               <ion-label>Component Name</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="itemComponent"
-                  [items]="registration"
-                  itemValueField="ColourGuid"
-                  itemTextField="Colour"
+                  [(ngModel)]="itemComponent.CompNameGuid"
+                  [items]="assetCompName"
+                  itemValueField="CompNameGuid"
+                  itemTextField="CompName"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onRegistrationLeft()"
+                  (onInfiniteScroll)="onCompNameLeft()"
                 >
                 </ionic-selectable>
               </ion-item>
@@ -337,13 +339,13 @@
               <ion-label>Componanent Make</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="itemComponent"
-                  [items]="registration"
-                  itemValueField="ColourGuid"
-                  itemTextField="Colour"
+                  [(ngModel)]="itemComponent.CompMakeGuid"
+                  [items]="assetCompMake"
+                  itemValueField="CompMakeGuid"
+                  itemTextField="CompMake"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onRegistrationLeft()"
+                  (onInfiniteScroll)="onComponentMakeLeft()"
                 >
                 </ionic-selectable>
               </ion-item>
@@ -355,13 +357,13 @@
               <ion-label>Component Model</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="itemComponent"
-                  [items]="registration"
-                  itemValueField="ColourGuid"
-                  itemTextField="Colour"
+                  [(ngModel)]="itemComponent.CompModelGuid"
+                  [items]="assetCompModel"
+                  itemValueField="CompModelGuid"
+                  itemTextField="CompModel"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onRegistrationLeft()"
+                  (onInfiniteScroll)="onComponentModelLeft()"
                 >
                 </ionic-selectable>
               </ion-item>
@@ -385,13 +387,11 @@
               <ion-label>Service Interval</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="itemComponent"
-                  [items]="registration"
-                  itemValueField="ColourGuid"
-                  itemTextField="Colour"
+                  [(ngModel)]="itemComponent.ServIntvalGuid"
+                  [items]="servIntvl"
+                  itemValueField="ServIntvalGuid"
+                  itemTextField="ServIntval"
                   [canSearch]="true"
-                  [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onRegistrationLeft()"
                 >
                 </ionic-selectable>
               </ion-item>

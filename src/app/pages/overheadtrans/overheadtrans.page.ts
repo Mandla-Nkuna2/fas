@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import OverheadTransaction from 'src/app/models/OverheadTransaction.model';
+import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
+import { FirebaseService } from 'src/app/services/firebase-service/firebase-service.service';
+import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 
 @Component({
   selector: 'app-overheadtrans',
@@ -10,13 +13,18 @@ import OverheadTransaction from 'src/app/models/OverheadTransaction.model';
 export class OverheadtransPage implements OnInit {
   overheadTrans: OverheadTransaction
 
-  placeOrDest: any[]
+  overheadType: any[]
+  costCentre: any [];
 
-  constructor(private navCtrl: NavController) {
+  constructor(private navCtrl: NavController,
+    private firebaseService: FirebaseService,
+    private popUp: PopupHelper, private firebaseGetServ:
+    FirebaseGetService) {
     this.overheadTrans = new OverheadTransaction()
    }
 
   ngOnInit() {
+    // this.onCostCentre()
   }
 
   goStaffTimeSheet()
@@ -24,14 +32,15 @@ export class OverheadtransPage implements OnInit {
     this.navCtrl.navigateForward('stafftimesheets');
   }
 
-  onPlaceOrDest(){}
-  onPlaceOrDestLeft(){}
+  onOverheadType(){
+    // this.firebaseGetServ.getOverheadType().then((mNm: any) => {
+    //   this.overheadType = mNm
+    // })
+  }
 
-  onOverheadType(){}
-  onOverheadTypeLeft(){}
-
-  onCostCentre(){}
-  onCostCentreLeft(){}
-
-  onPlaceOrDestSel(obj){}
+  onCostCentre(){
+    this.firebaseGetServ.getCostCentre().then((mNm: any) => {
+      this.costCentre = mNm
+    })
+  }
 }

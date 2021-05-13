@@ -268,16 +268,10 @@
             <div class="item-input">
               <ion-label>Place / Destination</ion-label>
               <ion-item>
-                <ionic-selectable
-                  [(ngModel)]="overheadTrans"
-                  [items]="placeOrDest"
-                  itemValueField="ColourGuid"
-                  itemTextField="Colour"
-                  [canSearch]="true"
-                  [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onPlaceOrDestLeft()"
-                >
-                </ionic-selectable>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="overheadTrans.OverheadLoc"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -288,12 +282,11 @@
               <ion-item>
                 <ionic-selectable
                   [(ngModel)]="overheadTrans"
-                  [items]="placeOrDest"
+                  [items]="costCentre"
                   itemValueField="ColourGuid"
                   itemTextField="Colour"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onPlaceOrDestLeft()"
                 >
                 </ionic-selectable>
               </ion-item>
@@ -305,13 +298,12 @@
               <ion-label>Cost Centre</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="overheadTrans"
-                  [items]="placeOrDest"
-                  itemValueField="ColourGuid"
-                  itemTextField="Colour"
+                  [(ngModel)]="overheadTrans.CostCentGuid"
+                  [items]="costCentre"
+                  itemValueField="CostCentGuid"
+                  itemTextField="CostCentName"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onPlaceOrDestLeft()"
                 >
                 </ionic-selectable>
               </ion-item>

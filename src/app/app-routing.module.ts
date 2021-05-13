@@ -230,7 +230,48 @@ const routes: Routes = [
   {
     path: 'stannicimport',
     loadChildren: () => import('./pages/stannicimport/stannicimport.module').then( m => m.StannicimportPageModule)
+  },
+  {
+    path: 'bowser',
+    loadChildren: () => import('./pages/bowser/bowser.module').then( m => m.BowserPageModule)
+  },
+  {
+    path: 'clientdetails',
+    loadChildren: () => import('./pages/clientdetails/clientdetails.module').then( m => m.ClientdetailsPageModule)
+  },
+  {
+    path: 'costcentre',
+    loadChildren: () => import('./pages/costcentre/costcentre.module').then( m => m.CostcentrePageModule)
+  },
+  {
+    path: 'itemmakemodel',
+    loadChildren: () => import('./pages/itemmakemodel/itemmakemodel.module').then( m => m.ItemmakemodelPageModule)
+  },
+  {
+    path: 'itemtype',
+    loadChildren: () => import('./pages/itemtype/itemtype.module').then( m => m.ItemtypePageModule)
+  },
+  {
+    path: 'location',
+    loadChildren: () => import('./pages/location/location.module').then( m => m.LocationPageModule)
+  },
+  {
+    path: 'componentname',
+    loadChildren: () => import('./pages/componentname/componentname.module').then( m => m.ComponentnamePageModule)
+  },
+  {
+    path: 'oilstore',
+    loadChildren: () => import('./pages/oilstore/oilstore.module').then( m => m.OilstorePageModule)
+  },
+  {
+    path: 'overheadbudget',
+    loadChildren: () => import('./pages/overheadbudget/overheadbudget.module').then( m => m.OverheadbudgetPageModule)
+  },
+  {
+    path: 'fa-responsblt-codes',
+    loadChildren: () => import('./pages/fa-responsblt-codes/fa-responsblt-codes.module').then( m => m.FaResponsbltCodesPageModule)
   }
+
 ];
 
 @NgModule({

@@ -208,13 +208,12 @@
               <ion-label>Fixed Cost Type</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="fixedCost"
+                  [(ngModel)]="fixedCost.FixedCostType"
                   [items]="fixedCostType"
-                  itemValueField="ColourGuid"
-                  itemTextField="Colour"
+                  itemValueField="FixedCostTypeGuid"
+                  itemTextField="FixedCostType"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onFixedCostTypeLeft()"
                 >
                 </ionic-selectable>
               </ion-item>
@@ -226,13 +225,13 @@
               <ion-label>Registration</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="fixedCost"
-                  [items]="fixedCostType"
-                  itemValueField="ColourGuid"
-                  itemTextField="Colour"
+                  [(ngModel)]="fixedCost.ItemGuid"
+                  [items]="registration"
+                  itemValueField="ItemGuid"
+                  itemTextField="Reg"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onFixedCostTypeLeft()"
+                  (onInfiniteScroll)="onRegistraionLeft()"
                 >
                 </ionic-selectable>
               </ion-item>
@@ -244,13 +243,10 @@
               <ion-label>Calculate Per</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="fixedCost"
-                  [items]="fixedCostType"
-                  itemValueField="ColourGuid"
-                  itemTextField="Colour"
+                  [(ngModel)]="fixedCost.CostRate"
+                  [items]="calcPeriod"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onFixedCostTypeLeft()"
                 >
                 </ionic-selectable>
               </ion-item>

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import OilStoreTransfer from 'src/app/models/OilStoreTransfer.model';
+import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
+import { FirebaseService } from 'src/app/services/firebase-service/firebase-service.service';
+import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 
 @Component({
   selector: 'app-oiltransafer',
@@ -11,12 +14,21 @@ export class OiltransaferPage implements OnInit {
   oilStoreTransf: OilStoreTransfer
 
   voucherNo: any[]
+  oilStoreFrom: any [];
+  oilStoreTo: any [];
+  costCentre: any [];
 
-  constructor( private navCtrl: NavController ) {
+  constructor( private navCtrl: NavController,
+    private firebaseService: FirebaseService,
+    private popUp: PopupHelper, private firebaseGetServ:
+    FirebaseGetService) {
     this.oilStoreTransf = new OilStoreTransfer()
    }
 
   ngOnInit() {
+    // this.onOilStoreFrom()
+    // this.onOilStoreTo()
+    // this.onCostCentre()
   }
 
   goOverhead()
@@ -24,21 +36,24 @@ export class OiltransaferPage implements OnInit {
     this.navCtrl.navigateForward('overheadtrans');
   }
 
-  onVoucherNo(){}
-  onVoucherNoLeft(){}
-
   onOilType(){}
   onOilTypeLeft(){}
 
-  onOilStoreFrom(){}
-  onOilStoreFromLeft(){}
+  onOilStoreFrom(){
+    this.firebaseGetServ.getOilStore().then((mNm: any) => {
+      this.oilStoreFrom = mNm
+    })
+  }
 
-  onOilStoreTo(){}
-  onOilStoreToLeft(){}
+  onOilStoreTo(){
+    this.firebaseGetServ.getOilStore().then((mNm: any) => {
+      this.oilStoreTo = mNm
+    })
+  }
 
-  onCostCentre(){}
-  onCostCentreLeft(){}
-
-  onVoucherNoSel(obj){}
-
+  onCostCentre(){
+    this.firebaseGetServ.getCostCentre().then((mNm: any) => {
+      this.costCentre = mNm
+    })
+  }
 }

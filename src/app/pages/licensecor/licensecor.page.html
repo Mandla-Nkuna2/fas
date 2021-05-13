@@ -236,10 +236,10 @@
               <ion-label>Registration</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="licCorAndSafInspec"
+                  [(ngModel)]="licCorAndSafInspec.Itemguid"
                   [items]="registration"
-                  itemValueField="ColourGuid"
-                  itemTextField="Colour"
+                  itemValueField="ItemGuid"
+                  itemTextField="Reg"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"
                   (onInfiniteScroll)="onRegistrationLeft()"
@@ -274,7 +274,7 @@
             </div>
           </ion-col>
 
-          <ion-col size="7.5">
+          <ion-col size="6.5">
             <div class="item-input">
               <ion-label>Safety Inspection Date</ion-label>
               <ion-item lines="none">
@@ -290,20 +290,34 @@
             </div>
           </ion-col>
 
-          <ion-col size="4.5"> </ion-col>
+          <ion-col size="1"></ion-col>
+
+          <ion-col size="4.5">
+            <div class="item-input">
+              <ion-label>Cost centre</ion-label>
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="licCorAndSafInspec.LicCostCentGuid"
+                  [items]="costCentre"
+                  itemValueField="CostCentGuid"
+                  itemTextField="CostCentName"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                >
+                </ionic-selectable>
+              </ion-item>
+            </div>
+          </ion-col>
 
           <ion-col size="3.5">
             <div class="item-input">
               <ion-label>Disk Received from motor licencing bureau?</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="licCorAndSafInspec"
-                  [items]="registration"
-                  itemValueField="ColourGuid"
-                  itemTextField="Colour"
+                  [(ngModel)]="licCorAndSafInspec.diskFromLicBureau"
+                  [items]="yesNo"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onRegistrationLeft()"
                 >
                 </ionic-selectable>
               </ion-item>

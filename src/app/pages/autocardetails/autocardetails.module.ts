@@ -8,12 +8,15 @@ import { AutocardetailsPageRoutingModule } from './autocardetails-routing.module
 
 import { AutocardetailsPage } from './autocardetails.page';
 
+import { IonicSelectableModule } from 'ionic-selectable';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AutocardetailsPageRoutingModule
+    AutocardetailsPageRoutingModule,
+    IonicSelectableModule
   ],
   declarations: [AutocardetailsPage]
 })
