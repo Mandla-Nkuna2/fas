@@ -15,12 +15,11 @@ import { firebaseConfig } from './app.firebase.config';
 import { AngularFirestoreModule, AngularFirestore } from '@angular/fire/firestore';
 import { FirebaseGetService } from './services/firebase-service/firebase-get.service';
 import { SignaturePadModule } from 'angular2-signaturepad';
-import { ClickOutsideDirective } from './shared/clickOutside.directive'
-import { DropdownDirective } from './shared/dropdown.directive'
 import { ClickOutsideModule } from 'ng-click-outside';
 import { ComponentsModule } from './components/components.module';
-import { myDropdownComponent } from './components/dropdownComponent/myDropdown.component';
 import { IonicSelectableModule } from 'ionic-selectable';
+import { AdditionalcostComponent } from 'src/app/components/reports/additionalcost/additionalcost.component'
+
 
 @NgModule({
   declarations: [

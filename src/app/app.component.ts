@@ -136,12 +136,12 @@ export class AppComponent {
       icon:'assets/imgs/revenue.svg',
       icona:'assets/imgs/revenuea.svg',
       url:'revenue',
-      children:[
-        {
-          title: 'Revenue Earned',
-          url: 'revenueearned',
-        },
-      ]
+      // children:[
+      //   {
+      //     title: 'Revenue Earned',
+      //     url: 'revenueearned',
+      //   },
+      // ]
     },
     {
       title: 'Costs',

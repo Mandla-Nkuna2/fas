@@ -270,7 +270,43 @@ const routes: Routes = [
   {
     path: 'fa-responsblt-codes',
     loadChildren: () => import('./pages/fa-responsblt-codes/fa-responsblt-codes.module').then( m => m.FaResponsbltCodesPageModule)
+  },  {
+    path: 'staffdetails',
+    loadChildren: () => import('./pages/staffdetails/staffdetails.module').then( m => m.StaffdetailsPageModule)
+  },
+  {
+    path: 'service-schedules',
+    loadChildren: () => import('./pages/service-schedules/service-schedules.module').then( m => m.ServiceSchedulesPageModule)
+  },
+  {
+    path: 'tasks',
+    loadChildren: () => import('./pages/tasks/tasks.module').then( m => m.TasksPageModule)
+  },
+  {
+    path: 'servicetypes',
+    loadChildren: () => import('./pages/servicetypes/servicetypes.module').then( m => m.ServicetypesPageModule)
+  },
+  {
+    path: 'storecategories',
+    loadChildren: () => import('./pages/storecategories/storecategories.module').then( m => m.StorecategoriesPageModule)
+  },
+  {
+    path: 'supplierdetails',
+    loadChildren: () => import('./pages/supplierdetails/supplierdetails.module').then( m => m.SupplierdetailsPageModule)
+  },
+  {
+    path: 'votecodes',
+    loadChildren: () => import('./pages/votecodes/votecodes.module').then( m => m.VotecodesPageModule)
+  },
+  {
+    path: 'users',
+    loadChildren: () => import('./pages/users/users.module').then( m => m.UsersPageModule)
+  },
+  {
+    path: 'reports',
+    loadChildren: () => import('./pages/reports/reports.module').then( m => m.ReportsPageModule)
   }
+
 
 ];
 
