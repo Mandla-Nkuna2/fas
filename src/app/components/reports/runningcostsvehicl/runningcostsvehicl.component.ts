@@ -7,6 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RunningcostsvehiclComponent implements OnInit {
   dateScope: any
+  locOrReg: any
+  maintType = [
+    'Accident',
+    'Fuel',
+    'G.E.T',
+    'Oil',
+    'Repair',
+    'Service',
+    'Tyre / Track',
+  ]
+
   constructor() { }
 
   ngOnInit() {}

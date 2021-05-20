@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>usergroups</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-col size="3.5">
+    <div class="item-input">
+      <ion-label>user group</ion-label>
+      <ion-item>
+        <ionic-selectable
+          [(ngModel)]="userGroups"
+          [items]="userGroups"
+          itemValueField="CompNameGuid"
+          itemTextField="CompName"
+          [canSearch]="true"
+          [hasInfiniteScroll]="true"
+        >
+        </ionic-selectable>
+      </ion-item>
+    </div>
+  </ion-col>
+</ion-content>

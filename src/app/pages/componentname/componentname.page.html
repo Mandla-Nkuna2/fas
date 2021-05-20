@@ -1,7 +1,13 @@
-<ion-content class="ion-padding">
+<ion-header>
+  <ion-toolbar>
+    <ion-title>usergroups</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
   <div class="title-holder flex al-center">
     <ion-back-button defaultHref="revenue" mode="ios" text=""></ion-back-button>
-    <h2>Store Issues</h2>
+    <h2>User group</h2>
     <div class="date-holder">
       <div class="itm flex al-center">
         <div class="thumb">
@@ -23,92 +29,10 @@
     </div>
   </div>
 
-  <div class="navbar" class="ion-text-center">
-    <ion-button
-      fill="clear"
-      routerLink="/addissuesinfo"
-      routerDirection="root"
-      routerLinkActive="active-link"
-      class="link"
-    >
-      Add information
-    </ion-button>
-
-    <ion-button
-      fill="clear"
-      routerLink="/accidentmanagement"
-      routerDirection="root"
-      routerLinkActive="active-link"
-      class="link"
-    >
-      Accident management
-    </ion-button>
-
-    <ion-button
-      fill="clear"
-      routerLink="/oilissues"
-      routerDirection="root"
-      routerLinkActive="active-link"
-      class="link"
-    >
-      Oil Issues
-    </ion-button>
-
-    <ion-button
-      fill="clear"
-      routerLink="/fuelissues"
-      routerDirection="root"
-      routerLinkActive="active-link"
-      class="link"
-    >
-      Fuel Issues
-    </ion-button>
-
-    <ion-button
-      fill="clear"
-      routerLink="/oilstoretrans"
-      routerDirection="root"
-      routerLinkActive="active-link"
-      class="link"
-    >
-      Oil store transactions
-    </ion-button>
-
-    <ion-button
-      fill="clear"
-      routerLink="/oiltransafer"
-      routerDirection="root"
-      routerLinkActive="active-link"
-      class="link"
-    >
-      Oil store transfer
-    </ion-button>
-
-    <ion-button
-      fill="clear"
-      routerLink="/browsertransactions"
-      routerDirection="root"
-      routerLinkActive="active-link"
-      class="link"
-    >
-      Bowser transactions
-    </ion-button>
-
-    <ion-button
-      fill="clear"
-      routerLink="/browsertransfer"
-      routerDirection="root"
-      routerLinkActive="active-link"
-      class="link"
-    >
-      Bowser transfer
-    </ion-button>
-  </div>
-
   <div class="section">
     <div class="grid-holder">
       <div class="top-toolbar flex al-center jc-between">
-        <h3>Store Issues</h3>
+        <h3>User group</h3>
         <div class="btns-holder flex al-center">
           <ion-button>
             <ion-icon slot="icon-only" name="options-outline"></ion-icon>
@@ -148,7 +72,7 @@
           </ion-col>
         </ion-row>
         <div class="values">
-          <ion-row class="value-row" (click)="goSupplierDeposit()">
+          <ion-row class="value-row">
             <ion-col size="0.5" class="flex al-center jc-center">
               <ion-checkbox></ion-checkbox>
             </ion-col>
@@ -306,148 +230,20 @@
     </div>
   </div>
 
-  <div class="section">
-    <div class="title">
-      <h3>Add</h3>
+  <ion-col size="3.5">
+    <div class="item-input">
+      <ion-label>user group</ion-label>
+      <ion-item>
+        <ionic-selectable
+          [(ngModel)]="userGroup"
+          [items]="userGroups"
+          itemValueField="CompNameGuid"
+          itemTextField="CompName"
+          [canSearch]="true"
+          [hasInfiniteScroll]="true"
+        >
+        </ionic-selectable>
+      </ion-item>
     </div>
-
-    <div class="the-form">
-      <ion-grid fixed>
-        <ion-row>
-          <ion-col size="3.5">
-            <div class="item-input">
-              <ion-label>Registration</ion-label>
-              <ion-item>
-                <ionic-selectable
-                  [(ngModel)]="storeIssue.ItemGuid"
-                  [items]="registration"
-                  itemValueField="ItemGuid"
-                  itemTextField="Reg"
-                  [canSearch]="true"
-                  [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onRegistrationLeft()"
-                >
-                </ionic-selectable>
-              </ion-item>
-            </div>
-          </ion-col>
-
-          <ion-col size="3.5" offset="0.5">
-            <div class="item-input">
-              <ion-label>Rate</ion-label>
-              <ion-item lines="none" class="end">
-                <ion-input
-                  type="text"
-                  [(ngModel)]="storeIssue.CCRate"
-                ></ion-input>
-                <div class="end-slot flex al-center jc-center" slot="end">
-                  <p>/unit</p>
-                </div>
-              </ion-item>
-            </div>
-          </ion-col>
-
-          <ion-col size="4" offset="0.5">
-            <div class="item-input">
-              <ion-label>Date</ion-label>
-              <ion-item lines="none">
-                <ion-datetime
-                  display-format="MMM DD YYYY"
-                  [(ngModel)]="storeIssue.StoreIssuedate"
-                ></ion-datetime>
-              </ion-item>
-            </div>
-          </ion-col>
-
-          <ion-col size="3.5">
-            <div class="item-input">
-              <ion-label>Quantity</ion-label>
-              <ion-item lines="none" class="end">
-                <ion-input
-                  type="text"
-                  [(ngModel)]="storeIssue.CCQty"
-                ></ion-input>
-                <div class="end-slot flex al-center jc-center" slot="end">
-                  <p>/unit</p>
-                </div>
-              </ion-item>
-            </div>
-          </ion-col>
-
-          <ion-col size="3.5" offset="0.5">
-            <div class="item-input">
-              <ion-label>Maintenance Event Ref. No.</ion-label>
-              <ion-item>
-                <ionic-selectable
-                  [(ngModel)]="storeIssue.MaintEvntGuid"
-                  [items]="MaintEvRefNo"
-                  itemValueField="MaintEvntGuid"
-                  itemTextField="RefNo"
-                  [canSearch]="true"
-                  [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onMaintEvRefNoLeft()"
-                >
-                </ionic-selectable>
-              </ion-item>
-            </div>
-          </ion-col>
-
-          <ion-col size="4" offset="0.5">
-            <div class="item-input">
-              <ion-label>Supplier</ion-label>
-              <ion-item>
-                <ionic-selectable
-                  [(ngModel)]="storeIssue.SuppGuid"
-                  [items]="supplier"
-                  itemValueField="SuppGuid"
-                  itemTextField="SuppName"
-                  [canSearch]="true"
-                  [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onSupplierleft()"
-                >
-                </ionic-selectable>
-              </ion-item>
-            </div>
-          </ion-col>
-
-          <ion-col size="3.5">
-            <div class="item-input">
-              <ion-label>Store Item</ion-label>
-              <ion-item>
-                <ionic-selectable
-                  [(ngModel)]="storeIssue.StoreCatgItemGuid"
-                  [items]="storeItem"
-                  itemValueField="StoreCatgGuid"
-                  itemTextField="StoreCatgItem"
-                  [canSearch]="true"
-                  [hasInfiniteScroll]="true"
-                >
-                </ionic-selectable>
-              </ion-item>
-            </div>
-          </ion-col>
-
-          <ion-col size="3.5" offset="0.5">
-            <div class="item-input">
-              <ion-label>Order / Requisition No.</ion-label>
-              <ion-item lines="none">
-                <ion-input
-                  type="text"
-                  [(ngModel)]="storeIssue.OrderNo"
-                ></ion-input>
-              </ion-item>
-            </div>
-          </ion-col>
-        </ion-row>
-
-        <ion-row>
-          <ion-col size="12" class="ion-no-padding">
-            <div class="btn-holder ion-text-right">
-              <ion-button> Add </ion-button>
-            </div>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </div>
-  </div>
+  </ion-col>
 </ion-content>

@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ComponentnamePage implements OnInit {
 
+  userGroup: any
+  userGroups: any
   constructor() { }
 
   ngOnInit() {

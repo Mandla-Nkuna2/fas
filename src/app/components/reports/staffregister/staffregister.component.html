@@ -1,141 +1,121 @@
 <ion-row>
-  <ion-col size="3.5" offset="0.5" class="check-holder flex al-center">
-    <ion-radio-group [(ngModel)]="dateScope">
-      <ion-row>
-        <ion-item>
+  <ion-col>
+    <ion-row>
+      <ion-col size="4.5" offset="0.5" class="check-holder flex al-center">
+        <ion-radio-group [(ngModel)]="dateScope">
+          <ion-row>
+            <ion-item>
+              <ion-label>Financial year</ion-label>
+              <ion-radio
+                slot="start"
+                mode="md"
+                item-left
+                value="Fin year"
+              ></ion-radio>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Date from and to</ion-label>
+              <ion-radio
+                slot="start"
+                mode="md"
+                item-left
+                value="Date"
+              ></ion-radio>
+            </ion-item>
+          </ion-row>
+        </ion-radio-group>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="dateScope === 'Fin year'">
+      <ion-col size="3.5" offset="0.5" style="margin: auto">
+        <div class="item-input">
           <ion-label>Financial year</ion-label>
-          <ion-radio slot="start" mode="md" item-left value="T"></ion-radio>
-        </ion-item>
+          <ion-item>
+            <ionic-selectable
+              [(ngModel)]="dateScope"
+              [items]="['2010', '2010']"
+              [canSearch]="true"
+              [hasInfiniteScroll]="true"
+            >
+            </ionic-selectable>
+          </ion-item>
+        </div>
+      </ion-col>
+    </ion-row>
 
-        <ion-item>
-          <ion-label>Date from and to</ion-label>
-          <ion-radio slot="start" mode="md" item-left value="S"></ion-radio>
-        </ion-item>
-      </ion-row>
-    </ion-radio-group>
-  </ion-col>
+    <ion-row *ngIf="dateScope === 'Date'">
+      <ion-col size="3.5" offset="0.5">
+        <div class="item-input">
+          <ion-label>Date from</ion-label>
+          <ion-item lines="none">
+            <ion-datetime
+              display-format="MMM DD YYYY hh:mm a"
+              [(ngModel)]="dateScope"
+            ></ion-datetime>
+          </ion-item>
+        </div>
+      </ion-col>
 
-  <ion-col size="3.5" offset="0.5" class="check-holder flex al-center">
-    <ion-radio-group [(ngModel)]="dateScope">
-      <ion-row>
-        <ion-item>
-          <ion-label>Select location</ion-label>
-          <ion-radio slot="start" mode="md" item-left value="T"></ion-radio>
-        </ion-item>
+      <ion-col size="3.5" offset="0.5">
+        <div class="item-input">
+          <ion-label>Date to</ion-label>
+          <ion-item lines="none">
+            <ion-datetime
+              display-format="MMM DD YYYY hh:mm a"
+              [(ngModel)]="dateScope"
+            ></ion-datetime>
+          </ion-item>
+        </div>
+      </ion-col>
+    </ion-row>
 
-        <ion-item>
-          <ion-label>Select single registration</ion-label>
-          <ion-radio slot="start" mode="md" item-left value="S"></ion-radio>
-        </ion-item>
-      </ion-row>
-    </ion-radio-group>
-  </ion-col>
+    <ion-row>
+      <ion-col size="3.5" offset="0.5">
+        <div class="item-input">
+          <ion-label>Staff Cat</ion-label>
+          <ion-item>
+            <ionic-selectable
+              [(ngModel)]="dateScope"
+              [items]="['2010', '2010']"
+              [canSearch]="true"
+              [hasInfiniteScroll]="true"
+            >
+            </ionic-selectable>
+          </ion-item>
+        </div>
+      </ion-col>
 
-  <ion-col size="3.5" offset="0.5">
-    <div class="item-input">
-      <ion-label>Financial year</ion-label>
-      <ion-item>
-        <ionic-selectable
-          [(ngModel)]="dateScope"
-          [items]="['2010', '2010']"
-          [canSearch]="true"
-          [hasInfiniteScroll]="true"
-        >
-        </ionic-selectable>
-      </ion-item>
-    </div>
-  </ion-col>
+      <ion-col size="3.5" offset="0.5">
+        <div class="item-input">
+          <ion-label>Staff codes</ion-label>
+          <ion-item>
+            <ionic-selectable
+              [(ngModel)]="dateScope"
+              [items]="['2010', '2010']"
+              [canSearch]="true"
+              [hasInfiniteScroll]="true"
+            >
+            </ionic-selectable>
+          </ion-item>
+        </div>
+      </ion-col>
 
-  <ion-col size="3.5" offset="0.5">
-    <div class="item-input">
-      <ion-label>Date from</ion-label>
-      <ion-item lines="none">
-        <ion-input [(ngModel)]="dateScope"></ion-input>
-      </ion-item>
-    </div>
-  </ion-col>
-
-  <ion-col size="3.5" offset="0.5">
-    <div class="item-input">
-      <ion-label>Date to</ion-label>
-      <ion-item lines="none">
-        <ion-input [(ngModel)]="dateScope"></ion-input>
-      </ion-item>
-    </div>
-  </ion-col>
-
-  <ion-col size="3.5" offset="0.5">
-    <div class="item-input">
-      <ion-label>Select location</ion-label>
-      <ion-item>
-        <ionic-selectable
-          [(ngModel)]="dateScope"
-          [items]="['2010', '2010']"
-          [canSearch]="true"
-          [hasInfiniteScroll]="true"
-        >
-        </ionic-selectable>
-      </ion-item>
-    </div>
-  </ion-col>
-
-  <ion-col size="3.5" offset="0.5">
-    <div class="item-input">
-      <ion-label>Add cost desc</ion-label>
-      <ion-item>
-        <ionic-selectable
-          [(ngModel)]="dateScope"
-          [items]="['2010', '2010']"
-          [canSearch]="true"
-          [hasInfiniteScroll]="true"
-        >
-        </ionic-selectable>
-      </ion-item>
-    </div>
-  </ion-col>
-
-  <ion-col size="3.5" offset="0.5">
-    <div class="item-input">
-      <ion-label>Cost centre</ion-label>
-      <ion-item>
-        <ionic-selectable
-          [(ngModel)]="dateScope"
-          [items]="['2010', '2010']"
-          [canSearch]="true"
-          [hasInfiniteScroll]="true"
-        >
-        </ionic-selectable>
-      </ion-item>
-    </div>
-  </ion-col>
-
-  <ion-col size="3.5" offset="0.5">
-    <div class="item-input">
-      <ion-label>Sort option</ion-label>
-      <ion-item>
-        <ionic-selectable
-          [(ngModel)]="dateScope"
-          [items]="['2010', '2010']"
-          [canSearch]="true"
-          [hasInfiniteScroll]="true"
-        >
-        </ionic-selectable>
-      </ion-item>
-    </div>
-  </ion-col>
-
-  <ion-col size="3.5" offset="0.5">
-    <div class="item-input">
-      <ion-label>Registration</ion-label>
-      <ion-item>
-        <ionic-selectable
-          [(ngModel)]="dateScope"
-          [items]="['2010', '2010']"
-          [canSearch]="true"
-          [hasInfiniteScroll]="true"
-        >
-        </ionic-selectable>
-      </ion-item>
-    </div>
+      <ion-col size="3.5" offset="0.5">
+        <div class="item-input">
+          <ion-label>Sort option</ion-label>
+          <ion-item>
+            <ionic-selectable
+              [(ngModel)]="dateScope"
+              [items]="['2010', '2010']"
+              [canSearch]="true"
+              [hasInfiniteScroll]="true"
+            >
+            </ionic-selectable>
+          </ion-item>
+        </div>
+      </ion-col>
+    </ion-row>
   </ion-col>
 </ion-row>

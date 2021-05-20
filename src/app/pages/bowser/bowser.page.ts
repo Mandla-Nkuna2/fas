@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./bowser.page.scss'],
 })
 export class BowserPage implements OnInit {
-
+  bowser: any
   constructor() { }
 
   ngOnInit() {

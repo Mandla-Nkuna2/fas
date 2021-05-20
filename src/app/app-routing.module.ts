@@ -305,6 +305,18 @@ const routes: Routes = [
   {
     path: 'reports',
     loadChildren: () => import('./pages/reports/reports.module').then( m => m.ReportsPageModule)
+  },
+  {
+    path: 'usergroups',
+    loadChildren: () => import('./pages/usergroups/usergroups.module').then( m => m.UsergroupsPageModule)
+  },
+  {
+    path: 'parameters',
+    loadChildren: () => import('./pages/parameters/parameters.module').then( m => m.ParametersPageModule)
+  },
+  {
+    path: 'servschedultask',
+    loadChildren: () => import('./pages/servschedultask/servschedultask.module').then( m => m.ServschedultaskPageModule)
   }
 
 

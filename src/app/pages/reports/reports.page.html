@@ -22,818 +22,260 @@
       </ion-col>
     </ion-row>
 
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-additionalcost
-            *ngIf="report === 'additionalcost'"
-          ></app-additionalcost>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-alternateid *ngIf="report === 'alternateid'"></app-alternateid>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-archivedet *ngIf="report === 'archivedet'"></app-archivedet>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-assetlocdriv
-            *ngIf="report === 'assetlocdriv'"
-          ></app-assetlocdriv>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-assetreg *ngIf="report === 'assetreg'"></app-assetreg>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-autocarddet *ngIf="report === 'autocarddet'"></app-autocarddet>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-autocardhistorydet
-            *ngIf="report === 'autocardhistorydet'"
-          ></app-autocardhistorydet>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-bowserledger
-            *ngIf="report === 'bowserledger'"
-          ></app-bowserledger>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-bowserledgersum
-            *ngIf="report === 'bowserledgersum'"
-          ></app-bowserledgersum>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-bowsersummary
-            *ngIf="report === 'bowsersummary'"
-          ></app-bowsersummary>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-budgetrep *ngIf="report === 'budgetrep'"></app-budgetrep>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-changedregistration
-            *ngIf="report === 'changedregistration'"
-          ></app-changedregistration>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-componentmaint
-            *ngIf="report === 'componentmaint'"
-          ></app-componentmaint>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-costcentresum
-            *ngIf="report === 'costcentresum'"
-          ></app-costcentresum>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-costcenttransact
-            *ngIf="report === 'costcenttransact'"
-          ></app-costcenttransact>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-costingschedul
-            *ngIf="report === 'costingschedul'"
-          ></app-costingschedul>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-costlisting *ngIf="report === 'costlisting'"></app-costlisting>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-dailyopsrep *ngIf="report === 'dailyopsrep'"></app-dailyopsrep>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-dailyopssumm
-            *ngIf="report === 'dailyopssumm'"
-          ></app-dailyopssumm>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-excessivedownt
-            *ngIf="report === 'excessivedownt'"
-          ></app-excessivedownt>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-firstautomon
-            *ngIf="report === 'firstautomon'"
-          ></app-firstautomon>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-firstautoytd
-            *ngIf="report === 'firstautoytd'"
-          ></app-firstautoytd>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-fuelconsumptexcmajeq
-            *ngIf="report === 'fuelconsumptexcmajeq'"
-          ></app-fuelconsumptexcmajeq>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-fuelconsumptexcveh
-            *ngIf="report === 'fuelconsumptexcveh'"
-          ></app-fuelconsumptexcveh>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-fuelconsumptmajorequip
-            *ngIf="report === 'fuelconsumptmajorequip'"
-          ></app-fuelconsumptmajorequip>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-fuelconsumptvehicle
-            *ngIf="report === 'fuelconsumptvehicle'"
-          ></app-fuelconsumptvehicle>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-fuelissuesfleet
-            *ngIf="report === 'fuelissuesfleet'"
-          ></app-fuelissuesfleet>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-fuelissuesitem
-            *ngIf="report === 'fuelissuesitem'"
-          ></app-fuelissuesitem>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-fuelsupppurch
-            *ngIf="report === 'fuelsupppurch'"
-          ></app-fuelsupppurch>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-itemlochist *ngIf="report === 'itemlochist'"></app-itemlochist>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-itemmeterchang
-            *ngIf="report === 'itemmeterchang'"
-          ></app-itemmeterchang>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-itemmeterread
-            *ngIf="report === 'itemmeterread'"
-          ></app-itemmeterread>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-jobcardnotcomplt
-            *ngIf="report === 'jobcardnotcomplt'"
-          ></app-jobcardnotcomplt>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-jobcardreg *ngIf="report === 'jobcardreg'"></app-jobcardreg>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-licexp-cor-safinspc-dat
-            *ngIf="report === 'licexp-cor-safinspc-dat'"
-          ></app-licexp-cor-safinspc-dat>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-listoflocs *ngIf="report === 'listoflocs'"></app-listoflocs>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-logdetails *ngIf="report === 'logdetails'"></app-logdetails>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-losscontrlisting
-            *ngIf="report === 'losscontrlisting'"
-          ></app-losscontrlisting>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-maintevents *ngIf="report === 'maintevents'"></app-maintevents>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-mainthist *ngIf="report === 'mainthist'"></app-mainthist>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-maintreason *ngIf="report === 'maintreason'"></app-maintreason>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-makmoddetails
-            *ngIf="report === 'makmoddetails'"
-          ></app-makmoddetails>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-missingdailyopsrec
-            *ngIf="report === 'missingdailyopsrec'"
-          ></app-missingdailyopsrec>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-missingmonthlylogs
-            *ngIf="report === 'missingmonthlylogs'"
-          ></app-missingmonthlylogs>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-monthlyplant
-            *ngIf="report === 'monthlyplant'"
-          ></app-monthlyplant>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-monthlyvehicle
-            *ngIf="report === 'monthlyvehicle'"
-          ></app-monthlyvehicle>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-oilconsumptmajequip
-            *ngIf="report === 'oilconsumptmajequip'"
-          ></app-oilconsumptmajequip>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-oilconsumptvehicle
-            *ngIf="report === 'oilconsumptvehicle'"
-          ></app-oilconsumptvehicle>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-oilissues *ngIf="report === 'oilissues'"></app-oilissues>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-oilstoreledger
-            *ngIf="report === 'oilstoreledger'"
-          ></app-oilstoreledger>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-oilstoreledgersumm
-            *ngIf="report === 'oilstoreledgersumm'"
-          ></app-oilstoreledgersumm>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-oilstoresumm
-            *ngIf="report === 'oilstoresumm'"
-          ></app-oilstoresumm>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-oilsupppurch
-            *ngIf="report === 'oilsupppurch'"
-          ></app-oilsupppurch>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-operatorsumm
-            *ngIf="report === 'operatorsumm'"
-          ></app-operatorsumm>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-overallprofitloss
-            *ngIf="report === 'overallprofitloss'"
-          ></app-overallprofitloss>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-overheadexpenditure
-            *ngIf="report === 'overheadexpenditure'"
-          ></app-overheadexpenditure>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-revenueschedule
-            *ngIf="report === 'revenueschedule'"
-          ></app-revenueschedule>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-runningcostsmajequip
-            *ngIf="report === 'runningcostsmajequip'"
-          ></app-runningcostsmajequip>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-runningcostsmetlesequip
-            *ngIf="report === 'runningcostsmetlesequip'"
-          ></app-runningcostsmetlesequip>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-runningcostsvehicl
-            *ngIf="report === 'runningcostsvehicl'"
-          ></app-runningcostsvehicl>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-servicedetinquiry
-            *ngIf="report === 'servicedetinquiry'"
-          ></app-servicedetinquiry>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-serviceoverdue
-            *ngIf="report === 'serviceoverdue'"
-          ></app-serviceoverdue>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-serviceplanning
-            *ngIf="report === 'serviceplanning'"
-          ></app-serviceplanning>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-serviceroster
-            *ngIf="report === 'serviceroster'"
-          ></app-serviceroster>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-serviceschedulelist
-            *ngIf="report === 'serviceschedulelist'"
-          ></app-serviceschedulelist>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-servicestatus
-            *ngIf="report === 'servicestatus'"
-          ></app-servicestatus>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-staffaudittrail
-            *ngIf="report === 'staffaudittrail'"
-          ></app-staffaudittrail>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-staffdailyschedule
-            *ngIf="report === 'staffdailyschedule'"
-          ></app-staffdailyschedule>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-staffdet *ngIf="report === 'staffdet'"></app-staffdet>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-staffinputtimes
-            *ngIf="report === 'staffinputtimes'"
-          ></app-staffinputtimes>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-stafflicprdpexpdat
-            *ngIf="report === 'stafflicprdpexpdat'"
-          ></app-stafflicprdpexpdat>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-staffproductivity
-            *ngIf="report === 'staffproductivity'"
-          ></app-staffproductivity>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-staffregister
-            *ngIf="report === 'staffregister'"
-          ></app-staffregister>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-storeisscosph
-            *ngIf="report === 'storeisscosph'"
-          ></app-storeisscosph>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-storeisscosphman
-            *ngIf="report === 'storeisscosphman'"
-          ></app-storeisscosphman>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-storeissues *ngIf="report === 'storeissues'"></app-storeissues>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-subvehloc-drv
-            *ngIf="report === 'subvehloc-drv'"
-          ></app-subvehloc-drv>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-subvehlogdet
-            *ngIf="report === 'subvehlogdet'"
-          ></app-subvehlogdet>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-subvehmissinmthlog
-            *ngIf="report === 'subvehmissinmthlog'"
-          ></app-subvehmissinmthlog>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-subvehstatus
-            *ngIf="report === 'subvehstatus'"
-          ></app-subvehstatus>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-suppbal *ngIf="report === 'suppbal'"></app-suppbal>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-supppurchases
-            *ngIf="report === 'supppurchases'"
-          ></app-supppurchases>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-systemmanmajequip
-            *ngIf="report === 'systemmanmajequip'"
-          ></app-systemmanmajequip>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-systemmanveh
-            *ngIf="report === 'systemmanveh'"
-          ></app-systemmanveh>
-        </ion-col>
-      </ion-row>
-    </div>
-
-    <div>
-      <ion-row>
-        <ion-col>
-          <app-trafficfines
-            *ngIf="report === 'trafficfines'"
-          ></app-trafficfines>
-        </ion-col>
-      </ion-row>
-    </div>
+    <app-additionalcost
+      *ngIf="report === 'additionalcost'"
+    ></app-additionalcost>
+
+    <app-alternateid *ngIf="report === 'alternateid'"></app-alternateid>
+
+    <app-archivedet *ngIf="report === 'archivedet'"></app-archivedet>
+
+    <app-assetlocdriv *ngIf="report === 'assetlocdriv'"></app-assetlocdriv>
+
+    <app-assetreg *ngIf="report === 'assetreg'"></app-assetreg>
+
+    <app-autocarddet *ngIf="report === 'autocarddet'"></app-autocarddet>
+
+    <app-autocardhistorydet
+      *ngIf="report === 'autocardhistorydet'"
+    ></app-autocardhistorydet>
+
+    <app-bowserledger *ngIf="report === 'bowserledger'"></app-bowserledger>
+
+    <app-bowserledgersum
+      *ngIf="report === 'bowserledgersum'"
+    ></app-bowserledgersum>
+
+    <app-bowsersummary *ngIf="report === 'bowsersummary'"></app-bowsersummary>
+
+    <app-budgetrep *ngIf="report === 'budgetrep'"></app-budgetrep>
+
+    <app-changedregistration
+      *ngIf="report === 'changedregistration'"
+    ></app-changedregistration>
+
+    <app-componentmaint
+      *ngIf="report === 'componentmaint'"
+    ></app-componentmaint>
+
+    <app-costcentresum *ngIf="report === 'costcentresum'"></app-costcentresum>
+
+    <app-costcenttransact
+      *ngIf="report === 'costcenttransact'"
+    ></app-costcenttransact>
+
+    <app-costingschedul
+      *ngIf="report === 'costingschedul'"
+    ></app-costingschedul>
+
+    <app-costlisting *ngIf="report === 'costlisting'"></app-costlisting>
+
+    <app-dailyopsrep *ngIf="report === 'dailyopsrep'"></app-dailyopsrep>
+
+    <app-dailyopssumm *ngIf="report === 'dailyopssumm'"></app-dailyopssumm>
+
+    <app-excessivedownt
+      *ngIf="report === 'excessivedownt'"
+    ></app-excessivedownt>
+
+    <app-firstautomon *ngIf="report === 'firstautomon'"></app-firstautomon>
+
+    <app-firstautoytd *ngIf="report === 'firstautoytd'"></app-firstautoytd>
+
+    <app-fuelconsumptexcmajeq
+      *ngIf="report === 'fuelconsumptexcmajeq'"
+    ></app-fuelconsumptexcmajeq>
+
+    <app-fuelconsumptexcveh
+      *ngIf="report === 'fuelconsumptexcveh'"
+    ></app-fuelconsumptexcveh>
+
+    <app-fuelconsumptmajorequip
+      *ngIf="report === 'fuelconsumptmajorequip'"
+    ></app-fuelconsumptmajorequip>
+
+    <app-fuelconsumptvehicle
+      *ngIf="report === 'fuelconsumptvehicle'"
+    ></app-fuelconsumptvehicle>
+
+    <app-fuelissuesfleet
+      *ngIf="report === 'fuelissuesfleet'"
+    ></app-fuelissuesfleet>
+
+    <app-fuelissuesitem
+      *ngIf="report === 'fuelissuesitem'"
+    ></app-fuelissuesitem>
+
+    <app-fuelsupppurch *ngIf="report === 'fuelsupppurch'"></app-fuelsupppurch>
+
+    <app-itemlochist *ngIf="report === 'itemlochist'"></app-itemlochist>
+
+    <app-itemmeterchang
+      *ngIf="report === 'itemmeterchang'"
+    ></app-itemmeterchang>
+
+    <app-itemmeterread *ngIf="report === 'itemmeterread'"></app-itemmeterread>
+
+    <app-jobcardnotcomplt
+      *ngIf="report === 'jobcardnotcomplt'"
+    ></app-jobcardnotcomplt>
+
+    <app-jobcardreg *ngIf="report === 'jobcardreg'"></app-jobcardreg>
+
+    <app-licexp-cor-safinspc-dat
+      *ngIf="report === 'licexp-cor-safinspc-dat'"
+    ></app-licexp-cor-safinspc-dat>
+
+    <app-listoflocs *ngIf="report === 'listoflocs'"></app-listoflocs>
+
+    <app-logdetails *ngIf="report === 'logdetails'"></app-logdetails>
+
+    <app-losscontrlisting
+      *ngIf="report === 'losscontrlisting'"
+    ></app-losscontrlisting>
+
+    <app-maintevents *ngIf="report === 'maintevents'"></app-maintevents>
+
+    <app-mainthist *ngIf="report === 'mainthist'"></app-mainthist>
+
+    <app-maintreason *ngIf="report === 'maintreason'"></app-maintreason>
+
+    <app-makmoddetails *ngIf="report === 'makmoddetails'"></app-makmoddetails>
+
+    <app-missingdailyopsrec
+      *ngIf="report === 'missingdailyopsrec'"
+    ></app-missingdailyopsrec>
+
+    <app-missingmonthlylogs
+      *ngIf="report === 'missingmonthlylogs'"
+    ></app-missingmonthlylogs>
+
+    <app-monthlyplant *ngIf="report === 'monthlyplant'"></app-monthlyplant>
+
+    <app-monthlyvehicle
+      *ngIf="report === 'monthlyvehicle'"
+    ></app-monthlyvehicle>
+
+    <app-oilconsumptmajequip
+      *ngIf="report === 'oilconsumptmajequip'"
+    ></app-oilconsumptmajequip>
+
+    <app-oilconsumptvehicle
+      *ngIf="report === 'oilconsumptvehicle'"
+    ></app-oilconsumptvehicle>
+
+    <app-oilissues *ngIf="report === 'oilissues'"></app-oilissues>
+
+    <app-oilstoreledger
+      *ngIf="report === 'oilstoreledger'"
+    ></app-oilstoreledger>
+
+    <app-oilstoreledgersumm
+      *ngIf="report === 'oilstoreledgersumm'"
+    ></app-oilstoreledgersumm>
+
+    <app-oilstoresumm *ngIf="report === 'oilstoresumm'"></app-oilstoresumm>
+
+    <app-oilsupppurch *ngIf="report === 'oilsupppurch'"></app-oilsupppurch>
+
+    <app-operatorsumm *ngIf="report === 'operatorsumm'"></app-operatorsumm>
+
+    <app-overallprofitloss
+      *ngIf="report === 'overallprofitloss'"
+    ></app-overallprofitloss>
+
+    <app-overheadexpenditure
+      *ngIf="report === 'overheadexpenditure'"
+    ></app-overheadexpenditure>
+
+    <app-revenueschedule
+      *ngIf="report === 'revenueschedule'"
+    ></app-revenueschedule>
+
+    <app-runningcostsmajequip
+      *ngIf="report === 'runningcostsmajequip'"
+    ></app-runningcostsmajequip>
+
+    <app-runningcostsmetlesequip
+      *ngIf="report === 'runningcostsmetlesequip'"
+    ></app-runningcostsmetlesequip>
+
+    <app-runningcostsvehicl
+      *ngIf="report === 'runningcostsvehicl'"
+    ></app-runningcostsvehicl>
+
+    <app-servicedetinquiry
+      *ngIf="report === 'servicedetinquiry'"
+    ></app-servicedetinquiry>
+
+    <app-serviceoverdue
+      *ngIf="report === 'serviceoverdue'"
+    ></app-serviceoverdue>
+
+    <app-serviceplanning
+      *ngIf="report === 'serviceplanning'"
+    ></app-serviceplanning>
+
+    <app-serviceroster *ngIf="report === 'serviceroster'"></app-serviceroster>
+
+    <app-serviceschedulelist
+      *ngIf="report === 'serviceschedulelist'"
+    ></app-serviceschedulelist>
+
+    <app-servicestatus *ngIf="report === 'servicestatus'"></app-servicestatus>
+
+    <app-staffaudittrail
+      *ngIf="report === 'staffaudittrail'"
+    ></app-staffaudittrail>
+
+    <app-staffdailyschedule
+      *ngIf="report === 'staffdailyschedule'"
+    ></app-staffdailyschedule>
+
+    <app-staffdet *ngIf="report === 'staffdet'"></app-staffdet>
+
+    <app-staffinputtimes
+      *ngIf="report === 'staffinputtimes'"
+    ></app-staffinputtimes>
+
+    <app-stafflicprdpexpdat
+      *ngIf="report === 'stafflicprdpexpdat'"
+    ></app-stafflicprdpexpdat>
+
+    <app-staffproductivity
+      *ngIf="report === 'staffproductivity'"
+    ></app-staffproductivity>
+
+    <app-staffregister *ngIf="report === 'staffregister'"></app-staffregister>
+
+    <app-storeisscosph *ngIf="report === 'storeisscosph'"></app-storeisscosph>
+
+    <app-storeisscosphman
+      *ngIf="report === 'storeisscosphman'"
+    ></app-storeisscosphman>
+
+    <app-storeissues *ngIf="report === 'storeissues'"></app-storeissues>
+
+    <app-subvehloc-drv *ngIf="report === 'subvehloc-drv'"></app-subvehloc-drv>
+
+    <app-subvehlogdet *ngIf="report === 'subvehlogdet'"></app-subvehlogdet>
+
+    <app-subvehmissinmthlog
+      *ngIf="report === 'subvehmissinmthlog'"
+    ></app-subvehmissinmthlog>
+
+    <app-subvehstatus *ngIf="report === 'subvehstatus'"></app-subvehstatus>
+
+    <app-suppbal *ngIf="report === 'suppbal'"></app-suppbal>
+
+    <app-supppurchases *ngIf="report === 'supppurchases'"></app-supppurchases>
+
+    <app-systemmanmajequip
+      *ngIf="report === 'systemmanmajequip'"
+    ></app-systemmanmajequip>
+
+    <app-systemmanveh *ngIf="report === 'systemmanveh'"></app-systemmanveh>
+
+    <app-trafficfines *ngIf="report === 'trafficfines'"></app-trafficfines>
   </div>
 </ion-content>

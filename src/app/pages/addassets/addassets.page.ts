@@ -34,7 +34,7 @@ export class AddassetsPage implements OnInit {
   ngOnInit() {
     //this.onMakeAndModel();
     //this.onCategory();
-    //this.onColor();
+    // this.onColor();
     //this.onTireSizes();
     //this.onDriver()
     //this.onMeterType();

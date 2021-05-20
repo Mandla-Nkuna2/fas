@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OilstoreledgerComponent implements OnInit {
   dateScope: any
+  locOrReg: any
+
   constructor() { }
 
   ngOnInit() {}

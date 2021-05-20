@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { BowserPageRoutingModule } from './bowser-routing.module';
 
 import { BowserPage } from './bowser.page';
+import { IonicSelectableModule } from 'ionic-selectable';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    BowserPageRoutingModule
+    BowserPageRoutingModule,
+    IonicSelectableModule,
   ],
   declarations: [BowserPage]
 })

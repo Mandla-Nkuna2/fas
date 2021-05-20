@@ -1,7 +1,11 @@
 <ion-content class="ion-padding">
   <div class="title-holder flex al-center">
-    <ion-back-button defaultHref="revenue" mode="ios" text=""></ion-back-button>
-    <h2>Store Issues</h2>
+    <ion-back-button
+      defaultHref="fuelissues"
+      mode="ios"
+      text=""
+    ></ion-back-button>
+    <h2>Client details</h2>
     <div class="date-holder">
       <div class="itm flex al-center">
         <div class="thumb">
@@ -26,89 +30,154 @@
   <div class="navbar" class="ion-text-center">
     <ion-button
       fill="clear"
-      routerLink="/addissuesinfo"
+      routerLink="/bowser"
       routerDirection="root"
       routerLinkActive="active-link"
       class="link"
     >
-      Add information
+      Bowser
     </ion-button>
-
     <ion-button
       fill="clear"
-      routerLink="/accidentmanagement"
+      routerLink="/componentname"
       routerDirection="root"
       routerLinkActive="active-link"
       class="link"
     >
-      Accident management
+      Component name
     </ion-button>
-
     <ion-button
       fill="clear"
-      routerLink="/oilissues"
+      routerLink="/costcentre"
       routerDirection="root"
       routerLinkActive="active-link"
       class="link"
     >
-      Oil Issues
+      Cost centre
     </ion-button>
-
     <ion-button
       fill="clear"
-      routerLink="/fuelissues"
+      routerLink="/itemmakemodel"
       routerDirection="root"
       routerLinkActive="active-link"
       class="link"
     >
-      Fuel Issues
+      Item make and model
     </ion-button>
-
     <ion-button
       fill="clear"
-      routerLink="/oilstoretrans"
+      routerLink="/itemtype"
       routerDirection="root"
       routerLinkActive="active-link"
       class="link"
     >
-      Oil store transactions
+      Item types
     </ion-button>
-
     <ion-button
       fill="clear"
-      routerLink="/oiltransafer"
+      routerLink="/location"
       routerDirection="root"
       routerLinkActive="active-link"
       class="link"
     >
-      Oil store transfer
+      Location
     </ion-button>
-
     <ion-button
       fill="clear"
-      routerLink="/browsertransactions"
+      routerLink="/componentname"
       routerDirection="root"
       routerLinkActive="active-link"
       class="link"
     >
-      Bowser transactions
+      Component name
     </ion-button>
-
     <ion-button
       fill="clear"
-      routerLink="/browsertransfer"
+      routerLink="/oilstore"
       routerDirection="root"
       routerLinkActive="active-link"
       class="link"
     >
-      Bowser transfer
+      Oil store
+    </ion-button>
+    <ion-button
+      fill="clear"
+      routerLink="/overheadbudget"
+      routerDirection="root"
+      routerLinkActive="active-link"
+      class="link"
+    >
+      Overhead budget
+    </ion-button>
+    <ion-button
+      fill="clear"
+      routerLink="/fa-responsblt-codes"
+      routerDirection="root"
+      routerLinkActive="active-link"
+      class="link"
+    >
+      First auto responsibility codes
+    </ion-button>
+    <ion-button
+      fill="clear"
+      routerLink="/staffdetails"
+      routerDirection="root"
+      routerLinkActive="active-link"
+      class="link"
+    >
+      Staff details
+    </ion-button>
+    <ion-button
+      fill="clear"
+      routerLink="/service-schedules"
+      routerDirection="root"
+      routerLinkActive="active-link"
+      class="link"
+    >
+      Service schedule
+    </ion-button>
+    <ion-button
+      fill="clear"
+      routerLink="/servicetypes"
+      routerDirection="root"
+      routerLinkActive="active-link"
+      class="link"
+    >
+      service types
+    </ion-button>
+    <ion-button
+      fill="clear"
+      routerLink="/storecategories"
+      routerDirection="root"
+      routerLinkActive="active-link"
+      class="link"
+    >
+      Store categories
+    </ion-button>
+    <ion-button
+      fill="clear"
+      routerLink="/supplierdetails"
+      routerDirection="root"
+      routerLinkActive="active-link"
+      class="link"
+    >
+      Supplier details
+    </ion-button>
+    <ion-button
+      fill="clear"
+      routerLink="/votecodes"
+      routerDirection="root"
+      routerLinkActive="active-link"
+      class="link"
+    >
+      Vote codes
     </ion-button>
   </div>
 
   <div class="section">
     <div class="grid-holder">
       <div class="top-toolbar flex al-center jc-between">
-        <h3>Store Issues</h3>
+        <h3>Client details</h3>
         <div class="btns-holder flex al-center">
           <ion-button>
             <ion-icon slot="icon-only" name="options-outline"></ion-icon>
@@ -126,29 +195,29 @@
             <h4>Registration</h4>
           </ion-col>
           <ion-col size="1.4" class="flex al-center jc-center">
-            <h4>Ref. No.</h4>
+            <h4>Meter Read</h4>
           </ion-col>
           <ion-col size="1.4" class="flex al-center jc-center">
-            <h4>Store item</h4>
-          </ion-col>
-          <ion-col size="1.2" class="flex al-center jc-center">
             <h4>date</h4>
           </ion-col>
           <ion-col size="1.4" class="flex al-center jc-center">
-            <h4>rate</h4>
+            <h4>voucher no.</h4>
           </ion-col>
-          <ion-col size="1.2" class="flex al-center jc-center">
-            <h4>quantity</h4>
+          <ion-col size="1.4" class="flex al-center jc-center">
+            <h4>bowser.supplier</h4>
           </ion-col>
-          <ion-col size="1.2" class="flex al-center jc-center">
+          <ion-col size="1.4" class="flex al-center jc-center">
+            <h4>fuel qty</h4>
+          </ion-col>
+          <ion-col size="1.4" class="flex al-center jc-center">
             <h4>total cost</h4>
           </ion-col>
-          <ion-col size="1.2" class="flex al-center jc-center">
+          <ion-col size="1.4" class="flex al-center jc-center">
             <h4>invoice cost</h4>
           </ion-col>
         </ion-row>
         <div class="values">
-          <ion-row class="value-row" (click)="goSupplierDeposit()">
+          <ion-row class="value-row">
             <ion-col size="0.5" class="flex al-center jc-center">
               <ion-checkbox></ion-checkbox>
             </ion-col>
@@ -156,25 +225,25 @@
               <p>NP117354</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
-              <p class="ion-text-wrap">01 JAN 2006</p>
+              <p class="ion-text-wrap">0215112</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
               <p>02541</p>
             </ion-col>
-            <ion-col size="1.2" class="flex al-center jc-center">
+            <ion-col size="1.4" class="flex al-center jc-center">
               <p>01 Jan 2006</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
               <p>02 Jan 2006</p>
             </ion-col>
-            <ion-col size="1.2" class="flex al-center jc-center">
-              <p>400</p>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>Y</p>
             </ion-col>
-            <ion-col size="1.2" class="flex al-center jc-center">
-              <p>400</p>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>02 Jan 2006</p>
             </ion-col>
-            <ion-col size="1.2" class="flex al-center jc-center">
-              <p>400</p>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>Comment here</p>
             </ion-col>
           </ion-row>
         </div>
@@ -187,25 +256,25 @@
               <p>NP117354</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
-              <p class="ion-text-wrap">01 JAN 2006</p>
+              <p class="ion-text-wrap">0215112</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
               <p>02541</p>
             </ion-col>
-            <ion-col size="1.2" class="flex al-center jc-center">
+            <ion-col size="1.4" class="flex al-center jc-center">
               <p>01 Jan 2006</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
               <p>02 Jan 2006</p>
             </ion-col>
-            <ion-col size="1.2" class="flex al-center jc-center">
-              <p>400</p>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>Y</p>
             </ion-col>
-            <ion-col size="1.2" class="flex al-center jc-center">
-              <p>400</p>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>02 Jan 2006</p>
             </ion-col>
-            <ion-col size="1.2" class="flex al-center jc-center">
-              <p>400</p>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>Comment here</p>
             </ion-col>
           </ion-row>
         </div>
@@ -218,25 +287,25 @@
               <p>NP117354</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
-              <p class="ion-text-wrap">01 JAN 2006</p>
+              <p class="ion-text-wrap">0215112</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
               <p>02541</p>
             </ion-col>
-            <ion-col size="1.2" class="flex al-center jc-center">
+            <ion-col size="1.4" class="flex al-center jc-center">
               <p>01 Jan 2006</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
               <p>02 Jan 2006</p>
             </ion-col>
-            <ion-col size="1.2" class="flex al-center jc-center">
-              <p>400</p>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>Y</p>
             </ion-col>
-            <ion-col size="1.2" class="flex al-center jc-center">
-              <p>400</p>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>02 Jan 2006</p>
             </ion-col>
-            <ion-col size="1.2" class="flex al-center jc-center">
-              <p>400</p>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>Comment here</p>
             </ion-col>
           </ion-row>
         </div>
@@ -249,25 +318,25 @@
               <p>NP117354</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
-              <p class="ion-text-wrap">01 JAN 2006</p>
+              <p class="ion-text-wrap">0215112</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
               <p>02541</p>
             </ion-col>
-            <ion-col size="1.2" class="flex al-center jc-center">
+            <ion-col size="1.4" class="flex al-center jc-center">
               <p>01 Jan 2006</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
               <p>02 Jan 2006</p>
             </ion-col>
-            <ion-col size="1.2" class="flex al-center jc-center">
-              <p>400</p>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>Y</p>
             </ion-col>
-            <ion-col size="1.2" class="flex al-center jc-center">
-              <p>400</p>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>02 Jan 2006</p>
             </ion-col>
-            <ion-col size="1.2" class="flex al-center jc-center">
-              <p>400</p>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>Comment here</p>
             </ion-col>
           </ion-row>
         </div>
@@ -280,25 +349,56 @@
               <p>NP117354</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
-              <p class="ion-text-wrap">01 JAN 2006</p>
+              <p class="ion-text-wrap">0215112</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
               <p>02541</p>
             </ion-col>
-            <ion-col size="1.2" class="flex al-center jc-center">
+            <ion-col size="1.4" class="flex al-center jc-center">
               <p>01 Jan 2006</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
               <p>02 Jan 2006</p>
             </ion-col>
-            <ion-col size="1.2" class="flex al-center jc-center">
-              <p>400</p>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>Y</p>
             </ion-col>
-            <ion-col size="1.2" class="flex al-center jc-center">
-              <p>400</p>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>02 Jan 2006</p>
             </ion-col>
-            <ion-col size="1.2" class="flex al-center jc-center">
-              <p>400</p>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>Comment here</p>
+            </ion-col>
+          </ion-row>
+        </div>
+        <div class="values">
+          <ion-row class="value-row">
+            <ion-col size="0.5" class="flex al-center jc-center">
+              <ion-checkbox></ion-checkbox>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>NP117354</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p class="ion-text-wrap">0215112</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>02541</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>01 Jan 2006</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>02 Jan 2006</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>Y</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>02 Jan 2006</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
+              <p>Comment here</p>
             </ion-col>
           </ion-row>
         </div>
@@ -307,143 +407,84 @@
   </div>
 
   <div class="section">
-    <div class="title">
-      <h3>Add</h3>
-    </div>
-
     <div class="the-form">
       <ion-grid fixed>
         <ion-row>
           <ion-col size="3.5">
             <div class="item-input">
-              <ion-label>Registration</ion-label>
-              <ion-item>
-                <ionic-selectable
-                  [(ngModel)]="storeIssue.ItemGuid"
-                  [items]="registration"
-                  itemValueField="ItemGuid"
-                  itemTextField="Reg"
-                  [canSearch]="true"
-                  [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onRegistrationLeft()"
-                >
-                </ionic-selectable>
-              </ion-item>
-            </div>
-          </ion-col>
-
-          <ion-col size="3.5" offset="0.5">
-            <div class="item-input">
-              <ion-label>Rate</ion-label>
-              <ion-item lines="none" class="end">
-                <ion-input
-                  type="text"
-                  [(ngModel)]="storeIssue.CCRate"
-                ></ion-input>
-                <div class="end-slot flex al-center jc-center" slot="end">
-                  <p>/unit</p>
-                </div>
-              </ion-item>
-            </div>
-          </ion-col>
-
-          <ion-col size="4" offset="0.5">
-            <div class="item-input">
-              <ion-label>Date</ion-label>
+              <ion-label>Name</ion-label>
               <ion-item lines="none">
-                <ion-datetime
-                  display-format="MMM DD YYYY"
-                  [(ngModel)]="storeIssue.StoreIssuedate"
-                ></ion-datetime>
+                <ion-input type="text"></ion-input>
               </ion-item>
             </div>
           </ion-col>
 
           <ion-col size="3.5">
             <div class="item-input">
-              <ion-label>Quantity</ion-label>
-              <ion-item lines="none" class="end">
-                <ion-input
-                  type="text"
-                  [(ngModel)]="storeIssue.CCQty"
-                ></ion-input>
-                <div class="end-slot flex al-center jc-center" slot="end">
-                  <p>/unit</p>
-                </div>
-              </ion-item>
-            </div>
-          </ion-col>
-
-          <ion-col size="3.5" offset="0.5">
-            <div class="item-input">
-              <ion-label>Maintenance Event Ref. No.</ion-label>
-              <ion-item>
-                <ionic-selectable
-                  [(ngModel)]="storeIssue.MaintEvntGuid"
-                  [items]="MaintEvRefNo"
-                  itemValueField="MaintEvntGuid"
-                  itemTextField="RefNo"
-                  [canSearch]="true"
-                  [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onMaintEvRefNoLeft()"
-                >
-                </ionic-selectable>
-              </ion-item>
-            </div>
-          </ion-col>
-
-          <ion-col size="4" offset="0.5">
-            <div class="item-input">
-              <ion-label>Supplier</ion-label>
-              <ion-item>
-                <ionic-selectable
-                  [(ngModel)]="storeIssue.SuppGuid"
-                  [items]="supplier"
-                  itemValueField="SuppGuid"
-                  itemTextField="SuppName"
-                  [canSearch]="true"
-                  [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onSupplierleft()"
-                >
-                </ionic-selectable>
+              <ion-label>Address</ion-label>
+              <ion-item lines="none">
+                <ion-input type="text"></ion-input>
               </ion-item>
             </div>
           </ion-col>
 
           <ion-col size="3.5">
             <div class="item-input">
-              <ion-label>Store Item</ion-label>
-              <ion-item>
-                <ionic-selectable
-                  [(ngModel)]="storeIssue.StoreCatgItemGuid"
-                  [items]="storeItem"
-                  itemValueField="StoreCatgGuid"
-                  itemTextField="StoreCatgItem"
-                  [canSearch]="true"
-                  [hasInfiniteScroll]="true"
-                >
-                </ionic-selectable>
-              </ion-item>
-            </div>
-          </ion-col>
-
-          <ion-col size="3.5" offset="0.5">
-            <div class="item-input">
-              <ion-label>Order / Requisition No.</ion-label>
               <ion-item lines="none">
-                <ion-input
-                  type="text"
-                  [(ngModel)]="storeIssue.OrderNo"
-                ></ion-input>
+                <ion-input type="text"></ion-input>
               </ion-item>
             </div>
           </ion-col>
-        </ion-row>
 
-        <ion-row>
-          <ion-col size="12" class="ion-no-padding">
-            <div class="btn-holder ion-text-right">
-              <ion-button> Add </ion-button>
+          <ion-col size="3.5">
+            <div class="item-input">
+              <ion-item lines="none">
+                <ion-input type="text"></ion-input>
+              </ion-item>
+            </div>
+          </ion-col>
+
+          <ion-col size="3.5">
+            <div class="item-input">
+              <ion-item lines="none">
+                <ion-input type="text"></ion-input>
+              </ion-item>
+            </div>
+          </ion-col>
+
+          <ion-col size="3.5">
+            <div class="item-input">
+              <ion-label>Code</ion-label>
+              <ion-item lines="none">
+                <ion-input type="text"></ion-input>
+              </ion-item>
+            </div>
+          </ion-col>
+
+          <ion-col size="3.5">
+            <div class="item-input">
+              <ion-label>Telephone</ion-label>
+              <ion-item lines="none">
+                <ion-input type="text"></ion-input>
+              </ion-item>
+            </div>
+          </ion-col>
+
+          <ion-col size="3.5">
+            <div class="item-input">
+              <ion-label>Ext.</ion-label>
+              <ion-item lines="none">
+                <ion-input type="text"></ion-input>
+              </ion-item>
+            </div>
+          </ion-col>
+
+          <ion-col size="3.5">
+            <div class="item-input">
+              <ion-label>Fax</ion-label>
+              <ion-item lines="none">
+                <ion-input type="text"></ion-input>
+              </ion-item>
             </div>
           </ion-col>
         </ion-row>
