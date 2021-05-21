@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { LocationPageRoutingModule } from './location-routing.module';
 
 import { LocationPage } from './location.page';
+import { IonicSelectableModule } from 'ionic-selectable';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    LocationPageRoutingModule
+    LocationPageRoutingModule,
+    IonicSelectableModule,
   ],
   declarations: [LocationPage]
 })

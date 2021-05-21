@@ -12,4 +12,8 @@ export class ServicetypesPage implements OnInit {
   ngOnInit() {
   }
 
+  onAdd(){}
+  onModify(){}
+  onDeActivate(){}
+  onClear(){}
 }

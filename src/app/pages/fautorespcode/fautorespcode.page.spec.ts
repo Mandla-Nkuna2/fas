@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { TasksPage } from './tasks.page';
+import { FautorespcodePage } from './fautorespcode.page';
 
-describe('TasksPage', () => {
-  let component: TasksPage;
-  let fixture: ComponentFixture<TasksPage>;
+describe('FautorespcodePage', () => {
+  let component: FautorespcodePage;
+  let fixture: ComponentFixture<FautorespcodePage>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ TasksPage ],
+      declarations: [ FautorespcodePage ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(TasksPage);
+    fixture = TestBed.createComponent(FautorespcodePage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

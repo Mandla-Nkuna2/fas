@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./oilstore.page.scss'],
 })
 export class OilstorePage implements OnInit {
+  oilStore: any
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  onAdd(){}
+  onModify(){}
+  onDeActivate(){}
+  onClear(){}
 }

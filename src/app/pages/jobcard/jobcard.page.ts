@@ -1,7 +1,7 @@
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 import { FirebaseService } from './../../services/firebase-service/firebase-service.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {JobCard, GeneralInformation, VehicleInformation, ServiceInformation, ComponentOfCar} from '../../models/JobCard.model';
+import {JobCard, GeneralInformation, VehicleInformation, ServiceInformation, ComponentOfCar} from '../../models/capture/JobCard.model';
 import {FirebaseGetService} from '../../services/firebase-service/firebase-get.service';
 import { SignaturePad } from 'angular2-signaturepad/signature-pad';
 

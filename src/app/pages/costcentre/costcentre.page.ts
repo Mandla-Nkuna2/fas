@@ -13,4 +13,8 @@ export class CostcentrePage implements OnInit {
   ngOnInit() {
   }
 
+  onAdd(){}
+  onModify(){}
+  onDeActivate(){}
+  onClear(){}
 }

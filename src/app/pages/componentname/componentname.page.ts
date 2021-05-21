@@ -14,4 +14,8 @@ export class ComponentnamePage implements OnInit {
   ngOnInit() {
   }
 
+  onAdd(){}
+  onModify(){}
+  onDeActivate(){}
+  onClear(){}
 }

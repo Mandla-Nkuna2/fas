@@ -1,4 +1,4 @@
-import { AdditionalCost } from '../../models/AdditionalCost.model';
+import { AdditionalCost } from '../../models/capture/AdditionalCost.model';
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';

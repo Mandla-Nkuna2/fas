@@ -1,7 +1,7 @@
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 import { FirebaseService } from './../../services/firebase-service/firebase-service.service';
 import { Component, OnInit } from '@angular/core';
-import DailyOperationRec from 'src/app/models/DailyOperationRec.model';
+import DailyOperationRec from 'src/app/models/capture/DailyOperationRec.model';
 
 @Component({
   selector: 'app-dailyoperations',

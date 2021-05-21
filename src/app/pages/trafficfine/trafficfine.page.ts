@@ -1,6 +1,6 @@
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 import { FirebaseService } from './../../services/firebase-service/firebase-service.service';
-import { Trafficfine } from './../../models/Trafficfine.model';
+import { Trafficfine } from './../../models/capture/Trafficfine.model';
 import { Component, OnInit } from '@angular/core';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
 

@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./supplierdetails.page.scss'],
 })
 export class SupplierdetailsPage implements OnInit {
+  supplier: any
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  onAdd(){}
+  onModify(){}
+  onDeActivate(){}
+  onClear(){}
 }

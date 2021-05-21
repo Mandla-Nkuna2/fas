@@ -268,19 +268,8 @@ const routes: Routes = [
     loadChildren: () => import('./pages/overheadbudget/overheadbudget.module').then( m => m.OverheadbudgetPageModule)
   },
   {
-    path: 'fa-responsblt-codes',
-    loadChildren: () => import('./pages/fa-responsblt-codes/fa-responsblt-codes.module').then( m => m.FaResponsbltCodesPageModule)
-  },  {
     path: 'staffdetails',
     loadChildren: () => import('./pages/staffdetails/staffdetails.module').then( m => m.StaffdetailsPageModule)
-  },
-  {
-    path: 'service-schedules',
-    loadChildren: () => import('./pages/service-schedules/service-schedules.module').then( m => m.ServiceSchedulesPageModule)
-  },
-  {
-    path: 'tasks',
-    loadChildren: () => import('./pages/tasks/tasks.module').then( m => m.TasksPageModule)
   },
   {
     path: 'servicetypes',
@@ -317,7 +306,20 @@ const routes: Routes = [
   {
     path: 'servschedultask',
     loadChildren: () => import('./pages/servschedultask/servschedultask.module').then( m => m.ServschedultaskPageModule)
+  },
+  {
+    path: 'oiltype',
+    loadChildren: () => import('./pages/oiltype/oiltype.module').then( m => m.OiltypePageModule)
+  },
+  {
+    path: 'fautorespcode',
+    loadChildren: () => import('./pages/fautorespcode/fautorespcode.module').then( m => m.FautorespcodePageModule)
+  },
+  {
+    path: 'servschedule',
+    loadChildren: () => import('./pages/servschedule/servschedule.module').then( m => m.ServschedulePageModule)
   }
+
 
 
 ];

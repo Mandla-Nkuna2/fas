@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
-import BowserTransaction from 'src/app/models/BowserTransaction.model';
+import BowserTransaction from 'src/app/models/capture/BowserTransaction.model';
 
 @Component({
   selector: 'app-browsertransactions',

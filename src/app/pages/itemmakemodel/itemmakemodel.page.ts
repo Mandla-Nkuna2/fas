@@ -13,4 +13,8 @@ export class ItemmakemodelPage implements OnInit {
   ngOnInit() {
   }
 
+  onAdd(){}
+  onModify(){}
+  onDeActivate(){}
+  onClear(){}
 }

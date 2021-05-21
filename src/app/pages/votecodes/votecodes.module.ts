@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { VotecodesPageRoutingModule } from './votecodes-routing.module';
 
 import { VotecodesPage } from './votecodes.page';
+import { IonicSelectableModule } from 'ionic-selectable';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    VotecodesPageRoutingModule
+    VotecodesPageRoutingModule,
+    IonicSelectableModule,
   ],
   declarations: [VotecodesPage]
 })

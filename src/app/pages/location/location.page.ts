@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./location.page.scss'],
 })
 export class LocationPage implements OnInit {
+  location: any
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  onAdd(){}
+  onModify(){}
+  onDeActivate(){}
+  onClear(){}
 }

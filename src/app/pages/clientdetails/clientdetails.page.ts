@@ -12,4 +12,8 @@ export class ClientdetailsPage implements OnInit {
   ngOnInit() {
   }
 
+  onAdd(){}
+  onModify(){}
+  onDeActivate(){}
+  onClear(){}
 }

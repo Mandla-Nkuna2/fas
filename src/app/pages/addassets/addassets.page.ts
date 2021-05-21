@@ -1,7 +1,7 @@
 import { FirebaseGetService } from './../../services/firebase-service/firebase-get.service';
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 import { FirebaseService } from './../../services/firebase-service/firebase-service.service';
-import { Asset, GeneralInformation, MeterInformation, OtherInformation, RateInformation } from './../../models/Asset.model';
+import { Asset, GeneralInformation, MeterInformation, OtherInformation, RateInformation } from './../../models/capture/Asset.model';
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 @Component({
   selector: 'app-addassets',

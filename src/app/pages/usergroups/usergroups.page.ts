@@ -1,3 +1,4 @@
+import UserGroup  from 'src/app/models/systemmanagement/UserGroup.model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./usergroups.page.scss'],
 })
 export class UsergroupsPage implements OnInit {
-  userGroups: any
-  constructor() { }
+  userGroup: UserGroup
+  userGroups: UserGroup[]
+
+  constructor() {
+    this.userGroup = new UserGroup
+  }
 
   ngOnInit() {
   }
 
+  onAdd(){}
+  onModify(){}
+  onDeActivate(){}
+  onClear(){}
 }

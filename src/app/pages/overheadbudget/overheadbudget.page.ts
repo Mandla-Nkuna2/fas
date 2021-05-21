@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./overheadbudget.page.scss'],
 })
 export class OverheadbudgetPage implements OnInit {
+  oheadbudget: any
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  onAdd(){}
+  onModify(){}
+  onDeActivate(){}
+  onClear(){}
 }

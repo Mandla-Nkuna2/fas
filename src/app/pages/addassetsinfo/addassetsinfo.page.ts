@@ -1,4 +1,4 @@
-import { TestAssets } from './../../models/TestAssets.model';
+import { TestAssets } from './../../models/capture/TestAssets.model';
 import { Component, OnInit } from '@angular/core';
 import {FirebaseService } from '../../services/firebase-service/firebase-service.service';
 import {PopupHelper} from '../../services/helpers/popup-helper';

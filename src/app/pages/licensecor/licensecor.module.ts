@@ -17,7 +17,7 @@ import { IonicSelectableModule } from 'ionic-selectable';
     IonicModule,
     LicensecorPageRoutingModule,
     ComponentsModule,
-    IonicSelectableModule
+    IonicSelectableModule,
   ],
   declarations: [LicensecorPage]
 })

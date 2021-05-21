@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { OilstorePageRoutingModule } from './oilstore-routing.module';
 
 import { OilstorePage } from './oilstore.page';
+import { IonicSelectableModule } from 'ionic-selectable';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    OilstorePageRoutingModule
+    OilstorePageRoutingModule,
+    IonicSelectableModule,
   ],
   declarations: [OilstorePage]
 })

@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { ServschedultaskPageRoutingModule } from './servschedultask-routing.module';
 
 import { ServschedultaskPage } from './servschedultask.page';
+import { IonicSelectableModule } from 'ionic-selectable';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ServschedultaskPageRoutingModule
+    ServschedultaskPageRoutingModule,
+    IonicSelectableModule,
   ],
   declarations: [ServschedultaskPage]
 })

@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { OverheadbudgetPageRoutingModule } from './overheadbudget-routing.module';
 
 import { OverheadbudgetPage } from './overheadbudget.page';
+import { IonicSelectableModule } from 'ionic-selectable';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    OverheadbudgetPageRoutingModule
+    OverheadbudgetPageRoutingModule,
+    IonicSelectableModule,
   ],
   declarations: [OverheadbudgetPage]
 })

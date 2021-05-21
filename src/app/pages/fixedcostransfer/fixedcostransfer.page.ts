@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import FixedCostTransfer from 'src/app/models/FixedCostTransfer.model';
+import FixedCostTransfer from 'src/app/models/capture/FixedCostTransfer.model';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
 import { FirebaseService } from 'src/app/services/firebase-service/firebase-service.service';
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';

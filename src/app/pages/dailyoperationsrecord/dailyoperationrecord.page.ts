@@ -1,5 +1,5 @@
-import { Operator } from './../../models/DailyOperationRec.model';
-import DailyOperationRec from 'src/app/models/DailyOperationRec.model';
+import { Operator } from './../../models/capture/DailyOperationRec.model';
+import DailyOperationRec from 'src/app/models/capture/DailyOperationRec.model';
 import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from 'src/app/services/firebase-service/firebase-service.service';
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';

@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { ServiceSchedulesPage } from './service-schedules.page';
+import { FautorespcodePage } from './fautorespcode.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: ServiceSchedulesPage
+    component: FautorespcodePage
   }
 ];
 
@@ -14,4 +14,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class ServiceSchedulesPageRoutingModule {}
+export class FautorespcodePageRoutingModule {}

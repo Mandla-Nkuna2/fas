@@ -13,6 +13,11 @@ export class FuelnoilpricePage implements OnInit {
   ngOnInit() {
   }
 
+  onAdd(){}
+  onModify(){}
+  onDeActivate(){}
+  onClear(){}
+
   goABSAImport()
   {
     this.navCtrl.navigateForward('absaimport');

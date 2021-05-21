@@ -1,6 +1,6 @@
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 import { FirebaseService } from './../../services/firebase-service/firebase-service.service';
-import { AccidentManagement } from './../../models/AccidentManagement.model';
+import { AccidentManagement } from './../../models/capture/AccidentManagement.model';
 import { Component, OnInit } from '@angular/core';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
 

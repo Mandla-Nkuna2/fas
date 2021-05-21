@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import StaffDet from 'src/app/models/StaffDet.model';
+import StaffDet from 'src/app/models/capture/StaffDet.model';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
 import { FirebaseService } from 'src/app/services/firebase-service/firebase-service.service';
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
@@ -24,4 +24,9 @@ export class StaffdetailsPage implements OnInit {
 
   onStaffCat(){}
   onStaffCatLeft(){}
+
+  onAdd(){}
+  onModify(){}
+  onDeActivate(){}
+  onClear(){}
 }

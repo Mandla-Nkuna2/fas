@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./itemtype.page.scss'],
 })
 export class ItemtypePage implements OnInit {
+  itemType:any
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  onAdd(){}
+  onModify(){}
+  onDeActivate(){}
+  onClear(){}
 }

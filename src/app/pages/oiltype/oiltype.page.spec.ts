@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { FaResponsbltCodesPage } from './fa-responsblt-codes.page';
+import { OiltypePage } from './oiltype.page';
 
-describe('FaResponsbltCodesPage', () => {
-  let component: FaResponsbltCodesPage;
-  let fixture: ComponentFixture<FaResponsbltCodesPage>;
+describe('OiltypePage', () => {
+  let component: OiltypePage;
+  let fixture: ComponentFixture<OiltypePage>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ FaResponsbltCodesPage ],
+      declarations: [ OiltypePage ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(FaResponsbltCodesPage);
+    fixture = TestBed.createComponent(OiltypePage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

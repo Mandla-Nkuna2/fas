@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
-import Item from 'src/app/models/Item.model';
+import Item from 'src/app/models/capture/Item.model';
 
 @Component({
   selector: 'app-items',
