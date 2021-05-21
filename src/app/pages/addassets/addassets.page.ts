@@ -55,7 +55,7 @@ export class AddassetsPage implements OnInit {
   }
 
   onAdd(){
-    this.firebaseService.saveAsset(this.asset).then(() => {
+    this.firebaseService.writeData('myTest', this.asset, this.asset.generalInformation.ItemGuid).then(() => {
       this.popUp.showAlert('Success', 'Data saved successfully =)')
     }).catch((err) => {
       this.popUp.showError(err)

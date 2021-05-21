@@ -1,8 +1,14 @@
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 import { FirebaseService } from './../../services/firebase-service/firebase-service.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {JobCard, GeneralInformation, VehicleInformation, ServiceInformation, ComponentOfCar} from '../../models/capture/JobCard.model';
-import {FirebaseGetService} from '../../services/firebase-service/firebase-get.service';
+import {
+  JobCard,
+  GeneralInformation,
+  VehicleInformation,
+  ServiceInformation,
+  ComponentOfCar,
+} from '../../models/capture/JobCard.model';
+import { FirebaseGetService } from '../../services/firebase-service/firebase-get.service';
 import { SignaturePad } from 'angular2-signaturepad/signature-pad';
 
 @Component({
@@ -10,20 +16,19 @@ import { SignaturePad } from 'angular2-signaturepad/signature-pad';
   templateUrl: './jobcard.page.html',
   styleUrls: ['./jobcard.page.scss'],
 })
-
 export class JobcardPage implements OnInit {
   @ViewChild('signatureCanvas', { static: false }) signaturePad: SignaturePad;
 
   jobCard: JobCard;
   loadingComplete = false;
   staff: any = [];
-  driver: any [];
+  driver: any[];
 
   constructor(
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
-    private firebaseGetServ: FirebaseGetService
-    ) {
+    private firebaseGetServ: FirebaseGetService,
+  ) {
     this.jobCard = new JobCard();
     this.jobCard.generalInformation = new GeneralInformation();
     this.jobCard.vehicleInformation = new VehicleInformation();
@@ -36,10 +41,11 @@ export class JobcardPage implements OnInit {
     // this.onDriver();
   }
 
-  public signaturePadOptions: Object = { // passed through to szimek/signature_pad constructor
-    'minWidth': 5,
-    'canvasWidth': 150,
-    'canvasHeight': 150
+  public signaturePadOptions: Object = {
+    // passed through to szimek/signature_pad constructor
+    minWidth: 5,
+    canvasWidth: 150,
+    canvasHeight: 150,
   };
 
   ngAfterViewInit() {
@@ -58,41 +64,46 @@ export class JobcardPage implements OnInit {
     console.log('begin drawing');
   }
 
-  onAdd(){
-    this.firebaseService.saveJobCard(this.jobCard).then(() => {
-      this.popUp.showAlert('Success', 'Data saved successfully =)')
-    }).catch((err) => {
-      this.popUp.showError(err)
-    })
+  onAdd() {
+    this.firebaseService
+      .writeData(
+        'myTest',
+        this.jobCard,
+        this.jobCard.generalInformation.JobCardNo,
+      )
+      .then(() => {
+        this.popUp.showAlert('Success', 'Data saved successfully =)');
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
   }
 
-  onReportedBy(){
+  onReportedBy() {
     this.firebaseGetServ.getStaff().then((staff) => {
-      this.staff = staff
-    })
+      this.staff = staff;
+    });
   }
-  onReportedByLeft(){
+  onReportedByLeft() {
     this.firebaseGetServ.getStaffLeft().then((staff) => {
-      this.staff = staff
-    })
+      this.staff = staff;
+    });
   }
 
-  onReportedBySel(obj){
-    this.jobCard.generalInformation.StaffGuid = obj.StaffGuid
+  onReportedBySel(obj) {
+    this.jobCard.generalInformation.StaffGuid = obj.StaffGuid;
   }
 
-  onDriver(){
+  onDriver() {
     this.firebaseGetServ.getDriver().then((staff: any) => {
-      this.driver = staff
-    })
+      this.driver = staff;
+    });
   }
-  onDriverLeft(){
+  onDriverLeft() {
     this.firebaseGetServ.getDriver().then((staff: any) => {
-      this.driver = staff
-    })
+      this.driver = staff;
+    });
   }
 
-  onChange(){
-
-  }
+  onChange() {}
 }

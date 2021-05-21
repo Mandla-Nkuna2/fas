@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import StaffDet from 'src/app/models/capture/StaffDet.model';
+import Staff from 'src/app/models/supportdata/StaffDetails.model';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
 import { FirebaseService } from 'src/app/services/firebase-service/firebase-service.service';
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
-
 
 @Component({
   selector: 'app-staffdetails',
@@ -11,22 +10,32 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
   styleUrls: ['./staffdetails.page.scss'],
 })
 export class StaffdetailsPage implements OnInit {
-  staffDet: StaffDet
+  staff: Staff;
 
-  staffCat: any []
+  staffCat: any[];
 
-  constructor(private firebaseService: FirebaseService,
-    private popUp: PopupHelper, private firebaseGetServ:
-    FirebaseGetService) { }
+  constructor(
+    private firebaseService: FirebaseService,
+    private popUp: PopupHelper,
+    private firebaseGetServ: FirebaseGetService,
+  ) {}
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  onStaffCat() {}
+  onStaffCatLeft() {}
+
+  onAdd() {
+    this.firebaseService
+      .writeData('myTest', this.staff, this.staff.StaffGuid)
+      .then(() => {
+        this.popUp.showAlert('Success', 'Data saved successfully =)');
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
   }
-
-  onStaffCat(){}
-  onStaffCatLeft(){}
-
-  onAdd(){}
-  onModify(){}
-  onDeActivate(){}
-  onClear(){}
+  onModify() {}
+  onDeActivate() {}
+  onClear() {}
 }

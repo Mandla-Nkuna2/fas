@@ -1,13 +1,13 @@
-export default class Location {
-  LocGuid: string
-  LocLevel1code: number
-  LocLevel2code: number
-  LocLevel3code: string
-  LocLevel4code: number
-  LocLevel: number
-  LocItemCode: string
-  LocDesc: string
-  CaptureDate: string
-  Active: string
-  LocFullName: string
-};
+export default class LocationModel {
+  LocGuid: string;
+  LocLevel1code: number;
+  LocLevel2code: number;
+  LocLevel3code: string;
+  LocLevel4code: number;
+  LocLevel: number;
+  LocItemCode: string;
+  LocDesc: string;
+  CaptureDate: string;
+  Active: string;
+  LocFullName: string;
+}

@@ -9,21 +9,25 @@ import DailyOperationRec from 'src/app/models/capture/DailyOperationRec.model';
   styleUrls: ['./dailyoperations.page.scss'],
 })
 export class DailyoperationsPage implements OnInit {
-  dailyOpRec: DailyOperationRec
+  dailyOpRec: DailyOperationRec;
 
-  constructor(private firebaseService: FirebaseService, private popUp: PopupHelper) {
+  constructor(
+    private firebaseService: FirebaseService,
+    private popUp: PopupHelper,
+  ) {
     this.dailyOpRec = new DailyOperationRec();
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  onAdd(){
-    this.firebaseService.saveDailyOperationRec(this.dailyOpRec).then(() => {
-      this.popUp.showAlert('Success', 'Data saved successfully =)')
-    }).catch((err) =>  {
-      this.popUp.showError(err);
-    })
+  onAdd() {
+    this.firebaseService
+      .writeData('myTest', this.dailyOpRec, this.dailyOpRec.Itemguid)
+      .then(() => {
+        this.popUp.showAlert('Success', 'Data saved successfully =)');
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
   }
-
 }

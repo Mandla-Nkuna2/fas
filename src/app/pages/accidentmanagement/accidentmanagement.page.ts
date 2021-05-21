@@ -33,7 +33,7 @@ export class AccidentmanagementPage implements OnInit {
   }
 
  onAdd(){
-  this.firebaseService.saveAccidentManagement(this.accidentManagement).then(() => {
+  this.firebaseService.writeData('myTest', this.accidentManagement, this.accidentManagement.LossContGuid).then(() => {
     this.popUp.showAlert('Success', 'Data saved successfully =)')
   }).catch((err) => {
     this.popUp.showError(err);

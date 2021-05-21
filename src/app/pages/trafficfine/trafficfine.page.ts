@@ -58,7 +58,7 @@ export class TrafficfinePage implements OnInit {
   onDriverLeft(){}
 
   onAdd(){
-    this.firebaseService.saveTrafficfine(this.trafficfine).then(() => {
+    this.firebaseService.writeData('myTest', this.trafficfine, this.trafficfine.TrafficFineGuid).then(() => {
       this.popUp.showAlert('Success', 'Data saved successfully =)')
     }).catch((err) => {
       this.popUp.showError(err);

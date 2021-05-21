@@ -19,7 +19,7 @@ testAsset: TestAssets
   ngOnInit() {}
 
   onAdd(){
-    this.firebaseSevice.saveAssetss(this.testAsset).then(() => {
+    this.firebaseSevice.writeData('myTest', this.testAsset, this.testAsset.id).then(() => {
       this.popUp.showAlert('Success', 'Data saved successfully =)')
     }).catch((err) =>  {
       this.popUp.showError(err);
