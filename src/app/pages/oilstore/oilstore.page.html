@@ -5,7 +5,7 @@
       mode="ios"
       text=""
     ></ion-back-button>
-    <h2>Oil type</h2>
+    <h2>Oil store</h2>
     <div class="date-holder">
       <div class="itm flex al-center">
         <div class="thumb">
@@ -29,7 +29,7 @@
   <div class="section">
     <div class="grid-holder">
       <div class="top-toolbar flex al-center jc-between">
-        <h3>Oil type</h3>
+        <h3>Oil store</h3>
         <div class="btns-holder flex al-center">
           <ion-button>
             <ion-icon slot="icon-only" name="options-outline"></ion-icon>
@@ -259,10 +259,6 @@
   </div>
 
   <div class="section">
-    <div class="title">
-      <h3>Add</h3>
-    </div>
-
     <div class="the-form">
       <ion-grid fixed>
         <ion-row>
@@ -270,7 +266,10 @@
             <div class="item-input">
               <ion-label>Oil store code</ion-label>
               <ion-item>
-                <ion-input type="text" [(ngModel)]="oilStore"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="oilStore.OilStoreHOCode"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -279,7 +278,10 @@
             <div class="item-input">
               <ion-label>Oil store name</ion-label>
               <ion-item>
-                <ion-input type="text" [(ngModel)]="oilStore"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="oilStore.OilStoreName"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -289,11 +291,13 @@
               <ion-label>Oil store location</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="oilStore"
-                  [items]="oilStore"
-                  itemValueField="ItemGuid"
-                  itemTextField="Reg"
+                  [(ngModel)]="oilStore.OilStoreLoc"
+                  [items]="loc"
+                  itemValueField="LocGuid"
+                  itemTextField="LocFullName"
                   [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onLocationLeft()"
                 >
                 </ionic-selectable>
               </ion-item>

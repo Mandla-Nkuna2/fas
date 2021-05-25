@@ -10,14 +10,25 @@ import SupplierDetails from 'src/app/models/supportdata/SupplierDetails.model';
 })
 export class SupplierdetailsPage implements OnInit {
   supplier: SupplierDetails;
+  suppCat: any[];
 
   constructor(
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
-  ) {}
+  ) {
+    this.supplier = new SupplierDetails();
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+    // this.onCategory()
+  }
+
+  onCategory() {
+    this.firebaseGetServ.getSuppCat().then((mNm: any) => {
+      this.suppCat = mNm;
+    });
+  }
 
   onAdd() {
     this.firebaseService

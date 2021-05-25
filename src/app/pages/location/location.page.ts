@@ -10,6 +10,7 @@ import LocationModel from 'src/app/models/supportdata/Location.model';
 })
 export class LocationPage implements OnInit {
   location: LocationModel;
+  locations: any[];
 
   constructor(
     private firebaseService: FirebaseService,

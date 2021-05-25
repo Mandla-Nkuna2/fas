@@ -5,7 +5,7 @@
       mode="ios"
       text=""
     ></ion-back-button>
-    <h2>Oil type</h2>
+    <h2>Overhead budget</h2>
     <div class="date-holder">
       <div class="itm flex al-center">
         <div class="thumb">
@@ -29,7 +29,7 @@
   <div class="section">
     <div class="grid-holder">
       <div class="top-toolbar flex al-center jc-between">
-        <h3>Oil type</h3>
+        <h3>Overhead budget</h3>
         <div class="btns-holder flex al-center">
           <ion-button>
             <ion-icon slot="icon-only" name="options-outline"></ion-icon>
@@ -271,8 +271,8 @@
               <ion-label>Overhead type</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="oheadbudget"
-                  [items]="oheadbudget"
+                  [(ngModel)]="oheadbudget.OverheadTypeGuid"
+                  [items]="ohbTypes"
                   itemValueField="ItemGuid"
                   itemTextField="Reg"
                   [canSearch]="true"
@@ -287,10 +287,8 @@
               <ion-label>Start of financial year</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="oheadbudget"
-                  [items]="oheadbudget"
-                  itemValueField="CompNameGuid"
-                  itemTextField="CompName"
+                  [(ngModel)]="oheadbudget.OverheadBudDate"
+                  [items]="finYear"
                   [canSearch]="true"
                 >
                 </ionic-selectable>
@@ -300,9 +298,12 @@
 
           <ion-col size="3.5">
             <div class="item-input">
-              <ion-label>Oil store name</ion-label>
+              <ion-label>Budget</ion-label>
               <ion-item>
-                <ion-input type="text" [(ngModel)]="oheadbudget"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="oheadbudget.OverheadBudAmt"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>

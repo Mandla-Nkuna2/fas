@@ -11,14 +11,21 @@ import Votecodes from 'src/app/models/supportdata/VoteCode.model';
 })
 export class VotecodesPage implements OnInit {
   voteCode: Votecodes;
+  voteCodes: Votecodes[];
+  descriptions: any[];
+  finYear = ['2019/2020', '2020/2021', '2021/2022', '2022/2023'];
 
   constructor(
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
-  ) {}
+  ) {
+    this.voteCode = new Votecodes();
+  }
 
   ngOnInit() {}
+
+  onVoteCodes() {}
 
   onAdd() {
     this.firebaseService

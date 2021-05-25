@@ -1,13 +1,13 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>usergroups</ion-title>
+    <ion-title>Component names</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <div class="title-holder flex al-center">
     <ion-back-button defaultHref="revenue" mode="ios" text=""></ion-back-button>
-    <h2>User group</h2>
+    <h2>Component name</h2>
     <div class="date-holder">
       <div class="itm flex al-center">
         <div class="thumb">
@@ -232,17 +232,12 @@
 
   <ion-col size="3.5">
     <div class="item-input">
-      <ion-label>user group</ion-label>
+      <ion-label>Description</ion-label>
       <ion-item>
-        <ionic-selectable
-          [(ngModel)]="userGroup"
-          [items]="userGroups"
-          itemValueField="CompNameGuid"
-          itemTextField="CompName"
-          [canSearch]="true"
-          [hasInfiniteScroll]="true"
-        >
-        </ionic-selectable>
+        <ion-input
+          type="text"
+          [(ngModel)]="componentName.CompNameGuid"
+        ></ion-input>
       </ion-item>
     </div>
   </ion-col>

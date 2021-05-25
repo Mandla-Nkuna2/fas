@@ -10,28 +10,29 @@ import ComponentName from 'src/app/models/supportdata/ComponentName.model';
   styleUrls: ['./componentname.page.scss'],
 })
 export class ComponentnamePage implements OnInit {
-
-  componentName: ComponentName
+  componentName: ComponentName;
 
   constructor(
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
-    private firebaseGetServ: FirebaseGetService,)
-    {
-
-    }
-
-  ngOnInit() {
+    private firebaseGetServ: FirebaseGetService,
+  ) {
+    this.componentName = new ComponentName();
   }
 
-  onAdd(){
-    this.firebaseService.writeData('myTest', this.componentName, this.componentName.CompNameGuid).then(() => {
-      this.popUp.showAlert('Success', 'Data saved successfully =)')
-    }).catch((err) => {
-      this.popUp.showError(err)
-    })
+  ngOnInit() {}
+
+  onAdd() {
+    this.firebaseService
+      .writeData('myTest', this.componentName, this.componentName.CompNameGuid)
+      .then(() => {
+        this.popUp.showAlert('Success', 'Data saved successfully =)');
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
   }
-  onModify(){}
-  onDeActivate(){}
-  onClear(){}
+  onModify() {}
+  onDeActivate() {}
+  onClear() {}
 }

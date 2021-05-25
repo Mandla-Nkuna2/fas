@@ -11,6 +11,20 @@ import ItemMakeAndModel from 'src/app/models/supportdata/ItemMakeAndModel.model'
 })
 export class ItemmakemodelPage implements OnInit {
   item: ItemMakeAndModel;
+  makes: any[];
+  models: any[];
+  fuelTypes: any[];
+  transmissions = [
+    'AUTOMATIC',
+    'ELECTRIC',
+    'HYDROSTATIC',
+    'MANUAL',
+    'N/A',
+    'PRE SELECT',
+    'POWER SHUTTLE',
+    'POWERSHIFT',
+    'SEMI AUTOMATIC',
+  ];
 
   constructor(
     private firebaseService: FirebaseService,
@@ -21,6 +35,34 @@ export class ItemmakemodelPage implements OnInit {
   }
 
   ngOnInit() {}
+
+  onMake() {
+    this.firebaseGetServ.getAssetCompMake().then((mNm: any) => {
+      this.makes = mNm;
+    });
+  }
+  onMakeLeft() {
+    this.firebaseGetServ.getAssetCompMakeLeft().then((mNm: any) => {
+      this.makes = mNm;
+    });
+  }
+
+  onModel() {
+    this.firebaseGetServ.getAssetCompModel().then((mNm: any) => {
+      this.models = mNm;
+    });
+  }
+  onModelLeft() {
+    this.firebaseGetServ.getAssetCompModelLeft().then((mNm: any) => {
+      this.models = mNm;
+    });
+  }
+
+  onFuelType() {
+    this.firebaseGetServ.getFuelType().then((mNm: any) => {
+      this.fuelTypes = mNm;
+    });
+  }
 
   onAdd() {
     this.firebaseService

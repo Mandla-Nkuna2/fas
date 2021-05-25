@@ -236,7 +236,10 @@
             <div class="item-input">
               <ion-label>Cost centre name</ion-label>
               <ion-item lines="none" class="end">
-                <ion-input type="text" [(ngModel)]="costcentre"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="costcentre.CostCentGuid"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -245,7 +248,10 @@
             <div class="item-input">
               <ion-label>Description</ion-label>
               <ion-item lines="none" class="end">
-                <ion-input type="text" [(ngModel)]="costcentre"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="costcentre.CostCentDesc"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -256,7 +262,7 @@
               <ion-item lines="none">
                 <ion-datetime
                   display-format="MMM DD YYYY"
-                  [(ngModel)]="costcentre"
+                  [(ngModel)]="costcentre.StartDate"
                 ></ion-datetime>
               </ion-item>
             </div>
@@ -268,7 +274,7 @@
               <ion-item lines="none">
                 <ion-datetime
                   display-format="MMM DD YYYY"
-                  [(ngModel)]="costcentre"
+                  [(ngModel)]="costcentre.EndDate"
                 ></ion-datetime>
               </ion-item>
             </div>
@@ -276,7 +282,7 @@
 
           <ion-item>
             <ion-label position="floating">Comment</ion-label>
-            <ion-textarea></ion-textarea>
+            <ion-textarea [(ngModel)]="costcentre.Comment"></ion-textarea>
           </ion-item>
         </ion-row>
 

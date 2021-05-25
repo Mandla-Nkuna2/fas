@@ -267,11 +267,13 @@
               <ion-label>Make</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="item"
-                  [items]="item"
-                  itemValueField="ItemGuid"
-                  itemTextField="Reg"
+                  [(ngModel)]="item.ItemMake"
+                  [items]="makes"
+                  itemValueField="CompMakeGuid"
+                  itemTextField="CompMake"
                   [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onMakeLeft()"
                 >
                 </ionic-selectable>
               </ion-item>
@@ -283,11 +285,13 @@
               <ion-label>Model</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="item"
-                  [items]="item"
-                  itemValueField="CompNameGuid"
-                  itemTextField="CompName"
+                  [(ngModel)]="item.ItemModel"
+                  [items]="models"
+                  itemValueField="CompModelGuid"
+                  itemTextField="CompModel"
                   [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onModelLeft()"
                 >
                 </ionic-selectable>
               </ion-item>
@@ -298,7 +302,10 @@
             <div class="item-input">
               <ion-label>Fuel consumpt</ion-label>
               <ion-item lines="none">
-                <ion-input type="text" [(ngModel)]="item"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="item.FuelConsump"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -307,7 +314,7 @@
             <div class="item-input">
               <ion-label>Fuel capacity</ion-label>
               <ion-item lines="none">
-                <ion-input type="text" [(ngModel)]="item"></ion-input>
+                <ion-input type="text" [(ngModel)]="item.FuelCap"></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -317,10 +324,10 @@
               <ion-label>Fuel type</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="item"
-                  [items]="item"
-                  itemValueField="ServIntvalGuid"
-                  itemTextField="ServIntval"
+                  [(ngModel)]="item.FuelTypeGuid"
+                  [items]="fuelTypes"
+                  itemValueField="FuelTypeGuid"
+                  itemTextField="FuelType"
                   [canSearch]="true"
                 >
                 </ionic-selectable>
@@ -333,10 +340,8 @@
               <ion-label>Transmission</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="item"
-                  [items]="item"
-                  itemValueField="ServIntvalGuid"
-                  itemTextField="ServIntval"
+                  [(ngModel)]="item.Transmission"
+                  [items]="transmissions"
                   [canSearch]="true"
                 >
                 </ionic-selectable>
@@ -348,7 +353,7 @@
             <div class="item-input">
               <ion-label>Mass</ion-label>
               <ion-item lines="none">
-                <ion-input type="text" [(ngModel)]="item"></ion-input>
+                <ion-input type="text" [(ngModel)]="item.Mass"></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -357,7 +362,10 @@
             <div class="item-input">
               <ion-label>Power output</ion-label>
               <ion-item lines="none">
-                <ion-input type="text" [(ngModel)]="item"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="item.PowerOutput"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -370,7 +378,7 @@
         <ion-label>&nbsp;</ion-label>
         <ion-item lines="none">
           <ion-label>Licence</ion-label>
-          <ion-checkbox slot="start" [(ngModel)]="item"></ion-checkbox>
+          <ion-checkbox slot="start" [(ngModel)]="item.Lic"></ion-checkbox>
         </ion-item>
       </div>
     </ion-col>
@@ -380,7 +388,7 @@
         <ion-label>&nbsp;</ion-label>
         <ion-item lines="none">
           <ion-label>C.O.F</ion-label>
-          <ion-checkbox slot="start" [(ngModel)]="item"></ion-checkbox>
+          <ion-checkbox slot="start" [(ngModel)]="item.COF"></ion-checkbox>
         </ion-item>
       </div>
     </ion-col>

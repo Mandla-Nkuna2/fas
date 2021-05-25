@@ -10,27 +10,51 @@ import { FirebaseService } from './../../services/firebase-service/firebase-serv
   styleUrls: ['./bowser.page.scss'],
 })
 export class BowserPage implements OnInit {
-  bowser: Bowser
+  bowser: Bowser;
+  bowserLoc: any[];
+  fuelType: any[];
 
   constructor(
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
-    private firebaseGetServ: FirebaseGetService,)
-    {
-    this.bowser = new Bowser()
-   }
+    private firebaseGetServ: FirebaseGetService,
+  ) {
+    this.bowser = new Bowser();
+  }
 
   ngOnInit() {
+    // this.onBowserLoc();
+    // this.onFuelType();
   }
 
-  onAdd(){
-    this.firebaseService.writeData('myTest', this.bowser, this.bowser.BowserGuid).then(() => {
-      this.popUp.showAlert('Success', 'Data saved successfully =)')
-    }).catch((err) => {
-      this.popUp.showError(err)
-    })
+  onBowserLoc() {
+    this.firebaseGetServ.getLocation().then((mNm: any) => {
+      this.bowserLoc = mNm;
+    });
   }
-  onModify(){}
-  onDeActivate(){}
-  onClear(){}
+  onBowserLocLeft() {
+    this.firebaseGetServ.getLocationLeft().then((mNm: any) => {
+      this.bowserLoc = mNm;
+    });
+  }
+
+  onFuelType() {
+    this.firebaseGetServ.getFuelType().then((mNm: any) => {
+      this.fuelType = mNm;
+    });
+  }
+
+  onAdd() {
+    this.firebaseService
+      .writeData('myTest', this.bowser, this.bowser.BowserGuid)
+      .then(() => {
+        this.popUp.showAlert('Success', 'Data saved successfully =)');
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
+  }
+  onModify() {}
+  onDeActivate() {}
+  onClear() {}
 }

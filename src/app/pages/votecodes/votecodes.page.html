@@ -258,6 +258,17 @@
     </div>
   </div>
 
+  <ion-row>
+    <ion-col size="3.5">
+      <div class="item-input">
+        <ion-label>Financial year</ion-label>
+        <ion-item>
+          <ionic-selectable [items]="finYear"> </ionic-selectable>
+        </ion-item>
+      </div>
+    </ion-col>
+  </ion-row>
+
   <div class="section">
     <div class="the-form">
       <ion-grid fixed>
@@ -267,8 +278,8 @@
               <ion-label>Vote code</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="voteCode"
-                  [items]="voteCode"
+                  [(ngModel)]="voteCode.Votecode"
+                  [items]="voteCodes"
                   itemValueField="ItemGuid"
                   itemTextField="Reg"
                   [canSearch]="true"
@@ -284,7 +295,7 @@
               <ion-item>
                 <ionic-selectable
                   [(ngModel)]="voteCode"
-                  [items]="voteCode"
+                  [items]="descriptions"
                   itemValueField="CompNameGuid"
                   itemTextField="CompName"
                   [canSearch]="true"
@@ -299,11 +310,8 @@
               <ion-label>Financial year</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="voteCode"
-                  [items]="voteCode"
-                  itemValueField="CompNameGuid"
-                  itemTextField="CompName"
-                  [canSearch]="true"
+                  [(ngModel)]="voteCode.VotecodeDate"
+                  [items]="finYear"
                 >
                 </ionic-selectable>
               </ion-item>
@@ -314,7 +322,10 @@
             <div class="item-input">
               <ion-label>Budget</ion-label>
               <ion-item lines="none">
-                <ion-input type="text" [(ngModel)]="voteCode"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="voteCode.VotecodeBud"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -323,7 +334,10 @@
             <div class="item-input">
               <ion-label>Minimum balance</ion-label>
               <ion-item lines="none">
-                <ion-input type="text" [(ngModel)]="voteCode"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="voteCode.MinBal"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>

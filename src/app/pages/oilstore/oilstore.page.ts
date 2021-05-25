@@ -11,14 +11,30 @@ import { FirebaseService } from './../../services/firebase-service/firebase-serv
 })
 export class OilstorePage implements OnInit {
   oilStore: OilStore;
+  loc: any[];
 
   constructor(
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
-  ) {}
+  ) {
+    this.oilStore = new OilStore();
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+    // this.onLocation();
+  }
+
+  onLocation() {
+    this.firebaseGetServ.getLocation().then((mNm: any) => {
+      this.loc = mNm;
+    });
+  }
+  onLocationLeft() {
+    this.firebaseGetServ.getLocationLeft().then((mNm: any) => {
+      this.loc = mNm;
+    });
+  }
 
   onAdd() {
     this.firebaseService

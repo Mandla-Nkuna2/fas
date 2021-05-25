@@ -10,26 +10,29 @@ import CostCentre from 'src/app/models/supportdata/CostCentre.model';
   styleUrls: ['./costcentre.page.scss'],
 })
 export class CostcentrePage implements OnInit {
-  costcentre: CostCentre
+  costcentre: CostCentre;
 
   constructor(
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
-    private firebaseGetServ: FirebaseGetService,)
-    {
-      this.costcentre = new CostCentre()
-    }
-
-  ngOnInit() {
-    this.firebaseService.writeData('myTest', this.costcentre, this.costcentre.CostCentGuid).then(() => {
-      this.popUp.showAlert('Success', 'Data saved successfully =)')
-    }).catch((err) => {
-      this.popUp.showError(err)
-    })
+    private firebaseGetServ: FirebaseGetService,
+  ) {
+    this.costcentre = new CostCentre();
   }
 
-  onAdd(){}
-  onModify(){}
-  onDeActivate(){}
-  onClear(){}
+  ngOnInit() {}
+
+  onAdd() {
+    this.firebaseService
+      .writeData('myTest', this.costcentre, this.costcentre.CostCentGuid)
+      .then(() => {
+        this.popUp.showAlert('Success', 'Data saved successfully =)');
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
+  }
+  onModify() {}
+  onDeActivate() {}
+  onClear() {}
 }

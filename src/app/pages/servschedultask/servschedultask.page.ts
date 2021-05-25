@@ -6,14 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./servschedultask.page.scss'],
 })
 export class ServschedultaskPage implements OnInit {
+  servSchTaskDesc: any;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  onAdd(){}
-  onModify(){}
-  onDeActivate(){}
-  onClear(){}
+  onAdd() {}
+  onModify() {}
+  onDeActivate() {}
+  onClear() {}
 }

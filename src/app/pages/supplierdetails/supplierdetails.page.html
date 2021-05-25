@@ -5,7 +5,7 @@
       mode="ios"
       text=""
     ></ion-back-button>
-    <h2>Asset Components</h2>
+    <h2>Supplier details</h2>
     <div class="date-holder">
       <div class="itm flex al-center">
         <div class="thumb">
@@ -29,7 +29,7 @@
   <div class="section">
     <div class="grid-holder">
       <div class="top-toolbar flex al-center jc-between">
-        <h3>Item Components</h3>
+        <h3>Supplier details</h3>
         <div class="btns-holder flex al-center">
           <ion-button>
             <ion-icon slot="icon-only" name="options-outline"></ion-icon>
@@ -266,7 +266,10 @@
             <div class="item-input">
               <ion-label>Name</ion-label>
               <ion-item lines="none">
-                <ion-input type="text" [(ngModel)]="supplier"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="supplier.SuppName"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -276,90 +279,118 @@
               <ion-label>Category</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="supplier"
-                  [items]="supplier"
-                  itemValueField="ItemGuid"
-                  itemTextField="Reg"
+                  [(ngModel)]="supplier.SuppCategoryGuid"
+                  [items]="suppCat"
+                  itemValueField="SuppCategoryGuid"
+                  itemTextField="SuppCategory"
                   [canSearch]="true"
                 >
                 </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>
+        </ion-row>
 
+        <ion-row>
           <ion-col size="3.5">
             <div class="item-input">
               <ion-label>Address</ion-label>
               <ion-item lines="none">
-                <ion-input type="text" [(ngModel)]="supplier"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="supplier.SuppAddress_ln0"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
 
           <ion-col size="3.5">
             <div class="item-input">
+              <ion-label>-</ion-label>
               <ion-item lines="none">
-                <ion-input type="text" [(ngModel)]="supplier"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="supplier.SuppAddress_ln1"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
 
           <ion-col size="3.5">
             <div class="item-input">
+              <ion-label>-</ion-label>
               <ion-item lines="none">
-                <ion-input type="text" [(ngModel)]="supplier"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="supplier.SuppAddress_ln2"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
 
           <ion-col size="3.5">
             <div class="item-input">
+              <ion-label>-</ion-label>
               <ion-item lines="none">
-                <ion-input type="text" [(ngModel)]="supplier"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="supplier.SuppAddress_ln3"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
 
-          <ion-col size="3.5">
-            <div class="item-input">
-              <ion-item lines="none">
-                <ion-input type="text" [(ngModel)]="supplier"></ion-input>
-              </ion-item>
-            </div>
-          </ion-col>
+          <ion-col size="3.5"></ion-col>
 
           <ion-col size="3.5">
             <div class="item-input">
               <ion-label>Code</ion-label>
               <ion-item lines="none">
-                <ion-input type="text" [(ngModel)]="supplier"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="supplier.SuppAddress_code"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
+        </ion-row>
 
+        <hr />
+        <hr />
+        <hr />
+        <ion-row>
           <ion-col size="3.5">
             <div class="item-input">
               <ion-label>Telephone</ion-label>
               <ion-item lines="none">
-                <ion-input type="text" [(ngModel)]="supplier"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="supplier.SuppTel"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
 
-          <ion-col size="3.5">
+          <!-- <ion-col size="3.5">
             <div class="item-input">
               <ion-label>Ext.</ion-label>
               <ion-item lines="none">
                 <ion-input type="text" [(ngModel)]="supplier"></ion-input>
               </ion-item>
             </div>
-          </ion-col>
+          </ion-col> -->
 
+          <!-- </ion-row>
+
+        <ion-row> -->
           <ion-col size="3.5">
             <div class="item-input">
               <ion-label>Fax</ion-label>
               <ion-item lines="none">
-                <ion-input type="text" [(ngModel)]="supplier"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="supplier.SuppFax"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -368,126 +399,142 @@
             <div class="item-input">
               <ion-label>Acc. No.</ion-label>
               <ion-item lines="none">
-                <ion-input type="text" [(ngModel)]="supplier"></ion-input>
-              </ion-item>
-            </div>
-          </ion-col>
-
-          <ion-col size="3.5" offset="0.5">
-            <div class="item-input">
-              <ion-label>Supplier balance monitoring</ion-label>
-              <ion-item>
-                <ionic-selectable [(ngModel)]="supplier" [items]="['Y', 'N']">
-                </ionic-selectable>
-              </ion-item>
-            </div>
-          </ion-col>
-
-          <p>Tick the screens the supplier must appear in</p>
-          <ion-col size="4" offset="0.5" class="check-holder flex al-center">
-            <div>
-              <ion-label>&nbsp;</ion-label>
-              <ion-item lines="none">
-                <ion-label>Bowser purchases</ion-label>
-                <ion-checkbox
-                  slot="start"
-                  [(ngModel)]="supplier"
-                ></ion-checkbox>
-              </ion-item>
-            </div>
-          </ion-col>
-
-          <ion-col size="4" offset="0.5" class="check-holder flex al-center">
-            <div>
-              <ion-label>&nbsp;</ion-label>
-              <ion-item lines="none">
-                <ion-label>Oil issues</ion-label>
-                <ion-checkbox
-                  slot="start"
-                  [(ngModel)]="supplier"
-                ></ion-checkbox>
-              </ion-item>
-            </div>
-          </ion-col>
-
-          <ion-col size="4" offset="0.5" class="check-holder flex al-center">
-            <div>
-              <ion-label>&nbsp;</ion-label>
-              <ion-item lines="none">
-                <ion-label>Fuel issues</ion-label>
-                <ion-checkbox
-                  slot="start"
-                  [(ngModel)]="supplier"
-                ></ion-checkbox>
-              </ion-item>
-            </div>
-          </ion-col>
-
-          <ion-col size="4" offset="0.5" class="check-holder flex al-center">
-            <div>
-              <ion-label>&nbsp;</ion-label>
-              <ion-item lines="none">
-                <ion-label>Oil issues purchases</ion-label>
-                <ion-checkbox
-                  slot="start"
-                  [(ngModel)]="supplier"
-                ></ion-checkbox>
-              </ion-item>
-            </div>
-          </ion-col>
-
-          <ion-col size="4" offset="0.5" class="check-holder flex al-center">
-            <div>
-              <ion-label>&nbsp;</ion-label>
-              <ion-item lines="none">
-                <ion-label>Item purchase details</ion-label>
-                <ion-checkbox
-                  slot="start"
-                  [(ngModel)]="supplier"
-                ></ion-checkbox>
-              </ion-item>
-            </div>
-          </ion-col>
-
-          <ion-col size="4" offset="0.5" class="check-holder flex al-center">
-            <div>
-              <ion-label>&nbsp;</ion-label>
-              <ion-item lines="none">
-                <ion-label>Store issues</ion-label>
-                <ion-checkbox
-                  slot="start"
-                  [(ngModel)]="supplier"
-                ></ion-checkbox>
-              </ion-item>
-            </div>
-          </ion-col>
-
-          <ion-col size="4" offset="0.5" class="check-holder flex al-center">
-            <div>
-              <ion-label>&nbsp;</ion-label>
-              <ion-item lines="none">
-                <ion-label>Maintenance events</ion-label>
-                <ion-checkbox
-                  slot="start"
-                  [(ngModel)]="supplier"
-                ></ion-checkbox>
-              </ion-item>
-            </div>
-          </ion-col>
-
-          <ion-col size="4" offset="0.5" class="check-holder flex al-center">
-            <div>
-              <ion-label>&nbsp;</ion-label>
-              <ion-item lines="none">
-                <ion-label>Additional costs</ion-label>
-                <ion-checkbox
-                  slot="start"
-                  [(ngModel)]="supplier"
-                ></ion-checkbox>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="supplier.AccNumber"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
         </ion-row>
+
+        <ion-row>
+          <ion-col size="3.5">
+            <div class="item-input">
+              <ion-label>Supplier balance monitoring</ion-label>
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="supplier.SuppBal"
+                  [items]="['Y', 'N']"
+                >
+                </ionic-selectable>
+              </ion-item>
+            </div>
+          </ion-col>
+        </ion-row>
+
+        <hr />
+        <hr />
+        <hr />
+        <hr />
+        <!-- <ion-row>
+          <p><mark>Tick the screens the supplier must appear in</mark></p>
+          <ion-row>
+            <ion-col size="4" offset="0.5" class="check-holder flex al-center">
+              <div>
+                <ion-label>&nbsp;</ion-label>
+                <ion-item lines="none">
+                  <ion-label>Bowser purchases</ion-label>
+                  <ion-checkbox
+                    slot="start"
+                    [(ngModel)]="supplier"
+                  ></ion-checkbox>
+                </ion-item>
+              </div>
+            </ion-col>
+
+            <ion-col size="4" offset="0.5" class="check-holder flex al-center">
+              <div>
+                <ion-label>&nbsp;</ion-label>
+                <ion-item lines="none">
+                  <ion-label>Oil issues</ion-label>
+                  <ion-checkbox
+                    slot="start"
+                    [(ngModel)]="supplier"
+                  ></ion-checkbox>
+                </ion-item>
+              </div>
+            </ion-col>
+
+            <ion-col size="4" offset="0.5" class="check-holder flex al-center">
+              <div>
+                <ion-label>&nbsp;</ion-label>
+                <ion-item lines="none">
+                  <ion-label>Fuel issues</ion-label>
+                  <ion-checkbox
+                    slot="start"
+                    [(ngModel)]="supplier"
+                  ></ion-checkbox>
+                </ion-item>
+              </div>
+            </ion-col>
+
+            <ion-col size="4" offset="0.5" class="check-holder flex al-center">
+              <div>
+                <ion-label>&nbsp;</ion-label>
+                <ion-item lines="none">
+                  <ion-label>Oil issues purchases</ion-label>
+                  <ion-checkbox
+                    slot="start"
+                    [(ngModel)]="supplier"
+                  ></ion-checkbox>
+                </ion-item>
+              </div>
+            </ion-col>
+
+            <ion-col size="4" offset="0.5" class="check-holder flex al-center">
+              <div>
+                <ion-label>&nbsp;</ion-label>
+                <ion-item lines="none">
+                  <ion-label>Item purchase details</ion-label>
+                  <ion-checkbox
+                    slot="start"
+                    [(ngModel)]="supplier"
+                  ></ion-checkbox>
+                </ion-item>
+              </div>
+            </ion-col>
+
+            <ion-col size="4" offset="0.5" class="check-holder flex al-center">
+              <div>
+                <ion-label>&nbsp;</ion-label>
+                <ion-item lines="none">
+                  <ion-label>Store issues</ion-label>
+                  <ion-checkbox
+                    slot="start"
+                    [(ngModel)]="supplier"
+                  ></ion-checkbox>
+                </ion-item>
+              </div>
+            </ion-col>
+
+            <ion-col size="4" offset="0.5" class="check-holder flex al-center">
+              <div>
+                <ion-label>&nbsp;</ion-label>
+                <ion-item lines="none">
+                  <ion-label>Maintenance events</ion-label>
+                  <ion-checkbox
+                    slot="start"
+                    [(ngModel)]="supplier"
+                  ></ion-checkbox>
+                </ion-item>
+              </div>
+            </ion-col>
+
+            <ion-col size="4" offset="0.5" class="check-holder flex al-center">
+              <div>
+                <ion-label>&nbsp;</ion-label>
+                <ion-item lines="none">
+                  <ion-label>Additional costs</ion-label>
+                  <ion-checkbox
+                    slot="start"
+                    [(ngModel)]="supplier"
+                  ></ion-checkbox>
+                </ion-item>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-row> -->
 
         <ion-row>
           <ion-col size="12" class="flex al-center jc-end">

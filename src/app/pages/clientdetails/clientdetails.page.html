@@ -84,12 +84,12 @@
     </ion-button>
     <ion-button
       fill="clear"
-      routerLink="/componentname"
+      routerLink="/oiltype"
       routerDirection="root"
       routerLinkActive="active-link"
       class="link"
     >
-      Component name
+      Oil types
     </ion-button>
     <ion-button
       fill="clear"
@@ -414,7 +414,10 @@
             <div class="item-input">
               <ion-label>Name</ion-label>
               <ion-item lines="none">
-                <ion-input type="text"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="client.ClientGuid"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -423,7 +426,10 @@
             <div class="item-input">
               <ion-label>Address</ion-label>
               <ion-item lines="none">
-                <ion-input type="text"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="client.ClientAddress_Ln0"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -431,7 +437,10 @@
           <ion-col size="3.5">
             <div class="item-input">
               <ion-item lines="none">
-                <ion-input type="text"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="client.ClientAddress_Ln1"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -439,7 +448,10 @@
           <ion-col size="3.5">
             <div class="item-input">
               <ion-item lines="none">
-                <ion-input type="text"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="client.ClientAddress_Ln2"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -447,7 +459,10 @@
           <ion-col size="3.5">
             <div class="item-input">
               <ion-item lines="none">
-                <ion-input type="text"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="client.ClientAddress_Ln3"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -456,7 +471,10 @@
             <div class="item-input">
               <ion-label>Code</ion-label>
               <ion-item lines="none">
-                <ion-input type="text"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="client.ClientAddress_code"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -465,7 +483,10 @@
             <div class="item-input">
               <ion-label>Telephone</ion-label>
               <ion-item lines="none">
-                <ion-input type="text"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="client.ClientTel"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -483,7 +504,10 @@
             <div class="item-input">
               <ion-label>Fax</ion-label>
               <ion-item lines="none">
-                <ion-input type="text"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="client.ClientFax"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>

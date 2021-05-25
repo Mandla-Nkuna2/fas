@@ -11,14 +11,68 @@ import ItemType from 'src/app/models/supportdata/ItemType.model';
 })
 export class ItemtypePage implements OnInit {
   itemType: ItemType;
+  typeNames: any[];
+  typeClass: any[];
+  typeCapacity: any[];
+  typeUnit = [
+    'cc',
+    'cfm',
+    'kg',
+    'kVA',
+    'KW',
+    'l/hr',
+    'litres',
+    'm³',
+    'seats',
+    'ton',
+  ];
 
   constructor(
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
-  ) {}
+  ) {
+    this.itemType = new ItemType();
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.onTypeName();
+    this.onTypeClass();
+    this.onTypeCapacity();
+  }
+
+  onTypeName() {
+    this.firebaseGetServ.getAssetType().then((mNm: any) => {
+      this.typeNames = mNm;
+    });
+  }
+  onTypeNameLeft() {
+    this.firebaseGetServ.getAssetTypeLeft().then((mNm: any) => {
+      this.typeNames = mNm;
+    });
+  }
+
+  onTypeClass() {
+    this.firebaseGetServ.getAssetTypeClass().then((mNm: any) => {
+      this.typeClass = mNm;
+    });
+  }
+  onTypeClassLeft() {
+    this.firebaseGetServ.getAssetTypeClassLeft().then((mNm: any) => {
+      this.typeClass = mNm;
+    });
+  }
+
+  onTypeCapacity() {
+    this.firebaseGetServ.getTypeCapacity().then((mNm: any) => {
+      this.typeCapacity = mNm;
+    });
+  }
+  onTypeCapacityLeft() {
+    this.firebaseGetServ.getTypeCapacityLeft().then((mNm: any) => {
+      this.typeCapacity = mNm;
+    });
+  }
 
   onAdd() {
     this.firebaseService

@@ -11,19 +11,20 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 })
 export class StaffdetailsPage implements OnInit {
   staff: Staff;
-
   staffCat: any[];
+  licCodes = ['A', 'A1', 'B', 'C', 'C1', 'EB', 'EC', 'EC1'];
 
   constructor(
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
-  ) {}
+  ) {
+    this.staff = new Staff();
+  }
 
   ngOnInit() {}
 
   onStaffCat() {}
-  onStaffCatLeft() {}
 
   onAdd() {
     this.firebaseService

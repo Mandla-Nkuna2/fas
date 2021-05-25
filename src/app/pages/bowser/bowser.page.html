@@ -267,7 +267,10 @@
             <div class="item-input">
               <ion-label>Bowser code</ion-label>
               <ion-item lines="none">
-                <ion-input type="text" [(ngModel)]="bowser"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="bowser.BowserGuid"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -276,7 +279,10 @@
             <div class="item-input">
               <ion-label>Bowser Name</ion-label>
               <ion-item lines="none">
-                <ion-input type="text" [(ngModel)]="bowser"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="bowser.BowserName"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -285,7 +291,10 @@
             <div class="item-input">
               <ion-label>Bowser Capacity</ion-label>
               <ion-item lines="none">
-                <ion-input type="text" [(ngModel)]="bowser"></ion-input>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="bowser.BowserCap"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -295,11 +304,13 @@
               <ion-label>bowser location</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="bowser"
-                  [items]="bowser"
-                  itemValueField="ServIntvalGuid"
-                  itemTextField="ServIntval"
+                  [(ngModel)]="bowser.BowserLoc"
+                  [items]="bowserLoc"
+                  itemValueField="LocGuid"
+                  itemTextField="LocFullName"
                   [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onBowserLocLeft()"
                 >
                 </ionic-selectable>
               </ion-item>
@@ -311,10 +322,10 @@
               <ion-label>Fuel type</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="bowser"
-                  [items]="bowser"
-                  itemValueField="ServIntvalGuid"
-                  itemTextField="ServIntval"
+                  [(ngModel)]="bowser.FuelTypeGuid"
+                  [items]="fuelType"
+                  itemValueField="FuelTypeGuid"
+                  itemTextField="FuelType"
                   [canSearch]="true"
                 >
                 </ionic-selectable>

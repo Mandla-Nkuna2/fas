@@ -271,10 +271,10 @@
               <ion-label>Oil make</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="oilType"
-                  [items]="oilType"
-                  itemValueField="ItemGuid"
-                  itemTextField="Reg"
+                  [(ngModel)]="oilType.OilMakeGuid"
+                  [items]="oilMake"
+                  itemValueField="OilMakeGuid"
+                  itemTextField="OilMake"
                   [canSearch]="true"
                 >
                 </ionic-selectable>
@@ -287,10 +287,10 @@
               <ion-label>Oil grade</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="oilType"
-                  [items]="oilType"
-                  itemValueField="CompNameGuid"
-                  itemTextField="CompName"
+                  [(ngModel)]="oilType.OilGradeGuid"
+                  [items]="oilGrade"
+                  itemValueField="OilGradeGuid"
+                  itemTextField="OilGrade"
                   [canSearch]="true"
                 >
                 </ionic-selectable>
@@ -303,10 +303,10 @@
               <ion-label>Oil classification</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="oilType"
-                  [items]="oilType"
-                  itemValueField="CompNameGuid"
-                  itemTextField="CompName"
+                  [(ngModel)]="oilType.OilClassGuid"
+                  [items]="oilClass"
+                  itemValueField="OilClassGuid"
+                  itemTextField="OilClass"
                   [canSearch]="true"
                 >
                 </ionic-selectable>
@@ -318,7 +318,10 @@
             <div class="item-input">
               <ion-label>Active</ion-label>
               <ion-item>
-                <ionic-selectable [(ngModel)]="oilType" [items]="['Y', 'N']">
+                <ionic-selectable
+                  [(ngModel)]="oilType.active"
+                  [items]="['Y', 'N']"
+                >
                 </ionic-selectable>
               </ion-item>
             </div>
