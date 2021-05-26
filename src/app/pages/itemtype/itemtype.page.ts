@@ -42,23 +42,23 @@ export class ItemtypePage implements OnInit {
   }
 
   onTypeName() {
-    this.firebaseGetServ.getAssetType().then((mNm: any) => {
+    this.firebaseGetServ.getAssetMakMod().then((mNm: any) => {
       this.typeNames = mNm;
     });
   }
   onTypeNameLeft() {
-    this.firebaseGetServ.getAssetTypeLeft().then((mNm: any) => {
+    this.firebaseGetServ.getAssetMakModLeft().then((mNm: any) => {
       this.typeNames = mNm;
     });
   }
 
   onTypeClass() {
-    this.firebaseGetServ.getAssetTypeClass().then((mNm: any) => {
+    this.firebaseGetServ.getItemTypeClass().then((mNm: any) => {
       this.typeClass = mNm;
     });
   }
   onTypeClassLeft() {
-    this.firebaseGetServ.getAssetTypeClassLeft().then((mNm: any) => {
+    this.firebaseGetServ.getItemTypeClassLeft().then((mNm: any) => {
       this.typeClass = mNm;
     });
   }

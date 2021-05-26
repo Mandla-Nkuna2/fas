@@ -11,6 +11,8 @@ import ComponentName from 'src/app/models/supportdata/ComponentName.model';
 })
 export class ComponentnamePage implements OnInit {
   componentName: ComponentName;
+  compSubCatView = false;
+  compNames: any[];
 
   constructor(
     private firebaseService: FirebaseService,
@@ -20,7 +22,24 @@ export class ComponentnamePage implements OnInit {
     this.componentName = new ComponentName();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    // this.onCompName();
+  }
+
+  onCompSubCatView() {
+    this.compSubCatView = !this.compSubCatView;
+  }
+
+  onCompName() {
+    this.firebaseGetServ.getCompName().then((mNm: any) => {
+      this.compNames = mNm;
+    });
+  }
+  onCompNameLeft() {
+    this.firebaseGetServ.getCompNameLeft().then((mNm: any) => {
+      this.compNames = mNm;
+    });
+  }
 
   onAdd() {
     this.firebaseService

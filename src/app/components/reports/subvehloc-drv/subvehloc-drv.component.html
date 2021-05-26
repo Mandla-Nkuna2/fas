@@ -35,7 +35,7 @@
           <ion-item lines="none">
             <ion-datetime
               display-format="MMM DD YYYY hh:mm a"
-              [(ngModel)]="dateScope"
+              [(ngModel)]="dateFrom"
             ></ion-datetime>
           </ion-item>
         </div>
@@ -47,7 +47,7 @@
           <ion-item lines="none">
             <ion-datetime
               display-format="MMM DD YYYY hh:mm a"
-              [(ngModel)]="dateScope"
+              [(ngModel)]="dateTo"
             ></ion-datetime>
           </ion-item>
         </div>
@@ -60,10 +60,13 @@
           <ion-label>location</ion-label>
           <ion-item>
             <ionic-selectable
-              [(ngModel)]="dateScope"
-              [items]="['2010', '2010']"
+              [(ngModel)]="location"
+              [items]="locations"
+              itemValueField="LocGuid"
+              itemTextField="LocFullName"
               [canSearch]="true"
               [hasInfiniteScroll]="true"
+              (onInfiniteScroll)="onLocationLeft()"
             >
             </ionic-selectable>
           </ion-item>
@@ -75,8 +78,10 @@
           <ion-label>Add cost desc</ion-label>
           <ion-item>
             <ionic-selectable
-              [(ngModel)]="dateScope"
-              [items]="['2010', '2010']"
+              [(ngModel)]="costDesc"
+              [items]="costDescs"
+              itemValueField="LocGuid"
+              itemTextField="LocFullName"
               [canSearch]="true"
               [hasInfiniteScroll]="true"
             >
@@ -90,8 +95,10 @@
           <ion-label>Cost centre</ion-label>
           <ion-item>
             <ionic-selectable
-              [(ngModel)]="dateScope"
-              [items]="['2010', '2010']"
+              [(ngModel)]="costCentre"
+              [items]="costCentres"
+              itemValueField="CostCentGuid"
+              itemTextField="CostCentName"
               [canSearch]="true"
               [hasInfiniteScroll]="true"
             >
@@ -105,10 +112,9 @@
           <ion-label>Sort option</ion-label>
           <ion-item>
             <ionic-selectable
-              [(ngModel)]="dateScope"
-              [items]="['2010', '2010']"
+              [(ngModel)]="sortOption"
+              [items]="sortOptions"
               [canSearch]="true"
-              [hasInfiniteScroll]="true"
             >
             </ionic-selectable>
           </ion-item>
@@ -121,10 +127,13 @@
         <ion-label>Registration</ion-label>
         <ion-item>
           <ionic-selectable
-            [(ngModel)]="dateScope"
-            [items]="['2010', '2010']"
+            [(ngModel)]="registration"
+            [items]="registrations"
+            itemValueField="ItemGuid"
+            itemTextField="Reg"
             [canSearch]="true"
             [hasInfiniteScroll]="true"
+            (onInfiniteScroll)="onRegistrationLeft()"
           >
           </ionic-selectable>
         </ion-item>

@@ -89,12 +89,7 @@
                   <ion-item>
                     <ionic-selectable
                       [(ngModel)]="asset.generalInformation.ItemCatg"
-                      [items]="category"
-                      itemValueField="ItemCatg"
-                      itemTextField="ItemCatg"
-                      [canSearch]="true"
-                      [hasInfiniteScroll]="true"
-                      (onInfiniteScroll)="onColorLeft()"
+                      [items]="categories"
                     >
                     </ionic-selectable>
                   </ion-item>
@@ -160,7 +155,7 @@
                   <ion-item>
                     <ionic-selectable
                       [(ngModel)]="asset.generalInformation.StaffGuid"
-                      [items]="driver"
+                      [items]="drivers"
                       itemValueField="StaffGuid"
                       itemTextField="StaffCode"
                       [canSearch]="true"
@@ -225,11 +220,6 @@
                     <ionic-selectable
                       [(ngModel)]="asset.meterInformation.MeterType"
                       [items]="meterTypes"
-                      itemValueField="MeterType"
-                      itemTextField="MeterType"
-                      [canSearch]="true"
-                      [hasInfiniteScroll]="true"
-                      (onInfiniteScroll)="onMeterTypeLeft()"
                     >
                     </ionic-selectable>
                   </ion-item>

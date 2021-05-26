@@ -14,16 +14,19 @@
       </ion-col>
     </ion-row>
 
-    <ion-row>
+    <ion-row *ngIf="locOrReg === 'loc'">
       <ion-col size="3.5" offset="0.5">
         <div class="item-input">
           <ion-label>location</ion-label>
           <ion-item>
             <ionic-selectable
-              [(ngModel)]="dateScope"
-              [items]="['2010', '2010']"
+              [(ngModel)]="location"
+              [items]="locations"
+              itemValueField="LocGuid"
+              itemTextField="LocFullName"
               [canSearch]="true"
               [hasInfiniteScroll]="true"
+              (onInfiniteScroll)="onLocationLeft()"
             >
             </ionic-selectable>
           </ion-item>
@@ -38,7 +41,7 @@
           <ion-item>
             <ionic-selectable
               [(ngModel)]="dateScope"
-              [items]="['2010', '2010']"
+              [items]="['2010', '2011']"
               [canSearch]="true"
               [hasInfiniteScroll]="true"
             >

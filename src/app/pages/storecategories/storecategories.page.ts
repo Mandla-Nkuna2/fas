@@ -11,14 +11,28 @@ import StoreCategory from 'src/app/models/supportdata/StoreCategories.model';
 })
 export class StorecategoriesPage implements OnInit {
   storeCat: StoreCategory;
+  storeCats: any[];
+  storeCatItemsView = false;
 
   constructor(
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
-  ) {}
+  ) {
+    this.storeCat = new StoreCategory();
+  }
 
   ngOnInit() {}
+
+  onStoreCatItemsView() {
+    this.storeCatItemsView = !this.storeCatItemsView;
+  }
+
+  onStoreCats() {
+    this.firebaseGetServ.getStoreCat().then((mNm: any) => {
+      this.storeCats = mNm;
+    });
+  }
 
   onAdd() {
     this.firebaseService

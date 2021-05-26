@@ -12,6 +12,7 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 export class StaffdetailsPage implements OnInit {
   staff: Staff;
   staffCat: any[];
+  addLicView = false;
   licCodes = ['A', 'A1', 'B', 'C', 'C1', 'EB', 'EC', 'EC1'];
 
   constructor(
@@ -25,6 +26,12 @@ export class StaffdetailsPage implements OnInit {
   ngOnInit() {}
 
   onStaffCat() {}
+
+  onAddLicView() {
+    this.addLicView = !this.addLicView;
+  }
+
+  onAddLic() {}
 
   onAdd() {
     this.firebaseService

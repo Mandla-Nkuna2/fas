@@ -78,7 +78,7 @@ export class FirebaseGetService {
     return promise;
   }
 
-  getAssetType() {
+  getAssetMakMod() {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection('test3/Sup_ItemMakMod/tables')
@@ -101,7 +101,7 @@ export class FirebaseGetService {
     });
     return promise;
   }
-  getAssetTypeLeft() {
+  getAssetMakModLeft() {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection('test3/Sup_ItemMakMod/tables')
@@ -116,44 +116,6 @@ export class FirebaseGetService {
             });
           });
           resolve(makeAndModel);
-        })
-        .catch((err) => {
-          reject(err);
-        });
-    });
-    return promise;
-  }
-
-  getCategory() {
-    const promise = new Promise((resolve, reject) => {
-      this.afs
-        .collection('test3/Mst_Item/tables')
-        .ref.limit(this.limVal)
-        .get()
-        .then((mNm) => {
-          let cat = [];
-          mNm.docs.forEach((mNm) => {
-            cat.push({ ItemCatg: mNm.get('ItemCatg') });
-          });
-          resolve(cat);
-        })
-        .catch((err) => {
-          reject(err);
-        });
-    });
-    return promise;
-  }
-  getCategoryLeft() {
-    const promise = new Promise((resolve, reject) => {
-      this.afs
-        .collection('test3/Mst_Item/tables')
-        .ref.get()
-        .then((mNm) => {
-          let cat = [];
-          mNm.docs.forEach((mNm) => {
-            cat.push({ ItemCatg: mNm.get('ItemCatg') });
-          });
-          resolve(cat);
         })
         .catch((err) => {
           reject(err);
@@ -274,44 +236,6 @@ export class FirebaseGetService {
     return promise;
   }
 
-  getMeterType() {
-    const promise = new Promise((resolve, reject) => {
-      this.afs
-        .collection('/test3/Mst_Item/tables/')
-        .ref.limit(this.limVal)
-        .get()
-        .then((mNm) => {
-          let mType = [];
-          mNm.docs.forEach((mNm) => {
-            mType.push({ MeterType: mNm.get('MeterType') });
-          });
-          resolve(mType);
-        })
-        .catch((err) => {
-          reject(err);
-        });
-    });
-    return promise;
-  }
-  getMeterTypeLeft() {
-    const promise = new Promise((resolve, reject) => {
-      this.afs
-        .collection('/test3/Mst_Item/tables/')
-        .ref.get()
-        .then((mNm) => {
-          let mType = [];
-          mNm.docs.forEach((mNm) => {
-            mType.push(mNm.get('MeterType'));
-          });
-          resolve(mType);
-        })
-        .catch((err) => {
-          reject(err);
-        });
-    });
-    return promise;
-  }
-
   public getAsset() {
     const promise = new Promise((resolve, reject) => {
       this.afs
@@ -419,7 +343,7 @@ export class FirebaseGetService {
     return promise;
   }
 
-  getAssetCompName() {
+  getCompName() {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection('/test3/Sup_CompName/tables')
@@ -441,7 +365,7 @@ export class FirebaseGetService {
     });
     return promise;
   }
-  getAssetCompNameLeft() {
+  getCompNameLeft() {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection('/test3/Sup_CompName/tables')
@@ -943,7 +867,10 @@ export class FirebaseGetService {
 
   getTransmission() {}
 
-  getAssetTypeClass() {
+  getItemType() {}
+  getItemTypeLeft() {}
+
+  getItemTypeClass() {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection('/test3/Sup_ItemTypeClass/tables')
@@ -965,7 +892,7 @@ export class FirebaseGetService {
     });
     return promise;
   }
-  getAssetTypeClassLeft() {
+  getItemTypeClassLeft() {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection('/test3/Sup_ItemTypeClass/tables')
@@ -1146,4 +1073,26 @@ export class FirebaseGetService {
   }
 
   getVoteCodes() {}
+
+  getStoreCat() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('/test3/Sup_StoreCatg/tables')
+        .ref.get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obj) => {
+            data.push({
+              StoreCatgGuid: obj.get('StoreCatgGuid'),
+              StoreCatg: Number(obj.get('StoreCatg')),
+            });
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
 }

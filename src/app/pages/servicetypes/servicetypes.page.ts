@@ -11,14 +11,40 @@ import ServiceType from 'src/app/models/supportdata/ServiceType.model';
 })
 export class ServicetypesPage implements OnInit {
   serviceType: ServiceType;
+  serviceTypes: any[];
+  compNames: any[];
+  compServType = false;
 
   constructor(
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
-  ) {}
+  ) {
+    this.serviceType = new ServiceType();
+  }
 
   ngOnInit() {}
+
+  onCompServTypeView() {
+    this.compServType = !this.compServType;
+  }
+
+  onServiceType() {
+    this.firebaseGetServ.getServiceType().then((mNm: any) => {
+      this.serviceTypes = mNm;
+    });
+  }
+
+  onComponents() {
+    this.firebaseGetServ.getCompName().then((mNm: any) => {
+      this.compNames = mNm;
+    });
+  }
+  onComponentsLeft() {
+    this.firebaseGetServ.getCompNameLeft().then((mNm: any) => {
+      this.compNames = mNm;
+    });
+  }
 
   onAdd() {
     this.firebaseService

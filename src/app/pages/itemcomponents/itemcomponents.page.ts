@@ -11,20 +11,22 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
   styleUrls: ['./itemcomponents.page.scss'],
 })
 export class ItemcomponentsPage implements OnInit {
-  itemComponent: ItemComponent
+  itemComponent: ItemComponent;
 
-  registration: any []
-  assetCompName: any []
-  assetCompMake: any []
-  assetCompModel: any []
-  servIntvl: any []
+  registration: any[];
+  assetCompName: any[];
+  assetCompMake: any[];
+  assetCompModel: any[];
+  servIntvl: any[];
 
-  constructor(private navCtrl: NavController,
+  constructor(
+    private navCtrl: NavController,
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
-    private firebaseGetServ: FirebaseGetService) {
-    this.itemComponent = new ItemComponent()
-   }
+    private firebaseGetServ: FirebaseGetService,
+  ) {
+    this.itemComponent = new ItemComponent();
+  }
 
   ngOnInit() {
     //this.onRegistration()
@@ -34,63 +36,63 @@ export class ItemcomponentsPage implements OnInit {
     //this.onServiceIntv()
   }
 
-  goItem()
-  {
+  goItem() {
     this.navCtrl.navigateForward('items');
   }
 
-  onRegistration(){
+  onRegistration() {
     this.firebaseGetServ.getRegistration().then((mNm: any) => {
-      this.registration = mNm
-    })
+      this.registration = mNm;
+    });
   }
-  onRegistrationLeft(){
+  onRegistrationLeft() {
     this.firebaseGetServ.getRegistrationLeft().then((mNm: any) => {
-      this.registration = mNm
-    })
+      this.registration = mNm;
+    });
   }
 
   // onMakeModel(){}
   // onMakeModelLeft(){}
 
-  onCompName(){
-    this.firebaseGetServ.getAssetCompName().then((mNm: any) => {
-      this.assetCompName = mNm
-    })
+  onCompName() {
+    this.firebaseGetServ.getCompName().then((mNm: any) => {
+      this.assetCompName = mNm;
+    });
   }
-  onCompNameLeft(){
-    this.firebaseGetServ.getAssetCompNameLeft().then((mNm: any) => {
-      this.assetCompName = mNm
-    })
+  onCompNameLeft() {
+    this.firebaseGetServ.getCompNameLeft().then((mNm: any) => {
+      this.assetCompName = mNm;
+    });
   }
 
-  onComponentMake(){
+  onComponentMake() {
     this.firebaseGetServ.getAssetCompMake().then((mNm: any) => {
-      this.assetCompMake = mNm
-    })
+      this.assetCompMake = mNm;
+    });
   }
-  onComponentMakeLeft(){
+  onComponentMakeLeft() {
     this.firebaseGetServ.getAssetCompMakeLeft().then((mNm: any) => {
-      this.assetCompMake = mNm
-    })
+      this.assetCompMake = mNm;
+    });
   }
 
-  onComponentModel(){
+  onComponentModel() {
     this.firebaseGetServ.getAssetCompModel().then((mNm: any) => {
-      this.assetCompModel = mNm
-    })
+      this.assetCompModel = mNm;
+    });
   }
-  onComponentModelLeft(){
+  onComponentModelLeft() {
     this.firebaseGetServ.getAssetCompModelLeft().then((mNm: any) => {
-      this.assetCompModel = mNm
-    })
+      this.assetCompModel = mNm;
+    });
   }
 
-  onServiceIntv(){
+  onServiceIntv() {
     this.firebaseGetServ.getServiceIntvl().then((mNm: any) => {
-      this.servIntvl  = mNm.sort((a,b) => (a.ServIntval > b.ServIntval) ? 1 : -1);
-    })
+      this.servIntvl = mNm.sort((a, b) =>
+        a.ServIntval > b.ServIntval ? 1 : -1,
+      );
+    });
   }
-  onServiceIntvLeft(){}
-
+  onServiceIntvLeft() {}
 }

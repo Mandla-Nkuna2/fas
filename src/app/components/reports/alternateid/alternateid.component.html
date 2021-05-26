@@ -34,10 +34,13 @@
           <ion-label>location</ion-label>
           <ion-item>
             <ionic-selectable
-              [(ngModel)]="dateScope"
-              [items]="['2010', '2010']"
+              [(ngModel)]="location"
+              [items]="locations"
+              itemValueField="LocGuid"
+              itemTextField="LocFullName"
               [canSearch]="true"
               [hasInfiniteScroll]="true"
+              (onInfiniteScroll)="onLocationLeft()"
             >
             </ionic-selectable>
           </ion-item>
@@ -46,13 +49,16 @@
 
       <ion-col size="3.5" offset="0.5">
         <div class="item-input">
-          <ion-label>Add cost desc</ion-label>
+          <ion-label>Item type</ion-label>
           <ion-item>
             <ionic-selectable
-              [(ngModel)]="dateScope"
-              [items]="['2010', '2010']"
+              [(ngModel)]="itemType"
+              [items]="itemTypes"
+              itemValueField="LocGuid"
+              itemTextField="LocFullName"
               [canSearch]="true"
               [hasInfiniteScroll]="true"
+              (onInfiniteScroll)="onItemTypeLeft()"
             >
             </ionic-selectable>
           </ion-item>
@@ -61,13 +67,11 @@
 
       <ion-col size="3.5" offset="0.5">
         <div class="item-input">
-          <ion-label>Cost centre</ion-label>
+          <ion-label>Item category</ion-label>
           <ion-item>
             <ionic-selectable
-              [(ngModel)]="dateScope"
-              [items]="['2010', '2010']"
-              [canSearch]="true"
-              [hasInfiniteScroll]="true"
+              [(ngModel)]="itemCategory"
+              [items]="itemCategories"
             >
             </ionic-selectable>
           </ion-item>
@@ -78,12 +82,7 @@
         <div class="item-input">
           <ion-label>Sort option</ion-label>
           <ion-item>
-            <ionic-selectable
-              [(ngModel)]="dateScope"
-              [items]="['2010', '2010']"
-              [canSearch]="true"
-              [hasInfiniteScroll]="true"
-            >
+            <ionic-selectable [(ngModel)]="sortOption" [items]="sortOptions">
             </ionic-selectable>
           </ion-item>
         </div>
@@ -95,10 +94,13 @@
         <ion-label>Registration</ion-label>
         <ion-item>
           <ionic-selectable
-            [(ngModel)]="dateScope"
-            [items]="['2010', '2010']"
+            [(ngModel)]="registration"
+            [items]="registrations"
+            itemValueField="ItemGuid"
+            itemTextField="Reg"
             [canSearch]="true"
             [hasInfiniteScroll]="true"
+            (onInfiniteScroll)="onRegistrationLeft()"
           >
           </ionic-selectable>
         </ion-item>

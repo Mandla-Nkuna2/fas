@@ -25,12 +25,12 @@ export class AddassetsPage implements OnInit {
   assets: any = [];
   loadingComplete = false;
   makesAndModels: any = [];
-  category: any = [];
   colors: any = [];
   tyreSizes: any = [];
-  meterTypes: any = [];
   batteries: any = [];
-  driver: any = [];
+  drivers: any = [];
+  meterTypes: any = ['HOUR', 'KM', 'N/A'];
+  categories: any = ['MAJOR EQUIPMENT', 'METERLESS EQUIPMENT', 'VEHICLES'];
 
   drop: false;
 
@@ -48,7 +48,6 @@ export class AddassetsPage implements OnInit {
 
   ngOnInit() {
     //this.onMakeAndModel();
-    //this.onCategory();
     // this.onColor();
     //this.onTireSizes();
     //this.onDriver()
@@ -93,24 +92,13 @@ export class AddassetsPage implements OnInit {
   }
 
   onType() {
-    this.firebaseGetServ.getAssetType().then((mNm: any) => {
+    this.firebaseGetServ.getAssetMakMod().then((mNm: any) => {
       this.makesAndModels = mNm;
     });
   }
   onTypeLeft() {
-    this.firebaseGetServ.getAssetTypeLeft().then((mNm: any) => {
+    this.firebaseGetServ.getAssetMakModLeft().then((mNm: any) => {
       this.makesAndModels = mNm;
-    });
-  }
-
-  onCategory() {
-    this.firebaseGetServ.getCategory().then((cat: any) => {
-      this.category = cat.filter(this.onlyUnique);
-    });
-  }
-  onCategoryLeft() {
-    this.firebaseGetServ.getCategoryLeft().then((cat: any) => {
-      this.category = cat.filter(this.onlyUnique);
     });
   }
 
@@ -130,7 +118,7 @@ export class AddassetsPage implements OnInit {
 
   onDriver() {
     this.firebaseGetServ.getDriver().then((col: any) => {
-      this.driver = col;
+      this.drivers = col;
       // col.forEach(obj => {
       //   if (obj.StaffCatgGuid == '7E55FF15-8B93-4CC4-B488-BC0E6FE2971E') {
       //     this.driver.push(obj)
@@ -148,17 +136,6 @@ export class AddassetsPage implements OnInit {
   onTireSizesLeft() {
     this.firebaseGetServ.getTyreSizeLeft().then((size: any) => {
       this.tyreSizes = size;
-    });
-  }
-
-  onMeterType() {
-    this.firebaseGetServ.getMeterType().then((mType: any) => {
-      this.meterTypes = mType.filter(this.onlyUnique);
-    });
-  }
-  onMeterTypeLeft() {
-    this.firebaseGetServ.getMeterTypeLeft().then((mType: any) => {
-      this.meterTypes = mType.filter(this.onlyUnique);
     });
   }
 

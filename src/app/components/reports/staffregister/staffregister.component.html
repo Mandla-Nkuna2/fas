@@ -33,12 +33,7 @@
         <div class="item-input">
           <ion-label>Financial year</ion-label>
           <ion-item>
-            <ionic-selectable
-              [(ngModel)]="dateScope"
-              [items]="['2010', '2010']"
-              [canSearch]="true"
-              [hasInfiniteScroll]="true"
-            >
+            <ionic-selectable [(ngModel)]="finYear" [items]="finYears">
             </ionic-selectable>
           </ion-item>
         </div>
@@ -52,7 +47,7 @@
           <ion-item lines="none">
             <ion-datetime
               display-format="MMM DD YYYY hh:mm a"
-              [(ngModel)]="dateScope"
+              [(ngModel)]="dateFrom"
             ></ion-datetime>
           </ion-item>
         </div>
@@ -64,7 +59,7 @@
           <ion-item lines="none">
             <ion-datetime
               display-format="MMM DD YYYY hh:mm a"
-              [(ngModel)]="dateScope"
+              [(ngModel)]="dateTo"
             ></ion-datetime>
           </ion-item>
         </div>
@@ -78,7 +73,7 @@
           <ion-item>
             <ionic-selectable
               [(ngModel)]="dateScope"
-              [items]="['2010', '2010']"
+              [items]="['2010', '2011']"
               [canSearch]="true"
               [hasInfiniteScroll]="true"
             >
@@ -93,7 +88,7 @@
           <ion-item>
             <ionic-selectable
               [(ngModel)]="dateScope"
-              [items]="['2010', '2010']"
+              [items]="['2010', '2011']"
               [canSearch]="true"
               [hasInfiniteScroll]="true"
             >
@@ -107,10 +102,9 @@
           <ion-label>Sort option</ion-label>
           <ion-item>
             <ionic-selectable
-              [(ngModel)]="dateScope"
-              [items]="['2010', '2010']"
+              [(ngModel)]="sortOption"
+              [items]="sortOptions"
               [canSearch]="true"
-              [hasInfiniteScroll]="true"
             >
             </ionic-selectable>
           </ion-item>
