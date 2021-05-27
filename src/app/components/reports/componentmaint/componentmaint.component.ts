@@ -21,11 +21,11 @@ export class ComponentmaintComponent implements OnInit {
   location: any;
   locations: any[];
 
-  costDesc: any;
-  costDescs: any[];
+  itemType: any;
+  itemTypes: any[];
 
-  costCentre: any;
-  costCentres: any[];
+  itemCategory: any;
+  itemCategories: any = ['MAJOR EQUIPMENT', 'METERLESS EQUIPMENT', 'VEHICLES'];
 
   sortOption: any;
   sortOptions = [
@@ -38,15 +38,18 @@ export class ComponentmaintComponent implements OnInit {
   registration: any;
   registrations: any[];
 
-   constructor(
+  component: any;
+  components: any[];
+
+  constructor(
     private firebaseGetServ: FirebaseGetService,
     private popUp: PopupHelper,
   ) {}
 
   ngOnInit() {
     // this.onLocation();
-    // this.onCostCentre();
     // this.onRegistration();
+    // this.onComponent();
   }
 
   onLocation() {
@@ -60,11 +63,8 @@ export class ComponentmaintComponent implements OnInit {
     });
   }
 
-  onCostCentre() {
-    this.firebaseGetServ.getCostCentre().then((mNm: any) => {
-      this.costCentres = mNm;
-    });
-  }
+  onItemType() {}
+  onItemTypeLeft() {}
 
   onRegistration() {
     this.firebaseGetServ.getRegistration().then((mNm: any) => {
@@ -74,6 +74,17 @@ export class ComponentmaintComponent implements OnInit {
   onRegistrationLeft() {
     this.firebaseGetServ.getRegistrationLeft().then((mNm: any) => {
       this.registrations = mNm;
+    });
+  }
+
+  onComponent() {
+    this.firebaseGetServ.getCompName().then((mNm: any) => {
+      this.components = mNm;
+    });
+  }
+  onComponentLeft() {
+    this.firebaseGetServ.getCompName().then((mNm: any) => {
+      this.components = mNm;
     });
   }
 }

@@ -16,16 +16,8 @@ export class SupppurchasesComponent implements OnInit {
   dateFrom: any;
   dateTo: any;
 
-  locOrReg: any;
-
-  location: any;
-  locations: any[];
-
-  costDesc: any;
-  costDescs: any[];
-
-  costCentre: any;
-  costCentres: any[];
+  supplier: any;
+  suppliers: any[];
 
   sortOption: any;
   sortOptions = [
@@ -38,31 +30,24 @@ export class SupppurchasesComponent implements OnInit {
   registration: any;
   registrations: any[];
 
-   constructor(
+  constructor(
     private firebaseGetServ: FirebaseGetService,
     private popUp: PopupHelper,
   ) {}
 
   ngOnInit() {
-    // this.onLocation();
-    // this.onCostCentre();
-    // this.onRegistration();
+    this.onSupplier();
+    this.onRegistration();
   }
 
-  onLocation() {
-    this.firebaseGetServ.getLocation().then((mNm: any) => {
-      this.locations = mNm;
+  onSupplier() {
+    this.firebaseGetServ.getSupplier().then((mNm: any) => {
+      this.suppliers = mNm;
     });
   }
-  onLocationLeft() {
-    this.firebaseGetServ.getLocationLeft().then((mNm: any) => {
-      this.locations = mNm;
-    });
-  }
-
-  onCostCentre() {
-    this.firebaseGetServ.getCostCentre().then((mNm: any) => {
-      this.costCentres = mNm;
+  onSupplierLeft() {
+    this.firebaseGetServ.getSupplierLeft().then((mNm: any) => {
+      this.suppliers = mNm;
     });
   }
 

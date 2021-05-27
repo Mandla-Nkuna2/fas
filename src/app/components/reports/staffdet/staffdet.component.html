@@ -4,8 +4,8 @@
       <ion-label>Staff Cat</ion-label>
       <ion-item>
         <ionic-selectable
-          [(ngModel)]="dateScope"
-          [items]="['2010', '2011']"
+          [(ngModel)]="staffCat"
+          [items]="staffCats"
           [canSearch]="true"
           [hasInfiniteScroll]="true"
         >
@@ -19,10 +19,13 @@
       <ion-label>Staff codes</ion-label>
       <ion-item>
         <ionic-selectable
-          [(ngModel)]="dateScope"
-          [items]="['2010', '2011']"
+          [(ngModel)]="staffCode"
+          [items]="staffCodes"
+          itemValueField="StaffGuid"
+          itemTextField="StaffCode"
           [canSearch]="true"
           [hasInfiniteScroll]="true"
+          (onInfiniteScroll)="onStaffCodesLeft()"
         >
         </ionic-selectable>
       </ion-item>
@@ -34,10 +37,9 @@
       <ion-label>Sort option</ion-label>
       <ion-item>
         <ionic-selectable
-          [(ngModel)]="dateScope"
-          [items]="['2010', '2011']"
+          [(ngModel)]="sortOption"
+          [items]="sortOptions"
           [canSearch]="true"
-          [hasInfiniteScroll]="true"
         >
         </ionic-selectable>
       </ion-item>

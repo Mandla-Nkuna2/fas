@@ -49,15 +49,16 @@
 
       <ion-col size="3.5" offset="0.5">
         <div class="item-input">
-          <ion-label>Add cost desc</ion-label>
+          <ion-label>Item type</ion-label>
           <ion-item>
             <ionic-selectable
-              [(ngModel)]="costDesc"
-              [items]="costDescs"
+              [(ngModel)]="itemType"
+              [items]="itemTypes"
               itemValueField="LocGuid"
               itemTextField="LocFullName"
               [canSearch]="true"
               [hasInfiniteScroll]="true"
+              (onInfiniteScroll)="onItemTypeLeft()"
             >
             </ionic-selectable>
           </ion-item>
@@ -66,15 +67,29 @@
 
       <ion-col size="3.5" offset="0.5">
         <div class="item-input">
-          <ion-label>Cost centre</ion-label>
+          <ion-label>Item category</ion-label>
           <ion-item>
             <ionic-selectable
-              [(ngModel)]="costCentre"
-              [items]="costCentres"
-              itemValueField="CostCentGuid"
-              itemTextField="CostCentName"
+              [(ngModel)]="itemCategory"
+              [items]="itemCategories"
+            >
+            </ionic-selectable>
+          </ion-item>
+        </div>
+      </ion-col>
+
+      <ion-col size="3.5" offset="0.5">
+        <div class="item-input">
+          <ion-label>Components</ion-label>
+          <ion-item>
+            <ionic-selectable
+              [(ngModel)]="comp"
+              [items]="comps"
+              itemValueField="CompNameGuid"
+              itemTextField="CompName"
               [canSearch]="true"
               [hasInfiniteScroll]="true"
+              (onInfiniteScroll)="onComponentsLeft()"
             >
             </ionic-selectable>
           </ion-item>
@@ -102,10 +117,13 @@
           <ion-label>Registration</ion-label>
           <ion-item>
             <ionic-selectable
-              [(ngModel)]="dateScope"
-              [items]="['2010', '2011']"
+              [(ngModel)]="registration"
+              [items]="registrations"
+              itemValueField="ItemGuid"
+              itemTextField="Reg"
               [canSearch]="true"
               [hasInfiniteScroll]="true"
+              (onInfiniteScroll)="onRegistrationLeft()"
             >
             </ionic-selectable>
           </ion-item>
@@ -117,10 +135,13 @@
           <ion-label>Components</ion-label>
           <ion-item>
             <ionic-selectable
-              [(ngModel)]="dateScope"
-              [items]="['2010', '2011']"
+              [(ngModel)]="comp"
+              [items]="comps"
+              itemValueField="CompNameGuid"
+              itemTextField="CompName"
               [canSearch]="true"
-              [isMultiple]="true"
+              [hasInfiniteScroll]="true"
+              (onInfiniteScroll)="onComponentsLeft()"
             >
             </ionic-selectable>
           </ion-item>

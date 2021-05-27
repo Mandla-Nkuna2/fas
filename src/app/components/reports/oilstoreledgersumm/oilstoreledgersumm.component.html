@@ -66,19 +66,23 @@
       </ion-col>
     </ion-row>
 
-    <ion-col size="3.5" offset="0.5" *ngIf="locOrReg === 'reg'">
-      <div class="item-input">
-        <ion-label>Oil store</ion-label>
-        <ion-item>
-          <ionic-selectable
-            [(ngModel)]="dateScope"
-            [items]="['2010', '2011']"
-            [canSearch]="true"
-            [hasInfiniteScroll]="true"
-          >
-          </ionic-selectable>
-        </ion-item>
-      </div>
-    </ion-col>
+    <ion-row>
+      <ion-col size="3.5" offset="0.5">
+        <div class="item-input">
+          <ion-label>Oil store</ion-label>
+          <ion-item>
+            <ionic-selectable
+              [(ngModel)]="oilStore"
+              [items]="oilStores"
+              itemValueField="OilStoreGuid"
+              itemTextField="OilStoreName"
+              [canSearch]="true"
+              [hasInfiniteScroll]="true"
+            >
+            </ionic-selectable>
+          </ion-item>
+        </div>
+      </ion-col>
+    </ion-row>
   </ion-col>
 </ion-row>

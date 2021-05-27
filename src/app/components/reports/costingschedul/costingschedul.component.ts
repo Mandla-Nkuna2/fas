@@ -21,11 +21,11 @@ export class CostingschedulComponent implements OnInit {
   location: any;
   locations: any[];
 
-  costDesc: any;
-  costDescs: any[];
+  itemType: any;
+  itemTypes: any[];
 
-  costCentre: any;
-  costCentres: any[];
+  itemCategory: any;
+  itemCategories: any = ['MAJOR EQUIPMENT', 'METERLESS EQUIPMENT', 'VEHICLES'];
 
   sortOption: any;
   sortOptions = [
@@ -47,14 +47,13 @@ export class CostingschedulComponent implements OnInit {
     'Tyre / Track',
   ];
 
-   constructor(
+  constructor(
     private firebaseGetServ: FirebaseGetService,
     private popUp: PopupHelper,
   ) {}
 
   ngOnInit() {
     // this.onLocation();
-    // this.onCostCentre();
     // this.onRegistration();
   }
 
@@ -69,11 +68,8 @@ export class CostingschedulComponent implements OnInit {
     });
   }
 
-  onCostCentre() {
-    this.firebaseGetServ.getCostCentre().then((mNm: any) => {
-      this.costCentres = mNm;
-    });
-  }
+  onItemType() {}
+  onItemTypeLeft() {}
 
   onRegistration() {
     this.firebaseGetServ.getRegistration().then((mNm: any) => {

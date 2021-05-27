@@ -21,11 +21,8 @@ export class FuelconsumptmajorequipComponent implements OnInit {
   location: any;
   locations: any[];
 
-  costDesc: any;
-  costDescs: any[];
-
-  costCentre: any;
-  costCentres: any[];
+  itemType: any;
+  itemTypes: any[];
 
   sortOption: any;
   sortOptions = [
@@ -38,15 +35,14 @@ export class FuelconsumptmajorequipComponent implements OnInit {
   registration: any;
   registrations: any[];
 
-   constructor(
+  constructor(
     private firebaseGetServ: FirebaseGetService,
     private popUp: PopupHelper,
   ) {}
 
   ngOnInit() {
-    // this.onLocation();
-    // this.onCostCentre();
-    // this.onRegistration();
+    this.onLocation();
+    this.onRegistration();
   }
 
   onLocation() {
@@ -60,11 +56,8 @@ export class FuelconsumptmajorequipComponent implements OnInit {
     });
   }
 
-  onCostCentre() {
-    this.firebaseGetServ.getCostCentre().then((mNm: any) => {
-      this.costCentres = mNm;
-    });
-  }
+  onItemType() {}
+  onItemTypeLeft() {}
 
   onRegistration() {
     this.firebaseGetServ.getRegistration().then((mNm: any) => {

@@ -16,16 +16,14 @@ export class FuelissuesfleetComponent implements OnInit {
   dateFrom: any;
   dateTo: any;
 
-  locOrReg: any;
-
   location: any;
   locations: any[];
 
-  costDesc: any;
-  costDescs: any[];
+  itemType: any;
+  itemTypes: any[];
 
-  costCentre: any;
-  costCentres: any[];
+  itemCategory: any;
+  itemCategories: any = ['MAJOR EQUIPMENT', 'METERLESS EQUIPMENT', 'VEHICLES'];
 
   sortOption: any;
   sortOptions = [
@@ -35,18 +33,13 @@ export class FuelissuesfleetComponent implements OnInit {
     'Registration',
   ];
 
-  registration: any;
-  registrations: any[];
-
-   constructor(
+  constructor(
     private firebaseGetServ: FirebaseGetService,
     private popUp: PopupHelper,
   ) {}
 
   ngOnInit() {
-    // this.onLocation();
-    // this.onCostCentre();
-    // this.onRegistration();
+    this.onLocation();
   }
 
   onLocation() {
@@ -60,20 +53,6 @@ export class FuelissuesfleetComponent implements OnInit {
     });
   }
 
-  onCostCentre() {
-    this.firebaseGetServ.getCostCentre().then((mNm: any) => {
-      this.costCentres = mNm;
-    });
-  }
-
-  onRegistration() {
-    this.firebaseGetServ.getRegistration().then((mNm: any) => {
-      this.registrations = mNm;
-    });
-  }
-  onRegistrationLeft() {
-    this.firebaseGetServ.getRegistrationLeft().then((mNm: any) => {
-      this.registrations = mNm;
-    });
-  }
+  onItemType() {}
+  onItemTypeLeft() {}
 }

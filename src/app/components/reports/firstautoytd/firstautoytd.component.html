@@ -7,14 +7,14 @@
           <ion-item lines="none">
             <ion-datetime
               display-format="MMM DD YYYY hh:mm a"
-              [(ngModel)]="dateScope"
+              [(ngModel)]="dateFrom"
             ></ion-datetime>
           </ion-item>
         </div>
       </ion-col>
     </ion-row>
 
-    <ion-row *ngIf="locOrReg === 'loc'">
+    <ion-row>
       <ion-col size="3.5" offset="0.5">
         <div class="item-input">
           <ion-label>location</ion-label>
@@ -32,19 +32,12 @@
           </ion-item>
         </div>
       </ion-col>
-    </ion-row>
 
-    <ion-row>
       <ion-col size="3.5" offset="0.5">
         <div class="item-input">
           <ion-label>Level summary</ion-label>
           <ion-item>
-            <ionic-selectable
-              [(ngModel)]="dateScope"
-              [items]="['2010', '2011']"
-              [canSearch]="true"
-              [hasInfiniteScroll]="true"
-            >
+            <ionic-selectable [(ngModel)]="level" [items]="levels">
             </ionic-selectable>
           </ion-item>
         </div>

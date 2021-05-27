@@ -21,11 +21,11 @@ export class TrafficfinesComponent implements OnInit {
   location: any;
   locations: any[];
 
-  costDesc: any;
-  costDescs: any[];
+  itemType: any;
+  itemTypes: any[];
 
-  costCentre: any;
-  costCentres: any[];
+  staffCode: any;
+  staffCodes: any[];
 
   sortOption: any;
   sortOptions = [
@@ -38,14 +38,14 @@ export class TrafficfinesComponent implements OnInit {
   registration: any;
   registrations: any[];
 
-   constructor(
+  constructor(
     private firebaseGetServ: FirebaseGetService,
     private popUp: PopupHelper,
   ) {}
 
   ngOnInit() {
     // this.onLocation();
-    // this.onCostCentre();
+    // this.onStaffCodes();
     // this.onRegistration();
   }
 
@@ -60,9 +60,17 @@ export class TrafficfinesComponent implements OnInit {
     });
   }
 
-  onCostCentre() {
-    this.firebaseGetServ.getCostCentre().then((mNm: any) => {
-      this.costCentres = mNm;
+  onItemType() {}
+  onItemTypeLeft() {}
+
+  onStaffCodes() {
+    this.firebaseGetServ.getStaff().then((mNm: any) => {
+      this.staffCodes = mNm;
+    });
+  }
+  onStaffCodesLeft() {
+    this.firebaseGetServ.getStaffLeft().then((mNm: any) => {
+      this.staffCodes = mNm;
     });
   }
 

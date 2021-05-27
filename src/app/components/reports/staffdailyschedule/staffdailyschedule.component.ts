@@ -8,7 +8,7 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
   styleUrls: ['./staffdailyschedule.component.scss'],
 })
 export class StaffdailyscheduleComponent implements OnInit {
-   dateScope: any;
+  dateScope: any;
 
   finYear: any;
   finYears = ['2019/2020', '2020/2021', '2021/2022'];
@@ -16,16 +16,11 @@ export class StaffdailyscheduleComponent implements OnInit {
   dateFrom: any;
   dateTo: any;
 
-  locOrReg: any;
+  staffCat: any;
+  staffCats: any[];
 
-  location: any;
-  locations: any[];
-
-  costDesc: any;
-  costDescs: any[];
-
-  costCentre: any;
-  costCentres: any[];
+  staffCode: any;
+  staffCodes: any[];
 
   sortOption: any;
   sortOptions = [
@@ -35,46 +30,26 @@ export class StaffdailyscheduleComponent implements OnInit {
     'Registration',
   ];
 
-  registration: any;
-  registrations: any[];
-
   constructor(
     private firebaseGetServ: FirebaseGetService,
     private popUp: PopupHelper,
   ) {}
 
   ngOnInit() {
-    // this.onLocation();
-    // this.onCostCentre();
-    // this.onRegistration();
+    // this.onStaffCat();
+    // this.onStaffCodes();
   }
 
-  onLocation() {
-    this.firebaseGetServ.getLocation().then((mNm: any) => {
-      this.locations = mNm;
-    });
-  }
-  onLocationLeft() {
-    this.firebaseGetServ.getLocationLeft().then((mNm: any) => {
-      this.locations = mNm;
-    });
-  }
+  onStaffCat() {}
 
-  onCostCentre() {
-    this.firebaseGetServ.getCostCentre().then((mNm: any) => {
-      this.costCentres = mNm;
+  onStaffCodes() {
+    this.firebaseGetServ.getStaff().then((mNm: any) => {
+      this.staffCodes = mNm;
     });
   }
-
-  onRegistration() {
-    this.firebaseGetServ.getRegistration().then((mNm: any) => {
-      this.registrations = mNm;
+  onStaffCodesLeft() {
+    this.firebaseGetServ.getStaffLeft().then((mNm: any) => {
+      this.staffCodes = mNm;
     });
   }
-  onRegistrationLeft() {
-    this.firebaseGetServ.getRegistrationLeft().then((mNm: any) => {
-      this.registrations = mNm;
-    });
-  }
-
 }

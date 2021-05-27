@@ -11,22 +11,24 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
   styleUrls: ['./maintaincevent.page.scss'],
 })
 export class MaintainceventPage implements OnInit {
-  maintenanceEvent: MaintenanceEvent
+  maintenanceEvent: MaintenanceEvent;
 
-  jobCardNo: any []
-  registration: any []
-  maintanceType: any []
-  maintanceReason: any [];
-  supplier: any [];
-  requestedBy: any [];
-  costCentre: any [];
+  jobCardNo: any[];
+  registration: any[];
+  maintanceType: any[];
+  maintanceReason: any[];
+  supplier: any[];
+  requestedBy: any[];
+  costCentre: any[];
 
-  constructor(private navCtrl: NavController,
+  constructor(
+    private navCtrl: NavController,
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
-    private firebaseGetServ: FirebaseGetService) {
-    this.maintenanceEvent = new MaintenanceEvent()
-   }
+    private firebaseGetServ: FirebaseGetService,
+  ) {
+    this.maintenanceEvent = new MaintenanceEvent();
+  }
 
   ngOnInit() {
     // this.onJobCardNo()
@@ -38,70 +40,69 @@ export class MaintainceventPage implements OnInit {
     // this.onConstCentre()
   }
 
-  goOilIssues()
-  {
+  goOilIssues() {
     this.navCtrl.navigateForward('oilissues');
   }
 
-  onJobCardNo(){
+  onJobCardNo() {
     // this.firebaseGetServ.getJobCardNos().then((staff: any) => {
     //   this.jobCardNo = staff
     // })
   }
-  onJobCardNoLeft(){
+  onJobCardNoLeft() {
     // this.firebaseGetServ.getJobCardNosLeft().then((staff: any) => {
     //   this.jobCardNo = staff
     // })
   }
 
-  onRegistration(){
+  onRegistration() {
     this.firebaseGetServ.getRegistration().then((staff: any) => {
-      this.registration = staff
-    })
+      this.registration = staff;
+    });
   }
-  onRegistrationLeft(){
+  onRegistrationLeft() {
     this.firebaseGetServ.getRegistrationLeft().then((staff: any) => {
-      this.registration = staff
-    })
+      this.registration = staff;
+    });
   }
 
-  onMaintType(){
-    this.firebaseGetServ.getMaintananceType().then((staff: any) => {
-      this.maintanceType = staff
-    })
+  onMaintType() {
+    this.firebaseGetServ.getMaintType().then((staff: any) => {
+      this.maintanceType = staff;
+    });
   }
 
-  onMaintReason(){
-    this.firebaseGetServ.getMaintananceRzn().then((staff: any) => {
-      this.maintanceReason = staff
-    })
+  onMaintReason() {
+    this.firebaseGetServ.getMaintReason().then((staff: any) => {
+      this.maintanceReason = staff;
+    });
   }
 
-  onSupplier(){
+  onSupplier() {
     this.firebaseGetServ.getSupplier().then((staff: any) => {
-      this.supplier = staff
-    })
+      this.supplier = staff;
+    });
   }
-  onSupplierLeft(){
+  onSupplierLeft() {
     this.firebaseGetServ.getSupplierLeft().then((staff: any) => {
-      this.supplier = staff
-    })
+      this.supplier = staff;
+    });
   }
 
-  onRequestedBy(){
+  onRequestedBy() {
     this.firebaseGetServ.getStaff().then((staff: any) => {
-      this.requestedBy = staff
-    })
+      this.requestedBy = staff;
+    });
   }
-  onRequestedByLeft(){
+  onRequestedByLeft() {
     this.firebaseGetServ.getStaffLeft().then((staff: any) => {
-      this.requestedBy = staff
-    })
+      this.requestedBy = staff;
+    });
   }
 
-  onConstCentre(){
+  onConstCentre() {
     this.firebaseGetServ.getCostCentre().then((staff: any) => {
-      this.costCentre = staff
-    })
+      this.costCentre = staff;
+    });
   }
 }

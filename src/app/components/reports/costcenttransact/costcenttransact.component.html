@@ -71,8 +71,10 @@
         <ion-label>Cost centre</ion-label>
         <ion-item>
           <ionic-selectable
-            [(ngModel)]="dateScope"
-            [items]="['2010', '2011']"
+            [(ngModel)]="costCentre"
+            [items]="costCentres"
+            itemValueField="CostCentGuid"
+            itemTextField="CostCentName"
             [canSearch]="true"
             [hasInfiniteScroll]="true"
           >

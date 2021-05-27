@@ -21,11 +21,8 @@ export class OperatorsummComponent implements OnInit {
   location: any;
   locations: any[];
 
-  costDesc: any;
-  costDescs: any[];
-
-  costCentre: any;
-  costCentres: any[];
+  staffCode: any;
+  staffCodes: any[];
 
   sortOption: any;
   sortOptions = [
@@ -38,15 +35,15 @@ export class OperatorsummComponent implements OnInit {
   registration: any;
   registrations: any[];
 
-   constructor(
+  constructor(
     private firebaseGetServ: FirebaseGetService,
     private popUp: PopupHelper,
   ) {}
 
   ngOnInit() {
-    // this.onLocation();
-    // this.onCostCentre();
-    // this.onRegistration();
+    this.onLocation();
+    this.onStaffCodes();
+    this.onRegistration();
   }
 
   onLocation() {
@@ -60,9 +57,14 @@ export class OperatorsummComponent implements OnInit {
     });
   }
 
-  onCostCentre() {
-    this.firebaseGetServ.getCostCentre().then((mNm: any) => {
-      this.costCentres = mNm;
+  onStaffCodes() {
+    this.firebaseGetServ.getStaff().then((mNm: any) => {
+      this.staffCodes = mNm;
+    });
+  }
+  onStaffCodesLeft() {
+    this.firebaseGetServ.getStaffLeft().then((mNm: any) => {
+      this.staffCodes = mNm;
     });
   }
 

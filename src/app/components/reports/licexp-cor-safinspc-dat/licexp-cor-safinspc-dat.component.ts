@@ -8,11 +8,6 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
   styleUrls: ['./licexp-cor-safinspc-dat.component.scss'],
 })
 export class LicexpCorSafinspcDatComponent implements OnInit {
-  dateScope: any;
-
-  finYear: any;
-  finYears = ['2019/2020', '2020/2021', '2021/2022'];
-
   dateFrom: any;
   dateTo: any;
 
@@ -21,11 +16,11 @@ export class LicexpCorSafinspcDatComponent implements OnInit {
   location: any;
   locations: any[];
 
-  costDesc: any;
-  costDescs: any[];
+  itemType: any;
+  itemTypes: any[];
 
-  costCentre: any;
-  costCentres: any[];
+  itemCategory: any;
+  itemCategories: any = ['MAJOR EQUIPMENT', 'METERLESS EQUIPMENT', 'VEHICLES'];
 
   sortOption: any;
   sortOptions = [
@@ -38,14 +33,13 @@ export class LicexpCorSafinspcDatComponent implements OnInit {
   registration: any;
   registrations: any[];
 
-   constructor(
+  constructor(
     private firebaseGetServ: FirebaseGetService,
     private popUp: PopupHelper,
   ) {}
 
   ngOnInit() {
     // this.onLocation();
-    // this.onCostCentre();
     // this.onRegistration();
   }
 
@@ -60,11 +54,8 @@ export class LicexpCorSafinspcDatComponent implements OnInit {
     });
   }
 
-  onCostCentre() {
-    this.firebaseGetServ.getCostCentre().then((mNm: any) => {
-      this.costCentres = mNm;
-    });
-  }
+  onItemType() {}
+  onItemTypeLeft() {}
 
   onRegistration() {
     this.firebaseGetServ.getRegistration().then((mNm: any) => {

@@ -21,12 +21,14 @@ export class ServiceoverdueComponent implements OnInit {
   location: any;
   locations: any[];
 
-  costDesc: any;
-  costDescs: any[];
+  itemType: any;
+  itemTypes: any[];
 
-  costCentre: any;
-  costCentres: any[];
+  itemCategory: any;
+  itemCategories: any = ['MAJOR EQUIPMENT', 'METERLESS EQUIPMENT', 'VEHICLES'];
 
+  comp: any;
+  comps: any[];
   sortOption: any;
   sortOptions = [
     'Add cost description',
@@ -38,14 +40,14 @@ export class ServiceoverdueComponent implements OnInit {
   registration: any;
   registrations: any[];
 
-   constructor(
+  constructor(
     private firebaseGetServ: FirebaseGetService,
     private popUp: PopupHelper,
   ) {}
 
   ngOnInit() {
     // this.onLocation();
-    // this.onCostCentre();
+    // this.onComponents();
     // this.onRegistration();
   }
 
@@ -60,9 +62,17 @@ export class ServiceoverdueComponent implements OnInit {
     });
   }
 
-  onCostCentre() {
-    this.firebaseGetServ.getCostCentre().then((mNm: any) => {
-      this.costCentres = mNm;
+  onItemType() {}
+  onItemTypeLeft() {}
+
+  onComponents() {
+    this.firebaseGetServ.getCompName().then((mNm: any) => {
+      this.comps = mNm;
+    });
+  }
+  onComponentsLeft() {
+    this.firebaseGetServ.getCompNameLeft().then((mNm: any) => {
+      this.comps = mNm;
     });
   }
 

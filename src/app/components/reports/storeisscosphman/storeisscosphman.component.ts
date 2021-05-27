@@ -21,11 +21,11 @@ export class StoreisscosphmanComponent implements OnInit {
   location: any;
   locations: any[];
 
-  costDesc: any;
-  costDescs: any[];
+  storeCat: any;
+  storeCats: any[];
 
-  costCentre: any;
-  costCentres: any[];
+  supplier: any;
+  suppliers: any[];
 
   sortOption: any;
   sortOptions = [
@@ -38,14 +38,15 @@ export class StoreisscosphmanComponent implements OnInit {
   registration: any;
   registrations: any[];
 
-   constructor(
+  constructor(
     private firebaseGetServ: FirebaseGetService,
     private popUp: PopupHelper,
   ) {}
 
   ngOnInit() {
     // this.onLocation();
-    // this.onCostCentre();
+    // this.onStoreCat();
+    // this.onSupplier();
     // this.onRegistration();
   }
 
@@ -60,9 +61,20 @@ export class StoreisscosphmanComponent implements OnInit {
     });
   }
 
-  onCostCentre() {
-    this.firebaseGetServ.getCostCentre().then((mNm: any) => {
-      this.costCentres = mNm;
+  onStoreCat() {
+    this.firebaseGetServ.getStoreCat().then((mNm: any) => {
+      this.storeCats = mNm;
+    });
+  }
+
+  onSupplier() {
+    this.firebaseGetServ.getSupplier().then((mNm: any) => {
+      this.suppliers = mNm;
+    });
+  }
+  onSupplierLeft() {
+    this.firebaseGetServ.getSupplierLeft().then((mNm: any) => {
+      this.suppliers = mNm;
     });
   }
 

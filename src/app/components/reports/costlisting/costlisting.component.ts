@@ -21,11 +21,8 @@ export class CostlistingComponent implements OnInit {
   location: any;
   locations: any[];
 
-  costDesc: any;
-  costDescs: any[];
-
-  costCentre: any;
-  costCentres: any[];
+  itemCategory: any;
+  itemCategories: any = ['MAJOR EQUIPMENT', 'METERLESS EQUIPMENT', 'VEHICLES'];
 
   sortOption: any;
   sortOptions = [
@@ -38,14 +35,13 @@ export class CostlistingComponent implements OnInit {
   registration: any;
   registrations: any[];
 
-   constructor(
+  constructor(
     private firebaseGetServ: FirebaseGetService,
     private popUp: PopupHelper,
   ) {}
 
   ngOnInit() {
     // this.onLocation();
-    // this.onCostCentre();
     // this.onRegistration();
   }
 
@@ -57,12 +53,6 @@ export class CostlistingComponent implements OnInit {
   onLocationLeft() {
     this.firebaseGetServ.getLocationLeft().then((mNm: any) => {
       this.locations = mNm;
-    });
-  }
-
-  onCostCentre() {
-    this.firebaseGetServ.getCostCentre().then((mNm: any) => {
-      this.costCentres = mNm;
     });
   }
 

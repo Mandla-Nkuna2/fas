@@ -6,8 +6,8 @@
           <ion-label>Financial year</ion-label>
           <ion-item>
             <ionic-selectable
-              [(ngModel)]="dateScope"
-              [items]="['2010', '2011']"
+              [(ngModel)]="finYear"
+              [items]="finYears"
               [canSearch]="true"
               [hasInfiniteScroll]="true"
             >

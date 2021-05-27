@@ -66,19 +66,39 @@
       </ion-col>
     </ion-row>
 
-    <ion-col size="3.5" offset="0.5">
-      <div class="item-input">
-        <ion-label>Supplier</ion-label>
-        <ion-item>
-          <ionic-selectable
-            [(ngModel)]="dateScope"
-            [items]="['2010', '2011']"
-            [canSearch]="true"
-            [hasInfiniteScroll]="true"
-          >
-          </ionic-selectable>
-        </ion-item>
-      </div>
-    </ion-col>
+    <ion-row>
+      <ion-col size="3.5" offset="0.5">
+        <div class="item-input">
+          <ion-label>Registration</ion-label>
+          <ion-item>
+            <ionic-selectable
+              [(ngModel)]="registration"
+              [items]="registrations"
+              itemValueField="ItemGuid"
+              itemTextField="Reg"
+              [canSearch]="true"
+              [hasInfiniteScroll]="true"
+              (onInfiniteScroll)="onRegistrationLeft()"
+            >
+            </ionic-selectable>
+          </ion-item>
+        </div>
+      </ion-col>
+
+      <ion-col size="3.5" offset="0.5">
+        <div class="item-input">
+          <ion-label>Sort option</ion-label>
+          <ion-item>
+            <ionic-selectable
+              [(ngModel)]="sortOption"
+              [items]="sortOptions"
+              [canSearch]="true"
+              [hasInfiniteScroll]="true"
+            >
+            </ionic-selectable>
+          </ion-item>
+        </div>
+      </ion-col>
+    </ion-row>
   </ion-col>
 </ion-row>

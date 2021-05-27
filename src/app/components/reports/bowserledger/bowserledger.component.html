@@ -72,10 +72,10 @@
           <ion-label>Bowser</ion-label>
           <ion-item>
             <ionic-selectable
-              [(ngModel)]="dateScope"
-              [items]="['2010', '2011']"
-              [canSearch]="true"
-              [hasInfiniteScroll]="true"
+              [(ngModel)]="bowser"
+              [items]="bowsers"
+              itemValueField="BowserGuid"
+              itemTextField="BowserName"
             >
             </ionic-selectable>
           </ion-item>

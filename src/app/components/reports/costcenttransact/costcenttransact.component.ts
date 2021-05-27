@@ -8,7 +8,7 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
   styleUrls: ['./costcenttransact.component.scss'],
 })
 export class CostcenttransactComponent implements OnInit {
-   dateScope: any;
+  dateScope: any;
 
   finYear: any;
   finYears = ['2019/2020', '2020/2021', '2021/2022'];
@@ -18,25 +18,8 @@ export class CostcenttransactComponent implements OnInit {
 
   locOrReg: any;
 
-  location: any;
-  locations: any[];
-
-  costDesc: any;
-  costDescs: any[];
-
   costCentre: any;
   costCentres: any[];
-
-  sortOption: any;
-  sortOptions = [
-    'Add cost description',
-    'Cost centre',
-    'Location',
-    'Registration',
-  ];
-
-  registration: any;
-  registrations: any[];
 
   constructor(
     private firebaseGetServ: FirebaseGetService,
@@ -44,20 +27,7 @@ export class CostcenttransactComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // this.onLocation();
     // this.onCostCentre();
-    // this.onRegistration();
-  }
-
-  onLocation() {
-    this.firebaseGetServ.getLocation().then((mNm: any) => {
-      this.locations = mNm;
-    });
-  }
-  onLocationLeft() {
-    this.firebaseGetServ.getLocationLeft().then((mNm: any) => {
-      this.locations = mNm;
-    });
   }
 
   onCostCentre() {
@@ -65,16 +35,4 @@ export class CostcenttransactComponent implements OnInit {
       this.costCentres = mNm;
     });
   }
-
-  onRegistration() {
-    this.firebaseGetServ.getRegistration().then((mNm: any) => {
-      this.registrations = mNm;
-    });
-  }
-  onRegistrationLeft() {
-    this.firebaseGetServ.getRegistrationLeft().then((mNm: any) => {
-      this.registrations = mNm;
-    });
-  }
-
 }

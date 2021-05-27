@@ -33,11 +33,58 @@
         <div class="item-input">
           <ion-label>Financial year</ion-label>
           <ion-item>
+            <ionic-selectable [(ngModel)]="finYear" [items]="finYears">
+            </ionic-selectable>
+          </ion-item>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="locOrReg === 'loc'">
+      <ion-col size="3.5" offset="0.5">
+        <div class="item-input">
+          <ion-label>location</ion-label>
+          <ion-item>
             <ionic-selectable
-              [(ngModel)]="dateScope"
-              [items]="['2010', '2011']"
+              [(ngModel)]="location"
+              [items]="locations"
+              itemValueField="LocGuid"
+              itemTextField="LocFullName"
               [canSearch]="true"
               [hasInfiniteScroll]="true"
+              (onInfiniteScroll)="onLocationLeft()"
+            >
+            </ionic-selectable>
+          </ion-item>
+        </div>
+      </ion-col>
+
+      <ion-col size="3.5" offset="0.5">
+        <div class="item-input">
+          <ion-label>Item type</ion-label>
+          <ion-item>
+            <ionic-selectable
+              [(ngModel)]="itemType"
+              [items]="itemTypes"
+              itemValueField="LocGuid"
+              itemTextField="LocFullName"
+              [canSearch]="true"
+              [hasInfiniteScroll]="true"
+              (onInfiniteScroll)="onItemTypeLeft()"
+            >
+            </ionic-selectable>
+          </ion-item>
+        </div>
+      </ion-col>
+
+      <ion-col size="3.5" offset="0.5">
+        <div class="item-input">
+          <ion-label>Sort option</ion-label>
+          <ion-item>
+            <ionic-selectable
+              [(ngModel)]="sortOption"
+              [items]="sortOptions"
+              [canSearch]="true"
             >
             </ionic-selectable>
           </ion-item>
@@ -45,19 +92,41 @@
       </ion-col>
     </ion-row>
 
-    <ion-col size="3.5" offset="0.5">
-      <div class="item-input">
-        <ion-label>Maintanance type</ion-label>
-        <ion-item>
-          <ionic-selectable
-            [(ngModel)]="dateScope"
-            [items]="maintType"
-            [canSearch]="true"
-            [isMultiple]="true"
-          >
-          </ionic-selectable>
-        </ion-item>
-      </div>
-    </ion-col>
+    <ion-row>
+      <ion-col size="3.5" offset="0.5" *ngIf="locOrReg === 'reg'">
+        <div class="item-input">
+          <ion-label>Registration</ion-label>
+          <ion-item>
+            <ionic-selectable
+              [(ngModel)]="registration"
+              [items]="registrations"
+              itemValueField="ItemGuid"
+              itemTextField="Reg"
+              [canSearch]="true"
+              [hasInfiniteScroll]="true"
+              (onInfiniteScroll)="onRegistrationLeft()"
+            >
+            </ionic-selectable>
+          </ion-item>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="3.5" offset="0.5">
+        <div class="item-input">
+          <ion-label>Maintanance type</ion-label>
+          <ion-item>
+            <ionic-selectable
+              [(ngModel)]="maintType"
+              [items]="maintTypes"
+              [canSearch]="true"
+              [isMultiple]="true"
+            >
+            </ionic-selectable>
+          </ion-item>
+        </div>
+      </ion-col>
+    </ion-row>
   </ion-col>
 </ion-row>

@@ -8,24 +8,13 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
   styleUrls: ['./fuelissuesitem.component.scss'],
 })
 export class FuelissuesitemComponent implements OnInit {
-   dateScope: any;
+  dateScope: any;
 
   finYear: any;
   finYears = ['2019/2020', '2020/2021', '2021/2022'];
 
   dateFrom: any;
   dateTo: any;
-
-  locOrReg: any;
-
-  location: any;
-  locations: any[];
-
-  costDesc: any;
-  costDescs: any[];
-
-  costCentre: any;
-  costCentres: any[];
 
   sortOption: any;
   sortOptions = [
@@ -44,26 +33,7 @@ export class FuelissuesitemComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // this.onLocation();
-    // this.onCostCentre();
     // this.onRegistration();
-  }
-
-  onLocation() {
-    this.firebaseGetServ.getLocation().then((mNm: any) => {
-      this.locations = mNm;
-    });
-  }
-  onLocationLeft() {
-    this.firebaseGetServ.getLocationLeft().then((mNm: any) => {
-      this.locations = mNm;
-    });
-  }
-
-  onCostCentre() {
-    this.firebaseGetServ.getCostCentre().then((mNm: any) => {
-      this.costCentres = mNm;
-    });
   }
 
   onRegistration() {
@@ -76,5 +46,4 @@ export class FuelissuesitemComponent implements OnInit {
       this.registrations = mNm;
     });
   }
-
 }

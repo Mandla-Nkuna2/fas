@@ -21,11 +21,11 @@ export class RevenuescheduleComponent implements OnInit {
   location: any;
   locations: any[];
 
-  costDesc: any;
-  costDescs: any[];
+  itemType: any;
+  itemTypes: any[];
 
-  costCentre: any;
-  costCentres: any[];
+  client: any;
+  clients: any[];
 
   sortOption: any;
   sortOptions = [
@@ -38,14 +38,13 @@ export class RevenuescheduleComponent implements OnInit {
   registration: any;
   registrations: any[];
 
-   constructor(
+  constructor(
     private firebaseGetServ: FirebaseGetService,
     private popUp: PopupHelper,
   ) {}
 
   ngOnInit() {
     // this.onLocation();
-    // this.onCostCentre();
     // this.onRegistration();
   }
 
@@ -60,11 +59,10 @@ export class RevenuescheduleComponent implements OnInit {
     });
   }
 
-  onCostCentre() {
-    this.firebaseGetServ.getCostCentre().then((mNm: any) => {
-      this.costCentres = mNm;
-    });
-  }
+  onItemType() {}
+  onItemTypeLeft() {}
+
+  onClient() {}
 
   onRegistration() {
     this.firebaseGetServ.getRegistration().then((mNm: any) => {

@@ -115,15 +115,16 @@
 
       <ion-col size="3.5" offset="0.5">
         <div class="item-input">
-          <ion-label>Add cost desc</ion-label>
+          <ion-label>Item type</ion-label>
           <ion-item>
             <ionic-selectable
-              [(ngModel)]="costDesc"
-              [items]="costDescs"
+              [(ngModel)]="itemType"
+              [items]="itemTypes"
               itemValueField="LocGuid"
               itemTextField="LocFullName"
               [canSearch]="true"
               [hasInfiniteScroll]="true"
+              (onInfiniteScroll)="onItemTypeLeft()"
             >
             </ionic-selectable>
           </ion-item>
@@ -132,15 +133,14 @@
 
       <ion-col size="3.5" offset="0.5">
         <div class="item-input">
-          <ion-label>Cost centre</ion-label>
+          <ion-label>Client</ion-label>
           <ion-item>
             <ionic-selectable
-              [(ngModel)]="costCentre"
-              [items]="costCentres"
+              [(ngModel)]="client"
+              [items]="clients"
               itemValueField="CostCentGuid"
               itemTextField="CostCentName"
               [canSearch]="true"
-              [hasInfiniteScroll]="true"
             >
             </ionic-selectable>
           </ion-item>
@@ -162,22 +162,24 @@
       </ion-col>
     </ion-row>
 
-    <ion-col size="3.5" offset="0.5" *ngIf="locOrReg === 'reg'">
-      <div class="item-input">
-        <ion-label>Registration</ion-label>
-        <ion-item>
-          <ionic-selectable
-            [(ngModel)]="registration"
-            [items]="registrations"
-            itemValueField="ItemGuid"
-            itemTextField="Reg"
-            [canSearch]="true"
-            [hasInfiniteScroll]="true"
-            (onInfiniteScroll)="onRegistrationLeft()"
-          >
-          </ionic-selectable>
-        </ion-item>
-      </div>
-    </ion-col>
+    <ion-row>
+      <ion-col size="3.5" offset="0.5" *ngIf="locOrReg === 'reg'">
+        <div class="item-input">
+          <ion-label>Registration</ion-label>
+          <ion-item>
+            <ionic-selectable
+              [(ngModel)]="registration"
+              [items]="registrations"
+              itemValueField="ItemGuid"
+              itemTextField="Reg"
+              [canSearch]="true"
+              [hasInfiniteScroll]="true"
+              (onInfiniteScroll)="onRegistrationLeft()"
+            >
+            </ionic-selectable>
+          </ion-item>
+        </div>
+      </ion-col>
+    </ion-row>
   </ion-col>
 </ion-row>

@@ -21,11 +21,11 @@ export class LosscontrlistingComponent implements OnInit {
   location: any;
   locations: any[];
 
-  costDesc: any;
-  costDescs: any[];
+  lossContType: any;
+  lossContTypes: any[];
 
-  costCentre: any;
-  costCentres: any[];
+  staffCode: any;
+  staffCodes: any[];
 
   sortOption: any;
   sortOptions = [
@@ -38,14 +38,17 @@ export class LosscontrlistingComponent implements OnInit {
   registration: any;
   registrations: any[];
 
-   constructor(
+  lossContAct: any;
+  lossContActs: any[];
+
+  constructor(
     private firebaseGetServ: FirebaseGetService,
     private popUp: PopupHelper,
   ) {}
 
   ngOnInit() {
     // this.onLocation();
-    // this.onCostCentre();
+    // this.onStaffCodes();
     // this.onRegistration();
   }
 
@@ -60,9 +63,16 @@ export class LosscontrlistingComponent implements OnInit {
     });
   }
 
-  onCostCentre() {
-    this.firebaseGetServ.getCostCentre().then((mNm: any) => {
-      this.costCentres = mNm;
+  onLossContType() {}
+
+  onStaffCodes() {
+    this.firebaseGetServ.getStaff().then((mNm: any) => {
+      this.staffCodes = mNm;
+    });
+  }
+  onStaffCodesLeft() {
+    this.firebaseGetServ.getStaffLeft().then((mNm: any) => {
+      this.staffCodes = mNm;
     });
   }
 
@@ -76,4 +86,6 @@ export class LosscontrlistingComponent implements OnInit {
       this.registrations = mNm;
     });
   }
+
+  onLossContAct() {}
 }

@@ -573,7 +573,7 @@ export class FirebaseGetService {
   getJobCardNos() {}
   getJobCardNosLeft() {}
 
-  getMaintananceType() {
+  getMaintType() {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection('/test3/Sup_MaintType/tables')
@@ -595,7 +595,7 @@ export class FirebaseGetService {
     return promise;
   }
 
-  getMaintananceRzn() {
+  getMaintReason() {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection('/test3/Sup_MaintReason/tables')
@@ -1084,7 +1084,7 @@ export class FirebaseGetService {
           obj.docs.forEach((obj) => {
             data.push({
               StoreCatgGuid: obj.get('StoreCatgGuid'),
-              StoreCatg: Number(obj.get('StoreCatg')),
+              StoreCatg: obj.get('StoreCatg'),
             });
           });
           resolve(data);
@@ -1095,4 +1095,8 @@ export class FirebaseGetService {
     });
     return promise;
   }
+
+  getLossContType() {}
+
+  getLossContAct() {}
 }

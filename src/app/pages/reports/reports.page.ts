@@ -96,9 +96,7 @@ export class ReportsPage implements OnInit {
 
   report = 'additionalcost';
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

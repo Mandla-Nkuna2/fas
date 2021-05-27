@@ -1,6 +1,6 @@
 <ion-row>
   <ion-col>
-    <ion-row *ngIf="dateScope === 'Date'">
+    <ion-row>
       <ion-col size="3.5" offset="0.5">
         <div class="item-input">
           <ion-label>Date from</ion-label>
@@ -20,8 +20,8 @@
           <ion-label>Staff Cat</ion-label>
           <ion-item>
             <ionic-selectable
-              [(ngModel)]="dateScope"
-              [items]="['2010', '2011']"
+              [(ngModel)]="staffCat"
+              [items]="staffCats"
               [canSearch]="true"
               [hasInfiniteScroll]="true"
             >
@@ -35,10 +35,13 @@
           <ion-label>Staff codes</ion-label>
           <ion-item>
             <ionic-selectable
-              [(ngModel)]="dateScope"
-              [items]="['2010', '2011']"
+              [(ngModel)]="staffCode"
+              [items]="staffCodes"
+              itemValueField="StaffGuid"
+              itemTextField="StaffCode"
               [canSearch]="true"
               [hasInfiniteScroll]="true"
+              (onInfiniteScroll)="onStaffCodesLeft()"
             >
             </ionic-selectable>
           </ion-item>
