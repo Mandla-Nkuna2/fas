@@ -2,7 +2,7 @@
   <div *ngIf="!compServType">
     <div class="title-holder flex al-center">
       <ion-back-button
-        defaultHref="fuelissues"
+        defaultHref="clientdetails"
         mode="ios"
         text=""
       ></ion-back-button>
@@ -26,6 +26,28 @@
           ></ion-datetime>
         </div>
       </div>
+    </div>
+
+    <div class="navbar" class="ion-text-center">
+      <ion-button
+        fill="clear"
+        routerLink="/servschedule"
+        routerDirection="root"
+        routerLinkActive="active-link"
+        class="link"
+      >
+        Service schedule
+      </ion-button>
+
+      <ion-button
+        fill="clear"
+        routerLink="/servschedultask"
+        routerDirection="root"
+        routerLinkActive="active-link"
+        class="link"
+      >
+        Service schedule tasks
+      </ion-button>
     </div>
 
     <div class="section">

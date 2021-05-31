@@ -1,11 +1,11 @@
 <ion-content class="ion-padding">
   <div class="title-holder flex al-center">
     <ion-back-button
-      defaultHref="fuelissues"
+      defaultHref="clientdetails"
       mode="ios"
       text=""
     ></ion-back-button>
-    <h2>Asset Components</h2>
+    <h2>Item types</h2>
     <div class="date-holder">
       <div class="itm flex al-center">
         <div class="thumb">
@@ -26,6 +26,39 @@
       </div>
     </div>
   </div>
+
+  <div class="navbar" class="ion-text-center">
+    <ion-button
+      fill="clear"
+      routerLink="/itemmakemodel"
+      routerDirection="root"
+      routerLinkActive="active-link"
+      class="link"
+    >
+      Item make and model
+    </ion-button>
+
+    <ion-button
+      fill="clear"
+      routerLink="/componentname"
+      routerDirection="root"
+      routerLinkActive="active-link"
+      class="link"
+    >
+      Component name
+    </ion-button>
+
+    <ion-button
+      fill="clear"
+      routerLink="/bowser"
+      routerDirection="root"
+      routerLinkActive="active-link"
+      class="link"
+    >
+      Bowser
+    </ion-button>
+  </div>
+
   <div class="section">
     <div class="grid-holder">
       <div class="top-toolbar flex al-center jc-between">

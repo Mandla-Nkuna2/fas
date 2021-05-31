@@ -175,8 +175,4 @@ export class AddassetsPage implements OnInit {
   onRearTyreSel(colObj) {
     this.asset.generalInformation.RearTyreGuid = colObj.RearTyreGuid;
   }
-
-  onDomClick() {
-    //this.child.onParentClick();
-  }
 }

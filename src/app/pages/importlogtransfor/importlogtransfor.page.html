@@ -1,24 +1,33 @@
 <ion-content class="ion-padding">
   <div class="title-holder flex al-center">
-    <ion-back-button defaultHref="fueltransimport" mode="ios" text=""></ion-back-button>
+    <ion-back-button
+      defaultHref="absaimport"
+      mode="ios"
+      text=""
+    ></ion-back-button>
     <h2>Import Log Trans. for Co-Driver</h2>
     <div class="date-holder">
       <div class="itm flex al-center">
         <div class="thumb">
-          <ion-icon slot="icon-only" src="assets/imgs/icn-calender.svg"></ion-icon>
+          <ion-icon
+            slot="icon-only"
+            src="assets/imgs/icn-calender.svg"
+          ></ion-icon>
         </div>
-        <ion-datetime display-format="MMM DD YYYY" value="Sep 16 2020, 12:02 "></ion-datetime>
+        <ion-datetime
+          display-format="MMM DD YYYY"
+          value="Sep 16 2020, 12:02 "
+        ></ion-datetime>
         <p>to</p>
-        <ion-datetime display-format="MMM DD YYYY" value="Sep 16 2020, 12:02 "></ion-datetime>
+        <ion-datetime
+          display-format="MMM DD YYYY"
+          value="Sep 16 2020, 12:02 "
+        ></ion-datetime>
       </div>
-
     </div>
   </div>
 
-
   <div class="section">
-
-
     <div class="title">
       <h3>Convert Data</h3>
     </div>
@@ -30,28 +39,31 @@
             <div class="item-input">
               <ion-label>File Directory</ion-label>
               <ion-item lines="none" class="end">
-                <ion-input type="text" value="" placeholder="File Directory"></ion-input>
-                <ion-button expand="block">
-                  Choose File
-                </ion-button>
+                <ion-input
+                  type="text"
+                  value=""
+                  placeholder="File Directory"
+                ></ion-input>
+                <ion-button expand="block"> Choose File </ion-button>
               </ion-item>
             </div>
           </ion-col>
-          <ion-col size="3.5"  offset="0.5">
+          <ion-col size="3.5" offset="0.5">
             <div class="item-input">
               <ion-label>File Name</ion-label>
               <ion-item lines="none">
-                <ion-input type="text" value="0.00" placeholder="Table Name"></ion-input>
+                <ion-input
+                  type="text"
+                  value="0.00"
+                  placeholder="Table Name"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
         </ion-row>
 
         <ion-row>
-          <ion-col size="10.4" class="ion-no-padding">
-           
-          </ion-col>
-
+          <ion-col size="10.4" class="ion-no-padding"> </ion-col>
 
           <ion-col size="0.5" class="ion-no-padding">
             <div class="btn-holder ion-text-right ion-padding-vertical">
@@ -63,13 +75,9 @@
         </ion-row>
       </ion-grid>
     </div>
-
-
   </div>
 
   <div class="section">
-
-
     <div class="title">
       <h3>Import Data</h3>
     </div>
@@ -81,22 +89,30 @@
             <div class="item-input">
               <ion-label>Table Name</ion-label>
               <ion-item lines="none">
-                <ion-input type="text" value="Table Name" placeholder="Table Name"></ion-input>
+                <ion-input
+                  type="text"
+                  value="Table Name"
+                  placeholder="Table Name"
+                ></ion-input>
               </ion-item>
             </div>
             <div class="info">
-              <p>Table Name should be the month and year of the
-                transanctions to be imported.</p>
+              <p>
+                Table Name should be the month and year of the transanctions to
+                be imported.
+              </p>
             </div>
           </ion-col>
           <ion-col size="8" offset="0.5">
             <div class="item-input">
               <ion-label>File Directory</ion-label>
               <ion-item lines="none" class="end">
-                <ion-input type="text" value="" placeholder="File Directory"></ion-input>
-                <ion-button expand="block">
-                  Choose File
-                </ion-button>
+                <ion-input
+                  type="text"
+                  value=""
+                  placeholder="File Directory"
+                ></ion-input>
+                <ion-button expand="block"> Choose File </ion-button>
               </ion-item>
             </div>
           </ion-col>
@@ -104,14 +120,17 @@
             <div class="item-input">
               <ion-label>File Name</ion-label>
               <ion-item lines="none">
-                <ion-input type="text" value="" placeholder="File Directory"></ion-input>
+                <ion-input
+                  type="text"
+                  value=""
+                  placeholder="File Directory"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
         </ion-row>
 
         <ion-row>
-
           <ion-col size="2.5" class="ion-no-padding" offset="6.5">
             <div class="btn-holder ion-text-left ion-padding-vertical">
               <ion-button fill="outline">
@@ -122,16 +141,13 @@
 
           <ion-col size="0.5" class="ion-no-padding" offset="0.5">
             <div class="btn-holder ion-text-left ion-padding-vertical">
-              <ion-button fill="outline">
-                Transfer
-              </ion-button>
+              <ion-button fill="outline"> Transfer </ion-button>
             </div>
           </ion-col>
 
-
           <ion-col size="0.5" class="ion-no-padding" offset="1">
             <div class="btn-holder ion-text-right ion-padding-vertical">
-              <ion-button  (click)="goImportAutoFirstTransactions()">
+              <ion-button (click)="goImportAutoFirstTransactions()">
                 Import
               </ion-button>
             </div>
@@ -139,8 +155,5 @@
         </ion-row>
       </ion-grid>
     </div>
-
-
   </div>
-
 </ion-content>
