@@ -11,19 +11,21 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
   styleUrls: ['./oiltransafer.page.scss'],
 })
 export class OiltransaferPage implements OnInit {
-  oilStoreTransf: OilStoreTransfer
+  oilStoreTransf: OilStoreTransfer;
 
-  voucherNo: any[]
-  oilStoreFrom: any [];
-  oilStoreTo: any [];
-  costCentre: any [];
+  voucherNo: any[];
+  oilStoreFrom: any[];
+  oilStoreTo: any[];
+  costCentre: any[];
 
-  constructor( private navCtrl: NavController,
+  constructor(
+    private navCtrl: NavController,
     private firebaseService: FirebaseService,
-    private popUp: PopupHelper, private firebaseGetServ:
-    FirebaseGetService) {
-    this.oilStoreTransf = new OilStoreTransfer()
-   }
+    private popUp: PopupHelper,
+    private firebaseGetServ: FirebaseGetService,
+  ) {
+    this.oilStoreTransf = new OilStoreTransfer();
+  }
 
   ngOnInit() {
     // this.onOilStoreFrom()
@@ -31,29 +33,43 @@ export class OiltransaferPage implements OnInit {
     // this.onCostCentre()
   }
 
-  goOverhead()
-  {
+  goOverhead() {
     this.navCtrl.navigateForward('overheadtrans');
   }
 
-  onOilType(){}
-  onOilTypeLeft(){}
+  onOilType() {}
+  onOilTypeLeft() {}
 
-  onOilStoreFrom(){
+  onOilStoreFrom() {
     this.firebaseGetServ.getOilStore().then((mNm: any) => {
-      this.oilStoreFrom = mNm
-    })
+      this.oilStoreFrom = mNm;
+    });
   }
 
-  onOilStoreTo(){
+  onOilStoreTo() {
     this.firebaseGetServ.getOilStore().then((mNm: any) => {
-      this.oilStoreTo = mNm
-    })
+      this.oilStoreTo = mNm;
+    });
   }
 
-  onCostCentre(){
+  onCostCentre() {
     this.firebaseGetServ.getCostCentre().then((mNm: any) => {
-      this.costCentre = mNm
-    })
+      this.costCentre = mNm;
+    });
+  }
+
+  onAdd() {
+    this.firebaseService
+      .writeData(
+        'myTest',
+        Object.assign({}, this.oilStoreTransf),
+        this.oilStoreTransf.OilStoreTrnGuid,
+      )
+      .then(() => {
+        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
   }
 }

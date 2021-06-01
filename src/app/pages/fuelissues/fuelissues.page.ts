@@ -11,20 +11,22 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
   styleUrls: ['./fuelissues.page.scss'],
 })
 export class FuelissuesPage implements OnInit {
-  fuelIssue: FuelIssue
+  fuelIssue: FuelIssue;
 
-  registration: any[]
-  supplier: any [];
-  staffCode: any [];
-  costCentre: any [];
-  bowser: any [];
+  registration: any[];
+  supplier: any[];
+  staffCode: any[];
+  costCentre: any[];
+  bowser: any[];
 
-  constructor(private navCtrl: NavController,
+  constructor(
+    private navCtrl: NavController,
     private firebaseService: FirebaseService,
-    private popUp: PopupHelper, private firebaseGetServ:
-    FirebaseGetService) {
-    this.fuelIssue = new FuelIssue()
-   }
+    private popUp: PopupHelper,
+    private firebaseGetServ: FirebaseGetService,
+  ) {
+    this.fuelIssue = new FuelIssue();
+  }
 
   ngOnInit() {
     // this.onRegistration()
@@ -34,54 +36,67 @@ export class FuelissuesPage implements OnInit {
     // this.onCostCentre()
   }
 
-
-  goItemCompo()
-  {
+  goItemCompo() {
     this.navCtrl.navigateForward('itemcomponents');
   }
 
-  onRegistration(){
+  onRegistration() {
     this.firebaseGetServ.getRegistration().then((mNm: any) => {
-      this.registration = mNm
-    })
+      this.registration = mNm;
+    });
   }
-  onRegistrationLeft(){
+  onRegistrationLeft() {
     this.firebaseGetServ.getRegistrationLeft().then((mNm: any) => {
-      this.registration = mNm
-    })
+      this.registration = mNm;
+    });
   }
 
-  onBowser(){
+  onBowser() {
     this.firebaseGetServ.getBowser().then((mNm: any) => {
-      this.bowser = mNm
-    })
+      this.bowser = mNm;
+    });
   }
 
-  onSupplier(){
+  onSupplier() {
     this.firebaseGetServ.getSupplier().then((mNm: any) => {
-      this.supplier = mNm
-    })
+      this.supplier = mNm;
+    });
   }
-  onSupplierLeft(){
+  onSupplierLeft() {
     this.firebaseGetServ.getSupplierLeft().then((mNm: any) => {
-      this.supplier = mNm
-    })
+      this.supplier = mNm;
+    });
   }
 
-  onStaffCode(){
+  onStaffCode() {
     this.firebaseGetServ.getStaff().then((mNm: any) => {
-      this.staffCode = mNm
-    })
+      this.staffCode = mNm;
+    });
   }
-  onStaffCodeLeft(){
+  onStaffCodeLeft() {
     this.firebaseGetServ.getStaff().then((mNm: any) => {
-      this.staffCode = mNm
-    })
+      this.staffCode = mNm;
+    });
   }
 
-  onCostCentre(){
+  onCostCentre() {
     this.firebaseGetServ.getCostCentre().then((mNm: any) => {
-      this.costCentre = mNm
-    })
+      this.costCentre = mNm;
+    });
+  }
+
+  onAdd() {
+    this.firebaseService
+      .writeData(
+        'myTest',
+        Object.assign({}, this.fuelIssue),
+        this.fuelIssue.FuelIssueGuid,
+      )
+      .then(() => {
+        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
   }
 }

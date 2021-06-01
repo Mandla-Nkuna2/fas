@@ -48,9 +48,13 @@ export class ServicetypesPage implements OnInit {
 
   onAdd() {
     this.firebaseService
-      .writeData('myTest', this.serviceType, this.serviceType.ServTypeGuid)
+      .writeData(
+        'myTest',
+        Object.assign({}, this.serviceType),
+        this.serviceType.ServTypeGuid,
+      )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully =)');
+        this.popUp.showAlert('Success', 'Data saved successfully :-)');
       })
       .catch((err) => {
         this.popUp.showError(err);

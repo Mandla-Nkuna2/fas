@@ -26,7 +26,7 @@ export class UsergroupsPage implements OnInit {
     this.firebaseService
       .writeData('myTest', this.userGroup, this.userGroup.UserGroupGuid)
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully =)');
+        this.popUp.showAlert('Success', 'Data saved successfully :-)');
       })
       .catch((err) => {
         this.popUp.showError(err);

@@ -77,8 +77,6 @@
                   <ionic-selectable
                     [(ngModel)]="asset.generalInformation.ItemTypeGuid"
                     [items]="meterTypes"
-                    itemValueField="ItemMakModGuid"
-                    itemTextField="ItemMakMod"
                     [canSearch]="true"
                     [hasInfiniteScroll]="true"
                     (onInfiniteScroll)="onTypeLeft()"

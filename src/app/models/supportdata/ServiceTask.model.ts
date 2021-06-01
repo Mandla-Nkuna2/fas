@@ -1,1 +1,3 @@
-export default class ServiceTask {}
+export default class ServiceTask {
+  id: string;
+}

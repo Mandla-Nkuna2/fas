@@ -11,21 +11,23 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
   styleUrls: ['./oilissues.page.scss'],
 })
 export class OilissuesPage implements OnInit {
-  oilIssue: OilIssue
+  oilIssue: OilIssue;
 
-  voucherNo: any[]
-  registration: any [];
-  oilStore: any [];
-  supplier: any [];
-  costCentre: any [];
-  staffCode: any [];
+  voucherNo: any[];
+  registration: any[];
+  oilStore: any[];
+  supplier: any[];
+  costCentre: any[];
+  staffCode: any[];
 
-  constructor( private navCtrl: NavController,
+  constructor(
+    private navCtrl: NavController,
     private firebaseService: FirebaseService,
-    private popUp: PopupHelper, private firebaseGetServ:
-    FirebaseGetService) {
-    this.oilIssue = new OilIssue()
-   }
+    private popUp: PopupHelper,
+    private firebaseGetServ: FirebaseGetService,
+  ) {
+    this.oilIssue = new OilIssue();
+  }
 
   ngOnInit() {
     // this.onRegistration()
@@ -35,60 +37,72 @@ export class OilissuesPage implements OnInit {
     // this.onStaffCode()
   }
 
-  goOilTransactions()
-  {
+  goOilTransactions() {
     this.navCtrl.navigateForward('oilstoretrans');
   }
-  onRegistration(){
+  onRegistration() {
     this.firebaseGetServ.getRegistration().then((mNm: any) => {
-      this.registration = mNm
-    })
+      this.registration = mNm;
+    });
   }
-  onRegistrationLeft(){
+  onRegistrationLeft() {
     this.firebaseGetServ.getRegistrationLeft().then((mNm: any) => {
-      this.registration = mNm
-    })
+      this.registration = mNm;
+    });
   }
 
-  onComponent(){}
-  onComponentLeft(){}
+  onComponent() {}
+  onComponentLeft() {}
 
-  onOilStore(){
+  onOilStore() {
     this.firebaseGetServ.getOilStore().then((mNm: any) => {
-      this.oilStore = mNm
-    })
+      this.oilStore = mNm;
+    });
   }
 
-  onSupplier(){
+  onSupplier() {
     this.firebaseGetServ.getSupplier().then((mNm: any) => {
-      this.supplier = mNm
-    })
+      this.supplier = mNm;
+    });
   }
-  onSupplierLeft(){
+  onSupplierLeft() {
     this.firebaseGetServ.getSupplierLeft().then((mNm: any) => {
-      this.supplier = mNm
-    })
+      this.supplier = mNm;
+    });
   }
 
-  onOilType(){}
-  onOilTypeLeft(){}
+  onOilType() {}
+  onOilTypeLeft() {}
 
-  onCostCentre(){
+  onCostCentre() {
     this.firebaseGetServ.getCostCentre().then((mNm: any) => {
-      this.costCentre = mNm
-    })
+      this.costCentre = mNm;
+    });
   }
 
-  onStaffCode(){
+  onStaffCode() {
     this.firebaseGetServ.getStaff().then((mNm: any) => {
-      this.staffCode = mNm
-    })
+      this.staffCode = mNm;
+    });
   }
-  onStaffCodeLeft(){
+  onStaffCodeLeft() {
     this.firebaseGetServ.getStaff().then((mNm: any) => {
-      this.staffCode = mNm
-    })
+      this.staffCode = mNm;
+    });
   }
 
-  onAdd(){}
+  onAdd() {
+    this.firebaseService
+      .writeData(
+        'myTest',
+        Object.assign({}, this.oilIssue),
+        this.oilIssue.OilIssueGuid,
+      )
+      .then(() => {
+        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
+  }
 }

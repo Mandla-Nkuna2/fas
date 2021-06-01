@@ -479,6 +479,28 @@ export class FirebaseGetService {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection('/test3/Sup_ServIntval/tables')
+        .ref.limit(this.limVal)
+        .get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obj) => {
+            data.push({
+              ServIntvalGuid: obj.get('ServIntvalGuid'),
+              ServIntval: Number(obj.get('ServIntval')),
+            });
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+  getServiceIntvlLeft() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('/test3/Sup_ServIntval/tables')
         .ref.get()
         .then((obj) => {
           let data = [];
@@ -496,7 +518,6 @@ export class FirebaseGetService {
     });
     return promise;
   }
-  getServiceIntvlLeft() {}
 
   getLossType() {}
   getLossTypeLeft() {}

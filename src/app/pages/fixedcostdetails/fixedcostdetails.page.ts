@@ -11,43 +11,59 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
   styleUrls: ['./fixedcostdetails.page.scss'],
 })
 export class FixedcostdetailsPage implements OnInit {
-  fixedCost: FixedCostsDet
+  fixedCost: FixedCostsDet;
 
-  fixedCostType: any [];
-  registration: any [];
-  calcPeriod = ['Annum', 'Montly']
+  fixedCostType: any[];
+  registration: any[];
+  calcPeriod = ['Annum', 'Montly'];
 
-  constructor( private navCtrl: NavController,
+  constructor(
+    private navCtrl: NavController,
     private firebaseService: FirebaseService,
-    private popUp: PopupHelper, private firebaseGetServ:
-    FirebaseGetService) {
-    this.fixedCost = new FixedCostsDet()
-   }
+    private popUp: PopupHelper,
+    private firebaseGetServ: FirebaseGetService,
+  ) {
+    this.fixedCost = new FixedCostsDet();
+  }
 
   ngOnInit() {
     // this.onFixedCostType()
     // this.onRegistraion()
   }
 
-  goTransfer()
-  {
+  goTransfer() {
     this.navCtrl.navigateForward('fixedcostransfer');
   }
 
-  onFixedCostType(){
+  onFixedCostType() {
     this.firebaseGetServ.getFixedCostType().then((mNm: any) => {
-      this.fixedCostType = mNm
-    })
+      this.fixedCostType = mNm;
+    });
   }
 
-  onRegistraion(){
+  onRegistraion() {
     this.firebaseGetServ.getRegistration().then((mNm: any) => {
-      this.registration = mNm
-    })
+      this.registration = mNm;
+    });
   }
-  onRegistraionLeft(){
+  onRegistraionLeft() {
     this.firebaseGetServ.getRegistrationLeft().then((mNm: any) => {
-      this.registration = mNm
-    })
+      this.registration = mNm;
+    });
+  }
+
+  onAdd() {
+    this.firebaseService
+      .writeData(
+        'myTest',
+        Object.assign({}, this.fixedCost),
+        this.fixedCost.FixedCostGuid,
+      )
+      .then(() => {
+        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
   }
 }

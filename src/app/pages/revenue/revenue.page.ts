@@ -11,18 +11,20 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
   styleUrls: ['./revenue.page.scss'],
 })
 export class RevenuePage implements OnInit {
-  revenue: Revenue
+  revenue: Revenue;
 
-  registration: any []
+  registration: any[];
   client: any[];
-  costCentre: any [];
+  costCentre: any[];
 
-  constructor(private navCtrl: NavController,
+  constructor(
+    private navCtrl: NavController,
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
-    private firebaseGetServ: FirebaseGetService) {
+    private firebaseGetServ: FirebaseGetService,
+  ) {
     this.revenue = new Revenue();
-   }
+  }
 
   ngOnInit() {
     // this.onRegistration()
@@ -30,32 +32,45 @@ export class RevenuePage implements OnInit {
     // this.onCostCentre()
   }
 
-  storeIssue()
-  {
+  storeIssue() {
     this.navCtrl.navigateForward('storeissue');
   }
 
-  onRegistration(){
+  onRegistration() {
     this.firebaseGetServ.getRegistration().then((staff: any) => {
-      this.registration = staff
-    })
+      this.registration = staff;
+    });
   }
-  onRegistrationLeft(){
+  onRegistrationLeft() {
     this.firebaseGetServ.getRegistrationLeft().then((staff: any) => {
-      this.registration = staff
-    })
+      this.registration = staff;
+    });
   }
 
-  onClient(){
+  onClient() {
     // this.firebaseGetServ.getClient().then((staff: any) => {
     //   this.client = staff
     // })
   }
 
-  onCostCentre(){
+  onCostCentre() {
     this.firebaseGetServ.getCostCentre().then((staff: any) => {
-      this.costCentre = staff
-    })
+      this.costCentre = staff;
+    });
   }
 
+  onAdd() {
+    this.firebaseService
+      .writeData(
+        'myTest',
+        Object.assign({}, this.revenue),
+        this.revenue.RevenueGuid,
+      )
+      .then(() => {
+        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
+  }
 }

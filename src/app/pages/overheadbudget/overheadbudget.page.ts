@@ -32,9 +32,13 @@ export class OverheadbudgetPage implements OnInit {
 
   onAdd() {
     this.firebaseService
-      .writeData('myTest', this.oheadbudget, this.oheadbudget.OverheadBudGuid)
+      .writeData(
+        'myTest',
+        Object.assign({}, this.oheadbudget),
+        this.oheadbudget.OverheadBudGuid,
+      )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully =)');
+        this.popUp.showAlert('Success', 'Data saved successfully :-)');
       })
       .catch((err) => {
         this.popUp.showError(err);

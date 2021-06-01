@@ -10,27 +10,33 @@ import ClientDetails from 'src/app/models/supportdata/ClientDetails.model';
   styleUrls: ['./clientdetails.page.scss'],
 })
 export class ClientdetailsPage implements OnInit {
-  client: ClientDetails
+  client: ClientDetails;
 
   constructor(
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
-    private firebaseGetServ: FirebaseGetService,)
-    {
-    this.client = new ClientDetails()
-   }
-
-  ngOnInit() {
+    private firebaseGetServ: FirebaseGetService,
+  ) {
+    this.client = new ClientDetails();
   }
 
-  onAdd(){
-    this.firebaseService.writeData('myTest', this.client, this.client.ClientGuid).then(() => {
-      this.popUp.showAlert('Success', 'Data saved successfully =)')
-    }).catch((err) => {
-      this.popUp.showError(err)
-    })
+  ngOnInit() {}
+
+  onAdd() {
+    this.firebaseService
+      .writeData(
+        'myTest',
+        Object.assign({}, this.client),
+        this.client.ClientGuid,
+      )
+      .then(() => {
+        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
   }
-  onModify(){}
-  onDeActivate(){}
-  onClear(){}
+  onModify() {}
+  onDeActivate() {}
+  onClear() {}
 }

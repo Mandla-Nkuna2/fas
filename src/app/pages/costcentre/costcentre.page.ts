@@ -24,9 +24,13 @@ export class CostcentrePage implements OnInit {
 
   onAdd() {
     this.firebaseService
-      .writeData('myTest', this.costcentre, this.costcentre.CostCentGuid)
+      .writeData(
+        'myTest',
+        Object.assign({}, this.costcentre),
+        this.costcentre.CostCentGuid,
+      )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully =)');
+        this.popUp.showAlert('Success', 'Data saved successfully :-)');
       })
       .catch((err) => {
         this.popUp.showError(err);

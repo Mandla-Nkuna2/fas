@@ -11,19 +11,21 @@ import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-g
   styleUrls: ['./dailyoperationrecord.page.scss'],
 })
 export class DailyoperationrecordPage implements OnInit {
-  dOpsRec: DailyOperationRec
+  dOpsRec: DailyOperationRec;
 
-  registration: any []
-  location: any []
-  costCentre: any []
-  operator: any []
+  registration: any[];
+  location: any[];
+  costCentre: any[];
+  operator: any[];
 
-  constructor(private firebaseService: FirebaseService,
-    private popUp: PopupHelper, private firebaseGetServ:
-    FirebaseGetService) {
-    this.dOpsRec = new DailyOperationRec()
-    this.dOpsRec.operator = new Operator()
-   }
+  constructor(
+    private firebaseService: FirebaseService,
+    private popUp: PopupHelper,
+    private firebaseGetServ: FirebaseGetService,
+  ) {
+    this.dOpsRec = new DailyOperationRec();
+    this.dOpsRec.operator = Object.assign({}, new Operator());
+  }
 
   ngOnInit() {
     // this.onRegistration()
@@ -32,42 +34,57 @@ export class DailyoperationrecordPage implements OnInit {
     // this.onOperatorName()
   }
 
-  onRegistration(){
+  onRegistration() {
     this.firebaseGetServ.getRegistration().then((mNm: any) => {
-      this.registration = mNm
-    })
+      this.registration = mNm;
+    });
   }
-  onRegistrationLeft(){
+  onRegistrationLeft() {
     this.firebaseGetServ.getRegistrationLeft().then((mNm: any) => {
-      this.registration = mNm
-    })
+      this.registration = mNm;
+    });
   }
 
-  onLocation(){
+  onLocation() {
     this.firebaseGetServ.getLocation().then((mNm: any) => {
-      this.location = mNm
-    })
+      this.location = mNm;
+    });
   }
-  onLocationLeft(){
+  onLocationLeft() {
     this.firebaseGetServ.getLocationLeft().then((mNm: any) => {
-      this.location = mNm
-    })
+      this.location = mNm;
+    });
   }
 
-  onCostCentre(){
+  onCostCentre() {
     this.firebaseGetServ.getCostCentre().then((mNm: any) => {
-      this.costCentre = mNm
-    })
+      this.costCentre = mNm;
+    });
   }
 
-  onOperatorName(){
+  onOperatorName() {
     this.firebaseGetServ.getStaff().then((mNm: any) => {
-      this.operator = mNm
-    })
+      this.operator = mNm;
+    });
   }
-  onOperatorNameLeft(){
+  onOperatorNameLeft() {
     this.firebaseGetServ.getStaffLeft().then((mNm: any) => {
-      this.operator = mNm
-    })
+      this.operator = mNm;
+    });
+  }
+
+  onAdd() {
+    this.firebaseService
+      .writeData(
+        'myTest',
+        Object.assign({}, this.dOpsRec),
+        this.dOpsRec.PlantSheetguid,
+      )
+      .then(() => {
+        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
   }
 }

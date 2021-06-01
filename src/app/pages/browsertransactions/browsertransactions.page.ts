@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import BowserTransaction from 'src/app/models/capture/BowserTransaction.model';
+import { FirebaseService } from 'src/app/services/firebase-service/firebase-service.service';
+import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 
 @Component({
   selector: 'app-browsertransactions',
@@ -8,21 +10,34 @@ import BowserTransaction from 'src/app/models/capture/BowserTransaction.model';
   styleUrls: ['./browsertransactions.page.scss'],
 })
 export class BrowsertransactionsPage implements OnInit {
-  bowserTransaction: BowserTransaction
+  bowserTransaction: BowserTransaction;
 
-  constructor(private navCtrl: NavController) {
-    this.bowserTransaction = new BowserTransaction()
-   }
-
-  ngOnInit() {
+  constructor(
+    private navCtrl: NavController,
+    private firebaseService: FirebaseService,
+    private popUp: PopupHelper,
+  ) {
+    this.bowserTransaction = new BowserTransaction();
   }
 
-  goBrowserTransfer()
-  {
+  ngOnInit() {}
+
+  goBrowserTransfer() {
     this.navCtrl.navigateForward('browsertransfer');
   }
 
-  onAdd(){
+  onAdd() {
+    this.firebaseService
+      .writeData(
+        'myTest',
+        Object.assign({}, this.bowserTransaction),
+        this.bowserTransaction.BowserTrnGuid,
+      )
+      .then(() => {
+        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
   }
-
 }

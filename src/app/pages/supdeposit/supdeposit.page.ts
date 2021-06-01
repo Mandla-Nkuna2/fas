@@ -11,34 +11,50 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
   styleUrls: ['./supdeposit.page.scss'],
 })
 export class SupdepositPage implements OnInit {
-  supplierDeposit: SupplierDeposit
+  supplierDeposit: SupplierDeposit;
 
-  supplier: any[]
+  supplier: any[];
 
-  constructor(private navCtrl: NavController,
+  constructor(
+    private navCtrl: NavController,
     private firebaseService: FirebaseService,
-    private popUp: PopupHelper, private firebaseGetServ:
-    FirebaseGetService) {
-    this.supplierDeposit = new SupplierDeposit()
-   }
+    private popUp: PopupHelper,
+    private firebaseGetServ: FirebaseGetService,
+  ) {
+    this.supplierDeposit = new SupplierDeposit();
+  }
 
   ngOnInit() {
     // this.onSupplierName()
   }
 
-  goFuelnOilPrice()
-  {
+  goFuelnOilPrice() {
     this.navCtrl.navigateForward('fuelnoilprice');
   }
 
-  onSupplierName(){
+  onSupplierName() {
     this.firebaseGetServ.getSupplier().then((mNm: any) => {
-      this.supplier = mNm
-    })
+      this.supplier = mNm;
+    });
   }
-  onSupplierNameLeft(){
+  onSupplierNameLeft() {
     this.firebaseGetServ.getSupplierLeft().then((mNm: any) => {
-      this.supplier = mNm
-    })
+      this.supplier = mNm;
+    });
+  }
+
+  onAdd() {
+    this.firebaseService
+      .writeData(
+        'myTest',
+        Object.assign({}, this.supplierDeposit),
+        this.supplierDeposit.SupBalguid,
+      )
+      .then(() => {
+        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
   }
 }

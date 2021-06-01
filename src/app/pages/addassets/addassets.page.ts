@@ -8,13 +8,7 @@ import {
   OtherInformation,
   RateInformation,
 } from './../../models/capture/Asset.model';
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  ElementRef,
-  AfterViewInit,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-addassets',
   templateUrl: './addassets.page.html',
@@ -40,18 +34,17 @@ export class AddassetsPage implements OnInit {
     private firebaseGetServ: FirebaseGetService,
   ) {
     this.asset = new Asset();
-    this.asset.generalInformation = new GeneralInformation();
-    this.asset.meterInformation = new MeterInformation();
-    this.asset.rateInformation = new RateInformation();
-    this.asset.otherInformation = new OtherInformation();
+    this.asset.generalInformation = Object.assign({}, new GeneralInformation());
+    this.asset.meterInformation = Object.assign({}, new MeterInformation());
+    this.asset.rateInformation = Object.assign({}, new RateInformation());
+    this.asset.otherInformation = Object.assign({}, new OtherInformation());
   }
 
   ngOnInit() {
-    //this.onMakeAndModel();
+    // this.onMakeAndModel();
     // this.onColor();
-    //this.onTireSizes();
-    //this.onDriver()
-    //this.onMeterType();
+    // this.onTireSizes();
+    // this.onDriver();
   }
 
   onlyUnique(value, index, self) {
@@ -66,17 +59,6 @@ export class AddassetsPage implements OnInit {
         this.popUp.dismissLoading();
       });
     });
-  }
-
-  onAdd() {
-    this.firebaseService
-      .writeData('myTest', this.asset, this.asset.generalInformation.ItemGuid)
-      .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully =)');
-      })
-      .catch((err) => {
-        this.popUp.showError(err);
-      });
   }
 
   onMakeAndModel() {
@@ -174,5 +156,20 @@ export class AddassetsPage implements OnInit {
 
   onRearTyreSel(colObj) {
     this.asset.generalInformation.RearTyreGuid = colObj.RearTyreGuid;
+  }
+
+  onAdd() {
+    this.firebaseService
+      .writeData(
+        'myTest',
+        Object.assign({}, this.asset),
+        this.asset.generalInformation.ItemGuid,
+      )
+      .then(() => {
+        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
   }
 }

@@ -11,34 +11,50 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
   styleUrls: ['./stafftimesheets.page.scss'],
 })
 export class StafftimesheetsPage implements OnInit {
-  staffTimesheet: StaffTimesheet
+  staffTimesheet: StaffTimesheet;
 
-  staffMember: any[]
+  staffMember: any[];
 
-  constructor(private navCtrl: NavController,
+  constructor(
+    private navCtrl: NavController,
     private firebaseService: FirebaseService,
-    private popUp: PopupHelper, private firebaseGetServ:
-    FirebaseGetService) {
+    private popUp: PopupHelper,
+    private firebaseGetServ: FirebaseGetService,
+  ) {
     this.staffTimesheet = new StaffTimesheet();
-   }
+  }
 
   ngOnInit() {
     // this.onStaffMember()
   }
 
-  goRevenue()
-  {
+  goRevenue() {
     this.navCtrl.navigateForward('revenue');
   }
 
-  onStaffMember(){
+  onStaffMember() {
     this.firebaseGetServ.getStaff().then((mNm: any) => {
-      this.staffMember = mNm
-    })
+      this.staffMember = mNm;
+    });
   }
-  onStaffMemberLeft(){
+  onStaffMemberLeft() {
     this.firebaseGetServ.getStaffLeft().then((mNm: any) => {
-      this.staffMember = mNm
-    })
+      this.staffMember = mNm;
+    });
+  }
+
+  onAdd() {
+    this.firebaseService
+      .writeData(
+        'myTest',
+        Object.assign({}, this.staffTimesheet),
+        this.staffTimesheet.Staff_TrnGuid,
+      )
+      .then(() => {
+        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
   }
 }

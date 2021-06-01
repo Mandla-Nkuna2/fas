@@ -11,20 +11,22 @@ import { FirebaseService } from 'src/app/services/firebase-service/firebase-serv
   styleUrls: ['./additionalcosts.page.scss'],
 })
 export class AdditionalcostsPage implements OnInit {
-  additionalCost: AdditionalCost
+  additionalCost: AdditionalCost;
 
-  additionalCostDesc: any []
+  additionalCostDesc: any[];
   registration: any;
   costCentre: any;
   staffcode: any;
   supplier: any;
 
-  constructor(private navCtrl: NavController,
+  constructor(
+    private navCtrl: NavController,
     private firebaseService: FirebaseService,
-    private popUp: PopupHelper, private firebaseGetServ:
-    FirebaseGetService) {
+    private popUp: PopupHelper,
+    private firebaseGetServ: FirebaseGetService,
+  ) {
     this.additionalCost = new AdditionalCost();
-   }
+  }
 
   ngOnInit() {
     // this.onRegistration()
@@ -33,62 +35,73 @@ export class AdditionalcostsPage implements OnInit {
     // this.onSupplier()
   }
 
-  goAutoCard()
-  {
+  goAutoCard() {
     this.navCtrl.navigateForward('autocardetails');
   }
 
-  onRegistration(){
+  onRegistration() {
     this.firebaseGetServ.getRegistration().then((mNm: any) => {
-      this.registration = mNm
-    })
+      this.registration = mNm;
+    });
   }
-  onRegistrationLeft(){
+  onRegistrationLeft() {
     this.firebaseGetServ.getRegistrationLeft().then((mNm: any) => {
-      this.registration = mNm
-    })
+      this.registration = mNm;
+    });
   }
 
-  onAdditionalCostDesc(){
+  onAdditionalCostDesc() {
     // this.firebaseGetServ.getAddittionalCost().then((mNm: any) => {
     //   this.additionalCost = mNm
     // })
   }
 
-  onCostCentre(){
+  onCostCentre() {
     this.firebaseGetServ.getCostCentre().then((mNm: any) => {
-      this.costCentre = mNm
-    })
+      this.costCentre = mNm;
+    });
   }
 
-  onStaffCode(){
+  onStaffCode() {
     this.firebaseGetServ.getStaff().then((mNm: any) => {
-      this.staffcode = mNm
-    })
+      this.staffcode = mNm;
+    });
   }
-  onStaffCodeLeft(){
+  onStaffCodeLeft() {
     this.firebaseGetServ.getStaffLeft().then((mNm: any) => {
-      this.staffcode = mNm
-    })
+      this.staffcode = mNm;
+    });
   }
 
-  onSupplier(){
+  onSupplier() {
     this.firebaseGetServ.getSupplier().then((mNm: any) => {
-      this.supplier = mNm
-    })
+      this.supplier = mNm;
+    });
   }
-  onSupplierLeft(){
+  onSupplierLeft() {
     this.firebaseGetServ.getSupplierLeft().then((mNm: any) => {
-      this.supplier = mNm
-    })
+      this.supplier = mNm;
+    });
   }
 
-  onAdd(){}
+  onAdd() {
+    this.firebaseService
+      .writeData(
+        'myTest',
+        Object.assign({}, this.additionalCost),
+        this.additionalCost.AddCostGuid,
+      )
+      .then(() => {
+        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
+  }
 
-  onDelete(){}
+  onDelete() {}
 
-  onClear(){}
+  onClear() {}
 
-  onModify(){}
-
+  onModify() {}
 }

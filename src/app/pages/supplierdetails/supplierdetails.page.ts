@@ -32,9 +32,13 @@ export class SupplierdetailsPage implements OnInit {
 
   onAdd() {
     this.firebaseService
-      .writeData('myTest', this.supplier, this.supplier.SuppGuid)
+      .writeData(
+        'myTest',
+        Object.assign({}, this.supplier),
+        this.supplier.SuppGuid,
+      )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully =)');
+        this.popUp.showAlert('Success', 'Data saved successfully :-)');
       })
       .catch((err) => {
         this.popUp.showError(err);

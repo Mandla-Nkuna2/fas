@@ -11,19 +11,21 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
   styleUrls: ['./storeissue.page.scss'],
 })
 export class StoreissuePage implements OnInit {
-  storeIssue: StoreIssue
+  storeIssue: StoreIssue;
 
-  registration: any[]
-  MaintEvRefNo: any []
+  registration: any[];
+  MaintEvRefNo: any[];
   supplier: any;
   storeItem: any;
 
-  constructor(private navCtrl: NavController,
+  constructor(
+    private navCtrl: NavController,
     private firebaseService: FirebaseService,
-    private popUp: PopupHelper, private firebaseGetServ:
-    FirebaseGetService) {
-    this.storeIssue = new StoreIssue()
-   }
+    private popUp: PopupHelper,
+    private firebaseGetServ: FirebaseGetService,
+  ) {
+    this.storeIssue = new StoreIssue();
+  }
 
   ngOnInit() {
     // this.onRegistration()
@@ -32,47 +34,61 @@ export class StoreissuePage implements OnInit {
     // this.onStoreItem()
   }
 
-  goSupplierDeposit()
-  {
+  goSupplierDeposit() {
     this.navCtrl.navigateForward('supdeposit');
   }
 
-  onRegistration(){
+  onRegistration() {
     this.firebaseGetServ.getRegistration().then((mNm: any) => {
-      this.registration = mNm
-    })
+      this.registration = mNm;
+    });
   }
-  onRegistrationLeft(){
+  onRegistrationLeft() {
     this.firebaseGetServ.getRegistrationLeft().then((mNm: any) => {
-      this.registration = mNm
-    })
+      this.registration = mNm;
+    });
   }
 
-  onMaintEvRefNo(){
+  onMaintEvRefNo() {
     this.firebaseGetServ.getMaintEvRefNo().then((mNm: any) => {
-      this.MaintEvRefNo = mNm
-    })
+      this.MaintEvRefNo = mNm;
+    });
   }
-  onMaintEvRefNoLeft(){
+  onMaintEvRefNoLeft() {
     this.firebaseGetServ.getMaintEvRefNoLeft().then((mNm: any) => {
-      this.MaintEvRefNo = mNm
-    })
+      this.MaintEvRefNo = mNm;
+    });
   }
 
-  onSupplier(){
+  onSupplier() {
     this.firebaseGetServ.getSupplier().then((mNm: any) => {
-      this.supplier = mNm
-    })
+      this.supplier = mNm;
+    });
   }
-  onSupplierleft(){
+  onSupplierleft() {
     this.firebaseGetServ.getSupplierLeft().then((mNm: any) => {
-      this.supplier = mNm
-    })
+      this.supplier = mNm;
+    });
   }
 
-  onStoreItem(){
+  onStoreItem() {
     this.firebaseGetServ.getStoreItem().then((mNm: any) => {
-      this.storeItem = mNm
-    })
+      this.storeItem = mNm;
+    });
+  }
+
+  onAdd() {
+    this.firebaseService
+      .writeData(
+        'myTest',
+        Object.assign({}, this.storeIssue),
+        this.storeIssue.StoreIssueGuid,
+      )
+      .then(() => {
+        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
   }
 }

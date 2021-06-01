@@ -10,24 +10,41 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
   styleUrls: ['./browsertransfer.page.scss'],
 })
 export class BrowsertransferPage implements OnInit {
-  bowserTransfer: BowserTransfer
+  bowserTransfer: BowserTransfer;
 
-  voucherNo: any[]
+  voucherNo: any[];
   costCentre: any;
 
-  constructor(private firebaseService: FirebaseService,
-    private popUp: PopupHelper, private firebaseGetServ:
-    FirebaseGetService) {
-    this.bowserTransfer = new BowserTransfer()
-   }
+  constructor(
+    private firebaseService: FirebaseService,
+    private popUp: PopupHelper,
+    private firebaseGetServ: FirebaseGetService,
+  ) {
+    this.bowserTransfer = new BowserTransfer();
+  }
 
   ngOnInit() {
     // this.onCostCentre()
   }
 
-  onCostCentre(){
+  onCostCentre() {
     this.firebaseGetServ.getCostCentre().then((mNm: any) => {
-      this.costCentre = mNm
-    })
+      this.costCentre = mNm;
+    });
+  }
+
+  onAdd() {
+    this.firebaseService
+      .writeData(
+        'myTest',
+        Object.assign({}, this.bowserTransfer),
+        this.bowserTransfer.FuelTransferGuid,
+      )
+      .then(() => {
+        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
   }
 }

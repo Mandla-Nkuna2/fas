@@ -11,34 +11,50 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
   styleUrls: ['./autocardetails.page.scss'],
 })
 export class AutocardetailsPage implements OnInit {
-  autocard: AutoCard
+  autocard: AutoCard;
 
-  registration: any []
+  registration: any[];
 
-  constructor(private navCtrl: NavController,
+  constructor(
+    private navCtrl: NavController,
     private firebaseService: FirebaseService,
-    private popUp: PopupHelper, private firebaseGetServ:
-    FirebaseGetService) {
-    this.autocard = new AutoCard()
-   }
+    private popUp: PopupHelper,
+    private firebaseGetServ: FirebaseGetService,
+  ) {
+    this.autocard = new AutoCard();
+  }
 
   ngOnInit() {
     // this.onRegistration()
   }
 
-  goBrowserTransactions()
-  {
+  goBrowserTransactions() {
     this.navCtrl.navigateForward('browsertransactions');
   }
 
-  onRegistration(){
+  onRegistration() {
     this.firebaseGetServ.getRegistration().then((mNm: any) => {
-      this.registration = mNm
-    })
+      this.registration = mNm;
+    });
   }
-  onRegistrationLeft(){
+  onRegistrationLeft() {
     this.firebaseGetServ.getRegistrationLeft().then((mNm: any) => {
-      this.registration = mNm
-    })
+      this.registration = mNm;
+    });
+  }
+
+  onAdd() {
+    this.firebaseService
+      .writeData(
+        'myTest',
+        Object.assign({}, this.autocard),
+        this.autocard.AutoCardGuid,
+      )
+      .then(() => {
+        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
   }
 }

@@ -24,9 +24,13 @@ export class LocationPage implements OnInit {
 
   onAdd() {
     this.firebaseService
-      .writeData('myTest', this.location, this.location.LocGuid)
+      .writeData(
+        'myTest',
+        Object.assign({}, this.location),
+        this.location.LocGuid,
+      )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully =)');
+        this.popUp.showAlert('Success', 'Data saved successfully :-)');
       })
       .catch((err) => {
         this.popUp.showError(err);

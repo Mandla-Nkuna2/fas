@@ -38,9 +38,13 @@ export class OilstorePage implements OnInit {
 
   onAdd() {
     this.firebaseService
-      .writeData('myTest', this.oilStore, this.oilStore.OilStoreGuid)
+      .writeData(
+        'myTest',
+        Object.assign({}, this.oilStore),
+        this.oilStore.OilStoreGuid,
+      )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully =)');
+        this.popUp.showAlert('Success', 'Data saved successfully :-)');
       })
       .catch((err) => {
         this.popUp.showError(err);

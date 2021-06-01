@@ -11,43 +11,58 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
   styleUrls: ['./oilstoretrans.page.scss'],
 })
 export class OilstoretransPage implements OnInit {
-  oilstoreTrans: OilStoreTransaction
+  oilstoreTrans: OilStoreTransaction;
 
-  OilStore: any[]
-  oilStore: any [];
-  costCentre: any [];
+  OilStore: any[];
+  oilStore: any[];
+  costCentre: any[];
 
-  constructor( private navCtrl: NavController,
+  constructor(
+    private navCtrl: NavController,
     private firebaseService: FirebaseService,
-    private popUp: PopupHelper, private firebaseGetServ:
-    FirebaseGetService) {
-    this.oilstoreTrans = new OilStoreTransaction()
-   }
-
-  ngOnInit() {
+    private popUp: PopupHelper,
+    private firebaseGetServ: FirebaseGetService,
+  ) {
+    this.oilstoreTrans = new OilStoreTransaction();
   }
 
-  goOilTransfer()
-  {
+  ngOnInit() {}
+
+  goOilTransfer() {
     this.navCtrl.navigateForward('oiltransafer');
   }
 
-  onOilStore(){
+  onOilStore() {
     this.firebaseGetServ.getBowser().then((mNm: any) => {
-      this.oilStore = mNm
-    })
+      this.oilStore = mNm;
+    });
   }
-  onOilStoreLeft(){}
+  onOilStoreLeft() {}
 
-  onOilType(){}
-  onOilTypeLeft(){}
+  onOilType() {}
+  onOilTypeLeft() {}
 
-  onSupplier(){}
-  onSupplierLeft(){}
+  onSupplier() {}
+  onSupplierLeft() {}
 
-  onCostCentre(){
+  onCostCentre() {
     this.firebaseGetServ.getCostCentre().then((mNm: any) => {
-      this.costCentre = mNm
-    })
+      this.costCentre = mNm;
+    });
+  }
+
+  onAdd() {
+    this.firebaseService
+      .writeData(
+        'myTest',
+        Object.assign({}, this.oilstoreTrans),
+        this.oilstoreTrans.OilStoreTrnGuid,
+      )
+      .then(() => {
+        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
   }
 }

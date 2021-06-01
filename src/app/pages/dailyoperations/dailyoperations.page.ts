@@ -24,7 +24,7 @@ export class DailyoperationsPage implements OnInit {
     this.firebaseService
       .writeData('myTest', this.dailyOpRec, this.dailyOpRec.Itemguid)
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully =)');
+        this.popUp.showAlert('Success', 'Data saved successfully :-)');
       })
       .catch((err) => {
         this.popUp.showError(err);

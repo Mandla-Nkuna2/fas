@@ -49,9 +49,13 @@ export class OiltypePage implements OnInit {
 
   onAdd() {
     this.firebaseService
-      .writeData('myTest', this.oilType, this.oilType.OilGuid)
+      .writeData(
+        'myTest',
+        Object.assign({}, this.oilType),
+        this.oilType.OilGuid,
+      )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully =)');
+        this.popUp.showAlert('Success', 'Data saved successfully :-)');
       })
       .catch((err) => {
         this.popUp.showError(err);

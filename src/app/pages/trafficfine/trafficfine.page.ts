@@ -10,15 +10,17 @@ import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-g
   styleUrls: ['./trafficfine.page.scss'],
 })
 export class TrafficfinePage implements OnInit {
-  trafficfine: Trafficfine
+  trafficfine: Trafficfine;
 
-  supervisor: any []
-  registration: any [];
-  driver: any []
+  supervisor: any[];
+  registration: any[];
+  driver: any[];
 
-  constructor(private firebaseService: FirebaseService,
-    private popUp: PopupHelper, private firebaseGetServ:
-    FirebaseGetService) {
+  constructor(
+    private firebaseService: FirebaseService,
+    private popUp: PopupHelper,
+    private firebaseGetServ: FirebaseGetService,
+  ) {
     this.trafficfine = new Trafficfine();
   }
 
@@ -28,45 +30,47 @@ export class TrafficfinePage implements OnInit {
     // this.onDriver()
   }
 
-  onSupervisor(){
+  onSupervisor() {
     this.firebaseGetServ.getStaff().then((mNm: any) => {
-      this.supervisor = mNm
-    })
+      this.supervisor = mNm;
+    });
   }
-  onSupervisorLeft(){
+  onSupervisorLeft() {
     this.firebaseGetServ.getStaffLeft().then((mNm: any) => {
-      this.supervisor = mNm
-    })
+      this.supervisor = mNm;
+    });
   }
 
-  onRegistration(){
+  onRegistration() {
     this.firebaseGetServ.getRegistration().then((mNm: any) => {
-      this.registration = mNm
-    })
+      this.registration = mNm;
+    });
   }
-  onRegistrationLeft(){
+  onRegistrationLeft() {
     this.firebaseGetServ.getRegistrationLeft().then((mNm: any) => {
-      this.registration = mNm
-    })
+      this.registration = mNm;
+    });
   }
 
-  onDriver(){
+  onDriver() {
     this.firebaseGetServ.getDriver().then((mNm: any) => {
-      this.driver = mNm
-    })
+      this.driver = mNm;
+    });
   }
-  onDriverLeft(){}
+  onDriverLeft() {}
 
-  onAdd(){
-    this.firebaseService.writeData('myTest', this.trafficfine, this.trafficfine.TrafficFineGuid).then(() => {
-      this.popUp.showAlert('Success', 'Data saved successfully =)')
-    }).catch((err) => {
-      this.popUp.showError(err);
-    })
+  onMarkAsComplete() {
+    this.firebaseService
+      .writeData(
+        'myTest',
+        Object.assign({}, this.trafficfine),
+        this.trafficfine.TrafficFineGuid,
+      )
+      .then(() => {
+        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
   }
-
-  onMarkAsComplete(){
-
-  }
-
 }

@@ -20,7 +20,7 @@ testAsset: TestAssets
 
   onAdd(){
     this.firebaseSevice.writeData('myTest', this.testAsset, this.testAsset.id).then(() => {
-      this.popUp.showAlert('Success', 'Data saved successfully =)')
+      this.popUp.showAlert('Success', 'Data saved successfully :-)')
     }).catch((err) =>  {
       this.popUp.showError(err);
     })

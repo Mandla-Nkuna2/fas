@@ -10,36 +10,53 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
   styleUrls: ['./fixedcostransfer.page.scss'],
 })
 export class FixedcostransferPage implements OnInit {
-  fixedCostTransf: FixedCostTransfer
+  fixedCostTransf: FixedCostTransfer;
 
-  registration: any[]
-  costCentre: any [];
+  registration: any[];
+  costCentre: any[];
 
-  constructor(private firebaseService: FirebaseService,
-    private popUp: PopupHelper, private firebaseGetServ:
-    FirebaseGetService) {
-    this.fixedCostTransf = new FixedCostTransfer()
-   }
+  constructor(
+    private firebaseService: FirebaseService,
+    private popUp: PopupHelper,
+    private firebaseGetServ: FirebaseGetService,
+  ) {
+    this.fixedCostTransf = new FixedCostTransfer();
+  }
 
   ngOnInit() {
     // this.onRegistration()
     // this.onCostCentre()
   }
 
-  onRegistration(){
+  onRegistration() {
     this.firebaseGetServ.getRegistration().then((mNm: any) => {
-      this.registration = mNm
-    })
+      this.registration = mNm;
+    });
   }
-  onRegistrationLeft(){
+  onRegistrationLeft() {
     this.firebaseGetServ.getRegistrationLeft().then((mNm: any) => {
-      this.registration = mNm
-    })
+      this.registration = mNm;
+    });
   }
 
-  onCostCentre(){
+  onCostCentre() {
     this.firebaseGetServ.getCostCentre().then((mNm: any) => {
-      this.costCentre = mNm
-    })
+      this.costCentre = mNm;
+    });
+  }
+
+  onAdd() {
+    this.firebaseService
+      .writeData(
+        'myTest',
+        Object.assign({}, this.fixedCostTransf),
+        this.fixedCostTransf.FixedcostTransGuid,
+      )
+      .then(() => {
+        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
   }
 }

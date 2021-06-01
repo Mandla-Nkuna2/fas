@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./parameters.page.scss'],
 })
 export class ParametersPage implements OnInit {
+  month: any;
   months = [
     'January',
     'February',
@@ -18,13 +19,11 @@ export class ParametersPage implements OnInit {
     'September',
     'October',
     'November',
-    'December'
-  ]
+    'December',
+  ];
 
-  hours: any
-  constructor() { }
+  hours: any;
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

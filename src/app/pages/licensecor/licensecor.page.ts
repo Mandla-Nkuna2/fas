@@ -11,17 +11,19 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
   styleUrls: ['./licensecor.page.scss'],
 })
 export class LicensecorPage implements OnInit {
-  licCorAndSafInspec: LicCorAndSafInspcDates
+  licCorAndSafInspec: LicCorAndSafInspcDates;
 
-  registration: any[]
-  costCentre: any[]
-  yesNo = ['Y', 'N']
+  registration: any[];
+  costCentre: any[];
+  yesNo = ['Y', 'N'];
 
-  constructor(private navCtrl: NavController,
+  constructor(
+    private navCtrl: NavController,
     private firebaseService: FirebaseService,
-    private popUp: PopupHelper, private firebaseGetServ:
-    FirebaseGetService) {
-    this.licCorAndSafInspec = new LicCorAndSafInspcDates()
+    private popUp: PopupHelper,
+    private firebaseGetServ: FirebaseGetService,
+  ) {
+    this.licCorAndSafInspec = new LicCorAndSafInspcDates();
   }
 
   ngOnInit() {
@@ -29,29 +31,39 @@ export class LicensecorPage implements OnInit {
     // this.onCostCentre()
   }
 
-  goLossControl()
-  {
+  goLossControl() {
     this.navCtrl.navigateForward('losscontrol');
   }
 
-  onAdd(){
-
-  }
-
-  onRegistration(){
+  onRegistration() {
     this.firebaseGetServ.getRegistration().then((mNm: any) => {
-      this.registration = mNm
-    })
+      this.registration = mNm;
+    });
   }
-  onRegistrationLeft(){
+  onRegistrationLeft() {
     this.firebaseGetServ.getRegistrationLeft().then((mNm: any) => {
-      this.registration = mNm
-    })
+      this.registration = mNm;
+    });
   }
 
-  onCostCentre(){
+  onCostCentre() {
     this.firebaseGetServ.getCostCentre().then((mNm: any) => {
-      this.costCentre = mNm
-    })
+      this.costCentre = mNm;
+    });
+  }
+
+  onAdd() {
+    this.firebaseService
+      .writeData(
+        'myTest',
+        Object.assign({}, this.licCorAndSafInspec),
+        this.licCorAndSafInspec.LicHistIndex,
+      )
+      .then(() => {
+        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
   }
 }

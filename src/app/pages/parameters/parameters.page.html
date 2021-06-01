@@ -12,12 +12,9 @@
         <ion-label>Month</ion-label>
         <ion-item>
           <ionic-selectable
-            [(ngModel)]="months"
+            [(ngModel)]="month"
             [items]="months"
-            itemValueField="CompNameGuid"
-            itemTextField="CompName"
             [canSearch]="true"
-            [hasInfiniteScroll]="true"
           >
           </ionic-selectable>
         </ion-item>

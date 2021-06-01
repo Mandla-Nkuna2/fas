@@ -48,7 +48,7 @@ export class BowserPage implements OnInit {
     this.firebaseService
       .writeData('myTest', this.bowser, this.bowser.BowserGuid)
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully =)');
+        this.popUp.showAlert('Success', 'Data saved successfully :-)');
       })
       .catch((err) => {
         this.popUp.showError(err);

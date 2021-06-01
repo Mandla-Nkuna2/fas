@@ -11,21 +11,23 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
   styleUrls: ['./losscontrol.page.scss'],
 })
 export class LosscontrolPage implements OnInit {
-  lossControl: LossControl
+  lossControl: LossControl;
 
-  agent: any []
-  registration: any []
-  lossType: any []
-  yesNo = ['Y', 'N']
-  reportedBy: any []
-  driver: any []
-  lossCntrlAction: any []
+  agent: any[];
+  registration: any[];
+  lossType: any[];
+  yesNo = ['Y', 'N'];
+  reportedBy: any[];
+  driver: any[];
+  lossCntrlAction: any[];
 
-  constructor(private navCtrl: NavController,
+  constructor(
+    private navCtrl: NavController,
     private firebaseService: FirebaseService,
-    private popUp: PopupHelper, private firebaseGetServ:
-    FirebaseGetService) {
-    this.lossControl = new LossControl()
+    private popUp: PopupHelper,
+    private firebaseGetServ: FirebaseGetService,
+  ) {
+    this.lossControl = new LossControl();
   }
 
   ngOnInit() {
@@ -35,70 +37,83 @@ export class LosscontrolPage implements OnInit {
     // this.onDriverName()
   }
 
-  goMEvent()
-  {
+  goMEvent() {
     this.navCtrl.navigateForward('maintaincevent');
   }
 
-  onAgent(){
+  onAgent() {
     this.firebaseGetServ.getStaff().then((mNm: any) => {
-      this.agent = mNm
-    })
+      this.agent = mNm;
+    });
   }
-  onAgentLeft(){
+  onAgentLeft() {
     this.firebaseGetServ.getStaffLeft().then((mNm: any) => {
-      this.agent = mNm
-    })
+      this.agent = mNm;
+    });
   }
 
-  onRegistration(){
+  onRegistration() {
     this.firebaseGetServ.getRegistration().then((mNm: any) => {
-      this.registration = mNm
-    })
+      this.registration = mNm;
+    });
   }
-  onRegistrationLeft(){
+  onRegistrationLeft() {
     this.firebaseGetServ.getRegistrationLeft().then((mNm: any) => {
-      this.registration = mNm
-    })
+      this.registration = mNm;
+    });
   }
 
-  onLossType(){
+  onLossType() {
     // this.firebaseGetServ.getLossType().then((mNm: any) => {
     //   this.registration = mNm
     // })
   }
-  onLossTypeLeft(){
+  onLossTypeLeft() {
     //this.firebaseGetServ.getLossType().then((mNm: any) => {
-      //   this.registration = mNm
-      // })
+    //   this.registration = mNm
+    // })
   }
 
-  onReportedBy(){
+  onReportedBy() {
     this.firebaseGetServ.getStaff().then((mNm: any) => {
-      this.reportedBy = mNm
-    })
+      this.reportedBy = mNm;
+    });
   }
-  onReportedByLeft(){
+  onReportedByLeft() {
     this.firebaseGetServ.getStaffLeft().then((mNm: any) => {
-      this.reportedBy = mNm
-    })
+      this.reportedBy = mNm;
+    });
   }
 
-  onDriverName(){
+  onDriverName() {
     this.firebaseGetServ.getDriver().then((mNm: any) => {
-      this.driver = mNm
-    })
+      this.driver = mNm;
+    });
   }
 
-  onActionTaken(){
+  onActionTaken() {
     // this.firebaseGetServ.getLossCntrlAct().then((mNm: any) => {
     //   this.lossCntrlAction = mNm
     // })
   }
-  onActionTakenLeft(){
-     // this.firebaseGetServ.getLossCntrlActLeft().then((mNm: any) => {
+  onActionTakenLeft() {
+    // this.firebaseGetServ.getLossCntrlActLeft().then((mNm: any) => {
     //   this.lossCntrlAction = mNm
     // })
   }
 
+  onAdd() {
+    this.firebaseService
+      .writeData(
+        'myTest',
+        Object.assign({}, this.lossControl),
+        this.lossControl.LossContGuid,
+      )
+      .then(() => {
+        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
+  }
 }

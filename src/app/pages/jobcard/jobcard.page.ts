@@ -7,6 +7,7 @@ import {
   VehicleInformation,
   ServiceInformation,
   ComponentOfCar,
+  WorkDone_MechanicsReport,
 } from '../../models/capture/JobCard.model';
 import { FirebaseGetService } from '../../services/firebase-service/firebase-get.service';
 import { SignaturePad } from 'angular2-signaturepad/signature-pad';
@@ -30,10 +31,26 @@ export class JobcardPage implements OnInit {
     private firebaseGetServ: FirebaseGetService,
   ) {
     this.jobCard = new JobCard();
-    this.jobCard.generalInformation = new GeneralInformation();
-    this.jobCard.vehicleInformation = new VehicleInformation();
-    this.jobCard.serviceInformation = new ServiceInformation();
-    this.jobCard.serviceInformation.componentOfCar = new ComponentOfCar();
+    this.jobCard.generalInformation = Object.assign(
+      {},
+      new GeneralInformation(),
+    );
+    this.jobCard.vehicleInformation = Object.assign(
+      {},
+      new VehicleInformation(),
+    );
+    this.jobCard.serviceInformation = Object.assign(
+      {},
+      new ServiceInformation(),
+    );
+    this.jobCard.serviceInformation.componentOfCar = Object.assign(
+      {},
+      new ComponentOfCar(),
+    );
+    this.jobCard.serviceInformation.workDone_MechanicsReport = Object.assign(
+      {},
+      new WorkDone_MechanicsReport(),
+    );
   }
 
   ngOnInit() {
@@ -64,21 +81,6 @@ export class JobcardPage implements OnInit {
     console.log('begin drawing');
   }
 
-  onAdd() {
-    this.firebaseService
-      .writeData(
-        'myTest',
-        this.jobCard,
-        this.jobCard.generalInformation.JobCardNo,
-      )
-      .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully =)');
-      })
-      .catch((err) => {
-        this.popUp.showError(err);
-      });
-  }
-
   onReportedBy() {
     this.firebaseGetServ.getStaff().then((staff) => {
       this.staff = staff;
@@ -106,4 +108,19 @@ export class JobcardPage implements OnInit {
   }
 
   onChange() {}
+
+  onAdd() {
+    this.firebaseService
+      .writeData(
+        'myTest',
+        Object.assign({}, this.jobCard),
+        this.jobCard.generalInformation.JobCardNo,
+      )
+      .then(() => {
+        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
+  }
 }

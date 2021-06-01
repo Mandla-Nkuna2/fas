@@ -47,9 +47,9 @@ export class UsersPage implements OnInit {
 
   onAdd() {
     this.firebaseService
-      .writeData('myTest', this.user, this.user.UserGuid)
+      .writeData('myTest', Object.assign({}, this.user), this.user.UserGuid)
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully =)');
+        this.popUp.showAlert('Success', 'Data saved successfully :-)');
       })
       .catch((err) => {
         this.popUp.showError(err);

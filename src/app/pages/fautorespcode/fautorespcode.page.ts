@@ -24,9 +24,13 @@ export class FautorespcodePage implements OnInit {
 
   onAdd() {
     this.firebaseService
-      .writeData('myTest', this.fautorespcode, this.fautorespcode.ResponseGuid)
+      .writeData(
+        'myTest',
+        Object.assign({}, this.fautorespcode),
+        this.fautorespcode.ResponseGuid,
+      )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully =)');
+        this.popUp.showAlert('Success', 'Data saved successfully :-)');
       })
       .catch((err) => {
         this.popUp.showError(err);

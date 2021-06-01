@@ -29,9 +29,13 @@ export class VotecodesPage implements OnInit {
 
   onAdd() {
     this.firebaseService
-      .writeData('myTest', this.voteCode, this.voteCode.VoteCodeGuid)
+      .writeData(
+        'myTest',
+        Object.assign({}, this.voteCode),
+        this.voteCode.VoteCodeGuid,
+      )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully =)');
+        this.popUp.showAlert('Success', 'Data saved successfully :-)');
       })
       .catch((err) => {
         this.popUp.showError(err);

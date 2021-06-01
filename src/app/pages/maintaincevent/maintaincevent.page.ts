@@ -105,4 +105,19 @@ export class MaintainceventPage implements OnInit {
       this.costCentre = staff;
     });
   }
+
+  onAdd() {
+    this.firebaseService
+      .writeData(
+        'myTest',
+        Object.assign({}, this.maintenanceEvent),
+        this.maintenanceEvent.MaintEvntGuid,
+      )
+      .then(() => {
+        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
+  }
 }

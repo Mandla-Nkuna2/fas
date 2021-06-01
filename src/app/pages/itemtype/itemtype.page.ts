@@ -78,7 +78,7 @@ export class ItemtypePage implements OnInit {
     this.firebaseService
       .writeData('myTest', this.itemType, this.itemType.ItemTypeGuid)
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully =)');
+        this.popUp.showAlert('Success', 'Data saved successfully :-)');
       })
       .catch((err) => {
         this.popUp.showError(err);

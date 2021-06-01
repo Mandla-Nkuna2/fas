@@ -11,36 +11,52 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
   styleUrls: ['./overheadtrans.page.scss'],
 })
 export class OverheadtransPage implements OnInit {
-  overheadTrans: OverheadTransaction
+  overheadTrans: OverheadTransaction;
 
-  overheadType: any[]
-  costCentre: any [];
+  overheadType: any[];
+  costCentre: any[];
 
-  constructor(private navCtrl: NavController,
+  constructor(
+    private navCtrl: NavController,
     private firebaseService: FirebaseService,
-    private popUp: PopupHelper, private firebaseGetServ:
-    FirebaseGetService) {
-    this.overheadTrans = new OverheadTransaction()
-   }
+    private popUp: PopupHelper,
+    private firebaseGetServ: FirebaseGetService,
+  ) {
+    this.overheadTrans = new OverheadTransaction();
+  }
 
   ngOnInit() {
     // this.onCostCentre()
   }
 
-  goStaffTimeSheet()
-  {
+  goStaffTimeSheet() {
     this.navCtrl.navigateForward('stafftimesheets');
   }
 
-  onOverheadType(){
+  onOverheadType() {
     // this.firebaseGetServ.getOverheadType().then((mNm: any) => {
     //   this.overheadType = mNm
     // })
   }
 
-  onCostCentre(){
+  onCostCentre() {
     this.firebaseGetServ.getCostCentre().then((mNm: any) => {
-      this.costCentre = mNm
-    })
+      this.costCentre = mNm;
+    });
+  }
+
+  onAdd() {
+    this.firebaseService
+      .writeData(
+        'myTest',
+        Object.assign({}, this.overheadTrans),
+        this.overheadTrans.OverheadGuid,
+      )
+      .then(() => {
+        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
   }
 }

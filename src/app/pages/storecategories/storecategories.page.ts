@@ -36,9 +36,13 @@ export class StorecategoriesPage implements OnInit {
 
   onAdd() {
     this.firebaseService
-      .writeData('myTest', this.storeCat, this.storeCat.StoreCatgGuid)
+      .writeData(
+        'myTest',
+        Object.assign({}, this.storeCat),
+        this.storeCat.StoreCatgGuid,
+      )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully =)');
+        this.popUp.showAlert('Success', 'Data saved successfully :-)');
       })
       .catch((err) => {
         this.popUp.showError(err);

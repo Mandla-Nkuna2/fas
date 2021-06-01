@@ -94,5 +94,26 @@ export class ItemcomponentsPage implements OnInit {
       );
     });
   }
-  onServiceIntvLeft() {}
+  onServiceIntvLeft() {
+    this.firebaseGetServ.getServiceIntvlLeft().then((mNm: any) => {
+      this.servIntvl = mNm.sort((a, b) =>
+        a.ServIntval > b.ServIntval ? 1 : -1,
+      );
+    });
+  }
+
+  onAdd() {
+    this.firebaseService
+      .writeData(
+        'myTest',
+        Object.assign({}, this.itemComponent),
+        this.itemComponent.ItemCompGuid,
+      )
+      .then(() => {
+        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
+  }
 }
