@@ -671,14 +671,13 @@
                     ngDefaultControl
                     #signatureCanvas
                     [options]="signaturePadOptions"
-                    (onBeginEvent)="drawStart()"
-                    (onEndEvent)="drawComplete()"
+                    (onEndEvent)="onMechSig()"
                   ></signature-pad>
                 </ion-item>
-                <ion-item lines="none">
+                <!-- <ion-item lines="none">
                   <label for="img">Select image:</label>
                   <input type="file" id="img" name="img" accept="image/*" />
-                </ion-item>
+                </ion-item> -->
               </div>
             </ion-col>
 
@@ -690,13 +689,8 @@
                     ngDefaultControl
                     #signatureCanvas
                     [options]="signaturePadOptions"
-                    (onBeginEvent)="drawStart()"
-                    (onEndEvent)="drawComplete()"
+                    (onEndEvent)="onForemanSig()"
                   ></signature-pad>
-                </ion-item>
-                <ion-item lines="none">
-                  <label for="img">Select image:</label>
-                  <input type="file" id="img" name="img" accept="image/*" />
                 </ion-item>
               </div>
             </ion-col>
@@ -709,13 +703,8 @@
                     ngDefaultControl
                     #signatureCanvas
                     [options]="signaturePadOptions"
-                    (onBeginEvent)="drawStart()"
-                    (onEndEvent)="drawComplete()"
+                    (onEndEvent)="onOperatorSig()"
                   ></signature-pad>
-                </ion-item>
-                <ion-item lines="none">
-                  <label for="img">Select image:</label>
-                  <input type="file" id="img" name="img" accept="image/*" />
                 </ion-item>
               </div>
             </ion-col>

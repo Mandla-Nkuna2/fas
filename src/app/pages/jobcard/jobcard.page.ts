@@ -25,6 +25,10 @@ export class JobcardPage implements OnInit {
   staff: any = [];
   driver: any[];
 
+  mechanicSig = '';
+  foremanSig = '';
+  operatorSig = '';
+
   constructor(
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
@@ -71,14 +75,28 @@ export class JobcardPage implements OnInit {
     this.signaturePad.clear(); // invoke functions from szimek/signature_pad API
   }
 
-  drawComplete() {
-    // will be notified of szimek/signature_pad's onEnd event
-    console.log(this.signaturePad.toDataURL());
+  onMechSig() {
+    this.mechanicSig = this.signaturePad
+      .toDataURL()
+      .substring('data:image/png;base64,'.length);
+    this.jobCard.serviceInformation.workDone_MechanicsReport.mechanicSignature =
+      this.mechanicSig;
   }
 
-  drawStart() {
-    // will be notified of szimek/signature_pad's onBegin event
-    console.log('begin drawing');
+  onForemanSig() {
+    this.foremanSig = this.signaturePad
+      .toDataURL()
+      .substring('data:image/png;base64,'.length);
+    this.jobCard.serviceInformation.workDone_MechanicsReport.foremanSignature =
+      this.foremanSig;
+  }
+
+  onOperatorSig() {
+    this.operatorSig = this.signaturePad
+      .toDataURL()
+      .substring('data:image/png;base64,'.length);
+    this.jobCard.serviceInformation.workDone_MechanicsReport.operatorSignature =
+      this.operatorSig;
   }
 
   onReportedBy() {

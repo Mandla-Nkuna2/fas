@@ -8,22 +8,20 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
-
 export class AppComponent {
-
   public selectedIndex = 0;
   public appPages = [
     {
       title: 'Dashboard',
       url: 'dashboard',
-      icon:'assets/imgs/dash.svg',
-      icona:'assets/imgs/dasha.svg'
+      icon: 'assets/imgs/dash.svg',
+      icona: 'assets/imgs/dasha.svg',
     },
     {
       title: 'Assets',
       url: 'assetdetail',
-      icon:'assets/imgs/asts.svg',
-      icona:'assets/imgs/astsa.svg',
+      icon: 'assets/imgs/asts.svg',
+      icona: 'assets/imgs/astsa.svg',
       // children:[
       //   {
       //     title: 'Asset Details',
@@ -54,8 +52,8 @@ export class AppComponent {
     {
       title: 'Vehicles',
       url: 'fleet',
-      icon:'assets/imgs/vehicles.svg',
-      icona:'assets/imgs/vehiclesa.svg',
+      icon: 'assets/imgs/vehicles.svg',
+      icona: 'assets/imgs/vehiclesa.svg',
       // children:[
       //   {
       //     title: 'Fleet',
@@ -89,8 +87,8 @@ export class AppComponent {
     // },
     {
       title: 'Inspections',
-      icon:'assets/imgs/inspections.svg',
-      icona:'assets/imgs/inspectionsa.svg',
+      icon: 'assets/imgs/inspections.svg',
+      icona: 'assets/imgs/inspectionsa.svg',
       url: 'monthlyvehiclereport',
       // children:[
       //   {
@@ -109,8 +107,8 @@ export class AppComponent {
     },
     {
       title: 'Maintenance',
-      icon:'assets/imgs/maintain.svg',
-      icona:'assets/imgs/maintaina.svg',
+      icon: 'assets/imgs/maintain.svg',
+      icona: 'assets/imgs/maintaina.svg',
       url: 'repairhistory',
       // children:[
       //   {
@@ -133,9 +131,9 @@ export class AppComponent {
     },
     {
       title: 'Revenue',
-      icon:'assets/imgs/revenue.svg',
-      icona:'assets/imgs/revenuea.svg',
-      url:'revenue',
+      icon: 'assets/imgs/revenue.svg',
+      icona: 'assets/imgs/revenuea.svg',
+      url: 'revenue',
       // children:[
       //   {
       //     title: 'Revenue Earned',
@@ -145,9 +143,9 @@ export class AppComponent {
     },
     {
       title: 'Costs',
-      icon:'assets/imgs/revenue.svg',
-      icona:'assets/imgs/revenuea.svg',
-      url:'revenucosts',
+      icon: 'assets/imgs/revenue.svg',
+      icona: 'assets/imgs/revenuea.svg',
+      url: 'revenucosts',
       // children:[
       //   {
       //     title: 'fixedcostdetails',
@@ -177,9 +175,9 @@ export class AppComponent {
     },
     {
       title: 'Issues',
-      icon:'assets/imgs/issues.svg',
-      icona:'assets/imgs/issuesa.svg',
-      url:'storeissue',
+      icon: 'assets/imgs/issues.svg',
+      icona: 'assets/imgs/issuesa.svg',
+      url: 'storeissue',
       // children:[
       //   {
       //     title: 'storeissue',
@@ -221,8 +219,8 @@ export class AppComponent {
     },
     {
       title: 'Staff',
-      icon:'assets/imgs/users.svg',
-      icona:'assets/imgs/usersa.svg',
+      icon: 'assets/imgs/users.svg',
+      icona: 'assets/imgs/usersa.svg',
       url: 'stafftimesheets',
       // children:[
       //   {
@@ -246,8 +244,8 @@ export class AppComponent {
     {
       title: 'Imports',
       url: 'absaimport',
-      icon:'assets/imgs/asts.svg',
-      icona:'assets/imgs/astsa.svg',
+      icon: 'assets/imgs/asts.svg',
+      icona: 'assets/imgs/astsa.svg',
       // children:[
       //   {
       //     title: 'absaimport',
@@ -292,7 +290,7 @@ export class AppComponent {
     // },
   ];
 
-  showMenu = false;
+  showMenu = true;
 
   constructor(
     private storage: Storage,
@@ -303,51 +301,50 @@ export class AppComponent {
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-    this.loginCheck();
+    //this.loginCheck();
   }
 
-  loginCheck()  {
+  loginCheck() {
     let x = this.auth.authState;
     x.subscribe((rand) => {
       if (!rand) {
         this.showMenu = false;
         this.nav.navigateRoot('sign-in');
-      }
-      else  {
+      } else {
         this.showMenu = true;
       }
-    })
+    });
   }
 
-  goAddAssetsInfo(){
+  goAddAssetsInfo() {
     this.nav.navigateForward('assetdetail');
   }
 
-  goFleet(){
+  goFleet() {
     this.nav.navigateForward('fleet');
   }
 
-  goMaintanance(){
+  goMaintanance() {
     this.nav.navigateForward('jobcard');
   }
 
-  goRevenue(){
+  goRevenue() {
     this.nav.navigateForward('revenue');
   }
 
-  goCosts(){
+  goCosts() {
     this.nav.navigateForward('revenucosts');
   }
 
-  goIssues(){
+  goIssues() {
     this.nav.navigateForward('addissuesinfo');
   }
 
-  goStaff(){
+  goStaff() {
     this.nav.navigateForward('stafftimesheets');
   }
 
-  goImports(){
+  goImports() {
     this.nav.navigateForward('autocardetails');
   }
 }
