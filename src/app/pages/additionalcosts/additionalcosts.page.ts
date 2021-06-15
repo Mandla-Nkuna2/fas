@@ -29,10 +29,11 @@ export class AdditionalcostsPage implements OnInit {
   }
 
   ngOnInit() {
-    // this.onRegistration()
-    // this.onCostCentre()
-    // this.onStaffCode()
-    // this.onSupplier()
+    // this.onRegistration();
+    // this.onAdditionalCostDesc();
+    // this.onCostCentre();
+    // this.onStaffCode();
+    // this.onSupplier();
   }
 
   goAutoCard() {
@@ -51,9 +52,9 @@ export class AdditionalcostsPage implements OnInit {
   }
 
   onAdditionalCostDesc() {
-    // this.firebaseGetServ.getAddittionalCost().then((mNm: any) => {
-    //   this.additionalCost = mNm
-    // })
+    this.firebaseGetServ.getAddittionalCost().then((mNm: any) => {
+      this.additionalCostDesc = mNm;
+    });
   }
 
   onCostCentre() {

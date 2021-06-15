@@ -27,7 +27,7 @@ export class TrafficfinePage implements OnInit {
   ngOnInit() {
     // this.onSupervisor()
     // this.onRegistration()
-    // this.onDriver()
+    // this.onDriver();
   }
 
   onSupervisor() {
@@ -53,11 +53,15 @@ export class TrafficfinePage implements OnInit {
   }
 
   onDriver() {
-    this.firebaseGetServ.getDriver().then((mNm: any) => {
+    this.firebaseGetServ.getStaff().then((mNm: any) => {
       this.driver = mNm;
     });
   }
-  onDriverLeft() {}
+  onDriverLeft() {
+    this.firebaseGetServ.getStaffLeft().then((mNm: any) => {
+      this.driver = mNm;
+    });
+  }
 
   onMarkAsComplete() {
     this.firebaseService

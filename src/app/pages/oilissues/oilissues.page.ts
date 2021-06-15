@@ -30,11 +30,13 @@ export class OilissuesPage implements OnInit {
   }
 
   ngOnInit() {
-    // this.onRegistration()
-    // this.onOilStore()
-    // this.onSupplier()
-    // this.onCostCentre()
-    // this.onStaffCode()
+    // this.onRegistration();
+    this.onComponent();
+    // this.onOilStore();
+    // this.onSupplier();
+    this.onOilType();
+    // this.onCostCentre();
+    // this.onStaffCode();
   }
 
   goOilTransactions() {

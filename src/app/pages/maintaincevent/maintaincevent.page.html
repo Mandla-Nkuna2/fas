@@ -226,8 +226,8 @@
                 <ionic-selectable
                   [(ngModel)]="maintenanceEvent.JobCardGuid"
                   [items]="jobCardNo"
-                  itemValueField="ColourGuid"
-                  itemTextField="Colour"
+                  itemValueField="JobCardGuid"
+                  itemTextField="JobCardNo"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"
                   (onInfiniteScroll)="onJobCardNoLeft()"
@@ -290,12 +290,11 @@
               <ion-item>
                 <ionic-selectable
                   [(ngModel)]="maintenanceEvent.MaintReasonGuid"
-                  [items]="jobCardNo"
-                  itemValueField="ColourGuid"
-                  itemTextField="Colour"
+                  [items]="maintanceReason"
+                  itemValueField="MaintReasonGuid"
+                  itemTextField="MaintReason"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onJobCardNoLeft()"
                 >
                 </ionic-selectable>
               </ion-item>

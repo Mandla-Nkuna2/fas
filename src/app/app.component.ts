@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { NavController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
+import { FirebaseGetService } from './services/firebase-service/firebase-get.service';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -296,6 +297,7 @@ export class AppComponent {
     private storage: Storage,
     private auth: AngularFireAuth,
     private nav: NavController,
+    private firebaseGetServ: FirebaseGetService,
   ) {}
 
   ngOnInit(): void {

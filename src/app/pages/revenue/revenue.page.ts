@@ -28,7 +28,7 @@ export class RevenuePage implements OnInit {
 
   ngOnInit() {
     // this.onRegistration()
-    // this.onClient()
+    // this.onClient();
     // this.onCostCentre()
   }
 
@@ -48,9 +48,9 @@ export class RevenuePage implements OnInit {
   }
 
   onClient() {
-    // this.firebaseGetServ.getClient().then((staff: any) => {
-    //   this.client = staff
-    // })
+    this.firebaseGetServ.getClient().then((staff: any) => {
+      this.client = staff;
+    });
   }
 
   onCostCentre() {

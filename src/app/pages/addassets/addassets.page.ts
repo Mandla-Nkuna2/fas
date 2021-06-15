@@ -22,6 +22,7 @@ export class AddassetsPage implements OnInit {
   colors: any = [];
   tyreSizes: any = [];
   batteries: any = [];
+  batteryMake: any = [];
   drivers: any = [];
   meterTypes: any = ['HOUR', 'KM', 'N/A'];
   categories: any = ['MAJOR EQUIPMENT', 'METERLESS EQUIPMENT', 'VEHICLES'];
@@ -43,8 +44,9 @@ export class AddassetsPage implements OnInit {
   ngOnInit() {
     // this.onMakeAndModel();
     // this.onColor();
-    // this.onTireSizes();
+    this.onBattery();
     // this.onDriver();
+    // this.onTireSizes();
   }
 
   onlyUnique(value, index, self) {
@@ -95,20 +97,47 @@ export class AddassetsPage implements OnInit {
     });
   }
 
-  onBattery() {}
-  onBatteryLeft() {}
+  onBattery() {
+    this.firebaseGetServ.getBatteryMake().then((col: any) => {
+      this.batteryMake = col;
+    });
 
-  onDriver() {
-    this.firebaseGetServ.getDriver().then((col: any) => {
-      this.drivers = col;
-      // col.forEach(obj => {
-      //   if (obj.StaffCatgGuid == '7E55FF15-8B93-4CC4-B488-BC0E6FE2971E') {
-      //     this.driver.push(obj)
-      //   }
-      // });
+    this.firebaseGetServ.getBattery().then((col: any) => {
+      col.forEach((batObj) => {
+        this.batteryMake.forEach((batMk) => {
+          if (batMk.BatteryMakeGuid == batObj.BatteryMakeGuid) {
+            batObj.BatteryMake = batMk.BatteryMake;
+          }
+        });
+        batObj.BatteryText = batObj.BatterySize + ' ' + batObj.BatteryMake;
+      });
+      this.batteries = col;
     });
   }
-  onDriverLeft() {}
+  onBatteryLeft() {
+    this.firebaseGetServ.getBatteryLeft().then((col: any) => {
+      col.forEach((batObj) => {
+        this.batteryMake.forEach((batMk) => {
+          if (batMk.BatteryMakeGuid == batObj.BatteryMakeGuid) {
+            batObj.BatteryMake = batMk.BatteryMake;
+          }
+        });
+        batObj.BatteryText = batObj.BatterySize + ' ' + batObj.BatteryMake;
+      });
+      this.batteries = col;
+    });
+  }
+
+  onDriver() {
+    this.firebaseGetServ.getStaff().then((col: any) => {
+      this.drivers = col;
+    });
+  }
+  onDriverLeft() {
+    this.firebaseGetServ.getStaffLeft().then((col: any) => {
+      this.drivers = col;
+    });
+  }
 
   onTireSizes() {
     this.firebaseGetServ.getTyreSize().then((size: any) => {
@@ -119,43 +148,6 @@ export class AddassetsPage implements OnInit {
     this.firebaseGetServ.getTyreSizeLeft().then((size: any) => {
       this.tyreSizes = size;
     });
-  }
-
-  onChange(obj) {
-    console.log(obj.value);
-    console.log(this.asset.generalInformation.ColourGuid);
-  }
-
-  onColorSelected(colObj) {
-    this.asset.generalInformation.ColourGuid = colObj.colorGuid;
-  }
-
-  onMakeModelSel(colObj) {
-    this.asset.generalInformation.ItemMakModGuid = colObj.ItemMakModGuid;
-  }
-
-  onTypeSel(colObj) {
-    this.asset.generalInformation.ItemTypeGuid = colObj.ItemTypeGuid;
-  }
-
-  onCategorySel(colObj) {
-    this.asset.generalInformation.ItemCatg = colObj.ItemCatg;
-  }
-
-  onBatterySel(colObj) {
-    this.asset.generalInformation.BatteryGuid = colObj.BatteryGuid;
-  }
-
-  onDriverSel(colObj) {
-    this.asset.generalInformation.DriverName = colObj.DriverName;
-  }
-
-  onFrontTyreSel(colObj) {
-    this.asset.generalInformation.FrontTyreGuid = colObj.FrontTyreGuid;
-  }
-
-  onRearTyreSel(colObj) {
-    this.asset.generalInformation.RearTyreGuid = colObj.RearTyreGuid;
   }
 
   onAdd() {

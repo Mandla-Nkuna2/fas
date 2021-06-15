@@ -28,10 +28,10 @@ export class DailyoperationrecordPage implements OnInit {
   }
 
   ngOnInit() {
-    // this.onRegistration()
-    //this.onLocation()
-    // this.onCostCentre()
-    // this.onOperatorName()
+    // this.onRegistration();
+    // this.onLocation();
+    // this.onCostCentre();
+    // this.onOperatorName();
   }
 
   onRegistration() {
@@ -58,6 +58,11 @@ export class DailyoperationrecordPage implements OnInit {
 
   onCostCentre() {
     this.firebaseGetServ.getCostCentre().then((mNm: any) => {
+      this.costCentre = mNm;
+    });
+  }
+  onCostCentreLeft() {
+    this.firebaseGetServ.getCostCentreLeft().then((mNm: any) => {
       this.costCentre = mNm;
     });
   }

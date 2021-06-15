@@ -282,11 +282,9 @@
                 <ionic-selectable
                   [(ngModel)]="lossControl.LossTypeguid"
                   [items]="lossType"
-                  itemValueField="ColourGuid"
-                  itemTextField="Colour"
+                  itemValueField="LossContTypeguid"
+                  itemTextField="LossContType"
                   [canSearch]="true"
-                  [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onRegistrationLeft()"
                 >
                 </ionic-selectable>
               </ion-item>
@@ -376,6 +374,7 @@
                   itemTextField="StaffCode"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onDriverNameLeft()"
                 >
                 </ionic-selectable>
               </ion-item>
@@ -544,11 +543,9 @@
                 <ionic-selectable
                   [(ngModel)]="lossControl.LossContActguid"
                   [items]="lossCntrlAction"
-                  itemValueField="ColourGuid"
-                  itemTextField="Colour"
+                  itemValueField="LossContActGuid"
+                  itemTextField="LossContAct"
                   [canSearch]="true"
-                  [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onRegistrationLeft()"
                 >
                 </ionic-selectable>
               </ion-item>

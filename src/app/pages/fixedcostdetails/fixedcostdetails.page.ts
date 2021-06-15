@@ -27,8 +27,8 @@ export class FixedcostdetailsPage implements OnInit {
   }
 
   ngOnInit() {
-    // this.onFixedCostType()
-    // this.onRegistraion()
+    //this.onFixedCostType()
+    //this.onRegistraion()
   }
 
   goTransfer() {

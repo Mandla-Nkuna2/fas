@@ -26,7 +26,8 @@ export class OverheadtransPage implements OnInit {
   }
 
   ngOnInit() {
-    // this.onCostCentre()
+    // this.onOverheadType();
+    // this.onCostCentre();
   }
 
   goStaffTimeSheet() {
@@ -34,9 +35,9 @@ export class OverheadtransPage implements OnInit {
   }
 
   onOverheadType() {
-    // this.firebaseGetServ.getOverheadType().then((mNm: any) => {
-    //   this.overheadType = mNm
-    // })
+    this.firebaseGetServ.getOverheadType().then((mNm: any) => {
+      this.overheadType = mNm;
+    });
   }
 
   onCostCentre() {

@@ -31,10 +31,10 @@ export class MaintainceventPage implements OnInit {
   }
 
   ngOnInit() {
-    // this.onJobCardNo()
+    // this.onJobCardNo();
     // this.onRegistration()
     // this.onMaintType()
-    // this.onMaintReason()
+    // this.onMaintReason();
     // this.onSupplier()
     // this.onRequestedBy()
     // this.onConstCentre()
@@ -45,14 +45,14 @@ export class MaintainceventPage implements OnInit {
   }
 
   onJobCardNo() {
-    // this.firebaseGetServ.getJobCardNos().then((staff: any) => {
-    //   this.jobCardNo = staff
-    // })
+    this.firebaseGetServ.getJobCardNos().then((staff: any) => {
+      this.jobCardNo = staff;
+    });
   }
   onJobCardNoLeft() {
-    // this.firebaseGetServ.getJobCardNosLeft().then((staff: any) => {
-    //   this.jobCardNo = staff
-    // })
+    this.firebaseGetServ.getJobCardNosLeft().then((staff: any) => {
+      this.jobCardNo = staff;
+    });
   }
 
   onRegistration() {

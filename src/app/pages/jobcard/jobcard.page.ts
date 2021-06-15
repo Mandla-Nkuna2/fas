@@ -76,25 +76,22 @@ export class JobcardPage implements OnInit {
   }
 
   onMechSig() {
-    this.mechanicSig = this.signaturePad
-      .toDataURL()
-      .substring('data:image/png;base64,'.length);
+    this.mechanicSig = this.signaturePad.toDataURL();
+    // .substring('data:image/png;base64,'.length);
     this.jobCard.serviceInformation.workDone_MechanicsReport.mechanicSignature =
       this.mechanicSig;
   }
 
   onForemanSig() {
-    this.foremanSig = this.signaturePad
-      .toDataURL()
-      .substring('data:image/png;base64,'.length);
+    this.foremanSig = this.signaturePad.toDataURL();
+    // .substring('data:image/png;base64,'.length);
     this.jobCard.serviceInformation.workDone_MechanicsReport.foremanSignature =
       this.foremanSig;
   }
 
   onOperatorSig() {
-    this.operatorSig = this.signaturePad
-      .toDataURL()
-      .substring('data:image/png;base64,'.length);
+    this.operatorSig = this.signaturePad.toDataURL();
+    // .substring('data:image/png;base64,'.length);
     this.jobCard.serviceInformation.workDone_MechanicsReport.operatorSignature =
       this.operatorSig;
   }
@@ -115,12 +112,12 @@ export class JobcardPage implements OnInit {
   }
 
   onDriver() {
-    this.firebaseGetServ.getDriver().then((staff: any) => {
+    this.firebaseGetServ.getStaff().then((staff: any) => {
       this.driver = staff;
     });
   }
   onDriverLeft() {
-    this.firebaseGetServ.getDriver().then((staff: any) => {
+    this.firebaseGetServ.getStaffLeft().then((staff: any) => {
       this.driver = staff;
     });
   }

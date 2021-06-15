@@ -141,8 +141,8 @@
                   <ionic-selectable
                     [(ngModel)]="asset.generalInformation.BatteryGuid"
                     [items]="batteries"
-                    itemValueField="ColourGuid"
-                    itemTextField="color"
+                    itemValueField="BatteryGuid"
+                    itemTextField="BatteryText"
                     [canSearch]="true"
                     [hasInfiniteScroll]="true"
                     (onInfiniteScroll)="onBatteryLeft()"
@@ -266,6 +266,7 @@
                 <ion-item lines="none">
                   <ion-datetime
                     display-format="MMM DD YYYY hh:mm a"
+                    max="2025"
                     [(ngModel)]="asset.meterInformation.LicenceDate"
                   ></ion-datetime>
                 </ion-item>
@@ -374,6 +375,7 @@
                 <ion-item lines="none">
                   <ion-datetime
                     display-format="MMM DD YYYY hh:mm a"
+                    max="2025"
                     [(ngModel)]="asset.otherInformation.TerminalYear"
                   ></ion-datetime>
                 </ion-item>

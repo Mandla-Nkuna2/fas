@@ -31,10 +31,12 @@ export class LosscontrolPage implements OnInit {
   }
 
   ngOnInit() {
-    // this.onAgent()
+    //this.onAgent()
     //this.onRegistration()
-    // this.onReportedBy()
-    // this.onDriverName()
+    //this.onLossType();
+    //this.onReportedBy()
+    //this.onDriverName();
+    //this.onActionTaken();
   }
 
   goMEvent() {
@@ -64,14 +66,9 @@ export class LosscontrolPage implements OnInit {
   }
 
   onLossType() {
-    // this.firebaseGetServ.getLossType().then((mNm: any) => {
-    //   this.registration = mNm
-    // })
-  }
-  onLossTypeLeft() {
-    //this.firebaseGetServ.getLossType().then((mNm: any) => {
-    //   this.registration = mNm
-    // })
+    this.firebaseGetServ.getLossType().then((mNm: any) => {
+      this.lossType = mNm;
+    });
   }
 
   onReportedBy() {
@@ -86,20 +83,20 @@ export class LosscontrolPage implements OnInit {
   }
 
   onDriverName() {
-    this.firebaseGetServ.getDriver().then((mNm: any) => {
+    this.firebaseGetServ.getStaff().then((mNm: any) => {
+      this.driver = mNm;
+    });
+  }
+  onDriverNameLeft() {
+    this.firebaseGetServ.getStaffLeft().then((mNm: any) => {
       this.driver = mNm;
     });
   }
 
   onActionTaken() {
-    // this.firebaseGetServ.getLossCntrlAct().then((mNm: any) => {
-    //   this.lossCntrlAction = mNm
-    // })
-  }
-  onActionTakenLeft() {
-    // this.firebaseGetServ.getLossCntrlActLeft().then((mNm: any) => {
-    //   this.lossCntrlAction = mNm
-    // })
+    this.firebaseGetServ.getLossCntrlAct().then((mNm: any) => {
+      this.lossCntrlAction = mNm;
+    });
   }
 
   onAdd() {

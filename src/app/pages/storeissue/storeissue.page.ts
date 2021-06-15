@@ -28,10 +28,10 @@ export class StoreissuePage implements OnInit {
   }
 
   ngOnInit() {
-    // this.onRegistration()
-    // this.onMaintEvRefNo()
-    // this.onSupplier()
-    // this.onStoreItem()
+    // this.onRegistration();
+    // this.onMaintEvRefNo();
+    // this.onSupplier();
+    // this.onStoreItem();
   }
 
   goSupplierDeposit() {
@@ -73,6 +73,11 @@ export class StoreissuePage implements OnInit {
 
   onStoreItem() {
     this.firebaseGetServ.getStoreItem().then((mNm: any) => {
+      this.storeItem = mNm;
+    });
+  }
+  onStoreItemLeft() {
+    this.firebaseGetServ.getStoreItemLeft().then((mNm: any) => {
       this.storeItem = mNm;
     });
   }

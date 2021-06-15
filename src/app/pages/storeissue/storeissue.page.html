@@ -420,6 +420,7 @@
                   itemTextField="StoreCatgItem"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onStoreItemLeft()"
                 >
                 </ionic-selectable>
               </ion-item>

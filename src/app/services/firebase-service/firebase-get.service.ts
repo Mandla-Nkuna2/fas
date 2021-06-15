@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import firebase from 'firebase/app';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -33,7 +35,7 @@ export class FirebaseGetService {
   getMakeAndModel() {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection('test3/Sup_ItemMakMod/tables')
+        .collection('PMB_ELEC/Sup_ItemMakMod/tables')
         .ref.limit(this.limVal)
         .get()
         .then((mNm) => {
@@ -57,7 +59,7 @@ export class FirebaseGetService {
   getMakeAndModelLeft() {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection('test3/Sup_ItemMakMod/tables')
+        .collection('PMB_ELEC/Sup_ItemMakMod/tables')
         .ref.get()
         .then((mNm) => {
           let makeAndModel = [];
@@ -81,7 +83,7 @@ export class FirebaseGetService {
   getAssetMakMod() {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection('test3/Sup_ItemMakMod/tables')
+        .collection('PMB_ELEC/Sup_ItemMakMod/tables')
         .ref.limit(this.limVal)
         .get()
         .then((mNm) => {
@@ -104,7 +106,7 @@ export class FirebaseGetService {
   getAssetMakModLeft() {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection('test3/Sup_ItemMakMod/tables')
+        .collection('PMB_ELEC/Sup_ItemMakMod/tables')
         .ref.get()
         .then((mNm) => {
           let makeAndModel = [];
@@ -127,7 +129,7 @@ export class FirebaseGetService {
   getColor() {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection('/test3/Sup_Colour/tables')
+        .collection('/PMB_ELEC/Sup_Colour/tables')
         .ref.limit(this.limVal)
         .get()
         .then((mNm) => {
@@ -149,7 +151,7 @@ export class FirebaseGetService {
   getColorLeft() {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection('/test3/Sup_Colour/tables')
+        .collection('/PMB_ELEC/Sup_Colour/tables')
         .ref.get()
         .then((mNm) => {
           let col = [];
@@ -168,12 +170,85 @@ export class FirebaseGetService {
     return promise;
   }
 
-  getDriver() {
-    var mechanicGuid = '7E55FF15-8B93-4CC4-B488-BC0E6FE2971E';
+  getBattery() {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection('/test3/Mst_StaffDetails/tables/')
-        .ref.where('StaffCatgGuid', '==', mechanicGuid)
+        .collection('/PMB_ELEC/Sup_Battery/tables')
+        .ref.limit(this.limVal)
+        .get()
+        .then((mNm) => {
+          let col = [];
+          mNm.docs.forEach((mNm) => {
+            col.push({
+              BatteryGuid: mNm.get('BatteryGuid'),
+              BatterySize: mNm.get('BatterySize'),
+              BatteryMakeGuid: mNm.get('BatteryMakeGuid'),
+              BatteryMake: '',
+              BatteryText: '',
+            });
+          });
+          resolve(col);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+
+  getBatteryLeft() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('/PMB_ELEC/Sup_Battery/tables')
+        .ref.get()
+        .then((mNm) => {
+          let col = [];
+          mNm.docs.forEach((mNm) => {
+            col.push({
+              BatteryGuid: mNm.get('BatteryGuid'),
+              BatterySize: mNm.get('BatterySize'),
+              BatteryMakeGuid: mNm.get('BatteryMakeGuid'),
+              BatteryMake: '',
+              BatteryText: '',
+            });
+          });
+          resolve(col);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+
+  getBatteryMake() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('/PMB_ELEC/Sup_BatteryMake/tables')
+        .ref.get()
+        .then((mNm) => {
+          let col = [];
+          mNm.docs.forEach((mNm) => {
+            col.push({
+              BatteryMakeGuid: mNm.get('BatteryMakeGuid'),
+              BatteryMake: mNm.get('BatteryMake'),
+            });
+          });
+          resolve(col);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+
+  getDriver() {
+    var driversGuid = '15ED4D37-A09A-11D7-B6DA-0020ED939F96';
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('/PMB_ELEC/Mst_StaffDetails/tables/')
+        .ref.where('StaffCatgGuid', '==', driversGuid)
         .get()
         .then((obj) => {
           let data = [];
@@ -195,7 +270,7 @@ export class FirebaseGetService {
   getTyreSize() {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection('/test3/Sup_TyreSize/tables/')
+        .collection('/PMB_ELEC/Sup_TyreSize/tables/')
         .ref.limit(this.limVal)
         .get()
         .then((mNm) => {
@@ -217,7 +292,7 @@ export class FirebaseGetService {
   getTyreSizeLeft() {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection('/test3/Sup_TyreSize/tables/')
+        .collection('/PMB_ELEC/Sup_TyreSize/tables/')
         .ref.get()
         .then((mNm) => {
           let size = [];
@@ -239,7 +314,7 @@ export class FirebaseGetService {
   public getAsset() {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection('test3/Mst_Item/tables')
+        .collection('PMB_ELEC/Mst_Item/tables')
         .ref.get()
         .then((asset) => {
           let newAssets = [];
@@ -258,7 +333,7 @@ export class FirebaseGetService {
   getStaff() {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection('/test3/Mst_StaffDetails/tables/')
+        .collection('/PMB_ELEC/Mst_StaffDetails/tables/')
         .ref.limit(this.limVal)
         .get()
         .then((obj) => {
@@ -280,7 +355,7 @@ export class FirebaseGetService {
   getStaffLeft() {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection('/test3/Mst_StaffDetails/tables/')
+        .collection('/PMB_ELEC/Mst_StaffDetails/tables/')
         .ref.get()
         .then((obj) => {
           let data = [];
@@ -302,7 +377,7 @@ export class FirebaseGetService {
   getRegistration() {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection('/test3/Mst_Item/tables/')
+        .collection('/PMB_ELEC/Mst_Item/tables/')
         .ref.limit(this.limVal)
         .get()
         .then((obj) => {
@@ -324,7 +399,7 @@ export class FirebaseGetService {
   getRegistrationLeft() {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection('/test3/Mst_Item/tables/')
+        .collection('/PMB_ELEC/Mst_Item/tables/')
         .ref.get()
         .then((obj) => {
           let data = [];
@@ -346,7 +421,7 @@ export class FirebaseGetService {
   getCompName() {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection('/test3/Sup_CompName/tables')
+        .collection('/PMB_ELEC/Sup_CompName/tables')
         .ref.limit(this.limVal)
         .get()
         .then((obj) => {
@@ -368,7 +443,7 @@ export class FirebaseGetService {
   getCompNameLeft() {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection('/test3/Sup_CompName/tables')
+        .collection('/PMB_ELEC/Sup_CompName/tables')
         .ref.get()
         .then((obj) => {
           let data = [];
@@ -390,7 +465,7 @@ export class FirebaseGetService {
   getAssetCompMake() {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection('/test3/Sup_CompMake/tables')
+        .collection('/PMB_ELEC/Sup_CompMake/tables')
         .ref.limit(this.limVal)
         .get()
         .then((obj) => {
@@ -412,7 +487,7 @@ export class FirebaseGetService {
   getAssetCompMakeLeft() {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection('/test3/Sup_CompMake/tables')
+        .collection('/PMB_ELEC/Sup_CompMake/tables')
         .ref.get()
         .then((obj) => {
           let data = [];
@@ -434,7 +509,7 @@ export class FirebaseGetService {
   getAssetCompModel() {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection('/test3/Sup_CompModel/tables')
+        .collection('/PMB_ELEC/Sup_CompModel/tables')
         .ref.limit(this.limVal)
         .get()
         .then((obj) => {
@@ -456,7 +531,7 @@ export class FirebaseGetService {
   getAssetCompModelLeft() {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection('/test3/Sup_CompModel/tables')
+        .collection('/PMB_ELEC/Sup_CompModel/tables')
         .ref.get()
         .then((obj) => {
           let data = [];
@@ -478,7 +553,7 @@ export class FirebaseGetService {
   getServiceIntvl() {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection('/test3/Sup_ServIntval/tables')
+        .collection('/PMB_ELEC/Sup_ServIntval/tables')
         .ref.limit(this.limVal)
         .get()
         .then((obj) => {
@@ -500,7 +575,7 @@ export class FirebaseGetService {
   getServiceIntvlLeft() {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection('/test3/Sup_ServIntval/tables')
+        .collection('/PMB_ELEC/Sup_ServIntval/tables')
         .ref.get()
         .then((obj) => {
           let data = [];
@@ -519,16 +594,54 @@ export class FirebaseGetService {
     return promise;
   }
 
-  getLossType() {}
-  getLossTypeLeft() {}
+  getLossType() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('PMB_ELEC/Sup_LossContType/tables')
+        .ref.get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obj) => {
+            data.push({
+              LossContTypeguid: obj.get('LossContTypeguid'),
+              LossContType: obj.get('LossContType'),
+            });
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
 
-  getLossCntrlAct() {}
-  getLossCntrlActLeft() {}
+  getLossCntrlAct() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('PMB_ELEC/Sup_LossContAct/tables')
+        .ref.get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obj) => {
+            data.push({
+              LossContActGuid: obj.get('LossContActGuid'),
+              LossContAct: obj.get('LossContAct'),
+            });
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
 
   getLocation() {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection('/test3/Mst_Location/tables')
+        .collection('/PMB_ELEC/Mst_Location/tables')
         .ref.limit(this.limVal)
         .get()
         .then((obj) => {
@@ -536,7 +649,8 @@ export class FirebaseGetService {
           obj.docs.forEach((obj) => {
             data.push({
               LocGuid: obj.get('LocGuid'),
-              LocFullName: obj.get('LocFullName'),
+              LocDesc: obj.get('LocDesc'),
+              //LocFullName: obj.get('LocFullName'),
             });
           });
           resolve(data);
@@ -550,7 +664,7 @@ export class FirebaseGetService {
   getLocationLeft() {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection('/test3/Mst_Location/tables')
+        .collection('/PMB_ELEC/Mst_Location/tables')
         .ref.get()
         .then((obj) => {
           let data = [];
@@ -572,7 +686,29 @@ export class FirebaseGetService {
   getCostCentre() {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection('/test3/Sup_CostCentre/tables')
+        .collection('/PMB_ELEC/Sup_CostCentre/tables')
+        .ref.limit(this.limVal)
+        .get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obj) => {
+            data.push({
+              CostCentGuid: obj.get('CostCentGuid'),
+              CostCentName: obj.get('CostCentName'),
+            });
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+  getCostCentreLeft() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('/PMB_ELEC/Sup_CostCentre/tables')
         .ref.get()
         .then((obj) => {
           let data = [];
@@ -591,13 +727,54 @@ export class FirebaseGetService {
     return promise;
   }
 
-  getJobCardNos() {}
-  getJobCardNosLeft() {}
+  getJobCardNos() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('/PMB_ELEC/Trn_JobCards/tables')
+        .ref.limit(this.limVal)
+        .get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obj) => {
+            data.push({
+              JobCardGuid: obj.get('JobCardGuid'),
+              JobCardNo: obj.get('JobCardNo'),
+            });
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+  getJobCardNosLeft() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('/PMB_ELEC/Trn_JobCards/tables')
+        .ref.get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obj) => {
+            data.push({
+              JobCardGuid: obj.get('JobCardGuid'),
+              JobCardNo: obj.get('JobCardNo'),
+            });
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
 
   getMaintType() {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection('/test3/Sup_MaintType/tables')
+        .collection('/PMB_ELEC/Sup_MaintType/tables')
         .ref.get()
         .then((obj) => {
           let data = [];
@@ -619,7 +796,7 @@ export class FirebaseGetService {
   getMaintReason() {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection('/test3/Sup_MaintReason/tables')
+        .collection('/PMB_ELEC/Sup_MaintReason/tables')
         .ref.get()
         .then((obj) => {
           let data = [];
@@ -641,7 +818,7 @@ export class FirebaseGetService {
   getSupplier() {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection('/test3/Mst_Supplier/tables')
+        .collection('/PMB_ELEC/Mst_Supplier/tables')
         .ref.limit(this.limVal)
         .get()
         .then((obj) => {
@@ -663,7 +840,7 @@ export class FirebaseGetService {
   getSupplierLeft() {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection('/test3/Mst_Supplier/tables')
+        .collection('/PMB_ELEC/Mst_Supplier/tables')
         .ref.get()
         .then((obj) => {
           let data = [];
@@ -682,12 +859,32 @@ export class FirebaseGetService {
     return promise;
   }
 
-  getClient() {}
+  getClient() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('/PMB_ELEC/Mst_Client/tables')
+        .ref.get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obj) => {
+            data.push({
+              ClientGuid: obj.get('ClientGuid'),
+              ClientName: obj.get('ClientName'),
+            });
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
 
   getFixedCostType() {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection('/test3/Sup_FixedCostType/tables')
+        .collection('/PMB_ELEC/Sup_FixedCostType/tables')
         .ref.get()
         .then((obj) => {
           let data = [];
@@ -706,14 +903,54 @@ export class FirebaseGetService {
     return promise;
   }
 
-  getOverheadType() {}
+  getOverheadType() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('/PMB_ELEC/Sup_OverheadType/tables')
+        .ref.get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obj) => {
+            data.push({
+              OverheadTypeGuid: obj.get('OverheadTypeGuid'),
+              OverheadType: obj.get('OverheadType'),
+            });
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
 
-  getAddittionalCost() {}
+  getAddittionalCost() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('/PMB_ELEC/Sup_AddCostDesc/tables')
+        .ref.get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obj) => {
+            data.push({
+              AddCostDescGuid: obj.get('AddCostDescGuid'),
+              AddCostDesc: obj.get('AddCostDesc'),
+            });
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
 
   getMaintEvRefNo() {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection('/test3/Trn_MaintEvnt/tables')
+        .collection('/PMB_ELEC/Trn_MaintEvnt/tables')
         .ref.limit(this.limVal)
         .get()
         .then((obj) => {
@@ -735,7 +972,7 @@ export class FirebaseGetService {
   getMaintEvRefNoLeft() {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection('/test3/Trn_MaintEvnt/tables')
+        .collection('/PMB_ELEC/Trn_MaintEvnt/tables')
         .ref.get()
         .then((obj) => {
           let data = [];
@@ -757,7 +994,29 @@ export class FirebaseGetService {
   getStoreItem() {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection('/test3/Sup_StoreCatgItem/tables')
+        .collection('/PMB_ELEC/Sup_StoreCatgItem/tables')
+        .ref.limit(this.limVal)
+        .get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obj) => {
+            data.push({
+              StoreCatgGuid: obj.get('StoreCatgGuid'),
+              StoreCatgItem: obj.get('StoreCatgItem'),
+            });
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+  getStoreItemLeft() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('/PMB_ELEC/Sup_StoreCatgItem/tables')
         .ref.get()
         .then((obj) => {
           let data = [];
@@ -779,7 +1038,7 @@ export class FirebaseGetService {
   getOilStore() {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection('/test3/Mst_OilStore/tables')
+        .collection('/PMB_ELEC/Mst_OilStore/tables')
         .ref.get()
         .then((obj) => {
           let data = [];
@@ -801,7 +1060,7 @@ export class FirebaseGetService {
   getBowser() {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection('/test3/Mst_Bowser/tables')
+        .collection('/PMB_ELEC/Mst_Bowser/tables')
         .ref.get()
         .then((obj) => {
           let data = [];
@@ -823,7 +1082,7 @@ export class FirebaseGetService {
   getUserGroup() {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection('/test3/Sys_UserGroup/tables')
+        .collection('/PMB_ELEC/Sys_UserGroup/tables')
         .ref.get()
         .then((obj) => {
           let data = [];
@@ -845,7 +1104,7 @@ export class FirebaseGetService {
   getUser() {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection('/test3/Mst_Users/tables')
+        .collection('/PMB_ELEC/Mst_Users/tables')
         .ref.get()
         .then((obj) => {
           let data = [];
@@ -867,7 +1126,7 @@ export class FirebaseGetService {
   getFuelType() {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection('/test3/Sup_FuelType/tables')
+        .collection('/PMB_ELEC/Sup_FuelType/tables')
         .ref.get()
         .then((obj) => {
           let data = [];
@@ -894,7 +1153,7 @@ export class FirebaseGetService {
   getItemTypeClass() {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection('/test3/Sup_ItemTypeClass/tables')
+        .collection('/PMB_ELEC/Sup_ItemTypeClass/tables')
         .ref.limit(this.limVal)
         .get()
         .then((mNm) => {
@@ -916,7 +1175,7 @@ export class FirebaseGetService {
   getItemTypeClassLeft() {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection('/test3/Sup_ItemTypeClass/tables')
+        .collection('/PMB_ELEC/Sup_ItemTypeClass/tables')
         .ref.get()
         .then((mNm) => {
           let data = [];
@@ -938,7 +1197,7 @@ export class FirebaseGetService {
   getTypeCapacity() {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection('/test3/Sup_ItemTypeCap/tables')
+        .collection('/PMB_ELEC/Sup_ItemTypeCap/tables')
         .ref.limit(this.limVal)
         .get()
         .then((obj) => {
@@ -960,7 +1219,7 @@ export class FirebaseGetService {
   getTypeCapacityLeft() {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection('/test3/Sup_ItemTypeCap/tables')
+        .collection('/PMB_ELEC/Sup_ItemTypeCap/tables')
         .ref.get()
         .then((obj) => {
           let data = [];
@@ -982,7 +1241,7 @@ export class FirebaseGetService {
   getOilMake() {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection('/test3/Sup_OilMake/tables')
+        .collection('/PMB_ELEC/Sup_OilMake/tables')
         .ref.get()
         .then((obj) => {
           let data = [];
@@ -1004,7 +1263,7 @@ export class FirebaseGetService {
   getOilGrade() {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection('/test3/Sup_OilGrade/tables')
+        .collection('/PMB_ELEC/Sup_OilGrade/tables')
         .ref.get()
         .then((obj) => {
           let data = [];
@@ -1026,7 +1285,7 @@ export class FirebaseGetService {
   getOilClass() {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection('/test3/Sup_OilClass/tables')
+        .collection('/PMB_ELEC/Sup_OilClass/tables')
         .ref.get()
         .then((obj) => {
           let data = [];
@@ -1052,7 +1311,7 @@ export class FirebaseGetService {
   getServiceType() {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection('/test3/Sup_ServType/tables')
+        .collection('/PMB_ELEC/Sup_ServType/tables')
         .ref.get()
         .then((obj) => {
           let data = [];
@@ -1074,7 +1333,7 @@ export class FirebaseGetService {
   getSuppCat() {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection('/test3/Sup_SupplierCategory/tables')
+        .collection('/PMB_ELEC/Sup_SupplierCategory/tables')
         .ref.get()
         .then((obj) => {
           let data = [];
@@ -1098,7 +1357,7 @@ export class FirebaseGetService {
   getStoreCat() {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection('/test3/Sup_StoreCatg/tables')
+        .collection('/PMB_ELEC/Sup_StoreCatg/tables')
         .ref.get()
         .then((obj) => {
           let data = [];
