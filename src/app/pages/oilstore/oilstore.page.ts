@@ -22,15 +22,15 @@ export class OilstorePage implements OnInit {
   }
 
   ngOnInit() {
-    // this.onLocation();
+    // this.onOsLocation();
   }
 
-  onLocation() {
+  onOsLocation() {
     this.firebaseGetServ.getLocation().then((mNm: any) => {
       this.loc = mNm;
     });
   }
-  onLocationLeft() {
+  onOsLocationLeft() {
     this.firebaseGetServ.getLocationLeft().then((mNm: any) => {
       this.loc = mNm;
     });

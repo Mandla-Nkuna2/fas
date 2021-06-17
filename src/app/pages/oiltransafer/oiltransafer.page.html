@@ -235,10 +235,10 @@
               <ion-label>Oil Type</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="oilStoreTransf"
-                  [items]="voucherNo"
-                  itemValueField="ColourGuid"
-                  itemTextField="Colour"
+                  [(ngModel)]="oilStoreTransf.OilTypeGuid"
+                  [items]="oilTypes"
+                  itemValueField="OilGuid"
+                  itemTextField="OilText"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"
                   (onInfiniteScroll)="onOilTypeLeft()"

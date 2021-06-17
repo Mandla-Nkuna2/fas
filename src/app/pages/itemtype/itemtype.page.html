@@ -306,8 +306,8 @@
                 <ionic-selectable
                   [(ngModel)]="itemType.ItemTypeNameGuid"
                   [items]="typeNames"
-                  itemValueField="ItemGuid"
-                  itemTextField="Reg"
+                  itemValueField="ItemTypeNameGuid"
+                  itemTextField="ItemTypeName"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"
                   (onInfiniteScroll)="onTypeNameLeft()"

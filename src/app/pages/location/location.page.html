@@ -51,11 +51,13 @@
         <ion-label style="margin-top: auto">Location</ion-label>
         <ion-item>
           <ionic-selectable
-            [(ngModel)]="location"
+            [(ngModel)]="location.LocGuid"
             [items]="locations"
-            itemValueField="CompNameGuid"
-            itemTextField="CompName"
+            itemValueField="LocGuid"
+            itemTextField="LocDesc"
             [canSearch]="true"
+            [hasInfiniteScroll]="true"
+            (onInfiniteScroll)="onLocationLeft()"
           >
           </ionic-selectable>
         </ion-item>

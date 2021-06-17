@@ -21,11 +21,16 @@ export class SupplierdetailsPage implements OnInit {
   }
 
   ngOnInit() {
-    // this.onCategory()
+    // this.onCategory();
   }
 
   onCategory() {
     this.firebaseGetServ.getSuppCat().then((mNm: any) => {
+      this.suppCat = mNm;
+    });
+  }
+  onCategoryLeft() {
+    this.firebaseGetServ.getSuppCatLeft().then((mNm: any) => {
       this.suppCat = mNm;
     });
   }

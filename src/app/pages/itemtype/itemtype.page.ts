@@ -36,18 +36,18 @@ export class ItemtypePage implements OnInit {
   }
 
   ngOnInit() {
-    this.onTypeName();
-    this.onTypeClass();
-    this.onTypeCapacity();
+    // this.onTypeName();
+    // this.onTypeClass();
+    // this.onTypeCapacity();
   }
 
   onTypeName() {
-    this.firebaseGetServ.getAssetMakMod().then((mNm: any) => {
+    this.firebaseGetServ.getAssetTypeName().then((mNm: any) => {
       this.typeNames = mNm;
     });
   }
   onTypeNameLeft() {
-    this.firebaseGetServ.getAssetMakModLeft().then((mNm: any) => {
+    this.firebaseGetServ.getAssetTypeNameLeft().then((mNm: any) => {
       this.typeNames = mNm;
     });
   }

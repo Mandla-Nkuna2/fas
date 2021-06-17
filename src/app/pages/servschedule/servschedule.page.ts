@@ -23,7 +23,10 @@ export class ServschedulePage implements OnInit {
     this.servschedule = new ServiceSchedule();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    // this.onMakModel();
+    // this.onServiceType();
+  }
 
   onMakModel() {
     this.firebaseGetServ.getMakeAndModel().then((mNm: any) => {

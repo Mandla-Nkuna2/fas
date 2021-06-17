@@ -20,7 +20,21 @@ export class LocationPage implements OnInit {
     this.location = new LocationModel();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    // this.onLocation();
+  }
+
+  onLocation() {
+    this.firebaseGetServ.getLocation().then((mNm: any) => {
+      this.locations = mNm;
+    });
+  }
+
+  onLocationLeft() {
+    this.firebaseGetServ.getLocationLeft().then((mNm: any) => {
+      this.locations = mNm;
+    });
+  }
 
   onAdd() {
     this.firebaseService

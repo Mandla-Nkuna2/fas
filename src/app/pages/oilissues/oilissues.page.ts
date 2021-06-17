@@ -15,10 +15,15 @@ export class OilissuesPage implements OnInit {
 
   voucherNo: any[];
   registration: any[];
+  compNames: any[];
   oilStore: any[];
   supplier: any[];
+  oilTypes: any[];
   costCentre: any[];
   staffCode: any[];
+  oilMakes: any[];
+  oilGrades: any[];
+  oilClasses: any[];
 
   constructor(
     private navCtrl: NavController,
@@ -31,10 +36,10 @@ export class OilissuesPage implements OnInit {
 
   ngOnInit() {
     // this.onRegistration();
-    this.onComponent();
+    // this.onComponent();
     // this.onOilStore();
     // this.onSupplier();
-    this.onOilType();
+    // this.onOilType();
     // this.onCostCentre();
     // this.onStaffCode();
   }
@@ -53,8 +58,16 @@ export class OilissuesPage implements OnInit {
     });
   }
 
-  onComponent() {}
-  onComponentLeft() {}
+  onComponent() {
+    this.firebaseGetServ.getCompName().then((mNm: any) => {
+      this.compNames = mNm;
+    });
+  }
+  onComponentLeft() {
+    this.firebaseGetServ.getCompNameLeft().then((mNm: any) => {
+      this.compNames = mNm;
+    });
+  }
 
   onOilStore() {
     this.firebaseGetServ.getOilStore().then((mNm: any) => {
@@ -73,8 +86,70 @@ export class OilissuesPage implements OnInit {
     });
   }
 
-  onOilType() {}
-  onOilTypeLeft() {}
+  onOilType() {
+    this.firebaseGetServ.getOilMake().then((mNm: any) => {
+      this.oilMakes = mNm;
+    });
+    this.firebaseGetServ.getOilGrade().then((mNm: any) => {
+      this.oilGrades = mNm;
+    });
+    this.firebaseGetServ.getOilClass().then((mNm: any) => {
+      this.oilClasses = mNm;
+    });
+
+    this.firebaseGetServ.getOilType().then((mNm: any) => {
+      mNm.forEach((oilObj) => {
+        this.oilMakes.forEach((oilM) => {
+          if (oilM.OilMakeGuid == oilObj.OilMakeGuid) {
+            oilObj.OilMake = oilM.OilMake;
+          }
+        });
+
+        this.oilGrades.forEach((oilG) => {
+          if (oilG.OilGradeGuid == oilObj.OilGradeGuid) {
+            oilObj.OilGrade = oilG.OilGrade;
+          }
+        });
+
+        this.oilClasses.forEach((oilC) => {
+          if (oilC.OilClassGuid == oilObj.OilClassGuid) {
+            oilObj.OilClass = oilC.OilClass;
+          }
+        });
+
+        oilObj.OilText =
+          oilObj.OilMake + ' ' + oilObj.OilGrade + ' ' + oilObj.OilClass;
+      });
+      this.oilTypes = mNm;
+    });
+  }
+  onOilTypeLeft() {
+    this.firebaseGetServ.getOilTypeLeft().then((mNm: any) => {
+      mNm.forEach((oilObj) => {
+        this.oilMakes.forEach((oilM) => {
+          if (oilM.OilMakeGuid == oilObj.OilMakeGuid) {
+            oilObj.OilMake = oilM.OilMake;
+          }
+        });
+
+        this.oilGrades.forEach((oilG) => {
+          if (oilG.OilGradeGuid == oilObj.OilGradeGuid) {
+            oilObj.OilGrade = oilG.OilGrade;
+          }
+        });
+
+        this.oilClasses.forEach((oilC) => {
+          if (oilC.OilClassGuid == oilObj.OilClassGuid) {
+            oilObj.OilClass = oilC.OilClass;
+          }
+        });
+
+        oilObj.OilText =
+          oilObj.OilMake + ' ' + oilObj.OilGrade + ' ' + oilObj.OilClass;
+      });
+      this.oilTypes = mNm;
+    });
+  }
 
   onCostCentre() {
     this.firebaseGetServ.getCostCentre().then((mNm: any) => {

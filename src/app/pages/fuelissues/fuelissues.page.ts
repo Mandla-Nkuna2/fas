@@ -56,6 +56,11 @@ export class FuelissuesPage implements OnInit {
       this.bowser = mNm;
     });
   }
+  onBowserLeft() {
+    this.firebaseGetServ.getBowserLeft().then((mNm: any) => {
+      this.bowser = mNm;
+    });
+  }
 
   onSupplier() {
     this.firebaseGetServ.getSupplier().then((mNm: any) => {

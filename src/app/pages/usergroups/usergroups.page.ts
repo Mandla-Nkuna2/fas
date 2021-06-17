@@ -20,7 +20,15 @@ export class UsergroupsPage implements OnInit {
     this.userGroup = new UserGroup();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    // this.onUserGroups();
+  }
+
+  onUserGroups() {
+    this.firebaseGetServ.getUserGroup().then((mNm: any) => {
+      this.userGroups = mNm;
+    });
+  }
 
   onAdd() {
     this.firebaseService

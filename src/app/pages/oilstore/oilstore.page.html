@@ -294,10 +294,10 @@
                   [(ngModel)]="oilStore.OilStoreLoc"
                   [items]="loc"
                   itemValueField="LocGuid"
-                  itemTextField="LocFullName"
+                  itemTextField="LocDesc"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onLocationLeft()"
+                  (onInfiniteScroll)="onOsLocationLeft()"
                 >
                 </ionic-selectable>
               </ion-item>

@@ -254,13 +254,13 @@
               <ion-label>Component</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="oilIssue"
-                  [items]="voucherNo"
-                  itemValueField="ColourGuid"
-                  itemTextField="Colour"
+                  [(ngModel)]="oilIssue.ItemCompGuid"
+                  [items]="compNames"
+                  itemValueField="CompNameGuid"
+                  itemTextField="CompName"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onRegistrationLeft()"
+                  (onInfiniteScroll)="onComponentLeft()"
                 >
                 </ionic-selectable>
               </ion-item>
@@ -307,13 +307,13 @@
               <ion-label>Oil Type</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="oilIssue"
-                  [items]="voucherNo"
-                  itemValueField="ColourGuid"
-                  itemTextField="Colour"
+                  [(ngModel)]="oilIssue.OilTypeGuid"
+                  [items]="oilTypes"
+                  itemValueField="OilGuid"
+                  itemTextField="OilText"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onSupplierLeft()"
+                  (onInfiniteScroll)="onOilTypeLeft()"
                 >
                 </ionic-selectable>
               </ion-item>

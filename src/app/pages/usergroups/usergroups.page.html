@@ -6,22 +6,24 @@
     <ion-back-button defaultHref="users" mode="ios" text=""></ion-back-button>
     <h2>User groups</h2>
   </div>
-  <ion-col size="3.5">
-    <div class="item-input">
-      <ion-label>User group</ion-label>
-      <ion-item>
-        <ionic-selectable
-          [(ngModel)]="userGroups"
-          [items]="userGroups"
-          itemValueField="CompNameGuid"
-          itemTextField="CompName"
-          [canSearch]="true"
-          [hasInfiniteScroll]="true"
-        >
-        </ionic-selectable>
-      </ion-item>
-    </div>
-  </ion-col>
+  <ion-row>
+    <ion-col size="6">
+      <div class="item-input">
+        <ion-label>User group</ion-label>
+        <ion-item>
+          <ionic-selectable
+            [(ngModel)]="userGroup.UserGroupGuid"
+            [items]="userGroups"
+            itemValueField="UserGroupGuid"
+            itemTextField="UserGroupTitle"
+            [canSearch]="true"
+            [hasInfiniteScroll]="true"
+          >
+          </ionic-selectable>
+        </ion-item>
+      </div>
+    </ion-col>
+  </ion-row>
 
   <ion-row>
     <ion-col size="12" class="flex al-center jc-end">

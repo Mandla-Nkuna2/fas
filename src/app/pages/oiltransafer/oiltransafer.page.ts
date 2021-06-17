@@ -14,6 +14,10 @@ export class OiltransaferPage implements OnInit {
   oilStoreTransf: OilStoreTransfer;
 
   voucherNo: any[];
+  oilMakes: any[];
+  oilGrades: any[];
+  oilClasses: any[];
+  oilTypes: any[];
   oilStoreFrom: any[];
   oilStoreTo: any[];
   costCentre: any[];
@@ -28,6 +32,7 @@ export class OiltransaferPage implements OnInit {
   }
 
   ngOnInit() {
+    // this.onOilType()
     // this.onOilStoreFrom()
     // this.onOilStoreTo()
     // this.onCostCentre()
@@ -37,8 +42,70 @@ export class OiltransaferPage implements OnInit {
     this.navCtrl.navigateForward('overheadtrans');
   }
 
-  onOilType() {}
-  onOilTypeLeft() {}
+  onOilType() {
+    this.firebaseGetServ.getOilMake().then((mNm: any) => {
+      this.oilMakes = mNm;
+    });
+    this.firebaseGetServ.getOilGrade().then((mNm: any) => {
+      this.oilGrades = mNm;
+    });
+    this.firebaseGetServ.getOilClass().then((mNm: any) => {
+      this.oilClasses = mNm;
+    });
+
+    this.firebaseGetServ.getOilType().then((mNm: any) => {
+      mNm.forEach((oilObj) => {
+        this.oilMakes.forEach((oilM) => {
+          if (oilM.OilMakeGuid == oilObj.OilMakeGuid) {
+            oilObj.OilMake = oilM.OilMake;
+          }
+        });
+
+        this.oilGrades.forEach((oilG) => {
+          if (oilG.OilGradeGuid == oilObj.OilGradeGuid) {
+            oilObj.OilGrade = oilG.OilGrade;
+          }
+        });
+
+        this.oilClasses.forEach((oilC) => {
+          if (oilC.OilClassGuid == oilObj.OilClassGuid) {
+            oilObj.OilClass = oilC.OilClass;
+          }
+        });
+
+        oilObj.OilText =
+          oilObj.OilMake + ' ' + oilObj.OilGrade + ' ' + oilObj.OilClass;
+      });
+      this.oilTypes = mNm;
+    });
+  }
+  onOilTypeLeft() {
+    this.firebaseGetServ.getOilTypeLeft().then((mNm: any) => {
+      mNm.forEach((oilObj) => {
+        this.oilMakes.forEach((oilM) => {
+          if (oilM.OilMakeGuid == oilObj.OilMakeGuid) {
+            oilObj.OilMake = oilM.OilMake;
+          }
+        });
+
+        this.oilGrades.forEach((oilG) => {
+          if (oilG.OilGradeGuid == oilObj.OilGradeGuid) {
+            oilObj.OilGrade = oilG.OilGrade;
+          }
+        });
+
+        this.oilClasses.forEach((oilC) => {
+          if (oilC.OilClassGuid == oilObj.OilClassGuid) {
+            oilObj.OilClass = oilC.OilClass;
+          }
+        });
+
+        oilObj.OilText =
+          oilObj.OilMake + ' ' + oilObj.OilGrade + ' ' + oilObj.OilClass;
+      });
+      this.oilTypes = mNm;
+    });
+  }
 
   onOilStoreFrom() {
     this.firebaseGetServ.getOilStore().then((mNm: any) => {

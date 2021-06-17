@@ -284,6 +284,8 @@
                   itemValueField="SuppCategoryGuid"
                   itemTextField="SuppCategory"
                   [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onCategoryLeft()"
                 >
                 </ionic-selectable>
               </ion-item>

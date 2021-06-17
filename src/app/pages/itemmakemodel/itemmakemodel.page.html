@@ -269,8 +269,8 @@
                 <ionic-selectable
                   [(ngModel)]="item.ItemMake"
                   [items]="makes"
-                  itemValueField="CompMakeGuid"
-                  itemTextField="CompMake"
+                  itemValueField="ItemMakModGuid"
+                  itemTextField="ItemMake"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"
                   (onInfiniteScroll)="onMakeLeft()"
@@ -287,8 +287,8 @@
                 <ionic-selectable
                   [(ngModel)]="item.ItemModel"
                   [items]="models"
-                  itemValueField="CompModelGuid"
-                  itemTextField="CompModel"
+                  itemValueField="ItemMakModGuid"
+                  itemTextField="ItemModel"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"
                   (onInfiniteScroll)="onModelLeft()"

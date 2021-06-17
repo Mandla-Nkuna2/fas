@@ -11,7 +11,7 @@ import OverheadBudget from 'src/app/models/supportdata/OverheadBudget.model';
 })
 export class OverheadbudgetPage implements OnInit {
   oheadbudget: OverheadBudget;
-  ohbTypes: any[];
+  ohTypes: any[];
   finYear = ['2020', '2021', '2022', '2023'];
 
   constructor(
@@ -22,12 +22,14 @@ export class OverheadbudgetPage implements OnInit {
     this.oheadbudget = new OverheadBudget();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    // this.onOhbType();
+  }
 
   onOhbType() {
-    //  this.firebaseGetServ.getOhbTypes().then((mNm: any) => {
-    //    this.ohbTypes = mNm;
-    //  });
+    this.firebaseGetServ.getOverheadType().then((mNm: any) => {
+      this.ohTypes = mNm;
+    });
   }
 
   onAdd() {

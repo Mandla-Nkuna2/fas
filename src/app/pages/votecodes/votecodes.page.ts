@@ -12,7 +12,7 @@ import Votecodes from 'src/app/models/supportdata/VoteCode.model';
 export class VotecodesPage implements OnInit {
   voteCode: Votecodes;
   voteCodes: Votecodes[];
-  descriptions: any[];
+  descriptions = ['DONATED VEHICLES'];
   finYear = ['2019/2020', '2020/2021', '2021/2022', '2022/2023'];
 
   constructor(
@@ -23,9 +23,23 @@ export class VotecodesPage implements OnInit {
     this.voteCode = new Votecodes();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    // this.onVoteCodes();
+    // this.onDescription();
+  }
 
-  onVoteCodes() {}
+  onVoteCodes() {
+    this.firebaseGetServ.getVoteCodes().then((mNm: any) => {
+      this.voteCodes = mNm;
+    });
+  }
+  onVoteCodesLeft() {
+    this.firebaseGetServ.getVoteCodesLeft().then((mNm: any) => {
+      this.voteCodes = mNm;
+    });
+  }
+
+  onDescription() {}
 
   onAdd() {
     this.firebaseService

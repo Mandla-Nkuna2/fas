@@ -244,13 +244,11 @@
               <ion-label>Select Oil Store</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="oilstoreTrans"
-                  [items]="OilStore"
-                  itemValueField="ColourGuid"
-                  itemTextField="Colour"
+                  [(ngModel)]="oilstoreTrans.OilStoreGuid"
+                  [items]="oilStores"
+                  itemValueField="OilStoreGuid"
+                  itemTextField="OilStoreName"
                   [canSearch]="true"
-                  [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onOilStoreLeft()"
                 >
                 </ionic-selectable>
               </ion-item>
@@ -310,12 +308,12 @@
               <ion-item>
                 <ionic-selectable
                   [(ngModel)]="oilstoreTrans"
-                  [items]="OilStore"
-                  itemValueField="ColourGuid"
-                  itemTextField="Colour"
+                  [items]="oilTypes"
+                  itemValueField="OilGuid"
+                  itemTextField="OilText"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onOilStoreLeft()"
+                  (onInfiniteScroll)="onOilTypeLeft()"
                 >
                 </ionic-selectable>
               </ion-item>
@@ -361,13 +359,13 @@
               <ion-label>Supplier</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="oilstoreTrans"
-                  [items]="OilStore"
-                  itemValueField="ColourGuid"
-                  itemTextField="Colour"
+                  [(ngModel)]="oilstoreTrans.SuppGuid"
+                  [items]="suppliers"
+                  itemValueField="SuppGuid"
+                  itemTextField="SuppName"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onOilStoreLeft()"
+                  (onInfiniteScroll)="onSupplierLeft()"
                 >
                 </ionic-selectable>
               </ion-item>
@@ -377,13 +375,11 @@
               <ion-label>Cost centre</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="oilstoreTrans"
-                  [items]="OilStore"
+                  [(ngModel)]="oilstoreTrans.CostCentGuid"
+                  [items]="costCentre"
                   itemValueField="CostCentGuid"
                   itemTextField="CostCentName"
                   [canSearch]="true"
-                  [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onOilStoreLeft()"
                 >
                 </ionic-selectable>
               </ion-item>

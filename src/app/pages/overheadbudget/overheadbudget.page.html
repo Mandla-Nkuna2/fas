@@ -294,10 +294,11 @@
               <ion-item>
                 <ionic-selectable
                   [(ngModel)]="oheadbudget.OverheadTypeGuid"
-                  [items]="ohbTypes"
-                  itemValueField="ItemGuid"
-                  itemTextField="Reg"
+                  [items]="ohTypes"
+                  itemValueField="OverheadTypeGuid"
+                  itemTextField="OverheadType"
                   [canSearch]="true"
+                  [hasInfiniteScroll]="true"
                 >
                 </ionic-selectable>
               </ion-item>

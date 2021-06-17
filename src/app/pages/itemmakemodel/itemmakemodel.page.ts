@@ -34,26 +34,30 @@ export class ItemmakemodelPage implements OnInit {
     this.item = new ItemMakeAndModel();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    // this.onMake();
+    // this.onModel();
+    // this.onFuelType();
+  }
 
   onMake() {
-    this.firebaseGetServ.getAssetCompMake().then((mNm: any) => {
+    this.firebaseGetServ.getAssetMakeModMake().then((mNm: any) => {
       this.makes = mNm;
     });
   }
   onMakeLeft() {
-    this.firebaseGetServ.getAssetCompMakeLeft().then((mNm: any) => {
+    this.firebaseGetServ.getAssetMakeModMakeLeft().then((mNm: any) => {
       this.makes = mNm;
     });
   }
 
   onModel() {
-    this.firebaseGetServ.getAssetCompModel().then((mNm: any) => {
+    this.firebaseGetServ.getAssetMakeModMod().then((mNm: any) => {
       this.models = mNm;
     });
   }
   onModelLeft() {
-    this.firebaseGetServ.getAssetCompModelLeft().then((mNm: any) => {
+    this.firebaseGetServ.getAssetMakeModModleft().then((mNm: any) => {
       this.models = mNm;
     });
   }

@@ -42,10 +42,10 @@ export class FirebaseGetService {
           let makeAndModel = [];
           mNm.docs.forEach((mNm) => {
             makeAndModel.push({
+              ItemMakModGuid: mNm.get('ItemMakModGuid'),
               ItemMake: mNm.get('ItemMake'),
               ItemModel: mNm.get('ItemModel'),
               ItemMakMod: mNm.get('ItemMake') + ' ' + mNm.get('ItemModel'),
-              ItemMakModGuid: mNm.get('ItemMakModGuid'),
             });
           });
           resolve(makeAndModel);
@@ -462,6 +462,94 @@ export class FirebaseGetService {
     return promise;
   }
 
+  getAssetMakeModMake() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('/PMB_ELEC/Sup_ItemMakMod/tables')
+        .ref.limit(this.limVal)
+        .get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obj) => {
+            data.push({
+              ItemMakModGuid: obj.get('ItemMakModGuid'),
+              ItemMake: obj.get('ItemMake'),
+            });
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+  getAssetMakeModMakeLeft() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('/PMB_ELEC/Sup_ItemMakMod/tables')
+        .ref.get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obj) => {
+            data.push({
+              ItemMakModGuid: obj.get('ItemMakModGuid'),
+              ItemMake: obj.get('ItemMake'),
+            });
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+
+  getAssetMakeModMod() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('/PMB_ELEC/Sup_ItemMakMod/tables')
+        .ref.limit(this.limVal)
+        .get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obj) => {
+            data.push({
+              ItemMakModGuid: obj.get('ItemMakModGuid'),
+              ItemModel: obj.get('ItemModel'),
+            });
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+  getAssetMakeModModleft() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('/PMB_ELEC/Sup_ItemMakMod/tables')
+        .ref.get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obj) => {
+            data.push({
+              ItemMakModGuid: obj.get('ItemMakModGuid'),
+              ItemModel: obj.get('ItemModel'),
+            });
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+
   getAssetCompMake() {
     const promise = new Promise((resolve, reject) => {
       this.afs
@@ -650,7 +738,7 @@ export class FirebaseGetService {
             data.push({
               LocGuid: obj.get('LocGuid'),
               LocDesc: obj.get('LocDesc'),
-              //LocFullName: obj.get('LocFullName'),
+              LocFullName: obj.get('LocFullName'),
             });
           });
           resolve(data);
@@ -671,6 +759,7 @@ export class FirebaseGetService {
           obj.docs.forEach((obj) => {
             data.push({
               LocGuid: obj.get('LocGuid'),
+              LocDesc: obj.get('LocDesc'),
               LocFullName: obj.get('LocFullName'),
             });
           });
@@ -1061,6 +1150,28 @@ export class FirebaseGetService {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection('/PMB_ELEC/Mst_Bowser/tables')
+        .ref.limit(this.limVal)
+        .get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obj) => {
+            data.push({
+              BowserGuid: obj.get('BowserGuid'),
+              BowserName: obj.get('BowserName'),
+            });
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+  getBowserLeft() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('/PMB_ELEC/Mst_Bowser/tables')
         .ref.get()
         .then((obj) => {
           let data = [];
@@ -1145,10 +1256,49 @@ export class FirebaseGetService {
     return promise;
   }
 
-  getTransmission() {}
-
-  getItemType() {}
-  getItemTypeLeft() {}
+  getAssetTypeName() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('/PMB_ELEC/Sup_ItemTypeName/tables')
+        .ref.limit(this.limVal)
+        .get()
+        .then((mNm) => {
+          let data = [];
+          mNm.docs.forEach((mNm) => {
+            data.push({
+              ItemTypeNameGuid: mNm.get('ItemTypeNameGuid'),
+              ItemTypeName: mNm.get('ItemTypeName'),
+            });
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+  getAssetTypeNameLeft() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('/PMB_ELEC/Sup_ItemTypeName/tables')
+        .ref.get()
+        .then((mNm) => {
+          let data = [];
+          mNm.docs.forEach((mNm) => {
+            data.push({
+              ItemTypeNameGuid: mNm.get('ItemTypeNameGuid'),
+              ItemTypeName: mNm.get('ItemTypeName'),
+            });
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
 
   getItemTypeClass() {
     const promise = new Promise((resolve, reject) => {
@@ -1238,6 +1388,62 @@ export class FirebaseGetService {
     return promise;
   }
 
+  getOilType() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('/PMB_ELEC/Sup_Oiltype/tables')
+        .ref.limit(this.limVal)
+        .get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obj) => {
+            data.push({
+              OilGuid: obj.get('OilGuid'),
+              OilMakeGuid: obj.get('OilMakeGuid'),
+              OilMake: '',
+              OilGradeGuid: obj.get('OilGradeGuid'),
+              OilGrade: '',
+              OilClassGuid: obj.get('OilClassGuid'),
+              OilClass: '',
+              OilText: '',
+            });
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+  getOilTypeLeft() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('/PMB_ELEC/Sup_Oiltype/tables')
+        .ref.get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obj) => {
+            data.push({
+              OilGuid: obj.get('OilGuid'),
+              OilMakeGuid: obj.get('OilMakeGuid'),
+              OilMake: '',
+              OilGradeGuid: obj.get('OilGradeGuid'),
+              OilGrade: '',
+              OilClassGuid: obj.get('OilClassGuid'),
+              OilClass: '',
+              OilText: '',
+            });
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+
   getOilMake() {
     const promise = new Promise((resolve, reject) => {
       this.afs
@@ -1306,7 +1512,49 @@ export class FirebaseGetService {
 
   getOhbTypes() {}
 
-  getStaffCategory() {}
+  getStaffCategory() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('/PMB_ELEC/Sup_StaffCategory/tables')
+        .ref.limit(this.limVal)
+        .get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obj) => {
+            data.push({
+              StaffCatgGuid: obj.get('StaffCatgGuid '),
+              StaffCatg: obj.get('StaffCatg'),
+            });
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+  getStaffCategoryLeft() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('/PMB_ELEC/Sup_StaffCategory/tables')
+        .ref.get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obj) => {
+            data.push({
+              StaffCatgGuid: obj.get('StaffCatgGuid '),
+              StaffCatg: obj.get('StaffCatg'),
+            });
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
 
   getServiceType() {
     const promise = new Promise((resolve, reject) => {
@@ -1318,7 +1566,7 @@ export class FirebaseGetService {
           obj.docs.forEach((obj) => {
             data.push({
               ServTypeGuid: obj.get('ServTypeGuid'),
-              ServType: Number(obj.get('ServType')),
+              ServType: obj.get('ServType'),
             });
           });
           resolve(data);
@@ -1334,13 +1582,35 @@ export class FirebaseGetService {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection('/PMB_ELEC/Sup_SupplierCategory/tables')
+        .ref.limit(this.limVal)
+        .get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obj) => {
+            data.push({
+              SuppCategoryGuid: obj.get('SuppCategoryGuid'),
+              SuppCategory: obj.get('SuppCategory'),
+            });
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+  getSuppCatLeft() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('/PMB_ELEC/Sup_SupplierCategory/tables')
         .ref.get()
         .then((obj) => {
           let data = [];
           obj.docs.forEach((obj) => {
             data.push({
               SuppCategoryGuid: obj.get('SuppCategoryGuid'),
-              SuppCategory: Number(obj.get('SuppCategory')),
+              SuppCategory: obj.get('SuppCategory'),
             });
           });
           resolve(data);
@@ -1352,7 +1622,51 @@ export class FirebaseGetService {
     return promise;
   }
 
-  getVoteCodes() {}
+  getVoteCodes() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('/PMB_ELEC/Trn_Votecodes/tables')
+        .ref.limit(this.limVal)
+        .get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obj) => {
+            data.push({
+              VoteCodeGuid: obj.get('VoteCodeGuid'),
+              Votecode: obj.get('Votecode'),
+            });
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+  getVoteCodesLeft() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('/PMB_ELEC/Trn_Votecodes/tables')
+        .ref.get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obj) => {
+            data.push({
+              VoteCodeGuid: obj.get('VoteCodeGuid'),
+              Votecode: obj.get('Votecode'),
+            });
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+
+  getVoteCodesDesc() {}
 
   getStoreCat() {
     const promise = new Promise((resolve, reject) => {

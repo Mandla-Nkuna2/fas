@@ -349,10 +349,10 @@
                   [(ngModel)]="user.LocUserCode"
                   [items]="locations"
                   itemValueField="LocGuid"
-                  itemTextField="LocFullName"
+                  itemTextField="LocDesc"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onLocationLeft  ()"
+                  (onInfiniteScroll)="onLocationLeft()"
                 >
                 </ionic-selectable>
               </ion-item>

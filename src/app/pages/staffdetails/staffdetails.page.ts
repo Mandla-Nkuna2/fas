@@ -11,7 +11,7 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 })
 export class StaffdetailsPage implements OnInit {
   staff: Staff;
-  staffCat: any[];
+  staffCats: any[];
   addLicView = false;
   licCodes = ['A', 'A1', 'B', 'C', 'C1', 'EB', 'EC', 'EC1'];
 
@@ -23,9 +23,20 @@ export class StaffdetailsPage implements OnInit {
     this.staff = new Staff();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    // this.onStaffCat();
+  }
 
-  onStaffCat() {}
+  onStaffCat() {
+    this.firebaseGetServ.getStaffCategory().then((mNm: any) => {
+      this.staffCats = mNm;
+    });
+  }
+  onStaffCatLeft() {
+    this.firebaseGetServ.getStaffCategoryLeft().then((mNm: any) => {
+      this.staffCats = mNm;
+    });
+  }
 
   onAddLicView() {
     this.addLicView = !this.addLicView;
