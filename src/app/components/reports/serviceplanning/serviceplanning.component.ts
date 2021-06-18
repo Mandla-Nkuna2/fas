@@ -48,6 +48,7 @@ export class ServiceplanningComponent implements OnInit {
 
   ngOnInit() {
     // this.onLocation();
+    // this.onItemType();
     // this.onComponents();
     // this.onRegistration();
   }
@@ -63,8 +64,16 @@ export class ServiceplanningComponent implements OnInit {
     });
   }
 
-  onItemType() {}
-  onItemTypeLeft() {}
+  onItemType() {
+    this.firebaseGetServ.getAssetTypeName().then((mNm: any) => {
+      this.itemTypes = mNm;
+    });
+  }
+  onItemTypeLeft() {
+    this.firebaseGetServ.getAssetTypeNameLeft().then((mNm: any) => {
+      this.itemTypes = mNm;
+    });
+  }
 
   onComponents() {
     this.firebaseGetServ.getCompName().then((mNm: any) => {

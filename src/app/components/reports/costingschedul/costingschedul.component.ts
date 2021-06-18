@@ -37,7 +37,9 @@ export class CostingschedulComponent implements OnInit {
 
   registration: any;
   registrations: any[];
-  maintType = [
+
+  maintType: any;
+  maintTypes = [
     'Accident',
     'Fuel',
     'G.E.T',
@@ -54,6 +56,7 @@ export class CostingschedulComponent implements OnInit {
 
   ngOnInit() {
     // this.onLocation();
+    // this.onItemType();
     // this.onRegistration();
   }
 
@@ -68,8 +71,16 @@ export class CostingschedulComponent implements OnInit {
     });
   }
 
-  onItemType() {}
-  onItemTypeLeft() {}
+  onItemType() {
+    this.firebaseGetServ.getAssetTypeName().then((mNm: any) => {
+      this.itemTypes = mNm;
+    });
+  }
+  onItemTypeLeft() {
+    this.firebaseGetServ.getAssetTypeNameLeft().then((mNm: any) => {
+      this.itemTypes = mNm;
+    });
+  }
 
   onRegistration() {
     this.firebaseGetServ.getRegistration().then((mNm: any) => {

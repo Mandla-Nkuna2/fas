@@ -63,7 +63,7 @@
               [(ngModel)]="location"
               [items]="locations"
               itemValueField="LocGuid"
-              itemTextField="LocFullName"
+              itemTextField="LocDesc"
               [canSearch]="true"
               [hasInfiniteScroll]="true"
               (onInfiniteScroll)="onLocationLeft()"
@@ -80,8 +80,8 @@
             <ionic-selectable
               [(ngModel)]="itemType"
               [items]="itemTypes"
-              itemValueField="LocGuid"
-              itemTextField="LocFullName"
+              itemValueField="ItemTypeNameGuid"
+              itemTextField="ItemTypeName"
               [canSearch]="true"
               [hasInfiniteScroll]="true"
               (onInfiniteScroll)="onItemTypeLeft()"
@@ -118,7 +118,7 @@
         </div>
       </ion-col>
     </ion-row>
- <ion-row *ngIf="locOrReg === 'reg'">
+    <ion-row *ngIf="locOrReg === 'reg'">
       <ion-col size="3.5" offset="0.5">
         <div class="item-input">
           <ion-label>Registration</ion-label>

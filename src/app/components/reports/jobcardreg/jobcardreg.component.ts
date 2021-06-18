@@ -41,8 +41,9 @@ export class JobcardregComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.onLocation();
-    this.onRegistration();
+    // this.onLocation();
+    // this.onJobCardNo();
+    // this.onRegistration();
   }
 
   onLocation() {
@@ -56,8 +57,16 @@ export class JobcardregComponent implements OnInit {
     });
   }
 
-  onJobCardNo() {}
-  onJobCardNoLeft() {}
+  onJobCardNo() {
+    this.firebaseGetServ.getJobCardNos().then((mNm: any) => {
+      this.jobCardNos = mNm;
+    });
+  }
+  onJobCardNoLeft() {
+    this.firebaseGetServ.getJobCardNosLeft().then((mNm: any) => {
+      this.jobCardNos = mNm;
+    });
+  }
 
   onRegistration() {
     this.firebaseGetServ.getRegistration().then((mNm: any) => {

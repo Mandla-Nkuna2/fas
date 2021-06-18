@@ -39,7 +39,8 @@ export class FuelissuesfleetComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.onLocation();
+    // this.onLocation();
+    // this.onItemType();
   }
 
   onLocation() {
@@ -53,6 +54,14 @@ export class FuelissuesfleetComponent implements OnInit {
     });
   }
 
-  onItemType() {}
-  onItemTypeLeft() {}
+  onItemType() {
+    this.firebaseGetServ.getAssetTypeName().then((mNm: any) => {
+      this.itemTypes = mNm;
+    });
+  }
+  onItemTypeLeft() {
+    this.firebaseGetServ.getAssetTypeNameLeft().then((mNm: any) => {
+      this.itemTypes = mNm;
+    });
+  }
 }

@@ -103,7 +103,7 @@
               [(ngModel)]="location"
               [items]="locations"
               itemValueField="LocGuid"
-              itemTextField="LocFullName"
+              itemTextField="LocDesc"
               [canSearch]="true"
               [hasInfiniteScroll]="true"
               (onInfiniteScroll)="onLocationLeft()"
@@ -120,8 +120,8 @@
             <ionic-selectable
               [(ngModel)]="itemType"
               [items]="itemTypes"
-              itemValueField="LocGuid"
-              itemTextField="LocFullName"
+              itemValueField="ItemTypeNameGuid"
+              itemTextField="ItemTypeName"
               [canSearch]="true"
               [hasInfiniteScroll]="true"
               (onInfiniteScroll)="onItemTypeLeft()"
@@ -138,8 +138,8 @@
             <ionic-selectable
               [(ngModel)]="client"
               [items]="clients"
-              itemValueField="CostCentGuid"
-              itemTextField="CostCentName"
+              itemValueField="ClientGuid"
+              itemTextField="ClientName"
               [canSearch]="true"
             >
             </ionic-selectable>

@@ -48,8 +48,10 @@ export class LosscontrlistingComponent implements OnInit {
 
   ngOnInit() {
     // this.onLocation();
+    // this.onLossContType();
     // this.onStaffCodes();
     // this.onRegistration();
+    // this.onLossContAct();
   }
 
   onLocation() {
@@ -63,7 +65,11 @@ export class LosscontrlistingComponent implements OnInit {
     });
   }
 
-  onLossContType() {}
+  onLossContType() {
+    this.firebaseGetServ.getLossContType().then((mNm: any) => {
+      this.lossContTypes = mNm;
+    });
+  }
 
   onStaffCodes() {
     this.firebaseGetServ.getStaff().then((mNm: any) => {
@@ -87,5 +93,9 @@ export class LosscontrlistingComponent implements OnInit {
     });
   }
 
-  onLossContAct() {}
+  onLossContAct() {
+    this.firebaseGetServ.getLossContAct().then((mNm: any) => {
+      this.lossContActs = mNm;
+    });
+  }
 }

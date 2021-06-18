@@ -42,6 +42,7 @@ export class JobcardnotcompltComponent implements OnInit {
 
   ngOnInit() {
     // this.onLocation();
+    // this.onJobCardNo();
     // this.onRegistration();
   }
 
@@ -56,8 +57,16 @@ export class JobcardnotcompltComponent implements OnInit {
     });
   }
 
-  onJobCardNo() {}
-  onJobCardNoLeft() {}
+  onJobCardNo() {
+    this.firebaseGetServ.getJobCardNos().then((mNm: any) => {
+      this.jobCardNos = mNm;
+    });
+  }
+  onJobCardNoLeft() {
+    this.firebaseGetServ.getJobCardNosLeft().then((mNm: any) => {
+      this.jobCardNos = mNm;
+    });
+  }
 
   onRegistration() {
     this.firebaseGetServ.getRegistration().then((mNm: any) => {

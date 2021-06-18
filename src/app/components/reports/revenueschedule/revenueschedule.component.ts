@@ -45,6 +45,8 @@ export class RevenuescheduleComponent implements OnInit {
 
   ngOnInit() {
     // this.onLocation();
+    // this.onItemType();
+    // this.onClient();
     // this.onRegistration();
   }
 
@@ -59,10 +61,22 @@ export class RevenuescheduleComponent implements OnInit {
     });
   }
 
-  onItemType() {}
-  onItemTypeLeft() {}
+  onItemType() {
+    this.firebaseGetServ.getAssetTypeName().then((mNm: any) => {
+      this.itemTypes = mNm;
+    });
+  }
+  onItemTypeLeft() {
+    this.firebaseGetServ.getAssetTypeNameLeft().then((mNm: any) => {
+      this.itemTypes = mNm;
+    });
+  }
 
-  onClient() {}
+  onClient() {
+    this.firebaseGetServ.getClient().then((mNm: any) => {
+      this.clients = mNm;
+    });
+  }
 
   onRegistration() {
     this.firebaseGetServ.getRegistration().then((mNm: any) => {

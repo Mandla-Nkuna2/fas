@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
-import { PopupHelper } from 'src/app/services/helpers/popup-helper';
-
 @Component({
   selector: 'app-staffinputtimes',
   templateUrl: './staffinputtimes.component.html',
@@ -16,10 +13,7 @@ export class StaffinputtimesComponent implements OnInit {
   dateFrom: any;
   dateTo: any;
 
-  constructor(
-    private firebaseGetServ: FirebaseGetService,
-    private popUp: PopupHelper,
-  ) {}
+  constructor() {}
 
   ngOnInit() {}
 }

@@ -66,6 +66,11 @@ export class StoreisscosphComponent implements OnInit {
       this.storeCats = mNm;
     });
   }
+  onStoreCatLeft() {
+    this.firebaseGetServ.getStoreCatLeft().then((mNm: any) => {
+      this.storeCats = mNm;
+    });
+  }
 
   onSupplier() {
     this.firebaseGetServ.getSupplier().then((mNm: any) => {

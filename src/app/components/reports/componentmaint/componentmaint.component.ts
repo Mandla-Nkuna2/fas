@@ -48,6 +48,7 @@ export class ComponentmaintComponent implements OnInit {
 
   ngOnInit() {
     // this.onLocation();
+    // this.onItemType();
     // this.onRegistration();
     // this.onComponent();
   }
@@ -63,8 +64,16 @@ export class ComponentmaintComponent implements OnInit {
     });
   }
 
-  onItemType() {}
-  onItemTypeLeft() {}
+  onItemType() {
+    this.firebaseGetServ.getAssetTypeName().then((mNm: any) => {
+      this.itemTypes = mNm;
+    });
+  }
+  onItemTypeLeft() {
+    this.firebaseGetServ.getAssetTypeNameLeft().then((mNm: any) => {
+      this.itemTypes = mNm;
+    });
+  }
 
   onRegistration() {
     this.firebaseGetServ.getRegistration().then((mNm: any) => {

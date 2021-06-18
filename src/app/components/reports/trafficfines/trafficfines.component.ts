@@ -45,6 +45,7 @@ export class TrafficfinesComponent implements OnInit {
 
   ngOnInit() {
     // this.onLocation();
+    // this.onItemType();
     // this.onStaffCodes();
     // this.onRegistration();
   }
@@ -60,8 +61,16 @@ export class TrafficfinesComponent implements OnInit {
     });
   }
 
-  onItemType() {}
-  onItemTypeLeft() {}
+  onItemType() {
+    this.firebaseGetServ.getAssetTypeName().then((mNm: any) => {
+      this.itemTypes = mNm;
+    });
+  }
+  onItemTypeLeft() {
+    this.firebaseGetServ.getAssetTypeNameLeft().then((mNm: any) => {
+      this.itemTypes = mNm;
+    });
+  }
 
   onStaffCodes() {
     this.firebaseGetServ.getStaff().then((mNm: any) => {

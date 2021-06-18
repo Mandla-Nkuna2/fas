@@ -28,7 +28,7 @@
       </ion-col>
     </ion-row>
 
-     <ion-row>
+    <ion-row>
       <ion-col size="3.5" offset="0.5" style="margin: auto">
         <div class="item-input">
           <ion-label>Financial year</ion-label>
@@ -75,7 +75,7 @@
               [(ngModel)]="location"
               [items]="locations"
               itemValueField="LocGuid"
-              itemTextField="LocFullName"
+              itemTextField="LocDesc"
               [canSearch]="true"
               [hasInfiniteScroll]="true"
               (onInfiniteScroll)="onLocationLeft()"
@@ -92,8 +92,8 @@
             <ionic-selectable
               [(ngModel)]="itemType"
               [items]="itemTypes"
-              itemValueField="LocGuid"
-              itemTextField="LocFullName"
+              itemValueField="ItemTypeNameGuid"
+              itemTextField="ItemTypeName"
               [canSearch]="true"
               [hasInfiniteScroll]="true"
               (onInfiniteScroll)="onItemTypeLeft()"

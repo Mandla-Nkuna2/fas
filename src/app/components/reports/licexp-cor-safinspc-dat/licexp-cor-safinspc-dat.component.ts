@@ -40,6 +40,7 @@ export class LicexpCorSafinspcDatComponent implements OnInit {
 
   ngOnInit() {
     // this.onLocation();
+    // this.onItemType();
     // this.onRegistration();
   }
 
@@ -54,8 +55,16 @@ export class LicexpCorSafinspcDatComponent implements OnInit {
     });
   }
 
-  onItemType() {}
-  onItemTypeLeft() {}
+  onItemType() {
+    this.firebaseGetServ.getAssetTypeName().then((mNm: any) => {
+      this.itemTypes = mNm;
+    });
+  }
+  onItemTypeLeft() {
+    this.firebaseGetServ.getAssetTypeNameLeft().then((mNm: any) => {
+      this.itemTypes = mNm;
+    });
+  }
 
   onRegistration() {
     this.firebaseGetServ.getRegistration().then((mNm: any) => {

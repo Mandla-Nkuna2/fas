@@ -103,7 +103,7 @@
               [(ngModel)]="location"
               [items]="locations"
               itemValueField="LocGuid"
-              itemTextField="LocFullName"
+              itemTextField="LocDesc"
               [canSearch]="true"
               [hasInfiniteScroll]="true"
               (onInfiniteScroll)="onLocationLeft()"
@@ -124,6 +124,7 @@
               itemTextField="StoreCatg"
               [canSearch]="true"
               [hasInfiniteScroll]="true"
+              (onInfiniteScroll)="onStoreCatLeft()"
             >
             </ionic-selectable>
           </ion-item>

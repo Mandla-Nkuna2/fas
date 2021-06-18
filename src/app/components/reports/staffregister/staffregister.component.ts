@@ -36,11 +36,20 @@ export class StaffregisterComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // this.onStaffCat();
-    // this.onStaffCodes();
+    this.onStaffCat();
+    this.onStaffCodes();
   }
 
-  onStaffCat() {}
+  onStaffCat() {
+    this.firebaseGetServ.getStaffCategory().then((mNm: any) => {
+      this.staffCats = mNm;
+    });
+  }
+  onStaffCatLeft() {
+    this.firebaseGetServ.getStaffCategoryLeft().then((mNm: any) => {
+      this.staffCats = mNm;
+    });
+  }
 
   onStaffCodes() {
     this.firebaseGetServ.getStaff().then((mNm: any) => {

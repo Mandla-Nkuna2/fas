@@ -34,7 +34,16 @@ export class StaffproductivityComponent implements OnInit {
     // this.onStaffCodes();
   }
 
-  onStaffCat() {}
+  onStaffCat() {
+    this.firebaseGetServ.getStaffCategory().then((mNm: any) => {
+      this.staffCats = mNm;
+    });
+  }
+  onStaffCatLeft() {
+    this.firebaseGetServ.getStaffCategoryLeft().then((mNm: any) => {
+      this.staffCats = mNm;
+    });
+  }
 
   onStaffCodes() {
     this.firebaseGetServ.getStaff().then((mNm: any) => {

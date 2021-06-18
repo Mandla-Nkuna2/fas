@@ -6,8 +6,11 @@
         <ionic-selectable
           [(ngModel)]="staffCat"
           [items]="staffCats"
+          itemValueField="StaffCatgGuid"
+          itemTextField="StaffCatg"
           [canSearch]="true"
           [hasInfiniteScroll]="true"
+          (onInfiniteScroll)="onStaffCatLeft()"
         >
         </ionic-selectable>
       </ion-item>

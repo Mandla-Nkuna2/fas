@@ -1672,6 +1672,28 @@ export class FirebaseGetService {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection('/PMB_ELEC/Sup_StoreCatg/tables')
+        .ref.limit(this.limVal)
+        .get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obj) => {
+            data.push({
+              StoreCatgGuid: obj.get('StoreCatgGuid'),
+              StoreCatg: obj.get('StoreCatg'),
+            });
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+  getStoreCatLeft() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('/PMB_ELEC/Sup_StoreCatg/tables')
         .ref.get()
         .then((obj) => {
           let data = [];
@@ -1690,7 +1712,47 @@ export class FirebaseGetService {
     return promise;
   }
 
-  getLossContType() {}
+  getLossContType() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('/PMB_ELEC/Sup_LossContType/tables')
+        .ref.get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obj) => {
+            data.push({
+              LossContTypeguid: obj.get('LossContTypeguid'),
+              LossContType: obj.get('LossContType'),
+            });
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
 
-  getLossContAct() {}
+  getLossContAct() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('/PMB_ELEC/Sup_LossContAct/tables')
+        .ref.get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obj) => {
+            data.push({
+              LossContActGuid: obj.get('LossContActGuid'),
+              LossContAct: obj.get('LossContAct'),
+            });
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
 }

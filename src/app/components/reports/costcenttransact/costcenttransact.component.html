@@ -66,21 +66,23 @@
       </ion-col>
     </ion-row>
 
-    <ion-col size="3.5" offset="0.5">
-      <div class="item-input">
-        <ion-label>Cost centre</ion-label>
-        <ion-item>
-          <ionic-selectable
-            [(ngModel)]="costCentre"
-            [items]="costCentres"
-            itemValueField="CostCentGuid"
-            itemTextField="CostCentName"
-            [canSearch]="true"
-            [hasInfiniteScroll]="true"
-          >
-          </ionic-selectable>
-        </ion-item>
-      </div>
-    </ion-col>
+    <ion-row>
+      <ion-col size="3.5" offset="0.5">
+        <div class="item-input">
+          <ion-label>Cost centre</ion-label>
+          <ion-item>
+            <ionic-selectable
+              [(ngModel)]="costCentre"
+              [items]="costCentres"
+              itemValueField="CostCentGuid"
+              itemTextField="CostCentName"
+              [canSearch]="true"
+              [hasInfiniteScroll]="true"
+            >
+            </ionic-selectable>
+          </ion-item>
+        </div>
+      </ion-col>
+    </ion-row>
   </ion-col>
 </ion-row>
