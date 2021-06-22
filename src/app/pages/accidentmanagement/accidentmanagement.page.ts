@@ -93,25 +93,11 @@ export class AccidentmanagementPage implements OnInit {
     });
   }
 
-  onMarkAsComplete() {
-    this.firebaseService
-      .writeData(
-        'myTest',
-        Object.assign({}, this.accidentManagement),
-        this.accidentManagement.LossContGuid,
-      )
-      .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully :-)');
-      })
-      .catch((err) => {
-        this.popUp.showError(err);
-      });
-  }
-
   onAdd() {
     this.firebaseService
       .writeData(
         'myTest',
+        'Trn_LossControl',
         this.accidentManagement,
         this.accidentManagement.LossContGuid,
       )

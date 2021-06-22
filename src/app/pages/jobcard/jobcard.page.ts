@@ -128,6 +128,7 @@ export class JobcardPage implements OnInit {
     this.firebaseService
       .writeData(
         'myTest',
+        'Trn_JobCards',
         Object.assign({}, this.jobCard),
         this.jobCard.generalInformation.JobCardNo,
       )

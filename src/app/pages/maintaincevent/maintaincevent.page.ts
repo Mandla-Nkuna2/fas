@@ -110,6 +110,7 @@ export class MaintainceventPage implements OnInit {
     this.firebaseService
       .writeData(
         'myTest',
+        'Trn_MaintEvnt',
         Object.assign({}, this.maintenanceEvent),
         this.maintenanceEvent.MaintEvntGuid,
       )

@@ -40,6 +40,7 @@ export class LocationPage implements OnInit {
     this.firebaseService
       .writeData(
         'myTest',
+        'Mst_Location',
         Object.assign({}, this.location),
         this.location.LocGuid,
       )

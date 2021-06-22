@@ -94,6 +94,7 @@ export class FuelissuesPage implements OnInit {
     this.firebaseService
       .writeData(
         'myTest',
+        'Trn_FuelIssue',
         Object.assign({}, this.fuelIssue),
         this.fuelIssue.FuelIssueGuid,
       )

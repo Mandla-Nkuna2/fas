@@ -26,6 +26,7 @@ export class ClientdetailsPage implements OnInit {
     this.firebaseService
       .writeData(
         'myTest',
+        'Mst_Client',
         Object.assign({}, this.client),
         this.client.ClientGuid,
       )

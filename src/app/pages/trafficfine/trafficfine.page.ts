@@ -67,6 +67,7 @@ export class TrafficfinePage implements OnInit {
     this.firebaseService
       .writeData(
         'myTest',
+        'Trn_TrafficFine',
         Object.assign({}, this.trafficfine),
         this.trafficfine.TrafficFineGuid,
       )

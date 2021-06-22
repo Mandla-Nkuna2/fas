@@ -43,7 +43,12 @@ export class ComponentnamePage implements OnInit {
 
   onAdd() {
     this.firebaseService
-      .writeData('myTest', this.componentName, this.componentName.CompNameGuid)
+      .writeData(
+        'myTest',
+        'Sup_CompName',
+        this.componentName,
+        this.componentName.CompNameGuid,
+      )
       .then(() => {
         this.popUp.showAlert('Success', 'Data saved successfully :-)');
       })

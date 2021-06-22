@@ -89,6 +89,7 @@ export class AdditionalcostsPage implements OnInit {
     this.firebaseService
       .writeData(
         'myTest',
+        'Trn_AdditionalCosts',
         Object.assign({}, this.additionalCost),
         this.additionalCost.AddCostGuid,
       )

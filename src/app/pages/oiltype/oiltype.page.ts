@@ -51,6 +51,7 @@ export class OiltypePage implements OnInit {
     this.firebaseService
       .writeData(
         'myTest',
+        'Sup_Oiltype',
         Object.assign({}, this.oilType),
         this.oilType.OilGuid,
       )

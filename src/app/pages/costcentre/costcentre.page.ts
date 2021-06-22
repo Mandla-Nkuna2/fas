@@ -26,6 +26,7 @@ export class CostcentrePage implements OnInit {
     this.firebaseService
       .writeData(
         'myTest',
+        'Sup_CostCentre',
         Object.assign({}, this.costcentre),
         this.costcentre.CostCentGuid,
       )

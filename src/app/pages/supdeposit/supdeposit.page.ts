@@ -47,6 +47,7 @@ export class SupdepositPage implements OnInit {
     this.firebaseService
       .writeData(
         'myTest',
+        'Trn_SuppBalance',
         Object.assign({}, this.supplierDeposit),
         this.supplierDeposit.SupBalguid,
       )

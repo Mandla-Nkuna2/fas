@@ -50,6 +50,7 @@ export class ServicetypesPage implements OnInit {
     this.firebaseService
       .writeData(
         'myTest',
+        'Sup_ServType',
         Object.assign({}, this.serviceType),
         this.serviceType.ServTypeGuid,
       )

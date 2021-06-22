@@ -63,6 +63,7 @@ export class RevenuePage implements OnInit {
     this.firebaseService
       .writeData(
         'myTest',
+        'Trn_Revenue',
         Object.assign({}, this.revenue),
         this.revenue.RevenueGuid,
       )

@@ -26,6 +26,7 @@ export class FautorespcodePage implements OnInit {
     this.firebaseService
       .writeData(
         'myTest',
+        'Sup_Response',
         Object.assign({}, this.fautorespcode),
         this.fautorespcode.ResponseGuid,
       )

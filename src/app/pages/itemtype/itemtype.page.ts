@@ -76,7 +76,12 @@ export class ItemtypePage implements OnInit {
 
   onAdd() {
     this.firebaseService
-      .writeData('myTest', this.itemType, this.itemType.ItemTypeGuid)
+      .writeData(
+        'myTest',
+        'Sup_ItemType',
+        this.itemType,
+        this.itemType.ItemTypeGuid,
+      )
       .then(() => {
         this.popUp.showAlert('Success', 'Data saved successfully :-)');
       })

@@ -50,6 +50,7 @@ export class OverheadtransPage implements OnInit {
     this.firebaseService
       .writeData(
         'myTest',
+        'Trn_Overheads',
         Object.assign({}, this.overheadTrans),
         this.overheadTrans.OverheadGuid,
       )

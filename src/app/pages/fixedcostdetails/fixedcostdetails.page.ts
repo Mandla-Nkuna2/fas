@@ -56,6 +56,7 @@ export class FixedcostdetailsPage implements OnInit {
     this.firebaseService
       .writeData(
         'myTest',
+        'Mst_FixedCosts',
         Object.assign({}, this.fixedCost),
         this.fixedCost.FixedCostGuid,
       )

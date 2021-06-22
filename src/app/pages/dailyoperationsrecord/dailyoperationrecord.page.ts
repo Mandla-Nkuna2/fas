@@ -82,6 +82,7 @@ export class DailyoperationrecordPage implements OnInit {
     this.firebaseService
       .writeData(
         'myTest',
+        'Trn_PlantSheets',
         Object.assign({}, this.dOpsRec),
         this.dOpsRec.PlantSheetguid,
       )

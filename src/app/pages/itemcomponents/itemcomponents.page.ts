@@ -106,6 +106,7 @@ export class ItemcomponentsPage implements OnInit {
     this.firebaseService
       .writeData(
         'myTest',
+        'Mst_ItemComponents',
         Object.assign({}, this.itemComponent),
         this.itemComponent.ItemCompGuid,
       )

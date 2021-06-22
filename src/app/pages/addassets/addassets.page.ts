@@ -31,8 +31,8 @@ export class AddassetsPage implements OnInit {
 
   constructor(
     private firebaseService: FirebaseService,
-    private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
+    private popUp: PopupHelper,
   ) {
     this.asset = new Asset();
     this.asset.generalInformation = Object.assign({}, new GeneralInformation());
@@ -44,7 +44,7 @@ export class AddassetsPage implements OnInit {
   ngOnInit() {
     // this.onMakeAndModel();
     // this.onColor();
-    this.onBattery();
+    //this.onBattery();
     // this.onDriver();
     // this.onTireSizes();
   }
@@ -53,23 +53,12 @@ export class AddassetsPage implements OnInit {
     return self.indexOf(value) === index;
   }
 
-  getDataDynamic() {
-    this.popUp.showLoading('getting data...').then(() => {
-      this.firebaseGetServ.getAsset().then((assets) => {
-        this.assets = assets;
-        this.loadingComplete = true;
-        this.popUp.dismissLoading();
-      });
-    });
-  }
-
   onMakeAndModel() {
     this.firebaseGetServ.getMakeAndModel().then((mNm: any) => {
       this.makesAndModels = mNm;
     });
   }
   onMakeAndModelLeft() {
-    console.log('loading more');
     this.firebaseGetServ.getMakeAndModelLeft().then((mNm: any) => {
       this.makesAndModels = mNm;
     });
@@ -154,6 +143,7 @@ export class AddassetsPage implements OnInit {
     this.firebaseService
       .writeData(
         'myTest',
+        'Mst_Item',
         Object.assign({}, this.asset),
         this.asset.generalInformation.ItemGuid,
       )

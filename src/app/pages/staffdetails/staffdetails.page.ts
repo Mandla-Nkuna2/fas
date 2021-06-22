@@ -46,7 +46,12 @@ export class StaffdetailsPage implements OnInit {
 
   onAdd() {
     this.firebaseService
-      .writeData('myTest', Object.assign({}, this.staff), this.staff.StaffGuid)
+      .writeData(
+        'myTest',
+        'Mst_StaffDetails',
+        Object.assign({}, this.staff),
+        this.staff.StaffGuid,
+      )
       .then(() => {
         this.popUp.showAlert('Success', 'Data saved successfully :-)');
       })

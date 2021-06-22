@@ -56,6 +56,7 @@ export class LicensecorPage implements OnInit {
     this.firebaseService
       .writeData(
         'myTest',
+        'Mst_Licence',
         Object.assign({}, this.licCorAndSafInspec),
         this.licCorAndSafInspec.LicHistIndex,
       )

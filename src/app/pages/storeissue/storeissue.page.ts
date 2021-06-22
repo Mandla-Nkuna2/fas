@@ -86,6 +86,7 @@ export class StoreissuePage implements OnInit {
     this.firebaseService
       .writeData(
         'myTest',
+        'Trn_StoreIssue',
         Object.assign({}, this.storeIssue),
         this.storeIssue.StoreIssueGuid,
       )

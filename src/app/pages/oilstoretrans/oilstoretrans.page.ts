@@ -133,6 +133,7 @@ export class OilstoretransPage implements OnInit {
     this.firebaseService
       .writeData(
         'myTest',
+        'Trn_OilStoreTransfer',
         Object.assign({}, this.oilstoreTrans),
         this.oilstoreTrans.OilStoreTrnGuid,
       )

@@ -40,11 +40,13 @@ import { Trafficfine } from '../../models/capture/Trafficfine.model';
 export class FirebaseService {
   constructor(private afs: AngularFirestore, private loading: LoadingService) {}
 
-  public writeData(collec: string, myData: any, id: any) {
+  public writeData(collec: string, doc: any, myData: any, id: any) {
     const promise = new Promise((resolve, reject) => {
       this.loading.present('loading...').then(() => {
         this.afs
           .collection(collec)
+          .doc(doc)
+          .collection('tables')
           .doc(id)
           .set(myData)
           .then(() => {

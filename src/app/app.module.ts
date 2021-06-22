@@ -1,3 +1,4 @@
+import { FirebaseReportService } from './services/firebase-service/firebase-report.service';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
@@ -44,6 +45,7 @@ import { IonicSelectableModule } from 'ionic-selectable';
     EventService,
     AngularFirestore,
     FirebaseGetService,
+    FirebaseReportService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
   bootstrap: [AppComponent],

@@ -25,6 +25,7 @@ export class ServschedultaskPage implements OnInit {
     this.firebaseService
       .writeData(
         'myTest',
+        'Trn_ServScheduleHistory',
         Object.assign({}, this.serviceSchTask),
         this.serviceSchTask.id,
       )

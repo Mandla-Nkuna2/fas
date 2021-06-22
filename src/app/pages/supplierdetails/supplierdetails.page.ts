@@ -39,6 +39,7 @@ export class SupplierdetailsPage implements OnInit {
     this.firebaseService
       .writeData(
         'myTest',
+        'Mst_Supplier',
         Object.assign({}, this.supplier),
         this.supplier.SuppGuid,
       )

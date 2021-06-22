@@ -32,7 +32,12 @@ export class UsergroupsPage implements OnInit {
 
   onAdd() {
     this.firebaseService
-      .writeData('myTest', this.userGroup, this.userGroup.UserGroupGuid)
+      .writeData(
+        'myTest',
+        'Sys_UserGroup',
+        this.userGroup,
+        this.userGroup.UserGroupGuid,
+      )
       .then(() => {
         this.popUp.showAlert('Success', 'Data saved successfully :-)');
       })

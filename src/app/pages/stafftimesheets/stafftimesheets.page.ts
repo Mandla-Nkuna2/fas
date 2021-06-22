@@ -47,6 +47,7 @@ export class StafftimesheetsPage implements OnInit {
     this.firebaseService
       .writeData(
         'myTest',
+        'Trn_StaffTime',
         Object.assign({}, this.staffTimesheet),
         this.staffTimesheet.Staff_TrnGuid,
       )

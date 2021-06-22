@@ -38,6 +38,7 @@ export class StorecategoriesPage implements OnInit {
     this.firebaseService
       .writeData(
         'myTest',
+        'Sup_StoreCatg',
         Object.assign({}, this.storeCat),
         this.storeCat.StoreCatgGuid,
       )

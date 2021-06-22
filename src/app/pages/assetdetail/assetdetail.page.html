@@ -18,7 +18,7 @@
   </div>
 
   <div class="navbar" class="ion-text-center">
-    <ion-button
+    <!-- <ion-button
       fill="clear"
       routerLink="/assetsinfo"
       routerDirection="root"
@@ -26,7 +26,7 @@
       class="link"
     >
       Information
-    </ion-button>
+    </ion-button> -->
     <ion-button
       fill="clear"
       routerLink="/addassets"
@@ -70,7 +70,8 @@
       <div class="top-toolbar">
         <h3>Assets</h3>
       </div>
-      <ion-grid fixed>
+      <ng-template #noItems> No items. </ng-template>
+      <ion-grid fixed *ngIf="assets; else noItems">
         <ion-row class="title-row">
           <ion-col size="0.5" class="flex al-center jc-center"> </ion-col>
           <ion-col size="1.5" class="flex al-center jc-center">
@@ -92,31 +93,31 @@
             <h4>Licence Date</h4>
           </ion-col>
         </ion-row>
-        <div class="values">
+        <div class="values" *ngFor="let asset of assets; let i = index">
           <ion-row class="value-row">
             <ion-col size="0.5" class="flex al-center jc-center">
               <ion-checkbox></ion-checkbox>
             </ion-col>
             <ion-col size="1.5" class="flex al-center jc-center">
-              <p>NPC7502</p>
+              <p>{{ asset.Reg }}</p>
             </ion-col>
             <ion-col size="2" class="flex al-center jc-center">
-              <p>Compressor</p>
+              <p>{{ asset.ItemTypeGuid }}</p>
             </ion-col>
             <ion-col size="2" class="flex al-center jc-center">
-              <p>Major Equipment</p>
+              <p>{{ asset.ItemCatg }}</p>
             </ion-col>
             <ion-col size="2" class="flex al-center jc-center">
-              <p>Ingersoll Rand P180SD</p>
+              <p>{{ asset.ItemMakModGuid }}</p>
             </ion-col>
             <ion-col size="2" class="flex al-center jc-center">
-              <p>01 dec 2008</p>
+              <p>{{ asset.CaptureDate }}</p>
             </ion-col>
             <ion-col size="2" class="flex al-center jc-center">
-              <p>31 Jan 2010</p>
+              <p>{{ asset.LicenceDate }}</p>
             </ion-col>
           </ion-row>
-          <div class="more">
+          <div class="more" *ngIf="moreDet">
             <div class="divider"></div>
             <h4>More Details</h4>
             <ion-row>
@@ -159,7 +160,7 @@
             </ion-row>
           </div>
         </div>
-        <div class="values">
+        <!-- <div class="values">
           <ion-row class="value-row">
             <ion-col size="0.5" class="flex al-center jc-center">
               <ion-checkbox></ion-checkbox>
@@ -233,7 +234,7 @@
               <p>31 Jan 2010</p>
             </ion-col>
           </ion-row>
-        </div>
+        </div> -->
       </ion-grid>
     </div>
   </div>

@@ -103,6 +103,7 @@ export class LosscontrolPage implements OnInit {
     this.firebaseService
       .writeData(
         'myTest',
+        'Trn_LossControl',
         Object.assign({}, this.lossControl),
         this.lossControl.LossContGuid,
       )

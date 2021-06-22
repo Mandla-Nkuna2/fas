@@ -36,6 +36,7 @@ export class OverheadbudgetPage implements OnInit {
     this.firebaseService
       .writeData(
         'myTest',
+        'Trn_OverheadBud',
         Object.assign({}, this.oheadbudget),
         this.oheadbudget.OverheadBudGuid,
       )

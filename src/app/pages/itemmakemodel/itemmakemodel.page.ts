@@ -70,7 +70,12 @@ export class ItemmakemodelPage implements OnInit {
 
   onAdd() {
     this.firebaseService
-      .writeData('myTest', this.item, this.item.ItemMakModGuid)
+      .writeData(
+        'myTest',
+        'Sup_ItemMakMod',
+        this.item,
+        this.item.ItemMakModGuid,
+      )
       .then(() => {
         this.popUp.showAlert('Success', 'Data saved successfully :-)');
       })

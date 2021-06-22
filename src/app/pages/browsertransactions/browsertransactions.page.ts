@@ -30,6 +30,7 @@ export class BrowsertransactionsPage implements OnInit {
     this.firebaseService
       .writeData(
         'myTest',
+        'Trn_Bowsers',
         Object.assign({}, this.bowserTransaction),
         this.bowserTransaction.BowserTrnGuid,
       )

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FirebaseService } from 'src/app/services/firebase-service/firebase-service.service';
+import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 
 @Component({
   selector: 'app-addissuesinfo',
@@ -6,10 +8,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./addissuesinfo.page.scss'],
 })
 export class AddissuesinfoPage implements OnInit {
+  agent: string;
 
-  constructor() { }
+  constructor(
+    private firebaseService: FirebaseService,
+    private popUp: PopupHelper,
+  ) {}
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  onAdd() {
+    this.firebaseService
+      .writeData('myTest', '', Object.assign({}, this.agent), '')
+      .then(() => {
+        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
   }
-
 }

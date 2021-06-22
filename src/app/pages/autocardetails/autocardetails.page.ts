@@ -47,6 +47,7 @@ export class AutocardetailsPage implements OnInit {
     this.firebaseService
       .writeData(
         'myTest',
+        'Mst_Autocard',
         Object.assign({}, this.autocard),
         this.autocard.AutoCardGuid,
       )

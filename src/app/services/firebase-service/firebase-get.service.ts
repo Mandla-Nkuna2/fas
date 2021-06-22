@@ -316,12 +316,12 @@ export class FirebaseGetService {
       this.afs
         .collection('PMB_ELEC/Mst_Item/tables')
         .ref.get()
-        .then((asset) => {
-          let newAssets = [];
-          asset.docs.forEach((asset) => {
-            newAssets.push(asset.data());
+        .then((objs) => {
+          let data = [];
+          objs.docs.forEach((obj) => {
+            data.push(obj.data());
           });
-          resolve(newAssets);
+          resolve(data);
         })
         .catch((err) => {
           reject(err);

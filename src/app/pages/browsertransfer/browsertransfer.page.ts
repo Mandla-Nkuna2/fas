@@ -37,6 +37,7 @@ export class BrowsertransferPage implements OnInit {
     this.firebaseService
       .writeData(
         'myTest',
+        'Trn_BowserTransfer',
         Object.assign({}, this.bowserTransfer),
         this.bowserTransfer.FuelTransferGuid,
       )

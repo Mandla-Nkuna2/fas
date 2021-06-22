@@ -45,6 +45,7 @@ export class VotecodesPage implements OnInit {
     this.firebaseService
       .writeData(
         'myTest',
+        'Trn_Votecodes',
         Object.assign({}, this.voteCode),
         this.voteCode.VoteCodeGuid,
       )

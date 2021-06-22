@@ -23,8 +23,8 @@ export class BowserPage implements OnInit {
   }
 
   ngOnInit() {
-    this.onBowserLoc();
-    this.onFuelType();
+    // this.onBowserLoc();
+    // this.onFuelType();
   }
 
   onBowserLoc() {
@@ -46,7 +46,7 @@ export class BowserPage implements OnInit {
 
   onAdd() {
     this.firebaseService
-      .writeData('myTest', this.bowser, this.bowser.BowserGuid)
+      .writeData('myTest', 'Mst_Bowser', this.bowser, this.bowser.BowserGuid)
       .then(() => {
         this.popUp.showAlert('Success', 'Data saved successfully :-)');
       })

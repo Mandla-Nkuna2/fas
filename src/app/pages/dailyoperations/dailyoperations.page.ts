@@ -22,7 +22,12 @@ export class DailyoperationsPage implements OnInit {
 
   onAdd() {
     this.firebaseService
-      .writeData('myTest', this.dailyOpRec, this.dailyOpRec.Itemguid)
+      .writeData(
+        'myTest',
+        'Trn_PlantSheets',
+        this.dailyOpRec,
+        this.dailyOpRec.Itemguid,
+      )
       .then(() => {
         this.popUp.showAlert('Success', 'Data saved successfully :-)');
       })

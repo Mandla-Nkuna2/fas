@@ -40,6 +40,7 @@ export class OilstorePage implements OnInit {
     this.firebaseService
       .writeData(
         'myTest',
+        'Trn_OilStores',
         Object.assign({}, this.oilStore),
         this.oilStore.OilStoreGuid,
       )

@@ -49,6 +49,7 @@ export class FixedcostransferPage implements OnInit {
     this.firebaseService
       .writeData(
         'myTest',
+        'Trn_FixedCosts',
         Object.assign({}, this.fixedCostTransf),
         this.fixedCostTransf.FixedcostTransGuid,
       )
