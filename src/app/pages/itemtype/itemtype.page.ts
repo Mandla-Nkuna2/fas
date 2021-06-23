@@ -79,7 +79,7 @@ export class ItemtypePage implements OnInit {
       .writeData(
         'myTest',
         'Sup_ItemType',
-        this.itemType,
+        Object.assign({}, this.itemType),
         this.itemType.ItemTypeGuid,
       )
       .then(() => {

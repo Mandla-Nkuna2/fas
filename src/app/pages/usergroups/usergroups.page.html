@@ -9,7 +9,7 @@
   <ion-row>
     <ion-col size="6">
       <div class="item-input">
-        <ion-label>User group</ion-label>
+        <ion-label>User groups</ion-label>
         <ion-item>
           <ionic-selectable
             [(ngModel)]="userGroup.UserGroupGuid"
@@ -20,6 +20,17 @@
             [hasInfiniteScroll]="true"
           >
           </ionic-selectable>
+        </ion-item>
+      </div>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col size="3.5">
+      <div class="item-input">
+        <ion-label>User group</ion-label>
+        <ion-item lines="none">
+          <ion-input></ion-input>
         </ion-item>
       </div>
     </ion-col>

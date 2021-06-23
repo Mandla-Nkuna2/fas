@@ -73,7 +73,7 @@ export class ItemmakemodelPage implements OnInit {
       .writeData(
         'myTest',
         'Sup_ItemMakMod',
-        this.item,
+        Object.assign({}, this.item),
         this.item.ItemMakModGuid,
       )
       .then(() => {

@@ -46,7 +46,7 @@ export class ComponentnamePage implements OnInit {
       .writeData(
         'myTest',
         'Sup_CompName',
-        this.componentName,
+        Object.assign({}, this.componentName),
         this.componentName.CompNameGuid,
       )
       .then(() => {

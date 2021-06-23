@@ -35,7 +35,7 @@ export class UsergroupsPage implements OnInit {
       .writeData(
         'myTest',
         'Sys_UserGroup',
-        this.userGroup,
+        Object.assign({}, this.userGroup),
         this.userGroup.UserGroupGuid,
       )
       .then(() => {

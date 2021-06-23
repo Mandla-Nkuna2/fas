@@ -185,7 +185,7 @@
     <div class="the-form">
       <ion-grid fixed>
         <ion-row>
-          <ion-col size="5">
+          <!-- <ion-col size="5">
             <div class="item-input">
               <ion-row>
                 <ion-col size="8.5" class="ion-no-padding">
@@ -203,7 +203,7 @@
                 </ion-col>
               </ion-row>
             </div>
-          </ion-col>
+          </ion-col> -->
 
           <ion-col size="3.5">
             <div class="item-input">
@@ -229,7 +229,7 @@
             </div>
           </ion-col>
 
-          <ion-col size="3.5">
+          <ion-col size="3.5" offset="0.5">
             <div class="item-input">
               <ion-label>Agent</ion-label>
               <ion-item>
@@ -247,31 +247,31 @@
             </div>
           </ion-col>
 
-          <ion-col size="8" offset="0.5">
+          <ion-col size="4">
             <div class="item-input">
-              <ion-row>
-                <ion-col size="7" class="ion-no-padding">
-                  <ion-label>Registration</ion-label>
-                  <ion-item>
-                    <ionic-selectable
-                      [(ngModel)]="lossControl.Itemguid"
-                      [items]="registration"
-                      itemValueField="ItemGuid"
-                      itemTextField="Reg"
-                      [canSearch]="true"
-                      [hasInfiniteScroll]="true"
-                      (onInfiniteScroll)="onRegistrationLeft()"
-                    >
-                    </ionic-selectable>
-                  </ion-item>
-                </ion-col>
+              <!-- <ion-row>
+                <ion-col size="7" class="ion-no-padding"> -->
+              <ion-label>Registration</ion-label>
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="lossControl.Itemguid"
+                  [items]="registration"
+                  itemValueField="ItemGuid"
+                  itemTextField="Reg"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onRegistrationLeft()"
+                >
+                </ionic-selectable>
+              </ion-item>
+              <!-- </ion-col> -->
 
-                <ion-col size="4.5" offset="0.5" class="flex al-end jc-end">
+              <!-- <ion-col size="4.5" offset="0.5" class="flex al-end jc-end">
                   <ion-button expand="block" id="inline">
                     Check Make & Model and Location
                   </ion-button>
-                </ion-col>
-              </ion-row>
+                </ion-col> -->
+              <!-- </ion-row> -->
             </div>
           </ion-col>
 
@@ -409,11 +409,11 @@
                   </ion-item>
                 </ion-col>
 
-                <ion-col size="5.5" offset="0.5" class="flex al-end jc-end">
+                <!-- <ion-col size="5.5" offset="0.5" class="flex al-end jc-end">
                   <ion-button expand="block" id="inline">
                     Check Employee No.
                   </ion-button>
-                </ion-col>
+                </ion-col> -->
               </ion-row>
             </div>
           </ion-col>

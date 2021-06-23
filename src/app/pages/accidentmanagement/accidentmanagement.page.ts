@@ -93,12 +93,12 @@ export class AccidentmanagementPage implements OnInit {
     });
   }
 
-  onAdd() {
+  onMarkAsComplete() {
     this.firebaseService
       .writeData(
         'myTest',
         'Trn_LossControl',
-        this.accidentManagement,
+        Object.assign({}, this.accidentManagement),
         this.accidentManagement.LossContGuid,
       )
       .then(() => {

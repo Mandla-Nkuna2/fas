@@ -46,7 +46,12 @@ export class BowserPage implements OnInit {
 
   onAdd() {
     this.firebaseService
-      .writeData('myTest', 'Mst_Bowser', this.bowser, this.bowser.BowserGuid)
+      .writeData(
+        'myTest',
+        'Mst_Bowser',
+        Object.assign({}, this.bowser),
+        this.bowser.BowserGuid,
+      )
       .then(() => {
         this.popUp.showAlert('Success', 'Data saved successfully :-)');
       })

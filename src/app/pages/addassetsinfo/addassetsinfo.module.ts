@@ -6,6 +6,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { AddassetsinfoPageRoutingModule } from './addassetsinfo-routing.module';
 
+import { IonicSelectableModule } from 'ionic-selectable';
 import { AddassetsinfoPage } from './addassetsinfo.page';
 
 @NgModule({
@@ -13,8 +14,9 @@ import { AddassetsinfoPage } from './addassetsinfo.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    AddassetsinfoPageRoutingModule
+    AddassetsinfoPageRoutingModule,
+    IonicSelectableModule,
   ],
-  declarations: [AddassetsinfoPage]
+  declarations: [AddassetsinfoPage],
 })
 export class AddassetsinfoPageModule {}
