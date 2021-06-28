@@ -31,10 +31,10 @@ export class OilstoretransPage implements OnInit {
   }
 
   ngOnInit() {
-    // this.onOilStore();
-    // this.onOilType();
-    // this.onSupplier();
-    // this.onCostCentre();
+    this.onOilStore();
+    this.onOilType();
+    this.onSupplier();
+    this.onCostCentre();
   }
 
   goOilTransfer() {

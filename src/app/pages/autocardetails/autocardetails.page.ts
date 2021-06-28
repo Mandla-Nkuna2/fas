@@ -25,7 +25,7 @@ export class AutocardetailsPage implements OnInit {
   }
 
   ngOnInit() {
-    // this.onRegistration()
+    this.onRegistration();
   }
 
   goBrowserTransactions() {

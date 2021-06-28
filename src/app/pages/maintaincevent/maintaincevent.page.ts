@@ -31,13 +31,13 @@ export class MaintainceventPage implements OnInit {
   }
 
   ngOnInit() {
-    // this.onJobCardNo();
-    // this.onRegistration()
-    // this.onMaintType()
-    // this.onMaintReason();
-    // this.onSupplier()
-    // this.onRequestedBy()
-    // this.onConstCentre()
+    this.onJobCardNo();
+    this.onRegistration();
+    this.onMaintType();
+    this.onMaintReason();
+    this.onSupplier();
+    this.onRequestedBy();
+    this.onConstCentre();
   }
 
   goOilIssues() {

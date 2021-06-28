@@ -27,8 +27,8 @@ export class LicensecorPage implements OnInit {
   }
 
   ngOnInit() {
-    // this.onRegistration()
-    // this.onCostCentre()
+    this.onRegistration();
+    this.onCostCentre();
   }
 
   goLossControl() {

@@ -24,8 +24,8 @@ export class FixedcostransferPage implements OnInit {
   }
 
   ngOnInit() {
-    // this.onRegistration()
-    // this.onCostCentre()
+    this.onRegistration();
+    this.onCostCentre();
   }
 
   onRegistration() {

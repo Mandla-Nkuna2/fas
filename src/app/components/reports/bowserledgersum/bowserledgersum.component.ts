@@ -27,7 +27,7 @@ export class BowserledgersumComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // this.onBowser();
+    this.onBowser();
   }
 
   onBowser() {

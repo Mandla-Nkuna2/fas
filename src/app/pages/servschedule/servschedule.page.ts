@@ -24,8 +24,8 @@ export class ServschedulePage implements OnInit {
   }
 
   ngOnInit() {
-    // this.onMakModel();
-    // this.onServiceType();
+    this.onMakModel();
+    this.onServiceType();
   }
 
   onMakModel() {

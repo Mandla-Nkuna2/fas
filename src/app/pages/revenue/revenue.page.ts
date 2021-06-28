@@ -27,9 +27,9 @@ export class RevenuePage implements OnInit {
   }
 
   ngOnInit() {
-    // this.onRegistration()
-    // this.onClient();
-    // this.onCostCentre()
+    this.onRegistration();
+    this.onClient();
+    this.onCostCentre();
   }
 
   storeIssue() {

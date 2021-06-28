@@ -28,10 +28,10 @@ export class StoreissuePage implements OnInit {
   }
 
   ngOnInit() {
-    // this.onRegistration();
-    // this.onMaintEvRefNo();
-    // this.onSupplier();
-    // this.onStoreItem();
+    this.onRegistration();
+    this.onMaintEvRefNo();
+    this.onSupplier();
+    this.onStoreItem();
   }
 
   goSupplierDeposit() {

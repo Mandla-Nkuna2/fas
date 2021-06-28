@@ -44,10 +44,10 @@ export class RevenuescheduleComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // this.onLocation();
-    // this.onItemType();
-    // this.onClient();
-    // this.onRegistration();
+    this.onLocation();
+    this.onItemType();
+    this.onClient();
+    this.onRegistration();
   }
 
   onLocation() {

@@ -31,12 +31,12 @@ export class LosscontrolPage implements OnInit {
   }
 
   ngOnInit() {
-    //this.onAgent()
-    //this.onRegistration()
-    //this.onLossType();
-    //this.onReportedBy()
-    //this.onDriverName();
-    //this.onActionTaken();
+    this.onAgent();
+    this.onRegistration();
+    this.onLossType();
+    this.onReportedBy();
+    this.onDriverName();
+    this.onActionTaken();
   }
 
   goMEvent() {

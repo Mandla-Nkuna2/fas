@@ -5,12 +5,10 @@
   <div class="mainLoginDiv">
     <ion-row>
       <ion-col sizeXs="12">
-        <ion-text color="primary" style="font-size: 2em;">
-          SIGN IN
-        </ion-text>
+        <ion-text color="primary" style="font-size: 2em"> SIGN IN </ion-text>
       </ion-col>
       <ion-col sizeXs="12">
-        <ion-text class="intro" style="color: black;">
+        <ion-text class="intro" style="color: black">
           Sign into your account to continue.
         </ion-text>
       </ion-col>
@@ -18,19 +16,28 @@
 
     <ion-row>
       <ion-col sizeXs="12">
-        <ion-input style="color: black;" placeholder="Email" type="Email" [(ngModel)]="email"></ion-input>
+        <ion-input
+          style="color: black"
+          placeholder="Email"
+          type="Email"
+          [(ngModel)]="email"
+        ></ion-input>
       </ion-col>
       <ion-col sizeXs="12">
-        <ion-input style="color: black;" placeholder="Password" type="Password" [(ngModel)]="password"></ion-input>
+        <ion-input
+          style="color: black"
+          placeholder="Password"
+          type="Password"
+          [(ngModel)]="password"
+        ></ion-input>
       </ion-col>
     </ion-row>
 
-    <ion-row class="ion-margin-top" style="margin-top: 10vh;">
+    <ion-row class="ion-margin-top" style="margin-top: 10vh">
       <ion-button class="login-btn" (click)="login()">
         <span>Login</span>
       </ion-button>
     </ion-row>
-    
   </div>
 </ion-content>
 

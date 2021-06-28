@@ -35,18 +35,16 @@
 
       <ion-buttons slot="end">
         <ion-item lines="none">
-          <div class="start-slot flex al-center jc-center" slot="start">
-            <ion-icon name="chevron-down"></ion-icon>
-          </div>
-          <ion-avatar slot="end">
-            <img src="assets/imgs/dp.jpg" alt="" />
-          </ion-avatar>
           <ion-label>
             <h2>Mikali Duran</h2>
             <p>mikaliduran@gmail.com</p>
           </ion-label>
         </ion-item>
       </ion-buttons>
+
+      <button slot="end" class="logout-button" (click)="logout()">
+        Log Out
+      </button>
     </ion-toolbar>
   </ion-header>
 
@@ -58,29 +56,21 @@
         </div>
         <ion-list class="main-list" style="height: fit-content !important">
           <div *ngFor="let p of appPages; let i = index">
-            <ion-menu-toggle auto-hide="false" *ngIf="!p.children">
-              <ion-item
-                routerDirection="root"
-                [routerLink]="[p.url]"
-                lines="none"
-                detail="false"
-                routerLinkActive="active-parent"
-              >
-                <ion-icon
-                  slot="start"
-                  [src]="p.icon"
-                  *ngIf="!p.open"
-                ></ion-icon>
-                <ion-icon
-                  slot="start"
-                  [src]="p.icona"
-                  *ngIf="p.open"
-                ></ion-icon>
-                <ion-label>{{ p.title }}</ion-label>
-              </ion-item>
-            </ion-menu-toggle>
-
+            <!-- <ion-menu-toggle auto-hide="false" *ngIf="!p.children"> -->
             <ion-item
+              routerDirection="root"
+              [routerLink]="[p.url]"
+              lines="none"
+              detail="false"
+              routerLinkActive="active-parent"
+            >
+              <ion-icon slot="start" [src]="p.icon"></ion-icon>
+              <!-- <ion-icon slot="start" [src]="p.icona" *ngIf="p.open"></ion-icon> -->
+              <ion-label>{{ p.title }}</ion-label>
+            </ion-item>
+            <!-- </ion-menu-toggle> -->
+
+            <!-- <ion-item
               [class.active-parent]="p.open"
               button
               *ngIf="p.children"
@@ -93,9 +83,9 @@
               <ion-icon slot="start" [src]="p.icon" *ngIf="!p.open"></ion-icon>
               <ion-icon slot="start" [src]="p.icona" *ngIf="p.open"></ion-icon>
               <ion-label>{{ p.title }}</ion-label>
-            </ion-item>
+            </ion-item> -->
 
-            <ion-list *ngIf="p.open && p.children" class="sub-list">
+            <!-- <ion-list *ngIf="p.open && p.children" class="sub-list">
               <ion-menu-toggle auto-hide="false" *ngFor="let sub of p.children">
                 <ion-item
                   class="sub"
@@ -108,7 +98,7 @@
                   <ion-label>{{ sub.title }}</ion-label>
                 </ion-item>
               </ion-menu-toggle>
-            </ion-list>
+            </ion-list> -->
           </div>
         </ion-list>
       </ion-content>

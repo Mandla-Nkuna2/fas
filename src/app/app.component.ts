@@ -11,6 +11,7 @@ import { FirebaseGetService } from './services/firebase-service/firebase-get.ser
 })
 export class AppComponent {
   public selectedIndex = 0;
+
   public appPages = [
     {
       title: 'Dashboard',
@@ -301,9 +302,7 @@ export class AppComponent {
   ) {}
 
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
-    //this.loginCheck();
+    this.loginCheck();
   }
 
   loginCheck() {
@@ -316,6 +315,10 @@ export class AppComponent {
         this.showMenu = true;
       }
     });
+  }
+
+  logout() {
+    let x = this.auth.signOut();
   }
 
   goAddAssetsInfo() {

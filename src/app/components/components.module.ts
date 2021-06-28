@@ -4,10 +4,10 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ClickOutsideDirective } from '../shared/clickOutside.directive'
-import { DropdownDirective } from '../shared/dropdown.directive'
+import { ClickOutsideDirective } from '../shared/clickOutside.directive';
+import { DropdownDirective } from '../shared/dropdown.directive';
 import { ClickOutsideModule } from 'ng-click-outside';
-import { AdditionalcostComponent } from './reports/additionalcost/additionalcost.component'
+import { AdditionalcostComponent } from './reports/additionalcost/additionalcost.component';
 import { IonicSelectableModule } from 'ionic-selectable';
 import { AlternateidComponent } from './reports/alternateid/alternateid.component';
 import { ArchivedetComponent } from './reports/archivedet/archivedet.component';
@@ -94,15 +94,13 @@ import { SystemmanmajequipComponent } from './reports/systemmanmajequip/systemma
 import { SystemmanvehComponent } from './reports/systemmanveh/systemmanveh.component';
 import { TrafficfinesComponent } from './reports/trafficfines/trafficfines.component';
 
-
-
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     ClickOutsideModule,
-    IonicSelectableModule
+    IonicSelectableModule,
   ],
   declarations: [
     ClickOutsideDirective,
@@ -194,7 +192,6 @@ import { TrafficfinesComponent } from './reports/trafficfines/trafficfines.compo
     TrafficfinesComponent,
   ],
 
-
   exports: [
     ClickOutsideDirective,
     DropdownDirective,
@@ -284,6 +281,6 @@ import { TrafficfinesComponent } from './reports/trafficfines/trafficfines.compo
     SystemmanvehComponent,
     TrafficfinesComponent,
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class ComponentsModule {}

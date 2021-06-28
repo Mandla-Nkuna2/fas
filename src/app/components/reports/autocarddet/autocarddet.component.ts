@@ -44,9 +44,9 @@ export class AutocarddetComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // this.onLocation();
-    // this.onCostCentre();
-    // this.onRegistration();
+    this.onLocation();
+    this.onCostCentre();
+    this.onRegistration();
   }
 
   onLocation() {

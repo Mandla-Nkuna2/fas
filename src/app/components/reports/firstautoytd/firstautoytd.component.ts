@@ -22,7 +22,7 @@ export class FirstautoytdComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // this.onLocation();
+    this.onLocation();
   }
 
   onLocation() {

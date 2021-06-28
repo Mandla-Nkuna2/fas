@@ -8,7 +8,7 @@ import firebase from 'firebase/app';
 export class FirebaseGetService {
   constructor(private afs: AngularFirestore) {}
 
-  private limVal = 3;
+  private limVal = 10;
 
   // getDataDynamic(dataLink: string){
   //   const promise = new Promise((resolve, reject) => {
@@ -69,52 +69,6 @@ export class FirebaseGetService {
               ItemModel: mNm.get('ItemModel'),
               ItemMakMod: mNm.get('ItemMake') + ' ' + mNm.get('ItemModel'),
               ItemMakModGuid: mNm.get('ItemMakModGuid'),
-            });
-          });
-          resolve(makeAndModel);
-        })
-        .catch((err) => {
-          reject(err);
-        });
-    });
-    return promise;
-  }
-
-  getAssetMakMod() {
-    const promise = new Promise((resolve, reject) => {
-      this.afs
-        .collection('PMB_ELEC/Sup_ItemMakMod/tables')
-        .ref.limit(this.limVal)
-        .get()
-        .then((mNm) => {
-          let makeAndModel = [];
-          mNm.docs.forEach((mNm) => {
-            makeAndModel.push({
-              make: mNm.get('ItemMake'),
-              model: mNm.get('ItemModel'),
-              guid: mNm.get('ItemMakModGuid'),
-            });
-          });
-          resolve(makeAndModel);
-        })
-        .catch((err) => {
-          reject(err);
-        });
-    });
-    return promise;
-  }
-  getAssetMakModLeft() {
-    const promise = new Promise((resolve, reject) => {
-      this.afs
-        .collection('PMB_ELEC/Sup_ItemMakMod/tables')
-        .ref.get()
-        .then((mNm) => {
-          let makeAndModel = [];
-          mNm.docs.forEach((mNm) => {
-            makeAndModel.push({
-              make: mNm.get('ItemMake'),
-              model: mNm.get('ItemModel'),
-              guid: mNm.get('ItemMakModGuid'),
             });
           });
           resolve(makeAndModel);
@@ -1245,6 +1199,28 @@ export class FirebaseGetService {
             data.push({
               FuelTypeGuid: obj.get('FuelTypeGuid'),
               FuelType: obj.get('FuelType'),
+            });
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+
+  getItemType() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('/PMB_ELEC/Sup_ItemType/tables')
+        .ref.get()
+        .then((mNm) => {
+          let data = [];
+          mNm.docs.forEach((mNm) => {
+            data.push({
+              ItemTypeGuid: mNm.get('ItemTypeGuid'),
+              ItemTypeNameGuid: mNm.get('ItemTypeNameGuid'),
             });
           });
           resolve(data);

@@ -21,7 +21,7 @@ export class SupplierdetailsPage implements OnInit {
   }
 
   ngOnInit() {
-    // this.onCategory();
+    this.onCategory();
   }
 
   onCategory() {

@@ -21,7 +21,7 @@ export class UsergroupsPage implements OnInit {
   }
 
   ngOnInit() {
-    // this.onUserGroups();
+    this.onUserGroups();
   }
 
   onUserGroups() {

@@ -29,11 +29,11 @@ export class ItemcomponentsPage implements OnInit {
   }
 
   ngOnInit() {
-    //this.onRegistration()
-    // this.onCompName()
-    // this.onComponentMake()
-    // this.onComponentModel()
-    //this.onServiceIntv()
+    this.onRegistration();
+    this.onCompName();
+    this.onComponentMake();
+    this.onComponentModel();
+    this.onServiceIntv();
   }
 
   goItem() {

@@ -33,7 +33,7 @@ export class FuelsupppurchComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // this.onRegistration();
+    this.onRegistration();
   }
 
   onRegistration() {

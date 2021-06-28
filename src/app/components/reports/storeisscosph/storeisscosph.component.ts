@@ -44,10 +44,10 @@ export class StoreisscosphComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // this.onLocation();
-    // this.onStoreCat();
-    // this.onSupplier();
-    // this.onRegistration();
+    this.onLocation();
+    this.onStoreCat();
+    this.onSupplier();
+    this.onRegistration();
   }
 
   onLocation() {

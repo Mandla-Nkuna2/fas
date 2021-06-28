@@ -24,7 +24,7 @@ export class UsersPage implements OnInit {
   }
 
   ngOnInit() {
-    // this.onUserGroup();
+    this.onUserGroup();
     this.onLocation();
   }
 

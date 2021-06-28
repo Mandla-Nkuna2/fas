@@ -36,8 +36,8 @@ export class SuppbalComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // this.onSupplier();
-    // this.onRegistration();
+    this.onSupplier();
+    this.onRegistration();
   }
 
   onSupplier() {

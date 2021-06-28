@@ -25,7 +25,7 @@ export class StafftimesheetsPage implements OnInit {
   }
 
   ngOnInit() {
-    // this.onStaffMember()
+    this.onStaffMember();
   }
 
   goRevenue() {

@@ -28,10 +28,10 @@ export class DailyoperationrecordPage implements OnInit {
   }
 
   ngOnInit() {
-    // this.onRegistration();
-    // this.onLocation();
-    // this.onCostCentre();
-    // this.onOperatorName();
+    this.onRegistration();
+    this.onLocation();
+    this.onCostCentre();
+    this.onOperatorName();
   }
 
   onRegistration() {

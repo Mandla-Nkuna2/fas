@@ -25,7 +25,7 @@ export class SupdepositPage implements OnInit {
   }
 
   ngOnInit() {
-    // this.onSupplierName();
+    this.onSupplierName();
   }
 
   goFuelnOilPrice() {

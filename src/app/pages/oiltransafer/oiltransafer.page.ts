@@ -32,10 +32,10 @@ export class OiltransaferPage implements OnInit {
   }
 
   ngOnInit() {
-    // this.onOilType()
-    // this.onOilStoreFrom()
-    // this.onOilStoreTo()
-    // this.onCostCentre()
+    this.onOilType();
+    this.onOilStoreFrom();
+    this.onOilStoreTo();
+    this.onCostCentre();
   }
 
   goOverhead() {
