@@ -692,7 +692,7 @@ export class FirebaseGetService {
             data.push({
               LocGuid: obj.get('LocGuid'),
               LocDesc: obj.get('LocDesc'),
-              LocFullName: obj.get('LocFullName'),
+              //LocFullName: obj.get('LocFullName'),
             });
           });
           resolve(data);
@@ -714,7 +714,7 @@ export class FirebaseGetService {
             data.push({
               LocGuid: obj.get('LocGuid'),
               LocDesc: obj.get('LocDesc'),
-              LocFullName: obj.get('LocFullName'),
+              //LocFullName: obj.get('LocFullName'),
             });
           });
           resolve(data);
@@ -1166,7 +1166,7 @@ export class FirebaseGetService {
     return promise;
   }
 
-  getUser() {
+  getUsers() {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection('/PMB_ELEC/Mst_Users/tables')

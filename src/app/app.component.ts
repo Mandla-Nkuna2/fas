@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { NavController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
+import { first } from 'rxjs/operators';
 import { FirebaseGetService } from './services/firebase-service/firebase-get.service';
 @Component({
   selector: 'app-root',
@@ -11,6 +12,9 @@ import { FirebaseGetService } from './services/firebase-service/firebase-get.ser
 })
 export class AppComponent {
   public selectedIndex = 0;
+  userEmail: string;
+  uid: string;
+  authState: any;
 
   public appPages = [
     {
@@ -313,8 +317,20 @@ export class AppComponent {
         this.nav.navigateRoot('sign-in');
       } else {
         this.showMenu = true;
+        this.getUserEmail();
+        this.getUserName();
       }
     });
+  }
+
+  getUserEmail() {
+    this.auth.currentUser.then((cu) => {
+      this.userEmail = cu.email;
+    });
+  }
+
+  getUserName() {
+    this.auth.currentUser.then((cu) => {});
   }
 
   logout() {

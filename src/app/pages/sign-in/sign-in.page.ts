@@ -46,16 +46,16 @@ export class SignInPage implements OnInit {
             .then((user) => {
               this.storage.set('user', user.data()).then(() => {
                 this.popUp.dismissLoading().then(() => {
-                  this.popUp.showToast('login success');
+                  this.popUp.showToast('Welcome...');
                   this.password = '';
                   this.nav.navigateForward('dashboard');
                 });
               });
             });
         })
-        .catch((error) => {
+        .catch((err) => {
           this.popUp.dismissLoading().then(() => {
-            this.popUp.showError(error.message);
+            this.popUp.showError(err.message);
           });
         });
     });

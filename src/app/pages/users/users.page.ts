@@ -3,6 +3,7 @@ import User from 'src/app/models/systemmanagement/User.model';
 import { FirebaseGetService } from './../../services/firebase-service/firebase-get.service';
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 import { FirebaseService } from './../../services/firebase-service/firebase-service.service';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-users',
@@ -19,6 +20,7 @@ export class UsersPage implements OnInit {
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
+    public afAuth: AngularFireAuth,
   ) {
     this.user = new User();
   }
@@ -59,7 +61,27 @@ export class UsersPage implements OnInit {
       .catch((err) => {
         this.popUp.showError(err);
       });
+
+    //this.registerUser();
   }
+
+  registerUser() {
+    return new Promise<any>((resolve, reject) => {
+      this.afAuth
+        .createUserWithEmailAndPassword(
+          this.user.UserLogin,
+          this.user.UserPassword,
+        )
+        .then((res) => {
+          resolve(res);
+          this.popUp.showToast('user added!');
+        })
+        .catch((err) => {
+          reject(err.message);
+        });
+    });
+  }
+
   onModify() {}
   onDeActivate() {}
   onClear() {}

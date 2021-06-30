@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import ItemComponent from 'src/app/models/capture/ItemComponent.model';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
+import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 import { FirebaseService } from 'src/app/services/firebase-service/firebase-service.service';
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 
@@ -12,8 +13,9 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 })
 export class ItemcomponentsPage implements OnInit {
   itemComponent: ItemComponent;
+  itemComponents: any[];
 
-  registration: any[];
+  registrations: any[];
   assetCompName: any[];
   assetCompMake: any[];
   assetCompModel: any[];
@@ -21,6 +23,7 @@ export class ItemcomponentsPage implements OnInit {
 
   constructor(
     private navCtrl: NavController,
+    private firebaseRepServ: FirebaseReportService,
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
@@ -29,11 +32,32 @@ export class ItemcomponentsPage implements OnInit {
   }
 
   ngOnInit() {
+    this.onTableRep();
     this.onRegistration();
     this.onCompName();
     this.onComponentMake();
     this.onComponentModel();
     this.onServiceIntv();
+  }
+
+  onTableRep() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getItemComponents()
+        .then((mNm: any) => {
+          this.itemComponents = mNm;
+          this.onRegistrationLeft();
+          this.onCompNameLeft();
+          this.onComponentMakeLeft();
+          this.onComponentModelLeft();
+          this.popUp.dismissLoading();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
   }
 
   goItem() {
@@ -42,17 +66,22 @@ export class ItemcomponentsPage implements OnInit {
 
   onRegistration() {
     this.firebaseGetServ.getRegistration().then((mNm: any) => {
-      this.registration = mNm;
+      this.registrations = mNm;
     });
   }
   onRegistrationLeft() {
     this.firebaseGetServ.getRegistrationLeft().then((mNm: any) => {
-      this.registration = mNm;
+      this.registrations = mNm;
+
+      mNm.forEach((elm) => {
+        this.itemComponents.forEach((obj) => {
+          if (elm.ItemGuid == obj.ItemGuid) {
+            obj.ItemGuid = elm.Reg;
+          }
+        });
+      });
     });
   }
-
-  // onMakeModel(){}
-  // onMakeModelLeft(){}
 
   onCompName() {
     this.firebaseGetServ.getCompName().then((mNm: any) => {
@@ -62,6 +91,14 @@ export class ItemcomponentsPage implements OnInit {
   onCompNameLeft() {
     this.firebaseGetServ.getCompNameLeft().then((mNm: any) => {
       this.assetCompName = mNm;
+
+      mNm.forEach((elm) => {
+        this.itemComponents.forEach((obj) => {
+          if (elm.CompNameGuid == obj.CompNameGuid) {
+            obj.CompNameGuid = elm.CompName;
+          }
+        });
+      });
     });
   }
 
@@ -73,6 +110,14 @@ export class ItemcomponentsPage implements OnInit {
   onComponentMakeLeft() {
     this.firebaseGetServ.getAssetCompMakeLeft().then((mNm: any) => {
       this.assetCompMake = mNm;
+
+      mNm.forEach((elm) => {
+        this.itemComponents.forEach((obj) => {
+          if (elm.CompMakeGuid == obj.CompMakeGuid) {
+            obj.CompMakeGuid = elm.CompMake;
+          }
+        });
+      });
     });
   }
 
@@ -84,6 +129,14 @@ export class ItemcomponentsPage implements OnInit {
   onComponentModelLeft() {
     this.firebaseGetServ.getAssetCompModelLeft().then((mNm: any) => {
       this.assetCompModel = mNm;
+
+      mNm.forEach((elm) => {
+        this.itemComponents.forEach((obj) => {
+          if (elm.CompModelGuid == obj.CompModelGuid) {
+            obj.CompModelGuid = elm.CompModel;
+          }
+        });
+      });
     });
   }
 
