@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from 'src/app/services/firebase-service/firebase-service.service';
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
+import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 
 @Component({
   selector: 'app-dailyoperationrecord',
@@ -12,6 +13,7 @@ import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-g
 })
 export class DailyoperationrecordPage implements OnInit {
   dOpsRec: DailyOperationRec;
+  dailyOpRecs: DailyOperationRec[];
 
   registration: any[];
   location: any[];
@@ -19,6 +21,7 @@ export class DailyoperationrecordPage implements OnInit {
   operator: any[];
 
   constructor(
+    private firebaseRepServ: FirebaseReportService,
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
@@ -28,10 +31,29 @@ export class DailyoperationrecordPage implements OnInit {
   }
 
   ngOnInit() {
+    //this.onTableRep();
     this.onRegistration();
     this.onLocation();
     this.onCostCentre();
     this.onOperatorName();
+  }
+
+  onTableRep() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getDailyOperations()
+        .then((mNm: any) => {
+          this.dailyOpRecs = mNm;
+          this.onRegistrationLeft();
+          this.onCostCentreLeft();
+          this.popUp.dismissLoading();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
   }
 
   onRegistration() {
@@ -42,6 +64,14 @@ export class DailyoperationrecordPage implements OnInit {
   onRegistrationLeft() {
     this.firebaseGetServ.getRegistrationLeft().then((mNm: any) => {
       this.registration = mNm;
+
+      mNm.forEach((elm) => {
+        this.dailyOpRecs.forEach((obj) => {
+          if (elm.ItemGuid == obj.Itemguid) {
+            obj.Itemguid = elm.Reg;
+          }
+        });
+      });
     });
   }
 
@@ -64,6 +94,14 @@ export class DailyoperationrecordPage implements OnInit {
   onCostCentreLeft() {
     this.firebaseGetServ.getCostCentreLeft().then((mNm: any) => {
       this.costCentre = mNm;
+
+      mNm.forEach((elm) => {
+        this.dailyOpRecs.forEach((obj) => {
+          if (elm.CostCentGuid == obj.CostCentreguid) {
+            obj.CostCentreguid = elm.CostCentName;
+          }
+        });
+      });
     });
   }
 

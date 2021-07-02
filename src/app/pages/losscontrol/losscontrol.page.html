@@ -40,136 +40,61 @@
           </ion-button>
         </div>
       </div>
-      <ion-grid fixed>
+      <ng-template #noItems> No items. </ng-template>
+      <ion-grid fixed *ngIf="lossControls; else noItems">
         <ion-row class="title-row">
           <ion-col size="0.5" class="flex al-center jc-center"> </ion-col>
           <ion-col size="1.4" class="flex al-center jc-center">
             <h4>Loss Cont. No.</h4>
           </ion-col>
-          <ion-col size="1.4" class="flex al-center jc-center">
+          <ion-col size="1.5" class="flex al-center jc-center">
             <h4>Date Opened</h4>
           </ion-col>
-          <ion-col size="1" class="flex al-center jc-center">
+          <ion-col size="1.5" class="flex al-center jc-center">
             <h4>Date closed</h4>
           </ion-col>
           <ion-col size="1.4" class="flex al-center jc-center">
             <h4>agent</h4>
           </ion-col>
-          <ion-col size="1" class="flex al-center jc-center">
+          <ion-col size="1.5" class="flex al-center jc-center">
             <h4>registration</h4>
           </ion-col>
-          <ion-col size="1" class="flex al-center jc-center">
+          <ion-col size="2" class="flex al-center jc-center">
             <h4>Loss type</h4>
-          </ion-col>
-          <ion-col size="1.4" class="flex al-center jc-center">
-            <h4>Chassis no.</h4>
           </ion-col>
           <ion-col size="1.4" class="flex al-center jc-center">
             <h4>driver</h4>
           </ion-col>
-          <ion-col size="1.4" class="flex al-center jc-center">
-            <h4>cost center</h4>
-          </ion-col>
         </ion-row>
         <div class="values">
-          <ion-row class="value-row" (click)="goMEvent()">
+          <ion-row
+            class="value-row"
+            *ngFor="let item of lossControls; let i = index"
+            (click)="goMEvent()"
+          >
             <ion-col size="0.5" class="flex al-center jc-center">
               <ion-checkbox></ion-checkbox>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
-              <p>BVY343429921AD</p>
+              <p>{{item.LossControlNo}}</p>
+            </ion-col>
+            <ion-col size="1.5" class="flex al-center jc-center">
+              <p>{{item.DateOpen}}</p>
+            </ion-col>
+            <ion-col size="1.5" class="flex al-center jc-center">
+              <p>{{item.DateClosed}}</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
-              <p class="ion-text-wrap">02 Jan 2019</p>
+              <p>{{item.Agentguid}}</p>
             </ion-col>
-            <ion-col size="1" class="flex al-center jc-center">
-              <p>02 Jan 2019</p>
+            <ion-col size="1.5" class="flex al-center jc-center">
+              <p>{{item.Itemguid}}</p>
             </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <p>02 Jan 2019</p>
-            </ion-col>
-            <ion-col size="1" class="flex al-center jc-center">
-              <p>SEDAN\2DR...</p>
-            </ion-col>
-            <ion-col size="1" class="flex al-center jc-center">
-              <p>187656</p>
+            <ion-col size="2" class="flex al-center jc-center">
+              <p>{{item.LossTypeguid}}</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
-              <p>31/06/2019</p>
-            </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <p>3493303</p>
-            </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <p>3493303</p>
-            </ion-col>
-          </ion-row>
-        </div>
-        <div class="values">
-          <ion-row class="value-row">
-            <ion-col size="0.5" class="flex al-center jc-center">
-              <ion-checkbox></ion-checkbox>
-            </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <p>BVY343429921AD</p>
-            </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <p class="ion-text-wrap">02 Jan 2019</p>
-            </ion-col>
-            <ion-col size="1" class="flex al-center jc-center">
-              <p>02 Jan 2019</p>
-            </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <p>02 Jan 2019</p>
-            </ion-col>
-            <ion-col size="1" class="flex al-center jc-center">
-              <p>SEDAN\2DR...</p>
-            </ion-col>
-            <ion-col size="1" class="flex al-center jc-center">
-              <p>187656</p>
-            </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <p>31/06/2019</p>
-            </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <p>3493303</p>
-            </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <p>3493303</p>
-            </ion-col>
-          </ion-row>
-        </div>
-        <div class="values">
-          <ion-row class="value-row">
-            <ion-col size="0.5" class="flex al-center jc-center">
-              <ion-checkbox></ion-checkbox>
-            </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <p>BVY343429921AD</p>
-            </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <p class="ion-text-wrap">02 Jan 2019</p>
-            </ion-col>
-            <ion-col size="1" class="flex al-center jc-center">
-              <p>02 Jan 2019</p>
-            </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <p>02 Jan 2019</p>
-            </ion-col>
-            <ion-col size="1" class="flex al-center jc-center">
-              <p>SEDAN\2DR...</p>
-            </ion-col>
-            <ion-col size="1" class="flex al-center jc-center">
-              <p>187656</p>
-            </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <p>31/06/2019</p>
-            </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <p>3493303</p>
-            </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <p>3493303</p>
+              <p>{{item.DriverGuid}}</p>
             </ion-col>
           </ion-row>
         </div>

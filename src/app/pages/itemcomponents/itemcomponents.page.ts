@@ -32,7 +32,7 @@ export class ItemcomponentsPage implements OnInit {
   }
 
   ngOnInit() {
-    this.onTableRep();
+    //this.onTableRep();
     this.onRegistration();
     this.onCompName();
     this.onComponentMake();

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import LossControl from 'src/app/models/capture/LossControl.model';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
+import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 import { FirebaseService } from 'src/app/services/firebase-service/firebase-service.service';
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 
@@ -12,6 +13,7 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 })
 export class LosscontrolPage implements OnInit {
   lossControl: LossControl;
+  lossControls: LossControl[];
 
   agent: any[];
   registration: any[];
@@ -23,6 +25,7 @@ export class LosscontrolPage implements OnInit {
 
   constructor(
     private navCtrl: NavController,
+    private firebaseRepServ: FirebaseReportService,
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
@@ -31,12 +34,33 @@ export class LosscontrolPage implements OnInit {
   }
 
   ngOnInit() {
+    //this.onTableRep();
     this.onAgent();
     this.onRegistration();
     this.onLossType();
     this.onReportedBy();
     this.onDriverName();
     this.onActionTaken();
+  }
+
+  onTableRep() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getLossControls()
+        .then((mNm: any) => {
+          this.lossControls = mNm;
+          this.onAgentLeft();
+          this.onRegistrationLeft();
+          this.onLossType();
+          this.onDriverNameLeft();
+          this.popUp.dismissLoading();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
   }
 
   goMEvent() {
@@ -51,6 +75,14 @@ export class LosscontrolPage implements OnInit {
   onAgentLeft() {
     this.firebaseGetServ.getStaffLeft().then((mNm: any) => {
       this.agent = mNm;
+
+      mNm.forEach((elm) => {
+        this.lossControls.forEach((obj) => {
+          if (elm.StaffGuid == obj.Agentguid) {
+            obj.Agentguid = elm.StaffCode;
+          }
+        });
+      });
     });
   }
 
@@ -62,12 +94,28 @@ export class LosscontrolPage implements OnInit {
   onRegistrationLeft() {
     this.firebaseGetServ.getRegistrationLeft().then((mNm: any) => {
       this.registration = mNm;
+
+      mNm.forEach((elm) => {
+        this.lossControls.forEach((obj) => {
+          if (elm.ItemGuid == obj.Itemguid) {
+            obj.Itemguid = elm.Reg;
+          }
+        });
+      });
     });
   }
 
   onLossType() {
     this.firebaseGetServ.getLossType().then((mNm: any) => {
       this.lossType = mNm;
+
+      mNm.forEach((elm) => {
+        this.lossControls.forEach((obj) => {
+          if (elm.LossContTypeguid == obj.LossTypeguid) {
+            obj.LossTypeguid = elm.LossContType;
+          }
+        });
+      });
     });
   }
 
@@ -90,6 +138,14 @@ export class LosscontrolPage implements OnInit {
   onDriverNameLeft() {
     this.firebaseGetServ.getStaffLeft().then((mNm: any) => {
       this.driver = mNm;
+
+      mNm.forEach((elm) => {
+        this.lossControls.forEach((obj) => {
+          if (elm.StaffGuid == obj.DriverGuid) {
+            obj.DriverGuid = elm.StaffCode;
+          }
+        });
+      });
     });
   }
 

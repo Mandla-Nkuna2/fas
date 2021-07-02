@@ -22,7 +22,7 @@ export class AssetdetailPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.onTableRep();
+    //this.onTableRep();
   }
 
   onTableRep() {
