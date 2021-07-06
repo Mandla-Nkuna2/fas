@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { Asset } from 'src/app/models/capture/Asset.model';
 import LicCorAndSafInspcDates from 'src/app/models/capture/LicCorAndSafInspcDates.model';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
+import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 import { FirebaseService } from 'src/app/services/firebase-service/firebase-service.service';
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 
@@ -12,6 +14,7 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 })
 export class LicensecorPage implements OnInit {
   licCorAndSafInspec: LicCorAndSafInspcDates;
+  licCorAndSafInspecs: any[];
 
   registration: any[];
   costCentre: any[];
@@ -19,6 +22,7 @@ export class LicensecorPage implements OnInit {
 
   constructor(
     private navCtrl: NavController,
+    private firebaseRepServ: FirebaseReportService,
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
@@ -27,8 +31,26 @@ export class LicensecorPage implements OnInit {
   }
 
   ngOnInit() {
-    this.onRegistration();
-    this.onCostCentre();
+    //this.onTableRep();
+    // this.onRegistration();
+    // this.onCostCentre();
+  }
+
+  onTableRep() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getAsset()
+        .then((mNm: any) => {
+          this.licCorAndSafInspecs = mNm;
+          this.onRegistrationLeft();
+          this.popUp.dismissLoading();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
   }
 
   goLossControl() {

@@ -39,8 +39,8 @@ export class FuelissuesfleetComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.onLocation();
-    this.onItemType();
+    // this.onLocation();
+    // this.onItemType();
   }
 
   onLocation() {

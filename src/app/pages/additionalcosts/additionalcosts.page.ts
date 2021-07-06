@@ -29,11 +29,11 @@ export class AdditionalcostsPage implements OnInit {
   }
 
   ngOnInit() {
-    this.onRegistration();
-    this.onAdditionalCostDesc();
-    this.onCostCentre();
-    this.onStaffCode();
-    this.onSupplier();
+    // this.onRegistration();
+    // this.onAdditionalCostDesc();
+    // this.onCostCentre();
+    // this.onStaffCode();
+    // this.onSupplier();
   }
 
   goAutoCard() {

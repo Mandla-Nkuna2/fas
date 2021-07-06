@@ -42,11 +42,11 @@ export class AddassetsPage implements OnInit {
   }
 
   ngOnInit() {
-    this.onMakeAndModel();
-    this.onColor();
-    this.onBattery();
-    this.onDriver();
-    this.onTireSizes();
+    // this.onMakeAndModel();
+    // this.onColor();
+    // this.onBattery();
+    // this.onDriver();
+    // this.onTireSizes();
   }
 
   onlyUnique(value, index, self) {
@@ -54,12 +54,12 @@ export class AddassetsPage implements OnInit {
   }
 
   onMakeAndModel() {
-    this.firebaseGetServ.getMakeAndModel().then((mNm: any) => {
+    this.firebaseGetServ.getAssetMakenModel().then((mNm: any) => {
       this.makesAndModels = mNm;
     });
   }
   onMakeAndModelLeft() {
-    this.firebaseGetServ.getMakeAndModelLeft().then((mNm: any) => {
+    this.firebaseGetServ.getAssetMakenModelLeft().then((mNm: any) => {
       this.makesAndModels = mNm;
     });
   }

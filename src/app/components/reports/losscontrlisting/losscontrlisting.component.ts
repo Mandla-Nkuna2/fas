@@ -47,11 +47,11 @@ export class LosscontrlistingComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.onLocation();
-    this.onLossContType();
-    this.onStaffCodes();
-    this.onRegistration();
-    this.onLossContAct();
+    // this.onLocation();
+    // this.onLossContType();
+    // this.onStaffCodes();
+    // this.onRegistration();
+    // this.onLossContAct();
   }
 
   onLocation() {

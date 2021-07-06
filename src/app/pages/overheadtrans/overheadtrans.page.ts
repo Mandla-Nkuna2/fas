@@ -26,8 +26,8 @@ export class OverheadtransPage implements OnInit {
   }
 
   ngOnInit() {
-    this.onOverheadType();
-    this.onCostCentre();
+    // this.onOverheadType();
+    // this.onCostCentre();
   }
 
   goStaffTimeSheet() {

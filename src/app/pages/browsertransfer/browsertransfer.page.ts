@@ -24,7 +24,7 @@ export class BrowsertransferPage implements OnInit {
   }
 
   ngOnInit() {
-    this.onCostCentre();
+    // this.onCostCentre();
   }
 
   onCostCentre() {

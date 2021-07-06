@@ -33,7 +33,7 @@ export class FuelissuesitemComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.onRegistration();
+    // this.onRegistration();
   }
 
   onRegistration() {

@@ -34,7 +34,7 @@ export class ServicedetinquiryComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.onRegistration();
+    // this.onRegistration();
   }
 
   onRegistration() {

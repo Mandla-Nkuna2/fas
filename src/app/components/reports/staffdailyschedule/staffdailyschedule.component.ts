@@ -36,8 +36,8 @@ export class StaffdailyscheduleComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.onStaffCat();
-    this.onStaffCodes();
+    // this.onStaffCat();
+    // this.onStaffCodes();
   }
 
   onStaffCat() {

@@ -23,8 +23,8 @@ export class BowserPage implements OnInit {
   }
 
   ngOnInit() {
-    this.onBowserLoc();
-    this.onFuelType();
+    // this.onBowserLoc();
+    // this.onFuelType();
   }
 
   onBowserLoc() {

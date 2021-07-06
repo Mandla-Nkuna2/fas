@@ -24,17 +24,17 @@ export class ServschedulePage implements OnInit {
   }
 
   ngOnInit() {
-    this.onMakModel();
-    this.onServiceType();
+    // this.onMakModel();
+    // this.onServiceType();
   }
 
   onMakModel() {
-    this.firebaseGetServ.getMakeAndModel().then((mNm: any) => {
+    this.firebaseGetServ.getAssetMakenModel().then((mNm: any) => {
       this.itemMakModels = mNm;
     });
   }
   onMakModelLeft() {
-    this.firebaseGetServ.getMakeAndModelLeft().then((mNm: any) => {
+    this.firebaseGetServ.getAssetMakenModelLeft().then((mNm: any) => {
       this.itemMakModels = mNm;
     });
   }

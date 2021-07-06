@@ -46,7 +46,8 @@
       <div class="top-toolbar">
         <h3>BERGVILLE</h3>
       </div>
-      <ion-grid fixed>
+      <ng-template #noItems> No items. </ng-template>
+      <ion-grid fixed *ngIf="revenuee; else noItems">
         <ion-row class="title-row">
           <ion-col size="0.8" class="flex al-center jc-center">
             <h4>Revenue ref.</h4>
@@ -95,333 +96,51 @@
           </ion-col>
         </ion-row>
 
-        <ion-row class="value-row">
+        <ion-row class="value-row" *ngFor="let item of revenuee; let i = index">
           <ion-col size="0.8" class="flex al-center jc-center">
-            <p>NPC7502</p>
+            <p>{{ item.RevenueRef }}</p>
           </ion-col>
           <ion-col size="0.8" class="flex al-center jc-center">
-            <p>05-Dec-03</p>
+            <p>{{ item.RevenueDate }}</p>
           </ion-col>
           <ion-col size="0.6" class="flex al-center jc-center">
-            <p>10:00</p>
+            <p>{{ item.Timeout }}</p>
           </ion-col>
           <ion-col size="1" class="flex al-center jc-center">
-            <p>NPC6601</p>
+            <p>{{ item.RegIndex }}</p>
           </ion-col>
           <ion-col size="1" class="flex al-center jc-center">
-            <p>PARKS DEPARTMENT</p>
+            <p>{{ item.ClientGuid }}</p>
           </ion-col>
           <ion-col size="0.6" class="flex al-center jc-center">
-            <p>30</p>
+            <p>{{ item.NoHours }}</p>
           </ion-col>
           <ion-col size="0.8" class="flex al-center jc-center">
-            <p>100.00</p>
+            <p>{{ item.HourRate }}</p>
           </ion-col>
           <ion-col size="0.6" class="flex al-center jc-center">
-            <p>N/A</p>
+            <p>{{ item.NoKm }}</p>
           </ion-col>
           <ion-col size="0.8" class="flex al-center jc-center">
-            <p>0.00</p>
+            <p>{{ item.KmRate }}</p>
           </ion-col>
           <ion-col size="0.8" class="flex al-center jc-center">
-            <p>N/A</p>
+            <p>{{ item.NoDays }}</p>
           </ion-col>
           <ion-col size="0.8" class="flex al-center jc-center">
-            <p>0.00</p>
+            <p>{{ item.DailyRate }}</p>
           </ion-col>
           <ion-col size="0.8" class="flex al-center jc-center">
-            <p>N/A</p>
+            <p>{{ item.StandbyHours }}</p>
           </ion-col>
           <ion-col size="0.8" class="flex al-center jc-center">
-            <p>0.00</p>
+            <p>{{ item.StandbyRate }}</p>
           </ion-col>
           <ion-col size="0.6" class="flex al-center jc-center">
-            <p>10.00</p>
+            <p>{{ item.Discount }}</p>
           </ion-col>
           <ion-col size="1" class="flex al-center jc-center">
-            <p>2,700.00</p>
-          </ion-col>
-        </ion-row>
-        <ion-row class="value-row">
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>NPC7502</p>
-          </ion-col>
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>05-Dec-03</p>
-          </ion-col>
-          <ion-col size="0.6" class="flex al-center jc-center">
-            <p>10:00</p>
-          </ion-col>
-          <ion-col size="1" class="flex al-center jc-center">
-            <p>NPC6601</p>
-          </ion-col>
-          <ion-col size="1" class="flex al-center jc-center">
-            <p>PARKS DEPARTMENT</p>
-          </ion-col>
-          <ion-col size="0.6" class="flex al-center jc-center">
-            <p>30</p>
-          </ion-col>
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>100.00</p>
-          </ion-col>
-          <ion-col size="0.6" class="flex al-center jc-center">
-            <p>N/A</p>
-          </ion-col>
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>0.00</p>
-          </ion-col>
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>N/A</p>
-          </ion-col>
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>0.00</p>
-          </ion-col>
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>N/A</p>
-          </ion-col>
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>0.00</p>
-          </ion-col>
-          <ion-col size="0.6" class="flex al-center jc-center">
-            <p>10.00</p>
-          </ion-col>
-          <ion-col size="1" class="flex al-center jc-center">
-            <p>2,700.00</p>
-          </ion-col>
-        </ion-row>
-        <ion-row class="value-row">
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>NPC7502</p>
-          </ion-col>
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>05-Dec-03</p>
-          </ion-col>
-          <ion-col size="0.6" class="flex al-center jc-center">
-            <p>10:00</p>
-          </ion-col>
-          <ion-col size="1" class="flex al-center jc-center">
-            <p>NPC6601</p>
-          </ion-col>
-          <ion-col size="1" class="flex al-center jc-center">
-            <p>PARKS DEPARTMENT</p>
-          </ion-col>
-          <ion-col size="0.6" class="flex al-center jc-center">
-            <p>30</p>
-          </ion-col>
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>100.00</p>
-          </ion-col>
-          <ion-col size="0.6" class="flex al-center jc-center">
-            <p>N/A</p>
-          </ion-col>
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>0.00</p>
-          </ion-col>
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>N/A</p>
-          </ion-col>
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>0.00</p>
-          </ion-col>
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>N/A</p>
-          </ion-col>
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>0.00</p>
-          </ion-col>
-          <ion-col size="0.6" class="flex al-center jc-center">
-            <p>10.00</p>
-          </ion-col>
-          <ion-col size="1" class="flex al-center jc-center">
-            <p>2,700.00</p>
-          </ion-col>
-        </ion-row>
-        <ion-row class="value-row">
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>NPC7502</p>
-          </ion-col>
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>05-Dec-03</p>
-          </ion-col>
-          <ion-col size="0.6" class="flex al-center jc-center">
-            <p>10:00</p>
-          </ion-col>
-          <ion-col size="1" class="flex al-center jc-center">
-            <p>NPC6601</p>
-          </ion-col>
-          <ion-col size="1" class="flex al-center jc-center">
-            <p>PARKS DEPARTMENT</p>
-          </ion-col>
-          <ion-col size="0.6" class="flex al-center jc-center">
-            <p>30</p>
-          </ion-col>
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>100.00</p>
-          </ion-col>
-          <ion-col size="0.6" class="flex al-center jc-center">
-            <p>N/A</p>
-          </ion-col>
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>0.00</p>
-          </ion-col>
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>N/A</p>
-          </ion-col>
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>0.00</p>
-          </ion-col>
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>N/A</p>
-          </ion-col>
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>0.00</p>
-          </ion-col>
-          <ion-col size="0.6" class="flex al-center jc-center">
-            <p>10.00</p>
-          </ion-col>
-          <ion-col size="1" class="flex al-center jc-center">
-            <p>2,700.00</p>
-          </ion-col>
-        </ion-row>
-        <ion-row class="value-row">
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>NPC7502</p>
-          </ion-col>
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>05-Dec-03</p>
-          </ion-col>
-          <ion-col size="0.6" class="flex al-center jc-center">
-            <p>10:00</p>
-          </ion-col>
-          <ion-col size="1" class="flex al-center jc-center">
-            <p>NPC6601</p>
-          </ion-col>
-          <ion-col size="1" class="flex al-center jc-center">
-            <p>PARKS DEPARTMENT</p>
-          </ion-col>
-          <ion-col size="0.6" class="flex al-center jc-center">
-            <p>30</p>
-          </ion-col>
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>100.00</p>
-          </ion-col>
-          <ion-col size="0.6" class="flex al-center jc-center">
-            <p>N/A</p>
-          </ion-col>
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>0.00</p>
-          </ion-col>
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>N/A</p>
-          </ion-col>
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>0.00</p>
-          </ion-col>
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>N/A</p>
-          </ion-col>
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>0.00</p>
-          </ion-col>
-          <ion-col size="0.6" class="flex al-center jc-center">
-            <p>10.00</p>
-          </ion-col>
-          <ion-col size="1" class="flex al-center jc-center">
-            <p>2,700.00</p>
-          </ion-col>
-        </ion-row>
-        <ion-row class="value-row">
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>NPC7502</p>
-          </ion-col>
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>05-Dec-03</p>
-          </ion-col>
-          <ion-col size="0.6" class="flex al-center jc-center">
-            <p>10:00</p>
-          </ion-col>
-          <ion-col size="1" class="flex al-center jc-center">
-            <p>NPC6601</p>
-          </ion-col>
-          <ion-col size="1" class="flex al-center jc-center">
-            <p>PARKS DEPARTMENT</p>
-          </ion-col>
-          <ion-col size="0.6" class="flex al-center jc-center">
-            <p>30</p>
-          </ion-col>
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>100.00</p>
-          </ion-col>
-          <ion-col size="0.6" class="flex al-center jc-center">
-            <p>N/A</p>
-          </ion-col>
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>0.00</p>
-          </ion-col>
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>N/A</p>
-          </ion-col>
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>0.00</p>
-          </ion-col>
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>N/A</p>
-          </ion-col>
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>0.00</p>
-          </ion-col>
-          <ion-col size="0.6" class="flex al-center jc-center">
-            <p>10.00</p>
-          </ion-col>
-          <ion-col size="1" class="flex al-center jc-center">
-            <p>2,700.00</p>
-          </ion-col>
-        </ion-row>
-        <ion-row class="value-row">
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>NPC7502</p>
-          </ion-col>
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>05-Dec-03</p>
-          </ion-col>
-          <ion-col size="0.6" class="flex al-center jc-center">
-            <p>10:00</p>
-          </ion-col>
-          <ion-col size="1" class="flex al-center jc-center">
-            <p>NPC6601</p>
-          </ion-col>
-          <ion-col size="1" class="flex al-center jc-center">
-            <p>PARKS DEPARTMENT</p>
-          </ion-col>
-          <ion-col size="0.6" class="flex al-center jc-center">
-            <p>30</p>
-          </ion-col>
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>100.00</p>
-          </ion-col>
-          <ion-col size="0.6" class="flex al-center jc-center">
-            <p>N/A</p>
-          </ion-col>
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>0.00</p>
-          </ion-col>
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>N/A</p>
-          </ion-col>
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>0.00</p>
-          </ion-col>
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>N/A</p>
-          </ion-col>
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>0.00</p>
-          </ion-col>
-          <ion-col size="0.6" class="flex al-center jc-center">
-            <p>10.00</p>
-          </ion-col>
-          <ion-col size="1" class="flex al-center jc-center">
-            <p>2,700.00</p>
+            <p>{{ item.Total }}</p>
           </ion-col>
         </ion-row>
       </ion-grid>

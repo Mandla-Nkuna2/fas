@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import MaintenanceEvent from 'src/app/models/capture/MaintenanceEvent.model';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
+import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 import { FirebaseService } from 'src/app/services/firebase-service/firebase-service.service';
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 
@@ -12,6 +13,7 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 })
 export class MaintainceventPage implements OnInit {
   maintenanceEvent: MaintenanceEvent;
+  maintenanceEvents: MaintenanceEvent[];
 
   jobCardNo: any[];
   registration: any[];
@@ -23,6 +25,7 @@ export class MaintainceventPage implements OnInit {
 
   constructor(
     private navCtrl: NavController,
+    private firebaseRepServ: FirebaseReportService,
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
@@ -31,13 +34,33 @@ export class MaintainceventPage implements OnInit {
   }
 
   ngOnInit() {
-    this.onJobCardNo();
-    this.onRegistration();
-    this.onMaintType();
-    this.onMaintReason();
-    this.onSupplier();
-    this.onRequestedBy();
-    this.onConstCentre();
+    // this.onTableRep();
+    // this.onJobCardNo();
+    // this.onRegistration();
+    // this.onMaintType();
+    // this.onMaintReason();
+    // this.onSupplier();
+    // this.onRequestedBy();
+    // this.onCostCentre();
+  }
+
+  onTableRep() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getMaintEvent()
+        .then((mNm: any) => {
+          this.maintenanceEvents = mNm;
+          this.onJobCardNoLeft();
+          this.onMaintType();
+          this.onCostCentreLeft();
+          this.popUp.dismissLoading();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
   }
 
   goOilIssues() {
@@ -52,6 +75,14 @@ export class MaintainceventPage implements OnInit {
   onJobCardNoLeft() {
     this.firebaseGetServ.getJobCardNosLeft().then((staff: any) => {
       this.jobCardNo = staff;
+
+      staff.forEach((elm) => {
+        this.maintenanceEvents.forEach((obj) => {
+          if (elm.JobCardGuid == obj.JobCardGuid) {
+            obj.JobCardGuid = elm.JobCardNo;
+          }
+        });
+      });
     });
   }
 
@@ -69,6 +100,14 @@ export class MaintainceventPage implements OnInit {
   onMaintType() {
     this.firebaseGetServ.getMaintType().then((staff: any) => {
       this.maintanceType = staff;
+
+      staff.forEach((elm) => {
+        this.maintenanceEvents.forEach((obj) => {
+          if (elm.MaintTypeGuid == obj.MaintTypeGuid) {
+            obj.MaintTypeGuid = elm.MaintType;
+          }
+        });
+      });
     });
   }
 
@@ -100,9 +139,22 @@ export class MaintainceventPage implements OnInit {
     });
   }
 
-  onConstCentre() {
+  onCostCentre() {
     this.firebaseGetServ.getCostCentre().then((staff: any) => {
       this.costCentre = staff;
+    });
+  }
+  onCostCentreLeft() {
+    this.firebaseGetServ.getCostCentreLeft().then((staff: any) => {
+      this.costCentre = staff;
+
+      staff.forEach((elm) => {
+        this.maintenanceEvents.forEach((obj) => {
+          if (elm.CostCentGuid == obj.CostCentGuid) {
+            obj.CostCentGuid = elm.CostCentName;
+          }
+        });
+      });
     });
   }
 

@@ -28,8 +28,8 @@ export class StaffdetComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.onStaffCat();
-    this.onStaffCodes();
+    // this.onStaffCat();
+    // this.onStaffCodes();
   }
 
   onStaffCat() {

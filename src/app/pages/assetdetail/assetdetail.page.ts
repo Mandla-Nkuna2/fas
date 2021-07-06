@@ -73,7 +73,7 @@ export class AssetdetailPage implements OnInit {
   }
 
   onMakeAndMod() {
-    this.firebaseGetServ.getMakeAndModelLeft().then((mNm: any) => {
+    this.firebaseGetServ.getAssetMakenModelLeft().then((mNm: any) => {
       this.makesAndMods = mNm;
 
       mNm.forEach((elm) => {

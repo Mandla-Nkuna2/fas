@@ -29,12 +29,12 @@ export class AccidentmanagementPage implements OnInit {
   }
 
   ngOnInit() {
-    this.onAgent();
-    this.onRegistration();
-    this.onLossType();
-    this.onReportedBy();
-    this.onDriverName();
-    this.onActionTaken();
+    // this.onAgent();
+    // this.onRegistration();
+    // this.onLossType();
+    // this.onReportedBy();
+    // this.onDriverName();
+    // this.onActionTaken();
   }
 
   onAgent() {

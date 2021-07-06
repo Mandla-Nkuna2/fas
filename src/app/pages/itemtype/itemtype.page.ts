@@ -36,9 +36,9 @@ export class ItemtypePage implements OnInit {
   }
 
   ngOnInit() {
-    this.onTypeName();
-    this.onTypeClass();
-    this.onTypeCapacity();
+    // this.onTypeName();
+    // this.onTypeClass();
+    // this.onTypeCapacity();
   }
 
   onTypeName() {

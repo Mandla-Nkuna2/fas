@@ -47,10 +47,10 @@ export class MaintreasonComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.onLocation();
-    this.onItemType();
-    this.onRegistration();
-    this.onMaintReason();
+    // this.onLocation();
+    // this.onItemType();
+    // this.onRegistration();
+    // this.onMaintReason();
   }
 
   onLocation() {

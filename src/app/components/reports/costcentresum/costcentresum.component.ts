@@ -38,7 +38,7 @@ export class CostcentresumComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.onCostCentre();
+    // this.onCostCentre();
   }
 
   onCostCentre() {

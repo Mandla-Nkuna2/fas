@@ -32,7 +32,7 @@ export class FirebaseGetService {
   //   return promise
   // }
 
-  getMakeAndModel() {
+  getAssetMakenModel() {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection('PMB_ELEC/Sup_ItemMakMod/tables')
@@ -56,7 +56,7 @@ export class FirebaseGetService {
     });
     return promise;
   }
-  getMakeAndModelLeft() {
+  getAssetMakenModelLeft() {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection('PMB_ELEC/Sup_ItemMakMod/tables')

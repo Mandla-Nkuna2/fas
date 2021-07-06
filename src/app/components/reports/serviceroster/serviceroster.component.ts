@@ -47,10 +47,10 @@ export class ServicerosterComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.onLocation();
-    this.onItemType();
-    this.onComponents();
-    this.onRegistration();
+    // this.onLocation();
+    // this.onItemType();
+    // this.onComponents();
+    // this.onRegistration();
   }
 
   onLocation() {

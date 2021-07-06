@@ -6,23 +6,23 @@ import { Chart } from 'chart.js';
   styleUrls: ['./dashboard.page.scss'],
 })
 export class DashboardPage implements OnInit {
-  @ViewChild('lineCanvas', {static: true}) lineCanvas;
-  @ViewChild('lineCanvas2', {static: true}) lineCanvas2;
-  @ViewChild('lineCanvas3', {static: true}) lineCanvas3;
-  @ViewChild('lineCanvas4', {static: true}) lineCanvas4;
+  @ViewChild('lineCanvas', { static: true }) lineCanvas;
+  @ViewChild('lineCanvas2', { static: true }) lineCanvas2;
+  @ViewChild('lineCanvas3', { static: true }) lineCanvas3;
+  @ViewChild('lineCanvas4', { static: true }) lineCanvas4;
   bars: any;
   colorArray: any;
   lineChart: any;
   lineChart2: any;
   lineChart3: any;
   lineChart4: any;
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
-    this.lineChartMethod();
-    this.lineChartMethod2();
-    this.lineChartMethod3();
-    this.lineChartMethod4();
+    // this.lineChartMethod();
+    // this.lineChartMethod2();
+    // this.lineChartMethod3();
+    // this.lineChartMethod4();
   }
 
   lineChartMethod() {
@@ -34,20 +34,18 @@ export class DashboardPage implements OnInit {
         labels: ['On Route', 'Available', 'Need Maintenance'],
         datasets: [
           {
-         
-            backgroundColor: ["#3A9863", "#28D975","#FACD01"],
+            backgroundColor: ['#3A9863', '#28D975', '#FACD01'],
             borderColor: 'rgba(255,251,251,1)',
             data: [55, 10, 25],
             spanGaps: false,
           },
-        ]
+        ],
       },
       options: {
-        
-      legend: {
-        display: false
-      }
-      }
+        legend: {
+          display: false,
+        },
+      },
     });
   }
 
@@ -60,20 +58,18 @@ export class DashboardPage implements OnInit {
         labels: ['Good', 'Average', 'Critical'],
         datasets: [
           {
-         
-            backgroundColor: ["#3A9863", "#FACD01","#FF4747"],
+            backgroundColor: ['#3A9863', '#FACD01', '#FF4747'],
             borderColor: 'rgba(255,251,251,1)',
             data: [75, 10, 35],
             spanGaps: false,
           },
-        ]
+        ],
       },
       options: {
-        
-      legend: {
-        display: false
-      }
-      }
+        legend: {
+          display: false,
+        },
+      },
     });
   }
 
@@ -106,40 +102,43 @@ export class DashboardPage implements OnInit {
             pointHitRadius: 10,
             data: [40, 60, 50, 70, 75],
             spanGaps: false,
-          }
-        ]
+          },
+        ],
       },
       options: {
         scales: {
-          xAxes: [{
-            gridLines: {
-              color: "rgba(0, 0, 0, 0)",
-          },
+          xAxes: [
+            {
+              gridLines: {
+                color: 'rgba(0, 0, 0, 0)',
+              },
               ticks: {
-                  fontSize: 8,
-                  display: true
-              }
-          }],
-          yAxes: [{
-            gridLines: {
-              color: "rgba(0, 0, 0, 0)",
-          },
+                fontSize: 8,
+                display: true,
+              },
+            },
+          ],
+          yAxes: [
+            {
+              gridLines: {
+                color: 'rgba(0, 0, 0, 0)',
+              },
               ticks: {
-                  fontSize: 8,
-                  beginAtZero: false
-              }
-              ,
+                fontSize: 8,
+                beginAtZero: false,
+              },
               scaleLabel: {
                 labelString: 'US Dollars',
-                display: false
-              }
-          },]
+                display: false,
+              },
+            },
+          ],
+        },
+        legend: {
+          align: 'start',
+          display: false,
+        },
       },
-      legend: {
-        align: 'start',
-        display:false
-      }
-      }
     });
   }
 
@@ -172,37 +171,40 @@ export class DashboardPage implements OnInit {
             pointHitRadius: 10,
             data: [15, 30, 15, 35, 36],
             spanGaps: false,
-          }
-        ]
+          },
+        ],
       },
       options: {
         bezierCurve: true,
         scales: {
-          xAxes: [{
-            gridLines: {
-              color: "rgba(0, 0, 0, 0)",
-          },
+          xAxes: [
+            {
+              gridLines: {
+                color: 'rgba(0, 0, 0, 0)',
+              },
               ticks: {
-                  fontSize: 7,
-                  display: true
-              }
-          }],
-          yAxes: [{
-            gridLines: {
-              color: "rgba(0, 0, 0, 0)",
-          },
+                fontSize: 7,
+                display: true,
+              },
+            },
+          ],
+          yAxes: [
+            {
+              gridLines: {
+                color: 'rgba(0, 0, 0, 0)',
+              },
               ticks: {
-                  fontSize: 8,
-                  beginAtZero: false
-              }
-          },]
+                fontSize: 8,
+                beginAtZero: false,
+              },
+            },
+          ],
+        },
+        legend: {
+          align: 'start',
+          display: false,
+        },
       },
-      legend: {
-        align: 'start',
-        display:false
-      }
-      }
     });
   }
-
 }

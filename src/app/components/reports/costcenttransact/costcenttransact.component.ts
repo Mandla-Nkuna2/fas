@@ -27,7 +27,7 @@ export class CostcenttransactComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.onCostCentre();
+    // this.onCostCentre();
   }
 
   onCostCentre() {

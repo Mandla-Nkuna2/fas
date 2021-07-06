@@ -58,8 +58,8 @@ export class JobcardPage implements OnInit {
   }
 
   ngOnInit() {
-    this.onReportedBy();
-    this.onDriver();
+    // this.onReportedBy();
+    // this.onDriver();
   }
 
   public signaturePadOptions: Object = {

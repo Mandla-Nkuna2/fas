@@ -19,7 +19,7 @@ export class SubvehstatusComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.onRegistration();
+    // this.onRegistration();
   }
 
   onRegistration() {

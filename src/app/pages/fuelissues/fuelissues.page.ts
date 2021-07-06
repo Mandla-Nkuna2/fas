@@ -29,11 +29,11 @@ export class FuelissuesPage implements OnInit {
   }
 
   ngOnInit() {
-    this.onRegistration();
-    this.onBowser();
-    this.onSupplier();
-    this.onStaffCode();
-    this.onCostCentre();
+    // this.onRegistration();
+    // this.onBowser();
+    // this.onSupplier();
+    // this.onStaffCode();
+    // this.onCostCentre();
   }
 
   goItemCompo() {

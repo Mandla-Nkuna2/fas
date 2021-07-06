@@ -23,7 +23,7 @@ export class OverheadbudgetPage implements OnInit {
   }
 
   ngOnInit() {
-    this.onOhbType();
+    // this.onOhbType();
   }
 
   onOhbType() {

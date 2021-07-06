@@ -35,7 +35,8 @@
           </ion-button>
         </div>
       </div>
-      <ion-grid fixed>
+      <ng-template #noItems> No items. </ng-template>
+      <ion-grid fixed *ngIf="vehicleReps; else noItems">
         <ion-row class="title-row">
           <ion-col size="0.5" class="flex al-center jc-center"> </ion-col>
           <ion-col size="2.5" class="flex al-center jc-center">
@@ -52,183 +53,25 @@
           </ion-col>
         </ion-row>
         <div class="values">
-          <ion-row class="value-row" (click)="goDetails()">
+          <ion-row
+            class="value-row"
+            *ngFor="let item of vehicleReps; let i = index"
+            (click)="goDetails()"
+          >
             <ion-col size="0.5" class="flex al-center jc-center">
               <ion-checkbox></ion-checkbox>
             </ion-col>
             <ion-col size="2.5" class="flex al-center jc-center">
-              <p>NPC6600</p>
+              <p>{{ item.ItemMakModGuid }}</p>
             </ion-col>
             <ion-col size="2.5" class="flex al-center jc-center">
-              <p>DOZER \ TRACKED \ 18000.00</p>
+              <p>{{ item.ItemTypeGuid }}</p>
             </ion-col>
             <ion-col size="3" class="flex al-center jc-center">
-              <p>MAJOR EQUIPMENT</p>
+              <p>{{ item.ItemCatg }}</p>
             </ion-col>
             <ion-col size="2.5" class="flex al-center jc-center">
-              <p>23-May-09</p>
-            </ion-col>
-            <ion-col size="1" class="flex al-center jc-start">
-              <ion-button>
-                <ion-icon
-                  slot="icon-only"
-                  name="ellipsis-vertical-outline"
-                ></ion-icon>
-              </ion-button>
-            </ion-col>
-          </ion-row>
-        </div>
-        <div class="values">
-          <ion-row class="value-row">
-            <ion-col size="0.5" class="flex al-center jc-center">
-              <ion-checkbox></ion-checkbox>
-            </ion-col>
-            <ion-col size="2.5" class="flex al-center jc-center">
-              <p>NPC6600</p>
-            </ion-col>
-            <ion-col size="2.5" class="flex al-center jc-center">
-              <p>DOZER \ TRACKED \ 18000.00</p>
-            </ion-col>
-            <ion-col size="3" class="flex al-center jc-center">
-              <p>MAJOR EQUIPMENT</p>
-            </ion-col>
-            <ion-col size="2.5" class="flex al-center jc-center">
-              <p>23-May-09</p>
-            </ion-col>
-            <ion-col size="1" class="flex al-center jc-start">
-              <ion-button>
-                <ion-icon
-                  slot="icon-only"
-                  name="ellipsis-vertical-outline"
-                ></ion-icon>
-              </ion-button>
-            </ion-col>
-          </ion-row>
-        </div>
-        <div class="values">
-          <ion-row class="value-row">
-            <ion-col size="0.5" class="flex al-center jc-center">
-              <ion-checkbox></ion-checkbox>
-            </ion-col>
-            <ion-col size="2.5" class="flex al-center jc-center">
-              <p>NPC6600</p>
-            </ion-col>
-            <ion-col size="2.5" class="flex al-center jc-center">
-              <p>DOZER \ TRACKED \ 18000.00</p>
-            </ion-col>
-            <ion-col size="3" class="flex al-center jc-center">
-              <p>MAJOR EQUIPMENT</p>
-            </ion-col>
-            <ion-col size="2.5" class="flex al-center jc-center">
-              <p>23-May-09</p>
-            </ion-col>
-            <ion-col size="1" class="flex al-center jc-start">
-              <ion-button>
-                <ion-icon
-                  slot="icon-only"
-                  name="ellipsis-vertical-outline"
-                ></ion-icon>
-              </ion-button>
-            </ion-col>
-          </ion-row>
-        </div>
-        <div class="values">
-          <ion-row class="value-row">
-            <ion-col size="0.5" class="flex al-center jc-center">
-              <ion-checkbox></ion-checkbox>
-            </ion-col>
-            <ion-col size="2.5" class="flex al-center jc-center">
-              <p>NPC6600</p>
-            </ion-col>
-            <ion-col size="2.5" class="flex al-center jc-center">
-              <p>DOZER \ TRACKED \ 18000.00</p>
-            </ion-col>
-            <ion-col size="3" class="flex al-center jc-center">
-              <p>MAJOR EQUIPMENT</p>
-            </ion-col>
-            <ion-col size="2.5" class="flex al-center jc-center">
-              <p>23-May-09</p>
-            </ion-col>
-            <ion-col size="1" class="flex al-center jc-start">
-              <ion-button>
-                <ion-icon
-                  slot="icon-only"
-                  name="ellipsis-vertical-outline"
-                ></ion-icon>
-              </ion-button>
-            </ion-col>
-          </ion-row>
-        </div>
-        <div class="values">
-          <ion-row class="value-row">
-            <ion-col size="0.5" class="flex al-center jc-center">
-              <ion-checkbox></ion-checkbox>
-            </ion-col>
-            <ion-col size="2.5" class="flex al-center jc-center">
-              <p>NPC6600</p>
-            </ion-col>
-            <ion-col size="2.5" class="flex al-center jc-center">
-              <p>DOZER \ TRACKED \ 18000.00</p>
-            </ion-col>
-            <ion-col size="3" class="flex al-center jc-center">
-              <p>MAJOR EQUIPMENT</p>
-            </ion-col>
-            <ion-col size="2.5" class="flex al-center jc-center">
-              <p>23-May-09</p>
-            </ion-col>
-            <ion-col size="1" class="flex al-center jc-start">
-              <ion-button>
-                <ion-icon
-                  slot="icon-only"
-                  name="ellipsis-vertical-outline"
-                ></ion-icon>
-              </ion-button>
-            </ion-col>
-          </ion-row>
-        </div>
-        <div class="values">
-          <ion-row class="value-row">
-            <ion-col size="0.5" class="flex al-center jc-center">
-              <ion-checkbox></ion-checkbox>
-            </ion-col>
-            <ion-col size="2.5" class="flex al-center jc-center">
-              <p>NPC6600</p>
-            </ion-col>
-            <ion-col size="2.5" class="flex al-center jc-center">
-              <p>DOZER \ TRACKED \ 18000.00</p>
-            </ion-col>
-            <ion-col size="3" class="flex al-center jc-center">
-              <p>MAJOR EQUIPMENT</p>
-            </ion-col>
-            <ion-col size="2.5" class="flex al-center jc-center">
-              <p>23-May-09</p>
-            </ion-col>
-            <ion-col size="1" class="flex al-center jc-start">
-              <ion-button>
-                <ion-icon
-                  slot="icon-only"
-                  name="ellipsis-vertical-outline"
-                ></ion-icon>
-              </ion-button>
-            </ion-col>
-          </ion-row>
-        </div>
-        <div class="values">
-          <ion-row class="value-row">
-            <ion-col size="0.5" class="flex al-center jc-center">
-              <ion-checkbox></ion-checkbox>
-            </ion-col>
-            <ion-col size="2.5" class="flex al-center jc-center">
-              <p>NPC6600</p>
-            </ion-col>
-            <ion-col size="2.5" class="flex al-center jc-center">
-              <p>DOZER \ TRACKED \ 18000.00</p>
-            </ion-col>
-            <ion-col size="3" class="flex al-center jc-center">
-              <p>MAJOR EQUIPMENT</p>
-            </ion-col>
-            <ion-col size="2.5" class="flex al-center jc-center">
-              <p>23-May-09</p>
+              <p>{{ item.Inspectiondate }}</p>
             </ion-col>
             <ion-col size="1" class="flex al-center jc-start">
               <ion-button>
