@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import StoreIssue from 'src/app/models/capture/StoreIssue.model';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
+import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 import { FirebaseService } from 'src/app/services/firebase-service/firebase-service.service';
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 
@@ -12,6 +13,7 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 })
 export class StoreissuePage implements OnInit {
   storeIssue: StoreIssue;
+  storeIssues: StoreIssue[] = [];
 
   registration: any[];
   MaintEvRefNo: any[];
@@ -20,6 +22,7 @@ export class StoreissuePage implements OnInit {
 
   constructor(
     private navCtrl: NavController,
+    private firebaseRepServ: FirebaseReportService,
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
@@ -28,14 +31,36 @@ export class StoreissuePage implements OnInit {
   }
 
   ngOnInit() {
-    // this.onRegistration();
-    // this.onMaintEvRefNo();
-    // this.onSupplier();
-    // this.onStoreItem();
+    this.onTableRep();
+    this.onRegistration();
+    this.onMaintEvRefNo();
+    this.onSupplier();
+    this.onStoreItem();
+  }
+
+  onTableRep() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getStoreIssues()
+        .then((mNm: any) => {
+          this.storeIssues = mNm;
+          this.onStoreItemLeft();
+          this.popUp.dismissLoading();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
   }
 
   goSupplierDeposit() {
     this.navCtrl.navigateForward('supdeposit');
+  }
+
+  isNumber(value) {
+    return Number.isNaN(value);
   }
 
   onRegistration() {
@@ -79,6 +104,14 @@ export class StoreissuePage implements OnInit {
   onStoreItemLeft() {
     this.firebaseGetServ.getStoreItemLeft().then((mNm: any) => {
       this.storeItem = mNm;
+
+      mNm.forEach((elm) => {
+        this.storeIssues.forEach((obj) => {
+          if (elm.StoreCatgGuid == obj.StoreCatgItemGuid) {
+            obj.StoreCatgItemGuid = elm.StoreCatgItem;
+          }
+        });
+      });
     });
   }
 

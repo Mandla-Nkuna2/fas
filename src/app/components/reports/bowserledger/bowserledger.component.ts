@@ -27,7 +27,7 @@ export class BowserledgerComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // this.onBowser();
+    this.onBowser();
   }
 
   onBowser() {

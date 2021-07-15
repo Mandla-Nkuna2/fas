@@ -41,8 +41,8 @@ export class CostlistingComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // this.onLocation();
-    // this.onRegistration();
+    this.onLocation();
+    this.onRegistration();
   }
 
   onLocation() {

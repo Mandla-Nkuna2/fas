@@ -10,7 +10,7 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
   styleUrls: ['./revenueearned.page.scss'],
 })
 export class RevenueearnedPage implements OnInit {
-  revenuee: Revenue[];
+  revenuee: Revenue[] = [];
   clientNames: any[];
 
   constructor(
@@ -20,7 +20,7 @@ export class RevenueearnedPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    //this.onTableRep();
+    this.onTableRep();
   }
 
   onTableRep() {

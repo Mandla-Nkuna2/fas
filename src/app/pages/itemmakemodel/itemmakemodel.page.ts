@@ -35,9 +35,9 @@ export class ItemmakemodelPage implements OnInit {
   }
 
   ngOnInit() {
-    // this.onMake();
-    // this.onModel();
-    // this.onFuelType();
+    this.onMake();
+    this.onModel();
+    this.onFuelType();
   }
 
   onMake() {

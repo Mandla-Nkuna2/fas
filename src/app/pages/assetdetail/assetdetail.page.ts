@@ -10,7 +10,7 @@ import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-g
 })
 export class AssetdetailPage implements OnInit {
   moreDet = false;
-  assets: any[];
+  assets: any[] = [];
   assetTypes: any[];
   assetTypeNames: any[];
   makesAndMods: any[];
@@ -22,7 +22,7 @@ export class AssetdetailPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    //this.onTableRep();
+    this.onTableRep();
   }
 
   onTableRep() {

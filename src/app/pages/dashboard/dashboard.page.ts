@@ -19,10 +19,10 @@ export class DashboardPage implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    // this.lineChartMethod();
-    // this.lineChartMethod2();
-    // this.lineChartMethod3();
-    // this.lineChartMethod4();
+    this.lineChartMethod();
+    this.lineChartMethod2();
+    this.lineChartMethod3();
+    this.lineChartMethod4();
   }
 
   lineChartMethod() {

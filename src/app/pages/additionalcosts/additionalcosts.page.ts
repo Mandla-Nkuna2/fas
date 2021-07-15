@@ -4,6 +4,7 @@ import { NavController } from '@ionic/angular';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 import { FirebaseService } from 'src/app/services/firebase-service/firebase-service.service';
+import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 
 @Component({
   selector: 'app-additionalcosts',
@@ -12,6 +13,7 @@ import { FirebaseService } from 'src/app/services/firebase-service/firebase-serv
 })
 export class AdditionalcostsPage implements OnInit {
   additionalCost: AdditionalCost;
+  additionalCosts: AdditionalCost[] = [];
 
   additionalCostDesc: any[];
   registration: any;
@@ -21,6 +23,7 @@ export class AdditionalcostsPage implements OnInit {
 
   constructor(
     private navCtrl: NavController,
+    private firebaseRepServ: FirebaseReportService,
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
@@ -29,11 +32,31 @@ export class AdditionalcostsPage implements OnInit {
   }
 
   ngOnInit() {
-    // this.onRegistration();
-    // this.onAdditionalCostDesc();
-    // this.onCostCentre();
-    // this.onStaffCode();
-    // this.onSupplier();
+    this.onTableRep();
+    this.onRegistration();
+    this.onAdditionalCostDesc();
+    this.onCostCentre();
+    this.onStaffCode();
+    this.onSupplier();
+  }
+
+  onTableRep() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getAdditionalCosts()
+        .then((mNm: any) => {
+          this.additionalCosts = mNm;
+          this.onAdditionalCostDesc();
+          this.onCostCentreLeft();
+          this.onSupplierLeft();
+          this.popUp.dismissLoading();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
   }
 
   goAutoCard() {
@@ -54,12 +77,33 @@ export class AdditionalcostsPage implements OnInit {
   onAdditionalCostDesc() {
     this.firebaseGetServ.getAddittionalCost().then((mNm: any) => {
       this.additionalCostDesc = mNm;
+
+      mNm.forEach((elm) => {
+        this.additionalCosts.forEach((obj) => {
+          if (elm.AddCostDescGuid == obj.AddCostDescGuid) {
+            obj.AddCostDescGuid = elm.AddCostDesc;
+          }
+        });
+      });
     });
   }
 
   onCostCentre() {
     this.firebaseGetServ.getCostCentre().then((mNm: any) => {
       this.costCentre = mNm;
+    });
+  }
+  onCostCentreLeft() {
+    this.firebaseGetServ.getCostCentreLeft().then((mNm: any) => {
+      this.costCentre = mNm;
+
+      mNm.forEach((elm) => {
+        this.additionalCosts.forEach((obj) => {
+          if (elm.CostCentGuid == obj.CostCentreGuid) {
+            obj.CostCentreGuid = elm.CostCentName;
+          }
+        });
+      });
     });
   }
 
@@ -82,6 +126,14 @@ export class AdditionalcostsPage implements OnInit {
   onSupplierLeft() {
     this.firebaseGetServ.getSupplierLeft().then((mNm: any) => {
       this.supplier = mNm;
+
+      mNm.forEach((elm) => {
+        this.additionalCosts.forEach((obj) => {
+          if (elm.SuppGuid == obj.Suppguid) {
+            obj.Suppguid = elm.SuppName;
+          }
+        });
+      });
     });
   }
 

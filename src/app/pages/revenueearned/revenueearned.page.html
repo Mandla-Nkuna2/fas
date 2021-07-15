@@ -47,7 +47,7 @@
         <h3>BERGVILLE</h3>
       </div>
       <ng-template #noItems> No items. </ng-template>
-      <ion-grid fixed *ngIf="revenuee; else noItems">
+      <ion-grid fixed *ngIf="revenuee.length; else noItems">
         <ion-row class="title-row">
           <ion-col size="0.8" class="flex al-center jc-center">
             <h4>Revenue ref.</h4>

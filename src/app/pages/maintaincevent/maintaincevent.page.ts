@@ -13,7 +13,7 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 })
 export class MaintainceventPage implements OnInit {
   maintenanceEvent: MaintenanceEvent;
-  maintenanceEvents: MaintenanceEvent[];
+  maintenanceEvents: MaintenanceEvent[] = [];
 
   jobCardNo: any[];
   registration: any[];
@@ -34,14 +34,14 @@ export class MaintainceventPage implements OnInit {
   }
 
   ngOnInit() {
-    // this.onTableRep();
-    // this.onJobCardNo();
-    // this.onRegistration();
-    // this.onMaintType();
-    // this.onMaintReason();
-    // this.onSupplier();
-    // this.onRequestedBy();
-    // this.onCostCentre();
+    this.onTableRep();
+    this.onJobCardNo();
+    this.onRegistration();
+    this.onMaintType();
+    this.onMaintReason();
+    this.onSupplier();
+    this.onRequestedBy();
+    this.onCostCentre();
   }
 
   onTableRep() {

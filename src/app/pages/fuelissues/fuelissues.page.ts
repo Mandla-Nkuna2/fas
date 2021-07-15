@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import FuelIssue from 'src/app/models/capture/FuelIssue.model';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
+import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 import { FirebaseService } from 'src/app/services/firebase-service/firebase-service.service';
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 
@@ -12,6 +13,7 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 })
 export class FuelissuesPage implements OnInit {
   fuelIssue: FuelIssue;
+  fuelIssues: FuelIssue[] = [];
 
   registration: any[];
   supplier: any[];
@@ -21,6 +23,7 @@ export class FuelissuesPage implements OnInit {
 
   constructor(
     private navCtrl: NavController,
+    private firebaseRepServ: FirebaseReportService,
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
@@ -29,11 +32,29 @@ export class FuelissuesPage implements OnInit {
   }
 
   ngOnInit() {
-    // this.onRegistration();
-    // this.onBowser();
-    // this.onSupplier();
-    // this.onStaffCode();
-    // this.onCostCentre();
+    this.onTableRep();
+    this.onRegistration();
+    this.onBowser();
+    this.onSupplier();
+    this.onStaffCode();
+    this.onCostCentre();
+  }
+
+  onTableRep() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getFuelIssues()
+        .then((mNm: any) => {
+          this.fuelIssues = mNm;
+          // this.onSupplierLeft();
+          this.popUp.dismissLoading();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
   }
 
   goItemCompo() {
@@ -70,6 +91,14 @@ export class FuelissuesPage implements OnInit {
   onSupplierLeft() {
     this.firebaseGetServ.getSupplierLeft().then((mNm: any) => {
       this.supplier = mNm;
+
+      mNm.forEach((elm) => {
+        this.fuelIssues.forEach((obj) => {
+          if (elm.SuppGuid == obj.SupplierGuid) {
+            obj.SupplierGuid = elm.SuppName;
+          }
+        });
+      });
     });
   }
 

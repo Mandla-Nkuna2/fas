@@ -11,7 +11,7 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
   styleUrls: ['./monthlyvehiclereport.page.scss'],
 })
 export class MonthlyvehiclereportPage implements OnInit {
-  assets: any[];
+  assets: any[] = [];
 
   assetTypes: any[];
   assetTypeNames: any[];
@@ -25,7 +25,7 @@ export class MonthlyvehiclereportPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    //this.onTableRep();
+    this.onTableRep();
   }
 
   onTableRep() {

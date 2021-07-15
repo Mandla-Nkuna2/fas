@@ -94,7 +94,8 @@
       <div class="top-toolbar">
         <h3>Running Costs Report - Vehicles</h3>
       </div>
-      <ion-grid fixed>
+      <ng-template #noItems> No items. </ng-template>
+      <ion-grid fixed *ngIf="runningCosts.length; else noItems">
         <ion-row class="title-row">
           <ion-col size="0.5" class="flex al-center jc-center"> </ion-col>
           <ion-col size="1.5" class="flex al-center jc-center">
@@ -117,30 +118,33 @@
           </ion-col>
         </ion-row>
         <div class="values">
-          <ion-row class="value-row">
+          <ion-row
+            class="value-row"
+            *ngFor="let item of runningCosts; let i = index"
+          >
             <ion-col size="0.5" class="flex al-center jc-center">
               <ion-checkbox></ion-checkbox>
             </ion-col>
             <ion-col size="1.5" class="flex al-center jc-center">
-              <p>NPC7502</p>
+              <p>{{ item.Reg }}</p>
             </ion-col>
             <ion-col size="2" class="flex al-center jc-center">
-              <p>SEDAN \ 4 DOOR \ 1300</p>
+              <p>{{ item.ItemTypeGuid }}</p>
             </ion-col>
             <ion-col size="2" class="flex al-center jc-center">
-              <p>POOL</p>
+              <p>{{ item.LocItemCode }}</p>
             </ion-col>
             <ion-col size="2" class="flex al-center jc-center">
-              <p>MAZDA 323</p>
+              <p>{{ item.ItemMakModGuid }}</p>
             </ion-col>
             <ion-col size="2" class="flex al-center jc-center">
-              <p>N/A</p>
+              <p>{{ item.MeterOffset }}</p>
             </ion-col>
             <ion-col size="2" class="flex al-center jc-center">
-              <p>600333</p>
+              <p>{{ item.MeterRead }}</p>
             </ion-col>
           </ion-row>
-          <div class="more">
+          <!-- <div class="more">
             <div class="divider"></div>
             <div class="titleh flex al-center">
               <h4>More Details</h4>
@@ -249,82 +253,7 @@
                 </ion-col>
               </ion-row>
             </ion-grid>
-          </div>
-        </div>
-        <div class="values">
-          <ion-row class="value-row">
-            <ion-col size="0.5" class="flex al-center jc-center">
-              <ion-checkbox></ion-checkbox>
-            </ion-col>
-            <ion-col size="1.5" class="flex al-center jc-center">
-              <p>NPC7502</p>
-            </ion-col>
-            <ion-col size="2" class="flex al-center jc-center">
-              <p>SEDAN \ 4 DOOR \ 1300</p>
-            </ion-col>
-            <ion-col size="2" class="flex al-center jc-center">
-              <p>POOL</p>
-            </ion-col>
-            <ion-col size="2" class="flex al-center jc-center">
-              <p>MAZDA 323</p>
-            </ion-col>
-            <ion-col size="2" class="flex al-center jc-center">
-              <p>N/A</p>
-            </ion-col>
-            <ion-col size="2" class="flex al-center jc-center">
-              <p>600333</p>
-            </ion-col>
-          </ion-row>
-        </div>
-        <div class="values">
-          <ion-row class="value-row">
-            <ion-col size="0.5" class="flex al-center jc-center">
-              <ion-checkbox></ion-checkbox>
-            </ion-col>
-            <ion-col size="1.5" class="flex al-center jc-center">
-              <p>NPC7502</p>
-            </ion-col>
-            <ion-col size="2" class="flex al-center jc-center">
-              <p>SEDAN \ 4 DOOR \ 1300</p>
-            </ion-col>
-            <ion-col size="2" class="flex al-center jc-center">
-              <p>POOL</p>
-            </ion-col>
-            <ion-col size="2" class="flex al-center jc-center">
-              <p>MAZDA 323</p>
-            </ion-col>
-            <ion-col size="2" class="flex al-center jc-center">
-              <p>N/A</p>
-            </ion-col>
-            <ion-col size="2" class="flex al-center jc-center">
-              <p>600333</p>
-            </ion-col>
-          </ion-row>
-        </div>
-        <div class="values">
-          <ion-row class="value-row">
-            <ion-col size="0.5" class="flex al-center jc-center">
-              <ion-checkbox></ion-checkbox>
-            </ion-col>
-            <ion-col size="1.5" class="flex al-center jc-center">
-              <p>NPC7502</p>
-            </ion-col>
-            <ion-col size="2" class="flex al-center jc-center">
-              <p>SEDAN \ 4 DOOR \ 1300</p>
-            </ion-col>
-            <ion-col size="2" class="flex al-center jc-center">
-              <p>POOL</p>
-            </ion-col>
-            <ion-col size="2" class="flex al-center jc-center">
-              <p>MAZDA 323</p>
-            </ion-col>
-            <ion-col size="2" class="flex al-center jc-center">
-              <p>N/A</p>
-            </ion-col>
-            <ion-col size="2" class="flex al-center jc-center">
-              <p>600333</p>
-            </ion-col>
-          </ion-row>
+          </div> -->
         </div>
       </ion-grid>
     </div>

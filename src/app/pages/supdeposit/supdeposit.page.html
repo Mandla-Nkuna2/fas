@@ -43,10 +43,10 @@
       <ion-grid fixed>
         <ion-row class="title-row">
           <ion-col size="0.5" class="flex al-center jc-center"> </ion-col>
-          <ion-col size="1.4" class="flex al-center jc-center">
+          <ion-col size="2.5" class="flex al-center jc-center">
             <h4>Supplier</h4>
           </ion-col>
-          <ion-col size="1.4" class="flex al-center jc-center">
+          <ion-col size="2" class="flex al-center jc-center">
             <h4>date</h4>
           </ion-col>
           <ion-col size="1.4" class="flex al-center jc-center">
@@ -55,172 +55,51 @@
           <ion-col size="1.2" class="flex al-center jc-center">
             <h4>Voucher No.</h4>
           </ion-col>
-          <ion-col size="1.4" class="flex al-center jc-center">
+          <!-- <ion-col size="1.4" class="flex al-center jc-center">
             <h4>purchase qty</h4>
           </ion-col>
           <ion-col size="1.4" class="flex al-center jc-center">
             <h4>purchase cost</h4>
-          </ion-col>
-          <ion-col size="1.2" class="flex al-center jc-center">
+          </ion-col> -->
+          <ion-col size="2" class="flex al-center jc-center">
             <h4>capture date</h4>
           </ion-col>
-          <ion-col size="1.2" class="flex al-center jc-center">
+          <!-- <ion-col size="1.2" class="flex al-center jc-center">
             <h4>Comments</h4>
-          </ion-col>
+          </ion-col> -->
         </ion-row>
-        <div class="values">
+        <div
+          class="values"
+          *ngFor="let item of supplierDeposits; let i = index"
+        >
           <ion-row class="value-row" (click)="goFuelnOilPrice()">
             <ion-col size="0.5" class="flex al-center jc-center">
               <ion-checkbox></ion-checkbox>
             </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <p>NP117354</p>
+            <ion-col size="2.5" class="flex al-center jc-center">
+              <p>{{ item.SuppGuid }}</p>
+            </ion-col>
+            <ion-col size="2" class="flex al-center jc-center">
+              <p>{{ item.TransDate }}</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
-              <p class="ion-text-wrap">01 JAN 2006</p>
-            </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <p>02541</p>
+              <p>{{ item.AmtDeposit }}</p>
             </ion-col>
             <ion-col size="1.2" class="flex al-center jc-center">
-              <p>01 Jan 2006</p>
+              <p>{{ item.VoucherNo }}</p>
+            </ion-col>
+            <!-- <ion-col size="1.4" class="flex al-center jc-center">
+              <p>{{ item.SuppGuid }}</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
-              <p>02 Jan 2006</p>
+              <p>{{ item.SuppGuid }}</p>
+            </ion-col> -->
+            <ion-col size="2" class="flex al-center jc-center">
+              <p>{{ item.Capturedate }}</p>
             </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <p>400</p>
-            </ion-col>
-            <ion-col size="1.2" class="flex al-center jc-center">
-              <p>400</p>
-            </ion-col>
-            <ion-col size="1.2" class="flex al-center jc-center">
-              <p>400</p>
-            </ion-col>
-          </ion-row>
-        </div>
-        <div class="values">
-          <ion-row class="value-row" (click)="goFuelnOilPrice()">
-            <ion-col size="0.5" class="flex al-center jc-center">
-              <ion-checkbox></ion-checkbox>
-            </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <p>NP117354</p>
-            </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <p class="ion-text-wrap">01 JAN 2006</p>
-            </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <p>02541</p>
-            </ion-col>
-            <ion-col size="1.2" class="flex al-center jc-center">
-              <p>01 Jan 2006</p>
-            </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <p>02 Jan 2006</p>
-            </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <p>400</p>
-            </ion-col>
-            <ion-col size="1.2" class="flex al-center jc-center">
-              <p>400</p>
-            </ion-col>
-            <ion-col size="1.2" class="flex al-center jc-center">
-              <p>400</p>
-            </ion-col>
-          </ion-row>
-        </div>
-        <div class="values">
-          <ion-row class="value-row" (click)="goFuelnOilPrice()">
-            <ion-col size="0.5" class="flex al-center jc-center">
-              <ion-checkbox></ion-checkbox>
-            </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <p>NP117354</p>
-            </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <p class="ion-text-wrap">01 JAN 2006</p>
-            </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <p>02541</p>
-            </ion-col>
-            <ion-col size="1.2" class="flex al-center jc-center">
-              <p>01 Jan 2006</p>
-            </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <p>02 Jan 2006</p>
-            </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <p>400</p>
-            </ion-col>
-            <ion-col size="1.2" class="flex al-center jc-center">
-              <p>400</p>
-            </ion-col>
-            <ion-col size="1.2" class="flex al-center jc-center">
-              <p>400</p>
-            </ion-col>
-          </ion-row>
-        </div>
-        <div class="values">
-          <ion-row class="value-row" (click)="goFuelnOilPrice()">
-            <ion-col size="0.5" class="flex al-center jc-center">
-              <ion-checkbox></ion-checkbox>
-            </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <p>NP117354</p>
-            </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <p class="ion-text-wrap">01 JAN 2006</p>
-            </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <p>02541</p>
-            </ion-col>
-            <ion-col size="1.2" class="flex al-center jc-center">
-              <p>01 Jan 2006</p>
-            </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <p>02 Jan 2006</p>
-            </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <p>400</p>
-            </ion-col>
-            <ion-col size="1.2" class="flex al-center jc-center">
-              <p>400</p>
-            </ion-col>
-            <ion-col size="1.2" class="flex al-center jc-center">
-              <p>400</p>
-            </ion-col>
-          </ion-row>
-        </div>
-        <div class="values">
-          <ion-row class="value-row" (click)="goFuelnOilPrice()">
-            <ion-col size="0.5" class="flex al-center jc-center">
-              <ion-checkbox></ion-checkbox>
-            </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <p>NP117354</p>
-            </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <p class="ion-text-wrap">01 JAN 2006</p>
-            </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <p>02541</p>
-            </ion-col>
-            <ion-col size="1.2" class="flex al-center jc-center">
-              <p>01 Jan 2006</p>
-            </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <p>02 Jan 2006</p>
-            </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <p>400</p>
-            </ion-col>
-            <ion-col size="1.2" class="flex al-center jc-center">
-              <p>400</p>
-            </ion-col>
-            <ion-col size="1.2" class="flex al-center jc-center">
-              <p>400</p>
-            </ion-col>
+            <!-- <ion-col size="1.2" class="flex al-center jc-center">
+              <p>{{ item.SuppGuid }}</p>
+            </ion-col> -->
           </ion-row>
         </div>
       </ion-grid>

@@ -44,10 +44,10 @@ export class TrafficfinesComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // this.onLocation();
-    // this.onItemType();
-    // this.onStaffCodes();
-    // this.onRegistration();
+    this.onLocation();
+    this.onItemType();
+    this.onStaffCodes();
+    this.onRegistration();
   }
 
   onLocation() {

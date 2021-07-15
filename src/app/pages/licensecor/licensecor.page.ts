@@ -14,7 +14,7 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 })
 export class LicensecorPage implements OnInit {
   licCorAndSafInspec: LicCorAndSafInspcDates;
-  licCorAndSafInspecs: any[];
+  licCorAndSafInspecs: any[] = [];
 
   registration: any[];
   costCentre: any[];
@@ -31,9 +31,9 @@ export class LicensecorPage implements OnInit {
   }
 
   ngOnInit() {
-    //this.onTableRep();
-    // this.onRegistration();
-    // this.onCostCentre();
+    this.onTableRep();
+    this.onRegistration();
+    this.onCostCentre();
   }
 
   onTableRep() {

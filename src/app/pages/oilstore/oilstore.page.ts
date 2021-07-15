@@ -22,7 +22,7 @@ export class OilstorePage implements OnInit {
   }
 
   ngOnInit() {
-    // this.onOsLocation();
+    this.onOsLocation();
   }
 
   onOsLocation() {

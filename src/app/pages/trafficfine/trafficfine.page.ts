@@ -25,9 +25,9 @@ export class TrafficfinePage implements OnInit {
   }
 
   ngOnInit() {
-    // this.onSupervisor();
-    // this.onRegistration();
-    // this.onDriver();
+    this.onSupervisor();
+    this.onRegistration();
+    this.onDriver();
   }
 
   onSupervisor() {

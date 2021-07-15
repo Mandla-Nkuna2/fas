@@ -41,7 +41,7 @@
         </div>
       </div>
       <ng-template #noItems> No items. </ng-template>
-      <ion-grid fixed *ngIf="lossControls; else noItems">
+      <ion-grid fixed *ngIf="lossControls.length; else noItems">
         <ion-row class="title-row">
           <ion-col size="0.5" class="flex al-center jc-center"> </ion-col>
           <ion-col size="1.4" class="flex al-center jc-center">

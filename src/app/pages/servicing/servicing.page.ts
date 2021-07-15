@@ -11,7 +11,7 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
   styleUrls: ['./servicing.page.scss'],
 })
 export class ServicingPage implements OnInit {
-  vehicleReps: any[];
+  vehicleReps: any[] = [];
 
   itemTypes: any[];
   itemMakeMods: any[];
@@ -24,7 +24,7 @@ export class ServicingPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    //this.onTableRep();
+    this.onTableRep();
   }
 
   onTableRep() {

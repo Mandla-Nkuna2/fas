@@ -13,7 +13,7 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 })
 export class ItemcomponentsPage implements OnInit {
   itemComponent: ItemComponent;
-  itemComponents: any[];
+  itemComponents: any[] = [];
 
   registrations: any[];
   assetCompName: any[];
@@ -32,12 +32,12 @@ export class ItemcomponentsPage implements OnInit {
   }
 
   ngOnInit() {
-    //this.onTableRep();
-    // this.onRegistration();
-    // this.onCompName();
-    // this.onComponentMake();
-    // this.onComponentModel();
-    // this.onServiceIntv();
+    this.onTableRep();
+    this.onRegistration();
+    this.onCompName();
+    this.onComponentMake();
+    this.onComponentModel();
+    this.onServiceIntv();
   }
 
   onTableRep() {
@@ -103,12 +103,12 @@ export class ItemcomponentsPage implements OnInit {
   }
 
   onComponentMake() {
-    this.firebaseGetServ.getAssetCompMake().then((mNm: any) => {
+    this.firebaseGetServ.getItemCompMake().then((mNm: any) => {
       this.assetCompMake = mNm;
     });
   }
   onComponentMakeLeft() {
-    this.firebaseGetServ.getAssetCompMakeLeft().then((mNm: any) => {
+    this.firebaseGetServ.getItemCompMakeLeft().then((mNm: any) => {
       this.assetCompMake = mNm;
 
       mNm.forEach((elm) => {
@@ -122,12 +122,12 @@ export class ItemcomponentsPage implements OnInit {
   }
 
   onComponentModel() {
-    this.firebaseGetServ.getAssetCompModel().then((mNm: any) => {
+    this.firebaseGetServ.getItemCompModel().then((mNm: any) => {
       this.assetCompModel = mNm;
     });
   }
   onComponentModelLeft() {
-    this.firebaseGetServ.getAssetCompModelLeft().then((mNm: any) => {
+    this.firebaseGetServ.getItemCompModelLeft().then((mNm: any) => {
       this.assetCompModel = mNm;
 
       mNm.forEach((elm) => {

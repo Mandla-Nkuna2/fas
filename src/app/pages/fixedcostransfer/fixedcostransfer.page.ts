@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import FixedCostTransfer from 'src/app/models/capture/FixedCostTransfer.model';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
+import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 import { FirebaseService } from 'src/app/services/firebase-service/firebase-service.service';
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 
@@ -11,11 +12,13 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 })
 export class FixedcostransferPage implements OnInit {
   fixedCostTransf: FixedCostTransfer;
+  fixedCostTransfs: FixedCostTransfer[] = [];
 
   registration: any[];
   costCentre: any[];
 
   constructor(
+    private firebaseRepServ: FirebaseReportService,
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
@@ -24,8 +27,26 @@ export class FixedcostransferPage implements OnInit {
   }
 
   ngOnInit() {
-    // this.onRegistration();
-    // this.onCostCentre();
+    this.onTableRep();
+    this.onRegistration();
+    this.onCostCentre();
+  }
+
+  onTableRep() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getFixedCostTransfer()
+        .then((mNm: any) => {
+          this.fixedCostTransfs = mNm;
+          this.onCostCentreLeft();
+          this.popUp.dismissLoading();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
   }
 
   onRegistration() {
@@ -42,6 +63,19 @@ export class FixedcostransferPage implements OnInit {
   onCostCentre() {
     this.firebaseGetServ.getCostCentre().then((mNm: any) => {
       this.costCentre = mNm;
+    });
+  }
+  onCostCentreLeft() {
+    this.firebaseGetServ.getCostCentreLeft().then((mNm: any) => {
+      this.costCentre = mNm;
+
+      mNm.forEach((elm) => {
+        this.fixedCostTransfs.forEach((obj) => {
+          if (elm.CostCentGuid == obj.CostCentGuid) {
+            obj.CostCentGuid = elm.CostCentName;
+          }
+        });
+      });
     });
   }
 

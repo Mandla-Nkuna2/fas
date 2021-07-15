@@ -17,6 +17,7 @@ import { Component, OnInit } from '@angular/core';
 export class AddassetsPage implements OnInit {
   asset: Asset;
   assets: any = [];
+
   loadingComplete = false;
   makesAndModels: any = [];
   colors: any = [];
@@ -42,11 +43,11 @@ export class AddassetsPage implements OnInit {
   }
 
   ngOnInit() {
-    // this.onMakeAndModel();
-    // this.onColor();
-    // this.onBattery();
-    // this.onDriver();
-    // this.onTireSizes();
+    this.onMakeAndModel();
+    this.onColor();
+    this.onBattery();
+    this.onDriver();
+    this.onTireSizes();
   }
 
   onlyUnique(value, index, self) {

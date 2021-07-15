@@ -24,7 +24,7 @@ export class VotecodesPage implements OnInit {
   }
 
   ngOnInit() {
-    // this.onVoteCodes();
+    this.onVoteCodes();
     this.onDescription();
   }
 

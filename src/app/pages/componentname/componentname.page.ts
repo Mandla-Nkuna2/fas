@@ -23,7 +23,7 @@ export class ComponentnamePage implements OnInit {
   }
 
   ngOnInit() {
-    // this.onCompName();
+    this.onCompName();
   }
 
   onCompSubCatView() {

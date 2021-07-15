@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import OilStoreTransfer from 'src/app/models/capture/OilStoreTransfer.model';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
+import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 import { FirebaseService } from 'src/app/services/firebase-service/firebase-service.service';
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 
@@ -12,6 +13,7 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 })
 export class OiltransaferPage implements OnInit {
   oilStoreTransf: OilStoreTransfer;
+  oilStoreTransfs: OilStoreTransfer[] = [];
 
   voucherNo: any[];
   oilMakes: any[];
@@ -24,6 +26,7 @@ export class OiltransaferPage implements OnInit {
 
   constructor(
     private navCtrl: NavController,
+    private firebaseRepServ: FirebaseReportService,
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
@@ -32,10 +35,30 @@ export class OiltransaferPage implements OnInit {
   }
 
   ngOnInit() {
-    // this.onOilType();
-    // this.onOilStoreFrom();
-    // this.onOilStoreTo();
-    // this.onCostCentre();
+    this.onTableRep();
+    this.onOilType();
+    this.onOilStoreFrom();
+    this.onOilStoreTo();
+    this.onCostCentre();
+  }
+
+  onTableRep() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getOilStoreTransf()
+        .then((mNm: any) => {
+          this.oilStoreTransfs = mNm;
+          this.onOilTypeLeft();
+          this.onOilStoreFrom();
+          this.onOilStoreTo();
+          this.popUp.dismissLoading();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
   }
 
   goOverhead() {
@@ -104,18 +127,42 @@ export class OiltransaferPage implements OnInit {
           oilObj.OilMake + ' ' + oilObj.OilGrade + ' ' + oilObj.OilClass;
       });
       this.oilTypes = mNm;
+
+      this.oilTypes.forEach((elm) => {
+        this.oilStoreTransfs.forEach((obj) => {
+          if (elm.OilGuid == obj.OilTypeGuid) {
+            obj.OilTypeGuid = elm.OilText;
+          }
+        });
+      });
     });
   }
 
   onOilStoreFrom() {
     this.firebaseGetServ.getOilStore().then((mNm: any) => {
       this.oilStoreFrom = mNm;
+
+      mNm.forEach((elm) => {
+        this.oilStoreTransfs.forEach((obj) => {
+          if (elm.OilStoreGuid == obj.OilStoreFromGuid) {
+            obj.OilStoreFromGuid = elm.OilStoreName;
+          }
+        });
+      });
     });
   }
 
   onOilStoreTo() {
     this.firebaseGetServ.getOilStore().then((mNm: any) => {
       this.oilStoreTo = mNm;
+
+      mNm.forEach((elm) => {
+        this.oilStoreTransfs.forEach((obj) => {
+          if (elm.OilStoreGuid == obj.OilStoreToGuid) {
+            obj.OilStoreToGuid = elm.OilStoreName;
+          }
+        });
+      });
     });
   }
 

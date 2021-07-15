@@ -71,7 +71,7 @@
         <h3>Assets</h3>
       </div>
       <ng-template #noItems> No items. </ng-template>
-      <ion-grid fixed *ngIf="assets; else noItems">
+      <ion-grid fixed *ngIf="assets.length; else noItems">
         <ion-row class="title-row">
           <ion-col size="0.5" class="flex al-center jc-center"> </ion-col>
           <ion-col size="1.5" class="flex al-center jc-center">

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import SupplierDeposit from 'src/app/models/capture/SupplierDeposit.model';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
+import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 import { FirebaseService } from 'src/app/services/firebase-service/firebase-service.service';
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 
@@ -12,11 +13,13 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 })
 export class SupdepositPage implements OnInit {
   supplierDeposit: SupplierDeposit;
+  supplierDeposits: SupplierDeposit[];
 
   supplier: any[];
 
   constructor(
     private navCtrl: NavController,
+    private firebaseRepServ: FirebaseReportService,
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
@@ -25,7 +28,25 @@ export class SupdepositPage implements OnInit {
   }
 
   ngOnInit() {
-    // this.onSupplierName();
+    this.onTableRep();
+    this.onSupplierName();
+  }
+
+  onTableRep() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getSupplierDeposits()
+        .then((mNm: any) => {
+          this.supplierDeposits = mNm;
+          this.onSupplierNameLeft();
+          this.popUp.dismissLoading();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
   }
 
   goFuelnOilPrice() {
@@ -40,6 +61,14 @@ export class SupdepositPage implements OnInit {
   onSupplierNameLeft() {
     this.firebaseGetServ.getSupplierLeft().then((mNm: any) => {
       this.supplier = mNm;
+
+      mNm.forEach((elm) => {
+        this.supplierDeposits.forEach((obj) => {
+          if (elm.SuppGuid == obj.SuppGuid) {
+            obj.SuppGuid = elm.SuppName;
+          }
+        });
+      });
     });
   }
 

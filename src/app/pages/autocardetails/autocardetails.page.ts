@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import AutoCard from 'src/app/models/capture/Autocard.model';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
+import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 import { FirebaseService } from 'src/app/services/firebase-service/firebase-service.service';
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 
@@ -12,11 +13,13 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 })
 export class AutocardetailsPage implements OnInit {
   autocard: AutoCard;
+  autocards: AutoCard[] = [];
 
   registration: any[];
 
   constructor(
     private navCtrl: NavController,
+    private firebaseRepServ: FirebaseReportService,
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
@@ -25,7 +28,25 @@ export class AutocardetailsPage implements OnInit {
   }
 
   ngOnInit() {
-    // this.onRegistration();
+    this.onTableRep();
+    this.onRegistration();
+  }
+
+  onTableRep() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getAutocards()
+        .then((mNm: any) => {
+          this.autocards = mNm;
+          this.onRegistrationLeft();
+          this.popUp.dismissLoading();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
   }
 
   goBrowserTransactions() {
@@ -40,6 +61,14 @@ export class AutocardetailsPage implements OnInit {
   onRegistrationLeft() {
     this.firebaseGetServ.getRegistrationLeft().then((mNm: any) => {
       this.registration = mNm;
+
+      mNm.forEach((elm) => {
+        this.autocards.forEach((obj) => {
+          if (elm.ItemGuid == obj.ItemGuid) {
+            obj.ItemGuid = elm.Reg;
+          }
+        });
+      });
     });
   }
 

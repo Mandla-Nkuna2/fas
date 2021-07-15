@@ -13,7 +13,7 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 })
 export class LosscontrolPage implements OnInit {
   lossControl: LossControl;
-  lossControls: LossControl[];
+  lossControls: LossControl[] = [];
 
   agent: any[];
   registration: any[];
@@ -34,13 +34,13 @@ export class LosscontrolPage implements OnInit {
   }
 
   ngOnInit() {
-    //this.onTableRep();
-    // this.onAgent();
-    // this.onRegistration();
-    // this.onLossType();
-    // this.onReportedBy();
-    // this.onDriverName();
-    // this.onActionTaken();
+    this.onTableRep();
+    this.onAgent();
+    this.onRegistration();
+    this.onLossType();
+    this.onReportedBy();
+    this.onDriverName();
+    this.onActionTaken();
   }
 
   onTableRep() {

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import OilIssue from 'src/app/models/capture/OilIssue.model';
+import LocationModel from 'src/app/models/supportdata/Location.model';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
+import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 import { FirebaseService } from 'src/app/services/firebase-service/firebase-service.service';
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 
@@ -12,6 +14,7 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 })
 export class OilissuesPage implements OnInit {
   oilIssue: OilIssue;
+  oilIssues: OilIssue[] = [];
 
   voucherNo: any[];
   registration: any[];
@@ -27,6 +30,7 @@ export class OilissuesPage implements OnInit {
 
   constructor(
     private navCtrl: NavController,
+    private firebaseRepServ: FirebaseReportService,
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
@@ -35,18 +39,54 @@ export class OilissuesPage implements OnInit {
   }
 
   ngOnInit() {
-    // this.onRegistration();
-    // this.onComponent();
-    // this.onOilStore();
-    // this.onSupplier();
-    // this.onOilType();
-    // this.onCostCentre();
-    // this.onStaffCode();
+    this.onTableRep();
+    this.onRegistration();
+    this.onComponent();
+    this.onOilStore();
+    this.onSupplier();
+    this.onOilType();
+    this.onCostCentre();
+    this.onStaffCode();
+  }
+
+  onTableRep() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getOilIssues()
+        .then((mNm: any) => {
+          this.oilIssues = mNm;
+          this.onItemCompLeft();
+          this.onCostCentreLft();
+          this.onStaffCodeLeft();
+          this.popUp.dismissLoading();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+
+  onItemCompLeft() {
+    this.firebaseGetServ.getItemCompLeft().then((mNm: any) => {
+      this.compNames = mNm;
+
+      mNm.forEach((elm) => {
+        this.oilIssues.forEach((obj) => {
+          if (elm.ItemCompGuid == obj.ItemCompGuid) {
+            obj.ItemCompGuid = elm.CompNameGuid;
+          }
+        });
+      });
+      this.onComponentLeft();
+    });
   }
 
   goOilTransactions() {
     this.navCtrl.navigateForward('oilstoretrans');
   }
+
   onRegistration() {
     this.firebaseGetServ.getRegistration().then((mNm: any) => {
       this.registration = mNm;
@@ -66,6 +106,14 @@ export class OilissuesPage implements OnInit {
   onComponentLeft() {
     this.firebaseGetServ.getCompNameLeft().then((mNm: any) => {
       this.compNames = mNm;
+
+      mNm.forEach((elm) => {
+        this.oilIssues.forEach((obj) => {
+          if (elm.CompNameGuid == obj.ItemCompGuid) {
+            obj.ItemCompGuid = elm.CompName;
+          }
+        });
+      });
     });
   }
 
@@ -156,6 +204,19 @@ export class OilissuesPage implements OnInit {
       this.costCentre = mNm;
     });
   }
+  onCostCentreLft() {
+    this.firebaseGetServ.getCostCentreLeft().then((mNm: any) => {
+      this.costCentre = mNm;
+
+      mNm.forEach((elm) => {
+        this.oilIssues.forEach((obj) => {
+          if (elm.CostCentGuid == obj.CostCentGuid) {
+            obj.CostCentGuid = elm.CostCentName;
+          }
+        });
+      });
+    });
+  }
 
   onStaffCode() {
     this.firebaseGetServ.getStaff().then((mNm: any) => {
@@ -163,8 +224,16 @@ export class OilissuesPage implements OnInit {
     });
   }
   onStaffCodeLeft() {
-    this.firebaseGetServ.getStaff().then((mNm: any) => {
+    this.firebaseGetServ.getStaffLeft().then((mNm: any) => {
       this.staffCode = mNm;
+
+      mNm.forEach((elm) => {
+        this.oilIssues.forEach((obj) => {
+          if (elm.StaffGuid == obj.StaffGuid) {
+            obj.StaffGuid = elm.StaffCode;
+          }
+        });
+      });
     });
   }
 

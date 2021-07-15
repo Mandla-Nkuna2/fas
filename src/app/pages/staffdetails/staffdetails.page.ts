@@ -24,7 +24,7 @@ export class StaffdetailsPage implements OnInit {
   }
 
   ngOnInit() {
-    // this.onStaffCat();
+    this.onStaffCat();
   }
 
   onStaffCat() {

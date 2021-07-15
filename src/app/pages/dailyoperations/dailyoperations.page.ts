@@ -12,7 +12,7 @@ import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-g
 })
 export class DailyoperationsPage implements OnInit {
   dailyOpRec: DailyOperationRec;
-  dailyOpRecs: DailyOperationRec[];
+  dailyOpRecs: DailyOperationRec[] = [];
 
   registrations: any[];
   costCentre: any[];
@@ -27,7 +27,7 @@ export class DailyoperationsPage implements OnInit {
   }
 
   ngOnInit() {
-    //this.onTableRep();
+    this.onTableRep();
   }
 
   onTableRep() {

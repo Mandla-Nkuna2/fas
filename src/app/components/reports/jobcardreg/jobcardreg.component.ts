@@ -41,9 +41,9 @@ export class JobcardregComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // this.onLocation();
-    // this.onJobCardNo();
-    // this.onRegistration();
+    this.onLocation();
+    this.onJobCardNo();
+    this.onRegistration();
   }
 
   onLocation() {

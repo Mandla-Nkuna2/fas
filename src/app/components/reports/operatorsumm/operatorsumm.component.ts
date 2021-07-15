@@ -41,9 +41,9 @@ export class OperatorsummComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // this.onLocation();
-    // this.onStaffCodes();
-    // this.onRegistration();
+    this.onLocation();
+    this.onStaffCodes();
+    this.onRegistration();
   }
 
   onLocation() {

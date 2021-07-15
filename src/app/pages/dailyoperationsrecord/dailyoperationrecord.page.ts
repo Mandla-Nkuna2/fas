@@ -13,7 +13,7 @@ import { FirebaseReportService } from 'src/app/services/firebase-service/firebas
 })
 export class DailyoperationrecordPage implements OnInit {
   dOpsRec: DailyOperationRec;
-  dailyOpRecs: DailyOperationRec[];
+  dailyOpRecs: DailyOperationRec[] = [];
 
   registration: any[];
   location: any[];
@@ -31,11 +31,11 @@ export class DailyoperationrecordPage implements OnInit {
   }
 
   ngOnInit() {
-    //this.onTableRep();
-    // this.onRegistration();
-    // this.onLocation();
-    // this.onCostCentre();
-    // this.onOperatorName();
+    this.onTableRep();
+    this.onRegistration();
+    this.onLocation();
+    this.onCostCentre();
+    this.onOperatorName();
   }
 
   onTableRep() {

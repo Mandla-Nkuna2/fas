@@ -32,9 +32,9 @@ export class FirstautomonComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // this.onLocation();
-    // this.onItemType();
-    // this.onRegistration();
+    this.onLocation();
+    this.onItemType();
+    this.onRegistration();
   }
 
   onLocation() {

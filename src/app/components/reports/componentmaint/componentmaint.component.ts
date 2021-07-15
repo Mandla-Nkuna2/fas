@@ -47,10 +47,10 @@ export class ComponentmaintComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // this.onLocation();
-    // this.onItemType();
-    // this.onRegistration();
-    // this.onComponent();
+    this.onLocation();
+    this.onItemType();
+    this.onRegistration();
+    this.onComponent();
   }
 
   onLocation() {

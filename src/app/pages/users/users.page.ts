@@ -26,8 +26,8 @@ export class UsersPage implements OnInit {
   }
 
   ngOnInit() {
-    // this.onUserGroup();
-    // this.onLocation();
+    this.onUserGroup();
+    this.onLocation();
   }
 
   onUserGroup() {
@@ -61,8 +61,6 @@ export class UsersPage implements OnInit {
       .catch((err) => {
         this.popUp.showError(err);
       });
-
-    //this.registerUser();
   }
 
   registerUser() {
@@ -74,10 +72,11 @@ export class UsersPage implements OnInit {
         )
         .then((res) => {
           resolve(res);
-          this.popUp.showToast('user added!');
+          this.onAdd();
         })
         .catch((err) => {
           reject(err.message);
+          this.popUp.showAlert('Failed', err.message);
         });
     });
   }

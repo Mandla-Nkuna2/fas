@@ -25,7 +25,7 @@ export class OilstoreledgerComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // this.onOilStore();
+    this.onOilStore();
   }
 
   onOilStore() {

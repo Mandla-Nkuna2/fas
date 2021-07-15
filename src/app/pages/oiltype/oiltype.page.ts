@@ -24,9 +24,9 @@ export class OiltypePage implements OnInit {
   }
 
   ngOnInit() {
-    // this.onOilMake();
-    // this.onOilGrade();
-    // this.onOilClass();
+    this.onOilMake();
+    this.onOilGrade();
+    this.onOilClass();
   }
 
   onOilMake() {

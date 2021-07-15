@@ -328,6 +328,25 @@ export class FirebaseGetService {
     return promise;
   }
 
+  getStaffRateLeft() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('/PMB_ELEC/Mst_StaffDetails/tables/')
+        .ref.get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((objEl) => {
+            data.push(objEl.data());
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+
   getRegistration() {
     const promise = new Promise((resolve, reject) => {
       this.afs
@@ -504,7 +523,51 @@ export class FirebaseGetService {
     return promise;
   }
 
-  getAssetCompMake() {
+  getItemComp() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('/PMB_ELEC/Mst_ItemComponents/tables')
+        .ref.limit(this.limVal)
+        .get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obj) => {
+            data.push({
+              ItemCompGuid: obj.get('ItemCompGuid'),
+              CompNameGuid: obj.get('CompNameGuid'),
+            });
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+  getItemCompLeft() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('/PMB_ELEC/Mst_ItemComponents/tables')
+        .ref.get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obj) => {
+            data.push({
+              ItemCompGuid: obj.get('ItemCompGuid'),
+              CompNameGuid: obj.get('CompNameGuid'),
+            });
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+
+  getItemCompMake() {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection('/PMB_ELEC/Sup_CompMake/tables')
@@ -526,7 +589,7 @@ export class FirebaseGetService {
     });
     return promise;
   }
-  getAssetCompMakeLeft() {
+  getItemCompMakeLeft() {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection('/PMB_ELEC/Sup_CompMake/tables')
@@ -548,7 +611,7 @@ export class FirebaseGetService {
     return promise;
   }
 
-  getAssetCompModel() {
+  getItemCompModel() {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection('/PMB_ELEC/Sup_CompModel/tables')
@@ -570,7 +633,7 @@ export class FirebaseGetService {
     });
     return promise;
   }
-  getAssetCompModelLeft() {
+  getItemCompModelLeft() {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection('/PMB_ELEC/Sup_CompModel/tables')

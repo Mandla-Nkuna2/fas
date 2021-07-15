@@ -13,7 +13,7 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 })
 export class RevenuePage implements OnInit {
   revenue: Revenue;
-  revenuee: Revenue[];
+  revenuee: Revenue[] = [];
 
   registration: any[];
   clients: any[];
@@ -30,10 +30,10 @@ export class RevenuePage implements OnInit {
   }
 
   ngOnInit() {
-    //this.onTableRep();
-    // this.onRegistration();
-    // this.onClient();
-    // this.onCostCentre();
+    this.onTableRep();
+    this.onRegistration();
+    this.onClient();
+    this.onCostCentre();
   }
 
   onTableRep() {

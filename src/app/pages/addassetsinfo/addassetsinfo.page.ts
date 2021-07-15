@@ -36,8 +36,8 @@ export class AddassetsinfoPage implements OnInit {
   }
 
   ngOnInit() {
-    // this.onClass();
-    // this.onBattery();
+    this.onClass();
+    this.onBattery();
   }
 
   onClass() {

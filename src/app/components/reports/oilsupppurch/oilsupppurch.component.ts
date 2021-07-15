@@ -25,7 +25,7 @@ export class OilsupppurchComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // this.onSupplier();
+    this.onSupplier();
   }
 
   onSupplier() {
