@@ -12,7 +12,7 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 })
 export class FixedcostransferPage implements OnInit {
   fixedCostTransf: FixedCostTransfer;
-  fixedCostTransfs: FixedCostTransfer[] = [];
+  fixedCostTransfs: any[] = [];
 
   registration: any[];
   costCentre: any[];
@@ -72,7 +72,7 @@ export class FixedcostransferPage implements OnInit {
       mNm.forEach((elm) => {
         this.fixedCostTransfs.forEach((obj) => {
           if (elm.CostCentGuid == obj.CostCentGuid) {
-            obj.CostCentGuid = elm.CostCentName;
+            obj.CostCent = elm.CostCentName;
           }
         });
       });

@@ -3,6 +3,7 @@ import { FirebaseGetService } from './../../services/firebase-service/firebase-g
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 import { FirebaseService } from './../../services/firebase-service/firebase-service.service';
 import SupplierDetails from 'src/app/models/supportdata/SupplierDetails.model';
+import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 @Component({
   selector: 'app-supplierdetails',
   templateUrl: './supplierdetails.page.html',
@@ -10,9 +11,12 @@ import SupplierDetails from 'src/app/models/supportdata/SupplierDetails.model';
 })
 export class SupplierdetailsPage implements OnInit {
   supplier: SupplierDetails;
+  suppliers: any[] = [];
+
   suppCat: any[];
 
   constructor(
+    private firebaseRepServ: FirebaseReportService,
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
@@ -21,7 +25,25 @@ export class SupplierdetailsPage implements OnInit {
   }
 
   ngOnInit() {
+    this.onTableRep();
     this.onCategory();
+  }
+
+  onTableRep() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getSuppliers()
+        .then((mNm: any) => {
+          this.suppliers = mNm;
+          this.onCategoryLeft();
+          this.popUp.dismissLoading();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
   }
 
   onCategory() {
@@ -32,6 +54,14 @@ export class SupplierdetailsPage implements OnInit {
   onCategoryLeft() {
     this.firebaseGetServ.getSuppCatLeft().then((mNm: any) => {
       this.suppCat = mNm;
+
+      mNm.forEach((elm) => {
+        this.suppliers.forEach((obj) => {
+          if (elm.SuppCategoryGuid == obj.SuppCategoryGuid) {
+            obj.SuppCategory = elm.SuppCategory;
+          }
+        });
+      });
     });
   }
 

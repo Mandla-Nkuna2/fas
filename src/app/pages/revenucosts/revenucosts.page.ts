@@ -50,7 +50,7 @@ export class RevenucostsPage implements OnInit {
       mNm.forEach((elm) => {
         this.runningCosts.forEach((obj) => {
           if (elm.ItemMakModGuid == obj.ItemMakModGuid) {
-            obj.ItemMakModGuid = elm.ItemMakMod;
+            obj.ItemMakMod = elm.ItemMakMod;
           }
         });
       });
@@ -64,7 +64,7 @@ export class RevenucostsPage implements OnInit {
       mNm.forEach((elm) => {
         this.runningCosts.forEach((obj) => {
           if (elm.ItemTypeGuid == obj.ItemTypeGuid) {
-            obj.ItemTypeGuid = elm.ItemTypeNameGuid;
+            obj.ItemType = elm.ItemTypeNameGuid;
           }
         });
       });
@@ -78,8 +78,8 @@ export class RevenucostsPage implements OnInit {
 
       mNm.forEach((elm) => {
         this.runningCosts.forEach((obj) => {
-          if (elm.ItemTypeNameGuid == obj.ItemTypeGuid) {
-            obj.ItemTypeGuid = elm.ItemTypeName;
+          if (elm.ItemTypeNameGuid == obj.ItemType) {
+            obj.ItemTypeName = elm.ItemTypeName;
           }
         });
       });
@@ -93,7 +93,7 @@ export class RevenucostsPage implements OnInit {
       mNm.forEach((elm) => {
         this.runningCosts.forEach((obj) => {
           if (elm.LocItemCode == obj.LocItemCode) {
-            obj.LocItemCode = elm.LocDesc;
+            obj.LocItem = elm.LocDesc;
           }
         });
       });

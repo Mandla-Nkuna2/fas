@@ -110,6 +110,25 @@ export class FirebaseReportService {
     return promise;
   }
 
+  public getMaintEventLeft() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('PMB_ELEC/Trn_MaintEvnt/tables')
+        .ref.get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obElem) => {
+            data.push(obElem.data());
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+
   public getRevenue() {
     const promise = new Promise((resolve, reject) => {
       this.afs
@@ -293,7 +312,7 @@ export class FirebaseReportService {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection('PMB_ELEC/Trn_OilIssue/tables')
-        .ref.limit(10)
+        .ref.limit(this.limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -413,6 +432,404 @@ export class FirebaseReportService {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection('PMB_ELEC/Trn_StaffTime/tables')
+        .ref.limit(this.limVal)
+        .get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obElem) => {
+            data.push(obElem.data());
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+
+  public getStaffAuditTrails() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('PMB_ELEC/Trn_AuditTrail/tables')
+        .ref.limit(this.limVal)
+        .get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obElem) => {
+            data.push(obElem.data());
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+
+  public getStaffProReport() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('PMB_ELEC/Trn_StaffTime/tables')
+        .ref.limit(this.limVal)
+        .get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obElem) => {
+            data.push(obElem.data());
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+
+  public getStaffProdTime() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('PMB_ELEC/Trn_StaffProdTime/tables')
+        .ref.limit(this.limVal)
+        .get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obElem) => {
+            data.push(obElem.data());
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+
+  public getStaff() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('PMB_ELEC/Mst_StaffDetails/tables')
+        .ref.limit(this.limVal)
+        .get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obElem) => {
+            data.push(obElem.data());
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+
+  public getUsers() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('PMB_ELEC/Mst_Users/tables')
+        .ref.limit(this.limVal)
+        .get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obElem) => {
+            data.push(obElem.data());
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+
+  public getClients() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('PMB_ELEC/Mst_Client/tables')
+        .ref.limit(this.limVal)
+        .get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obElem) => {
+            data.push(obElem.data());
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+
+  public getItemTypes() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('PMB_ELEC/Sup_ItemType/tables')
+        .ref.limit(this.limVal)
+        .get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obElem) => {
+            data.push(obElem.data());
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+
+  public getItemMakeMod() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('PMB_ELEC/Sup_ItemMakMod/tables')
+        .ref.limit(this.limVal)
+        .get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obElem) => {
+            data.push(obElem.data());
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+
+  public getBowsers() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('PMB_ELEC/Mst_Bowser/tables')
+        .ref.limit(this.limVal)
+        .get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obElem) => {
+            data.push(obElem.data());
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+
+  public getLocationLeft() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('PMB_ELEC/Mst_Location/tables')
+        .ref.get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obElem) => {
+            data.push(obElem.data());
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+
+  public getSuppliers() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('PMB_ELEC/Mst_Supplier/tables')
+        .ref.limit(this.limVal)
+        .get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obElem) => {
+            data.push(obElem.data());
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+
+  public getServiceScheduleTasks() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('PMB_ELEC/Trn_ServScheduleHistory/tables')
+        .ref.limit(this.limVal)
+        .get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obElem) => {
+            data.push(obElem.data());
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+
+  public getJobcardsLeft() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('PMB_ELEC/Trn_JobCards/tables')
+        .ref.get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obElem) => {
+            data.push(obElem.data());
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+
+  public getStaffDetails() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('PMB_ELEC/Mst_StaffDetails/tables')
+        .ref.limit(this.limVal)
+        .get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obElem) => {
+            data.push(obElem.data());
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+
+  public getOverheadBudget() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('PMB_ELEC/Trn_OverheadBud/tables')
+        .ref.limit(this.limVal)
+        .get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obElem) => {
+            data.push(obElem.data());
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+
+  public getVotecodes() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('PMB_ELEC/Trn_Votecodes/tables')
+        .ref.limit(this.limVal)
+        .get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obElem) => {
+            data.push(obElem.data());
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+
+  public getFirstAutoRespCodes() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('PMB_ELEC/Sup_Response/tables')
+        .ref.limit(this.limVal)
+        .get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obElem) => {
+            data.push(obElem.data());
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+
+  public getOiltypes() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('PMB_ELEC/Sup_Oiltype/tables')
+        .ref.limit(this.limVal)
+        .get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obElem) => {
+            data.push(obElem.data());
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+
+  public getCostcentre() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('PMB_ELEC/Sup_CostCentre/tables')
+        .ref.limit(this.limVal)
+        .get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obElem) => {
+            data.push(obElem.data());
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+
+  public getOilstores() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('PMB_ELEC/Mst_OilStore/tables')
         .ref.limit(this.limVal)
         .get()
         .then((obj) => {

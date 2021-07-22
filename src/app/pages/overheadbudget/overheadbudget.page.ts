@@ -3,6 +3,7 @@ import { FirebaseGetService } from './../../services/firebase-service/firebase-g
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 import { FirebaseService } from './../../services/firebase-service/firebase-service.service';
 import OverheadBudget from 'src/app/models/supportdata/OverheadBudget.model';
+import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 
 @Component({
   selector: 'app-overheadbudget',
@@ -11,10 +12,13 @@ import OverheadBudget from 'src/app/models/supportdata/OverheadBudget.model';
 })
 export class OverheadbudgetPage implements OnInit {
   oheadbudget: OverheadBudget;
+  oheadbudgets: any[] = [];
+
   ohTypes: any[];
   finYear = ['2020', '2021', '2022', '2023'];
 
   constructor(
+    private firebaseRepServ: FirebaseReportService,
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
@@ -23,12 +27,38 @@ export class OverheadbudgetPage implements OnInit {
   }
 
   ngOnInit() {
+    this.onTableRep();
     this.onOhbType();
+  }
+
+  onTableRep() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getOverheadBudget()
+        .then((mNm: any) => {
+          this.oheadbudgets = mNm;
+          this.onOhbType();
+          this.popUp.dismissLoading();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
   }
 
   onOhbType() {
     this.firebaseGetServ.getOverheadType().then((mNm: any) => {
       this.ohTypes = mNm;
+
+      mNm.forEach((elm) => {
+        this.oheadbudgets.forEach((obj) => {
+          if (elm.OverheadTypeGuid == obj.OverheadTypeGuid) {
+            obj.OverheadType = elm.OverheadType;
+          }
+        });
+      });
     });
   }
 

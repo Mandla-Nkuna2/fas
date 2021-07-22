@@ -13,7 +13,7 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 })
 export class SupdepositPage implements OnInit {
   supplierDeposit: SupplierDeposit;
-  supplierDeposits: SupplierDeposit[];
+  supplierDeposits: any[];
 
   supplier: any[];
 
@@ -65,7 +65,7 @@ export class SupdepositPage implements OnInit {
       mNm.forEach((elm) => {
         this.supplierDeposits.forEach((obj) => {
           if (elm.SuppGuid == obj.SuppGuid) {
-            obj.SuppGuid = elm.SuppName;
+            obj.Supp = elm.SuppName;
           }
         });
       });

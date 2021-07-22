@@ -47,13 +47,13 @@
           <ion-col size="1.4" class="flex al-center jc-center">
             <h4>Registration</h4>
           </ion-col>
-          <ion-col size="1.4" class="flex al-center jc-center">
+          <ion-col size="1.6" class="flex al-center jc-center">
             <h4>Reg. expiry date</h4>
           </ion-col>
-          <ion-col size="1" class="flex al-center jc-center">
+          <ion-col size="1.6" class="flex al-center jc-center">
             <h4>c.o.r date</h4>
           </ion-col>
-          <ion-col size="1.4" class="flex al-center jc-center">
+          <ion-col size="1.6" class="flex al-center jc-center">
             <h4>safety ins date</h4>
           </ion-col>
           <ion-col size="1" class="flex al-center jc-center">
@@ -80,26 +80,26 @@
             <ion-col size="1.4" class="flex al-center jc-center">
               <p>{{ item.Reg }}</p>
             </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
+            <ion-col size="1.6" class="flex al-center jc-center">
               <p>{{ item.TerminalYear }}</p>
             </ion-col>
-            <ion-col size="1" class="flex al-center jc-center">
+            <ion-col size="1.6" class="flex al-center jc-center">
               <p>{{ item.COFDate }}</p>
             </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
+            <ion-col size="1.6" class="flex al-center jc-center">
               <p>{{ item.LicenceDate }}</p>
             </ion-col>
             <ion-col size="1" class="flex al-center jc-center">
               <p>{{ item.LicDiskRec }}</p>
             </ion-col>
             <ion-col size="1" class="flex al-center jc-center">
-              <p>{{ item.LicCost }}</p>
+              <p>{{ item.LicCost | number : '1.2-2' }}</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
-              <p>{{ item.LicCost + item.LicAddCost}}</p>
+              <p>{{ item.LicCost + item.LicAddCost | number : '1.2-2'}}</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
-              <p>{{ item.LicAddCost }}</p>
+              <p>{{ item.LicAddCost | number : '1.2-2' }}</p>
             </ion-col>
           </ion-row>
         </div>

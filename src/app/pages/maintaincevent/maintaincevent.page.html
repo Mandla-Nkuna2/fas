@@ -82,13 +82,13 @@
               <p>{{ item.RefNo }}</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
-              <p>{{ item.JobCardGuid }}</p>
+              <p>{{ item.JobCard }}</p>
             </ion-col>
             <ion-col size="1" class="flex al-center jc-center">
               <p>{{ item.RegIndex }}</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
-              <p>{{ item.MaintTypeGuid }}</p>
+              <p>{{ item.MaintType }}</p>
             </ion-col>
             <ion-col size="1" class="flex al-center jc-center">
               <p>{{ item.StartDate }}</p>
@@ -97,10 +97,10 @@
               <p>{{ item.CompleteDate }}</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
-              <p>{{ item.CostAct }}</p>
+              <p>{{ item.CostAct | number : '1.2-2' }}</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
-              <p>{{ item.CostCentGuid }}</p>
+              <p>{{ item.CostCent }}</p>
             </ion-col>
           </ion-row>
         </div>

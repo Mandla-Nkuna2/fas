@@ -13,7 +13,7 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 })
 export class AutocardetailsPage implements OnInit {
   autocard: AutoCard;
-  autocards: AutoCard[] = [];
+  autocards: any[] = [];
 
   registration: any[];
 
@@ -65,7 +65,7 @@ export class AutocardetailsPage implements OnInit {
       mNm.forEach((elm) => {
         this.autocards.forEach((obj) => {
           if (elm.ItemGuid == obj.ItemGuid) {
-            obj.ItemGuid = elm.Reg;
+            obj.Item = elm.Reg;
           }
         });
       });

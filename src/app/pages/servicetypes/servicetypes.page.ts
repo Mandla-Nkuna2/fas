@@ -11,7 +11,8 @@ import ServiceType from 'src/app/models/supportdata/ServiceType.model';
 })
 export class ServicetypesPage implements OnInit {
   serviceType: ServiceType;
-  serviceTypes: any[];
+  serviceTypes: ServiceType[] = [];
+
   compNames: any[];
   compServType = false;
 

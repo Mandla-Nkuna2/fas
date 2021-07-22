@@ -42,7 +42,6 @@ export class LicensecorPage implements OnInit {
         .getAsset()
         .then((mNm: any) => {
           this.licCorAndSafInspecs = mNm;
-          this.onRegistrationLeft();
           this.popUp.dismissLoading();
         })
         .catch((err) => {

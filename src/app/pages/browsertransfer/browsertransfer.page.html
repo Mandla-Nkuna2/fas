@@ -78,13 +78,13 @@
               <p>{{ item.FuelTransferDate }}</p>
             </ion-col>
             <ion-col size="2" class="flex al-center jc-center">
-              <p>{{ item.BowserFromGuid }}</p>
+              <p>{{ item.BowserFrom }}</p>
             </ion-col>
             <ion-col size="2" class="flex al-center jc-center">
-              <p>{{ item.BowserToGuid }}</p>
+              <p>{{ item.BowserTo }}</p>
             </ion-col>
             <ion-col size="2" class="flex al-center jc-center">
-              <p>{{ item.FuelQty }}</p>
+              <p>{{ item.FuelQty | number : '1.2-2' }}</p>
             </ion-col>
             <ion-col size="2" class="flex al-center jc-center">
               <p>{{ item.CaptureDate }}</p>

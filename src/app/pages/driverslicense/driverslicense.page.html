@@ -47,7 +47,8 @@
 
   <div class="section">
     <div class="grid-holder">
-      <ion-grid fixed>
+      <ng-template #noItems> No items. </ng-template>
+      <ion-grid fixed *ngIf="staff.length; else noItems">
         <ion-row class="title-row">
           <ion-col size="2" class="ion-text-center flex al-center jc-center">
             <h4>Staff Code</h4>
@@ -66,111 +67,21 @@
           </ion-col>
         </ion-row>
 
-        <ion-row class="value-row">
+        <ion-row class="value-row" *ngFor="let item of staff; let i = index">
           <ion-col size="2" class="flex al-center jc-center">
-            <p>MBELE MJ</p>
+            <p>{{ item.StaffCode }}</p>
           </ion-col>
           <ion-col size="2" class="ion-text-center flex al-center jc-center">
-            <p>DRIVER EC</p>
+            <p>{{ item.StaffCatg }}</p>
           </ion-col>
           <ion-col size="2" class="flex al-center jc-center">
-            <p>EC</p>
+            <p>{{ item.Lic_Code }}</p>
           </ion-col>
           <ion-col size="2" class="flex al-center jc-center">
-            <p>04 May 2009</p>
+            <p>{{ item.PDP_ExpDate }}</p>
           </ion-col>
           <ion-col size="2.4" class="flex al-center jc-center">
-            <p>09 Jul 2008</p>
-          </ion-col>
-        </ion-row>
-
-        <ion-row class="value-row">
-          <ion-col size="2" class="flex al-center jc-center">
-            <p>MBELE MJ</p>
-          </ion-col>
-          <ion-col size="2" class="ion-text-center flex al-center jc-center">
-            <p>DRIVER EC</p>
-          </ion-col>
-          <ion-col size="2" class="flex al-center jc-center">
-            <p>EC</p>
-          </ion-col>
-          <ion-col size="2" class="flex al-center jc-center">
-            <p>04 May 2009</p>
-          </ion-col>
-          <ion-col size="2.4" class="flex al-center jc-center">
-            <p>09 Jul 2008</p>
-          </ion-col>
-        </ion-row>
-
-        <ion-row class="value-row">
-          <ion-col size="2" class="flex al-center jc-center">
-            <p>MBELE MJ</p>
-          </ion-col>
-          <ion-col size="2" class="ion-text-center flex al-center jc-center">
-            <p>DRIVER EC</p>
-          </ion-col>
-          <ion-col size="2" class="flex al-center jc-center">
-            <p>EC</p>
-          </ion-col>
-          <ion-col size="2" class="flex al-center jc-center">
-            <p>04 May 2009</p>
-          </ion-col>
-          <ion-col size="2.4" class="flex al-center jc-center">
-            <p>09 Jul 2008</p>
-          </ion-col>
-        </ion-row>
-
-        <ion-row class="value-row">
-          <ion-col size="2" class="flex al-center jc-center">
-            <p>MBELE MJ</p>
-          </ion-col>
-          <ion-col size="2" class="ion-text-center flex al-center jc-center">
-            <p>DRIVER EC</p>
-          </ion-col>
-          <ion-col size="2" class="flex al-center jc-center">
-            <p>EC</p>
-          </ion-col>
-          <ion-col size="2" class="flex al-center jc-center">
-            <p>04 May 2009</p>
-          </ion-col>
-          <ion-col size="2.4" class="flex al-center jc-center">
-            <p>09 Jul 2008</p>
-          </ion-col>
-        </ion-row>
-
-        <ion-row class="value-row">
-          <ion-col size="2" class="flex al-center jc-center">
-            <p>MBELE MJ</p>
-          </ion-col>
-          <ion-col size="2" class="ion-text-center flex al-center jc-center">
-            <p>DRIVER EC</p>
-          </ion-col>
-          <ion-col size="2" class="flex al-center jc-center">
-            <p>EC</p>
-          </ion-col>
-          <ion-col size="2" class="flex al-center jc-center">
-            <p>04 May 2009</p>
-          </ion-col>
-          <ion-col size="2.4" class="flex al-center jc-center">
-            <p>09 Jul 2008</p>
-          </ion-col>
-        </ion-row>
-
-        <ion-row class="value-row">
-          <ion-col size="2" class="flex al-center jc-center">
-            <p>MBELE MJ</p>
-          </ion-col>
-          <ion-col size="2" class="ion-text-center flex al-center jc-center">
-            <p>DRIVER EC</p>
-          </ion-col>
-          <ion-col size="2" class="flex al-center jc-center">
-            <p>EC</p>
-          </ion-col>
-          <ion-col size="2" class="flex al-center jc-center">
-            <p>04 May 2009</p>
-          </ion-col>
-          <ion-col size="2.4" class="flex al-center jc-center">
-            <p>09 Jul 2008</p>
+            <p>{{ item.Lic_ExpDate }}</p>
           </ion-col>
         </ion-row>
       </ion-grid>

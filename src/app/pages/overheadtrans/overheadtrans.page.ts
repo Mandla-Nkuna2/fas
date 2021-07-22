@@ -13,7 +13,7 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 })
 export class OverheadtransPage implements OnInit {
   overheadTrans: OverheadTransaction;
-  overheadTranss: OverheadTransaction[] = [];
+  overheadTranss: any[] = [];
 
   overheadType: any[];
   costCentre: any[];
@@ -63,7 +63,7 @@ export class OverheadtransPage implements OnInit {
       mNm.forEach((elm) => {
         this.overheadTranss.forEach((obj) => {
           if (elm.OverheadTypeGuid == obj.OverheadTypeGuid) {
-            obj.OverheadTypeGuid = elm.OverheadType;
+            obj.OverheadType = elm.OverheadType;
           }
         });
       });
@@ -82,7 +82,7 @@ export class OverheadtransPage implements OnInit {
       mNm.forEach((elm) => {
         this.overheadTranss.forEach((obj) => {
           if (elm.CostCentGuid == obj.CostCentGuid) {
-            obj.CostCentGuid = elm.CostCentName;
+            obj.CostCent = elm.CostCentName;
           }
         });
       });

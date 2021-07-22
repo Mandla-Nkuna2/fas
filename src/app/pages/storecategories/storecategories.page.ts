@@ -3,6 +3,7 @@ import { FirebaseGetService } from './../../services/firebase-service/firebase-g
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 import { FirebaseService } from './../../services/firebase-service/firebase-service.service';
 import StoreCategory from 'src/app/models/supportdata/StoreCategories.model';
+import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 
 @Component({
   selector: 'app-storecategories',
@@ -11,10 +12,12 @@ import StoreCategory from 'src/app/models/supportdata/StoreCategories.model';
 })
 export class StorecategoriesPage implements OnInit {
   storeCat: StoreCategory;
-  storeCats: any[];
+  storeCats: StoreCategory[] = [];
+
   storeCatItemsView = false;
 
   constructor(
+    private firebaseRepServ: FirebaseReportService,
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
@@ -22,7 +25,25 @@ export class StorecategoriesPage implements OnInit {
     this.storeCat = new StoreCategory();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    // this.onTableRep();
+  }
+
+  onTableRep() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getMaintEvent()
+        .then((mNm: any) => {
+          this.storeCats = mNm;
+          this.popUp.dismissLoading();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
 
   onStoreCatItemsView() {
     this.storeCatItemsView = !this.storeCatItemsView;

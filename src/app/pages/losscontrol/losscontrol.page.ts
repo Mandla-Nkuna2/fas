@@ -13,7 +13,7 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 })
 export class LosscontrolPage implements OnInit {
   lossControl: LossControl;
-  lossControls: LossControl[] = [];
+  lossControls: any[] = [];
 
   agent: any[];
   registration: any[];
@@ -79,7 +79,7 @@ export class LosscontrolPage implements OnInit {
       mNm.forEach((elm) => {
         this.lossControls.forEach((obj) => {
           if (elm.StaffGuid == obj.Agentguid) {
-            obj.Agentguid = elm.StaffCode;
+            obj.Agent = elm.StaffCode;
           }
         });
       });
@@ -98,7 +98,7 @@ export class LosscontrolPage implements OnInit {
       mNm.forEach((elm) => {
         this.lossControls.forEach((obj) => {
           if (elm.ItemGuid == obj.Itemguid) {
-            obj.Itemguid = elm.Reg;
+            obj.Item = elm.Reg;
           }
         });
       });
@@ -112,7 +112,7 @@ export class LosscontrolPage implements OnInit {
       mNm.forEach((elm) => {
         this.lossControls.forEach((obj) => {
           if (elm.LossContTypeguid == obj.LossTypeguid) {
-            obj.LossTypeguid = elm.LossContType;
+            obj.LossType = elm.LossContType;
           }
         });
       });
@@ -142,7 +142,7 @@ export class LosscontrolPage implements OnInit {
       mNm.forEach((elm) => {
         this.lossControls.forEach((obj) => {
           if (elm.StaffGuid == obj.DriverGuid) {
-            obj.DriverGuid = elm.StaffCode;
+            obj.Driver = elm.StaffCode;
           }
         });
       });

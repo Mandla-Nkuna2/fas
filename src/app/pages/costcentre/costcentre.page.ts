@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseGetService } from './../../services/firebase-service/firebase-get.service';
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 import { FirebaseService } from './../../services/firebase-service/firebase-service.service';
 import CostCentre from 'src/app/models/supportdata/CostCentre.model';
+import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 
 @Component({
   selector: 'app-costcentre',
@@ -11,16 +11,35 @@ import CostCentre from 'src/app/models/supportdata/CostCentre.model';
 })
 export class CostcentrePage implements OnInit {
   costcentre: CostCentre;
+  costcentres: CostCentre[] = [];
 
   constructor(
+    private firebaseRepServ: FirebaseReportService,
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
-    private firebaseGetServ: FirebaseGetService,
   ) {
     this.costcentre = new CostCentre();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.onTableRep();
+  }
+
+  onTableRep() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getCostcentre()
+        .then((mNm: any) => {
+          this.costcentres = mNm;
+          this.popUp.dismissLoading();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
 
   onAdd() {
     this.firebaseService

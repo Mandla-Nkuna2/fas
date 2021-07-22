@@ -47,7 +47,8 @@
 
   <div class="section">
     <div class="grid-holder">
-      <ion-grid fixed>
+      <ng-template #noItems> No items. </ng-template>
+      <ion-grid fixed *ngIf="staffproreports.length; else noItems">
         <ion-row class="title-row">
           <ion-col size="1.2" class="ion-text-center flex al-center jc-center">
             <h4>Staff Identifier</h4>
@@ -96,195 +97,79 @@
           </ion-col>
         </ion-row>
 
-        <ion-row class="value-row">
+        <ion-row
+          class="value-row"
+          *ngFor="let item of staffproreports; let i = index"
+        >
           <ion-col size="1.2" class="flex al-center jc-center">
-            <p>Delagne G-33052</p>
+            <p>{{ item.StaffGuid }}</p>
           </ion-col>
           <ion-col size="0.8" class="ion-text-center flex al-center jc-center">
-            <p>Artisan Assistant</p>
+            <p>{{ item.StaffGuid }}</p>
           </ion-col>
           <ion-col size="0.6" class="flex al-center jc-center">
-            <p>168</p>
+            <p>{{ item.Productive }}</p>
           </ion-col>
           <ion-col size="0.6" class="flex al-center jc-center">
-            <p>N/A</p>
+            <p>{{ item.Travel }}</p>
           </ion-col>
           <ion-col size="0.8" class="flex al-center jc-center">
-            <p>4.0</p>
+            <p>{{ item.Overtime }}</p>
           </ion-col>
           <ion-col size="0.6" class="flex al-center jc-center">
-            <p>N/A</p>
+            <p>{{ item.Supervisor }}</p>
           </ion-col>
           <ion-col size="0.8" class="flex al-center jc-center">
-            <p>N/A</p>
+            <p>{{ item.Non_Productive }}</p>
           </ion-col>
           <ion-col size="0.6" class="flex al-center jc-center">
-            <p>16.0</p>
+            <p>{{ item.Sick_leave }}</p>
           </ion-col>
           <ion-col size="0.6" class="flex al-center jc-center">
-            <p>0.00</p>
+            <p>{{ item.Leave }}</p>
           </ion-col>
           <ion-col size="0.6" class="flex al-center jc-center">
-            <p>N/A</p>
+            <p>{{ item.AWOL }}</p>
           </ion-col>
           <ion-col size="0.8" class="flex al-center jc-center">
-            <p>0.00</p>
+            <p>{{ item.Productive + item.Overtime }}</p>
           </ion-col>
           <ion-col size="0.8" class="flex al-center jc-center">
-            <p>N/A</p>
+            <p>
+              {{ item.Travel + item.Sick_leave + item.Leave + item.OTTravel1 +
+              item.OTTravel2 }}
+            </p>
           </ion-col>
           <ion-col size="1" class="flex al-center jc-center">
-            <p>0.00</p>
+            <p
+              *ngIf="!isNumber((item.Productive - item.Non_Productive) / item.Productive * 100)"
+            >
+              {{ (item.Productive - item.Non_Productive) / item.Productive * 100
+              | number : '1.0-0' }}
+            </p>
+            <p></p>
           </ion-col>
           <ion-col size="1" class="flex al-center jc-center">
-            <p>10.00</p>
+            <p
+              *ngIf="!isNumber((item.Productive - item.Non_Productive + item.Travel + item.OTTravel1 + item.OTTravel2) / (item.Productive + item.Travel + item.OTTravel1 + item.OTTravel2) * 100)"
+            >
+              {{ (item.Productive - item.Non_Productive + item.Travel +
+              item.OTTravel1 + item.OTTravel2) / (item.Productive + item.Travel
+              + item.OTTravel1 + item.OTTravel2) * 100 | number : '1.0-0' }}
+            </p>
+            <p></p>
           </ion-col>
           <ion-col size="1" class="flex al-center jc-center">
-            <p>2,700.00</p>
-          </ion-col>
-        </ion-row>
-
-        <ion-row class="value-row">
-          <ion-col size="1.2" class="flex al-center jc-center">
-            <p>Delagne G-33052</p>
-          </ion-col>
-          <ion-col size="0.8" class="ion-text-center flex al-center jc-center">
-            <p>Artisan Assistant</p>
-          </ion-col>
-          <ion-col size="0.6" class="flex al-center jc-center">
-            <p>168</p>
-          </ion-col>
-          <ion-col size="0.6" class="flex al-center jc-center">
-            <p>N/A</p>
-          </ion-col>
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>4.0</p>
-          </ion-col>
-          <ion-col size="0.6" class="flex al-center jc-center">
-            <p>N/A</p>
-          </ion-col>
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>N/A</p>
-          </ion-col>
-          <ion-col size="0.6" class="flex al-center jc-center">
-            <p>16.0</p>
-          </ion-col>
-          <ion-col size="0.6" class="flex al-center jc-center">
-            <p>0.00</p>
-          </ion-col>
-          <ion-col size="0.6" class="flex al-center jc-center">
-            <p>N/A</p>
-          </ion-col>
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>0.00</p>
-          </ion-col>
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>N/A</p>
-          </ion-col>
-          <ion-col size="1" class="flex al-center jc-center">
-            <p>0.00</p>
-          </ion-col>
-          <ion-col size="1" class="flex al-center jc-center">
-            <p>10.00</p>
-          </ion-col>
-          <ion-col size="1" class="flex al-center jc-center">
-            <p>2,700.00</p>
-          </ion-col>
-        </ion-row>
-
-        <ion-row class="value-row">
-          <ion-col size="1.2" class="flex al-center jc-center">
-            <p>Delagne G-33052</p>
-          </ion-col>
-          <ion-col size="0.8" class="ion-text-center flex al-center jc-center">
-            <p>Artisan Assistant</p>
-          </ion-col>
-          <ion-col size="0.6" class="flex al-center jc-center">
-            <p>168</p>
-          </ion-col>
-          <ion-col size="0.6" class="flex al-center jc-center">
-            <p>N/A</p>
-          </ion-col>
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>4.0</p>
-          </ion-col>
-          <ion-col size="0.6" class="flex al-center jc-center">
-            <p>N/A</p>
-          </ion-col>
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>N/A</p>
-          </ion-col>
-          <ion-col size="0.6" class="flex al-center jc-center">
-            <p>16.0</p>
-          </ion-col>
-          <ion-col size="0.6" class="flex al-center jc-center">
-            <p>0.00</p>
-          </ion-col>
-          <ion-col size="0.6" class="flex al-center jc-center">
-            <p>N/A</p>
-          </ion-col>
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>0.00</p>
-          </ion-col>
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>N/A</p>
-          </ion-col>
-          <ion-col size="1" class="flex al-center jc-center">
-            <p>0.00</p>
-          </ion-col>
-          <ion-col size="1" class="flex al-center jc-center">
-            <p>10.00</p>
-          </ion-col>
-          <ion-col size="1" class="flex al-center jc-center">
-            <p>2,700.00</p>
-          </ion-col>
-        </ion-row>
-
-        <ion-row class="value-row">
-          <ion-col size="1.2" class="flex al-center jc-center">
-            <p>Delagne G-33052</p>
-          </ion-col>
-          <ion-col size="0.8" class="ion-text-center flex al-center jc-center">
-            <p>Artisan Assistant</p>
-          </ion-col>
-          <ion-col size="0.6" class="flex al-center jc-center">
-            <p>168</p>
-          </ion-col>
-          <ion-col size="0.6" class="flex al-center jc-center">
-            <p>N/A</p>
-          </ion-col>
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>4.0</p>
-          </ion-col>
-          <ion-col size="0.6" class="flex al-center jc-center">
-            <p>N/A</p>
-          </ion-col>
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>N/A</p>
-          </ion-col>
-          <ion-col size="0.6" class="flex al-center jc-center">
-            <p>16.0</p>
-          </ion-col>
-          <ion-col size="0.6" class="flex al-center jc-center">
-            <p>0.00</p>
-          </ion-col>
-          <ion-col size="0.6" class="flex al-center jc-center">
-            <p>N/A</p>
-          </ion-col>
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>0.00</p>
-          </ion-col>
-          <ion-col size="0.8" class="flex al-center jc-center">
-            <p>N/A</p>
-          </ion-col>
-          <ion-col size="1" class="flex al-center jc-center">
-            <p>0.00</p>
-          </ion-col>
-          <ion-col size="1" class="flex al-center jc-center">
-            <p>10.00</p>
-          </ion-col>
-          <ion-col size="1" class="flex al-center jc-center">
-            <p>2,700.00</p>
+            <p
+              *ngIf="!isNumber((((item.Productive - item.Non_Productive) / item.Productive * 100) + ((item.Productive - item.Non_Productive + item.Travel + item.OTTravel1 + item.OTTravel2) / (item.Productive + item.Travel + item.OTTravel1 + item.OTTravel2) * 100)) / 2)"
+            >
+              {{ (((item.Productive - item.Non_Productive) / item.Productive *
+              100) + ((item.Productive - item.Non_Productive + item.Travel +
+              item.OTTravel1 + item.OTTravel2) / (item.Productive + item.Travel
+              + item.OTTravel1 + item.OTTravel2) * 100)) / 2 | number : '1.0-0'
+              }}
+            </p>
+            <p></p>
           </ion-col>
         </ion-row>
       </ion-grid>

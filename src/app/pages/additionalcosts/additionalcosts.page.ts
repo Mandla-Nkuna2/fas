@@ -13,7 +13,7 @@ import { FirebaseReportService } from 'src/app/services/firebase-service/firebas
 })
 export class AdditionalcostsPage implements OnInit {
   additionalCost: AdditionalCost;
-  additionalCosts: AdditionalCost[] = [];
+  additionalCosts: any[] = [];
 
   additionalCostDesc: any[];
   registration: any;
@@ -81,7 +81,7 @@ export class AdditionalcostsPage implements OnInit {
       mNm.forEach((elm) => {
         this.additionalCosts.forEach((obj) => {
           if (elm.AddCostDescGuid == obj.AddCostDescGuid) {
-            obj.AddCostDescGuid = elm.AddCostDesc;
+            obj.AddCostDesc = elm.AddCostDesc;
           }
         });
       });
@@ -100,7 +100,7 @@ export class AdditionalcostsPage implements OnInit {
       mNm.forEach((elm) => {
         this.additionalCosts.forEach((obj) => {
           if (elm.CostCentGuid == obj.CostCentreGuid) {
-            obj.CostCentreGuid = elm.CostCentName;
+            obj.CostCentre = elm.CostCentName;
           }
         });
       });
@@ -130,7 +130,7 @@ export class AdditionalcostsPage implements OnInit {
       mNm.forEach((elm) => {
         this.additionalCosts.forEach((obj) => {
           if (elm.SuppGuid == obj.Suppguid) {
-            obj.Suppguid = elm.SuppName;
+            obj.Supp = elm.SuppName;
           }
         });
       });

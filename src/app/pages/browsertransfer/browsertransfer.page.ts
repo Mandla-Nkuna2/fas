@@ -12,7 +12,7 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 })
 export class BrowsertransferPage implements OnInit {
   bowserTransfer: BowserTransfer;
-  bowserTransfers: BowserTransfer[] = [];
+  bowserTransfers: any[] = [];
 
   voucherNo: any[];
   costCentre: any;
@@ -56,7 +56,7 @@ export class BrowsertransferPage implements OnInit {
       staff.forEach((elm) => {
         this.bowserTransfers.forEach((obj) => {
           if (elm.BowserGuid == obj.BowserFromGuid) {
-            obj.BowserFromGuid = elm.BowserName;
+            obj.BowserFrom = elm.BowserName;
           }
         });
       });
@@ -64,7 +64,7 @@ export class BrowsertransferPage implements OnInit {
       staff.forEach((elm) => {
         this.bowserTransfers.forEach((obj) => {
           if (elm.BowserGuid == obj.BowserToGuid) {
-            obj.BowserToGuid = elm.BowserName;
+            obj.BowserTo = elm.BowserName;
           }
         });
       });

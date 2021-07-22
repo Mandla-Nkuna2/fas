@@ -80,7 +80,7 @@ export class StafftimesheetsPage implements OnInit {
       mNm.forEach((elm) => {
         this.staffTimesheets.forEach((obj) => {
           if (elm.StaffGuid == obj.StaffGuid) {
-            obj.StaffGuid = elm.StaffCode;
+            obj.Staff = elm.StaffCode;
           }
         });
       });

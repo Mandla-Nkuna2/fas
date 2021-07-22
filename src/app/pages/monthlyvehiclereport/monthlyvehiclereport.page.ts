@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
-import { Asset } from 'src/app/models/capture/Asset.model';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
 import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
@@ -53,7 +52,7 @@ export class MonthlyvehiclereportPage implements OnInit {
       mNm.forEach((elm) => {
         this.assets.forEach((obj) => {
           if (elm.ItemTypeGuid == obj.ItemTypeGuid) {
-            obj.ItemTypeGuid = elm.ItemTypeNameGuid;
+            obj.ItemType = elm.ItemTypeNameGuid;
           }
         });
       });
@@ -67,8 +66,8 @@ export class MonthlyvehiclereportPage implements OnInit {
 
       mNm.forEach((elm) => {
         this.assets.forEach((obj) => {
-          if (elm.ItemTypeNameGuid == obj.ItemTypeGuid) {
-            obj.ItemTypeGuid = elm.ItemTypeName;
+          if (elm.ItemTypeNameGuid == obj.ItemType) {
+            obj.ItemTypeName = elm.ItemTypeName;
           }
         });
       });
@@ -82,7 +81,7 @@ export class MonthlyvehiclereportPage implements OnInit {
       mNm.forEach((elm) => {
         this.assets.forEach((obj) => {
           if (elm.ItemMakModGuid == obj.ItemMakModGuid) {
-            obj.ItemMakModGuid = elm.ItemMakMod;
+            obj.ItemMakMod = elm.ItemMakMod;
           }
         });
       });

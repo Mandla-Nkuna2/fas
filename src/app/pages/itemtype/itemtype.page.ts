@@ -3,6 +3,7 @@ import { FirebaseGetService } from './../../services/firebase-service/firebase-g
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 import { FirebaseService } from './../../services/firebase-service/firebase-service.service';
 import ItemType from 'src/app/models/supportdata/ItemType.model';
+import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 
 @Component({
   selector: 'app-itemtype',
@@ -11,9 +12,12 @@ import ItemType from 'src/app/models/supportdata/ItemType.model';
 })
 export class ItemtypePage implements OnInit {
   itemType: ItemType;
+  itemTypes: any[] = [];
+
   typeNames: any[];
   typeClass: any[];
   typeCapacity: any[];
+
   typeUnit = [
     'cc',
     'cfm',
@@ -28,6 +32,7 @@ export class ItemtypePage implements OnInit {
   ];
 
   constructor(
+    private firebaseRepServ: FirebaseReportService,
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
@@ -36,9 +41,29 @@ export class ItemtypePage implements OnInit {
   }
 
   ngOnInit() {
+    this.onTableRep();
     this.onTypeName();
     this.onTypeClass();
     this.onTypeCapacity();
+  }
+
+  onTableRep() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getItemTypes()
+        .then((mNm: any) => {
+          this.itemTypes = mNm;
+          this.onTypeNameLeft();
+          this.onTypeClassLeft();
+          this.onTypeCapacityLeft();
+          this.popUp.dismissLoading();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
   }
 
   onTypeName() {
@@ -49,6 +74,14 @@ export class ItemtypePage implements OnInit {
   onTypeNameLeft() {
     this.firebaseGetServ.getAssetTypeNameLeft().then((mNm: any) => {
       this.typeNames = mNm;
+
+      mNm.forEach((elm) => {
+        this.itemTypes.forEach((obj) => {
+          if (elm.ItemTypeNameGuid == obj.ItemTypeNameGuid) {
+            obj.ItemTypeName = elm.ItemTypeName;
+          }
+        });
+      });
     });
   }
 
@@ -60,6 +93,14 @@ export class ItemtypePage implements OnInit {
   onTypeClassLeft() {
     this.firebaseGetServ.getItemTypeClassLeft().then((mNm: any) => {
       this.typeClass = mNm;
+
+      mNm.forEach((elm) => {
+        this.itemTypes.forEach((obj) => {
+          if (elm.ItemTypeClassGuid == obj.ItemTypeClassGuid) {
+            obj.ItemTypeClass = elm.ItemTypeClass;
+          }
+        });
+      });
     });
   }
 
@@ -71,6 +112,14 @@ export class ItemtypePage implements OnInit {
   onTypeCapacityLeft() {
     this.firebaseGetServ.getTypeCapacityLeft().then((mNm: any) => {
       this.typeCapacity = mNm;
+
+      mNm.forEach((elm) => {
+        this.itemTypes.forEach((obj) => {
+          if (elm.ItemTypeCapGuid == obj.ItemTypeCapGuid) {
+            obj.ItemTypeCap = elm.ItemTypeCap;
+          }
+        });
+      });
     });
   }
 

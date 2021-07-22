@@ -13,7 +13,7 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 })
 export class MaintainceventPage implements OnInit {
   maintenanceEvent: MaintenanceEvent;
-  maintenanceEvents: MaintenanceEvent[] = [];
+  maintenanceEvents: any[] = [];
 
   jobCardNo: any[];
   registration: any[];
@@ -79,7 +79,7 @@ export class MaintainceventPage implements OnInit {
       staff.forEach((elm) => {
         this.maintenanceEvents.forEach((obj) => {
           if (elm.JobCardGuid == obj.JobCardGuid) {
-            obj.JobCardGuid = elm.JobCardNo;
+            obj.JobCard = elm.JobCardNo;
           }
         });
       });
@@ -104,7 +104,7 @@ export class MaintainceventPage implements OnInit {
       staff.forEach((elm) => {
         this.maintenanceEvents.forEach((obj) => {
           if (elm.MaintTypeGuid == obj.MaintTypeGuid) {
-            obj.MaintTypeGuid = elm.MaintType;
+            obj.MaintType = elm.MaintType;
           }
         });
       });
@@ -151,7 +151,7 @@ export class MaintainceventPage implements OnInit {
       staff.forEach((elm) => {
         this.maintenanceEvents.forEach((obj) => {
           if (elm.CostCentGuid == obj.CostCentGuid) {
-            obj.CostCentGuid = elm.CostCentName;
+            obj.CostCent = elm.CostCentName;
           }
         });
       });

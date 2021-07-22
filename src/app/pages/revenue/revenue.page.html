@@ -55,7 +55,7 @@
           <ion-col size="1.4" class="flex al-center jc-center">
             <h4>Registration</h4>
           </ion-col>
-          <ion-col size="1.4" class="flex al-center jc-center">
+          <ion-col size="1.6" class="flex al-center jc-center">
             <h4>trans. date</h4>
           </ion-col>
           <ion-col size="1.4" class="flex al-center jc-center">
@@ -67,16 +67,16 @@
           <ion-col size="1.4" class="flex al-center jc-center">
             <h4>total cost</h4>
           </ion-col>
-          <ion-col size="1" class="flex al-center jc-center">
+          <ion-col size="0.8" class="flex al-center jc-center">
             <h4>hours</h4>
           </ion-col>
-          <ion-col size="1" class="flex al-center jc-center">
+          <ion-col size="0.8" class="flex al-center jc-center">
             <h4>rate</h4>
           </ion-col>
-          <ion-col size="1.2" class="flex al-center jc-center">
+          <ion-col size="1" class="flex al-center jc-center">
             <h4>overtime</h4>
           </ion-col>
-          <ion-col size="1.4" class="flex al-center jc-center">
+          <ion-col size="1.8" class="flex al-center jc-center">
             <h4>Comment</h4>
           </ion-col>
         </ion-row>
@@ -92,28 +92,28 @@
             <ion-col size="1.4" class="flex al-center jc-center">
               <p>{{ item.RegIndex }}</p>
             </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
+            <ion-col size="1.6" class="flex al-center jc-center">
               <p>{{ item.RevenueDate }}</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
               <p>{{ item.RevenueRef }}</p>
             </ion-col>
             <ion-col size="1" class="flex al-center jc-center">
-              <p>{{ item.ClientGuid }}</p>
+              <p>{{ item.Client }}</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
-              <p>{{ item.Total }}</p>
+              <p>{{ item.Total | number : '1.2-2' }}</p>
+            </ion-col>
+            <ion-col size="0.8" class="flex al-center jc-center">
+              <p>{{ item.NoHours | number : '1.2-2' }}</p>
+            </ion-col>
+            <ion-col size="0.8" class="flex al-center jc-center">
+              <p>{{ item.DailyRate | number : '1.2-2' }}</p>
             </ion-col>
             <ion-col size="1" class="flex al-center jc-center">
-              <p>{{ item.NoHours }}</p>
+              <p>{{ item.NoOvertime | number : '1.2-2' }}</p>
             </ion-col>
-            <ion-col size="1" class="flex al-center jc-center">
-              <p>{{ item.DailyRate }}</p>
-            </ion-col>
-            <ion-col size="1.2" class="flex al-center jc-center">
-              <p>{{ item.NoOvertime }}</p>
-            </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
+            <ion-col size="2" class="flex al-center jc-center">
               <p>{{ item.comment }}</p>
             </ion-col>
           </ion-row>

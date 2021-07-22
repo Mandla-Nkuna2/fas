@@ -13,7 +13,7 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 })
 export class BrowsertransactionsPage implements OnInit {
   bowserTransaction: BowserTransaction;
-  bowserTransactions: BowserTransaction[] = [];
+  bowserTransactions: any[] = [];
 
   costCentre: any[];
 
@@ -59,7 +59,7 @@ export class BrowsertransactionsPage implements OnInit {
       staff.forEach((elm) => {
         this.bowserTransactions.forEach((obj) => {
           if (elm.CostCentGuid == obj.CostCentGuid) {
-            obj.CostCentGuid = elm.CostCentName;
+            obj.CostCent = elm.CostCentName;
           }
         });
       });

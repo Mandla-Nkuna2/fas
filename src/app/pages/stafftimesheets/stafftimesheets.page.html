@@ -120,31 +120,31 @@
               <ion-checkbox></ion-checkbox>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
-              <p>{{ item.StaffGuid }}</p>
+              <p>{{ item.Staff }}</p>
             </ion-col>
             <ion-col size="1" class="flex al-center jc-center">
               <p>{{ item.Staff_TrnDate }}</p>
             </ion-col>
             <ion-col size="1" class="flex al-center jc-center">
-              <p>{{ item.OTTravel1 + item.OTTravel2 }}</p>
+              <p>{{ item.OTTravel1 + item.OTTravel2 | number : '1.2-2' }}</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
-              <p>{{ item.Productive }}</p>
+              <p>{{ item.Productive | number : '1.2-2' }}</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
-              <p>{{ item.Non_Productive }}</p>
+              <p>{{ item.Non_Productive | number : '1.2-2' }}</p>
             </ion-col>
             <ion-col size="1.2" class="flex al-center jc-center">
-              <p>{{ item.Travel }}</p>
+              <p>{{ item.Travel | number : '1.2-2' }}</p>
             </ion-col>
             <ion-col size="1.2" class="flex al-center jc-center">
-              <p>{{ item.rate }}</p>
+              <p>{{ item.rate | number : '1.2-2' }}</p>
             </ion-col>
             <ion-col size="1.2" class="flex al-center jc-center">
-              <p>{{ item.Overtime }}</p>
+              <p>{{ item.Overtime | number : '1.2-2' }}</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
-              <p>{{ item.Prod_Comm }}</p>
+              <p>{{ item.Prod_Comm | number : '1.2-2' }}</p>
             </ion-col>
           </ion-row>
         </div>

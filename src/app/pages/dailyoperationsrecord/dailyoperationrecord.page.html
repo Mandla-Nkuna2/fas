@@ -44,7 +44,7 @@
           <ion-col size="1.2" class="flex al-center jc-center">
             <h4>Registration</h4>
           </ion-col>
-          <ion-col size="1.4" class="flex al-center jc-center">
+          <ion-col size="1.2" class="flex al-center jc-center">
             <h4>date</h4>
           </ion-col>
           <ion-col size="1" class="flex al-center jc-center">
@@ -84,31 +84,31 @@
               <ion-checkbox></ion-checkbox>
             </ion-col>
             <ion-col size="1.2" class="flex al-center jc-center">
-              <p>{{ item.Itemguid}}</p>
-            </ion-col>
-            <ion-col size="1.6" class="flex al-center jc-center">
-              <p>{{ item.PlantSheetDate}}</p>
-            </ion-col>
-            <ion-col size="1" class="flex al-center jc-center">
-              <p>{{ item.OpenOdo}}</p>
-            </ion-col>
-            <ion-col size="1" class="flex al-center jc-center">
-              <p>{{ item.CloseOdo}}</p>
+              <p>{{ item.Item }}</p>
             </ion-col>
             <ion-col size="1.2" class="flex al-center jc-center">
-              <p>{{ item.WrkKmHr}}</p>
+              <p>{{ item.PlantSheetDate }}</p>
             </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <p>{{ item.WeekendKmHr}}</p>
+            <ion-col size="1" class="flex al-center jc-center">
+              <p>{{ item.OpenOdo }}</p>
+            </ion-col>
+            <ion-col size="1" class="flex al-center jc-center">
+              <p>{{ item.CloseOdo }}</p>
             </ion-col>
             <ion-col size="1.2" class="flex al-center jc-center">
-              <p>{{ item.Voucherno}}</p>
+              <p>{{ item.WrkKmHr | number : '1.2-2' }}</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
-              <p>{{ item.RefNumber}}</p>
+              <p>{{ item.WeekendKmHr }}</p>
+            </ion-col>
+            <ion-col size="1.2" class="flex al-center jc-center">
+              <p>{{ item.Voucherno }}</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
-              <p>{{ item.CostCentreguid}}</p>
+              <p>{{ item.RefNumber }}</p>
+            </ion-col>
+            <ion-col size="1.8" class="flex al-center jc-center">
+              <p>{{ item.CostCentre }}</p>
             </ion-col>
           </ion-row>
         </div>

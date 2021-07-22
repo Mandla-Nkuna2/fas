@@ -1561,7 +1561,7 @@ export class FirebaseGetService {
           let data = [];
           obj.docs.forEach((obj) => {
             data.push({
-              StaffCatgGuid: obj.get('StaffCatgGuid '),
+              StaffCatgGuid: obj.get('StaffCatgGuid'),
               StaffCatg: obj.get('StaffCatg'),
             });
           });
@@ -1582,7 +1582,7 @@ export class FirebaseGetService {
           let data = [];
           obj.docs.forEach((obj) => {
             data.push({
-              StaffCatgGuid: obj.get('StaffCatgGuid '),
+              StaffCatgGuid: obj.get('StaffCatgGuid'),
               StaffCatg: obj.get('StaffCatg'),
             });
           });

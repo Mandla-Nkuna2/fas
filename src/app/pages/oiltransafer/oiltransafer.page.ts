@@ -13,7 +13,7 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 })
 export class OiltransaferPage implements OnInit {
   oilStoreTransf: OilStoreTransfer;
-  oilStoreTransfs: OilStoreTransfer[] = [];
+  oilStoreTransfs: any[] = [];
 
   voucherNo: any[];
   oilMakes: any[];
@@ -131,7 +131,7 @@ export class OiltransaferPage implements OnInit {
       this.oilTypes.forEach((elm) => {
         this.oilStoreTransfs.forEach((obj) => {
           if (elm.OilGuid == obj.OilTypeGuid) {
-            obj.OilTypeGuid = elm.OilText;
+            obj.OilType = elm.OilText;
           }
         });
       });
@@ -145,7 +145,7 @@ export class OiltransaferPage implements OnInit {
       mNm.forEach((elm) => {
         this.oilStoreTransfs.forEach((obj) => {
           if (elm.OilStoreGuid == obj.OilStoreFromGuid) {
-            obj.OilStoreFromGuid = elm.OilStoreName;
+            obj.OilStoreFrom = elm.OilStoreName;
           }
         });
       });
@@ -159,7 +159,7 @@ export class OiltransaferPage implements OnInit {
       mNm.forEach((elm) => {
         this.oilStoreTransfs.forEach((obj) => {
           if (elm.OilStoreGuid == obj.OilStoreToGuid) {
-            obj.OilStoreToGuid = elm.OilStoreName;
+            obj.OilStoreTo = elm.OilStoreName;
           }
         });
       });

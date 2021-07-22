@@ -10,7 +10,7 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
   styleUrls: ['./revenueearned.page.scss'],
 })
 export class RevenueearnedPage implements OnInit {
-  revenuee: Revenue[] = [];
+  revenuee: any[] = [];
   clientNames: any[];
 
   constructor(
@@ -47,7 +47,7 @@ export class RevenueearnedPage implements OnInit {
       staff.forEach((elm) => {
         this.revenuee.forEach((obj) => {
           if (elm.ClientGuid == obj.ClientGuid) {
-            obj.ClientGuid = elm.ClientName;
+            obj.Client = elm.ClientName;
           }
         });
       });

@@ -13,7 +13,7 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 })
 export class StoreissuePage implements OnInit {
   storeIssue: StoreIssue;
-  storeIssues: StoreIssue[] = [];
+  storeIssues: any[] = [];
 
   registration: any[];
   MaintEvRefNo: any[];
@@ -108,7 +108,7 @@ export class StoreissuePage implements OnInit {
       mNm.forEach((elm) => {
         this.storeIssues.forEach((obj) => {
           if (elm.StoreCatgGuid == obj.StoreCatgItemGuid) {
-            obj.StoreCatgItemGuid = elm.StoreCatgItem;
+            obj.StoreCatgItem = elm.StoreCatgItem;
           }
         });
       });

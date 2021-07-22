@@ -47,7 +47,7 @@
           <ion-col size="1.4" class="flex al-center jc-center">
             <h4>Registration</h4>
           </ion-col>
-          <ion-col size="1.4" class="flex al-center jc-center">
+          <ion-col size="1.2" class="flex al-center jc-center">
             <h4>date</h4>
           </ion-col>
           <ion-col size="1" class="flex al-center jc-center">
@@ -68,7 +68,7 @@
           <ion-col size="1.4" class="flex al-center jc-center">
             <h4>driver</h4>
           </ion-col>
-          <ion-col size="1.4" class="flex al-center jc-center">
+          <ion-col size="1.6" class="flex al-center jc-center">
             <h4>cost center</h4>
           </ion-col>
         </ion-row>
@@ -84,7 +84,7 @@
             <ion-col size="1.4" class="flex al-center jc-center">
               <p>{{ item.RegIndex }}</p>
             </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
+            <ion-col size="1.2" class="flex al-center jc-center">
               <p>{{ item.OilIssueDate }}</p>
             </ion-col>
             <ion-col size="1" class="flex al-center jc-center">
@@ -94,19 +94,19 @@
               <p>{{ item.VoucherNo }}</p>
             </ion-col>
             <ion-col size="1" class="flex al-center jc-center">
-              <p>{{ item.ItemCompGuid }}</p>
+              <p>{{ item.ItemCompName }}</p>
             </ion-col>
             <ion-col size="1" class="flex al-center jc-center">
               <p>{{ item.Top_Serv }}</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
-              <p>{{ item.OilTotalCost }}</p>
+              <p>{{ item.OilTotalCost | number : '1.2-2' }}</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
-              <p>{{ item.StaffGuid }}</p>
+              <p>{{ item.Staff }}</p>
             </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <p>{{ item.CostCentGuid }}</p>
+            <ion-col size="1.6" class="flex al-center jc-center">
+              <p>{{ item.CostCent }}</p>
             </ion-col>
           </ion-row>
         </div>

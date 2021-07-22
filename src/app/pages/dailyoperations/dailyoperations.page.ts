@@ -12,7 +12,7 @@ import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-g
 })
 export class DailyoperationsPage implements OnInit {
   dailyOpRec: DailyOperationRec;
-  dailyOpRecs: DailyOperationRec[] = [];
+  dailyOpRecs: any[] = [];
 
   registrations: any[];
   costCentre: any[];
@@ -55,7 +55,7 @@ export class DailyoperationsPage implements OnInit {
       mNm.forEach((elm) => {
         this.dailyOpRecs.forEach((obj) => {
           if (elm.ItemGuid == obj.Itemguid) {
-            obj.Itemguid = elm.Reg;
+            obj.Item = elm.Reg;
           }
         });
       });
@@ -69,7 +69,7 @@ export class DailyoperationsPage implements OnInit {
       mNm.forEach((elm) => {
         this.dailyOpRecs.forEach((obj) => {
           if (elm.CostCentGuid == obj.CostCentreguid) {
-            obj.CostCentreguid = elm.CostCentName;
+            obj.CostCentre = elm.CostCentName;
           }
         });
       });

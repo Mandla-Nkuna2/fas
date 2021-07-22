@@ -3,6 +3,7 @@ import { FirebaseGetService } from './../../services/firebase-service/firebase-g
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 import { FirebaseService } from './../../services/firebase-service/firebase-service.service';
 import ItemMakeAndModel from 'src/app/models/supportdata/ItemMakeAndModel.model';
+import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 
 @Component({
   selector: 'app-itemmakemodel',
@@ -11,6 +12,8 @@ import ItemMakeAndModel from 'src/app/models/supportdata/ItemMakeAndModel.model'
 })
 export class ItemmakemodelPage implements OnInit {
   item: ItemMakeAndModel;
+  items: any[] = [];
+
   makes: any[];
   models: any[];
   fuelTypes: any[];
@@ -27,6 +30,7 @@ export class ItemmakemodelPage implements OnInit {
   ];
 
   constructor(
+    private firebaseRepServ: FirebaseReportService,
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
@@ -35,9 +39,27 @@ export class ItemmakemodelPage implements OnInit {
   }
 
   ngOnInit() {
+    this.onTableRep();
     this.onMake();
     this.onModel();
     this.onFuelType();
+  }
+
+  onTableRep() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getItemMakeMod()
+        .then((mNm: any) => {
+          this.items = mNm;
+          this.onFuelType();
+          this.popUp.dismissLoading();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
   }
 
   onMake() {
@@ -65,6 +87,14 @@ export class ItemmakemodelPage implements OnInit {
   onFuelType() {
     this.firebaseGetServ.getFuelType().then((mNm: any) => {
       this.fuelTypes = mNm;
+
+      mNm.forEach((elm) => {
+        this.items.forEach((obj) => {
+          if (elm.FuelTypeGuid == obj.FuelTypeGuid) {
+            obj.FuelType = elm.FuelType;
+          }
+        });
+      });
     });
   }
 

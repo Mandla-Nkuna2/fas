@@ -52,7 +52,7 @@ export class ServicingPage implements OnInit {
       mNm.forEach((elm) => {
         this.vehicleReps.forEach((obj) => {
           if (elm.ItemMakModGuid == obj.ItemMakModGuid) {
-            obj.ItemMakModGuid = elm.ItemMakMod;
+            obj.ItemMakMod = elm.ItemMakMod;
           }
         });
       });
@@ -66,7 +66,7 @@ export class ServicingPage implements OnInit {
       mNm.forEach((elm) => {
         this.vehicleReps.forEach((obj) => {
           if (elm.ItemTypeGuid == obj.ItemTypeGuid) {
-            obj.ItemTypeGuid = elm.ItemTypeNameGuid;
+            obj.ItemType = elm.ItemTypeNameGuid;
           }
         });
       });
@@ -80,8 +80,8 @@ export class ServicingPage implements OnInit {
 
       mNm.forEach((elm) => {
         this.vehicleReps.forEach((obj) => {
-          if (elm.ItemTypeNameGuid == obj.ItemTypeGuid) {
-            obj.ItemTypeGuid = elm.ItemTypeName;
+          if (elm.ItemTypeNameGuid == obj.ItemType) {
+            obj.ItemTypeName = elm.ItemTypeName;
           }
         });
       });

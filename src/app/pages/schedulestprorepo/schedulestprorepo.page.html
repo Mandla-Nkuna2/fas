@@ -47,7 +47,8 @@
 
   <div class="section">
     <div class="grid-holder">
-      <ion-grid fixed>
+      <ng-template #noItems> No items. </ng-template>
+      <ion-grid fixed *ngIf="schStProRep.length; else noItems">
         <ion-row class="title-row">
           <ion-col size="1" class="ion-text-center flex al-center jc-center">
             <h4>Staff Code</h4>
@@ -87,213 +88,45 @@
           </ion-col>
         </ion-row>
 
-        <ion-row class="value-row">
+        <ion-row
+          class="value-row"
+          *ngFor="let item of schStProRep; let i = index"
+        >
           <ion-col size="1" class="ion-text-center flex jc-center">
-            <p>Terry Kerstan</p>
+            <p>{{ item.Staff }}</p>
           </ion-col>
           <ion-col size="1" class="ion-text-center flex jc-center">
-            <p>Mon 3 Apr 2006</p>
+            <p>{{ item.ProdTimeDate }}</p>
           </ion-col>
           <ion-col size="0.8" class="ion-text-center flex jc-center">
-            <p>MG12</p>
+            <p>{{ item.reg }}</p>
           </ion-col>
           <ion-col size="2.2" class="ion-text-left flex jc-center">
-            <p class="ion-text-wrap">
-              CHECK DIFF LOCK LIGHT STAYING ON-FOUND WIRES ON SWITCH TOUCHING
-              ONE ANOTHER-REPAIRED AND HAD DIFF LOCK TESTED
-            </p>
+            <p class="ion-text-wrap">{{ item.ProdTime_Desc }}</p>
           </ion-col>
           <ion-col size="0.8" class="ion-text-center flex jc-center">
-            <p>Maintenance</p>
+            <p>{{ item.maintReason }}</p>
           </ion-col>
           <ion-col size="0.7" class="ion-text-center flex jc-center">
-            <p>16.0</p>
+            <p>{{ item.ProdHours }}</p>
           </ion-col>
           <ion-col size="0.8" class="ion-text-center flex jc-center">
-            <p>1.5</p>
+            <p>{{ item.TravelHrs }}</p>
           </ion-col>
           <ion-col size="0.8" class="ion-text-center flex jc-center">
-            <p>129</p>
+            <p>{{ item.TravelDist }}</p>
           </ion-col>
           <ion-col size="0.8" class="ion-text-center flex jc-center">
-            <p>N/A</p>
+            <p>{{ item.OvertimeHrs }}</p>
           </ion-col>
           <ion-col size="1" class="ion-text-center flex jc-center">
-            <p>N/A</p>
+            <p>{{ item.OTTravelHrs }}</p>
           </ion-col>
           <ion-col size="0.8" class="ion-text-center flex jc-center">
-            <p>00000331</p>
+            <p>{{ item.refNo }}</p>
           </ion-col>
           <ion-col size="1.2" class="ion-text-center flex jc-center">
-            <p>CONTRACTS\GOWRIE\\</p>
-          </ion-col>
-        </ion-row>
-
-        <ion-row class="value-row">
-          <ion-col size="1" class="ion-text-center flex jc-center">
-            <p>Terry Kerstan</p>
-          </ion-col>
-          <ion-col size="1" class="ion-text-center flex jc-center">
-            <p>Mon 3 Apr 2006</p>
-          </ion-col>
-          <ion-col size="0.8" class="ion-text-center flex jc-center">
-            <p>MG12</p>
-          </ion-col>
-          <ion-col size="2.2" class="ion-text-left flex jc-center">
-            <p class="ion-text-wrap">
-              CHECK DIFF LOCK LIGHT STAYING ON-FOUND WIRES ON SWITCH TOUCHING
-              ONE ANOTHER-REPAIRED AND HAD DIFF LOCK TESTED
-            </p>
-          </ion-col>
-          <ion-col size="0.8" class="ion-text-center flex jc-center">
-            <p>Maintenance</p>
-          </ion-col>
-          <ion-col size="0.7" class="ion-text-center flex jc-center">
-            <p>16.0</p>
-          </ion-col>
-          <ion-col size="0.8" class="ion-text-center flex jc-center">
-            <p>1.5</p>
-          </ion-col>
-          <ion-col size="0.8" class="ion-text-center flex jc-center">
-            <p>129</p>
-          </ion-col>
-          <ion-col size="0.8" class="ion-text-center flex jc-center">
-            <p>N/A</p>
-          </ion-col>
-          <ion-col size="1" class="ion-text-center flex jc-center">
-            <p>N/A</p>
-          </ion-col>
-          <ion-col size="0.8" class="ion-text-center flex jc-center">
-            <p>00000331</p>
-          </ion-col>
-          <ion-col size="1.2" class="ion-text-center flex jc-center">
-            <p>CONTRACTS\GOWRIE\\</p>
-          </ion-col>
-        </ion-row>
-
-        <ion-row class="value-row">
-          <ion-col size="1" class="ion-text-center flex jc-center">
-            <p>Terry Kerstan</p>
-          </ion-col>
-          <ion-col size="1" class="ion-text-center flex jc-center">
-            <p>Mon 3 Apr 2006</p>
-          </ion-col>
-          <ion-col size="0.8" class="ion-text-center flex jc-center">
-            <p>MG12</p>
-          </ion-col>
-          <ion-col size="2.2" class="ion-text-left flex jc-center">
-            <p class="ion-text-wrap">
-              CHECK DIFF LOCK LIGHT STAYING ON-FOUND WIRES ON SWITCH TOUCHING
-              ONE ANOTHER-REPAIRED AND HAD DIFF LOCK TESTED
-            </p>
-          </ion-col>
-          <ion-col size="0.8" class="ion-text-center flex jc-center">
-            <p>Maintenance</p>
-          </ion-col>
-          <ion-col size="0.7" class="ion-text-center flex jc-center">
-            <p>16.0</p>
-          </ion-col>
-          <ion-col size="0.8" class="ion-text-center flex jc-center">
-            <p>1.5</p>
-          </ion-col>
-          <ion-col size="0.8" class="ion-text-center flex jc-center">
-            <p>129</p>
-          </ion-col>
-          <ion-col size="0.8" class="ion-text-center flex jc-center">
-            <p>N/A</p>
-          </ion-col>
-          <ion-col size="1" class="ion-text-center flex jc-center">
-            <p>N/A</p>
-          </ion-col>
-          <ion-col size="0.8" class="ion-text-center flex jc-center">
-            <p>00000331</p>
-          </ion-col>
-          <ion-col size="1.2" class="ion-text-center flex jc-center">
-            <p>CONTRACTS\GOWRIE\\</p>
-          </ion-col>
-        </ion-row>
-
-        <ion-row class="value-row">
-          <ion-col size="1" class="ion-text-center flex jc-center">
-            <p>Terry Kerstan</p>
-          </ion-col>
-          <ion-col size="1" class="ion-text-center flex jc-center">
-            <p>Mon 3 Apr 2006</p>
-          </ion-col>
-          <ion-col size="0.8" class="ion-text-center flex jc-center">
-            <p>MG12</p>
-          </ion-col>
-          <ion-col size="2.2" class="ion-text-left flex jc-center">
-            <p class="ion-text-wrap">
-              CHECK DIFF LOCK LIGHT STAYING ON-FOUND WIRES ON SWITCH TOUCHING
-              ONE ANOTHER-REPAIRED AND HAD DIFF LOCK TESTED
-            </p>
-          </ion-col>
-          <ion-col size="0.8" class="ion-text-center flex jc-center">
-            <p>Maintenance</p>
-          </ion-col>
-          <ion-col size="0.7" class="ion-text-center flex jc-center">
-            <p>16.0</p>
-          </ion-col>
-          <ion-col size="0.8" class="ion-text-center flex jc-center">
-            <p>1.5</p>
-          </ion-col>
-          <ion-col size="0.8" class="ion-text-center flex jc-center">
-            <p>129</p>
-          </ion-col>
-          <ion-col size="0.8" class="ion-text-center flex jc-center">
-            <p>N/A</p>
-          </ion-col>
-          <ion-col size="1" class="ion-text-center flex jc-center">
-            <p>N/A</p>
-          </ion-col>
-          <ion-col size="0.8" class="ion-text-center flex jc-center">
-            <p>00000331</p>
-          </ion-col>
-          <ion-col size="1.2" class="ion-text-center flex jc-center">
-            <p>CONTRACTS\GOWRIE\\</p>
-          </ion-col>
-        </ion-row>
-
-        <ion-row class="value-row">
-          <ion-col size="1" class="ion-text-center flex jc-center">
-            <p>Terry Kerstan</p>
-          </ion-col>
-          <ion-col size="1" class="ion-text-center flex jc-center">
-            <p>Mon 3 Apr 2006</p>
-          </ion-col>
-          <ion-col size="0.8" class="ion-text-center flex jc-center">
-            <p>MG12</p>
-          </ion-col>
-          <ion-col size="2.2" class="ion-text-left flex jc-center">
-            <p class="ion-text-wrap">
-              CHECK DIFF LOCK LIGHT STAYING ON-FOUND WIRES ON SWITCH TOUCHING
-              ONE ANOTHER-REPAIRED AND HAD DIFF LOCK TESTED
-            </p>
-          </ion-col>
-          <ion-col size="0.8" class="ion-text-center flex jc-center">
-            <p>Maintenance</p>
-          </ion-col>
-          <ion-col size="0.7" class="ion-text-center flex jc-center">
-            <p>16.0</p>
-          </ion-col>
-          <ion-col size="0.8" class="ion-text-center flex jc-center">
-            <p>1.5</p>
-          </ion-col>
-          <ion-col size="0.8" class="ion-text-center flex jc-center">
-            <p>129</p>
-          </ion-col>
-          <ion-col size="0.8" class="ion-text-center flex jc-center">
-            <p>N/A</p>
-          </ion-col>
-          <ion-col size="1" class="ion-text-center flex jc-center">
-            <p>N/A</p>
-          </ion-col>
-          <ion-col size="0.8" class="ion-text-center flex jc-center">
-            <p>00000331</p>
-          </ion-col>
-          <ion-col size="1.2" class="ion-text-center flex jc-center">
-            <p>CONTRACTS\GOWRIE\\</p>
+            <p>{{ item.CostCent }}</p>
           </ion-col>
         </ion-row>
       </ion-grid>

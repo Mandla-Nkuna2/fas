@@ -49,22 +49,22 @@
           <ion-col size="1.2" class="flex al-center jc-center">
             <h4>date</h4>
           </ion-col>
-          <ion-col size="1" class="flex al-center jc-center">
+          <ion-col size="2" class="flex al-center jc-center">
             <h4>Oil type</h4>
           </ion-col>
-          <ion-col size="2" class="flex al-center jc-center">
+          <ion-col size="1.4" class="flex al-center jc-center">
             <h4>stockcounty qty</h4>
           </ion-col>
-          <ion-col size="1.4" class="flex al-center jc-center">
+          <ion-col size="1" class="flex al-center jc-center">
             <h4>purchase qty</h4>
           </ion-col>
-          <ion-col size="1.4" class="flex al-center jc-center">
+          <ion-col size="1" class="flex al-center jc-center">
             <h4>purchase cost</h4>
           </ion-col>
           <ion-col size="1.4" class="flex al-center jc-center">
             <h4>capture date</h4>
           </ion-col>
-          <ion-col size="1.4" class="flex al-center jc-center">
+          <ion-col size="1.8" class="flex al-center jc-center">
             <h4>Cost centre</h4>
           </ion-col>
         </ion-row>
@@ -78,28 +78,28 @@
               <ion-checkbox></ion-checkbox>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
-              <p>{{ item.OilStoreGuid }}</p>
+              <p>{{ item.OilStore }}</p>
             </ion-col>
             <ion-col size="1.2" class="flex al-center jc-center">
               <p>{{ item.OilStoreTrnDate }}</p>
             </ion-col>
-            <ion-col size="1" class="flex al-center jc-center">
-              <p>{{ item.OilTypeguid }}</p>
-            </ion-col>
             <ion-col size="2" class="flex al-center jc-center">
+              <p>{{ item.OilType }}</p>
+            </ion-col>
+            <ion-col size="1.4" class="flex al-center jc-center">
               <p>{{ item.OilQtyinStore }}</p>
             </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <p>{{ item.OilQtyPurc }}</p>
+            <ion-col size="1" class="flex al-center jc-center">
+              <p>{{ item.OilQtyPurc | number : '1.2-2' }}</p>
             </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <p>{{ item.OilCost }}</p>
+            <ion-col size="1" class="flex al-center jc-center">
+              <p>{{ item.OilCost | number : '1.2-2' }}</p>
             </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
+            <ion-col size="1.2" class="flex al-center jc-center">
               <p>{{ item.CaptureDate }}</p>
             </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <p>{{ item.CostCentGuid }}</p>
+            <ion-col size="1.8" class="flex al-center jc-center">
+              <p>{{ item.CostCent }}</p>
             </ion-col>
           </ion-row>
         </div>

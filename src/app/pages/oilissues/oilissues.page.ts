@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import OilIssue from 'src/app/models/capture/OilIssue.model';
-import LocationModel from 'src/app/models/supportdata/Location.model';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
 import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 import { FirebaseService } from 'src/app/services/firebase-service/firebase-service.service';
@@ -14,7 +13,7 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 })
 export class OilissuesPage implements OnInit {
   oilIssue: OilIssue;
-  oilIssues: OilIssue[] = [];
+  oilIssues: any[] = [];
 
   voucherNo: any[];
   registration: any[];
@@ -68,21 +67,6 @@ export class OilissuesPage implements OnInit {
     });
   }
 
-  onItemCompLeft() {
-    this.firebaseGetServ.getItemCompLeft().then((mNm: any) => {
-      this.compNames = mNm;
-
-      mNm.forEach((elm) => {
-        this.oilIssues.forEach((obj) => {
-          if (elm.ItemCompGuid == obj.ItemCompGuid) {
-            obj.ItemCompGuid = elm.CompNameGuid;
-          }
-        });
-      });
-      this.onComponentLeft();
-    });
-  }
-
   goOilTransactions() {
     this.navCtrl.navigateForward('oilstoretrans');
   }
@@ -98,6 +82,21 @@ export class OilissuesPage implements OnInit {
     });
   }
 
+  onItemCompLeft() {
+    this.firebaseGetServ.getItemCompLeft().then((mNm: any) => {
+      this.compNames = mNm;
+
+      mNm.forEach((elm) => {
+        this.oilIssues.forEach((obj) => {
+          if (elm.ItemCompGuid == obj.ItemCompGuid) {
+            obj.ItemComp = elm.CompNameGuid;
+          }
+        });
+      });
+      this.onComponentLeft();
+    });
+  }
+
   onComponent() {
     this.firebaseGetServ.getCompName().then((mNm: any) => {
       this.compNames = mNm;
@@ -109,8 +108,8 @@ export class OilissuesPage implements OnInit {
 
       mNm.forEach((elm) => {
         this.oilIssues.forEach((obj) => {
-          if (elm.CompNameGuid == obj.ItemCompGuid) {
-            obj.ItemCompGuid = elm.CompName;
+          if (elm.CompNameGuid == obj.ItemComp) {
+            obj.ItemCompName = elm.CompName;
           }
         });
       });
@@ -211,7 +210,7 @@ export class OilissuesPage implements OnInit {
       mNm.forEach((elm) => {
         this.oilIssues.forEach((obj) => {
           if (elm.CostCentGuid == obj.CostCentGuid) {
-            obj.CostCentGuid = elm.CostCentName;
+            obj.CostCent = elm.CostCentName;
           }
         });
       });
@@ -230,7 +229,7 @@ export class OilissuesPage implements OnInit {
       mNm.forEach((elm) => {
         this.oilIssues.forEach((obj) => {
           if (elm.StaffGuid == obj.StaffGuid) {
-            obj.StaffGuid = elm.StaffCode;
+            obj.Staff = elm.StaffCode;
           }
         });
       });

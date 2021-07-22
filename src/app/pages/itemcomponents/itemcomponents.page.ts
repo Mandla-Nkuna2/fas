@@ -76,7 +76,7 @@ export class ItemcomponentsPage implements OnInit {
       mNm.forEach((elm) => {
         this.itemComponents.forEach((obj) => {
           if (elm.ItemGuid == obj.ItemGuid) {
-            obj.ItemGuid = elm.Reg;
+            obj.Item = elm.Reg;
           }
         });
       });
@@ -95,7 +95,7 @@ export class ItemcomponentsPage implements OnInit {
       mNm.forEach((elm) => {
         this.itemComponents.forEach((obj) => {
           if (elm.CompNameGuid == obj.CompNameGuid) {
-            obj.CompNameGuid = elm.CompName;
+            obj.CompName = elm.CompName;
           }
         });
       });
@@ -114,7 +114,7 @@ export class ItemcomponentsPage implements OnInit {
       mNm.forEach((elm) => {
         this.itemComponents.forEach((obj) => {
           if (elm.CompMakeGuid == obj.CompMakeGuid) {
-            obj.CompMakeGuid = elm.CompMake;
+            obj.CompMake = elm.CompMake;
           }
         });
       });
@@ -133,7 +133,7 @@ export class ItemcomponentsPage implements OnInit {
       mNm.forEach((elm) => {
         this.itemComponents.forEach((obj) => {
           if (elm.CompModelGuid == obj.CompModelGuid) {
-            obj.CompModelGuid = elm.CompModel;
+            obj.CompModel = elm.CompModel;
           }
         });
       });

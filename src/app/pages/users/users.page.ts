@@ -4,6 +4,7 @@ import { FirebaseGetService } from './../../services/firebase-service/firebase-g
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 import { FirebaseService } from './../../services/firebase-service/firebase-service.service';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 
 @Component({
   selector: 'app-users',
@@ -12,11 +13,14 @@ import { AngularFireAuth } from '@angular/fire/auth';
 })
 export class UsersPage implements OnInit {
   user: User;
+  users: any[] = [];
+
   userGroup: any;
   userGroups: any[];
   locations: any[];
 
   constructor(
+    private firebaseRepServ: FirebaseReportService,
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
@@ -26,13 +30,39 @@ export class UsersPage implements OnInit {
   }
 
   ngOnInit() {
+    this.onTableRep();
     this.onUserGroup();
     this.onLocation();
+  }
+
+  onTableRep() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getUsers()
+        .then((mNm: any) => {
+          this.users = mNm;
+          this.onUserGroup();
+          this.popUp.dismissLoading();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
   }
 
   onUserGroup() {
     this.firebaseGetServ.getUserGroup().then((mNm: any) => {
       this.userGroups = mNm;
+
+      mNm.forEach((elm) => {
+        this.users.forEach((obj) => {
+          if (elm.UserGroupGuid == obj.UserGroupGuid) {
+            obj.UserGroup = elm.UserGroupTitle;
+          }
+        });
+      });
     });
   }
 

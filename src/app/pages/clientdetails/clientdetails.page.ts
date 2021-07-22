@@ -3,6 +3,7 @@ import { FirebaseGetService } from './../../services/firebase-service/firebase-g
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 import { FirebaseService } from './../../services/firebase-service/firebase-service.service';
 import ClientDetails from 'src/app/models/supportdata/ClientDetails.model';
+import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 
 @Component({
   selector: 'app-clientdetails',
@@ -11,8 +12,10 @@ import ClientDetails from 'src/app/models/supportdata/ClientDetails.model';
 })
 export class ClientdetailsPage implements OnInit {
   client: ClientDetails;
+  clients: ClientDetails[] = [];
 
   constructor(
+    private firebaseRepServ: FirebaseReportService,
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
@@ -20,7 +23,25 @@ export class ClientdetailsPage implements OnInit {
     this.client = new ClientDetails();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.onTableRep();
+  }
+
+  onTableRep() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getClients()
+        .then((mNm: any) => {
+          this.clients = mNm;
+          this.popUp.dismissLoading();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
 
   onAdd() {
     this.firebaseService

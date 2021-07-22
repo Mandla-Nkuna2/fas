@@ -13,7 +13,7 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 })
 export class FuelissuesPage implements OnInit {
   fuelIssue: FuelIssue;
-  fuelIssues: FuelIssue[] = [];
+  fuelIssues: any[] = [];
 
   registration: any[];
   supplier: any[];
@@ -46,7 +46,7 @@ export class FuelissuesPage implements OnInit {
         .getFuelIssues()
         .then((mNm: any) => {
           this.fuelIssues = mNm;
-          // this.onSupplierLeft();
+          this.onSupplierLeft();
           this.popUp.dismissLoading();
         })
         .catch((err) => {
@@ -95,7 +95,7 @@ export class FuelissuesPage implements OnInit {
       mNm.forEach((elm) => {
         this.fuelIssues.forEach((obj) => {
           if (elm.SuppGuid == obj.SupplierGuid) {
-            obj.SupplierGuid = elm.SuppName;
+            obj.Supp = elm.SuppName;
           }
         });
       });

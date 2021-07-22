@@ -9,8 +9,9 @@ import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-g
   styleUrls: ['./assetdetail.page.scss'],
 })
 export class AssetdetailPage implements OnInit {
-  moreDet = false;
   assets: any[] = [];
+
+  moreDet = false;
   assetTypes: any[];
   assetTypeNames: any[];
   makesAndMods: any[];
@@ -50,7 +51,7 @@ export class AssetdetailPage implements OnInit {
       mNm.forEach((elm) => {
         this.assets.forEach((obj) => {
           if (elm.ItemTypeGuid == obj.ItemTypeGuid) {
-            obj.ItemTypeGuid = elm.ItemTypeNameGuid;
+            obj.ItemType = elm.ItemTypeNameGuid;
           }
         });
       });
@@ -64,8 +65,8 @@ export class AssetdetailPage implements OnInit {
 
       mNm.forEach((elm) => {
         this.assets.forEach((obj) => {
-          if (elm.ItemTypeNameGuid == obj.ItemTypeGuid) {
-            obj.ItemTypeGuid = elm.ItemTypeName;
+          if (elm.ItemTypeNameGuid == obj.ItemType) {
+            obj.ItemTypeName = elm.ItemTypeName;
           }
         });
       });
@@ -79,7 +80,7 @@ export class AssetdetailPage implements OnInit {
       mNm.forEach((elm) => {
         this.assets.forEach((obj) => {
           if (elm.ItemMakModGuid == obj.ItemMakModGuid) {
-            obj.ItemMakModGuid = elm.ItemMakMod;
+            obj.ItemMakMod = elm.ItemMakMod;
           }
         });
       });

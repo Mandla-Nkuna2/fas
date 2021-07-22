@@ -3,6 +3,7 @@ import { FirebaseGetService } from './../../services/firebase-service/firebase-g
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 import { FirebaseService } from './../../services/firebase-service/firebase-service.service';
 import Votecodes from 'src/app/models/supportdata/VoteCode.model';
+import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 
 @Component({
   selector: 'app-votecodes',
@@ -11,11 +12,13 @@ import Votecodes from 'src/app/models/supportdata/VoteCode.model';
 })
 export class VotecodesPage implements OnInit {
   voteCode: Votecodes;
-  voteCodes: Votecodes[];
+  voteCodes: Votecodes[] = [];
+
   descriptions = ['DONATED VEHICLES'];
   finYear = ['2019/2020', '2020/2021', '2021/2022', '2022/2023'];
 
   constructor(
+    private firebaseRepServ: FirebaseReportService,
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
@@ -24,8 +27,25 @@ export class VotecodesPage implements OnInit {
   }
 
   ngOnInit() {
+    this.onTableRep();
     this.onVoteCodes();
     this.onDescription();
+  }
+
+  onTableRep() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getVotecodes()
+        .then((mNm: any) => {
+          this.voteCodes = mNm;
+          this.popUp.dismissLoading();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
   }
 
   onVoteCodes() {

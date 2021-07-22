@@ -3,6 +3,7 @@ import Bowser from 'src/app/models/supportdata/Bowser.model';
 import { FirebaseGetService } from './../../services/firebase-service/firebase-get.service';
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 import { FirebaseService } from './../../services/firebase-service/firebase-service.service';
+import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 
 @Component({
   selector: 'app-bowser',
@@ -11,10 +12,13 @@ import { FirebaseService } from './../../services/firebase-service/firebase-serv
 })
 export class BowserPage implements OnInit {
   bowser: Bowser;
+  bowsers: any[] = [];
+
   bowserLoc: any[];
   fuelType: any[];
 
   constructor(
+    private firebaseRepServ: FirebaseReportService,
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
@@ -23,8 +27,27 @@ export class BowserPage implements OnInit {
   }
 
   ngOnInit() {
+    this.onTableRep();
     this.onBowserLoc();
     this.onFuelType();
+  }
+
+  onTableRep() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getBowsers()
+        .then((mNm: any) => {
+          this.bowsers = mNm;
+          this.onBowserLocCodeLeft();
+          this.onFuelType();
+          this.popUp.dismissLoading();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
   }
 
   onBowserLoc() {
@@ -38,9 +61,31 @@ export class BowserPage implements OnInit {
     });
   }
 
+  onBowserLocCodeLeft() {
+    this.firebaseRepServ.getLocationLeft().then((mNm: any) => {
+      this.bowserLoc = mNm;
+
+      mNm.forEach((elm) => {
+        this.bowsers.forEach((obj) => {
+          if (elm.LocItemCode == obj.BowserLoc) {
+            obj.Bowser = elm.LocDesc;
+          }
+        });
+      });
+    });
+  }
+
   onFuelType() {
     this.firebaseGetServ.getFuelType().then((mNm: any) => {
       this.fuelType = mNm;
+
+      mNm.forEach((elm) => {
+        this.bowsers.forEach((obj) => {
+          if (elm.FuelTypeGuid == obj.FuelTypeGuid) {
+            obj.FuelType = elm.FuelType;
+          }
+        });
+      });
     });
   }
 

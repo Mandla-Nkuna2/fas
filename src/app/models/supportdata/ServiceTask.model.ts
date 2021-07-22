@@ -1,3 +1,8 @@
 export default class ServiceTask {
-  id: string;
+  ServHistGuid: string;
+  JobcardGuid: string;
+  ServSchTask: string;
+  Checked: string;
+  ServSchComment: string;
+  MaintEvntGuid: string;
 }
