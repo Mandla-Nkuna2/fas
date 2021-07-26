@@ -3,6 +3,7 @@ import { FirebaseGetService } from './../../services/firebase-service/firebase-g
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 import { FirebaseService } from './../../services/firebase-service/firebase-service.service';
 import LocationModel from 'src/app/models/supportdata/Location.model';
+import { v4 as uuidv4 } from 'uuid';
 @Component({
   selector: 'app-location',
   templateUrl: './location.page.html',
@@ -37,6 +38,8 @@ export class LocationPage implements OnInit {
   }
 
   onAdd() {
+    this.location.LocGuid = uuidv4();
+
     this.firebaseService
       .writeData(
         'myTest',

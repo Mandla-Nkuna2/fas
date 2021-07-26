@@ -4,6 +4,7 @@ import { FirebaseGetService } from './../../services/firebase-service/firebase-g
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 import { FirebaseService } from './../../services/firebase-service/firebase-service.service';
 import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-oilstore',
@@ -74,6 +75,8 @@ export class OilstorePage implements OnInit {
   }
 
   onAdd() {
+    this.oilStore.OilStoreGuid = uuidv4();
+
     this.firebaseService
       .writeData(
         'myTest',

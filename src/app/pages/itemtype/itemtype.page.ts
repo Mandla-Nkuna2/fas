@@ -4,6 +4,7 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 import { FirebaseService } from './../../services/firebase-service/firebase-service.service';
 import ItemType from 'src/app/models/supportdata/ItemType.model';
 import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-itemtype',
@@ -124,6 +125,8 @@ export class ItemtypePage implements OnInit {
   }
 
   onAdd() {
+    this.itemType.ItemTypeGuid = uuidv4();
+
     this.firebaseService
       .writeData(
         'myTest',

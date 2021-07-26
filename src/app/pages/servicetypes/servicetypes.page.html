@@ -68,59 +68,20 @@
         <ion-grid fixed *ngIf="serviceTypes.length; else noItems">
           <ion-row class="title-row">
             <ion-col size="0.5" class="flex al-center jc-center"> </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <h4>Registration</h4>
-            </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <h4>Meter Read</h4>
-            </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <h4>date</h4>
-            </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <h4>voucher no.</h4>
-            </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <h4>bowser.supplier</h4>
-            </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <h4>fuel qty</h4>
-            </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <h4>total cost</h4>
-            </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <h4>invoice cost</h4>
+            <ion-col class="flex al-center jc-center">
+              <h4>Service types</h4>
             </ion-col>
           </ion-row>
-          <div class="values" *ngFor="let item of serviceTypes; let i = index">
-            <ion-row class="value-row">
+          <div class="values">
+            <ion-row
+              class="value-row"
+              *ngFor="let item of serviceTypes; let i = index"
+            >
               <ion-col size="0.5" class="flex al-center jc-center">
                 <ion-checkbox></ion-checkbox>
               </ion-col>
-              <ion-col size="1.4" class="flex al-center jc-center">
-                <p>NP117354</p>
-              </ion-col>
-              <ion-col size="1.4" class="flex al-center jc-center">
-                <p class="ion-text-wrap">0215112</p>
-              </ion-col>
-              <ion-col size="1.4" class="flex al-center jc-center">
-                <p>02541</p>
-              </ion-col>
-              <ion-col size="1.4" class="flex al-center jc-center">
-                <p>01 Jan 2006</p>
-              </ion-col>
-              <ion-col size="1.4" class="flex al-center jc-center">
-                <p>02 Jan 2006</p>
-              </ion-col>
-              <ion-col size="1.4" class="flex al-center jc-center">
-                <p>Y</p>
-              </ion-col>
-              <ion-col size="1.4" class="flex al-center jc-center">
-                <p>02 Jan 2006</p>
-              </ion-col>
-              <ion-col size="1.4" class="flex al-center jc-center">
-                <p>Comment here</p>
+              <ion-col class="flex al-center jc-center">
+                <p>{{ item.ServType }}</p>
               </ion-col>
             </ion-row>
           </div>

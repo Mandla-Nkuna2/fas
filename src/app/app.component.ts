@@ -57,7 +57,7 @@ export class AppComponent {
     },
     {
       title: 'Vehicles',
-      url: 'fleet',
+      url: 'monthlyvehiclereport',
       icon: 'assets/imgs/vehicles.svg',
       icona: 'assets/imgs/vehiclesa.svg',
       // children:[
@@ -95,7 +95,7 @@ export class AppComponent {
       title: 'Inspections',
       icon: 'assets/imgs/inspections.svg',
       icona: 'assets/imgs/inspectionsa.svg',
-      url: 'monthlyvehiclereport',
+      url: 'licensecor',
       // children:[
       //   {
       //     title: 'Monthly Vehicle Report',

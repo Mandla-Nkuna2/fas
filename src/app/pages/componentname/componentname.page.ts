@@ -3,6 +3,8 @@ import { FirebaseGetService } from './../../services/firebase-service/firebase-g
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 import { FirebaseService } from './../../services/firebase-service/firebase-service.service';
 import ComponentName from 'src/app/models/supportdata/ComponentName.model';
+import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-componentname',
@@ -11,10 +13,13 @@ import ComponentName from 'src/app/models/supportdata/ComponentName.model';
 })
 export class ComponentnamePage implements OnInit {
   componentName: ComponentName;
+  componentNames: ComponentName[] = [];
+
   compSubCatView = false;
   compNames: any[];
 
   constructor(
+    private firebaseRepServ: FirebaseReportService,
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
@@ -23,7 +28,24 @@ export class ComponentnamePage implements OnInit {
   }
 
   ngOnInit() {
+    this.onTableRep();
     this.onCompName();
+  }
+
+  onTableRep() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getComponentNames()
+        .then((mNm: any) => {
+          this.componentNames = mNm;
+          this.popUp.dismissLoading();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
   }
 
   onCompSubCatView() {
@@ -42,6 +64,8 @@ export class ComponentnamePage implements OnInit {
   }
 
   onAdd() {
+    this.componentName.CompNameGuid = uuidv4();
+
     this.firebaseService
       .writeData(
         'myTest',

@@ -4,6 +4,7 @@ import { FirebaseGetService } from './../../services/firebase-service/firebase-g
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 import { FirebaseService } from './../../services/firebase-service/firebase-service.service';
 import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-bowser',
@@ -90,6 +91,7 @@ export class BowserPage implements OnInit {
   }
 
   onAdd() {
+    this.bowser.BowserGuid = uuidv4();
     this.firebaseService
       .writeData(
         'myTest',
@@ -98,12 +100,14 @@ export class BowserPage implements OnInit {
         this.bowser.BowserGuid,
       )
       .then(() => {
+        console.log(this.bowser.BowserGuid);
         this.popUp.showAlert('Success', 'Data saved successfully :-)');
       })
       .catch((err) => {
         this.popUp.showError(err);
       });
   }
+
   onModify() {}
   onDeActivate() {}
   onClear() {}

@@ -5,6 +5,7 @@ import { FirebaseService } from 'src/app/services/firebase-service/firebase-serv
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
 import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-dailyoperationrecord',
@@ -117,6 +118,8 @@ export class DailyoperationrecordPage implements OnInit {
   }
 
   onAdd() {
+    this.dOpsRec.PlantSheetguid = uuidv4();
+
     this.firebaseService
       .writeData(
         'myTest',

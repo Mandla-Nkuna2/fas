@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from 'src/app/services/firebase-service/firebase-service.service';
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-addissuesinfo',
@@ -18,6 +19,8 @@ export class AddissuesinfoPage implements OnInit {
   ngOnInit() {}
 
   onAdd() {
+    this.agent = uuidv4();
+
     this.firebaseService
       .writeData('myTest', '', Object.assign({}, this.agent), '')
       .then(() => {

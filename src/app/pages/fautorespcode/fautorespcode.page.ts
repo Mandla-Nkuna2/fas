@@ -4,6 +4,7 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 import { FirebaseService } from './../../services/firebase-service/firebase-service.service';
 import FAutoRespCode from 'src/app/models/supportdata/FAutoRespCode.model';
 import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-fautorespcode',
@@ -18,7 +19,6 @@ export class FautorespcodePage implements OnInit {
     private firebaseRepServ: FirebaseReportService,
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
-    private firebaseGetServ: FirebaseGetService,
   ) {
     this.fautorespcode = new FAutoRespCode();
   }
@@ -44,6 +44,8 @@ export class FautorespcodePage implements OnInit {
   }
 
   onAdd() {
+    this.fautorespcode.ResponseGuid = uuidv4();
+
     this.firebaseService
       .writeData(
         'myTest',

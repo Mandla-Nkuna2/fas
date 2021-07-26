@@ -4,6 +4,7 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 import { FirebaseService } from './../../services/firebase-service/firebase-service.service';
 import Votecodes from 'src/app/models/supportdata/VoteCode.model';
 import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-votecodes',
@@ -62,6 +63,8 @@ export class VotecodesPage implements OnInit {
   onDescription() {}
 
   onAdd() {
+    this.voteCode.VoteCodeGuid = uuidv4();
+
     this.firebaseService
       .writeData(
         'myTest',

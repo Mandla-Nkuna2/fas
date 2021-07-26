@@ -4,6 +4,7 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 import { FirebaseService } from './../../services/firebase-service/firebase-service.service';
 import ItemMakeAndModel from 'src/app/models/supportdata/ItemMakeAndModel.model';
 import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-itemmakemodel',
@@ -99,6 +100,8 @@ export class ItemmakemodelPage implements OnInit {
   }
 
   onAdd() {
+    this.item.ItemMakModGuid = uuidv4();
+
     this.firebaseService
       .writeData(
         'myTest',

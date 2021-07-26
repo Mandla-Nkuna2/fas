@@ -9,6 +9,8 @@ import {
   RateInformation,
 } from './../../models/capture/Asset.model';
 import { Component, OnInit } from '@angular/core';
+import { v4 as uuidv4 } from 'uuid';
+
 @Component({
   selector: 'app-addassets',
   templateUrl: './addassets.page.html',
@@ -130,6 +132,7 @@ export class AddassetsPage implements OnInit {
   }
 
   onAdd() {
+    this.asset.generalInformation.ItemGuid = uuidv4();
     this.firebaseService
       .writeData(
         'myTest',

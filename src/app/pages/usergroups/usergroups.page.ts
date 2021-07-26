@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FirebaseGetService } from './../../services/firebase-service/firebase-get.service';
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 import { FirebaseService } from './../../services/firebase-service/firebase-service.service';
+import { v4 as uuidv4 } from 'uuid';
 @Component({
   selector: 'app-usergroups',
   templateUrl: './usergroups.page.html',
@@ -31,6 +32,8 @@ export class UsergroupsPage implements OnInit {
   }
 
   onAdd() {
+    this.userGroup.UserGroupGuid = uuidv4();
+
     this.firebaseService
       .writeData(
         'myTest',

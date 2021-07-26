@@ -11,6 +11,7 @@ import {
 } from '../../models/capture/JobCard.model';
 import { FirebaseGetService } from '../../services/firebase-service/firebase-get.service';
 import { SignaturePad } from 'angular2-signaturepad/signature-pad';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-jobcard',
@@ -125,6 +126,8 @@ export class JobcardPage implements OnInit {
   onChange() {}
 
   onAdd() {
+    this.jobCard.generalInformation.JobCardNo = uuidv4();
+
     this.firebaseService
       .writeData(
         'myTest',

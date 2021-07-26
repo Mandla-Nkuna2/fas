@@ -845,4 +845,64 @@ export class FirebaseReportService {
     });
     return promise;
   }
+
+  public getComponentNames() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('PMB_ELEC/Sup_CompName/tables')
+        .ref.limit(this.limVal)
+        .get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obElem) => {
+            data.push(obElem.data());
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+
+  public getStoreCategories() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('PMB_ELEC/Sup_StoreCatg/tables')
+        .ref.limit(this.limVal)
+        .get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obElem) => {
+            data.push(obElem.data());
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+
+  public getServiceTypes() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('PMB_ELEC/Sup_ServType/tables')
+        .ref.limit(this.limVal)
+        .get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obElem) => {
+            data.push(obElem.data());
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
 }

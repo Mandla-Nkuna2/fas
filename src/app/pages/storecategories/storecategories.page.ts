@@ -4,6 +4,7 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 import { FirebaseService } from './../../services/firebase-service/firebase-service.service';
 import StoreCategory from 'src/app/models/supportdata/StoreCategories.model';
 import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-storecategories',
@@ -26,13 +27,13 @@ export class StorecategoriesPage implements OnInit {
   }
 
   ngOnInit() {
-    // this.onTableRep();
+    this.onTableRep();
   }
 
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
-        .getMaintEvent()
+        .getStoreCategories()
         .then((mNm: any) => {
           this.storeCats = mNm;
           this.popUp.dismissLoading();
@@ -56,6 +57,8 @@ export class StorecategoriesPage implements OnInit {
   }
 
   onAdd() {
+    this.storeCat.StoreCatgGuid = uuidv4();
+
     this.firebaseService
       .writeData(
         'myTest',

@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import DailyOperationRec from 'src/app/models/capture/DailyOperationRec.model';
 import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-dailyoperations',
@@ -77,6 +78,8 @@ export class DailyoperationsPage implements OnInit {
   }
 
   onAdd() {
+    this.dailyOpRec.Itemguid = uuidv4();
+
     this.firebaseService
       .writeData(
         'myTest',

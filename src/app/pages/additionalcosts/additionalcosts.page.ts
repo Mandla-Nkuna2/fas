@@ -5,6 +5,7 @@ import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-g
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 import { FirebaseService } from 'src/app/services/firebase-service/firebase-service.service';
 import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-additionalcosts',
@@ -138,6 +139,8 @@ export class AdditionalcostsPage implements OnInit {
   }
 
   onAdd() {
+    this.additionalCost.AddCostGuid = uuidv4();
+
     this.firebaseService
       .writeData(
         'myTest',

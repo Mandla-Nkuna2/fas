@@ -6,6 +6,7 @@ import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-g
 import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 import { FirebaseService } from 'src/app/services/firebase-service/firebase-service.service';
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-licensecor',
@@ -74,6 +75,8 @@ export class LicensecorPage implements OnInit {
   }
 
   onAdd() {
+    this.licCorAndSafInspec.LicHistIndex = uuidv4();
+
     this.firebaseService
       .writeData(
         'myTest',

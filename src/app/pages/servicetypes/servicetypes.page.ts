@@ -3,6 +3,8 @@ import { FirebaseGetService } from './../../services/firebase-service/firebase-g
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 import { FirebaseService } from './../../services/firebase-service/firebase-service.service';
 import ServiceType from 'src/app/models/supportdata/ServiceType.model';
+import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-servicetypes',
@@ -17,6 +19,7 @@ export class ServicetypesPage implements OnInit {
   compServType = false;
 
   constructor(
+    private firebaseRepServ: FirebaseReportService,
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
@@ -24,7 +27,25 @@ export class ServicetypesPage implements OnInit {
     this.serviceType = new ServiceType();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.onTableRep();
+  }
+
+  onTableRep() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getServiceTypes()
+        .then((mNm: any) => {
+          this.serviceTypes = mNm;
+          this.popUp.dismissLoading();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
 
   onCompServTypeView() {
     this.compServType = !this.compServType;
@@ -48,6 +69,8 @@ export class ServicetypesPage implements OnInit {
   }
 
   onAdd() {
+    this.serviceType.ServTypeGuid = uuidv4();
+
     this.firebaseService
       .writeData(
         'myTest',

@@ -3,6 +3,7 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 import { FirebaseService } from './../../services/firebase-service/firebase-service.service';
 import CostCentre from 'src/app/models/supportdata/CostCentre.model';
 import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-costcentre',
@@ -42,6 +43,8 @@ export class CostcentrePage implements OnInit {
   }
 
   onAdd() {
+    this.costcentre.CostCentGuid = uuidv4();
+
     this.firebaseService
       .writeData(
         'myTest',

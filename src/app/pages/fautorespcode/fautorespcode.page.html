@@ -44,17 +44,8 @@
       <ion-grid fixed *ngIf="fautorespcodes.length; else noItems">
         <ion-row class="title-row">
           <ion-col size="0.5" class="flex al-center jc-center"> </ion-col>
-          <ion-col size="1.4" class="flex al-center jc-center">
-            <h4>Response code</h4>
-          </ion-col>
-          <ion-col size="1.4" class="flex al-center jc-center">
-            <h4>Capture name</h4>
-          </ion-col>
-          <ion-col size="1.4" class="flex al-center jc-center">
-            <h4>Capture date</h4>
-          </ion-col>
-          <ion-col size="1.4" class="flex al-center jc-center">
-            <h4>Active</h4>
+          <ion-col class="flex al-center jc-center">
+            <h4>FirstAuto Response code</h4>
           </ion-col>
         </ion-row>
         <div class="values">
@@ -65,17 +56,8 @@
             <ion-col size="0.5" class="flex al-center jc-center">
               <ion-checkbox></ion-checkbox>
             </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
+            <ion-col class="flex al-center jc-center">
               <p>{{ item.ResponseCode }}</p>
-            </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <p>{{ item.CapName }}</p>
-            </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <p>{{ item.CapDate }}</p>
-            </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <p>{{ item.Active }}</p>
             </ion-col>
           </ion-row>
         </div>

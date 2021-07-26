@@ -4,6 +4,7 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 import { FirebaseService } from './../../services/firebase-service/firebase-service.service';
 import ClientDetails from 'src/app/models/supportdata/ClientDetails.model';
 import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-clientdetails',
@@ -44,6 +45,8 @@ export class ClientdetailsPage implements OnInit {
   }
 
   onAdd() {
+    this.client.ClientGuid = uuidv4();
+
     this.firebaseService
       .writeData(
         'myTest',
