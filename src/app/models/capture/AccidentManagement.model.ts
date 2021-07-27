@@ -33,6 +33,6 @@ export class AccidentManagement {
   amount: number;
   AmountRec: number;
   FileNumber: string;
-  Capturedate: string;
+  CaptureDate: string = new Date().toString();
   Capturename: string;
 }

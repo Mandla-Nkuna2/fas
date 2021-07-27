@@ -7,7 +7,7 @@ export default class LocationModel {
   LocLevel: number;
   LocItemCode: string;
   LocDesc: string;
-  CaptureDate: string;
+  CaptureDate: string = new Date().toString();
   Active: string;
   LocFullName: string;
 }

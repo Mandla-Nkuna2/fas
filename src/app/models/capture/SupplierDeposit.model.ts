@@ -7,6 +7,6 @@ export default class SupplierDeposit {
   AmtDeposit: number;
   AmtIssue: number;
   VoucherNo: string;
-  Capturedate: string;
+  CaptureDate: string = new Date().toString();
   Capturename: string;
 }

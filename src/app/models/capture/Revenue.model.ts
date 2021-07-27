@@ -1,7 +1,7 @@
 export default class Revenue {
   RevenueGuid: string;
   RevenueDate: string;
-  CaptureDate: string;
+  CaptureDate: string = new Date().toString();
   Timeout: string;
   ClientGuid: string;
   RevenueRef: string;

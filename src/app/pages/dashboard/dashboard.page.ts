@@ -1,5 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Chart } from 'chart.js';
+import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
+import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
+import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.page.html',
@@ -16,13 +19,105 @@ export class DashboardPage implements OnInit {
   lineChart2: any;
   lineChart3: any;
   lineChart4: any;
-  constructor() {}
+
+  assets: any = [];
+  sAssets: any[] = [];
+  assetTypes: any;
+  assetTypeNames: any;
+  makesAndMods: any;
+  currentDate = new Date();
+  moreDetails = false;
+  showIndex: any;
+
+  constructor(
+    private firebaseRepServ: FirebaseReportService,
+    private firebaseGetServ: FirebaseGetService,
+    private popUp: PopupHelper,
+  ) {}
 
   ngOnInit() {
+    this.onTableRep();
     this.lineChartMethod();
     this.lineChartMethod2();
     this.lineChartMethod3();
     this.lineChartMethod4();
+  }
+
+  onMoreDetails(index) {
+    this.showIndex = index;
+    this.moreDetails = !this.moreDetails;
+  }
+
+  onCaptureDate() {
+    this.assets.sort((a, b) => {
+      return <any>new Date(b.CaptureDate) - <any>new Date(a.CaptureDate);
+    });
+
+    for (let i = 0; i < 3; i++) {
+      this.sAssets.push(this.assets[i]);
+    }
+  }
+
+  onTableRep() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getAssetLeft()
+        .then((mNm: any) => {
+          this.assets = mNm;
+          this.onAssetType();
+          this.onMakeAndMod();
+          this.onCaptureDate();
+          this.popUp.dismissLoading();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+
+  onAssetType() {
+    this.firebaseGetServ.getItemType().then((mNm: any) => {
+      this.assetTypes = mNm;
+
+      mNm.forEach((elm) => {
+        this.assets.forEach((obj) => {
+          if (elm.ItemTypeGuid == obj.ItemTypeGuid) {
+            obj.ItemType = elm.ItemTypeNameGuid;
+          }
+        });
+      });
+    });
+    this.onAssetTypeName();
+  }
+
+  onAssetTypeName() {
+    this.firebaseGetServ.getAssetTypeNameLeft().then((mNm: any) => {
+      this.assetTypeNames = mNm;
+
+      mNm.forEach((elm) => {
+        this.assets.forEach((obj) => {
+          if (elm.ItemTypeNameGuid == obj.ItemType) {
+            obj.ItemTypeName = elm.ItemTypeName;
+          }
+        });
+      });
+    });
+  }
+
+  onMakeAndMod() {
+    this.firebaseGetServ.getAssetMakenModelLeft().then((mNm: any) => {
+      this.makesAndMods = mNm;
+
+      mNm.forEach((elm) => {
+        this.assets.forEach((obj) => {
+          if (elm.ItemMakModGuid == obj.ItemMakModGuid) {
+            obj.ItemMakMod = elm.ItemMakMod;
+          }
+        });
+      });
+    });
   }
 
   lineChartMethod() {
