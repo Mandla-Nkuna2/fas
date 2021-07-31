@@ -198,7 +198,7 @@ export class FirebaseGetService {
   }
 
   getDriver() {
-    var driversGuid = '15ED4D37-A09A-11D7-B6DA-0020ED939F96';
+    const driversGuid = '15ED4D37-A09A-11D7-B6DA-0020ED939F96';
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection('/PMB_ELEC/Mst_StaffDetails/tables/')

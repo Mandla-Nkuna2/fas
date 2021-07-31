@@ -67,47 +67,48 @@
           </ion-button>
         </div>
       </div>
-      <ion-grid fixed>
+      <ng-template #noItems> No items. </ng-template>
+      <ion-grid fixed *ngIf="vehicleReps.length; else noItems">
         <ion-row class="title-row">
           <ion-col size="0.5" class="flex al-center jc-center"> </ion-col>
-          <ion-col size="2.5" class="flex al-center jc-center">
+          <ion-col size="2" class="flex al-center jc-center">
             <h4>Vehicle</h4>
           </ion-col>
-          <ion-col size="2.5" class="flex al-center jc-center">
+          <ion-col size="2" class="flex al-center jc-center">
             <h4>date</h4>
           </ion-col>
-          <ion-col size="3" class="flex al-center jc-center">
+          <ion-col size="4" class="flex al-center jc-center">
             <h4>Tasks</h4>
           </ion-col>
-          <ion-col size="3.5" class="flex al-center jc-center">
+          <ion-col size="2" class="flex al-center jc-center">
             <h4>cost</h4>
           </ion-col>
         </ion-row>
-        <div class="values">
+        <div class="values" *ngFor="let item of vehicleReps; let i = index">
           <ion-row class="value-row" (click)="goDetail()">
             <ion-col size="0.5" class="flex al-center jc-center">
               <ion-checkbox></ion-checkbox>
             </ion-col>
-            <ion-col size="2.5" class="flex al-center jc-center">
-              <p>NPC6600</p>
+            <ion-col size="2" class="flex al-center jc-center">
+              <p>{{ item.RegIndex }}</p>
             </ion-col>
-            <ion-col size="2.5" class="flex al-center jc-center">
-              <p>23 JAN 2006</p>
+            <ion-col size="2" class="flex al-center jc-center">
+              <p>{{ item.StartDate }}</p>
             </ion-col>
-            <ion-col size="3" class="flex al-center jc-center">
-              <p>Oil Change, Engine Examination</p>
+            <ion-col size="4" class="flex al-center jc-center">
+              <p>{{ item.Workdone }}</p>
             </ion-col>
-            <ion-col size="2.5" class="flex al-center jc-center">
-              <p>R 1200</p>
+            <ion-col size="2" class="flex al-center jc-center">
+              <p>{{ item.CostAct }}</p>
             </ion-col>
-            <ion-col size="1" class="flex al-center jc-start">
+            <!-- <ion-col size="1" class="flex al-center jc-start">
               <ion-button>
                 <ion-icon
                   slot="icon-only"
                   name="ellipsis-vertical-outline"
                 ></ion-icon>
               </ion-button>
-            </ion-col>
+            </ion-col> -->
           </ion-row>
           <!-- <div class="more">
             <div class="divider"></div>

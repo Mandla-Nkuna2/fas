@@ -152,7 +152,7 @@ export class FirebaseReportService {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection('PMB_ELEC/Trn_Revenue/tables')
-        .ref.limit(this.limVal)
+        .ref.limit(4)
         .get()
         .then((obj) => {
           let data = [];
@@ -911,6 +911,65 @@ export class FirebaseReportService {
         .collection('PMB_ELEC/Sup_ServType/tables')
         .ref.limit(this.limVal)
         .get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obElem) => {
+            data.push(obElem.data());
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+
+  getVehiclesCount() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('PMB_ELEC/Mst_Item/tables')
+        .ref.where('ItemCatg', '==', 'VEHICLES')
+        .get()
+        .then((obj) => {
+          let count = 0;
+          count = obj.size;
+          resolve(count);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+
+  public getFleet() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('PMB_ELEC/Mst_Item/tables')
+        .ref //.where('StaffGuid', '!=', '')
+        .where('ItemCatg', '==', 'VEHICLES')
+        .limit(this.limVal)
+        .get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obElem) => {
+            data.push(obElem.data());
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+
+  public getStaffleft() {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection('PMB_ELEC/Mst_StaffDetails/tables')
+        .ref.get()
         .then((obj) => {
           let data = [];
           obj.docs.forEach((obElem) => {

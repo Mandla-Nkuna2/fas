@@ -1,3 +1,4 @@
+import Staff from 'src/app/models/supportdata/StaffDetails.model';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Chart } from 'chart.js';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
@@ -13,6 +14,7 @@ export class DashboardPage implements OnInit {
   @ViewChild('lineCanvas2', { static: true }) lineCanvas2;
   @ViewChild('lineCanvas3', { static: true }) lineCanvas3;
   @ViewChild('lineCanvas4', { static: true }) lineCanvas4;
+
   bars: any;
   colorArray: any;
   lineChart: any;
@@ -28,6 +30,13 @@ export class DashboardPage implements OnInit {
   currentDate = new Date();
   moreDetails = false;
   showIndex: any;
+  vehiclesCount = 0;
+  vehicles: any = [];
+  staff: any;
+  expLics = 0;
+  abttExpLics = 0;
+  revenueVs = [];
+  revenueDates = [];
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -36,7 +45,10 @@ export class DashboardPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.onTableRep();
+    this.onRevenue();
+    this.onVehiclesCount();
+    this.onTableReps();
+    this.onVehicles();
     this.lineChartMethod();
     this.lineChartMethod2();
     this.lineChartMethod3();
@@ -58,7 +70,7 @@ export class DashboardPage implements OnInit {
     }
   }
 
-  onTableRep() {
+  onTableReps() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
         .getAssetLeft()
@@ -120,6 +132,90 @@ export class DashboardPage implements OnInit {
     });
   }
 
+  onVehiclesCount() {
+    this.firebaseRepServ.getVehiclesCount().then((mNm: any) => {
+      this.vehiclesCount = mNm;
+    });
+  }
+
+  onVehicles() {
+    this.firebaseRepServ.getFleet().then((mNm: any) => {
+      this.vehicles = mNm;
+      this.onStaffLeft();
+      this.onFlMakeAndMod();
+    });
+  }
+
+  onStaffLeft() {
+    this.firebaseRepServ.getStaffleft().then((mNm: any) => {
+      this.staff = mNm;
+
+      mNm.forEach((elm) => {
+        elm.licExpDate = new Date(elm.Lic_ExpDate);
+      });
+
+      mNm.forEach((elm) => {
+        this.vehicles.forEach((obj) => {
+          if (elm.StaffGuid == obj.StaffGuid) {
+            obj.staff = elm.StaffFirstName + ' ' + elm.StaffSurname;
+            obj.staffId = elm.IDno;
+          }
+        });
+      });
+      this.onExpLics();
+      this.onAbttExpLics();
+    });
+  }
+
+  onFlMakeAndMod() {
+    this.firebaseGetServ.getAssetMakenModelLeft().then((mNm: any) => {
+      this.makesAndMods = mNm;
+
+      mNm.forEach((elm) => {
+        this.vehicles.forEach((obj) => {
+          if (elm.ItemMakModGuid == obj.ItemMakModGuid) {
+            obj.ItemMakMod = elm.ItemMakMod;
+          }
+        });
+      });
+    });
+  }
+
+  onExpLics() {
+    this.staff.forEach((elm) => {
+      if (elm.licExpDate <= new Date()) {
+        this.expLics++;
+      }
+    });
+  }
+
+  onAbttExpLics() {
+    let cDate = new Date();
+
+    this.staff.forEach((elm) => {
+      if (
+        elm.licExpDate > cDate &&
+        elm.licExpDate <= cDate.setDate(cDate.getDate() + 31)
+      ) {
+        this.abttExpLics++;
+      }
+    });
+  }
+
+  onRevenue() {
+    this.firebaseRepServ.getRevenue().then((mNm: any) => {
+      mNm.sort((a, b) => {
+        return <any>new Date(a.RevenueDate) - <any>new Date(b.RevenueDate);
+      });
+
+      mNm.forEach((elm) => {
+        this.revenueVs.push(elm.Total);
+        this.revenueDates.push(elm.RevenueDate);
+      });
+      this.lineChartMethod3();
+    });
+  }
+
   lineChartMethod() {
     this.lineChart = new Chart(this.lineCanvas.nativeElement, {
       type: 'pie',
@@ -174,7 +270,7 @@ export class DashboardPage implements OnInit {
       maintainAspectRatio: false,
       responsive: true,
       data: {
-        labels: ['12 Sep', '13 Sep', '14 Sep', '15 Sep', '16 Sep'],
+        labels: this.revenueDates,
         datasets: [
           {
             label: 'Income',
@@ -195,7 +291,7 @@ export class DashboardPage implements OnInit {
             pointHoverBorderWidth: 2,
             pointRadius: 3,
             pointHitRadius: 10,
-            data: [40, 60, 50, 70, 75],
+            data: this.revenueVs,
             spanGaps: false,
           },
         ],

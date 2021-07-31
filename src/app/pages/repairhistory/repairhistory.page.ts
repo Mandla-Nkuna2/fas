@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
-import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
 import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 
@@ -10,21 +9,22 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
   styleUrls: ['./repairhistory.page.scss'],
 })
 export class RepairhistoryPage implements OnInit {
-  vehicleReps: any[];
+  vehicleReps: any = [];
 
   constructor(
     private navCtrl: NavController,
     private firebaseRepServ: FirebaseReportService,
     private popUp: PopupHelper,
-    private firebaseGetServ: FirebaseGetService,
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.onTableRep();
+  }
 
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
-        .getItemComponents()
+        .getMaintEvent()
         .then((mNm: any) => {
           this.vehicleReps = mNm;
           this.popUp.dismissLoading();
