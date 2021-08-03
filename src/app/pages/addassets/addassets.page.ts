@@ -10,6 +10,8 @@ import {
 } from './../../models/capture/Asset.model';
 import { Component, OnInit } from '@angular/core';
 import { v4 as uuidv4 } from 'uuid';
+import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-addassets',
@@ -17,6 +19,7 @@ import { v4 as uuidv4 } from 'uuid';
   styleUrls: ['./addassets.page.scss'],
 })
 export class AddassetsPage implements OnInit {
+  organization = 'InnTee';
   asset: Asset;
   assets: any = [];
 
@@ -33,9 +36,11 @@ export class AddassetsPage implements OnInit {
   drop: false;
 
   constructor(
+    private firebaseRepServ: FirebaseReportService,
     private firebaseService: FirebaseService,
     private firebaseGetServ: FirebaseGetService,
     private popUp: PopupHelper,
+    public afAuth: AngularFireAuth,
   ) {
     this.asset = new Asset();
     this.asset.generalInformation = Object.assign({}, new GeneralInformation());
@@ -45,6 +50,7 @@ export class AddassetsPage implements OnInit {
   }
 
   ngOnInit() {
+    this.getCurentUser();
     this.onMakeAndModel();
     this.onColor();
     this.onBattery();
@@ -131,11 +137,24 @@ export class AddassetsPage implements OnInit {
     });
   }
 
+  getCurentUser() {
+    this.afAuth.onAuthStateChanged((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+    });
+  }
+
   onAdd() {
     this.asset.generalInformation.ItemGuid = uuidv4();
     this.firebaseService
       .writeData(
-        'myTest',
+        this.organization,
         'Mst_Item',
         Object.assign({}, this.asset),
         this.asset.generalInformation.ItemGuid,

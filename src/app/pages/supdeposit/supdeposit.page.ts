@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { NavController } from '@ionic/angular';
 import SupplierDeposit from 'src/app/models/capture/SupplierDeposit.model';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
@@ -13,6 +14,7 @@ import { v4 as uuidv4 } from 'uuid';
   styleUrls: ['./supdeposit.page.scss'],
 })
 export class SupdepositPage implements OnInit {
+  organization = 'InnTee';
   supplierDeposit: SupplierDeposit;
   supplierDeposits: any[];
 
@@ -24,11 +26,13 @@ export class SupdepositPage implements OnInit {
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
+    public afAuth: AngularFireAuth,
   ) {
     this.supplierDeposit = new SupplierDeposit();
   }
 
   ngOnInit() {
+    this.getCurentUser();
     this.onTableRep();
     this.onSupplierName();
   }
@@ -73,12 +77,25 @@ export class SupdepositPage implements OnInit {
     });
   }
 
+  getCurentUser() {
+    this.afAuth.onAuthStateChanged((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+    });
+  }
+
   onAdd() {
     this.supplierDeposit.SupBalguid = uuidv4();
 
     this.firebaseService
       .writeData(
-        'myTest',
+        this.organization,
         'Trn_SuppBalance',
         Object.assign({}, this.supplierDeposit),
         this.supplierDeposit.SupBalguid,

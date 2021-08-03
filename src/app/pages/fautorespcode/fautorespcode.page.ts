@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseGetService } from './../../services/firebase-service/firebase-get.service';
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 import { FirebaseService } from './../../services/firebase-service/firebase-service.service';
 import FAutoRespCode from 'src/app/models/supportdata/FAutoRespCode.model';
 import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 import { v4 as uuidv4 } from 'uuid';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-fautorespcode',
@@ -12,6 +12,7 @@ import { v4 as uuidv4 } from 'uuid';
   styleUrls: ['./fautorespcode.page.scss'],
 })
 export class FautorespcodePage implements OnInit {
+  organization = 'InnTee';
   fautorespcode: FAutoRespCode;
   fautorespcodes: FAutoRespCode[] = [];
 
@@ -19,11 +20,13 @@ export class FautorespcodePage implements OnInit {
     private firebaseRepServ: FirebaseReportService,
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
+    public afAuth: AngularFireAuth,
   ) {
     this.fautorespcode = new FAutoRespCode();
   }
 
   ngOnInit() {
+    this.getCurentUser();
     this.onTableRep();
   }
 
@@ -43,12 +46,25 @@ export class FautorespcodePage implements OnInit {
     });
   }
 
+  getCurentUser() {
+    this.afAuth.onAuthStateChanged((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+    });
+  }
+
   onAdd() {
     this.fautorespcode.ResponseGuid = uuidv4();
 
     this.firebaseService
       .writeData(
-        'myTest',
+        this.organization,
         'Sup_Response',
         Object.assign({}, this.fautorespcode),
         this.fautorespcode.ResponseGuid,

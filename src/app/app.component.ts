@@ -1,10 +1,6 @@
 import { Component } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFirestore } from '@angular/fire/firestore';
 import { NavController } from '@ionic/angular';
-import { Storage } from '@ionic/storage';
-import { first } from 'rxjs/operators';
-import { FirebaseGetService } from './services/firebase-service/firebase-get.service';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -298,12 +294,7 @@ export class AppComponent {
 
   showMenu = true;
 
-  constructor(
-    private storage: Storage,
-    private auth: AngularFireAuth,
-    private nav: NavController,
-    private firebaseGetServ: FirebaseGetService,
-  ) {}
+  constructor(private auth: AngularFireAuth, private nav: NavController) {}
 
   ngOnInit(): void {
     this.loginCheck();

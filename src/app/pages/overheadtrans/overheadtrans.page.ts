@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { NavController } from '@ionic/angular';
 import OverheadTransaction from 'src/app/models/capture/OverheadTransaction.model';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
@@ -13,6 +14,7 @@ import { v4 as uuidv4 } from 'uuid';
   styleUrls: ['./overheadtrans.page.scss'],
 })
 export class OverheadtransPage implements OnInit {
+  organization = 'InnTee';
   overheadTrans: OverheadTransaction;
   overheadTranss: any[] = [];
 
@@ -23,13 +25,15 @@ export class OverheadtransPage implements OnInit {
     private navCtrl: NavController,
     private firebaseRepServ: FirebaseReportService,
     private firebaseService: FirebaseService,
-    private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
+    private popUp: PopupHelper,
+    public afAuth: AngularFireAuth,
   ) {
     this.overheadTrans = new OverheadTransaction();
   }
 
   ngOnInit() {
+    this.getCurentUser();
     this.onTableRep();
     this.onOverheadType();
     this.onCostCentre();
@@ -90,12 +94,25 @@ export class OverheadtransPage implements OnInit {
     });
   }
 
+  getCurentUser() {
+    this.afAuth.onAuthStateChanged((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+    });
+  }
+
   onAdd() {
     this.overheadTrans.OverheadGuid = uuidv4();
 
     this.firebaseService
       .writeData(
-        'myTest',
+        this.organization,
         'Trn_Overheads',
         Object.assign({}, this.overheadTrans),
         this.overheadTrans.OverheadGuid,

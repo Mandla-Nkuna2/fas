@@ -5,6 +5,7 @@ import { FirebaseService } from './../../services/firebase-service/firebase-serv
 import SupplierDetails from 'src/app/models/supportdata/SupplierDetails.model';
 import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 import { v4 as uuidv4 } from 'uuid';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-supplierdetails',
@@ -12,6 +13,7 @@ import { v4 as uuidv4 } from 'uuid';
   styleUrls: ['./supplierdetails.page.scss'],
 })
 export class SupplierdetailsPage implements OnInit {
+  organization = 'InnTee';
   supplier: SupplierDetails;
   suppliers: any[] = [];
 
@@ -22,11 +24,13 @@ export class SupplierdetailsPage implements OnInit {
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
+    public afAuth: AngularFireAuth,
   ) {
     this.supplier = new SupplierDetails();
   }
 
   ngOnInit() {
+    this.getCurentUser();
     this.onTableRep();
     this.onCategory();
   }
@@ -67,12 +71,25 @@ export class SupplierdetailsPage implements OnInit {
     });
   }
 
+  getCurentUser() {
+    this.afAuth.onAuthStateChanged((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+    });
+  }
+
   onAdd() {
     this.supplier.SuppGuid = uuidv4();
 
     this.firebaseService
       .writeData(
-        'myTest',
+        this.organization,
         'Mst_Supplier',
         Object.assign({}, this.supplier),
         this.supplier.SuppGuid,

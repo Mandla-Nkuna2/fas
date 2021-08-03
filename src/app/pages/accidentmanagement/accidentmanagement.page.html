@@ -275,14 +275,14 @@
                 <ion-col size="5.5">
                   <div class="item-input">
                     <ion-label>Accident/Incident Report</ion-label>
-                    <ion-item lines="none">
-                      <ion-select multiple="false" placeholder="Please select">
-                        <ion-select-option
-                          *ngFor="let rep of accidentManagement.AccidentRep"
-                          >{{rep}}</ion-select-option
-                        >
-                        >
-                      </ion-select>
+                    <ion-item>
+                      <ionic-selectable
+                        [(ngModel)]="accidentManagement.AccidentRep"
+                        [items]="yesNo"
+                        [canSearch]="true"
+                        [hasInfiniteScroll]="true"
+                      >
+                      </ionic-selectable>
                     </ion-item>
                   </div>
                 </ion-col>
@@ -419,7 +419,7 @@
             </ion-col>
 
             <ion-col size="2.5" offset="1.5" class="flex al-end">
-              <ion-button expand="block" id="btn" (click)="onMarkAsComplete()">
+              <ion-button expand="block" id="btn" (click)="onAdd()">
                 Mark as Completed
               </ion-button>
             </ion-col>

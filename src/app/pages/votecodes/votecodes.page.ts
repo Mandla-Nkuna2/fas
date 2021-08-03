@@ -5,6 +5,7 @@ import { FirebaseService } from './../../services/firebase-service/firebase-serv
 import Votecodes from 'src/app/models/supportdata/VoteCode.model';
 import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 import { v4 as uuidv4 } from 'uuid';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-votecodes',
@@ -12,6 +13,7 @@ import { v4 as uuidv4 } from 'uuid';
   styleUrls: ['./votecodes.page.scss'],
 })
 export class VotecodesPage implements OnInit {
+  organization = 'InnTee';
   voteCode: Votecodes;
   voteCodes: Votecodes[] = [];
 
@@ -23,11 +25,13 @@ export class VotecodesPage implements OnInit {
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
+    public afAuth: AngularFireAuth,
   ) {
     this.voteCode = new Votecodes();
   }
 
   ngOnInit() {
+    this.getCurentUser();
     this.onTableRep();
     this.onVoteCodes();
     this.onDescription();
@@ -62,12 +66,25 @@ export class VotecodesPage implements OnInit {
 
   onDescription() {}
 
+  getCurentUser() {
+    this.afAuth.onAuthStateChanged((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+    });
+  }
+
   onAdd() {
     this.voteCode.VoteCodeGuid = uuidv4();
 
     this.firebaseService
       .writeData(
-        'myTest',
+        this.organization,
         'Trn_Votecodes',
         Object.assign({}, this.voteCode),
         this.voteCode.VoteCodeGuid,

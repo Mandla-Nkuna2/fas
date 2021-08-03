@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { NavController } from '@ionic/angular';
 import MaintenanceEvent from 'src/app/models/capture/MaintenanceEvent.model';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
@@ -13,6 +14,7 @@ import { v4 as uuidv4 } from 'uuid';
   styleUrls: ['./maintaincevent.page.scss'],
 })
 export class MaintainceventPage implements OnInit {
+  organization = 'InnTee';
   maintenanceEvent: MaintenanceEvent;
   maintenanceEvents: any[] = [];
 
@@ -30,11 +32,13 @@ export class MaintainceventPage implements OnInit {
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
+    public afAuth: AngularFireAuth,
   ) {
     this.maintenanceEvent = new MaintenanceEvent();
   }
 
   ngOnInit() {
+    this.getCurentUser();
     this.onTableRep();
     this.onJobCardNo();
     this.onRegistration();
@@ -159,12 +163,25 @@ export class MaintainceventPage implements OnInit {
     });
   }
 
+  getCurentUser() {
+    this.afAuth.onAuthStateChanged((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+    });
+  }
+
   onAdd() {
     this.maintenanceEvent.MaintEvntGuid = uuidv4();
 
     this.firebaseService
       .writeData(
-        'myTest',
+        this.organization,
         'Trn_MaintEvnt',
         Object.assign({}, this.maintenanceEvent),
         this.maintenanceEvent.MaintEvntGuid,

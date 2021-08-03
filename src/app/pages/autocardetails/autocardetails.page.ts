@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { NavController } from '@ionic/angular';
 import AutoCard from 'src/app/models/capture/Autocard.model';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
@@ -13,6 +14,7 @@ import { v4 as uuidv4 } from 'uuid';
   styleUrls: ['./autocardetails.page.scss'],
 })
 export class AutocardetailsPage implements OnInit {
+  organization = 'InnTee';
   autocard: AutoCard;
   autocards: any[] = [];
 
@@ -24,11 +26,13 @@ export class AutocardetailsPage implements OnInit {
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
+    public afAuth: AngularFireAuth,
   ) {
     this.autocard = new AutoCard();
   }
 
   ngOnInit() {
+    this.getCurentUser();
     this.onTableRep();
     this.onRegistration();
   }
@@ -73,12 +77,25 @@ export class AutocardetailsPage implements OnInit {
     });
   }
 
+  getCurentUser() {
+    this.afAuth.onAuthStateChanged((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+    });
+  }
+
   onAdd() {
     this.autocard.AutoCardGuid = uuidv4();
 
     this.firebaseService
       .writeData(
-        'myTest',
+        this.organization,
         'Mst_Autocard',
         Object.assign({}, this.autocard),
         this.autocard.AutoCardGuid,

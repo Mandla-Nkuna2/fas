@@ -9,4 +9,6 @@ export default class User {
   CaptureDate: string = new Date().toString();
   LocUserCode: string;
   Capturename: string;
+  phoneNumber: string;
+  organization: string;
 }

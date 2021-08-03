@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { NavController } from '@ionic/angular';
 import FuelIssue from 'src/app/models/capture/FuelIssue.model';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
@@ -13,6 +14,7 @@ import { v4 as uuidv4 } from 'uuid';
   styleUrls: ['./fuelissues.page.scss'],
 })
 export class FuelissuesPage implements OnInit {
+  organization = 'InnTee';
   fuelIssue: FuelIssue;
   fuelIssues: any[] = [];
 
@@ -28,11 +30,13 @@ export class FuelissuesPage implements OnInit {
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
+    public afAuth: AngularFireAuth,
   ) {
     this.fuelIssue = new FuelIssue();
   }
 
   ngOnInit() {
+    this.getCurentUser();
     this.onTableRep();
     this.onRegistration();
     this.onBowser();
@@ -120,12 +124,25 @@ export class FuelissuesPage implements OnInit {
     });
   }
 
+  getCurentUser() {
+    this.afAuth.onAuthStateChanged((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+    });
+  }
+
   onAdd() {
     this.fuelIssue.FuelIssueGuid = uuidv4();
 
     this.firebaseService
       .writeData(
-        'myTest',
+        this.organization,
         'Trn_FuelIssue',
         Object.assign({}, this.fuelIssue),
         this.fuelIssue.FuelIssueGuid,

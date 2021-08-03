@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { NavController } from '@ionic/angular';
 import ItemComponent from 'src/app/models/capture/ItemComponent.model';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
@@ -13,6 +14,7 @@ import { v4 as uuidv4 } from 'uuid';
   styleUrls: ['./itemcomponents.page.scss'],
 })
 export class ItemcomponentsPage implements OnInit {
+  organization = 'InnTee';
   itemComponent: ItemComponent;
   itemComponents: any[] = [];
 
@@ -28,11 +30,13 @@ export class ItemcomponentsPage implements OnInit {
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
+    public afAuth: AngularFireAuth,
   ) {
     this.itemComponent = new ItemComponent();
   }
 
   ngOnInit() {
+    this.getCurentUser();
     this.onTableRep();
     this.onRegistration();
     this.onCompName();
@@ -156,12 +160,25 @@ export class ItemcomponentsPage implements OnInit {
     });
   }
 
+  getCurentUser() {
+    this.afAuth.onAuthStateChanged((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+    });
+  }
+
   onAdd() {
     this.itemComponent.ItemCompGuid = uuidv4();
 
     this.firebaseService
       .writeData(
-        'myTest',
+        this.organization,
         'Mst_ItemComponents',
         Object.assign({}, this.itemComponent),
         this.itemComponent.ItemCompGuid,

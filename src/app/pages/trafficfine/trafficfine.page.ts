@@ -3,6 +3,7 @@ import { FirebaseService } from './../../services/firebase-service/firebase-serv
 import { Trafficfine } from './../../models/capture/Trafficfine.model';
 import { Component, OnInit } from '@angular/core';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-trafficfine',
@@ -10,6 +11,7 @@ import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-g
   styleUrls: ['./trafficfine.page.scss'],
 })
 export class TrafficfinePage implements OnInit {
+  organization = 'InnTee';
   trafficfine: Trafficfine;
 
   supervisor: any[];
@@ -64,9 +66,11 @@ export class TrafficfinePage implements OnInit {
   }
 
   onMarkAsComplete() {
+    this.trafficfine.TrafficFineGuid = uuidv4();
+
     this.firebaseService
       .writeData(
-        'myTest',
+        this.organization,
         'Trn_TrafficFine',
         Object.assign({}, this.trafficfine),
         this.trafficfine.TrafficFineGuid,

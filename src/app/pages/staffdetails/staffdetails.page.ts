@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import Staff from 'src/app/models/supportdata/StaffDetails.model';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
 import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
@@ -12,6 +13,7 @@ import { v4 as uuidv4 } from 'uuid';
   styleUrls: ['./staffdetails.page.scss'],
 })
 export class StaffdetailsPage implements OnInit {
+  organization = 'InnTee';
   staff: Staff;
   staffs: any[] = [];
 
@@ -24,11 +26,13 @@ export class StaffdetailsPage implements OnInit {
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
+    public afAuth: AngularFireAuth,
   ) {
     this.staff = new Staff();
   }
 
   ngOnInit() {
+    this.getCurentUser();
     this.onTableRep();
     this.onStaffCat();
   }
@@ -75,12 +79,25 @@ export class StaffdetailsPage implements OnInit {
 
   onAddLic() {}
 
+  getCurentUser() {
+    this.afAuth.onAuthStateChanged((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+    });
+  }
+
   onAdd() {
     this.staff.StaffGuid = uuidv4();
 
     this.firebaseService
       .writeData(
-        'myTest',
+        this.organization,
         'Mst_StaffDetails',
         Object.assign({}, this.staff),
         this.staff.StaffGuid,

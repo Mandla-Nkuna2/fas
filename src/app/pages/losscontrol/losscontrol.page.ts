@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { NavController } from '@ionic/angular';
 import LossControl from 'src/app/models/capture/LossControl.model';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
@@ -13,6 +14,7 @@ import { v4 as uuidv4 } from 'uuid';
   styleUrls: ['./losscontrol.page.scss'],
 })
 export class LosscontrolPage implements OnInit {
+  organization = 'InnTee';
   lossControl: LossControl;
   lossControls: any[] = [];
 
@@ -28,13 +30,15 @@ export class LosscontrolPage implements OnInit {
     private navCtrl: NavController,
     private firebaseRepServ: FirebaseReportService,
     private firebaseService: FirebaseService,
-    private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
+    private popUp: PopupHelper,
+    public afAuth: AngularFireAuth,
   ) {
     this.lossControl = new LossControl();
   }
 
   ngOnInit() {
+    this.getCurentUser();
     this.onTableRep();
     this.onAgent();
     this.onRegistration();
@@ -156,12 +160,25 @@ export class LosscontrolPage implements OnInit {
     });
   }
 
+  getCurentUser() {
+    this.afAuth.onAuthStateChanged((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+    });
+  }
+
   onAdd() {
     this.lossControl.LossContGuid = uuidv4();
 
     this.firebaseService
       .writeData(
-        'myTest',
+        this.organization,
         'Trn_LossControl',
         Object.assign({}, this.lossControl),
         this.lossControl.LossContGuid,

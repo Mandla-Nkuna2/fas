@@ -5,6 +5,7 @@ import { FirebaseService } from './../../services/firebase-service/firebase-serv
 import ItemType from 'src/app/models/supportdata/ItemType.model';
 import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 import { v4 as uuidv4 } from 'uuid';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-itemtype',
@@ -12,6 +13,7 @@ import { v4 as uuidv4 } from 'uuid';
   styleUrls: ['./itemtype.page.scss'],
 })
 export class ItemtypePage implements OnInit {
+  organization = 'InnTee';
   itemType: ItemType;
   itemTypes: any[] = [];
 
@@ -37,11 +39,13 @@ export class ItemtypePage implements OnInit {
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
+    public afAuth: AngularFireAuth,
   ) {
     this.itemType = new ItemType();
   }
 
   ngOnInit() {
+    this.getCurentUser();
     this.onTableRep();
     this.onTypeName();
     this.onTypeClass();
@@ -124,12 +128,25 @@ export class ItemtypePage implements OnInit {
     });
   }
 
+  getCurentUser() {
+    this.afAuth.onAuthStateChanged((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+    });
+  }
+
   onAdd() {
     this.itemType.ItemTypeGuid = uuidv4();
 
     this.firebaseService
       .writeData(
-        'myTest',
+        this.organization,
         'Sup_ItemType',
         Object.assign({}, this.itemType),
         this.itemType.ItemTypeGuid,

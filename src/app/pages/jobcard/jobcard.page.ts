@@ -12,6 +12,8 @@ import {
 import { FirebaseGetService } from '../../services/firebase-service/firebase-get.service';
 import { SignaturePad } from 'angular2-signaturepad/signature-pad';
 import { v4 as uuidv4 } from 'uuid';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 
 @Component({
   selector: 'app-jobcard',
@@ -19,6 +21,7 @@ import { v4 as uuidv4 } from 'uuid';
   styleUrls: ['./jobcard.page.scss'],
 })
 export class JobcardPage implements OnInit {
+  organization = 'InnTee';
   @ViewChild('signatureCanvas', { static: false }) signaturePad: SignaturePad;
 
   jobCard: JobCard;
@@ -31,9 +34,11 @@ export class JobcardPage implements OnInit {
   operatorSig = '';
 
   constructor(
+    private firebaseRepServ: FirebaseReportService,
     private firebaseService: FirebaseService,
-    private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
+    private popUp: PopupHelper,
+    public afAuth: AngularFireAuth,
   ) {
     this.jobCard = new JobCard();
     this.jobCard.generalInformation = Object.assign(
@@ -59,6 +64,7 @@ export class JobcardPage implements OnInit {
   }
 
   ngOnInit() {
+    this.getCurentUser();
     this.onReportedBy();
     this.onDriver();
   }
@@ -125,12 +131,25 @@ export class JobcardPage implements OnInit {
 
   onChange() {}
 
+  getCurentUser() {
+    this.afAuth.onAuthStateChanged((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+    });
+  }
+
   onAdd() {
     this.jobCard.generalInformation.JobCardNo = uuidv4();
 
     this.firebaseService
       .writeData(
-        'myTest',
+        this.organization,
         'Trn_JobCards',
         Object.assign({}, this.jobCard),
         this.jobCard.generalInformation.JobCardNo,

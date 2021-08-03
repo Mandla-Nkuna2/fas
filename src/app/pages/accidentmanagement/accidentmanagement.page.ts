@@ -3,6 +3,9 @@ import { FirebaseService } from './../../services/firebase-service/firebase-serv
 import { AccidentManagement } from './../../models/capture/AccidentManagement.model';
 import { Component, OnInit } from '@angular/core';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
+import { v4 as uuidv4 } from 'uuid';
+import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-accidentmanagement',
@@ -10,6 +13,8 @@ import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-g
   styleUrls: ['./accidentmanagement.page.scss'],
 })
 export class AccidentmanagementPage implements OnInit {
+  organization = 'InnTee';
+
   accidentManagement: AccidentManagement;
 
   agent: any[];
@@ -21,14 +26,17 @@ export class AccidentmanagementPage implements OnInit {
   lossCntrlAction: any[];
 
   constructor(
+    private firebaseRepServ: FirebaseReportService,
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
+    public afAuth: AngularFireAuth,
   ) {
     this.accidentManagement = new AccidentManagement();
   }
 
   ngOnInit() {
+    this.getCurentUser();
     this.onAgent();
     this.onRegistration();
     this.onLossType();
@@ -93,10 +101,25 @@ export class AccidentmanagementPage implements OnInit {
     });
   }
 
-  onMarkAsComplete() {
+  getCurentUser() {
+    this.afAuth.onAuthStateChanged((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+    });
+  }
+
+  onAdd() {
+    this.accidentManagement.LossContGuid = uuidv4();
+
     this.firebaseService
       .writeData(
-        'myTest',
+        this.organization,
         'Trn_LossControl',
         Object.assign({}, this.accidentManagement),
         this.accidentManagement.LossContGuid,

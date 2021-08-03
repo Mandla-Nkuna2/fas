@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { NavController } from '@ionic/angular';
 import BowserTransaction from 'src/app/models/capture/BowserTransaction.model';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
@@ -13,6 +14,7 @@ import { v4 as uuidv4 } from 'uuid';
   styleUrls: ['./browsertransactions.page.scss'],
 })
 export class BrowsertransactionsPage implements OnInit {
+  organization = 'InnTee';
   bowserTransaction: BowserTransaction;
   bowserTransactions: any[] = [];
 
@@ -24,11 +26,13 @@ export class BrowsertransactionsPage implements OnInit {
     private firebaseService: FirebaseService,
     private firebaseGetServ: FirebaseGetService,
     private popUp: PopupHelper,
+    public afAuth: AngularFireAuth,
   ) {
     this.bowserTransaction = new BowserTransaction();
   }
 
   ngOnInit() {
+    this.getCurentUser();
     this.onTableRep();
   }
 
@@ -67,12 +71,25 @@ export class BrowsertransactionsPage implements OnInit {
     });
   }
 
+  getCurentUser() {
+    this.afAuth.onAuthStateChanged((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+    });
+  }
+
   onAdd() {
     this.bowserTransaction.BowserTrnGuid = uuidv4();
 
     this.firebaseService
       .writeData(
-        'myTest',
+        this.organization,
         'Trn_Bowsers',
         Object.assign({}, this.bowserTransaction),
         this.bowserTransaction.BowserTrnGuid,

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import ServiceTask from 'src/app/models/supportdata/ServiceTask.model';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
 import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
@@ -12,6 +13,7 @@ import { v4 as uuidv4 } from 'uuid';
   styleUrls: ['./servschedultask.page.scss'],
 })
 export class ServschedultaskPage implements OnInit {
+  organization = 'InnTee';
   serviceSchTask: ServiceTask;
   serviceSchTasks: any[] = [];
 
@@ -21,14 +23,15 @@ export class ServschedultaskPage implements OnInit {
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
-    private firebaseGetServ: FirebaseGetService,
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
+    public afAuth: AngularFireAuth,
   ) {
     this.serviceSchTask = new ServiceTask();
   }
 
   ngOnInit() {
+    this.getCurentUser();
     this.onTableRep();
   }
 
@@ -78,12 +81,25 @@ export class ServschedultaskPage implements OnInit {
     });
   }
 
+  getCurentUser() {
+    this.afAuth.onAuthStateChanged((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+    });
+  }
+
   onAdd() {
     this.serviceSchTask.ServHistGuid = uuidv4();
 
     this.firebaseService
       .writeData(
-        'myTest',
+        this.organization,
         'Trn_ServScheduleHistory',
         Object.assign({}, this.serviceSchTask),
         this.serviceSchTask.ServHistGuid,

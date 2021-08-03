@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { NavController } from '@ionic/angular';
 import StaffTimesheet from 'src/app/models/capture/StaffTimesheet.model';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
@@ -13,6 +14,7 @@ import { v4 as uuidv4 } from 'uuid';
   styleUrls: ['./stafftimesheets.page.scss'],
 })
 export class StafftimesheetsPage implements OnInit {
+  organization = 'InnTee';
   staffTimesheet: StaffTimesheet;
   staffTimesheets: any[] = [];
 
@@ -24,11 +26,13 @@ export class StafftimesheetsPage implements OnInit {
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
+    public afAuth: AngularFireAuth,
   ) {
     this.staffTimesheet = new StaffTimesheet();
   }
 
   ngOnInit() {
+    this.getCurentUser();
     this.onTableRep();
     this.onStaffMember();
   }
@@ -88,12 +92,25 @@ export class StafftimesheetsPage implements OnInit {
     });
   }
 
+  getCurentUser() {
+    this.afAuth.onAuthStateChanged((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+    });
+  }
+
   onAdd() {
     this.staffTimesheet.Staff_TrnGuid = uuidv4();
 
     this.firebaseService
       .writeData(
-        'myTest',
+        this.organization,
         'Trn_StaffTime',
         Object.assign({}, this.staffTimesheet),
         this.staffTimesheet.Staff_TrnGuid,

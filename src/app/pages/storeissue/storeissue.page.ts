@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { NavController } from '@ionic/angular';
 import StoreIssue from 'src/app/models/capture/StoreIssue.model';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
@@ -13,6 +14,7 @@ import { v4 as uuidv4 } from 'uuid';
   styleUrls: ['./storeissue.page.scss'],
 })
 export class StoreissuePage implements OnInit {
+  organization = 'InnTee';
   storeIssue: StoreIssue;
   storeIssues: any[] = [];
 
@@ -27,11 +29,13 @@ export class StoreissuePage implements OnInit {
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
+    public afAuth: AngularFireAuth,
   ) {
     this.storeIssue = new StoreIssue();
   }
 
   ngOnInit() {
+    this.getCurentUser();
     this.onTableRep();
     this.onRegistration();
     this.onMaintEvRefNo();
@@ -116,12 +120,25 @@ export class StoreissuePage implements OnInit {
     });
   }
 
+  getCurentUser() {
+    this.afAuth.onAuthStateChanged((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+    });
+  }
+
   onAdd() {
     this.storeIssue.StoreIssueGuid = uuidv4();
 
     this.firebaseService
       .writeData(
-        'myTest',
+        this.organization,
         'Trn_StoreIssue',
         Object.assign({}, this.storeIssue),
         this.storeIssue.StoreIssueGuid,

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import FixedCostTransfer from 'src/app/models/capture/FixedCostTransfer.model';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
 import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
@@ -12,6 +13,7 @@ import { v4 as uuidv4 } from 'uuid';
   styleUrls: ['./fixedcostransfer.page.scss'],
 })
 export class FixedcostransferPage implements OnInit {
+  organization = 'InnTee';
   fixedCostTransf: FixedCostTransfer;
   fixedCostTransfs: any[] = [];
 
@@ -23,11 +25,13 @@ export class FixedcostransferPage implements OnInit {
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
+    public afAuth: AngularFireAuth,
   ) {
     this.fixedCostTransf = new FixedCostTransfer();
   }
 
   ngOnInit() {
+    this.getCurentUser();
     this.onTableRep();
     this.onRegistration();
     this.onCostCentre();
@@ -80,12 +84,25 @@ export class FixedcostransferPage implements OnInit {
     });
   }
 
+  getCurentUser() {
+    this.afAuth.onAuthStateChanged((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+    });
+  }
+
   onAdd() {
     this.fixedCostTransf.FixedcostTransGuid = uuidv4();
 
     this.firebaseService
       .writeData(
-        'myTest',
+        this.organization,
         'Trn_FixedCosts',
         Object.assign({}, this.fixedCostTransf),
         this.fixedCostTransf.FixedcostTransGuid,

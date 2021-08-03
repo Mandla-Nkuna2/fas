@@ -5,6 +5,7 @@ import { FirebaseService } from './../../services/firebase-service/firebase-serv
 import StoreCategory from 'src/app/models/supportdata/StoreCategories.model';
 import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 import { v4 as uuidv4 } from 'uuid';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-storecategories',
@@ -12,6 +13,7 @@ import { v4 as uuidv4 } from 'uuid';
   styleUrls: ['./storecategories.page.scss'],
 })
 export class StorecategoriesPage implements OnInit {
+  organization = 'InnTee';
   storeCat: StoreCategory;
   storeCats: StoreCategory[] = [];
 
@@ -22,11 +24,13 @@ export class StorecategoriesPage implements OnInit {
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
+    public afAuth: AngularFireAuth,
   ) {
     this.storeCat = new StoreCategory();
   }
 
   ngOnInit() {
+    this.getCurentUser();
     this.onTableRep();
   }
 
@@ -56,12 +60,25 @@ export class StorecategoriesPage implements OnInit {
     });
   }
 
+  getCurentUser() {
+    this.afAuth.onAuthStateChanged((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+    });
+  }
+
   onAdd() {
     this.storeCat.StoreCatgGuid = uuidv4();
 
     this.firebaseService
       .writeData(
-        'myTest',
+        this.organization,
         'Sup_StoreCatg',
         Object.assign({}, this.storeCat),
         this.storeCat.StoreCatgGuid,

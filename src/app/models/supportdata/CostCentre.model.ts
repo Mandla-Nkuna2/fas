@@ -5,7 +5,7 @@ export default class CostCentre {
   StartDate: string;
   EndDate: string;
   ACCCostCode: string;
-  CaptureDate: string = new Date().toString();
+  Capturedate: string = new Date().toString();
   Capturename: string;
   Comment: string;
   Active: string;

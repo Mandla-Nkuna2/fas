@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { NavController } from '@ionic/angular';
 import FixedCostsDet from 'src/app/models/capture/FixedCostsDet.model';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
@@ -13,6 +14,7 @@ import { v4 as uuidv4 } from 'uuid';
   styleUrls: ['./fixedcostdetails.page.scss'],
 })
 export class FixedcostdetailsPage implements OnInit {
+  organization = 'InnTee';
   fixedCost: FixedCostsDet;
   fixedCosts: any[] = [];
 
@@ -26,11 +28,13 @@ export class FixedcostdetailsPage implements OnInit {
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
+    public afAuth: AngularFireAuth,
   ) {
     this.fixedCost = new FixedCostsDet();
   }
 
   ngOnInit() {
+    this.getCurentUser();
     this.onTableRep();
     this.onFixedCostType();
     this.onRegistraion();
@@ -73,12 +77,25 @@ export class FixedcostdetailsPage implements OnInit {
     });
   }
 
+  getCurentUser() {
+    this.afAuth.onAuthStateChanged((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+    });
+  }
+
   onAdd() {
     this.fixedCost.FixedCostGuid = uuidv4();
 
     this.firebaseService
       .writeData(
-        'myTest',
+        this.organization,
         'Mst_FixedCosts',
         Object.assign({}, this.fixedCost),
         this.fixedCost.FixedCostGuid,

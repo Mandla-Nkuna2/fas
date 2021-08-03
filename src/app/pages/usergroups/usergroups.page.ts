@@ -4,24 +4,30 @@ import { FirebaseGetService } from './../../services/firebase-service/firebase-g
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 import { FirebaseService } from './../../services/firebase-service/firebase-service.service';
 import { v4 as uuidv4 } from 'uuid';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 @Component({
   selector: 'app-usergroups',
   templateUrl: './usergroups.page.html',
   styleUrls: ['./usergroups.page.scss'],
 })
 export class UsergroupsPage implements OnInit {
+  organization = 'InnTee';
   userGroup: UserGroup;
   userGroups: UserGroup[];
 
   constructor(
+    private firebaseRepServ: FirebaseReportService,
     private firebaseService: FirebaseService,
-    private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
+    private popUp: PopupHelper,
+    public afAuth: AngularFireAuth,
   ) {
     this.userGroup = new UserGroup();
   }
 
   ngOnInit() {
+    this.getCurentUser();
     this.onUserGroups();
   }
 
@@ -31,12 +37,25 @@ export class UsergroupsPage implements OnInit {
     });
   }
 
+  getCurentUser() {
+    this.afAuth.onAuthStateChanged((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+    });
+  }
+
   onAdd() {
     this.userGroup.UserGroupGuid = uuidv4();
 
     this.firebaseService
       .writeData(
-        'myTest',
+        this.organization,
         'Sys_UserGroup',
         Object.assign({}, this.userGroup),
         this.userGroup.UserGroupGuid,

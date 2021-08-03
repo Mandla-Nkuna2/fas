@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { NavController } from '@ionic/angular';
 import { Asset } from 'src/app/models/capture/Asset.model';
 import LicCorAndSafInspcDates from 'src/app/models/capture/LicCorAndSafInspcDates.model';
@@ -14,6 +15,7 @@ import { v4 as uuidv4 } from 'uuid';
   styleUrls: ['./licensecor.page.scss'],
 })
 export class LicensecorPage implements OnInit {
+  organization = 'InnTee';
   licCorAndSafInspec: LicCorAndSafInspcDates;
   licCorAndSafInspecs: any[] = [];
 
@@ -27,11 +29,13 @@ export class LicensecorPage implements OnInit {
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
+    public afAuth: AngularFireAuth,
   ) {
     this.licCorAndSafInspec = new LicCorAndSafInspcDates();
   }
 
   ngOnInit() {
+    this.getCurentUser();
     this.onTableRep();
     this.onRegistration();
     this.onCostCentre();
@@ -74,12 +78,25 @@ export class LicensecorPage implements OnInit {
     });
   }
 
+  getCurentUser() {
+    this.afAuth.onAuthStateChanged((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+    });
+  }
+
   onAdd() {
     this.licCorAndSafInspec.LicHistIndex = uuidv4();
 
     this.firebaseService
       .writeData(
-        'myTest',
+        this.organization,
         'Mst_Licence',
         Object.assign({}, this.licCorAndSafInspec),
         this.licCorAndSafInspec.LicHistIndex,

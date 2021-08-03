@@ -6,6 +6,7 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
 import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 import { v4 as uuidv4 } from 'uuid';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-dailyoperationrecord',
@@ -13,6 +14,7 @@ import { v4 as uuidv4 } from 'uuid';
   styleUrls: ['./dailyoperationrecord.page.scss'],
 })
 export class DailyoperationrecordPage implements OnInit {
+  organization = 'InnTee';
   dOpsRec: DailyOperationRec;
   dailyOpRecs: any[] = [];
 
@@ -26,12 +28,14 @@ export class DailyoperationrecordPage implements OnInit {
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
+    public afAuth: AngularFireAuth,
   ) {
     this.dOpsRec = new DailyOperationRec();
     this.dOpsRec.operator = Object.assign({}, new Operator());
   }
 
   ngOnInit() {
+    this.getCurentUser();
     this.onTableRep();
     this.onRegistration();
     this.onLocation();
@@ -117,12 +121,25 @@ export class DailyoperationrecordPage implements OnInit {
     });
   }
 
+  getCurentUser() {
+    this.afAuth.onAuthStateChanged((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+    });
+  }
+
   onAdd() {
     this.dOpsRec.PlantSheetguid = uuidv4();
 
     this.firebaseService
       .writeData(
-        'myTest',
+        this.organization,
         'Trn_PlantSheets',
         Object.assign({}, this.dOpsRec),
         this.dOpsRec.PlantSheetguid,

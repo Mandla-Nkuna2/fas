@@ -5,6 +5,7 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 import { FirebaseService } from './../../services/firebase-service/firebase-service.service';
 import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 import { v4 as uuidv4 } from 'uuid';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-oiltype',
@@ -12,6 +13,7 @@ import { v4 as uuidv4 } from 'uuid';
   styleUrls: ['./oiltype.page.scss'],
 })
 export class OiltypePage implements OnInit {
+  organization = 'InnTee';
   oilType: OilType;
   oilTypes: any[] = [];
 
@@ -24,11 +26,13 @@ export class OiltypePage implements OnInit {
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
+    public afAuth: AngularFireAuth,
   ) {
     this.oilType = new OilType();
   }
 
   ngOnInit() {
+    this.getCurentUser();
     this.onTableRep();
     this.onOilMake();
     this.onOilGrade();
@@ -96,12 +100,25 @@ export class OiltypePage implements OnInit {
     });
   }
 
+  getCurentUser() {
+    this.afAuth.onAuthStateChanged((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+    });
+  }
+
   onAdd() {
     this.oilType.OilGuid = uuidv4();
 
     this.firebaseService
       .writeData(
-        'myTest',
+        this.organization,
         'Sup_Oiltype',
         Object.assign({}, this.oilType),
         this.oilType.OilGuid,

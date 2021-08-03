@@ -7,6 +7,7 @@ import ItemType from 'src/app/models/supportdata/ItemType.model';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
 import { FirebaseService } from '../../services/firebase-service/firebase-service.service';
 import { PopupHelper } from '../../services/helpers/popup-helper';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-addassetsinfo',
@@ -14,6 +15,8 @@ import { PopupHelper } from '../../services/helpers/popup-helper';
   styleUrls: ['./addassetsinfo.page.scss'],
 })
 export class AddassetsinfoPage implements OnInit {
+  organization = 'InnTee';
+
   itemMakeMod: ItemMakeAndModel;
   itemType: ItemType;
   itemColor: ItemColor;
@@ -58,13 +61,15 @@ export class AddassetsinfoPage implements OnInit {
   }
 
   onAddMakeModel() {
+    this.itemMakeMod.ItemMakModGuid = uuidv4();
+
     this.itemMakeMod.Lic = 'Y';
     this.itemMakeMod.COF = 'N';
     this.itemMakeMod.Active = 'Y';
 
     this.firebaseSevice
       .writeData(
-        'myTest',
+        this.organization,
         'Sup_ItemMakMod',
         Object.assign({}, this.itemMakeMod),
         this.itemMakeMod.ItemMakModGuid,
@@ -79,9 +84,11 @@ export class AddassetsinfoPage implements OnInit {
   }
 
   onAddItemType() {
+    this.itemType.ItemTypeGuid = uuidv4();
+
     this.firebaseSevice
       .writeData(
-        'myTest',
+        this.organization,
         'Sup_ItemType',
         Object.assign({}, this.itemType),
         this.itemType.ItemTypeGuid,
@@ -96,9 +103,11 @@ export class AddassetsinfoPage implements OnInit {
   }
 
   onAddItemColor() {
+    this.itemColor.ColourGuid = uuidv4();
+
     this.firebaseSevice
       .writeData(
-        'myTest',
+        this.organization,
         'Sup_Colour',
         Object.assign({}, this.itemColor),
         this.itemColor.ColourGuid,
@@ -113,9 +122,11 @@ export class AddassetsinfoPage implements OnInit {
   }
 
   onAddBattery() {
+    this.battery.BatteryGuid = uuidv4();
+
     this.firebaseSevice
       .writeData(
-        'myTest',
+        this.organization,
         'Sup_Battery',
         Object.assign({}, this.battery),
         this.battery.BatteryGuid,
@@ -130,9 +141,11 @@ export class AddassetsinfoPage implements OnInit {
   }
 
   onAddVotecode() {
+    this.voteCode.VoteCodeGuid = uuidv4();
+
     this.firebaseSevice
       .writeData(
-        'myTest',
+        this.organization,
         'Trn_Votecodes',
         Object.assign({}, this.voteCode),
         this.voteCode.VoteCodeGuid,

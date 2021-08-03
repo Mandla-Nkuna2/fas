@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import BowserTransfer from 'src/app/models/capture/BowserTransfer.model';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
 import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
@@ -12,6 +13,7 @@ import { v4 as uuidv4 } from 'uuid';
   styleUrls: ['./browsertransfer.page.scss'],
 })
 export class BrowsertransferPage implements OnInit {
+  organization = 'InnTee';
   bowserTransfer: BowserTransfer;
   bowserTransfers: any[] = [];
 
@@ -24,11 +26,13 @@ export class BrowsertransferPage implements OnInit {
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
+    public afAuth: AngularFireAuth,
   ) {
     this.bowserTransfer = new BowserTransfer();
   }
 
   ngOnInit() {
+    this.getCurentUser();
     this.onTableRep();
     this.onCostCentre();
   }
@@ -78,12 +82,25 @@ export class BrowsertransferPage implements OnInit {
     });
   }
 
+  getCurentUser() {
+    this.afAuth.onAuthStateChanged((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+    });
+  }
+
   onAdd() {
     this.bowserTransfer.FuelTransferGuid = uuidv4();
 
     this.firebaseService
       .writeData(
-        'myTest',
+        this.organization,
         'Trn_BowserTransfer',
         Object.assign({}, this.bowserTransfer),
         this.bowserTransfer.FuelTransferGuid,

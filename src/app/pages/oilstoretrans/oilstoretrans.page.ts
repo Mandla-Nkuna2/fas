@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { NavController } from '@ionic/angular';
 import OilStoreTransaction from 'src/app/models/capture/OilStoreTransaction.model';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
@@ -13,6 +14,7 @@ import { v4 as uuidv4 } from 'uuid';
   styleUrls: ['./oilstoretrans.page.scss'],
 })
 export class OilstoretransPage implements OnInit {
+  organization = 'InnTee';
   oilstoreTrans: OilStoreTransaction;
   oilstoreTranss: any[] = [];
 
@@ -30,11 +32,13 @@ export class OilstoretransPage implements OnInit {
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
+    public afAuth: AngularFireAuth,
   ) {
     this.oilstoreTrans = new OilStoreTransaction();
   }
 
   ngOnInit() {
+    this.getCurentUser();
     this.onTableRep();
     this.onOilStore();
     this.onOilType();
@@ -182,12 +186,25 @@ export class OilstoretransPage implements OnInit {
     });
   }
 
+  getCurentUser() {
+    this.afAuth.onAuthStateChanged((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+    });
+  }
+
   onAdd() {
     this.oilstoreTrans.OilStoreTrnGuid = uuidv4();
 
     this.firebaseService
       .writeData(
-        'myTest',
+        this.organization,
         'Trn_OilStoreTransfer',
         Object.assign({}, this.oilstoreTrans),
         this.oilstoreTrans.OilStoreTrnGuid,

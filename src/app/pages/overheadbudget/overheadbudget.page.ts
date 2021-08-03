@@ -5,6 +5,7 @@ import { FirebaseService } from './../../services/firebase-service/firebase-serv
 import OverheadBudget from 'src/app/models/supportdata/OverheadBudget.model';
 import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 import { v4 as uuidv4 } from 'uuid';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-overheadbudget',
@@ -12,6 +13,7 @@ import { v4 as uuidv4 } from 'uuid';
   styleUrls: ['./overheadbudget.page.scss'],
 })
 export class OverheadbudgetPage implements OnInit {
+  organization = 'InnTee';
   oheadbudget: OverheadBudget;
   oheadbudgets: any[] = [];
 
@@ -21,13 +23,15 @@ export class OverheadbudgetPage implements OnInit {
   constructor(
     private firebaseRepServ: FirebaseReportService,
     private firebaseService: FirebaseService,
-    private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
+    private popUp: PopupHelper,
+    public afAuth: AngularFireAuth,
   ) {
     this.oheadbudget = new OverheadBudget();
   }
 
   ngOnInit() {
+    this.getCurentUser();
     this.onTableRep();
     this.onOhbType();
   }
@@ -63,12 +67,25 @@ export class OverheadbudgetPage implements OnInit {
     });
   }
 
+  getCurentUser() {
+    this.afAuth.onAuthStateChanged((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+    });
+  }
+
   onAdd() {
     this.oheadbudget.OverheadBudGuid = uuidv4();
 
     this.firebaseService
       .writeData(
-        'myTest',
+        this.organization,
         'Trn_OverheadBud',
         Object.assign({}, this.oheadbudget),
         this.oheadbudget.OverheadBudGuid,

@@ -1,4 +1,3 @@
-import Staff from 'src/app/models/supportdata/StaffDetails.model';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Chart } from 'chart.js';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';

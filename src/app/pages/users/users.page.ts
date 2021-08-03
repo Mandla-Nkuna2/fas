@@ -13,6 +13,8 @@ import { v4 as uuidv4 } from 'uuid';
   styleUrls: ['./users.page.scss'],
 })
 export class UsersPage implements OnInit {
+  organization = 'InnTee';
+
   user: User;
   users: any[] = [];
 
@@ -31,6 +33,7 @@ export class UsersPage implements OnInit {
   }
 
   ngOnInit() {
+    this.getCurentUser();
     this.onTableRep();
     this.onUserGroup();
     this.onLocation();
@@ -78,12 +81,98 @@ export class UsersPage implements OnInit {
     });
   }
 
-  onAdd() {
-    this.user.UserGuid = uuidv4();
+  getCurentUser() {
+    this.afAuth.onAuthStateChanged((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
 
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+      console.log('returned user: ', this.organization);
+    });
+  }
+
+  registerUser() {
+    // this.user = {
+    //   UserGuid: uuidv4(),
+    //   UserFirstName: '',
+    //   UserSurname: '',
+    //   UserLogin: '',
+    //   UserGroupGuid: '',
+    //   UserPassword: '',
+    //   Active: 'Y',
+    //   CaptureDate: new Date().toString(),
+    //   LocUserCode: '',
+    //   Capturename: '',
+    //   phoneNumber: '',
+    //   organization: '',
+    // };
+
+    this.user.UserGuid = uuidv4();
+    this.user.organization = this.organization;
+    return new Promise<any>((resolve, reject) => {
+      this.afAuth
+        .createUserWithEmailAndPassword(
+          this.user.UserLogin,
+          this.user.UserPassword,
+        )
+        .then((res) => {
+          resolve(res);
+          console.log('registered');
+          // this.addUser();
+          this.captureUsers();
+        })
+        .catch((err) => {
+          reject(err.message);
+          this.popUp.showAlert('Failed', err.message);
+          console.log('failed registering');
+        });
+    });
+  }
+
+  captureUsers() {
     this.firebaseService
       .writeData(
-        'myTest',
+        'InnTee',
+        'Mst_Users',
+        Object.assign({}, this.user),
+        this.user.UserGuid,
+      )
+      .then(() => {
+        console.log('added');
+        this.onAdd();
+      })
+      .catch((err) => {
+        console.log('failed adding');
+        this.popUp.showError(err);
+      });
+  }
+
+  addUser() {
+    this.firebaseService
+      .writeData(
+        'InnTee',
+        'Mst_Users',
+        Object.assign({}, this.user),
+        this.user.UserGuid,
+      )
+      .then(() => {
+        console.log('added');
+        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+        console.log('failed adding');
+      });
+  }
+
+  onAdd() {
+    this.firebaseService
+      .writeData(
+        this.organization,
         'Mst_Users',
         Object.assign({}, this.user),
         this.user.UserGuid,
@@ -94,24 +183,6 @@ export class UsersPage implements OnInit {
       .catch((err) => {
         this.popUp.showError(err);
       });
-  }
-
-  registerUser() {
-    return new Promise<any>((resolve, reject) => {
-      this.afAuth
-        .createUserWithEmailAndPassword(
-          this.user.UserLogin,
-          this.user.UserPassword,
-        )
-        .then((res) => {
-          resolve(res);
-          this.onAdd();
-        })
-        .catch((err) => {
-          reject(err.message);
-          this.popUp.showAlert('Failed', err.message);
-        });
-    });
   }
 
   onModify() {}

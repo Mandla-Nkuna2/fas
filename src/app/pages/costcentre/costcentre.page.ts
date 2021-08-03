@@ -4,6 +4,7 @@ import { FirebaseService } from './../../services/firebase-service/firebase-serv
 import CostCentre from 'src/app/models/supportdata/CostCentre.model';
 import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 import { v4 as uuidv4 } from 'uuid';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-costcentre',
@@ -11,6 +12,7 @@ import { v4 as uuidv4 } from 'uuid';
   styleUrls: ['./costcentre.page.scss'],
 })
 export class CostcentrePage implements OnInit {
+  organization = 'InnTee';
   costcentre: CostCentre;
   costcentres: CostCentre[] = [];
 
@@ -18,11 +20,13 @@ export class CostcentrePage implements OnInit {
     private firebaseRepServ: FirebaseReportService,
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
+    public afAuth: AngularFireAuth,
   ) {
     this.costcentre = new CostCentre();
   }
 
   ngOnInit() {
+    this.getCurentUser();
     this.onTableRep();
   }
 
@@ -42,12 +46,25 @@ export class CostcentrePage implements OnInit {
     });
   }
 
+  getCurentUser() {
+    this.afAuth.onAuthStateChanged((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+    });
+  }
+
   onAdd() {
     this.costcentre.CostCentGuid = uuidv4();
 
     this.firebaseService
       .writeData(
-        'myTest',
+        this.organization,
         'Sup_CostCentre',
         Object.assign({}, this.costcentre),
         this.costcentre.CostCentGuid,

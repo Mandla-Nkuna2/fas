@@ -148,17 +148,12 @@
 
           <ion-col size="3.5">
             <div class="item-input">
-              <ion-label>User group</ion-label>
-              <ion-item>
-                <ionic-selectable
-                  [(ngModel)]="user.UserGroupGuid"
-                  [items]="userGroups"
-                  itemValueField="UserGroupGuid"
-                  itemTextField="UserGroupTitle"
-                  [canSearch]="true"
-                  [hasInfiniteScroll]="true"
-                >
-                </ionic-selectable>
+              <ion-label>Phone number</ion-label>
+              <ion-item lines="none">
+                <ion-input
+                  type="text"
+                  [(ngModel)]="user.phoneNumber"
+                ></ion-input>
               </ion-item>
             </div>
           </ion-col>
@@ -175,7 +170,24 @@
             </div>
           </ion-col>
 
-          <ion-col size="3.5" offset="0.5">
+          <ion-col size="3.5">
+            <div class="item-input">
+              <ion-label>User group</ion-label>
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="user.UserGroupGuid"
+                  [items]="userGroups"
+                  itemValueField="UserGroupGuid"
+                  itemTextField="UserGroupTitle"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                >
+                </ionic-selectable>
+              </ion-item>
+            </div>
+          </ion-col>
+
+          <ion-col size="3.5">
             <div class="item-input">
               <ion-label>User location</ion-label>
               <ion-item>
