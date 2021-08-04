@@ -38,21 +38,13 @@ export class MaintainceventPage implements OnInit {
   }
 
   ngOnInit() {
-    this.getCurentUser();
-    this.onTableRep();
-    this.onJobCardNo();
-    this.onRegistration();
-    this.onMaintType();
-    this.onMaintReason();
-    this.onSupplier();
-    this.onRequestedBy();
-    this.onCostCentre();
+    this.getCurrentUser();
   }
 
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
-        .getMaintEvent()
+        .getMaintEvent(this.organization)
         .then((mNm: any) => {
           this.maintenanceEvents = mNm;
           this.onJobCardNoLeft();
@@ -73,37 +65,43 @@ export class MaintainceventPage implements OnInit {
   }
 
   onJobCardNo() {
-    this.firebaseGetServ.getJobCardNos().then((staff: any) => {
+    this.firebaseGetServ.getJobCardNos(this.organization).then((staff: any) => {
       this.jobCardNo = staff;
     });
   }
   onJobCardNoLeft() {
-    this.firebaseGetServ.getJobCardNosLeft().then((staff: any) => {
-      this.jobCardNo = staff;
+    this.firebaseGetServ
+      .getJobCardNosLeft(this.organization)
+      .then((staff: any) => {
+        this.jobCardNo = staff;
 
-      staff.forEach((elm) => {
-        this.maintenanceEvents.forEach((obj) => {
-          if (elm.JobCardGuid == obj.JobCardGuid) {
-            obj.JobCard = elm.JobCardNo;
-          }
+        staff.forEach((elm) => {
+          this.maintenanceEvents.forEach((obj) => {
+            if (elm.JobCardGuid == obj.JobCardGuid) {
+              obj.JobCard = elm.JobCardNo;
+            }
+          });
         });
       });
-    });
   }
 
   onRegistration() {
-    this.firebaseGetServ.getRegistration().then((staff: any) => {
-      this.registration = staff;
-    });
+    this.firebaseGetServ
+      .getRegistration(this.organization)
+      .then((staff: any) => {
+        this.registration = staff;
+      });
   }
   onRegistrationLeft() {
-    this.firebaseGetServ.getRegistrationLeft().then((staff: any) => {
-      this.registration = staff;
-    });
+    this.firebaseGetServ
+      .getRegistrationLeft(this.organization)
+      .then((staff: any) => {
+        this.registration = staff;
+      });
   }
 
   onMaintType() {
-    this.firebaseGetServ.getMaintType().then((staff: any) => {
+    this.firebaseGetServ.getMaintType(this.organization).then((staff: any) => {
       this.maintanceType = staff;
 
       staff.forEach((elm) => {
@@ -117,54 +115,60 @@ export class MaintainceventPage implements OnInit {
   }
 
   onMaintReason() {
-    this.firebaseGetServ.getMaintReason().then((staff: any) => {
-      this.maintanceReason = staff;
-    });
+    this.firebaseGetServ
+      .getMaintReason(this.organization)
+      .then((staff: any) => {
+        this.maintanceReason = staff;
+      });
   }
 
   onSupplier() {
-    this.firebaseGetServ.getSupplier().then((staff: any) => {
+    this.firebaseGetServ.getSupplier(this.organization).then((staff: any) => {
       this.supplier = staff;
     });
   }
   onSupplierLeft() {
-    this.firebaseGetServ.getSupplierLeft().then((staff: any) => {
-      this.supplier = staff;
-    });
+    this.firebaseGetServ
+      .getSupplierLeft(this.organization)
+      .then((staff: any) => {
+        this.supplier = staff;
+      });
   }
 
   onRequestedBy() {
-    this.firebaseGetServ.getStaff().then((staff: any) => {
+    this.firebaseGetServ.getStaff(this.organization).then((staff: any) => {
       this.requestedBy = staff;
     });
   }
   onRequestedByLeft() {
-    this.firebaseGetServ.getStaffLeft().then((staff: any) => {
+    this.firebaseGetServ.getStaffLeft(this.organization).then((staff: any) => {
       this.requestedBy = staff;
     });
   }
 
   onCostCentre() {
-    this.firebaseGetServ.getCostCentre().then((staff: any) => {
+    this.firebaseGetServ.getCostCentre(this.organization).then((staff: any) => {
       this.costCentre = staff;
     });
   }
   onCostCentreLeft() {
-    this.firebaseGetServ.getCostCentreLeft().then((staff: any) => {
-      this.costCentre = staff;
+    this.firebaseGetServ
+      .getCostCentreLeft(this.organization)
+      .then((staff: any) => {
+        this.costCentre = staff;
 
-      staff.forEach((elm) => {
-        this.maintenanceEvents.forEach((obj) => {
-          if (elm.CostCentGuid == obj.CostCentGuid) {
-            obj.CostCent = elm.CostCentName;
-          }
+        staff.forEach((elm) => {
+          this.maintenanceEvents.forEach((obj) => {
+            if (elm.CostCentGuid == obj.CostCentGuid) {
+              obj.CostCent = elm.CostCentName;
+            }
+          });
         });
       });
-    });
   }
 
-  getCurentUser() {
-    this.afAuth.onAuthStateChanged((cUser) => {
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
       this.getCurrentUserOrg(cUser.email);
     });
   }
@@ -173,6 +177,15 @@ export class MaintainceventPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+
+      this.onTableRep();
+      this.onJobCardNo();
+      this.onRegistration();
+      this.onMaintType();
+      this.onMaintReason();
+      this.onSupplier();
+      this.onRequestedBy();
+      this.onCostCentre();
     });
   }
 

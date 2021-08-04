@@ -8,6 +8,8 @@ import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-g
 import { FirebaseService } from '../../services/firebase-service/firebase-service.service';
 import { PopupHelper } from '../../services/helpers/popup-helper';
 import { v4 as uuidv4 } from 'uuid';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 
 @Component({
   selector: 'app-addassetsinfo',
@@ -27,8 +29,10 @@ export class AddassetsinfoPage implements OnInit {
   batteryMakes: any[];
 
   constructor(
+    private firebaseRepServ: FirebaseReportService,
     private firebaseSevice: FirebaseService,
     private firebaseGetServ: FirebaseGetService,
+    public afAuth: AngularFireAuth,
     private popUp: PopupHelper,
   ) {
     this.itemMakeMod = new ItemMakeAndModel();
@@ -39,23 +43,42 @@ export class AddassetsinfoPage implements OnInit {
   }
 
   ngOnInit() {
-    this.onClass();
-    this.onBattery();
+    this.getCurrentUser();
+  }
+
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+
+      this.onClass();
+      this.onBattery();
+    });
   }
 
   onClass() {
-    this.firebaseGetServ.getItemTypeClass().then((size: any) => {
-      this.classes = size;
-    });
+    this.firebaseGetServ
+      .getItemTypeClass(this.organization)
+      .then((size: any) => {
+        this.classes = size;
+      });
   }
   onClassLeft() {
-    this.firebaseGetServ.getItemTypeClassLeft().then((size: any) => {
-      this.classes = size;
-    });
+    this.firebaseGetServ
+      .getItemTypeClassLeft(this.organization)
+      .then((size: any) => {
+        this.classes = size;
+      });
   }
 
   onBattery() {
-    this.firebaseGetServ.getBatteryMake().then((size: any) => {
+    this.firebaseGetServ.getBatteryMake(this.organization).then((size: any) => {
       this.batteryMakes = size;
     });
   }

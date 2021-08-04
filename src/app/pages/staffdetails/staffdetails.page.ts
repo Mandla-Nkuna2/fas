@@ -32,15 +32,13 @@ export class StaffdetailsPage implements OnInit {
   }
 
   ngOnInit() {
-    this.getCurentUser();
-    this.onTableRep();
-    this.onStaffCat();
+    this.getCurrentUser();
   }
 
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
-        .getStaffDetails()
+        .getStaffDetails(this.organization)
         .then((mNm: any) => {
           this.staffs = mNm;
           this.onStaffCatLeft();
@@ -55,22 +53,26 @@ export class StaffdetailsPage implements OnInit {
   }
 
   onStaffCat() {
-    this.firebaseGetServ.getStaffCategory().then((mNm: any) => {
-      this.staffCats = mNm;
-    });
+    this.firebaseGetServ
+      .getStaffCategory(this.organization)
+      .then((mNm: any) => {
+        this.staffCats = mNm;
+      });
   }
   onStaffCatLeft() {
-    this.firebaseGetServ.getStaffCategoryLeft().then((mNm: any) => {
-      this.staffCats = mNm;
+    this.firebaseGetServ
+      .getStaffCategoryLeft(this.organization)
+      .then((mNm: any) => {
+        this.staffCats = mNm;
 
-      mNm.forEach((elm) => {
-        this.staffs.forEach((obj) => {
-          if (elm.StaffCatgGuid == obj.StaffCatgGuid) {
-            obj.StaffCatg = elm.StaffCatg;
-          }
+        mNm.forEach((elm) => {
+          this.staffs.forEach((obj) => {
+            if (elm.StaffCatgGuid == obj.StaffCatgGuid) {
+              obj.StaffCatg = elm.StaffCatg;
+            }
+          });
         });
       });
-    });
   }
 
   onAddLicView() {
@@ -79,8 +81,8 @@ export class StaffdetailsPage implements OnInit {
 
   onAddLic() {}
 
-  getCurentUser() {
-    this.afAuth.onAuthStateChanged((cUser) => {
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
       this.getCurrentUserOrg(cUser.email);
     });
   }
@@ -89,6 +91,9 @@ export class StaffdetailsPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+
+      this.onTableRep();
+      this.onStaffCat();
     });
   }
 

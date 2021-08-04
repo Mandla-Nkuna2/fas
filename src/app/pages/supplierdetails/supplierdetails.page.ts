@@ -30,15 +30,13 @@ export class SupplierdetailsPage implements OnInit {
   }
 
   ngOnInit() {
-    this.getCurentUser();
-    this.onTableRep();
-    this.onCategory();
+    this.getCurrentUser();
   }
 
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
-        .getSuppliers()
+        .getSuppliers(this.organization)
         .then((mNm: any) => {
           this.suppliers = mNm;
           this.onCategoryLeft();
@@ -53,12 +51,12 @@ export class SupplierdetailsPage implements OnInit {
   }
 
   onCategory() {
-    this.firebaseGetServ.getSuppCat().then((mNm: any) => {
+    this.firebaseGetServ.getSuppCat(this.organization).then((mNm: any) => {
       this.suppCat = mNm;
     });
   }
   onCategoryLeft() {
-    this.firebaseGetServ.getSuppCatLeft().then((mNm: any) => {
+    this.firebaseGetServ.getSuppCatLeft(this.organization).then((mNm: any) => {
       this.suppCat = mNm;
 
       mNm.forEach((elm) => {
@@ -71,8 +69,8 @@ export class SupplierdetailsPage implements OnInit {
     });
   }
 
-  getCurentUser() {
-    this.afAuth.onAuthStateChanged((cUser) => {
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
       this.getCurrentUserOrg(cUser.email);
     });
   }
@@ -81,6 +79,9 @@ export class SupplierdetailsPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+
+      this.onTableRep();
+      this.onCategory();
     });
   }
 

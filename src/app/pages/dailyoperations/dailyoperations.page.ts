@@ -31,14 +31,13 @@ export class DailyoperationsPage implements OnInit {
   }
 
   ngOnInit() {
-    this.getCurentUser();
-    this.onTableRep();
+    this.getCurrentUser();
   }
 
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
-        .getDailyOperations()
+        .getDailyOperations(this.organization)
         .then((mNm: any) => {
           this.dailyOpRecs = mNm;
           this.onRegistrationLeft();
@@ -54,35 +53,39 @@ export class DailyoperationsPage implements OnInit {
   }
 
   onRegistrationLeft() {
-    this.firebaseGetServ.getRegistrationLeft().then((mNm: any) => {
-      this.registrations = mNm;
+    this.firebaseGetServ
+      .getRegistrationLeft(this.organization)
+      .then((mNm: any) => {
+        this.registrations = mNm;
 
-      mNm.forEach((elm) => {
-        this.dailyOpRecs.forEach((obj) => {
-          if (elm.ItemGuid == obj.Itemguid) {
-            obj.Item = elm.Reg;
-          }
+        mNm.forEach((elm) => {
+          this.dailyOpRecs.forEach((obj) => {
+            if (elm.ItemGuid == obj.Itemguid) {
+              obj.Item = elm.Reg;
+            }
+          });
         });
       });
-    });
   }
 
   onCostCentreLeft() {
-    this.firebaseGetServ.getCostCentreLeft().then((mNm: any) => {
-      this.costCentre = mNm;
+    this.firebaseGetServ
+      .getCostCentreLeft(this.organization)
+      .then((mNm: any) => {
+        this.costCentre = mNm;
 
-      mNm.forEach((elm) => {
-        this.dailyOpRecs.forEach((obj) => {
-          if (elm.CostCentGuid == obj.CostCentreguid) {
-            obj.CostCentre = elm.CostCentName;
-          }
+        mNm.forEach((elm) => {
+          this.dailyOpRecs.forEach((obj) => {
+            if (elm.CostCentGuid == obj.CostCentreguid) {
+              obj.CostCentre = elm.CostCentName;
+            }
+          });
         });
       });
-    });
   }
 
-  getCurentUser() {
-    this.afAuth.onAuthStateChanged((cUser) => {
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
       this.getCurrentUserOrg(cUser.email);
     });
   }
@@ -91,6 +94,8 @@ export class DailyoperationsPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+
+      this.onTableRep();
     });
   }
 

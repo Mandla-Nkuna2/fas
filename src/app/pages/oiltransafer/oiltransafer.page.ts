@@ -39,18 +39,13 @@ export class OiltransaferPage implements OnInit {
   }
 
   ngOnInit() {
-    this.getCurentUser();
-    this.onTableRep();
-    this.onOilType();
-    this.onOilStoreFrom();
-    this.onOilStoreTo();
-    this.onCostCentre();
+    this.getCurrentUser();
   }
 
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
-        .getOilStoreTransf()
+        .getOilStoreTransf(this.organization)
         .then((mNm: any) => {
           this.oilStoreTransfs = mNm;
           this.onOilTypeLeft();
@@ -71,17 +66,17 @@ export class OiltransaferPage implements OnInit {
   }
 
   onOilType() {
-    this.firebaseGetServ.getOilMake().then((mNm: any) => {
+    this.firebaseGetServ.getOilMake(this.organization).then((mNm: any) => {
       this.oilMakes = mNm;
     });
-    this.firebaseGetServ.getOilGrade().then((mNm: any) => {
+    this.firebaseGetServ.getOilGrade(this.organization).then((mNm: any) => {
       this.oilGrades = mNm;
     });
-    this.firebaseGetServ.getOilClass().then((mNm: any) => {
+    this.firebaseGetServ.getOilClass(this.organization).then((mNm: any) => {
       this.oilClasses = mNm;
     });
 
-    this.firebaseGetServ.getOilType().then((mNm: any) => {
+    this.firebaseGetServ.getOilType(this.organization).then((mNm: any) => {
       mNm.forEach((oilObj) => {
         this.oilMakes.forEach((oilM) => {
           if (oilM.OilMakeGuid == oilObj.OilMakeGuid) {
@@ -108,7 +103,7 @@ export class OiltransaferPage implements OnInit {
     });
   }
   onOilTypeLeft() {
-    this.firebaseGetServ.getOilTypeLeft().then((mNm: any) => {
+    this.firebaseGetServ.getOilTypeLeft(this.organization).then((mNm: any) => {
       mNm.forEach((oilObj) => {
         this.oilMakes.forEach((oilM) => {
           if (oilM.OilMakeGuid == oilObj.OilMakeGuid) {
@@ -144,7 +139,7 @@ export class OiltransaferPage implements OnInit {
   }
 
   onOilStoreFrom() {
-    this.firebaseGetServ.getOilStore().then((mNm: any) => {
+    this.firebaseGetServ.getOilStore(this.organization).then((mNm: any) => {
       this.oilStoreFrom = mNm;
 
       mNm.forEach((elm) => {
@@ -158,7 +153,7 @@ export class OiltransaferPage implements OnInit {
   }
 
   onOilStoreTo() {
-    this.firebaseGetServ.getOilStore().then((mNm: any) => {
+    this.firebaseGetServ.getOilStore(this.organization).then((mNm: any) => {
       this.oilStoreTo = mNm;
 
       mNm.forEach((elm) => {
@@ -172,13 +167,13 @@ export class OiltransaferPage implements OnInit {
   }
 
   onCostCentre() {
-    this.firebaseGetServ.getCostCentre().then((mNm: any) => {
+    this.firebaseGetServ.getCostCentre(this.organization).then((mNm: any) => {
       this.costCentre = mNm;
     });
   }
 
-  getCurentUser() {
-    this.afAuth.onAuthStateChanged((cUser) => {
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
       this.getCurrentUserOrg(cUser.email);
     });
   }
@@ -187,6 +182,12 @@ export class OiltransaferPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+
+      this.onTableRep();
+      this.onOilType();
+      this.onOilStoreFrom();
+      this.onOilStoreTo();
+      this.onCostCentre();
     });
   }
 

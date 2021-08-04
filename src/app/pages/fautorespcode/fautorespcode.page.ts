@@ -26,14 +26,13 @@ export class FautorespcodePage implements OnInit {
   }
 
   ngOnInit() {
-    this.getCurentUser();
-    this.onTableRep();
+    this.getCurrentUser();
   }
 
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
-        .getFirstAutoRespCodes()
+        .getFirstAutoRespCodes(this.organization)
         .then((mNm: any) => {
           this.fautorespcodes = mNm;
           this.popUp.dismissLoading();
@@ -46,8 +45,8 @@ export class FautorespcodePage implements OnInit {
     });
   }
 
-  getCurentUser() {
-    this.afAuth.onAuthStateChanged((cUser) => {
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
       this.getCurrentUserOrg(cUser.email);
     });
   }
@@ -56,6 +55,8 @@ export class FautorespcodePage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+
+      this.onTableRep();
     });
   }
 

@@ -43,17 +43,13 @@ export class ItemmakemodelPage implements OnInit {
   }
 
   ngOnInit() {
-    this.getCurentUser();
-    this.onTableRep();
-    this.onMake();
-    this.onModel();
-    this.onFuelType();
+    this.getCurrentUser();
   }
 
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
-        .getItemMakeMod()
+        .getItemMakeMod(this.organization)
         .then((mNm: any) => {
           this.items = mNm;
           this.onFuelType();
@@ -68,29 +64,37 @@ export class ItemmakemodelPage implements OnInit {
   }
 
   onMake() {
-    this.firebaseGetServ.getAssetMakeModMake().then((mNm: any) => {
-      this.makes = mNm;
-    });
+    this.firebaseGetServ
+      .getAssetMakeModMake(this.organization)
+      .then((mNm: any) => {
+        this.makes = mNm;
+      });
   }
   onMakeLeft() {
-    this.firebaseGetServ.getAssetMakeModMakeLeft().then((mNm: any) => {
-      this.makes = mNm;
-    });
+    this.firebaseGetServ
+      .getAssetMakeModMakeLeft(this.organization)
+      .then((mNm: any) => {
+        this.makes = mNm;
+      });
   }
 
   onModel() {
-    this.firebaseGetServ.getAssetMakeModMod().then((mNm: any) => {
-      this.models = mNm;
-    });
+    this.firebaseGetServ
+      .getAssetMakeModMod(this.organization)
+      .then((mNm: any) => {
+        this.models = mNm;
+      });
   }
   onModelLeft() {
-    this.firebaseGetServ.getAssetMakeModModleft().then((mNm: any) => {
-      this.models = mNm;
-    });
+    this.firebaseGetServ
+      .getAssetMakeModModleft(this.organization)
+      .then((mNm: any) => {
+        this.models = mNm;
+      });
   }
 
   onFuelType() {
-    this.firebaseGetServ.getFuelType().then((mNm: any) => {
+    this.firebaseGetServ.getFuelType(this.organization).then((mNm: any) => {
       this.fuelTypes = mNm;
 
       mNm.forEach((elm) => {
@@ -103,8 +107,8 @@ export class ItemmakemodelPage implements OnInit {
     });
   }
 
-  getCurentUser() {
-    this.afAuth.onAuthStateChanged((cUser) => {
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
       this.getCurrentUserOrg(cUser.email);
     });
   }
@@ -113,6 +117,11 @@ export class ItemmakemodelPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+
+      this.onTableRep();
+      this.onMake();
+      this.onModel();
+      this.onFuelType();
     });
   }
 

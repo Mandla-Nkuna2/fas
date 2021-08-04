@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
+import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 
 @Component({
@@ -8,6 +10,7 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
   styleUrls: ['./losscontrlisting.component.scss'],
 })
 export class LosscontrlistingComponent implements OnInit {
+  organization = 'InnTee';
   dateScope: any;
 
   finYear: any;
@@ -42,59 +45,77 @@ export class LosscontrlistingComponent implements OnInit {
   lossContActs: any[];
 
   constructor(
+    private firebaseRepServ: FirebaseReportService,
     private firebaseGetServ: FirebaseGetService,
-    private popUp: PopupHelper,
+    public afAuth: AngularFireAuth,
   ) {}
 
   ngOnInit() {
-    this.onLocation();
-    this.onLossContType();
-    this.onStaffCodes();
-    this.onRegistration();
-    this.onLossContAct();
+    this.getCurrentUser();
+  }
+
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+
+      this.onLocation();
+      this.onLossContType();
+      this.onStaffCodes();
+      this.onRegistration();
+      this.onLossContAct();
+    });
   }
 
   onLocation() {
-    this.firebaseGetServ.getLocation().then((mNm: any) => {
+    this.firebaseGetServ.getLocation(this.organization).then((mNm: any) => {
       this.locations = mNm;
     });
   }
   onLocationLeft() {
-    this.firebaseGetServ.getLocationLeft().then((mNm: any) => {
+    this.firebaseGetServ.getLocationLeft(this.organization).then((mNm: any) => {
       this.locations = mNm;
     });
   }
 
   onLossContType() {
-    this.firebaseGetServ.getLossContType().then((mNm: any) => {
+    this.firebaseGetServ.getLossContType(this.organization).then((mNm: any) => {
       this.lossContTypes = mNm;
     });
   }
 
   onStaffCodes() {
-    this.firebaseGetServ.getStaff().then((mNm: any) => {
+    this.firebaseGetServ.getStaff(this.organization).then((mNm: any) => {
       this.staffCodes = mNm;
     });
   }
   onStaffCodesLeft() {
-    this.firebaseGetServ.getStaffLeft().then((mNm: any) => {
+    this.firebaseGetServ.getStaffLeft(this.organization).then((mNm: any) => {
       this.staffCodes = mNm;
     });
   }
 
   onRegistration() {
-    this.firebaseGetServ.getRegistration().then((mNm: any) => {
+    this.firebaseGetServ.getRegistration(this.organization).then((mNm: any) => {
       this.registrations = mNm;
     });
   }
   onRegistrationLeft() {
-    this.firebaseGetServ.getRegistrationLeft().then((mNm: any) => {
-      this.registrations = mNm;
-    });
+    this.firebaseGetServ
+      .getRegistrationLeft(this.organization)
+      .then((mNm: any) => {
+        this.registrations = mNm;
+      });
   }
 
   onLossContAct() {
-    this.firebaseGetServ.getLossContAct().then((mNm: any) => {
+    this.firebaseGetServ.getLossContAct(this.organization).then((mNm: any) => {
       this.lossContActs = mNm;
     });
   }

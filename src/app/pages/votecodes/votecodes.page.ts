@@ -31,16 +31,13 @@ export class VotecodesPage implements OnInit {
   }
 
   ngOnInit() {
-    this.getCurentUser();
-    this.onTableRep();
-    this.onVoteCodes();
-    this.onDescription();
+    this.getCurrentUser();
   }
 
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
-        .getVotecodes()
+        .getVotecodes(this.organization)
         .then((mNm: any) => {
           this.voteCodes = mNm;
           this.popUp.dismissLoading();
@@ -54,20 +51,22 @@ export class VotecodesPage implements OnInit {
   }
 
   onVoteCodes() {
-    this.firebaseGetServ.getVoteCodes().then((mNm: any) => {
+    this.firebaseGetServ.getVoteCodes(this.organization).then((mNm: any) => {
       this.voteCodes = mNm;
     });
   }
   onVoteCodesLeft() {
-    this.firebaseGetServ.getVoteCodesLeft().then((mNm: any) => {
-      this.voteCodes = mNm;
-    });
+    this.firebaseGetServ
+      .getVoteCodesLeft(this.organization)
+      .then((mNm: any) => {
+        this.voteCodes = mNm;
+      });
   }
 
   onDescription() {}
 
-  getCurentUser() {
-    this.afAuth.onAuthStateChanged((cUser) => {
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
       this.getCurrentUserOrg(cUser.email);
     });
   }
@@ -76,6 +75,10 @@ export class VotecodesPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+
+      this.onTableRep();
+      this.onVoteCodes();
+      this.onDescription();
     });
   }
 

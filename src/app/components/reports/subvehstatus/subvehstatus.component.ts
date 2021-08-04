@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
-import { PopupHelper } from 'src/app/services/helpers/popup-helper';
+import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 
 @Component({
   selector: 'app-subvehstatus',
@@ -8,28 +9,47 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
   styleUrls: ['./subvehstatus.component.scss'],
 })
 export class SubvehstatusComponent implements OnInit {
+  organization = 'InnTee';
   dateTo: any;
 
   registration: any;
   registrations: any[];
 
   constructor(
+    private firebaseRepServ: FirebaseReportService,
     private firebaseGetServ: FirebaseGetService,
-    private popUp: PopupHelper,
+    public afAuth: AngularFireAuth,
   ) {}
 
   ngOnInit() {
-    this.onRegistration();
+    this.getCurrentUser();
+  }
+
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+
+      this.onRegistration();
+    });
   }
 
   onRegistration() {
-    this.firebaseGetServ.getRegistration().then((mNm: any) => {
+    this.firebaseGetServ.getRegistration(this.organization).then((mNm: any) => {
       this.registrations = mNm;
     });
   }
   onRegistrationLeft() {
-    this.firebaseGetServ.getRegistrationLeft().then((mNm: any) => {
-      this.registrations = mNm;
-    });
+    this.firebaseGetServ
+      .getRegistrationLeft(this.organization)
+      .then((mNm: any) => {
+        this.registrations = mNm;
+      });
   }
 }

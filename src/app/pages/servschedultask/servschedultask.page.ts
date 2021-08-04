@@ -31,14 +31,13 @@ export class ServschedultaskPage implements OnInit {
   }
 
   ngOnInit() {
-    this.getCurentUser();
-    this.onTableRep();
+    this.getCurrentUser();
   }
 
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
-        .getServiceScheduleTasks()
+        .getServiceScheduleTasks(this.organization)
         .then((mNm: any) => {
           this.serviceSchTasks = mNm;
           this.onJobcard();
@@ -54,35 +53,39 @@ export class ServschedultaskPage implements OnInit {
   }
 
   onJobcard() {
-    this.firebaseRepServ.getJobcardsLeft().then((staff: any) => {
-      this.jobcards = staff;
+    this.firebaseRepServ
+      .getJobcardsLeft(this.organization)
+      .then((staff: any) => {
+        this.jobcards = staff;
 
-      staff.forEach((elm) => {
-        this.serviceSchTasks.forEach((obj) => {
-          if (elm.JobCardGuid == obj.JobcardGuid) {
-            obj.Jobcard = elm.Defects;
-          }
+        staff.forEach((elm) => {
+          this.serviceSchTasks.forEach((obj) => {
+            if (elm.JobCardGuid == obj.JobcardGuid) {
+              obj.Jobcard = elm.Defects;
+            }
+          });
         });
       });
-    });
   }
 
   onMaintEvent() {
-    this.firebaseRepServ.getMaintEventLeft().then((staff: any) => {
-      this.maintEvents = staff;
+    this.firebaseRepServ
+      .getMaintEventLeft(this.organization)
+      .then((staff: any) => {
+        this.maintEvents = staff;
 
-      staff.forEach((elm) => {
-        this.serviceSchTasks.forEach((obj) => {
-          if (elm.MaintEvntGuid == obj.MaintEvntGuid) {
-            obj.MaintEvnt = elm.Workdone;
-          }
+        staff.forEach((elm) => {
+          this.serviceSchTasks.forEach((obj) => {
+            if (elm.MaintEvntGuid == obj.MaintEvntGuid) {
+              obj.MaintEvnt = elm.Workdone;
+            }
+          });
         });
       });
-    });
   }
 
-  getCurentUser() {
-    this.afAuth.onAuthStateChanged((cUser) => {
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
       this.getCurrentUserOrg(cUser.email);
     });
   }
@@ -91,6 +94,8 @@ export class ServschedultaskPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+
+      this.onTableRep();
     });
   }
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 
@@ -8,21 +9,38 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
   styleUrls: ['./staffaudittrail.page.scss'],
 })
 export class StaffaudittrailPage implements OnInit {
+  organization = 'InnTee';
   staffAuditTrails: any[] = [];
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
     private popUp: PopupHelper,
+    public afAuth: AngularFireAuth,
   ) {}
 
   ngOnInit() {
-    this.onTableRep();
+    this.getCurrentUser();
+  }
+
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+
+      this.onTableRep();
+    });
   }
 
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
-        .getStaffAuditTrails()
+        .getStaffAuditTrails(this.organization)
         .then((mNm: any) => {
           this.staffAuditTrails = mNm;
           this.popUp.dismissLoading();

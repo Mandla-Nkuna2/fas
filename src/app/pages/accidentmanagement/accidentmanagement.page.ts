@@ -36,73 +36,69 @@ export class AccidentmanagementPage implements OnInit {
   }
 
   ngOnInit() {
-    this.getCurentUser();
-    this.onAgent();
-    this.onRegistration();
-    this.onLossType();
-    this.onReportedBy();
-    this.onDriverName();
-    this.onActionTaken();
+    this.getCurrentUser();
   }
 
   onAgent() {
-    this.firebaseGetServ.getStaff().then((mNm: any) => {
+    this.firebaseGetServ.getStaff(this.organization).then((mNm: any) => {
       this.agent = mNm;
     });
   }
   onAgentLeft() {
-    this.firebaseGetServ.getStaffLeft().then((mNm: any) => {
+    this.firebaseGetServ.getStaffLeft(this.organization).then((mNm: any) => {
       this.agent = mNm;
     });
   }
 
   onRegistration() {
-    this.firebaseGetServ.getRegistration().then((mNm: any) => {
+    this.firebaseGetServ.getRegistration(this.organization).then((mNm: any) => {
       this.registration = mNm;
     });
   }
   onRegistrationLeft() {
-    this.firebaseGetServ.getRegistrationLeft().then((mNm: any) => {
-      this.registration = mNm;
-    });
+    this.firebaseGetServ
+      .getRegistrationLeft(this.organization)
+      .then((mNm: any) => {
+        this.registration = mNm;
+      });
   }
 
   onLossType() {
-    this.firebaseGetServ.getLossType().then((mNm: any) => {
+    this.firebaseGetServ.getLossType(this.organization).then((mNm: any) => {
       this.lossType = mNm;
     });
   }
 
   onReportedBy() {
-    this.firebaseGetServ.getStaff().then((mNm: any) => {
+    this.firebaseGetServ.getStaff(this.organization).then((mNm: any) => {
       this.reportedBy = mNm;
     });
   }
   onReportedByLeft() {
-    this.firebaseGetServ.getStaffLeft().then((mNm: any) => {
+    this.firebaseGetServ.getStaffLeft(this.organization).then((mNm: any) => {
       this.reportedBy = mNm;
     });
   }
 
   onDriverName() {
-    this.firebaseGetServ.getStaff().then((mNm: any) => {
+    this.firebaseGetServ.getStaff(this.organization).then((mNm: any) => {
       this.driver = mNm;
     });
   }
   onDriverNameLeft() {
-    this.firebaseGetServ.getStaffLeft().then((mNm: any) => {
+    this.firebaseGetServ.getStaffLeft(this.organization).then((mNm: any) => {
       this.driver = mNm;
     });
   }
 
   onActionTaken() {
-    this.firebaseGetServ.getLossCntrlAct().then((mNm: any) => {
+    this.firebaseGetServ.getLossCntrlAct(this.organization).then((mNm: any) => {
       this.lossCntrlAction = mNm;
     });
   }
 
-  getCurentUser() {
-    this.afAuth.onAuthStateChanged((cUser) => {
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
       this.getCurrentUserOrg(cUser.email);
     });
   }
@@ -111,6 +107,13 @@ export class AccidentmanagementPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+
+      this.onAgent();
+      this.onRegistration();
+      this.onLossType();
+      this.onReportedBy();
+      this.onDriverName();
+      this.onActionTaken();
     });
   }
 

@@ -34,16 +34,13 @@ export class FixedcostdetailsPage implements OnInit {
   }
 
   ngOnInit() {
-    this.getCurentUser();
-    this.onTableRep();
-    this.onFixedCostType();
-    this.onRegistraion();
+    this.getCurrentUser();
   }
 
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
-        .getFixedCostDetails()
+        .getFixedCostDetails(this.organization)
         .then((mNm: any) => {
           this.fixedCosts = mNm;
           this.popUp.dismissLoading();
@@ -61,24 +58,28 @@ export class FixedcostdetailsPage implements OnInit {
   }
 
   onFixedCostType() {
-    this.firebaseGetServ.getFixedCostType().then((mNm: any) => {
-      this.fixedCostType = mNm;
-    });
+    this.firebaseGetServ
+      .getFixedCostType(this.organization)
+      .then((mNm: any) => {
+        this.fixedCostType = mNm;
+      });
   }
 
   onRegistraion() {
-    this.firebaseGetServ.getRegistration().then((mNm: any) => {
+    this.firebaseGetServ.getRegistration(this.organization).then((mNm: any) => {
       this.registration = mNm;
     });
   }
   onRegistraionLeft() {
-    this.firebaseGetServ.getRegistrationLeft().then((mNm: any) => {
-      this.registration = mNm;
-    });
+    this.firebaseGetServ
+      .getRegistrationLeft(this.organization)
+      .then((mNm: any) => {
+        this.registration = mNm;
+      });
   }
 
-  getCurentUser() {
-    this.afAuth.onAuthStateChanged((cUser) => {
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
       this.getCurrentUserOrg(cUser.email);
     });
   }
@@ -87,6 +88,10 @@ export class FixedcostdetailsPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+
+      this.onTableRep();
+      this.onFixedCostType();
+      this.onRegistraion();
     });
   }
 

@@ -27,24 +27,23 @@ export class LocationPage implements OnInit {
   }
 
   ngOnInit() {
-    this.getCurentUser();
-    this.onLocation();
+    this.getCurrentUser();
   }
 
   onLocation() {
-    this.firebaseGetServ.getLocation().then((mNm: any) => {
+    this.firebaseGetServ.getLocation(this.organization).then((mNm: any) => {
       this.locations = mNm;
     });
   }
 
   onLocationLeft() {
-    this.firebaseGetServ.getLocationLeft().then((mNm: any) => {
+    this.firebaseGetServ.getLocationLeft(this.organization).then((mNm: any) => {
       this.locations = mNm;
     });
   }
 
-  getCurentUser() {
-    this.afAuth.onAuthStateChanged((cUser) => {
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
       this.getCurrentUserOrg(cUser.email);
     });
   }
@@ -53,6 +52,8 @@ export class LocationPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+
+      this.onLocation();
     });
   }
 

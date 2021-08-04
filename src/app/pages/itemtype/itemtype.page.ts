@@ -45,17 +45,13 @@ export class ItemtypePage implements OnInit {
   }
 
   ngOnInit() {
-    this.getCurentUser();
-    this.onTableRep();
-    this.onTypeName();
-    this.onTypeClass();
-    this.onTypeCapacity();
+    this.getCurrentUser();
   }
 
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
-        .getItemTypes()
+        .getItemTypes(this.organization)
         .then((mNm: any) => {
           this.itemTypes = mNm;
           this.onTypeNameLeft();
@@ -72,64 +68,74 @@ export class ItemtypePage implements OnInit {
   }
 
   onTypeName() {
-    this.firebaseGetServ.getAssetTypeName().then((mNm: any) => {
-      this.typeNames = mNm;
-    });
+    this.firebaseGetServ
+      .getAssetTypeName(this.organization)
+      .then((mNm: any) => {
+        this.typeNames = mNm;
+      });
   }
   onTypeNameLeft() {
-    this.firebaseGetServ.getAssetTypeNameLeft().then((mNm: any) => {
-      this.typeNames = mNm;
+    this.firebaseGetServ
+      .getAssetTypeNameLeft(this.organization)
+      .then((mNm: any) => {
+        this.typeNames = mNm;
 
-      mNm.forEach((elm) => {
-        this.itemTypes.forEach((obj) => {
-          if (elm.ItemTypeNameGuid == obj.ItemTypeNameGuid) {
-            obj.ItemTypeName = elm.ItemTypeName;
-          }
+        mNm.forEach((elm) => {
+          this.itemTypes.forEach((obj) => {
+            if (elm.ItemTypeNameGuid == obj.ItemTypeNameGuid) {
+              obj.ItemTypeName = elm.ItemTypeName;
+            }
+          });
         });
       });
-    });
   }
 
   onTypeClass() {
-    this.firebaseGetServ.getItemTypeClass().then((mNm: any) => {
-      this.typeClass = mNm;
-    });
+    this.firebaseGetServ
+      .getItemTypeClass(this.organization)
+      .then((mNm: any) => {
+        this.typeClass = mNm;
+      });
   }
   onTypeClassLeft() {
-    this.firebaseGetServ.getItemTypeClassLeft().then((mNm: any) => {
-      this.typeClass = mNm;
+    this.firebaseGetServ
+      .getItemTypeClassLeft(this.organization)
+      .then((mNm: any) => {
+        this.typeClass = mNm;
 
-      mNm.forEach((elm) => {
-        this.itemTypes.forEach((obj) => {
-          if (elm.ItemTypeClassGuid == obj.ItemTypeClassGuid) {
-            obj.ItemTypeClass = elm.ItemTypeClass;
-          }
+        mNm.forEach((elm) => {
+          this.itemTypes.forEach((obj) => {
+            if (elm.ItemTypeClassGuid == obj.ItemTypeClassGuid) {
+              obj.ItemTypeClass = elm.ItemTypeClass;
+            }
+          });
         });
       });
-    });
   }
 
   onTypeCapacity() {
-    this.firebaseGetServ.getTypeCapacity().then((mNm: any) => {
+    this.firebaseGetServ.getTypeCapacity(this.organization).then((mNm: any) => {
       this.typeCapacity = mNm;
     });
   }
   onTypeCapacityLeft() {
-    this.firebaseGetServ.getTypeCapacityLeft().then((mNm: any) => {
-      this.typeCapacity = mNm;
+    this.firebaseGetServ
+      .getTypeCapacityLeft(this.organization)
+      .then((mNm: any) => {
+        this.typeCapacity = mNm;
 
-      mNm.forEach((elm) => {
-        this.itemTypes.forEach((obj) => {
-          if (elm.ItemTypeCapGuid == obj.ItemTypeCapGuid) {
-            obj.ItemTypeCap = elm.ItemTypeCap;
-          }
+        mNm.forEach((elm) => {
+          this.itemTypes.forEach((obj) => {
+            if (elm.ItemTypeCapGuid == obj.ItemTypeCapGuid) {
+              obj.ItemTypeCap = elm.ItemTypeCap;
+            }
+          });
         });
       });
-    });
   }
 
-  getCurentUser() {
-    this.afAuth.onAuthStateChanged((cUser) => {
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
       this.getCurrentUserOrg(cUser.email);
     });
   }
@@ -138,6 +144,11 @@ export class ItemtypePage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+
+      this.onTableRep();
+      this.onTypeName();
+      this.onTypeClass();
+      this.onTypeCapacity();
     });
   }
 

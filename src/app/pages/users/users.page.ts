@@ -33,16 +33,13 @@ export class UsersPage implements OnInit {
   }
 
   ngOnInit() {
-    this.getCurentUser();
-    this.onTableRep();
-    this.onUserGroup();
-    this.onLocation();
+    this.getCurrentUser();
   }
 
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
-        .getUsers()
+        .getUsers(this.organization)
         .then((mNm: any) => {
           this.users = mNm;
           this.onUserGroup();
@@ -57,7 +54,7 @@ export class UsersPage implements OnInit {
   }
 
   onUserGroup() {
-    this.firebaseGetServ.getUserGroup().then((mNm: any) => {
+    this.firebaseGetServ.getUserGroup(this.organization).then((mNm: any) => {
       this.userGroups = mNm;
 
       mNm.forEach((elm) => {
@@ -71,18 +68,18 @@ export class UsersPage implements OnInit {
   }
 
   onLocation() {
-    this.firebaseGetServ.getLocation().then((mNm: any) => {
+    this.firebaseGetServ.getLocation(this.organization).then((mNm: any) => {
       this.locations = mNm;
     });
   }
   onLocationLeft() {
-    this.firebaseGetServ.getLocationLeft().then((mNm: any) => {
+    this.firebaseGetServ.getLocationLeft(this.organization).then((mNm: any) => {
       this.locations = mNm;
     });
   }
 
-  getCurentUser() {
-    this.afAuth.onAuthStateChanged((cUser) => {
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
       this.getCurrentUserOrg(cUser.email);
     });
   }
@@ -92,6 +89,10 @@ export class UsersPage implements OnInit {
       let user: any = mNm;
       this.organization = user.organization;
       console.log('returned user: ', this.organization);
+
+      this.onTableRep();
+      this.onUserGroup();
+      this.onLocation();
     });
   }
 

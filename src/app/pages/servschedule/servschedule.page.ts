@@ -32,16 +32,13 @@ export class ServschedulePage implements OnInit {
   }
 
   ngOnInit() {
-    this.getCurentUser();
-    // this.onTableRep();
-    this.onMakModel();
-    this.onServiceType();
+    this.getCurrentUser();
   }
 
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
-        .getServiceScheduleTasks()
+        .getServiceScheduleTasks(this.organization)
         .then((mNm: any) => {
           this.servschedules = mNm;
           this.popUp.dismissLoading();
@@ -55,24 +52,28 @@ export class ServschedulePage implements OnInit {
   }
 
   onMakModel() {
-    this.firebaseGetServ.getAssetMakenModel().then((mNm: any) => {
-      this.itemMakModels = mNm;
-    });
+    this.firebaseGetServ
+      .getAssetMakenModel(this.organization)
+      .then((mNm: any) => {
+        this.itemMakModels = mNm;
+      });
   }
   onMakModelLeft() {
-    this.firebaseGetServ.getAssetMakenModelLeft().then((mNm: any) => {
-      this.itemMakModels = mNm;
-    });
+    this.firebaseGetServ
+      .getAssetMakenModelLeft(this.organization)
+      .then((mNm: any) => {
+        this.itemMakModels = mNm;
+      });
   }
 
   onServiceType() {
-    this.firebaseGetServ.getServiceType().then((mNm: any) => {
+    this.firebaseGetServ.getServiceType(this.organization).then((mNm: any) => {
       this.serviceTypes = mNm;
     });
   }
 
-  getCurentUser() {
-    this.afAuth.onAuthStateChanged((cUser) => {
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
       this.getCurrentUserOrg(cUser.email);
     });
   }
@@ -81,6 +82,10 @@ export class ServschedulePage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+
+      // this.onTableRep();
+      this.onMakModel();
+      this.onServiceType();
     });
   }
 

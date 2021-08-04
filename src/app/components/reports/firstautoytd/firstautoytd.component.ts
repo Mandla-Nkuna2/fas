@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
+import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 
 @Component({
@@ -8,6 +10,7 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
   styleUrls: ['./firstautoytd.component.scss'],
 })
 export class FirstautoytdComponent implements OnInit {
+  organization = 'InnTee';
   dateFrom: any;
 
   location: any;
@@ -17,21 +20,37 @@ export class FirstautoytdComponent implements OnInit {
   levels = ['0', '1', '2', '3', '4'];
 
   constructor(
+    private firebaseRepServ: FirebaseReportService,
     private firebaseGetServ: FirebaseGetService,
-    private popUp: PopupHelper,
+    public afAuth: AngularFireAuth,
   ) {}
 
   ngOnInit() {
-    this.onLocation();
+    this.getCurrentUser();
+  }
+
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+
+      this.onLocation();
+    });
   }
 
   onLocation() {
-    this.firebaseGetServ.getLocation().then((mNm: any) => {
+    this.firebaseGetServ.getLocation(this.organization).then((mNm: any) => {
       this.locations = mNm;
     });
   }
   onLocationLeft() {
-    this.firebaseGetServ.getLocationLeft().then((mNm: any) => {
+    this.firebaseGetServ.getLocationLeft(this.organization).then((mNm: any) => {
       this.locations = mNm;
     });
   }

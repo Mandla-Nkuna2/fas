@@ -30,14 +30,13 @@ export class StorecategoriesPage implements OnInit {
   }
 
   ngOnInit() {
-    this.getCurentUser();
-    this.onTableRep();
+    this.getCurrentUser();
   }
 
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
-        .getStoreCategories()
+        .getStoreCategories(this.organization)
         .then((mNm: any) => {
           this.storeCats = mNm;
           this.popUp.dismissLoading();
@@ -55,13 +54,13 @@ export class StorecategoriesPage implements OnInit {
   }
 
   onStoreCats() {
-    this.firebaseGetServ.getStoreCat().then((mNm: any) => {
+    this.firebaseGetServ.getStoreCat(this.organization).then((mNm: any) => {
       this.storeCats = mNm;
     });
   }
 
-  getCurentUser() {
-    this.afAuth.onAuthStateChanged((cUser) => {
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
       this.getCurrentUserOrg(cUser.email);
     });
   }
@@ -70,6 +69,8 @@ export class StorecategoriesPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+
+      this.onTableRep();
     });
   }
 

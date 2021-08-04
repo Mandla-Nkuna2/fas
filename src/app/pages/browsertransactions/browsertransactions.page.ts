@@ -32,14 +32,13 @@ export class BrowsertransactionsPage implements OnInit {
   }
 
   ngOnInit() {
-    this.getCurentUser();
-    this.onTableRep();
+    this.getCurrentUser();
   }
 
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
-        .getBowserTransactions()
+        .getBowserTransactions(this.organization)
         .then((mNm: any) => {
           this.bowserTransactions = mNm;
           this.onCostCentreLeft();
@@ -58,21 +57,23 @@ export class BrowsertransactionsPage implements OnInit {
   }
 
   onCostCentreLeft() {
-    this.firebaseGetServ.getCostCentreLeft().then((staff: any) => {
-      this.costCentre = staff;
+    this.firebaseGetServ
+      .getCostCentreLeft(this.organization)
+      .then((staff: any) => {
+        this.costCentre = staff;
 
-      staff.forEach((elm) => {
-        this.bowserTransactions.forEach((obj) => {
-          if (elm.CostCentGuid == obj.CostCentGuid) {
-            obj.CostCent = elm.CostCentName;
-          }
+        staff.forEach((elm) => {
+          this.bowserTransactions.forEach((obj) => {
+            if (elm.CostCentGuid == obj.CostCentGuid) {
+              obj.CostCent = elm.CostCentName;
+            }
+          });
         });
       });
-    });
   }
 
-  getCurentUser() {
-    this.afAuth.onAuthStateChanged((cUser) => {
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
       this.getCurrentUserOrg(cUser.email);
     });
   }
@@ -81,6 +82,8 @@ export class BrowsertransactionsPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+
+      this.onTableRep();
     });
   }
 

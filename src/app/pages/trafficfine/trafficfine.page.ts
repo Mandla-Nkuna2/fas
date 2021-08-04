@@ -33,34 +33,36 @@ export class TrafficfinePage implements OnInit {
   }
 
   onSupervisor() {
-    this.firebaseGetServ.getStaff().then((mNm: any) => {
+    this.firebaseGetServ.getStaff(this.organization).then((mNm: any) => {
       this.supervisor = mNm;
     });
   }
   onSupervisorLeft() {
-    this.firebaseGetServ.getStaffLeft().then((mNm: any) => {
+    this.firebaseGetServ.getStaffLeft(this.organization).then((mNm: any) => {
       this.supervisor = mNm;
     });
   }
 
   onRegistration() {
-    this.firebaseGetServ.getRegistration().then((mNm: any) => {
+    this.firebaseGetServ.getRegistration(this.organization).then((mNm: any) => {
       this.registration = mNm;
     });
   }
   onRegistrationLeft() {
-    this.firebaseGetServ.getRegistrationLeft().then((mNm: any) => {
-      this.registration = mNm;
-    });
+    this.firebaseGetServ
+      .getRegistrationLeft(this.organization)
+      .then((mNm: any) => {
+        this.registration = mNm;
+      });
   }
 
   onDriver() {
-    this.firebaseGetServ.getStaff().then((mNm: any) => {
+    this.firebaseGetServ.getStaff(this.organization).then((mNm: any) => {
       this.driver = mNm;
     });
   }
   onDriverLeft() {
-    this.firebaseGetServ.getStaffLeft().then((mNm: any) => {
+    this.firebaseGetServ.getStaffLeft(this.organization).then((mNm: any) => {
       this.driver = mNm;
     });
   }

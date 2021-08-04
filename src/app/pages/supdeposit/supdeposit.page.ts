@@ -32,15 +32,13 @@ export class SupdepositPage implements OnInit {
   }
 
   ngOnInit() {
-    this.getCurentUser();
-    this.onTableRep();
-    this.onSupplierName();
+    this.getCurrentUser();
   }
 
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
-        .getSupplierDeposits()
+        .getSupplierDeposits(this.organization)
         .then((mNm: any) => {
           this.supplierDeposits = mNm;
           this.onSupplierNameLeft();
@@ -59,12 +57,12 @@ export class SupdepositPage implements OnInit {
   }
 
   onSupplierName() {
-    this.firebaseGetServ.getSupplier().then((mNm: any) => {
+    this.firebaseGetServ.getSupplier(this.organization).then((mNm: any) => {
       this.supplier = mNm;
     });
   }
   onSupplierNameLeft() {
-    this.firebaseGetServ.getSupplierLeft().then((mNm: any) => {
+    this.firebaseGetServ.getSupplierLeft(this.organization).then((mNm: any) => {
       this.supplier = mNm;
 
       mNm.forEach((elm) => {
@@ -77,8 +75,8 @@ export class SupdepositPage implements OnInit {
     });
   }
 
-  getCurentUser() {
-    this.afAuth.onAuthStateChanged((cUser) => {
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
       this.getCurrentUserOrg(cUser.email);
     });
   }
@@ -87,6 +85,9 @@ export class SupdepositPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+
+      this.onTableRep();
+      this.onSupplierName();
     });
   }
 

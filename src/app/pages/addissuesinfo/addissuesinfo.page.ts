@@ -22,11 +22,11 @@ export class AddissuesinfoPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.getCurentUser();
+    this.getCurrentUser();
   }
 
-  getCurentUser() {
-    this.afAuth.onAuthStateChanged((cUser) => {
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
       this.getCurrentUserOrg(cUser.email);
     });
   }

@@ -38,18 +38,13 @@ export class OilstoretransPage implements OnInit {
   }
 
   ngOnInit() {
-    this.getCurentUser();
-    this.onTableRep();
-    this.onOilStore();
-    this.onOilType();
-    this.onSupplier();
-    this.onCostCentre();
+    this.getCurrentUser();
   }
 
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
-        .getOilStoreTrans()
+        .getOilStoreTrans(this.organization)
         .then((mNm: any) => {
           this.oilstoreTranss = mNm;
           this.onOilStore();
@@ -70,7 +65,7 @@ export class OilstoretransPage implements OnInit {
   }
 
   onOilStore() {
-    this.firebaseGetServ.getOilStore().then((mNm: any) => {
+    this.firebaseGetServ.getOilStore(this.organization).then((mNm: any) => {
       this.oilStores = mNm;
 
       mNm.forEach((elm) => {
@@ -84,17 +79,17 @@ export class OilstoretransPage implements OnInit {
   }
 
   onOilType() {
-    this.firebaseGetServ.getOilMake().then((mNm: any) => {
+    this.firebaseGetServ.getOilMake(this.organization).then((mNm: any) => {
       this.oilMakes = mNm;
     });
-    this.firebaseGetServ.getOilGrade().then((mNm: any) => {
+    this.firebaseGetServ.getOilGrade(this.organization).then((mNm: any) => {
       this.oilGrades = mNm;
     });
-    this.firebaseGetServ.getOilClass().then((mNm: any) => {
+    this.firebaseGetServ.getOilClass(this.organization).then((mNm: any) => {
       this.oilClasses = mNm;
     });
 
-    this.firebaseGetServ.getOilType().then((mNm: any) => {
+    this.firebaseGetServ.getOilType(this.organization).then((mNm: any) => {
       mNm.forEach((oilObj) => {
         this.oilMakes.forEach((oilM) => {
           if (oilM.OilMakeGuid == oilObj.OilMakeGuid) {
@@ -121,7 +116,7 @@ export class OilstoretransPage implements OnInit {
     });
   }
   onOilTypeLeft() {
-    this.firebaseGetServ.getOilTypeLeft().then((mNm: any) => {
+    this.firebaseGetServ.getOilTypeLeft(this.organization).then((mNm: any) => {
       mNm.forEach((oilObj) => {
         this.oilMakes.forEach((oilM) => {
           if (oilM.OilMakeGuid == oilObj.OilMakeGuid) {
@@ -157,37 +152,39 @@ export class OilstoretransPage implements OnInit {
   }
 
   onSupplier() {
-    this.firebaseGetServ.getSupplier().then((mNm: any) => {
+    this.firebaseGetServ.getSupplier(this.organization).then((mNm: any) => {
       this.suppliers = mNm;
     });
   }
   onSupplierLeft() {
-    this.firebaseGetServ.getSupplierLeft().then((mNm: any) => {
+    this.firebaseGetServ.getSupplierLeft(this.organization).then((mNm: any) => {
       this.suppliers = mNm;
     });
   }
 
   onCostCentre() {
-    this.firebaseGetServ.getCostCentre().then((mNm: any) => {
+    this.firebaseGetServ.getCostCentre(this.organization).then((mNm: any) => {
       this.costCentre = mNm;
     });
   }
   onCostCentreLeft() {
-    this.firebaseGetServ.getCostCentreLeft().then((mNm: any) => {
-      this.costCentre = mNm;
+    this.firebaseGetServ
+      .getCostCentreLeft(this.organization)
+      .then((mNm: any) => {
+        this.costCentre = mNm;
 
-      mNm.forEach((elm) => {
-        this.oilstoreTranss.forEach((obj) => {
-          if (elm.CostCentGuid == obj.CostCentGuid) {
-            obj.CostCent = elm.CostCentName;
-          }
+        mNm.forEach((elm) => {
+          this.oilstoreTranss.forEach((obj) => {
+            if (elm.CostCentGuid == obj.CostCentGuid) {
+              obj.CostCent = elm.CostCentName;
+            }
+          });
         });
       });
-    });
   }
 
-  getCurentUser() {
-    this.afAuth.onAuthStateChanged((cUser) => {
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
       this.getCurrentUserOrg(cUser.email);
     });
   }
@@ -196,6 +193,12 @@ export class OilstoretransPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+
+      this.onTableRep();
+      this.onOilStore();
+      this.onOilType();
+      this.onSupplier();
+      this.onCostCentre();
     });
   }
 

@@ -64,9 +64,7 @@ export class JobcardPage implements OnInit {
   }
 
   ngOnInit() {
-    this.getCurentUser();
-    this.onReportedBy();
-    this.onDriver();
+    this.getCurrentUser();
   }
 
   public signaturePadOptions: Object = {
@@ -104,12 +102,12 @@ export class JobcardPage implements OnInit {
   }
 
   onReportedBy() {
-    this.firebaseGetServ.getStaff().then((staff) => {
+    this.firebaseGetServ.getStaff(this.organization).then((staff) => {
       this.staff = staff;
     });
   }
   onReportedByLeft() {
-    this.firebaseGetServ.getStaffLeft().then((staff) => {
+    this.firebaseGetServ.getStaffLeft(this.organization).then((staff) => {
       this.staff = staff;
     });
   }
@@ -119,20 +117,20 @@ export class JobcardPage implements OnInit {
   }
 
   onDriver() {
-    this.firebaseGetServ.getStaff().then((staff: any) => {
+    this.firebaseGetServ.getStaff(this.organization).then((staff: any) => {
       this.driver = staff;
     });
   }
   onDriverLeft() {
-    this.firebaseGetServ.getStaffLeft().then((staff: any) => {
+    this.firebaseGetServ.getStaffLeft(this.organization).then((staff: any) => {
       this.driver = staff;
     });
   }
 
   onChange() {}
 
-  getCurentUser() {
-    this.afAuth.onAuthStateChanged((cUser) => {
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
       this.getCurrentUserOrg(cUser.email);
     });
   }
@@ -141,6 +139,9 @@ export class JobcardPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+
+      this.onReportedBy();
+      this.onDriver();
     });
   }
 

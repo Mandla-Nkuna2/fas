@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { NavController } from '@ionic/angular';
 import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
@@ -9,22 +10,39 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
   styleUrls: ['./repairhistory.page.scss'],
 })
 export class RepairhistoryPage implements OnInit {
+  organization = 'InnTee';
   vehicleReps: any = [];
 
   constructor(
     private navCtrl: NavController,
     private firebaseRepServ: FirebaseReportService,
     private popUp: PopupHelper,
+    public afAuth: AngularFireAuth,
   ) {}
 
   ngOnInit() {
-    this.onTableRep();
+    this.getCurrentUser();
+  }
+
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+
+      this.onTableRep();
+    });
   }
 
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
-        .getMaintEvent()
+        .getMaintEvent(this.organization)
         .then((mNm: any) => {
           this.vehicleReps = mNm;
           this.popUp.dismissLoading();

@@ -50,12 +50,7 @@ export class AddassetsPage implements OnInit {
   }
 
   ngOnInit() {
-    this.getCurentUser();
-    this.onMakeAndModel();
-    this.onColor();
-    this.onBattery();
-    this.onDriver();
-    this.onTireSizes();
+    this.getCurrentUser();
   }
 
   onlyUnique(value, index, self) {
@@ -63,33 +58,37 @@ export class AddassetsPage implements OnInit {
   }
 
   onMakeAndModel() {
-    this.firebaseGetServ.getAssetMakenModel().then((mNm: any) => {
-      this.makesAndModels = mNm;
-    });
+    this.firebaseGetServ
+      .getAssetMakenModel(this.organization)
+      .then((mNm: any) => {
+        this.makesAndModels = mNm;
+      });
   }
   onMakeAndModelLeft() {
-    this.firebaseGetServ.getAssetMakenModelLeft().then((mNm: any) => {
-      this.makesAndModels = mNm;
-    });
+    this.firebaseGetServ
+      .getAssetMakenModelLeft(this.organization)
+      .then((mNm: any) => {
+        this.makesAndModels = mNm;
+      });
   }
 
   onColor() {
-    this.firebaseGetServ.getColor().then((col: any) => {
+    this.firebaseGetServ.getColor(this.organization).then((col: any) => {
       this.colors = col;
     });
   }
   onColorLeft() {
-    this.firebaseGetServ.getColorLeft().then((col: any) => {
+    this.firebaseGetServ.getColorLeft(this.organization).then((col: any) => {
       this.colors = col;
     });
   }
 
   onBattery() {
-    this.firebaseGetServ.getBatteryMake().then((col: any) => {
+    this.firebaseGetServ.getBatteryMake(this.organization).then((col: any) => {
       this.batteryMake = col;
     });
 
-    this.firebaseGetServ.getBattery().then((col: any) => {
+    this.firebaseGetServ.getBattery(this.organization).then((col: any) => {
       col.forEach((batObj) => {
         this.batteryMake.forEach((batMk) => {
           if (batMk.BatteryMakeGuid == batObj.BatteryMakeGuid) {
@@ -102,7 +101,7 @@ export class AddassetsPage implements OnInit {
     });
   }
   onBatteryLeft() {
-    this.firebaseGetServ.getBatteryLeft().then((col: any) => {
+    this.firebaseGetServ.getBatteryLeft(this.organization).then((col: any) => {
       col.forEach((batObj) => {
         this.batteryMake.forEach((batMk) => {
           if (batMk.BatteryMakeGuid == batObj.BatteryMakeGuid) {
@@ -116,29 +115,31 @@ export class AddassetsPage implements OnInit {
   }
 
   onDriver() {
-    this.firebaseGetServ.getStaff().then((col: any) => {
+    this.firebaseGetServ.getStaff(this.organization).then((col: any) => {
       this.drivers = col;
     });
   }
   onDriverLeft() {
-    this.firebaseGetServ.getStaffLeft().then((col: any) => {
+    this.firebaseGetServ.getStaffLeft(this.organization).then((col: any) => {
       this.drivers = col;
     });
   }
 
   onTireSizes() {
-    this.firebaseGetServ.getTyreSize().then((size: any) => {
+    this.firebaseGetServ.getTyreSize(this.organization).then((size: any) => {
       this.tyreSizes = size;
     });
   }
   onTireSizesLeft() {
-    this.firebaseGetServ.getTyreSizeLeft().then((size: any) => {
-      this.tyreSizes = size;
-    });
+    this.firebaseGetServ
+      .getTyreSizeLeft(this.organization)
+      .then((size: any) => {
+        this.tyreSizes = size;
+      });
   }
 
-  getCurentUser() {
-    this.afAuth.onAuthStateChanged((cUser) => {
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
       this.getCurrentUserOrg(cUser.email);
     });
   }
@@ -147,6 +148,12 @@ export class AddassetsPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+
+      this.onMakeAndModel();
+      this.onColor();
+      this.onBattery();
+      this.onDriver();
+      this.onTireSizes();
     });
   }
 

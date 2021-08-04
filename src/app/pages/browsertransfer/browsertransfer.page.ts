@@ -32,15 +32,13 @@ export class BrowsertransferPage implements OnInit {
   }
 
   ngOnInit() {
-    this.getCurentUser();
-    this.onTableRep();
-    this.onCostCentre();
+    this.getCurrentUser();
   }
 
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
-        .getBowserTransfers()
+        .getBowserTransfers(this.organization)
         .then((mNm: any) => {
           this.bowserTransfers = mNm;
           this.onBowserFromAnTo();
@@ -55,7 +53,7 @@ export class BrowsertransferPage implements OnInit {
   }
 
   onBowserFromAnTo() {
-    this.firebaseGetServ.getBowserLeft().then((staff: any) => {
+    this.firebaseGetServ.getBowserLeft(this.organization).then((staff: any) => {
       this.bowsers = staff;
 
       staff.forEach((elm) => {
@@ -77,13 +75,13 @@ export class BrowsertransferPage implements OnInit {
   }
 
   onCostCentre() {
-    this.firebaseGetServ.getCostCentre().then((mNm: any) => {
+    this.firebaseGetServ.getCostCentre(this.organization).then((mNm: any) => {
       this.costCentre = mNm;
     });
   }
 
-  getCurentUser() {
-    this.afAuth.onAuthStateChanged((cUser) => {
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
       this.getCurrentUserOrg(cUser.email);
     });
   }
@@ -92,6 +90,9 @@ export class BrowsertransferPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+
+      this.onTableRep();
+      this.onCostCentre();
     });
   }
 

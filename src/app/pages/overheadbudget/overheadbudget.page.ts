@@ -31,15 +31,13 @@ export class OverheadbudgetPage implements OnInit {
   }
 
   ngOnInit() {
-    this.getCurentUser();
-    this.onTableRep();
-    this.onOhbType();
+    this.getCurrentUser();
   }
 
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
-        .getOverheadBudget()
+        .getOverheadBudget(this.organization)
         .then((mNm: any) => {
           this.oheadbudgets = mNm;
           this.onOhbType();
@@ -54,7 +52,7 @@ export class OverheadbudgetPage implements OnInit {
   }
 
   onOhbType() {
-    this.firebaseGetServ.getOverheadType().then((mNm: any) => {
+    this.firebaseGetServ.getOverheadType(this.organization).then((mNm: any) => {
       this.ohTypes = mNm;
 
       mNm.forEach((elm) => {
@@ -67,8 +65,8 @@ export class OverheadbudgetPage implements OnInit {
     });
   }
 
-  getCurentUser() {
-    this.afAuth.onAuthStateChanged((cUser) => {
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
       this.getCurrentUserOrg(cUser.email);
     });
   }
@@ -77,6 +75,9 @@ export class OverheadbudgetPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+
+      this.onTableRep();
+      this.onOhbType();
     });
   }
 

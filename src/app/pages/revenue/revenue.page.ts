@@ -34,17 +34,13 @@ export class RevenuePage implements OnInit {
   }
 
   ngOnInit() {
-    this.getCurentUser();
-    this.onTableRep();
-    this.onRegistration();
-    this.onClient();
-    this.onCostCentre();
+    this.getCurrentUser();
   }
 
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
-        .getRevenue()
+        .getRevenue(this.organization)
         .then((mNm: any) => {
           this.revenuee = mNm;
           this.onClient();
@@ -63,18 +59,22 @@ export class RevenuePage implements OnInit {
   }
 
   onRegistration() {
-    this.firebaseGetServ.getRegistration().then((staff: any) => {
-      this.registration = staff;
-    });
+    this.firebaseGetServ
+      .getRegistration(this.organization)
+      .then((staff: any) => {
+        this.registration = staff;
+      });
   }
   onRegistrationLeft() {
-    this.firebaseGetServ.getRegistrationLeft().then((staff: any) => {
-      this.registration = staff;
-    });
+    this.firebaseGetServ
+      .getRegistrationLeft(this.organization)
+      .then((staff: any) => {
+        this.registration = staff;
+      });
   }
 
   onClient() {
-    this.firebaseGetServ.getClient().then((staff: any) => {
+    this.firebaseGetServ.getClient(this.organization).then((staff: any) => {
       this.clients = staff;
 
       staff.forEach((elm) => {
@@ -88,13 +88,13 @@ export class RevenuePage implements OnInit {
   }
 
   onCostCentre() {
-    this.firebaseGetServ.getCostCentre().then((staff: any) => {
+    this.firebaseGetServ.getCostCentre(this.organization).then((staff: any) => {
       this.costCentre = staff;
     });
   }
 
-  getCurentUser() {
-    this.afAuth.onAuthStateChanged((cUser) => {
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
       this.getCurrentUserOrg(cUser.email);
     });
   }
@@ -103,6 +103,11 @@ export class RevenuePage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+
+      this.onTableRep();
+      this.onRegistration();
+      this.onClient();
+      this.onCostCentre();
     });
   }
 

@@ -35,18 +35,13 @@ export class DailyoperationrecordPage implements OnInit {
   }
 
   ngOnInit() {
-    this.getCurentUser();
-    this.onTableRep();
-    this.onRegistration();
-    this.onLocation();
-    this.onCostCentre();
-    this.onOperatorName();
+    this.getCurrentUser();
   }
 
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
-        .getDailyOperations()
+        .getDailyOperations(this.organization)
         .then((mNm: any) => {
           this.dailyOpRecs = mNm;
           this.onRegistrationLeft();
@@ -62,67 +57,71 @@ export class DailyoperationrecordPage implements OnInit {
   }
 
   onRegistration() {
-    this.firebaseGetServ.getRegistration().then((mNm: any) => {
+    this.firebaseGetServ.getRegistration(this.organization).then((mNm: any) => {
       this.registration = mNm;
     });
   }
   onRegistrationLeft() {
-    this.firebaseGetServ.getRegistrationLeft().then((mNm: any) => {
-      this.registration = mNm;
+    this.firebaseGetServ
+      .getRegistrationLeft(this.organization)
+      .then((mNm: any) => {
+        this.registration = mNm;
 
-      mNm.forEach((elm) => {
-        this.dailyOpRecs.forEach((obj) => {
-          if (elm.ItemGuid == obj.Itemguid) {
-            obj.Item = elm.Reg;
-          }
+        mNm.forEach((elm) => {
+          this.dailyOpRecs.forEach((obj) => {
+            if (elm.ItemGuid == obj.Itemguid) {
+              obj.Item = elm.Reg;
+            }
+          });
         });
       });
-    });
   }
 
   onLocation() {
-    this.firebaseGetServ.getLocation().then((mNm: any) => {
+    this.firebaseGetServ.getLocation(this.organization).then((mNm: any) => {
       this.location = mNm;
     });
   }
   onLocationLeft() {
-    this.firebaseGetServ.getLocationLeft().then((mNm: any) => {
+    this.firebaseGetServ.getLocationLeft(this.organization).then((mNm: any) => {
       this.location = mNm;
     });
   }
 
   onCostCentre() {
-    this.firebaseGetServ.getCostCentre().then((mNm: any) => {
+    this.firebaseGetServ.getCostCentre(this.organization).then((mNm: any) => {
       this.costCentre = mNm;
     });
   }
   onCostCentreLeft() {
-    this.firebaseGetServ.getCostCentreLeft().then((mNm: any) => {
-      this.costCentre = mNm;
+    this.firebaseGetServ
+      .getCostCentreLeft(this.organization)
+      .then((mNm: any) => {
+        this.costCentre = mNm;
 
-      mNm.forEach((elm) => {
-        this.dailyOpRecs.forEach((obj) => {
-          if (elm.CostCentGuid == obj.CostCentreguid) {
-            obj.CostCentre = elm.CostCentName;
-          }
+        mNm.forEach((elm) => {
+          this.dailyOpRecs.forEach((obj) => {
+            if (elm.CostCentGuid == obj.CostCentreguid) {
+              obj.CostCentre = elm.CostCentName;
+            }
+          });
         });
       });
-    });
   }
 
   onOperatorName() {
-    this.firebaseGetServ.getStaff().then((mNm: any) => {
+    this.firebaseGetServ.getStaff(this.organization).then((mNm: any) => {
       this.operator = mNm;
     });
   }
   onOperatorNameLeft() {
-    this.firebaseGetServ.getStaffLeft().then((mNm: any) => {
+    this.firebaseGetServ.getStaffLeft(this.organization).then((mNm: any) => {
       this.operator = mNm;
     });
   }
 
-  getCurentUser() {
-    this.afAuth.onAuthStateChanged((cUser) => {
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
       this.getCurrentUserOrg(cUser.email);
     });
   }
@@ -131,6 +130,12 @@ export class DailyoperationrecordPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+
+      this.onTableRep();
+      this.onRegistration();
+      this.onLocation();
+      this.onCostCentre();
+      this.onOperatorName();
     });
   }
 

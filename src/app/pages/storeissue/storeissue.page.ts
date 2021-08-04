@@ -35,18 +35,13 @@ export class StoreissuePage implements OnInit {
   }
 
   ngOnInit() {
-    this.getCurentUser();
-    this.onTableRep();
-    this.onRegistration();
-    this.onMaintEvRefNo();
-    this.onSupplier();
-    this.onStoreItem();
+    this.getCurrentUser();
   }
 
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
-        .getStoreIssues()
+        .getStoreIssues(this.organization)
         .then((mNm: any) => {
           this.storeIssues = mNm;
           this.onStoreItemLeft();
@@ -69,59 +64,65 @@ export class StoreissuePage implements OnInit {
   }
 
   onRegistration() {
-    this.firebaseGetServ.getRegistration().then((mNm: any) => {
+    this.firebaseGetServ.getRegistration(this.organization).then((mNm: any) => {
       this.registration = mNm;
     });
   }
   onRegistrationLeft() {
-    this.firebaseGetServ.getRegistrationLeft().then((mNm: any) => {
-      this.registration = mNm;
-    });
+    this.firebaseGetServ
+      .getRegistrationLeft(this.organization)
+      .then((mNm: any) => {
+        this.registration = mNm;
+      });
   }
 
   onMaintEvRefNo() {
-    this.firebaseGetServ.getMaintEvRefNo().then((mNm: any) => {
+    this.firebaseGetServ.getMaintEvRefNo(this.organization).then((mNm: any) => {
       this.MaintEvRefNo = mNm;
     });
   }
   onMaintEvRefNoLeft() {
-    this.firebaseGetServ.getMaintEvRefNoLeft().then((mNm: any) => {
-      this.MaintEvRefNo = mNm;
-    });
+    this.firebaseGetServ
+      .getMaintEvRefNoLeft(this.organization)
+      .then((mNm: any) => {
+        this.MaintEvRefNo = mNm;
+      });
   }
 
   onSupplier() {
-    this.firebaseGetServ.getSupplier().then((mNm: any) => {
+    this.firebaseGetServ.getSupplier(this.organization).then((mNm: any) => {
       this.supplier = mNm;
     });
   }
   onSupplierleft() {
-    this.firebaseGetServ.getSupplierLeft().then((mNm: any) => {
+    this.firebaseGetServ.getSupplierLeft(this.organization).then((mNm: any) => {
       this.supplier = mNm;
     });
   }
 
   onStoreItem() {
-    this.firebaseGetServ.getStoreItem().then((mNm: any) => {
+    this.firebaseGetServ.getStoreItem(this.organization).then((mNm: any) => {
       this.storeItem = mNm;
     });
   }
   onStoreItemLeft() {
-    this.firebaseGetServ.getStoreItemLeft().then((mNm: any) => {
-      this.storeItem = mNm;
+    this.firebaseGetServ
+      .getStoreItemLeft(this.organization)
+      .then((mNm: any) => {
+        this.storeItem = mNm;
 
-      mNm.forEach((elm) => {
-        this.storeIssues.forEach((obj) => {
-          if (elm.StoreCatgGuid == obj.StoreCatgItemGuid) {
-            obj.StoreCatgItem = elm.StoreCatgItem;
-          }
+        mNm.forEach((elm) => {
+          this.storeIssues.forEach((obj) => {
+            if (elm.StoreCatgGuid == obj.StoreCatgItemGuid) {
+              obj.StoreCatgItem = elm.StoreCatgItem;
+            }
+          });
         });
       });
-    });
   }
 
-  getCurentUser() {
-    this.afAuth.onAuthStateChanged((cUser) => {
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
       this.getCurrentUserOrg(cUser.email);
     });
   }
@@ -130,6 +131,12 @@ export class StoreissuePage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+
+      this.onTableRep();
+      this.onRegistration();
+      this.onMaintEvRefNo();
+      this.onSupplier();
+      this.onStoreItem();
     });
   }
 

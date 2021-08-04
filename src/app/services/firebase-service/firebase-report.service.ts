@@ -6,14 +6,12 @@ const limVal = 3;
   providedIn: 'root',
 })
 export class FirebaseReportService {
-  private organization = 'PMB_ELEC';
-
   constructor(private afs: AngularFirestore) {}
 
-  public getAsset() {
+  public getAsset(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection(this.organization + '/Mst_Item/tables')
+        .collection(organization + '/Mst_Item/tables')
         .ref.limit(limVal)
         .get()
         .then((obj) => {
@@ -30,10 +28,10 @@ export class FirebaseReportService {
     return promise;
   }
 
-  public getAssetLeft() {
+  public getAssetLeft(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection(this.organization + '/Mst_Item/tables')
+        .collection(organization + '/Mst_Item/tables')
         .ref.get()
         .then((obj) => {
           let data = [];
@@ -49,10 +47,10 @@ export class FirebaseReportService {
     return promise;
   }
 
-  public getItemComponents() {
+  public getItemComponents(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection(this.organization + '/Mst_ItemComponents/tables')
+        .collection(organization + '/Mst_ItemComponents/tables')
         .ref.limit(limVal)
         .get()
         .then((obj) => {
@@ -69,10 +67,10 @@ export class FirebaseReportService {
     return promise;
   }
 
-  public getLossControls() {
+  public getLossControls(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection(this.organization + '/Trn_LossControl/tables')
+        .collection(organization + '/Trn_LossControl/tables')
         .ref.limit(limVal)
         .get()
         .then((obj) => {
@@ -89,10 +87,10 @@ export class FirebaseReportService {
     return promise;
   }
 
-  public getDailyOperations() {
+  public getDailyOperations(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection(this.organization + '/Trn_PlantSheets/tables')
+        .collection(organization + '/Trn_PlantSheets/tables')
         .ref.limit(limVal)
         .get()
         .then((obj) => {
@@ -109,10 +107,10 @@ export class FirebaseReportService {
     return promise;
   }
 
-  public getMaintEvent() {
+  public getMaintEvent(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection(this.organization + '/Trn_MaintEvnt/tables')
+        .collection(organization + '/Trn_MaintEvnt/tables')
         .ref.limit(limVal)
         .get()
         .then((obj) => {
@@ -129,10 +127,10 @@ export class FirebaseReportService {
     return promise;
   }
 
-  public getMaintEventLeft() {
+  public getMaintEventLeft(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection(this.organization + '/Trn_MaintEvnt/tables')
+        .collection(organization + '/Trn_MaintEvnt/tables')
         .ref.get()
         .then((obj) => {
           let data = [];
@@ -148,10 +146,10 @@ export class FirebaseReportService {
     return promise;
   }
 
-  public getRevenue() {
+  public getRevenue(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection(this.organization + '/Trn_Revenue/tables')
+        .collection(organization + '/Trn_Revenue/tables')
         .ref.limit(4)
         .get()
         .then((obj) => {
@@ -168,10 +166,10 @@ export class FirebaseReportService {
     return promise;
   }
 
-  getLocationsLeft() {
+  getLocationsLeft(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection(this.organization + '/Mst_Location/tables')
+        .collection(organization + '/Mst_Location/tables')
         .ref.get()
         .then((obj) => {
           let data = [];
@@ -187,10 +185,10 @@ export class FirebaseReportService {
     return promise;
   }
 
-  public getFixedCostDetails() {
+  public getFixedCostDetails(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection(this.organization + '/Mst_FixedCosts/tables')
+        .collection(organization + '/Mst_FixedCosts/tables')
         .ref.limit(limVal)
         .get()
         .then((obj) => {
@@ -207,10 +205,10 @@ export class FirebaseReportService {
     return promise;
   }
 
-  public getFixedCostTransfer() {
+  public getFixedCostTransfer(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection(this.organization + '/Trn_FixedCosts/tables')
+        .collection(organization + '/Trn_FixedCosts/tables')
         .ref.limit(limVal)
         .get()
         .then((obj) => {
@@ -227,10 +225,10 @@ export class FirebaseReportService {
     return promise;
   }
 
-  public getOverheadTransf() {
+  public getOverheadTransf(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection(this.organization + '/Trn_Overheads/tables')
+        .collection(organization + '/Trn_Overheads/tables')
         .ref.limit(limVal)
         .get()
         .then((obj) => {
@@ -247,10 +245,10 @@ export class FirebaseReportService {
     return promise;
   }
 
-  public getAdditionalCosts() {
+  public getAdditionalCosts(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection(this.organization + '/Trn_AdditionalCosts/tables')
+        .collection(organization + '/Trn_AdditionalCosts/tables')
         .ref.limit(limVal)
         .get()
         .then((obj) => {
@@ -267,10 +265,10 @@ export class FirebaseReportService {
     return promise;
   }
 
-  public getSupplierDeposits() {
+  public getSupplierDeposits(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection(this.organization + '/Trn_SuppBalance/tables')
+        .collection(organization + '/Trn_SuppBalance/tables')
         .ref.limit(limVal)
         .get()
         .then((obj) => {
@@ -287,10 +285,10 @@ export class FirebaseReportService {
     return promise;
   }
 
-  public getAutocards() {
+  public getAutocards(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection(this.organization + '/Mst_Autocard/tables')
+        .collection(organization + '/Mst_Autocard/tables')
         .ref.limit(limVal)
         .get()
         .then((obj) => {
@@ -307,10 +305,10 @@ export class FirebaseReportService {
     return promise;
   }
 
-  public getStoreIssues() {
+  public getStoreIssues(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection(this.organization + '/Trn_StoreIssue/tables')
+        .collection(organization + '/Trn_StoreIssue/tables')
         .ref.limit(limVal)
         .get()
         .then((obj) => {
@@ -327,10 +325,10 @@ export class FirebaseReportService {
     return promise;
   }
 
-  public getOilIssues() {
+  public getOilIssues(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection(this.organization + '/Trn_OilIssue/tables')
+        .collection(organization + '/Trn_OilIssue/tables')
         .ref.limit(limVal)
         .get()
         .then((obj) => {
@@ -347,10 +345,10 @@ export class FirebaseReportService {
     return promise;
   }
 
-  public getFuelIssues() {
+  public getFuelIssues(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection(this.organization + '/Trn_FuelIssue/tables')
+        .collection(organization + '/Trn_FuelIssue/tables')
         .ref.limit(limVal)
         .get()
         .then((obj) => {
@@ -367,10 +365,10 @@ export class FirebaseReportService {
     return promise;
   }
 
-  public getOilStoreTrans() {
+  public getOilStoreTrans(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection(this.organization + '/Trn_OilStores/tables')
+        .collection(organization + '/Trn_OilStores/tables')
         .ref.limit(limVal)
         .get()
         .then((obj) => {
@@ -387,10 +385,10 @@ export class FirebaseReportService {
     return promise;
   }
 
-  public getOilStoreTransf() {
+  public getOilStoreTransf(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection(this.organization + '/Trn_OilStoreTransfer/tables')
+        .collection(organization + '/Trn_OilStoreTransfer/tables')
         .ref.limit(limVal)
         .get()
         .then((obj) => {
@@ -407,10 +405,10 @@ export class FirebaseReportService {
     return promise;
   }
 
-  public getBowserTransactions() {
+  public getBowserTransactions(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection(this.organization + '/Trn_Bowsers/tables')
+        .collection(organization + '/Trn_Bowsers/tables')
         .ref.limit(limVal)
         .get()
         .then((obj) => {
@@ -427,10 +425,10 @@ export class FirebaseReportService {
     return promise;
   }
 
-  public getBowserTransfers() {
+  public getBowserTransfers(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection(this.organization + '/Trn_BowserTransfer/tables')
+        .collection(organization + '/Trn_BowserTransfer/tables')
         .ref.limit(limVal)
         .get()
         .then((obj) => {
@@ -447,10 +445,10 @@ export class FirebaseReportService {
     return promise;
   }
 
-  public getStaffTimesheets() {
+  public getStaffTimesheets(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection(this.organization + '/Trn_StaffTime/tables')
+        .collection(organization + '/Trn_StaffTime/tables')
         .ref.limit(limVal)
         .get()
         .then((obj) => {
@@ -467,10 +465,10 @@ export class FirebaseReportService {
     return promise;
   }
 
-  public getStaffAuditTrails() {
+  public getStaffAuditTrails(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection(this.organization + '/Trn_AuditTrail/tables')
+        .collection(organization + '/Trn_AuditTrail/tables')
         .ref.limit(limVal)
         .get()
         .then((obj) => {
@@ -487,10 +485,10 @@ export class FirebaseReportService {
     return promise;
   }
 
-  public getStaffProReport() {
+  public getStaffProReport(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection(this.organization + '/Trn_StaffTime/tables')
+        .collection(organization + '/Trn_StaffTime/tables')
         .ref.limit(limVal)
         .get()
         .then((obj) => {
@@ -507,10 +505,10 @@ export class FirebaseReportService {
     return promise;
   }
 
-  public getStaffProdTime() {
+  public getStaffProdTime(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection(this.organization + '/Trn_StaffProdTime/tables')
+        .collection(organization + '/Trn_StaffProdTime/tables')
         .ref.limit(limVal)
         .get()
         .then((obj) => {
@@ -527,10 +525,10 @@ export class FirebaseReportService {
     return promise;
   }
 
-  public getStaff() {
+  public getStaff(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection(this.organization + '/Mst_StaffDetails/tables')
+        .collection(organization + '/Mst_StaffDetails/tables')
         .ref.limit(limVal)
         .get()
         .then((obj) => {
@@ -547,10 +545,10 @@ export class FirebaseReportService {
     return promise;
   }
 
-  public getUsers() {
+  public getUsers(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection(this.organization + '/Mst_Users/tables')
+        .collection(organization + '/Mst_Users/tables')
         .ref.limit(limVal)
         .get()
         .then((obj) => {
@@ -567,10 +565,10 @@ export class FirebaseReportService {
     return promise;
   }
 
-  public getClients() {
+  public getClients(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection(this.organization + '/Mst_Client/tables')
+        .collection(organization + '/Mst_Client/tables')
         .ref.limit(limVal)
         .get()
         .then((obj) => {
@@ -587,10 +585,10 @@ export class FirebaseReportService {
     return promise;
   }
 
-  public getItemTypes() {
+  public getItemTypes(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection(this.organization + '/Sup_ItemType/tables')
+        .collection(organization + '/Sup_ItemType/tables')
         .ref.limit(limVal)
         .get()
         .then((obj) => {
@@ -607,10 +605,10 @@ export class FirebaseReportService {
     return promise;
   }
 
-  public getItemMakeMod() {
+  public getItemMakeMod(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection(this.organization + '/Sup_ItemMakMod/tables')
+        .collection(organization + '/Sup_ItemMakMod/tables')
         .ref.limit(limVal)
         .get()
         .then((obj) => {
@@ -627,10 +625,10 @@ export class FirebaseReportService {
     return promise;
   }
 
-  public getBowsers() {
+  public getBowsers(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection(this.organization + '/Mst_Bowser/tables')
+        .collection(organization + '/Mst_Bowser/tables')
         .ref.limit(limVal)
         .get()
         .then((obj) => {
@@ -647,10 +645,10 @@ export class FirebaseReportService {
     return promise;
   }
 
-  public getLocationLeft() {
+  public getLocationLeft(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection(this.organization + '/Mst_Location/tables')
+        .collection(organization + '/Mst_Location/tables')
         .ref.get()
         .then((obj) => {
           let data = [];
@@ -666,10 +664,10 @@ export class FirebaseReportService {
     return promise;
   }
 
-  public getSuppliers() {
+  public getSuppliers(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection(this.organization + '/Mst_Supplier/tables')
+        .collection(organization + '/Mst_Supplier/tables')
         .ref.limit(limVal)
         .get()
         .then((obj) => {
@@ -686,10 +684,10 @@ export class FirebaseReportService {
     return promise;
   }
 
-  public getServiceScheduleTasks() {
+  public getServiceScheduleTasks(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection(this.organization + '/Trn_ServScheduleHistory/tables')
+        .collection(organization + '/Trn_ServScheduleHistory/tables')
         .ref.limit(limVal)
         .get()
         .then((obj) => {
@@ -706,10 +704,10 @@ export class FirebaseReportService {
     return promise;
   }
 
-  public getJobcardsLeft() {
+  public getJobcardsLeft(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection(this.organization + '/Trn_JobCards/tables')
+        .collection(organization + '/Trn_JobCards/tables')
         .ref.get()
         .then((obj) => {
           let data = [];
@@ -725,10 +723,10 @@ export class FirebaseReportService {
     return promise;
   }
 
-  public getStaffDetails() {
+  public getStaffDetails(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection(this.organization + '/Mst_StaffDetails/tables')
+        .collection(organization + '/Mst_StaffDetails/tables')
         .ref.limit(limVal)
         .get()
         .then((obj) => {
@@ -745,10 +743,10 @@ export class FirebaseReportService {
     return promise;
   }
 
-  public getOverheadBudget() {
+  public getOverheadBudget(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection(this.organization + '/Trn_OverheadBud/tables')
+        .collection(organization + '/Trn_OverheadBud/tables')
         .ref.limit(limVal)
         .get()
         .then((obj) => {
@@ -765,10 +763,10 @@ export class FirebaseReportService {
     return promise;
   }
 
-  public getVotecodes() {
+  public getVotecodes(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection(this.organization + '/Trn_Votecodes/tables')
+        .collection(organization + '/Trn_Votecodes/tables')
         .ref.limit(limVal)
         .get()
         .then((obj) => {
@@ -785,10 +783,10 @@ export class FirebaseReportService {
     return promise;
   }
 
-  public getFirstAutoRespCodes() {
+  public getFirstAutoRespCodes(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection(this.organization + '/Sup_Response/tables')
+        .collection(organization + '/Sup_Response/tables')
         .ref.limit(limVal)
         .get()
         .then((obj) => {
@@ -805,10 +803,10 @@ export class FirebaseReportService {
     return promise;
   }
 
-  public getOiltypes() {
+  public getOiltypes(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection(this.organization + '/Sup_Oiltype/tables')
+        .collection(organization + '/Sup_Oiltype/tables')
         .ref.limit(limVal)
         .get()
         .then((obj) => {
@@ -825,10 +823,10 @@ export class FirebaseReportService {
     return promise;
   }
 
-  public getCostcentre() {
+  public getCostcentre(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection(this.organization + '/Sup_CostCentre/tables')
+        .collection(organization + '/Sup_CostCentre/tables')
         .ref.limit(limVal)
         .get()
         .then((obj) => {
@@ -845,10 +843,10 @@ export class FirebaseReportService {
     return promise;
   }
 
-  public getOilstores() {
+  public getOilstores(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection(this.organization + '/Mst_OilStore/tables')
+        .collection(organization + '/Mst_OilStore/tables')
         .ref.limit(limVal)
         .get()
         .then((obj) => {
@@ -865,10 +863,10 @@ export class FirebaseReportService {
     return promise;
   }
 
-  public getComponentNames() {
+  public getComponentNames(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection(this.organization + '/Sup_CompName/tables')
+        .collection(organization + '/Sup_CompName/tables')
         .ref.limit(limVal)
         .get()
         .then((obj) => {
@@ -885,10 +883,10 @@ export class FirebaseReportService {
     return promise;
   }
 
-  public getStoreCategories() {
+  public getStoreCategories(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection(this.organization + '/Sup_StoreCatg/tables')
+        .collection(organization + '/Sup_StoreCatg/tables')
         .ref.limit(limVal)
         .get()
         .then((obj) => {
@@ -905,10 +903,10 @@ export class FirebaseReportService {
     return promise;
   }
 
-  public getServiceTypes() {
+  public getServiceTypes(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection(this.organization + '/Sup_ServType/tables')
+        .collection(organization + '/Sup_ServType/tables')
         .ref.limit(limVal)
         .get()
         .then((obj) => {
@@ -925,10 +923,10 @@ export class FirebaseReportService {
     return promise;
   }
 
-  getVehiclesCount() {
+  getVehiclesCount(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection(this.organization + '/Mst_Item/tables')
+        .collection(organization + '/Mst_Item/tables')
         .ref.where('ItemCatg', '==', 'VEHICLES')
         .get()
         .then((obj) => {
@@ -943,10 +941,10 @@ export class FirebaseReportService {
     return promise;
   }
 
-  public getFleet() {
+  public getFleet(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection(this.organization + '/Mst_Item/tables')
+        .collection(organization + '/Mst_Item/tables')
         .ref //.where('StaffGuid', '!=', '')
         .where('ItemCatg', '==', 'VEHICLES')
         .limit(limVal)
@@ -965,10 +963,10 @@ export class FirebaseReportService {
     return promise;
   }
 
-  public getStaffleft() {
+  public getStaffleft(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection(this.organization + '/Mst_StaffDetails/tables')
+        .collection(organization + '/Mst_StaffDetails/tables')
         .ref.get()
         .then((obj) => {
           let data = [];

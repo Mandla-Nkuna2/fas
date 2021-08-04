@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
+import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 
 @Component({
@@ -8,6 +10,7 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
   styleUrls: ['./bowserledger.component.scss'],
 })
 export class BowserledgerComponent implements OnInit {
+  organization = 'InnTee';
   dateScope: any;
 
   finYear: any;
@@ -22,16 +25,32 @@ export class BowserledgerComponent implements OnInit {
   bowsers: any[];
 
   constructor(
+    private firebaseRepServ: FirebaseReportService,
     private firebaseGetServ: FirebaseGetService,
-    private popUp: PopupHelper,
+    public afAuth: AngularFireAuth,
   ) {}
 
   ngOnInit() {
-    this.onBowser();
+    this.getCurrentUser();
+  }
+
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+
+      this.onBowser();
+    });
   }
 
   onBowser() {
-    this.firebaseGetServ.getBowser().then((mNm: any) => {
+    this.firebaseGetServ.getBowser(this.organization).then((mNm: any) => {
       this.bowsers = mNm;
     });
   }

@@ -32,17 +32,13 @@ export class OiltypePage implements OnInit {
   }
 
   ngOnInit() {
-    this.getCurentUser();
-    this.onTableRep();
-    this.onOilMake();
-    this.onOilGrade();
-    this.onOilClass();
+    this.getCurrentUser();
   }
 
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
-        .getOiltypes()
+        .getOiltypes(this.organization)
         .then((mNm: any) => {
           this.oilTypes = mNm;
           this.onOilMake();
@@ -59,7 +55,7 @@ export class OiltypePage implements OnInit {
   }
 
   onOilMake() {
-    this.firebaseGetServ.getOilMake().then((mNm: any) => {
+    this.firebaseGetServ.getOilMake(this.organization).then((mNm: any) => {
       this.oilMake = mNm;
 
       mNm.forEach((elm) => {
@@ -73,7 +69,7 @@ export class OiltypePage implements OnInit {
   }
 
   onOilGrade() {
-    this.firebaseGetServ.getOilGrade().then((mNm: any) => {
+    this.firebaseGetServ.getOilGrade(this.organization).then((mNm: any) => {
       this.oilGrade = mNm;
 
       mNm.forEach((elm) => {
@@ -87,7 +83,7 @@ export class OiltypePage implements OnInit {
   }
 
   onOilClass() {
-    this.firebaseGetServ.getOilClass().then((mNm: any) => {
+    this.firebaseGetServ.getOilClass(this.organization).then((mNm: any) => {
       this.oilClass = mNm;
 
       mNm.forEach((elm) => {
@@ -100,8 +96,8 @@ export class OiltypePage implements OnInit {
     });
   }
 
-  getCurentUser() {
-    this.afAuth.onAuthStateChanged((cUser) => {
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
       this.getCurrentUserOrg(cUser.email);
     });
   }
@@ -110,6 +106,11 @@ export class OiltypePage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+
+      this.onTableRep();
+      this.onOilMake();
+      this.onOilGrade();
+      this.onOilClass();
     });
   }
 

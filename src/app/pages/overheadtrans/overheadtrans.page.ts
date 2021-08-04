@@ -33,16 +33,13 @@ export class OverheadtransPage implements OnInit {
   }
 
   ngOnInit() {
-    this.getCurentUser();
-    this.onTableRep();
-    this.onOverheadType();
-    this.onCostCentre();
+    this.getCurrentUser();
   }
 
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
-        .getOverheadTransf()
+        .getOverheadTransf(this.organization)
         .then((mNm: any) => {
           this.overheadTranss = mNm;
           this.onOverheadType();
@@ -62,7 +59,7 @@ export class OverheadtransPage implements OnInit {
   }
 
   onOverheadType() {
-    this.firebaseGetServ.getOverheadType().then((mNm: any) => {
+    this.firebaseGetServ.getOverheadType(this.organization).then((mNm: any) => {
       this.overheadType = mNm;
 
       mNm.forEach((elm) => {
@@ -76,26 +73,28 @@ export class OverheadtransPage implements OnInit {
   }
 
   onCostCentre() {
-    this.firebaseGetServ.getCostCentre().then((mNm: any) => {
+    this.firebaseGetServ.getCostCentre(this.organization).then((mNm: any) => {
       this.costCentre = mNm;
     });
   }
   onCostCentreLeft() {
-    this.firebaseGetServ.getCostCentreLeft().then((mNm: any) => {
-      this.costCentre = mNm;
+    this.firebaseGetServ
+      .getCostCentreLeft(this.organization)
+      .then((mNm: any) => {
+        this.costCentre = mNm;
 
-      mNm.forEach((elm) => {
-        this.overheadTranss.forEach((obj) => {
-          if (elm.CostCentGuid == obj.CostCentGuid) {
-            obj.CostCent = elm.CostCentName;
-          }
+        mNm.forEach((elm) => {
+          this.overheadTranss.forEach((obj) => {
+            if (elm.CostCentGuid == obj.CostCentGuid) {
+              obj.CostCent = elm.CostCentName;
+            }
+          });
         });
       });
-    });
   }
 
-  getCurentUser() {
-    this.afAuth.onAuthStateChanged((cUser) => {
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
       this.getCurrentUserOrg(cUser.email);
     });
   }
@@ -104,6 +103,10 @@ export class OverheadtransPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+
+      this.onTableRep();
+      this.onOverheadType();
+      this.onCostCentre();
     });
   }
 

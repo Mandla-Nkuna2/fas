@@ -32,15 +32,13 @@ export class StafftimesheetsPage implements OnInit {
   }
 
   ngOnInit() {
-    this.getCurentUser();
-    this.onTableRep();
-    this.onStaffMember();
+    this.getCurrentUser();
   }
 
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
-        .getStaffTimesheets()
+        .getStaffTimesheets(this.organization)
         .then((mNm: any) => {
           this.staffTimesheets = mNm;
           this.onStaffRate();
@@ -56,17 +54,19 @@ export class StafftimesheetsPage implements OnInit {
   }
 
   onStaffRate() {
-    this.firebaseGetServ.getStaffRateLeft().then((mNm: any) => {
-      this.staffMember = mNm;
+    this.firebaseGetServ
+      .getStaffRateLeft(this.organization)
+      .then((mNm: any) => {
+        this.staffMember = mNm;
 
-      mNm.forEach((elm) => {
-        this.staffTimesheets.forEach((obj) => {
-          if (elm.StaffGuid == obj.StaffGuid) {
-            obj.rate = elm.StaffRate;
-          }
+        mNm.forEach((elm) => {
+          this.staffTimesheets.forEach((obj) => {
+            if (elm.StaffGuid == obj.StaffGuid) {
+              obj.rate = elm.StaffRate;
+            }
+          });
         });
       });
-    });
   }
 
   goRevenue() {
@@ -74,12 +74,12 @@ export class StafftimesheetsPage implements OnInit {
   }
 
   onStaffMember() {
-    this.firebaseGetServ.getStaff().then((mNm: any) => {
+    this.firebaseGetServ.getStaff(this.organization).then((mNm: any) => {
       this.staffMember = mNm;
     });
   }
   onStaffMemberLeft() {
-    this.firebaseGetServ.getStaffLeft().then((mNm: any) => {
+    this.firebaseGetServ.getStaffLeft(this.organization).then((mNm: any) => {
       this.staffMember = mNm;
 
       mNm.forEach((elm) => {
@@ -92,8 +92,8 @@ export class StafftimesheetsPage implements OnInit {
     });
   }
 
-  getCurentUser() {
-    this.afAuth.onAuthStateChanged((cUser) => {
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
       this.getCurrentUserOrg(cUser.email);
     });
   }
@@ -102,6 +102,9 @@ export class StafftimesheetsPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+
+      this.onTableRep();
+      this.onStaffMember();
     });
   }
 

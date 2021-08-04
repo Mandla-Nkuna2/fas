@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import Revenue from 'src/app/models/capture/Revenue.model';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
 import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
@@ -10,6 +11,7 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
   styleUrls: ['./revenueearned.page.scss'],
 })
 export class RevenueearnedPage implements OnInit {
+  organization = 'InnTee';
   revenuee: any[] = [];
   clientNames: any[];
 
@@ -17,16 +19,32 @@ export class RevenueearnedPage implements OnInit {
     private firebaseRepServ: FirebaseReportService,
     private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
+    public afAuth: AngularFireAuth,
   ) {}
 
   ngOnInit() {
-    this.onTableRep();
+    this.getCurrentUser();
+  }
+
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+
+      this.onTableRep();
+    });
   }
 
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
-        .getRevenue()
+        .getRevenue(this.organization)
         .then((mNm: any) => {
           this.revenuee = mNm;
           this.onClientName();
@@ -41,7 +59,7 @@ export class RevenueearnedPage implements OnInit {
   }
 
   onClientName() {
-    this.firebaseGetServ.getClient().then((staff: any) => {
+    this.firebaseGetServ.getClient(this.organization).then((staff: any) => {
       this.clientNames = staff;
 
       staff.forEach((elm) => {

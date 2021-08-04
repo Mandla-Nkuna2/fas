@@ -31,15 +31,13 @@ export class OilstorePage implements OnInit {
   }
 
   ngOnInit() {
-    this.getCurentUser();
-    this.onTableRep();
-    this.onOsLocation();
+    this.getCurrentUser();
   }
 
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
-        .getOilstores()
+        .getOilstores(this.organization)
         .then((mNm: any) => {
           this.oilStores = mNm;
           this.onLocationLeft();
@@ -54,18 +52,18 @@ export class OilstorePage implements OnInit {
   }
 
   onOsLocation() {
-    this.firebaseGetServ.getLocation().then((mNm: any) => {
+    this.firebaseGetServ.getLocation(this.organization).then((mNm: any) => {
       this.loc = mNm;
     });
   }
   onOsLocationLeft() {
-    this.firebaseGetServ.getLocationLeft().then((mNm: any) => {
+    this.firebaseGetServ.getLocationLeft(this.organization).then((mNm: any) => {
       this.loc = mNm;
     });
   }
 
   onLocationLeft() {
-    this.firebaseRepServ.getLocationLeft().then((mNm: any) => {
+    this.firebaseRepServ.getLocationLeft(this.organization).then((mNm: any) => {
       this.locObjs = mNm;
 
       mNm.forEach((elm) => {
@@ -78,8 +76,8 @@ export class OilstorePage implements OnInit {
     });
   }
 
-  getCurentUser() {
-    this.afAuth.onAuthStateChanged((cUser) => {
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
       this.getCurrentUserOrg(cUser.email);
     });
   }
@@ -88,6 +86,9 @@ export class OilstorePage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+
+      this.onTableRep();
+      this.onOsLocation();
     });
   }
 

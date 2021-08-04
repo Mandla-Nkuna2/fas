@@ -36,19 +36,13 @@ export class FuelissuesPage implements OnInit {
   }
 
   ngOnInit() {
-    this.getCurentUser();
-    this.onTableRep();
-    this.onRegistration();
-    this.onBowser();
-    this.onSupplier();
-    this.onStaffCode();
-    this.onCostCentre();
+    this.getCurrentUser();
   }
 
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
-        .getFuelIssues()
+        .getFuelIssues(this.organization)
         .then((mNm: any) => {
           this.fuelIssues = mNm;
           this.onSupplierLeft();
@@ -67,34 +61,36 @@ export class FuelissuesPage implements OnInit {
   }
 
   onRegistration() {
-    this.firebaseGetServ.getRegistration().then((mNm: any) => {
+    this.firebaseGetServ.getRegistration(this.organization).then((mNm: any) => {
       this.registration = mNm;
     });
   }
   onRegistrationLeft() {
-    this.firebaseGetServ.getRegistrationLeft().then((mNm: any) => {
-      this.registration = mNm;
-    });
+    this.firebaseGetServ
+      .getRegistrationLeft(this.organization)
+      .then((mNm: any) => {
+        this.registration = mNm;
+      });
   }
 
   onBowser() {
-    this.firebaseGetServ.getBowser().then((mNm: any) => {
+    this.firebaseGetServ.getBowser(this.organization).then((mNm: any) => {
       this.bowser = mNm;
     });
   }
   onBowserLeft() {
-    this.firebaseGetServ.getBowserLeft().then((mNm: any) => {
+    this.firebaseGetServ.getBowserLeft(this.organization).then((mNm: any) => {
       this.bowser = mNm;
     });
   }
 
   onSupplier() {
-    this.firebaseGetServ.getSupplier().then((mNm: any) => {
+    this.firebaseGetServ.getSupplier(this.organization).then((mNm: any) => {
       this.supplier = mNm;
     });
   }
   onSupplierLeft() {
-    this.firebaseGetServ.getSupplierLeft().then((mNm: any) => {
+    this.firebaseGetServ.getSupplierLeft(this.organization).then((mNm: any) => {
       this.supplier = mNm;
 
       mNm.forEach((elm) => {
@@ -108,24 +104,24 @@ export class FuelissuesPage implements OnInit {
   }
 
   onStaffCode() {
-    this.firebaseGetServ.getStaff().then((mNm: any) => {
+    this.firebaseGetServ.getStaff(this.organization).then((mNm: any) => {
       this.staffCode = mNm;
     });
   }
   onStaffCodeLeft() {
-    this.firebaseGetServ.getStaff().then((mNm: any) => {
+    this.firebaseGetServ.getStaff(this.organization).then((mNm: any) => {
       this.staffCode = mNm;
     });
   }
 
   onCostCentre() {
-    this.firebaseGetServ.getCostCentre().then((mNm: any) => {
+    this.firebaseGetServ.getCostCentre(this.organization).then((mNm: any) => {
       this.costCentre = mNm;
     });
   }
 
-  getCurentUser() {
-    this.afAuth.onAuthStateChanged((cUser) => {
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
       this.getCurrentUserOrg(cUser.email);
     });
   }
@@ -134,6 +130,13 @@ export class FuelissuesPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+
+      this.onTableRep();
+      this.onRegistration();
+      this.onBowser();
+      this.onSupplier();
+      this.onStaffCode();
+      this.onCostCentre();
     });
   }
 

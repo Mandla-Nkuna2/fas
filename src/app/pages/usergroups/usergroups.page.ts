@@ -27,18 +27,17 @@ export class UsergroupsPage implements OnInit {
   }
 
   ngOnInit() {
-    this.getCurentUser();
-    this.onUserGroups();
+    this.getCurrentUser();
   }
 
   onUserGroups() {
-    this.firebaseGetServ.getUserGroup().then((mNm: any) => {
+    this.firebaseGetServ.getUserGroup(this.organization).then((mNm: any) => {
       this.userGroups = mNm;
     });
   }
 
-  getCurentUser() {
-    this.afAuth.onAuthStateChanged((cUser) => {
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
       this.getCurrentUserOrg(cUser.email);
     });
   }
@@ -47,6 +46,8 @@ export class UsergroupsPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+
+      this.onUserGroups();
     });
   }
 

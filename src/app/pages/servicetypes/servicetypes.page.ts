@@ -31,14 +31,13 @@ export class ServicetypesPage implements OnInit {
   }
 
   ngOnInit() {
-    this.getCurentUser();
-    this.onTableRep();
+    this.getCurrentUser();
   }
 
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
-        .getServiceTypes()
+        .getServiceTypes(this.organization)
         .then((mNm: any) => {
           this.serviceTypes = mNm;
           this.popUp.dismissLoading();
@@ -56,24 +55,24 @@ export class ServicetypesPage implements OnInit {
   }
 
   onServiceType() {
-    this.firebaseGetServ.getServiceType().then((mNm: any) => {
+    this.firebaseGetServ.getServiceType(this.organization).then((mNm: any) => {
       this.serviceTypes = mNm;
     });
   }
 
   onComponents() {
-    this.firebaseGetServ.getCompName().then((mNm: any) => {
+    this.firebaseGetServ.getCompName(this.organization).then((mNm: any) => {
       this.compNames = mNm;
     });
   }
   onComponentsLeft() {
-    this.firebaseGetServ.getCompNameLeft().then((mNm: any) => {
+    this.firebaseGetServ.getCompNameLeft(this.organization).then((mNm: any) => {
       this.compNames = mNm;
     });
   }
 
-  getCurentUser() {
-    this.afAuth.onAuthStateChanged((cUser) => {
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
       this.getCurrentUserOrg(cUser.email);
     });
   }
@@ -82,6 +81,8 @@ export class ServicetypesPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+
+      this.onTableRep();
     });
   }
 

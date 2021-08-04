@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
 import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 import { FirebaseService } from 'src/app/services/firebase-service/firebase-service.service';
@@ -10,25 +11,40 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
   styleUrls: ['./staffproreport.page.scss'],
 })
 export class StaffproreportPage implements OnInit {
+  organization = 'InnTee';
   staffproreports: any[] = [];
 
   staffCodes: any[];
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
-    private firebaseService: FirebaseService,
     private firebaseGetServ: FirebaseGetService,
     private popUp: PopupHelper,
+    public afAuth: AngularFireAuth,
   ) {}
 
   ngOnInit() {
-    this.onTableRep();
+    this.getCurrentUser();
+  }
+
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+      this.onTableRep();
+    });
   }
 
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
-        .getStaffProReport()
+        .getStaffProReport(this.organization)
         .then((mNm: any) => {
           this.staffproreports = mNm;
           this.popUp.dismissLoading();
@@ -42,7 +58,7 @@ export class StaffproreportPage implements OnInit {
   }
 
   onStaffLeft() {
-    this.firebaseGetServ.getStaffLeft().then((staff: any) => {
+    this.firebaseGetServ.getStaffLeft(this.organization).then((staff: any) => {
       this.staffCodes = staff;
 
       staff.forEach((elm) => {

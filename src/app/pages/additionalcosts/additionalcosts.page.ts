@@ -36,19 +36,13 @@ export class AdditionalcostsPage implements OnInit {
   }
 
   ngOnInit() {
-    this.getCurentUser();
-    this.onTableRep();
-    this.onRegistration();
-    this.onAdditionalCostDesc();
-    this.onCostCentre();
-    this.onStaffCode();
-    this.onSupplier();
+    this.getCurrentUser();
   }
 
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
-        .getAdditionalCosts()
+        .getAdditionalCosts(this.organization)
         .then((mNm: any) => {
           this.additionalCosts = mNm;
           this.onAdditionalCostDesc();
@@ -69,67 +63,73 @@ export class AdditionalcostsPage implements OnInit {
   }
 
   onRegistration() {
-    this.firebaseGetServ.getRegistration().then((mNm: any) => {
+    this.firebaseGetServ.getRegistration(this.organization).then((mNm: any) => {
       this.registration = mNm;
     });
   }
   onRegistrationLeft() {
-    this.firebaseGetServ.getRegistrationLeft().then((mNm: any) => {
-      this.registration = mNm;
-    });
+    this.firebaseGetServ
+      .getRegistrationLeft(this.organization)
+      .then((mNm: any) => {
+        this.registration = mNm;
+      });
   }
 
   onAdditionalCostDesc() {
-    this.firebaseGetServ.getAddittionalCost().then((mNm: any) => {
-      this.additionalCostDesc = mNm;
+    this.firebaseGetServ
+      .getAddittionalCost(this.organization)
+      .then((mNm: any) => {
+        this.additionalCostDesc = mNm;
 
-      mNm.forEach((elm) => {
-        this.additionalCosts.forEach((obj) => {
-          if (elm.AddCostDescGuid == obj.AddCostDescGuid) {
-            obj.AddCostDesc = elm.AddCostDesc;
-          }
+        mNm.forEach((elm) => {
+          this.additionalCosts.forEach((obj) => {
+            if (elm.AddCostDescGuid == obj.AddCostDescGuid) {
+              obj.AddCostDesc = elm.AddCostDesc;
+            }
+          });
         });
       });
-    });
   }
 
   onCostCentre() {
-    this.firebaseGetServ.getCostCentre().then((mNm: any) => {
+    this.firebaseGetServ.getCostCentre(this.organization).then((mNm: any) => {
       this.costCentre = mNm;
     });
   }
   onCostCentreLeft() {
-    this.firebaseGetServ.getCostCentreLeft().then((mNm: any) => {
-      this.costCentre = mNm;
+    this.firebaseGetServ
+      .getCostCentreLeft(this.organization)
+      .then((mNm: any) => {
+        this.costCentre = mNm;
 
-      mNm.forEach((elm) => {
-        this.additionalCosts.forEach((obj) => {
-          if (elm.CostCentGuid == obj.CostCentreGuid) {
-            obj.CostCentre = elm.CostCentName;
-          }
+        mNm.forEach((elm) => {
+          this.additionalCosts.forEach((obj) => {
+            if (elm.CostCentGuid == obj.CostCentreGuid) {
+              obj.CostCentre = elm.CostCentName;
+            }
+          });
         });
       });
-    });
   }
 
   onStaffCode() {
-    this.firebaseGetServ.getStaff().then((mNm: any) => {
+    this.firebaseGetServ.getStaff(this.organization).then((mNm: any) => {
       this.staffcode = mNm;
     });
   }
   onStaffCodeLeft() {
-    this.firebaseGetServ.getStaffLeft().then((mNm: any) => {
+    this.firebaseGetServ.getStaffLeft(this.organization).then((mNm: any) => {
       this.staffcode = mNm;
     });
   }
 
   onSupplier() {
-    this.firebaseGetServ.getSupplier().then((mNm: any) => {
+    this.firebaseGetServ.getSupplier(this.organization).then((mNm: any) => {
       this.supplier = mNm;
     });
   }
   onSupplierLeft() {
-    this.firebaseGetServ.getSupplierLeft().then((mNm: any) => {
+    this.firebaseGetServ.getSupplierLeft(this.organization).then((mNm: any) => {
       this.supplier = mNm;
 
       mNm.forEach((elm) => {
@@ -142,8 +142,8 @@ export class AdditionalcostsPage implements OnInit {
     });
   }
 
-  getCurentUser() {
-    this.afAuth.onAuthStateChanged((cUser) => {
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
       this.getCurrentUserOrg(cUser.email);
     });
   }
@@ -152,6 +152,13 @@ export class AdditionalcostsPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+
+      this.onTableRep();
+      this.onRegistration();
+      this.onAdditionalCostDesc();
+      this.onCostCentre();
+      this.onStaffCode();
+      this.onSupplier();
     });
   }
 

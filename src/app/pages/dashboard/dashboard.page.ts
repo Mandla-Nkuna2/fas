@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { Chart } from 'chart.js';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
 import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
@@ -9,6 +10,8 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
   styleUrls: ['./dashboard.page.scss'],
 })
 export class DashboardPage implements OnInit {
+  organization = 'InnTee';
+
   @ViewChild('lineCanvas', { static: true }) lineCanvas;
   @ViewChild('lineCanvas2', { static: true }) lineCanvas2;
   @ViewChild('lineCanvas3', { static: true }) lineCanvas3;
@@ -41,17 +44,33 @@ export class DashboardPage implements OnInit {
     private firebaseRepServ: FirebaseReportService,
     private firebaseGetServ: FirebaseGetService,
     private popUp: PopupHelper,
+    public afAuth: AngularFireAuth,
   ) {}
 
   ngOnInit() {
-    this.onRevenue();
-    this.onVehiclesCount();
-    this.onTableReps();
-    this.onVehicles();
+    this.getCurrentUser();
     this.lineChartMethod();
     this.lineChartMethod2();
     this.lineChartMethod3();
     this.lineChartMethod4();
+  }
+
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+
+      this.onRevenue();
+      this.onVehiclesCount();
+      this.onTableReps();
+      this.onVehicles();
+    });
   }
 
   onMoreDetails(index) {
@@ -72,7 +91,7 @@ export class DashboardPage implements OnInit {
   onTableReps() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
-        .getAssetLeft()
+        .getAssetLeft(this.organization)
         .then((mNm: any) => {
           this.assets = mNm;
           this.onAssetType();
@@ -89,7 +108,7 @@ export class DashboardPage implements OnInit {
   }
 
   onAssetType() {
-    this.firebaseGetServ.getItemType().then((mNm: any) => {
+    this.firebaseGetServ.getItemType(this.organization).then((mNm: any) => {
       this.assetTypes = mNm;
 
       mNm.forEach((elm) => {
@@ -104,41 +123,47 @@ export class DashboardPage implements OnInit {
   }
 
   onAssetTypeName() {
-    this.firebaseGetServ.getAssetTypeNameLeft().then((mNm: any) => {
-      this.assetTypeNames = mNm;
+    this.firebaseGetServ
+      .getAssetTypeNameLeft(this.organization)
+      .then((mNm: any) => {
+        this.assetTypeNames = mNm;
 
-      mNm.forEach((elm) => {
-        this.assets.forEach((obj) => {
-          if (elm.ItemTypeNameGuid == obj.ItemType) {
-            obj.ItemTypeName = elm.ItemTypeName;
-          }
+        mNm.forEach((elm) => {
+          this.assets.forEach((obj) => {
+            if (elm.ItemTypeNameGuid == obj.ItemType) {
+              obj.ItemTypeName = elm.ItemTypeName;
+            }
+          });
         });
       });
-    });
   }
 
   onMakeAndMod() {
-    this.firebaseGetServ.getAssetMakenModelLeft().then((mNm: any) => {
-      this.makesAndMods = mNm;
+    this.firebaseGetServ
+      .getAssetMakenModelLeft(this.organization)
+      .then((mNm: any) => {
+        this.makesAndMods = mNm;
 
-      mNm.forEach((elm) => {
-        this.assets.forEach((obj) => {
-          if (elm.ItemMakModGuid == obj.ItemMakModGuid) {
-            obj.ItemMakMod = elm.ItemMakMod;
-          }
+        mNm.forEach((elm) => {
+          this.assets.forEach((obj) => {
+            if (elm.ItemMakModGuid == obj.ItemMakModGuid) {
+              obj.ItemMakMod = elm.ItemMakMod;
+            }
+          });
         });
       });
-    });
   }
 
   onVehiclesCount() {
-    this.firebaseRepServ.getVehiclesCount().then((mNm: any) => {
-      this.vehiclesCount = mNm;
-    });
+    this.firebaseRepServ
+      .getVehiclesCount(this.organization)
+      .then((mNm: any) => {
+        this.vehiclesCount = mNm;
+      });
   }
 
   onVehicles() {
-    this.firebaseRepServ.getFleet().then((mNm: any) => {
+    this.firebaseRepServ.getFleet(this.organization).then((mNm: any) => {
       this.vehicles = mNm;
       this.onStaffLeft();
       this.onFlMakeAndMod();
@@ -146,7 +171,7 @@ export class DashboardPage implements OnInit {
   }
 
   onStaffLeft() {
-    this.firebaseRepServ.getStaffleft().then((mNm: any) => {
+    this.firebaseRepServ.getStaffleft(this.organization).then((mNm: any) => {
       this.staff = mNm;
 
       mNm.forEach((elm) => {
@@ -167,17 +192,19 @@ export class DashboardPage implements OnInit {
   }
 
   onFlMakeAndMod() {
-    this.firebaseGetServ.getAssetMakenModelLeft().then((mNm: any) => {
-      this.makesAndMods = mNm;
+    this.firebaseGetServ
+      .getAssetMakenModelLeft(this.organization)
+      .then((mNm: any) => {
+        this.makesAndMods = mNm;
 
-      mNm.forEach((elm) => {
-        this.vehicles.forEach((obj) => {
-          if (elm.ItemMakModGuid == obj.ItemMakModGuid) {
-            obj.ItemMakMod = elm.ItemMakMod;
-          }
+        mNm.forEach((elm) => {
+          this.vehicles.forEach((obj) => {
+            if (elm.ItemMakModGuid == obj.ItemMakModGuid) {
+              obj.ItemMakMod = elm.ItemMakMod;
+            }
+          });
         });
       });
-    });
   }
 
   onExpLics() {
@@ -202,7 +229,7 @@ export class DashboardPage implements OnInit {
   }
 
   onRevenue() {
-    this.firebaseRepServ.getRevenue().then((mNm: any) => {
+    this.firebaseRepServ.getRevenue(this.organization).then((mNm: any) => {
       mNm.sort((a, b) => {
         return <any>new Date(a.RevenueDate) - <any>new Date(b.RevenueDate);
       });

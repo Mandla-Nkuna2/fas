@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
+import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 
 @Component({
@@ -8,6 +10,7 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
   styleUrls: ['./storeisscosph.component.scss'],
 })
 export class StoreisscosphComponent implements OnInit {
+  organization = 'InnTee';
   dateScope: any;
 
   finYear: any;
@@ -39,58 +42,76 @@ export class StoreisscosphComponent implements OnInit {
   registrations: any[];
 
   constructor(
+    private firebaseRepServ: FirebaseReportService,
     private firebaseGetServ: FirebaseGetService,
-    private popUp: PopupHelper,
+    public afAuth: AngularFireAuth,
   ) {}
 
   ngOnInit() {
-    this.onLocation();
-    this.onStoreCat();
-    this.onSupplier();
-    this.onRegistration();
+    this.getCurrentUser();
+  }
+
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+
+      this.onLocation();
+      this.onStoreCat();
+      this.onSupplier();
+      this.onRegistration();
+    });
   }
 
   onLocation() {
-    this.firebaseGetServ.getLocation().then((mNm: any) => {
+    this.firebaseGetServ.getLocation(this.organization).then((mNm: any) => {
       this.locations = mNm;
     });
   }
   onLocationLeft() {
-    this.firebaseGetServ.getLocationLeft().then((mNm: any) => {
+    this.firebaseGetServ.getLocationLeft(this.organization).then((mNm: any) => {
       this.locations = mNm;
     });
   }
 
   onStoreCat() {
-    this.firebaseGetServ.getStoreCat().then((mNm: any) => {
+    this.firebaseGetServ.getStoreCat(this.organization).then((mNm: any) => {
       this.storeCats = mNm;
     });
   }
   onStoreCatLeft() {
-    this.firebaseGetServ.getStoreCatLeft().then((mNm: any) => {
+    this.firebaseGetServ.getStoreCatLeft(this.organization).then((mNm: any) => {
       this.storeCats = mNm;
     });
   }
 
   onSupplier() {
-    this.firebaseGetServ.getSupplier().then((mNm: any) => {
+    this.firebaseGetServ.getSupplier(this.organization).then((mNm: any) => {
       this.suppliers = mNm;
     });
   }
   onSupplierLeft() {
-    this.firebaseGetServ.getSupplierLeft().then((mNm: any) => {
+    this.firebaseGetServ.getSupplierLeft(this.organization).then((mNm: any) => {
       this.suppliers = mNm;
     });
   }
 
   onRegistration() {
-    this.firebaseGetServ.getRegistration().then((mNm: any) => {
+    this.firebaseGetServ.getRegistration(this.organization).then((mNm: any) => {
       this.registrations = mNm;
     });
   }
   onRegistrationLeft() {
-    this.firebaseGetServ.getRegistrationLeft().then((mNm: any) => {
-      this.registrations = mNm;
-    });
+    this.firebaseGetServ
+      .getRegistrationLeft(this.organization)
+      .then((mNm: any) => {
+        this.registrations = mNm;
+      });
   }
 }

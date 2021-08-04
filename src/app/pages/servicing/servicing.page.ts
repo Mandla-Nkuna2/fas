@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { NavController } from '@ionic/angular';
 import { Asset } from 'src/app/models/capture/Asset.model';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
@@ -11,6 +12,7 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
   styleUrls: ['./servicing.page.scss'],
 })
 export class ServicingPage implements OnInit {
+  organization = 'InnTee';
   vehicleReps: any[] = [];
 
   itemTypes: any[];
@@ -21,16 +23,32 @@ export class ServicingPage implements OnInit {
     private firebaseRepServ: FirebaseReportService,
     private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
+    public afAuth: AngularFireAuth,
   ) {}
 
   ngOnInit() {
-    this.onTableRep();
+    this.getCurrentUser();
+  }
+
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+
+      this.onTableRep();
+    });
   }
 
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
-        .getAsset()
+        .getAsset(this.organization)
         .then((mNm: any) => {
           this.vehicleReps = mNm;
           this.onItemMakMod();
@@ -46,21 +64,23 @@ export class ServicingPage implements OnInit {
   }
 
   onItemMakMod() {
-    this.firebaseGetServ.getAssetMakenModelLeft().then((mNm: any) => {
-      this.itemTypes = mNm;
+    this.firebaseGetServ
+      .getAssetMakenModelLeft(this.organization)
+      .then((mNm: any) => {
+        this.itemTypes = mNm;
 
-      mNm.forEach((elm) => {
-        this.vehicleReps.forEach((obj) => {
-          if (elm.ItemMakModGuid == obj.ItemMakModGuid) {
-            obj.ItemMakMod = elm.ItemMakMod;
-          }
+        mNm.forEach((elm) => {
+          this.vehicleReps.forEach((obj) => {
+            if (elm.ItemMakModGuid == obj.ItemMakModGuid) {
+              obj.ItemMakMod = elm.ItemMakMod;
+            }
+          });
         });
       });
-    });
   }
 
   onItemTypeLeft() {
-    this.firebaseGetServ.getItemType().then((mNm: any) => {
+    this.firebaseGetServ.getItemType(this.organization).then((mNm: any) => {
       this.itemTypes = mNm;
 
       mNm.forEach((elm) => {
@@ -75,17 +95,19 @@ export class ServicingPage implements OnInit {
   }
 
   onItemTypeNameLeft() {
-    this.firebaseGetServ.getAssetTypeNameLeft().then((mNm: any) => {
-      this.itemTypes = mNm;
+    this.firebaseGetServ
+      .getAssetTypeNameLeft(this.organization)
+      .then((mNm: any) => {
+        this.itemTypes = mNm;
 
-      mNm.forEach((elm) => {
-        this.vehicleReps.forEach((obj) => {
-          if (elm.ItemTypeNameGuid == obj.ItemType) {
-            obj.ItemTypeName = elm.ItemTypeName;
-          }
+        mNm.forEach((elm) => {
+          this.vehicleReps.forEach((obj) => {
+            if (elm.ItemTypeNameGuid == obj.ItemType) {
+              obj.ItemTypeName = elm.ItemTypeName;
+            }
+          });
         });
       });
-    });
   }
 
   goDetails() {

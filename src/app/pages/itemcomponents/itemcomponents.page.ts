@@ -36,19 +36,13 @@ export class ItemcomponentsPage implements OnInit {
   }
 
   ngOnInit() {
-    this.getCurentUser();
-    this.onTableRep();
-    this.onRegistration();
-    this.onCompName();
-    this.onComponentMake();
-    this.onComponentModel();
-    this.onServiceIntv();
+    this.getCurrentUser();
   }
 
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
-        .getItemComponents()
+        .getItemComponents(this.organization)
         .then((mNm: any) => {
           this.itemComponents = mNm;
           this.onRegistrationLeft();
@@ -70,31 +64,33 @@ export class ItemcomponentsPage implements OnInit {
   }
 
   onRegistration() {
-    this.firebaseGetServ.getRegistration().then((mNm: any) => {
+    this.firebaseGetServ.getRegistration(this.organization).then((mNm: any) => {
       this.registrations = mNm;
     });
   }
   onRegistrationLeft() {
-    this.firebaseGetServ.getRegistrationLeft().then((mNm: any) => {
-      this.registrations = mNm;
+    this.firebaseGetServ
+      .getRegistrationLeft(this.organization)
+      .then((mNm: any) => {
+        this.registrations = mNm;
 
-      mNm.forEach((elm) => {
-        this.itemComponents.forEach((obj) => {
-          if (elm.ItemGuid == obj.ItemGuid) {
-            obj.Item = elm.Reg;
-          }
+        mNm.forEach((elm) => {
+          this.itemComponents.forEach((obj) => {
+            if (elm.ItemGuid == obj.ItemGuid) {
+              obj.Item = elm.Reg;
+            }
+          });
         });
       });
-    });
   }
 
   onCompName() {
-    this.firebaseGetServ.getCompName().then((mNm: any) => {
+    this.firebaseGetServ.getCompName(this.organization).then((mNm: any) => {
       this.assetCompName = mNm;
     });
   }
   onCompNameLeft() {
-    this.firebaseGetServ.getCompNameLeft().then((mNm: any) => {
+    this.firebaseGetServ.getCompNameLeft(this.organization).then((mNm: any) => {
       this.assetCompName = mNm;
 
       mNm.forEach((elm) => {
@@ -108,60 +104,68 @@ export class ItemcomponentsPage implements OnInit {
   }
 
   onComponentMake() {
-    this.firebaseGetServ.getItemCompMake().then((mNm: any) => {
+    this.firebaseGetServ.getItemCompMake(this.organization).then((mNm: any) => {
       this.assetCompMake = mNm;
     });
   }
   onComponentMakeLeft() {
-    this.firebaseGetServ.getItemCompMakeLeft().then((mNm: any) => {
-      this.assetCompMake = mNm;
+    this.firebaseGetServ
+      .getItemCompMakeLeft(this.organization)
+      .then((mNm: any) => {
+        this.assetCompMake = mNm;
 
-      mNm.forEach((elm) => {
-        this.itemComponents.forEach((obj) => {
-          if (elm.CompMakeGuid == obj.CompMakeGuid) {
-            obj.CompMake = elm.CompMake;
-          }
+        mNm.forEach((elm) => {
+          this.itemComponents.forEach((obj) => {
+            if (elm.CompMakeGuid == obj.CompMakeGuid) {
+              obj.CompMake = elm.CompMake;
+            }
+          });
         });
       });
-    });
   }
 
   onComponentModel() {
-    this.firebaseGetServ.getItemCompModel().then((mNm: any) => {
-      this.assetCompModel = mNm;
-    });
+    this.firebaseGetServ
+      .getItemCompModel(this.organization)
+      .then((mNm: any) => {
+        this.assetCompModel = mNm;
+      });
   }
   onComponentModelLeft() {
-    this.firebaseGetServ.getItemCompModelLeft().then((mNm: any) => {
-      this.assetCompModel = mNm;
+    this.firebaseGetServ
+      .getItemCompModelLeft(this.organization)
+      .then((mNm: any) => {
+        this.assetCompModel = mNm;
 
-      mNm.forEach((elm) => {
-        this.itemComponents.forEach((obj) => {
-          if (elm.CompModelGuid == obj.CompModelGuid) {
-            obj.CompModel = elm.CompModel;
-          }
+        mNm.forEach((elm) => {
+          this.itemComponents.forEach((obj) => {
+            if (elm.CompModelGuid == obj.CompModelGuid) {
+              obj.CompModel = elm.CompModel;
+            }
+          });
         });
       });
-    });
   }
 
   onServiceIntv() {
-    this.firebaseGetServ.getServiceIntvl().then((mNm: any) => {
+    this.firebaseGetServ.getServiceIntvl(this.organization).then((mNm: any) => {
       this.servIntvl = mNm.sort((a, b) =>
         a.ServIntval > b.ServIntval ? 1 : -1,
       );
     });
   }
   onServiceIntvLeft() {
-    this.firebaseGetServ.getServiceIntvlLeft().then((mNm: any) => {
-      this.servIntvl = mNm.sort((a, b) =>
-        a.ServIntval > b.ServIntval ? 1 : -1,
-      );
-    });
+    this.firebaseGetServ
+      .getServiceIntvlLeft(this.organization)
+      .then((mNm: any) => {
+        this.servIntvl = mNm.sort((a, b) =>
+          a.ServIntval > b.ServIntval ? 1 : -1,
+        );
+      });
   }
 
-  getCurentUser() {
-    this.afAuth.onAuthStateChanged((cUser) => {
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
       this.getCurrentUserOrg(cUser.email);
     });
   }
@@ -170,6 +174,13 @@ export class ItemcomponentsPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+
+      this.onTableRep();
+      this.onRegistration();
+      this.onCompName();
+      this.onComponentMake();
+      this.onComponentModel();
+      this.onServiceIntv();
     });
   }
 

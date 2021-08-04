@@ -31,16 +31,13 @@ export class BowserPage implements OnInit {
   }
 
   ngOnInit() {
-    this.getCurentUser();
-    this.onTableRep();
-    this.onBowserLoc();
-    this.onFuelType();
+    this.getCurrentUser();
   }
 
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
-        .getBowsers()
+        .getBowsers(this.organization)
         .then((mNm: any) => {
           this.bowsers = mNm;
           this.onBowserLocCodeLeft();
@@ -56,18 +53,18 @@ export class BowserPage implements OnInit {
   }
 
   onBowserLoc() {
-    this.firebaseGetServ.getLocation().then((mNm: any) => {
+    this.firebaseGetServ.getLocation(this.organization).then((mNm: any) => {
       this.bowserLoc = mNm;
     });
   }
   onBowserLocLeft() {
-    this.firebaseGetServ.getLocationLeft().then((mNm: any) => {
+    this.firebaseGetServ.getLocationLeft(this.organization).then((mNm: any) => {
       this.bowserLoc = mNm;
     });
   }
 
   onBowserLocCodeLeft() {
-    this.firebaseRepServ.getLocationLeft().then((mNm: any) => {
+    this.firebaseRepServ.getLocationLeft(this.organization).then((mNm: any) => {
       this.bowserLoc = mNm;
 
       mNm.forEach((elm) => {
@@ -81,7 +78,7 @@ export class BowserPage implements OnInit {
   }
 
   onFuelType() {
-    this.firebaseGetServ.getFuelType().then((mNm: any) => {
+    this.firebaseGetServ.getFuelType(this.organization).then((mNm: any) => {
       this.fuelType = mNm;
 
       mNm.forEach((elm) => {
@@ -94,8 +91,8 @@ export class BowserPage implements OnInit {
     });
   }
 
-  getCurentUser() {
-    this.afAuth.onAuthStateChanged((cUser) => {
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
       this.getCurrentUserOrg(cUser.email);
     });
   }
@@ -104,6 +101,10 @@ export class BowserPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+
+      this.onTableRep();
+      this.onBowserLoc();
+      this.onFuelType();
     });
   }
 

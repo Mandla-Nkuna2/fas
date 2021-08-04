@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
-import { PopupHelper } from 'src/app/services/helpers/popup-helper';
+import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 
 @Component({
   selector: 'app-runningcostsmetlesequip',
@@ -8,6 +9,7 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
   styleUrls: ['./runningcostsmetlesequip.component.scss'],
 })
 export class RunningcostsmetlesequipComponent implements OnInit {
+  organization = 'InnTee';
   dateScope: any;
 
   finYear: any;
@@ -45,46 +47,68 @@ export class RunningcostsmetlesequipComponent implements OnInit {
   ];
 
   constructor(
+    private firebaseRepServ: FirebaseReportService,
     private firebaseGetServ: FirebaseGetService,
-    private popUp: PopupHelper,
+    public afAuth: AngularFireAuth,
   ) {}
 
   ngOnInit() {
-    this.onLocation();
-    this.onItemType();
-    this.onRegistration();
+    this.getCurrentUser();
+  }
+
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+
+      this.onLocation();
+      this.onItemType();
+      this.onRegistration();
+    });
   }
 
   onLocation() {
-    this.firebaseGetServ.getLocation().then((mNm: any) => {
+    this.firebaseGetServ.getLocation(this.organization).then((mNm: any) => {
       this.locations = mNm;
     });
   }
   onLocationLeft() {
-    this.firebaseGetServ.getLocationLeft().then((mNm: any) => {
+    this.firebaseGetServ.getLocationLeft(this.organization).then((mNm: any) => {
       this.locations = mNm;
     });
   }
 
   onItemType() {
-    this.firebaseGetServ.getAssetTypeName().then((mNm: any) => {
-      this.itemTypes = mNm;
-    });
+    this.firebaseGetServ
+      .getAssetTypeName(this.organization)
+      .then((mNm: any) => {
+        this.itemTypes = mNm;
+      });
   }
   onItemTypeLeft() {
-    this.firebaseGetServ.getAssetTypeNameLeft().then((mNm: any) => {
-      this.itemTypes = mNm;
-    });
+    this.firebaseGetServ
+      .getAssetTypeNameLeft(this.organization)
+      .then((mNm: any) => {
+        this.itemTypes = mNm;
+      });
   }
 
   onRegistration() {
-    this.firebaseGetServ.getRegistration().then((mNm: any) => {
+    this.firebaseGetServ.getRegistration(this.organization).then((mNm: any) => {
       this.registrations = mNm;
     });
   }
   onRegistrationLeft() {
-    this.firebaseGetServ.getRegistrationLeft().then((mNm: any) => {
-      this.registrations = mNm;
-    });
+    this.firebaseGetServ
+      .getRegistrationLeft(this.organization)
+      .then((mNm: any) => {
+        this.registrations = mNm;
+      });
   }
 }

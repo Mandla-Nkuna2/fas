@@ -32,15 +32,13 @@ export class AutocardetailsPage implements OnInit {
   }
 
   ngOnInit() {
-    this.getCurentUser();
-    this.onTableRep();
-    this.onRegistration();
+    this.getCurrentUser();
   }
 
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
-        .getAutocards()
+        .getAutocards(this.organization)
         .then((mNm: any) => {
           this.autocards = mNm;
           this.onRegistrationLeft();
@@ -59,26 +57,28 @@ export class AutocardetailsPage implements OnInit {
   }
 
   onRegistration() {
-    this.firebaseGetServ.getRegistration().then((mNm: any) => {
+    this.firebaseGetServ.getRegistration(this.organization).then((mNm: any) => {
       this.registration = mNm;
     });
   }
   onRegistrationLeft() {
-    this.firebaseGetServ.getRegistrationLeft().then((mNm: any) => {
-      this.registration = mNm;
+    this.firebaseGetServ
+      .getRegistrationLeft(this.organization)
+      .then((mNm: any) => {
+        this.registration = mNm;
 
-      mNm.forEach((elm) => {
-        this.autocards.forEach((obj) => {
-          if (elm.ItemGuid == obj.ItemGuid) {
-            obj.Item = elm.Reg;
-          }
+        mNm.forEach((elm) => {
+          this.autocards.forEach((obj) => {
+            if (elm.ItemGuid == obj.ItemGuid) {
+              obj.Item = elm.Reg;
+            }
+          });
         });
       });
-    });
   }
 
-  getCurentUser() {
-    this.afAuth.onAuthStateChanged((cUser) => {
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
       this.getCurrentUserOrg(cUser.email);
     });
   }
@@ -87,6 +87,9 @@ export class AutocardetailsPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+
+      this.onTableRep();
+      this.onRegistration();
     });
   }
 

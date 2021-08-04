@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { NavController } from '@ionic/angular';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
 import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
@@ -10,6 +11,7 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
   styleUrls: ['./monthlyvehiclereport.page.scss'],
 })
 export class MonthlyvehiclereportPage implements OnInit {
+  organization = 'InnTee';
   assets: any[] = [];
 
   assetTypes: any[];
@@ -21,16 +23,32 @@ export class MonthlyvehiclereportPage implements OnInit {
     private firebaseRepServ: FirebaseReportService,
     private firebaseGetServ: FirebaseGetService,
     private popUp: PopupHelper,
+    public afAuth: AngularFireAuth,
   ) {}
 
   ngOnInit() {
-    this.onTableRep();
+    this.getCurrentUser();
+  }
+
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+
+      this.onTableRep();
+    });
   }
 
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
-        .getAsset()
+        .getAsset(this.organization)
         .then((mNm: any) => {
           this.assets = mNm;
           this.onAssetType();
@@ -46,7 +64,7 @@ export class MonthlyvehiclereportPage implements OnInit {
   }
 
   onAssetType() {
-    this.firebaseGetServ.getItemType().then((mNm: any) => {
+    this.firebaseGetServ.getItemType(this.organization).then((mNm: any) => {
       this.assetTypes = mNm;
 
       mNm.forEach((elm) => {
@@ -61,31 +79,35 @@ export class MonthlyvehiclereportPage implements OnInit {
   }
 
   onAssetTypeName() {
-    this.firebaseGetServ.getAssetTypeNameLeft().then((mNm: any) => {
-      this.assetTypeNames = mNm;
+    this.firebaseGetServ
+      .getAssetTypeNameLeft(this.organization)
+      .then((mNm: any) => {
+        this.assetTypeNames = mNm;
 
-      mNm.forEach((elm) => {
-        this.assets.forEach((obj) => {
-          if (elm.ItemTypeNameGuid == obj.ItemType) {
-            obj.ItemTypeName = elm.ItemTypeName;
-          }
+        mNm.forEach((elm) => {
+          this.assets.forEach((obj) => {
+            if (elm.ItemTypeNameGuid == obj.ItemType) {
+              obj.ItemTypeName = elm.ItemTypeName;
+            }
+          });
         });
       });
-    });
   }
 
   onMakeAndMod() {
-    this.firebaseGetServ.getAssetMakenModelLeft().then((mNm: any) => {
-      this.makesAndMods = mNm;
+    this.firebaseGetServ
+      .getAssetMakenModelLeft(this.organization)
+      .then((mNm: any) => {
+        this.makesAndMods = mNm;
 
-      mNm.forEach((elm) => {
-        this.assets.forEach((obj) => {
-          if (elm.ItemMakModGuid == obj.ItemMakModGuid) {
-            obj.ItemMakMod = elm.ItemMakMod;
-          }
+        mNm.forEach((elm) => {
+          this.assets.forEach((obj) => {
+            if (elm.ItemMakModGuid == obj.ItemMakModGuid) {
+              obj.ItemMakMod = elm.ItemMakMod;
+            }
+          });
         });
       });
-    });
   }
 
   goDetails() {
