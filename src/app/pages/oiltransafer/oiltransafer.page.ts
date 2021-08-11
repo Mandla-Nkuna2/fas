@@ -17,6 +17,7 @@ export class OiltransaferPage implements OnInit {
   organization = 'InnTee';
   oilStoreTransf: OilStoreTransfer;
   oilStoreTransfs: any[] = [];
+  currentDate = new Date();
 
   voucherNo: any[];
   oilMakes: any[];

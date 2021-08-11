@@ -17,6 +17,7 @@ export class BrowsertransactionsPage implements OnInit {
   organization = 'InnTee';
   bowserTransaction: BowserTransaction;
   bowserTransactions: any[] = [];
+  currentDate = new Date();
 
   costCentre: any[];
 

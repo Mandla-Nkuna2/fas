@@ -16,6 +16,7 @@ export class OiltypePage implements OnInit {
   organization = 'InnTee';
   oilType: OilType;
   oilTypes: any[] = [];
+  currentDate = new Date();
 
   oilMake: any[];
   oilGrade: any[];

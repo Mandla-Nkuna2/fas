@@ -39,9 +39,9 @@
   <ion-row>
     <ion-col size="3.5">
       <div class="item-input">
-        <ion-label>Location path</ion-label>
+        <ion-label>Location</ion-label>
         <ion-item lines="none">
-          <ion-input type="text" [(ngModel)]="location.LocFullName"></ion-input>
+          <ion-input type="text" [(ngModel)]="location.LocDesc"></ion-input>
         </ion-item>
       </div>
     </ion-col>
@@ -51,7 +51,6 @@
         <ion-label style="margin-top: auto">Location</ion-label>
         <ion-item>
           <ionic-selectable
-            [(ngModel)]="location.LocGuid"
             [items]="locations"
             itemValueField="LocGuid"
             itemTextField="LocDesc"

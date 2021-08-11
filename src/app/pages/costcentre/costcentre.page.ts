@@ -15,6 +15,7 @@ export class CostcentrePage implements OnInit {
   organization = 'InnTee';
   costcentre: CostCentre;
   costcentres: CostCentre[] = [];
+  currentDate = new Date();
 
   constructor(
     private firebaseRepServ: FirebaseReportService,

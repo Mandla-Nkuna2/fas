@@ -12,6 +12,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 export class AssetdetailPage implements OnInit {
   organization = 'InnTee';
   assets: any[] = [];
+  currentDate = new Date();
 
   moreDet = false;
   assetTypes: any[];

@@ -7,15 +7,13 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./importfirstautotrans.page.scss'],
 })
 export class ImportfirstautotransPage implements OnInit {
+  currentDate = new Date();
 
-  constructor(private navCtrl: NavController) { }
+  constructor(private navCtrl: NavController) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  goImportGeoTab()
-  {
+  goImportGeoTab() {
     this.navCtrl.navigateForward('importgeotab');
   }
-
 }

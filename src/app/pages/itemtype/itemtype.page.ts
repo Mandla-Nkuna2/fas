@@ -17,6 +17,7 @@ export class ItemtypePage implements OnInit {
   itemType: ItemType;
   itemTypes: any[] = [];
 
+  currentDate = new Date();
   typeNames: any[];
   typeClass: any[];
   typeCapacity: any[];

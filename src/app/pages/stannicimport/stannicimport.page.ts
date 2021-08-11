@@ -6,10 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./stannicimport.page.scss'],
 })
 export class StannicimportPage implements OnInit {
+  currentDate = new Date();
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

@@ -17,6 +17,7 @@ export class AutocardetailsPage implements OnInit {
   organization = 'InnTee';
   autocard: AutoCard;
   autocards: any[] = [];
+  currentDate = new Date();
 
   registration: any[];
 

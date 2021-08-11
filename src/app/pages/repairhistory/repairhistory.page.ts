@@ -12,6 +12,7 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 export class RepairhistoryPage implements OnInit {
   organization = 'InnTee';
   vehicleReps: any = [];
+  currentDate = new Date();
 
   constructor(
     private navCtrl: NavController,

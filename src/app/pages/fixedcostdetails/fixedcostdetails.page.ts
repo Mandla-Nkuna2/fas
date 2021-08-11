@@ -19,6 +19,7 @@ export class FixedcostdetailsPage implements OnInit {
   fixedCosts: any[] = [];
 
   fixedCostType: any[];
+  currentDate = new Date();
   registration: any[];
   calcPeriod = ['Annum', 'Monthly'];
 

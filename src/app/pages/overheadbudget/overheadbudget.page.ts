@@ -17,6 +17,7 @@ export class OverheadbudgetPage implements OnInit {
   oheadbudget: OverheadBudget;
   oheadbudgets: any[] = [];
 
+  currentDate = new Date();
   ohTypes: any[];
   finYear = ['2020', '2021', '2022', '2023'];
 

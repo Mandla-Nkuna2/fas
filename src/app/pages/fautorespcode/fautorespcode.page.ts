@@ -15,6 +15,7 @@ export class FautorespcodePage implements OnInit {
   organization = 'InnTee';
   fautorespcode: FAutoRespCode;
   fautorespcodes: FAutoRespCode[] = [];
+  currentDate = new Date();
 
   constructor(
     private firebaseRepServ: FirebaseReportService,

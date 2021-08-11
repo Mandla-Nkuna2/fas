@@ -19,6 +19,7 @@ export class ItemcomponentsPage implements OnInit {
   itemComponents: any[] = [];
 
   registrations: any[];
+  currentDate = new Date();
   assetCompName: any[];
   assetCompMake: any[];
   assetCompModel: any[];

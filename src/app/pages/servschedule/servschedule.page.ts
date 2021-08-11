@@ -16,6 +16,7 @@ export class ServschedulePage implements OnInit {
   servschedule: ServiceSchedule;
   servschedules: ServiceSchedule[] = [];
 
+  currentDate = new Date();
   itemMakModels: any[];
   serviceTypes: any[];
   itemMakModel: any;

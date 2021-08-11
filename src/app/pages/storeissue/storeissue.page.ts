@@ -18,6 +18,7 @@ export class StoreissuePage implements OnInit {
   storeIssue: StoreIssue;
   storeIssues: any[] = [];
 
+  currentDate = new Date();
   registration: any[];
   MaintEvRefNo: any[];
   supplier: any;

@@ -7,15 +7,12 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./absaimport.page.scss'],
 })
 export class AbsaimportPage implements OnInit {
+  constructor(private navCtrl: NavController) {}
+  currentDate = new Date();
 
-  constructor(private navCtrl: NavController) { }
+  ngOnInit() {}
 
-  ngOnInit() {
-  }
-
-  goFTImport()
-  {
+  goFTImport() {
     this.navCtrl.navigateForward('fueltransimport');
   }
-
 }

@@ -386,7 +386,7 @@ export class DashboardPage implements OnInit {
             pointHoverBorderWidth: 2,
             pointRadius: 3,
             pointHitRadius: 10,
-            data: [15, 30, 15, 35, 36],
+            data: [],
             spanGaps: false,
           },
         ],

@@ -18,6 +18,7 @@ export class UsersPage implements OnInit {
   user: User;
   users: any[] = [];
 
+  currentDate = new Date();
   userGroup: any;
   userGroups: any[];
   locations: any[];
@@ -36,21 +37,33 @@ export class UsersPage implements OnInit {
     this.getCurrentUser();
   }
 
-  onTableRep() {
-    this.popUp.showLoading('loading...').then(() => {
-      this.firebaseRepServ
-        .getUsers(this.organization)
-        .then((mNm: any) => {
-          this.users = mNm;
-          this.onUserGroup();
-          this.popUp.dismissLoading();
-        })
-        .catch((err) => {
-          this.popUp.dismissLoading().then(() => {
-            this.popUp.showError(err);
-          });
-        });
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
     });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+      console.log('returned user: ', this.organization);
+
+      this.onTableRep();
+      this.onLocation();
+    });
+  }
+
+  onTableRep() {
+    this.firebaseRepServ
+      .getUsers(this.organization)
+      .then((mNm: any) => {
+        this.users = mNm;
+        this.onUserGroup();
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
   }
 
   onUserGroup() {
@@ -59,7 +72,7 @@ export class UsersPage implements OnInit {
 
       mNm.forEach((elm) => {
         this.users.forEach((obj) => {
-          if (elm.UserGroupGuid == obj.UserGroupGuid) {
+          if (elm.UserGroupGuid == obj.UserGroupGuid['UserGroupGuid']) {
             obj.UserGroup = elm.UserGroupTitle;
           }
         });
@@ -75,24 +88,6 @@ export class UsersPage implements OnInit {
   onLocationLeft() {
     this.firebaseGetServ.getLocationLeft(this.organization).then((mNm: any) => {
       this.locations = mNm;
-    });
-  }
-
-  getCurrentUser() {
-    this.afAuth.user.subscribe((cUser) => {
-      this.getCurrentUserOrg(cUser.email);
-    });
-  }
-
-  getCurrentUserOrg(email) {
-    this.firebaseRepServ.getUser(email).then((mNm) => {
-      let user: any = mNm;
-      this.organization = user.organization;
-      console.log('returned user: ', this.organization);
-
-      this.onTableRep();
-      this.onUserGroup();
-      this.onLocation();
     });
   }
 
@@ -114,6 +109,10 @@ export class UsersPage implements OnInit {
 
     this.user.UserGuid = uuidv4();
     this.user.organization = this.organization;
+    this.user.Active = 'Y';
+    this.user.UserLogin = this.user.UserLogin.toLowerCase();
+    console.log('user', this.user);
+
     return new Promise<any>((resolve, reject) => {
       this.afAuth
         .createUserWithEmailAndPassword(
@@ -122,52 +121,13 @@ export class UsersPage implements OnInit {
         )
         .then((res) => {
           resolve(res);
-          console.log('registered');
-          // this.addUser();
-          this.captureUsers();
+          this.onAdd();
         })
         .catch((err) => {
           reject(err.message);
           this.popUp.showAlert('Failed', err.message);
-          console.log('failed registering');
         });
     });
-  }
-
-  captureUsers() {
-    this.firebaseService
-      .writeData(
-        'InnTee',
-        'Mst_Users',
-        Object.assign({}, this.user),
-        this.user.UserGuid,
-      )
-      .then(() => {
-        console.log('added');
-        this.onAdd();
-      })
-      .catch((err) => {
-        console.log('failed adding');
-        this.popUp.showError(err);
-      });
-  }
-
-  addUser() {
-    this.firebaseService
-      .writeData(
-        'InnTee',
-        'Mst_Users',
-        Object.assign({}, this.user),
-        this.user.UserGuid,
-      )
-      .then(() => {
-        console.log('added');
-        this.popUp.showAlert('Success', 'Data saved successfully :-)');
-      })
-      .catch((err) => {
-        this.popUp.showError(err);
-        console.log('failed adding');
-      });
   }
 
   onAdd() {
@@ -179,10 +139,51 @@ export class UsersPage implements OnInit {
         this.user.UserGuid,
       )
       .then(() => {
+        if (this.user.organization != 'InnTee') {
+          this.captureUsers();
+        } else {
+          this.popUp.showToast('User added successfully...');
+          this.user = new User();
+        }
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
+  }
+
+  captureUsers() {
+    this.firebaseService
+      .write(
+        'InnTee',
+        'Mst_Users',
+        Object.assign({}, this.user),
+        this.user.UserGuid,
+      )
+      .then(() => {
+        this.popUp.showToast('User added successfully...');
+        this.user = new User();
+      })
+      .catch((err) => {
+        console.log('failed adding');
+        this.popUp.showError(err);
+      });
+  }
+
+  add() {
+    this.firebaseService
+      .writeData(
+        'InnTee',
+        'Mst_Users',
+        Object.assign({}, this.user),
+        this.user.UserGuid,
+      )
+      .then(() => {
+        console.log('added');
         this.popUp.showAlert('Success', 'Data saved successfully :-)');
       })
       .catch((err) => {
         this.popUp.showError(err);
+        console.log('failed adding');
       });
   }
 

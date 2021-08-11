@@ -16,6 +16,7 @@ export class ClientdetailsPage implements OnInit {
   organization = 'InnTee';
   client: ClientDetails;
   clients: ClientDetails[] = [];
+  currentDate = new Date();
 
   constructor(
     private firebaseRepServ: FirebaseReportService,

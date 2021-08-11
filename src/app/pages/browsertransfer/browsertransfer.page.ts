@@ -16,6 +16,7 @@ export class BrowsertransferPage implements OnInit {
   organization = 'InnTee';
   bowserTransfer: BowserTransfer;
   bowserTransfers: any[] = [];
+  currentDate = new Date();
 
   voucherNo: any[];
   costCentre: any;

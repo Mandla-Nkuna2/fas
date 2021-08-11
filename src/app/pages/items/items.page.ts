@@ -8,18 +8,16 @@ import Item from 'src/app/models/capture/Item.model';
   styleUrls: ['./items.page.scss'],
 })
 export class ItemsPage implements OnInit {
-  item: Item
+  currentDate = new Date();
+  item: Item;
 
   constructor(private navCtrl: NavController) {
-    this.item = new Item()
-   }
-
-  ngOnInit() {
+    this.item = new Item();
   }
 
-  goLossControl()
-  {
+  ngOnInit() {}
+
+  goLossControl() {
     this.navCtrl.navigateForward('licensecor');
   }
-
 }

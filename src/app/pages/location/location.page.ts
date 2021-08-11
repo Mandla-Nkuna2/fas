@@ -59,6 +59,7 @@ export class LocationPage implements OnInit {
 
   onAdd() {
     this.location.LocGuid = uuidv4();
+    this.location.LocItemCode = uuidv4();
 
     this.firebaseService
       .writeData(

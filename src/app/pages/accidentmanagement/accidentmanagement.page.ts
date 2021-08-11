@@ -14,8 +14,8 @@ import { AngularFireAuth } from '@angular/fire/auth';
 })
 export class AccidentmanagementPage implements OnInit {
   organization = 'InnTee';
-
   accidentManagement: AccidentManagement;
+  currentDate = new Date();
 
   agent: any[];
   lossType: any[];

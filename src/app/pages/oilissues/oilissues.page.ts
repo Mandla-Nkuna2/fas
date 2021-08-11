@@ -17,6 +17,7 @@ export class OilissuesPage implements OnInit {
   oilIssue: OilIssue;
   oilIssues: any[] = [];
 
+  currentDate = new Date();
   voucherNo: any[];
   registration: any[];
   compNames: any[];

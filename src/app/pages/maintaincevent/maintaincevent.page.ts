@@ -18,6 +18,7 @@ export class MaintainceventPage implements OnInit {
   maintenanceEvent: MaintenanceEvent;
   maintenanceEvents: any[] = [];
 
+  currentDate = new Date();
   jobCardNo: any[];
   registration: any[];
   maintanceType: any[];

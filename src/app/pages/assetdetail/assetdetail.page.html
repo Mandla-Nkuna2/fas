@@ -10,8 +10,9 @@
           ></ion-icon>
         </div>
         <ion-datetime
-          display-format="MMM DD YYYY hh:mm a"
-          value="Sep 16 2020, 12:02 "
+          style="color: green"
+          disabled
+          value="{{ currentDate |  date:'MM/dd/yyyy' }}"
         ></ion-datetime>
       </ion-item>
     </div>

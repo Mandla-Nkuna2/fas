@@ -19,6 +19,7 @@ export class LicensecorPage implements OnInit {
   licCorAndSafInspec: LicCorAndSafInspcDates;
   licCorAndSafInspecs: any[] = [];
 
+  currentDate = new Date();
   registration: any[];
   costCentre: any[];
   yesNo = ['Y', 'N'];

@@ -18,6 +18,7 @@ export class FixedcostransferPage implements OnInit {
   fixedCostTransfs: any[] = [];
 
   registration: any[];
+  currentDate = new Date();
   costCentre: any[];
 
   constructor(

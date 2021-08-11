@@ -19,6 +19,7 @@ export class DailyoperationrecordPage implements OnInit {
   dailyOpRecs: any[] = [];
 
   registration: any[];
+  currentDate = new Date();
   location: any[];
   costCentre: any[];
   operator: any[];

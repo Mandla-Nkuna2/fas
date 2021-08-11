@@ -18,6 +18,7 @@ export class LosscontrolPage implements OnInit {
   lossControl: LossControl;
   lossControls: any[] = [];
 
+  currentDate = new Date();
   agent: any[];
   registration: any[];
   lossType: any[];

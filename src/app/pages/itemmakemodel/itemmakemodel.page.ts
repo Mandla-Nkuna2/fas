@@ -18,6 +18,7 @@ export class ItemmakemodelPage implements OnInit {
   items: any[] = [];
 
   makes: any[];
+  currentDate = new Date();
   models: any[];
   fuelTypes: any[];
   transmissions = [

@@ -7,15 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./importgeotab.page.scss'],
 })
 export class ImportgeotabPage implements OnInit {
+  currentDate = new Date();
 
-  constructor(private navCtrl: NavController) { }
+  constructor(private navCtrl: NavController) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  stannicImport()
-  {
+  stannicImport() {
     this.navCtrl.navigateForward('stannicimport');
   }
-
 }

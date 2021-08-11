@@ -17,6 +17,7 @@ export class ServschedultaskPage implements OnInit {
   serviceSchTask: ServiceTask;
   serviceSchTasks: any[] = [];
 
+  currentDate = new Date();
   servSchTaskDesc: any;
   maintEvents: any[];
   jobcards: any;

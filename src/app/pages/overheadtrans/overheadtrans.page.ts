@@ -17,6 +17,7 @@ export class OverheadtransPage implements OnInit {
   organization = 'InnTee';
   overheadTrans: OverheadTransaction;
   overheadTranss: any[] = [];
+  currentDate = new Date();
 
   overheadType: any[];
   costCentre: any[];

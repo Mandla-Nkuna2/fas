@@ -16,6 +16,7 @@ export class BowserPage implements OnInit {
   organization = 'InnTee';
   bowser: Bowser;
   bowsers: any[] = [];
+  currentDate = new Date();
 
   bowserLoc: any[];
   fuelType: any[];

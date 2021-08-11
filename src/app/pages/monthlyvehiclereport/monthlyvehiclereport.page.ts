@@ -14,6 +14,7 @@ export class MonthlyvehiclereportPage implements OnInit {
   organization = 'InnTee';
   assets: any[] = [];
 
+  currentDate = new Date();
   assetTypes: any[];
   assetTypeNames: any[];
   makesAndMods: any[];

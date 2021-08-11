@@ -7,15 +7,13 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./importlogtransfor.page.scss'],
 })
 export class ImportlogtransforPage implements OnInit {
+  currentDate = new Date();
 
-  constructor(private navCtrl: NavController) { }
+  constructor(private navCtrl: NavController) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  goImportAutoFirstTransactions()
-  {
+  goImportAutoFirstTransactions() {
     this.navCtrl.navigateForward('importfirstautotrans');
   }
-
 }

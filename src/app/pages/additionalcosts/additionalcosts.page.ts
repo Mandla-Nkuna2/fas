@@ -17,6 +17,7 @@ export class AdditionalcostsPage implements OnInit {
   organization = 'InnTee';
   additionalCost: AdditionalCost;
   additionalCosts: any[] = [];
+  currentDate = new Date();
 
   additionalCostDesc: any[];
   registration: any;

@@ -17,6 +17,7 @@ export class VotecodesPage implements OnInit {
   voteCode: Votecodes;
   voteCodes: Votecodes[] = [];
 
+  currentDate = new Date();
   descriptions = ['DONATED VEHICLES'];
   finYear = ['2019/2020', '2020/2021', '2021/2022', '2022/2023'];
 

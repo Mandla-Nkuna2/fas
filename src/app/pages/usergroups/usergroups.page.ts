@@ -65,9 +65,11 @@ export class UsergroupsPage implements OnInit {
         this.popUp.showAlert('Success', 'Data saved successfully :-)');
       })
       .catch((err) => {
-        this.popUp.showError(err);
+        console.log('hit error!');
+        this.popUp.showError(err.message);
       });
   }
+
   onModify() {}
   onDeActivate() {}
   onClear() {}

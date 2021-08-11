@@ -17,6 +17,7 @@ export class SupplierdetailsPage implements OnInit {
   supplier: SupplierDetails;
   suppliers: any[] = [];
 
+  currentDate = new Date();
   suppCat: any[];
 
   constructor(

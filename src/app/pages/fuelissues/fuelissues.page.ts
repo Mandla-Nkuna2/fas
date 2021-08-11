@@ -17,6 +17,7 @@ export class FuelissuesPage implements OnInit {
   organization = 'InnTee';
   fuelIssue: FuelIssue;
   fuelIssues: any[] = [];
+  currentDate = new Date();
 
   registration: any[];
   supplier: any[];

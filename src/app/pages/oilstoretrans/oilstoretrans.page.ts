@@ -17,6 +17,7 @@ export class OilstoretransPage implements OnInit {
   organization = 'InnTee';
   oilstoreTrans: OilStoreTransaction;
   oilstoreTranss: any[] = [];
+  currentDate = new Date();
 
   oilStores: any[];
   oilTypes: any[];

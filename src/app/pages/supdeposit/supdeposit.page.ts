@@ -18,6 +18,7 @@ export class SupdepositPage implements OnInit {
   supplierDeposit: SupplierDeposit;
   supplierDeposits: any[];
 
+  currentDate = new Date();
   supplier: any[];
 
   constructor(

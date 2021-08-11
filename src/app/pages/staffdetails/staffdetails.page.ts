@@ -17,6 +17,7 @@ export class StaffdetailsPage implements OnInit {
   staff: Staff;
   staffs: any[] = [];
 
+  currentDate = new Date();
   staffCats: any[];
   addLicView = false;
   licCodes = ['A', 'A1', 'B', 'C', 'C1', 'EB', 'EC', 'EC1'];

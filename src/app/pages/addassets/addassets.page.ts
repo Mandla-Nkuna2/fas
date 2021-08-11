@@ -22,6 +22,7 @@ export class AddassetsPage implements OnInit {
   organization = 'InnTee';
   asset: Asset;
   assets: any = [];
+  currentDate = new Date();
 
   loadingComplete = false;
   makesAndModels: any = [];

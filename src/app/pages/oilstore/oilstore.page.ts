@@ -17,6 +17,7 @@ export class OilstorePage implements OnInit {
   oilStores: any[] = [];
 
   loc: any[];
+  currentDate = new Date();
   locObjs: any[];
   organization = 'InnTee';
 

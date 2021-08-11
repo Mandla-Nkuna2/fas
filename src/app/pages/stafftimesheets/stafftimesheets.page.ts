@@ -18,6 +18,7 @@ export class StafftimesheetsPage implements OnInit {
   staffTimesheet: StaffTimesheet;
   staffTimesheets: any[] = [];
 
+  currentDate = new Date();
   staffMember: any[];
 
   constructor(

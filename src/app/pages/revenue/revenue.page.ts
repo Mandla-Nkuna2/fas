@@ -18,6 +18,7 @@ export class RevenuePage implements OnInit {
   revenue: Revenue;
   revenuee: any[] = [];
 
+  currentDate = new Date();
   registration: any[];
   clients: any[];
   costCentre: any[];

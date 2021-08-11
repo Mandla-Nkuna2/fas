@@ -7,15 +7,13 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./fueltransimport.page.scss'],
 })
 export class FueltransimportPage implements OnInit {
+  currentDate = new Date();
 
-  constructor(private navCtrl: NavController) { }
+  constructor(private navCtrl: NavController) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  goImportLogTrans()
-  {
+  goImportLogTrans() {
     this.navCtrl.navigateForward('importlogtransfor');
   }
-
 }
