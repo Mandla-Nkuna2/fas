@@ -24,6 +24,7 @@ export class StaffdetComponent implements OnInit {
     'Location',
     'Registration',
   ];
+  returnedUser: any;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -45,6 +46,7 @@ export class StaffdetComponent implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onStaffCat();
       this.onStaffCodes();

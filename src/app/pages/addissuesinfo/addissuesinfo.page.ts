@@ -13,6 +13,7 @@ import { v4 as uuidv4 } from 'uuid';
 export class AddissuesinfoPage implements OnInit {
   organization = 'InnTee';
   agent: string;
+  returnedUser: any;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -35,11 +36,17 @@ export class AddissuesinfoPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
     });
   }
 
   onAdd() {
     this.agent = uuidv4();
+    // this.agent.Capturename = this.returnedUser.UserFirstName;
+    // if (this.agent.UserGroupGuid)
+    //   this.agent.UserGroupGuid = this.agent.UserGroupGuid['UserGroupGuid'];
+    // if (this.agent.LocUserCode)
+    //   this.agent.LocUserCode = this.agent.LocUserCode['LocGuid'];
 
     this.firebaseService
       .writeData(
@@ -49,7 +56,7 @@ export class AddissuesinfoPage implements OnInit {
         this.agent,
       )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+        this.popUp.showToast('Data saved successfully :-)');
       })
       .catch((err) => {
         this.popUp.showError(err);

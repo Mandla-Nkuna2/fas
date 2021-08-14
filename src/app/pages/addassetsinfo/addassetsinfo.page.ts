@@ -27,6 +27,7 @@ export class AddassetsinfoPage implements OnInit {
 
   classes: any[];
   batteryMakes: any[];
+  returnedUser: any;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -56,6 +57,7 @@ export class AddassetsinfoPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onClass();
       this.onBattery();
@@ -98,7 +100,8 @@ export class AddassetsinfoPage implements OnInit {
         this.itemMakeMod.ItemMakModGuid,
       )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+        this.popUp.showToast('Data saved successfully :-)');
+        this.itemMakeMod = new ItemMakeAndModel();
       })
       .catch((err) => {
         this.popUp.showError(err);
@@ -117,7 +120,8 @@ export class AddassetsinfoPage implements OnInit {
         this.itemType.ItemTypeGuid,
       )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+        this.popUp.showToast('Data saved successfully :-)');
+        this.itemType = new ItemType();
       })
       .catch((err) => {
         this.popUp.showError(err);
@@ -136,7 +140,8 @@ export class AddassetsinfoPage implements OnInit {
         this.itemColor.ColourGuid,
       )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+        this.popUp.showToast('Data saved successfully :-)');
+        this.itemColor = new ItemColor();
       })
       .catch((err) => {
         this.popUp.showError(err);
@@ -155,7 +160,8 @@ export class AddassetsinfoPage implements OnInit {
         this.battery.BatteryGuid,
       )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+        this.popUp.showToast('Data saved successfully :-)');
+        this.battery = new Battery();
       })
       .catch((err) => {
         this.popUp.showError(err);
@@ -174,7 +180,8 @@ export class AddassetsinfoPage implements OnInit {
         this.voteCode.VoteCodeGuid,
       )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+        this.popUp.showToast('Data saved successfully :-)');
+        this.voteCode = new Votecodes();
       })
       .catch((err) => {
         this.popUp.showError(err);

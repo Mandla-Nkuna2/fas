@@ -18,6 +18,7 @@ export class MonthlyvehiclereportPage implements OnInit {
   assetTypes: any[];
   assetTypeNames: any[];
   makesAndMods: any[];
+  returnedUser: any;
 
   constructor(
     private navCtrl: NavController,
@@ -41,6 +42,7 @@ export class MonthlyvehiclereportPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onTableRep();
     });

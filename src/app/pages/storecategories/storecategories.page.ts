@@ -18,6 +18,7 @@ export class StorecategoriesPage implements OnInit {
   storeCats: StoreCategory[] = [];
 
   storeCatItemsView = false;
+  returnedUser: any;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -69,6 +70,7 @@ export class StorecategoriesPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onTableRep();
     });
@@ -76,6 +78,12 @@ export class StorecategoriesPage implements OnInit {
 
   onAdd() {
     this.storeCat.StoreCatgGuid = uuidv4();
+    this.storeCat.CapName = this.returnedUser.UserFirstName;
+
+    //  if (this.storeCat.UserGroupGuid)
+    //    this.storeCat.UserGroupGuid = this.storeCat.UserGroupGuid['UserGroupGuid'];
+    //  if (this.storeCat.LocUserCode)
+    //    this.storeCat.LocUserCode = this.storeCat.LocstoreCatCode['LocGuid'];
 
     this.firebaseService
       .writeData(
@@ -85,7 +93,9 @@ export class StorecategoriesPage implements OnInit {
         this.storeCat.StoreCatgGuid,
       )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.storeCat = new StoreCategory();
       })
       .catch((err) => {
         this.popUp.showError(err);

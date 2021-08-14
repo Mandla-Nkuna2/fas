@@ -20,6 +20,7 @@ export class AutocardetailsPage implements OnInit {
   currentDate = new Date();
 
   registration: any[];
+  returnedUser: any;
 
   constructor(
     private navCtrl: NavController,
@@ -88,6 +89,7 @@ export class AutocardetailsPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onTableRep();
       this.onRegistration();
@@ -96,6 +98,9 @@ export class AutocardetailsPage implements OnInit {
 
   onAdd() {
     this.autocard.AutoCardGuid = uuidv4();
+    this.autocard.CaptureName = this.returnedUser.UserFirstName;
+    if (this.autocard.ItemGuid)
+      this.autocard.ItemGuid = this.autocard.ItemGuid['ItemGuid'];
 
     this.firebaseService
       .writeData(
@@ -105,7 +110,9 @@ export class AutocardetailsPage implements OnInit {
         this.autocard.AutoCardGuid,
       )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.autocard = new AutoCard();
       })
       .catch((err) => {
         this.popUp.showError(err);

@@ -20,6 +20,7 @@ export class VotecodesPage implements OnInit {
   currentDate = new Date();
   descriptions = ['DONATED VEHICLES'];
   finYear = ['2019/2020', '2020/2021', '2021/2022', '2022/2023'];
+  returnedUser: any;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -76,6 +77,7 @@ export class VotecodesPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onTableRep();
       this.onVoteCodes();
@@ -85,6 +87,10 @@ export class VotecodesPage implements OnInit {
 
   onAdd() {
     this.voteCode.VoteCodeGuid = uuidv4();
+    this.voteCode.CaptureName = this.returnedUser.UserFirstName;
+
+    if (this.voteCode.Votecode)
+      this.voteCode.Votecode = this.voteCode.Votecode['VoteCodeGuid'];
 
     this.firebaseService
       .writeData(
@@ -94,7 +100,9 @@ export class VotecodesPage implements OnInit {
         this.voteCode.VoteCodeGuid,
       )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.voteCode = new Votecodes();
       })
       .catch((err) => {
         this.popUp.showError(err);

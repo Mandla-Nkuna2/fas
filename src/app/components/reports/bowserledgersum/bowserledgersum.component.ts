@@ -23,6 +23,7 @@ export class BowserledgersumComponent implements OnInit {
 
   bowser: any;
   bowsers: any[];
+  returnedUser: any;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -44,6 +45,7 @@ export class BowserledgersumComponent implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onBowser();
     });

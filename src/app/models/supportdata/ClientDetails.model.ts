@@ -10,4 +10,5 @@ export default class ClientDetails {
   ClientFax: string;
   Active: string;
   CaptureDate: string = new Date().toString();
+  capturename: string;
 }

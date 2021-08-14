@@ -21,6 +21,7 @@ export class OilstoreledgersummComponent implements OnInit {
 
   oilStore: any;
   oilStores: any[];
+  returnedUser: any;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -42,6 +43,7 @@ export class OilstoreledgersummComponent implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onOilStore();
     });

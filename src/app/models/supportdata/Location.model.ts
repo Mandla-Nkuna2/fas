@@ -10,4 +10,5 @@ export default class LocationModel {
   CaptureDate: string = new Date().toString();
   Active: string;
   LocFullName: string;
+  captureName: string;
 }

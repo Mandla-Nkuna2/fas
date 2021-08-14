@@ -24,6 +24,7 @@ export class FuelissuesPage implements OnInit {
   staffCode: any[];
   costCentre: any[];
   bowser: any[];
+  returnedUser: any;
 
   constructor(
     private navCtrl: NavController,
@@ -131,6 +132,7 @@ export class FuelissuesPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onTableRep();
       this.onRegistration();
@@ -143,6 +145,18 @@ export class FuelissuesPage implements OnInit {
 
   onAdd() {
     this.fuelIssue.FuelIssueGuid = uuidv4();
+    this.fuelIssue.CaptureName = this.returnedUser.UserFirstName;
+
+    if (this.fuelIssue.ItemGuid)
+      this.fuelIssue.ItemGuid = this.fuelIssue.ItemGuid['ItemGuid'];
+    if (this.fuelIssue.BowserGuid)
+      this.fuelIssue.BowserGuid = this.fuelIssue.BowserGuid['BowserGuid'];
+    if (this.fuelIssue.SupplierGuid)
+      this.fuelIssue.SupplierGuid = this.fuelIssue.SupplierGuid['SuppGuid'];
+    if (this.fuelIssue.StaffGuid)
+      this.fuelIssue.StaffGuid = this.fuelIssue.StaffGuid['StaffGuid'];
+    if (this.fuelIssue.CostCentGuid)
+      this.fuelIssue.CostCentGuid = this.fuelIssue.CostCentGuid['CostCentGuid'];
 
     this.firebaseService
       .writeData(
@@ -152,7 +166,9 @@ export class FuelissuesPage implements OnInit {
         this.fuelIssue.FuelIssueGuid,
       )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.fuelIssue = new FuelIssue();
       })
       .catch((err) => {
         this.popUp.showError(err);

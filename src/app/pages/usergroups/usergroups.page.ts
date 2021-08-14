@@ -15,6 +15,7 @@ export class UsergroupsPage implements OnInit {
   organization = 'InnTee';
   userGroup: UserGroup;
   userGroups: UserGroup[];
+  returnedUser: any;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -46,6 +47,7 @@ export class UsergroupsPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onUserGroups();
     });
@@ -53,6 +55,8 @@ export class UsergroupsPage implements OnInit {
 
   onAdd() {
     this.userGroup.UserGroupGuid = uuidv4();
+    this.userGroup.Active = 'Y';
+    this.userGroup.captureName = this.returnedUser.UserFirstName;
 
     this.firebaseService
       .writeData(
@@ -62,7 +66,8 @@ export class UsergroupsPage implements OnInit {
         this.userGroup.UserGroupGuid,
       )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+        this.popUp.showToast('Data saved successfully :-)');
+        this.userGroup = new UserGroup();
       })
       .catch((err) => {
         console.log('hit error!');

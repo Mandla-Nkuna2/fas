@@ -24,6 +24,7 @@ export class AccidentmanagementPage implements OnInit {
   yesNo = ['Y', 'N'];
   registration: any[];
   lossCntrlAction: any[];
+  returnedUser: any;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -107,6 +108,7 @@ export class AccidentmanagementPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onAgent();
       this.onRegistration();
@@ -119,6 +121,26 @@ export class AccidentmanagementPage implements OnInit {
 
   onAdd() {
     this.accidentManagement.LossContGuid = uuidv4();
+    this.accidentManagement.Capturename = this.returnedUser.UserFirstName;
+
+    if (this.accidentManagement.Agentguid)
+      this.accidentManagement.Agentguid =
+        this.accidentManagement.Agentguid['StaffGuid'];
+    if (this.accidentManagement.Itemguid)
+      this.accidentManagement.Itemguid =
+        this.accidentManagement.Itemguid['ItemGuid'];
+    if (this.accidentManagement.LossTypeguid)
+      this.accidentManagement.LossTypeguid =
+        this.accidentManagement.LossTypeguid['LossContTypeguid'];
+    if (this.accidentManagement.Reportbyguid)
+      this.accidentManagement.Reportbyguid =
+        this.accidentManagement.Reportbyguid['StaffGuid'];
+    if (this.accidentManagement.DriverGuid)
+      this.accidentManagement.DriverGuid =
+        this.accidentManagement.DriverGuid['StaffGuid'];
+    if (this.accidentManagement.LossContActguid)
+      this.accidentManagement.LossContActguid =
+        this.accidentManagement.LossContActguid['LossContActGuid'];
 
     this.firebaseService
       .writeData(
@@ -128,7 +150,8 @@ export class AccidentmanagementPage implements OnInit {
         this.accidentManagement.LossContGuid,
       )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+        this.popUp.showToast('Data saved successfully :-)');
+        this.accidentManagement = new AccidentManagement();
       })
       .catch((err) => {
         this.popUp.showError(err);

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import User from 'src/app/models/systemmanagement/User.model';
 import { FirebaseGetService } from './../../services/firebase-service/firebase-get.service';
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
+import { LoadingService } from 'src/app/services/loading-service/loading.service';
 import { FirebaseService } from './../../services/firebase-service/firebase-service.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
@@ -14,11 +15,11 @@ import { v4 as uuidv4 } from 'uuid';
 })
 export class UsersPage implements OnInit {
   organization = 'InnTee';
-
   user: User;
   users: any[] = [];
 
   currentDate = new Date();
+  returnedUser: any;
   userGroup: any;
   userGroups: any[];
   locations: any[];
@@ -27,6 +28,7 @@ export class UsersPage implements OnInit {
     private firebaseRepServ: FirebaseReportService,
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
+    private loadServ: LoadingService,
     private firebaseGetServ: FirebaseGetService,
     public afAuth: AngularFireAuth,
   ) {
@@ -47,7 +49,7 @@ export class UsersPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
-      console.log('returned user: ', this.organization);
+      this.returnedUser = user;
 
       this.onTableRep();
       this.onLocation();
@@ -72,7 +74,7 @@ export class UsersPage implements OnInit {
 
       mNm.forEach((elm) => {
         this.users.forEach((obj) => {
-          if (elm.UserGroupGuid == obj.UserGroupGuid['UserGroupGuid']) {
+          if (elm.UserGroupGuid == obj.UserGroupGuid) {
             obj.UserGroup = elm.UserGroupTitle;
           }
         });
@@ -111,7 +113,12 @@ export class UsersPage implements OnInit {
     this.user.organization = this.organization;
     this.user.Active = 'Y';
     this.user.UserLogin = this.user.UserLogin.toLowerCase();
-    console.log('user', this.user);
+    this.user.Capturename = this.returnedUser.UserFirstName;
+
+    if (this.user.UserGroupGuid)
+      this.user.UserGroupGuid = this.user.UserGroupGuid['UserGroupGuid'];
+    if (this.user.LocUserCode)
+      this.user.LocUserCode = this.user.LocUserCode['LocGuid'];
 
     return new Promise<any>((resolve, reject) => {
       this.afAuth
@@ -122,6 +129,7 @@ export class UsersPage implements OnInit {
         .then((res) => {
           resolve(res);
           this.onAdd();
+          // this.add();
         })
         .catch((err) => {
           reject(err.message);
@@ -132,7 +140,7 @@ export class UsersPage implements OnInit {
 
   onAdd() {
     this.firebaseService
-      .writeData(
+      .write(
         this.organization,
         'Mst_Users',
         Object.assign({}, this.user),
@@ -142,12 +150,14 @@ export class UsersPage implements OnInit {
         if (this.user.organization != 'InnTee') {
           this.captureUsers();
         } else {
+          this.getCurrentUser();
           this.popUp.showToast('User added successfully...');
           this.user = new User();
         }
       })
       .catch((err) => {
         this.popUp.showError(err);
+        console.log('err: ', err.message);
       });
   }
 
@@ -160,18 +170,19 @@ export class UsersPage implements OnInit {
         this.user.UserGuid,
       )
       .then(() => {
-        this.popUp.showToast('User added successfully...');
+        this.getCurrentUser();
+        this.popUp.showAlert('Success', 'User added successfully :-)');
         this.user = new User();
       })
       .catch((err) => {
-        console.log('failed adding');
+        console.log('err: ', err.message);
         this.popUp.showError(err);
       });
   }
 
   add() {
     this.firebaseService
-      .writeData(
+      .write(
         'InnTee',
         'Mst_Users',
         Object.assign({}, this.user),
@@ -179,11 +190,13 @@ export class UsersPage implements OnInit {
       )
       .then(() => {
         console.log('added');
-        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+        this.getCurrentUser();
+        this.popUp.showAlert('Success', 'User added successfully :-)');
+        this.user = new User();
       })
       .catch((err) => {
         this.popUp.showError(err);
-        console.log('failed adding');
+        console.log('err: ', err.message);
       });
   }
 

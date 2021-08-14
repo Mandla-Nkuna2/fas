@@ -20,6 +20,7 @@ export class SupdepositPage implements OnInit {
 
   currentDate = new Date();
   supplier: any[];
+  returnedUser: any;
 
   constructor(
     private navCtrl: NavController,
@@ -86,6 +87,7 @@ export class SupdepositPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onTableRep();
       this.onSupplierName();
@@ -94,6 +96,10 @@ export class SupdepositPage implements OnInit {
 
   onAdd() {
     this.supplierDeposit.SupBalguid = uuidv4();
+    this.supplierDeposit.Capturename = this.returnedUser.UserFirstName;
+
+    if (this.supplierDeposit.SuppGuid)
+      this.supplierDeposit.SuppGuid = this.supplierDeposit.SuppGuid['SuppGuid'];
 
     this.firebaseService
       .writeData(
@@ -103,7 +109,9 @@ export class SupdepositPage implements OnInit {
         this.supplierDeposit.SupBalguid,
       )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.supplierDeposit = new SupplierDeposit();
       })
       .catch((err) => {
         this.popUp.showError(err);

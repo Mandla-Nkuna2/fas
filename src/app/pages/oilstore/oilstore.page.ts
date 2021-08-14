@@ -20,6 +20,7 @@ export class OilstorePage implements OnInit {
   currentDate = new Date();
   locObjs: any[];
   organization = 'InnTee';
+  returnedUser: any;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -87,6 +88,7 @@ export class OilstorePage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onTableRep();
       this.onOsLocation();
@@ -95,6 +97,10 @@ export class OilstorePage implements OnInit {
 
   onAdd() {
     this.oilStore.OilStoreGuid = uuidv4();
+    this.oilStore.CaptureName = this.returnedUser.UserFirstName;
+
+    if (this.oilStore.OilStoreLoc)
+      this.oilStore.OilStoreLoc = this.oilStore.OilStoreLoc['LocGuid'];
 
     this.firebaseService
       .writeData(
@@ -104,7 +110,9 @@ export class OilstorePage implements OnInit {
         this.oilStore.OilStoreGuid,
       )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.oilStore = new OilStore();
       })
       .catch((err) => {
         this.popUp.showError(err);

@@ -39,6 +39,7 @@ export class DashboardPage implements OnInit {
   abttExpLics = 0;
   revenueVs = [];
   revenueDates = [];
+  returnedUser: any;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -65,6 +66,7 @@ export class DashboardPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onRevenue();
       this.onVehiclesCount();

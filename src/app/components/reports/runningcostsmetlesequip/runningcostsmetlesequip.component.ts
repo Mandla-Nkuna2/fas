@@ -45,6 +45,7 @@ export class RunningcostsmetlesequipComponent implements OnInit {
     'Service',
     'Tyre / Track',
   ];
+  returnedUser: any;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -66,6 +67,7 @@ export class RunningcostsmetlesequipComponent implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onLocation();
       this.onItemType();

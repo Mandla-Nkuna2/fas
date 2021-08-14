@@ -35,6 +35,7 @@ export class AddassetsPage implements OnInit {
   categories: any = ['MAJOR EQUIPMENT', 'METERLESS EQUIPMENT', 'VEHICLES'];
 
   drop: false;
+  returnedUser: any;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -149,6 +150,7 @@ export class AddassetsPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onMakeAndModel();
       this.onColor();
@@ -160,6 +162,27 @@ export class AddassetsPage implements OnInit {
 
   onAdd() {
     this.asset.generalInformation.ItemGuid = uuidv4();
+
+    this.asset.generalInformation.CaptureName = this.returnedUser.UserFirstName;
+    if (this.asset.generalInformation.ItemMakModGuid)
+      this.asset.generalInformation.ItemMakModGuid =
+        this.asset.generalInformation.ItemMakModGuid['ItemMakModGuid'];
+    if (this.asset.generalInformation.ColourGuid)
+      this.asset.generalInformation.ColourGuid =
+        this.asset.generalInformation.ColourGuid['ColourGuid'];
+    if (this.asset.generalInformation.BatteryGuid)
+      this.asset.generalInformation.BatteryGuid =
+        this.asset.generalInformation.BatteryGuid['BatteryGuid'];
+    if (this.asset.generalInformation.StaffGuid)
+      this.asset.generalInformation.StaffGuid =
+        this.asset.generalInformation.StaffGuid['StaffGuid'];
+    if (this.asset.generalInformation.FrontTyreGuid)
+      this.asset.generalInformation.FrontTyreGuid =
+        this.asset.generalInformation.FrontTyreGuid['TyreSizeGuid'];
+    if (this.asset.generalInformation.RearTyreGuid)
+      this.asset.generalInformation.RearTyreGuid =
+        this.asset.generalInformation.RearTyreGuid['TyreSizeGuid'];
+
     this.firebaseService
       .writeData(
         this.organization,
@@ -168,7 +191,8 @@ export class AddassetsPage implements OnInit {
         this.asset.generalInformation.ItemGuid,
       )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+        this.popUp.showToast('Data saved successfully :-)');
+        this.asset = new Asset();
       })
       .catch((err) => {
         this.popUp.showError(err);

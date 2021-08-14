@@ -32,6 +32,7 @@ export class JobcardPage implements OnInit {
   mechanicSig = '';
   foremanSig = '';
   operatorSig = '';
+  returnedUser: any;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -139,6 +140,7 @@ export class JobcardPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onReportedBy();
       this.onDriver();
@@ -147,6 +149,15 @@ export class JobcardPage implements OnInit {
 
   onAdd() {
     this.jobCard.generalInformation.JobCardNo = uuidv4();
+    this.jobCard.generalInformation.CaptureName =
+      this.returnedUser.UserFirstName;
+
+    if (this.jobCard.generalInformation.StaffGuid)
+      this.jobCard.generalInformation.StaffGuid =
+        this.jobCard.generalInformation.StaffGuid['StaffGuid'];
+    if (this.jobCard.generalInformation.driverOrOpGuid)
+      this.jobCard.generalInformation.driverOrOpGuid =
+        this.jobCard.generalInformation.driverOrOpGuid['StaffGuid'];
 
     this.firebaseService
       .writeData(
@@ -156,7 +167,26 @@ export class JobcardPage implements OnInit {
         this.jobCard.generalInformation.JobCardNo,
       )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+        this.popUp.showToast('Data saved successfully :-)');
+        this.jobCard = new JobCard();
+        this.jobCard.generalInformation = Object.assign(
+          {},
+          new GeneralInformation(),
+        );
+        this.jobCard.vehicleInformation = Object.assign(
+          {},
+          new VehicleInformation(),
+        );
+        this.jobCard.serviceInformation = Object.assign(
+          {},
+          new ServiceInformation(),
+        );
+        this.jobCard.serviceInformation.componentOfCar = Object.assign(
+          {},
+          new ComponentOfCar(),
+        );
+        this.jobCard.serviceInformation.workDone_MechanicsReport =
+          Object.assign({}, new WorkDone_MechanicsReport());
       })
       .catch((err) => {
         this.popUp.showError(err);

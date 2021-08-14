@@ -19,6 +19,7 @@ export class ComponentnamePage implements OnInit {
 
   compSubCatView = false;
   compNames: any[];
+  returnedUser: any;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -75,6 +76,7 @@ export class ComponentnamePage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onTableRep();
       this.onCompName();
@@ -83,6 +85,10 @@ export class ComponentnamePage implements OnInit {
 
   onAdd() {
     this.componentName.CompNameGuid = uuidv4();
+    this.componentName.CapName = this.returnedUser.UserFirstName;
+
+    // if (this.componentName.UserGroupGuid)
+    //   this.componentName.UserGroupGuid = this.componentName.UserGroupGuid['UserGroupGuid'];
 
     this.firebaseService
       .writeData(
@@ -92,7 +98,9 @@ export class ComponentnamePage implements OnInit {
         this.componentName.CompNameGuid,
       )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.componentName = new ComponentName();
       })
       .catch((err) => {
         this.popUp.showError(err);

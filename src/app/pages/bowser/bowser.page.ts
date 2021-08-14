@@ -20,6 +20,7 @@ export class BowserPage implements OnInit {
 
   bowserLoc: any[];
   fuelType: any[];
+  returnedUser: any;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -102,6 +103,7 @@ export class BowserPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onTableRep();
       this.onBowserLoc();
@@ -111,6 +113,12 @@ export class BowserPage implements OnInit {
 
   onAdd() {
     this.bowser.BowserGuid = uuidv4();
+    this.bowser.CaptureName = this.returnedUser.UserFirstName;
+    if (this.bowser.BowserLoc)
+      this.bowser.BowserLoc = this.bowser.BowserLoc['LocGuid'];
+    if (this.bowser.FuelTypeGuid)
+      this.bowser.FuelTypeGuid = this.bowser.FuelTypeGuid['FuelTypeGuid'];
+
     this.firebaseService
       .writeData(
         this.organization,
@@ -119,8 +127,9 @@ export class BowserPage implements OnInit {
         this.bowser.BowserGuid,
       )
       .then(() => {
-        console.log(this.bowser.BowserGuid);
-        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.bowser = new Bowser();
       })
       .catch((err) => {
         this.popUp.showError(err);

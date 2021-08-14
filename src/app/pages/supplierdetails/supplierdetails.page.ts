@@ -19,6 +19,7 @@ export class SupplierdetailsPage implements OnInit {
 
   currentDate = new Date();
   suppCat: any[];
+  returnedUser: any;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -80,6 +81,7 @@ export class SupplierdetailsPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onTableRep();
       this.onCategory();
@@ -88,6 +90,11 @@ export class SupplierdetailsPage implements OnInit {
 
   onAdd() {
     this.supplier.SuppGuid = uuidv4();
+    this.supplier.CaptureName = this.returnedUser.UserFirstName;
+
+    if (this.supplier.SuppCategoryGuid)
+      this.supplier.SuppCategoryGuid =
+        this.supplier.SuppCategoryGuid['SuppCategoryGuid'];
 
     this.firebaseService
       .writeData(
@@ -97,7 +104,9 @@ export class SupplierdetailsPage implements OnInit {
         this.supplier.SuppGuid,
       )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.supplier = new SupplierDetails();
       })
       .catch((err) => {
         this.popUp.showError(err);

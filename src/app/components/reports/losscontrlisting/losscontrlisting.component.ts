@@ -43,6 +43,7 @@ export class LosscontrlistingComponent implements OnInit {
 
   lossContAct: any;
   lossContActs: any[];
+  returnedUser: any;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -64,6 +65,7 @@ export class LosscontrlistingComponent implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onLocation();
       this.onLossContType();

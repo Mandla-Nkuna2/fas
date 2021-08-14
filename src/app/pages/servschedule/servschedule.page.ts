@@ -21,6 +21,7 @@ export class ServschedulePage implements OnInit {
   serviceTypes: any[];
   itemMakModel: any;
   serviceType: any;
+  returnedUser: any;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -83,6 +84,7 @@ export class ServschedulePage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       // this.onTableRep();
       this.onMakModel();
@@ -92,6 +94,14 @@ export class ServschedulePage implements OnInit {
 
   onAdd() {
     this.servschedule.id = uuidv4();
+    this.servschedule.captureName = this.returnedUser.UserFirstName;
+
+    if (this.servschedule.itemMakeModelGuid)
+      this.servschedule.itemMakeModelGuid =
+        this.servschedule.itemMakeModelGuid['ItemMakModGuid'];
+    if (this.servschedule.servTypeGuid)
+      this.servschedule.servTypeGuid =
+        this.servschedule.servTypeGuid['ServTypeGuid'];
 
     this.firebaseService
       .writeData(
@@ -101,7 +111,9 @@ export class ServschedulePage implements OnInit {
         this.servschedule.id,
       )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+        // this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.servschedule = new ServiceSchedule();
       })
       .catch((err) => {
         this.popUp.showError(err);

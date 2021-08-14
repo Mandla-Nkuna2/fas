@@ -22,6 +22,7 @@ export class RevenuePage implements OnInit {
   registration: any[];
   clients: any[];
   costCentre: any[];
+  returnedUser: any;
 
   constructor(
     private navCtrl: NavController,
@@ -104,6 +105,7 @@ export class RevenuePage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onTableRep();
       this.onRegistration();
@@ -114,6 +116,14 @@ export class RevenuePage implements OnInit {
 
   onAdd() {
     this.revenue.RevenueGuid = uuidv4();
+    this.revenue.CaptureName = this.returnedUser.UserFirstName;
+
+    if (this.revenue.ItemGuid)
+      this.revenue.ItemGuid = this.revenue.ItemGuid['ItemGuid'];
+    if (this.revenue.ClientGuid)
+      this.revenue.ClientGuid = this.revenue.ClientGuid['ClientGuid'];
+    if (this.revenue.CostCentguid)
+      this.revenue.CostCentguid = this.revenue.CostCentguid['CostCentGuid'];
 
     this.firebaseService
       .writeData(
@@ -123,7 +133,9 @@ export class RevenuePage implements OnInit {
         this.revenue.RevenueGuid,
       )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.revenue = new Revenue();
       })
       .catch((err) => {
         this.popUp.showError(err);

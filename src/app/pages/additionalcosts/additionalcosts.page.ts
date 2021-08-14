@@ -24,6 +24,7 @@ export class AdditionalcostsPage implements OnInit {
   costCentre: any;
   staffcode: any;
   supplier: any;
+  returnedUser: any;
 
   constructor(
     private navCtrl: NavController,
@@ -153,6 +154,7 @@ export class AdditionalcostsPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onTableRep();
       this.onRegistration();
@@ -165,6 +167,21 @@ export class AdditionalcostsPage implements OnInit {
 
   onAdd() {
     this.additionalCost.AddCostGuid = uuidv4();
+    this.additionalCost.Capturename = this.returnedUser.UserFirstName;
+
+    if (this.additionalCost.Itemguid)
+      this.additionalCost.Itemguid = this.additionalCost.Itemguid['Itemguid'];
+    if (this.additionalCost.AddCostDescGuid)
+      this.additionalCost.AddCostDescGuid =
+        this.additionalCost.AddCostDescGuid['AddCostDescGuid'];
+    if (this.additionalCost.CostCentreGuid)
+      this.additionalCost.CostCentreGuid =
+        this.additionalCost.CostCentreGuid['CostCentreGuid'];
+    if (this.additionalCost.StaffGuid)
+      this.additionalCost.StaffGuid =
+        this.additionalCost.StaffGuid['StaffGuid'];
+    if (this.additionalCost.Suppguid)
+      this.additionalCost.Suppguid = this.additionalCost.Suppguid['Suppguid'];
 
     this.firebaseService
       .writeData(
@@ -174,7 +191,9 @@ export class AdditionalcostsPage implements OnInit {
         this.additionalCost.AddCostGuid,
       )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.additionalCost = new AdditionalCost();
       })
       .catch((err) => {
         this.popUp.showError(err);

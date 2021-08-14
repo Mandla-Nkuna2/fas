@@ -23,6 +23,7 @@ export class CostcenttransactComponent implements OnInit {
 
   costCentre: any;
   costCentres: any[];
+  returnedUser: any;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -42,6 +43,7 @@ export class CostcenttransactComponent implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onCostCentre();
     });

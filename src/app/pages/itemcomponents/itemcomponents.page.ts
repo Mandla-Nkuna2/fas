@@ -24,6 +24,7 @@ export class ItemcomponentsPage implements OnInit {
   assetCompMake: any[];
   assetCompModel: any[];
   servIntvl: any[];
+  returnedUser: any;
 
   constructor(
     private navCtrl: NavController,
@@ -175,6 +176,7 @@ export class ItemcomponentsPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onTableRep();
       this.onRegistration();
@@ -187,6 +189,23 @@ export class ItemcomponentsPage implements OnInit {
 
   onAdd() {
     this.itemComponent.ItemCompGuid = uuidv4();
+    this.itemComponent.Capturename = this.returnedUser.UserFirstName;
+
+    if (this.itemComponent.ItemCompGuid)
+      this.itemComponent.ItemCompGuid =
+        this.itemComponent.ItemCompGuid['ItemGuid'];
+    if (this.itemComponent.CompNameGuid)
+      this.itemComponent.CompNameGuid =
+        this.itemComponent.CompNameGuid['CompNameGuid'];
+    if (this.itemComponent.CompMakeGuid)
+      this.itemComponent.CompMakeGuid =
+        this.itemComponent.CompMakeGuid['CompMakeGuid'];
+    if (this.itemComponent.CompModelGuid)
+      this.itemComponent.CompModelGuid =
+        this.itemComponent.CompModelGuid['CompModelGuid'];
+    if (this.itemComponent.ServIntvalGuid)
+      this.itemComponent.ServIntvalGuid =
+        this.itemComponent.ServIntvalGuid['ServIntvalGuid'];
 
     this.firebaseService
       .writeData(
@@ -196,7 +215,9 @@ export class ItemcomponentsPage implements OnInit {
         this.itemComponent.ItemCompGuid,
       )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.itemComponent = new ItemComponent();
       })
       .catch((err) => {
         this.popUp.showError(err);

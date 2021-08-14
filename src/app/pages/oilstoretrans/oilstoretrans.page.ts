@@ -26,6 +26,7 @@ export class OilstoretransPage implements OnInit {
   oilClasses: any[];
   suppliers: any[];
   costCentre: any[];
+  returnedUser: any;
 
   constructor(
     private navCtrl: NavController,
@@ -194,6 +195,7 @@ export class OilstoretransPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onTableRep();
       this.onOilStore();
@@ -205,6 +207,19 @@ export class OilstoretransPage implements OnInit {
 
   onAdd() {
     this.oilstoreTrans.OilStoreTrnGuid = uuidv4();
+    this.oilstoreTrans.CaptureName = this.returnedUser.UserFirstName;
+
+    if (this.oilstoreTrans.OilStoreGuid)
+      this.oilstoreTrans.OilStoreGuid =
+        this.oilstoreTrans.OilStoreGuid['OilStoreGuid'];
+    if (this.oilstoreTrans.OilTypeguid)
+      this.oilstoreTrans.OilTypeguid =
+        this.oilstoreTrans.OilTypeguid['OilGuid'];
+    if (this.oilstoreTrans.SuppGuid)
+      this.oilstoreTrans.SuppGuid = this.oilstoreTrans.SuppGuid['SuppGuid'];
+    if (this.oilstoreTrans.CostCentGuid)
+      this.oilstoreTrans.CostCentGuid =
+        this.oilstoreTrans.CostCentGuid['CostCentGuid'];
 
     this.firebaseService
       .writeData(
@@ -214,7 +229,8 @@ export class OilstoretransPage implements OnInit {
         this.oilstoreTrans.OilStoreTrnGuid,
       )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+        this.popUp.showToast('Data saved successfully :-)');
+        this.oilstoreTrans = new OilStoreTransaction();
       })
       .catch((err) => {
         this.popUp.showError(err);

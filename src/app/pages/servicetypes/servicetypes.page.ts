@@ -19,6 +19,7 @@ export class ServicetypesPage implements OnInit {
 
   compNames: any[];
   compServType = false;
+  returnedUser: any;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -81,6 +82,7 @@ export class ServicetypesPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onTableRep();
     });
@@ -88,6 +90,12 @@ export class ServicetypesPage implements OnInit {
 
   onAdd() {
     this.serviceType.ServTypeGuid = uuidv4();
+    this.serviceType.CapName = this.returnedUser.UserFirstName;
+
+    //  if (this.serviceType.UserGroupGuid)
+    //    this.serviceType.UserGroupGuid = this.serviceType.UserGroupGuid['UserGroupGuid'];
+    //  if (this.serviceType.LocUserCode)
+    //    this.serviceType.LocUserCode = this.serviceType.LocUserCode['LocGuid'];
 
     this.firebaseService
       .writeData(
@@ -97,7 +105,9 @@ export class ServicetypesPage implements OnInit {
         this.serviceType.ServTypeGuid,
       )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.serviceType = new ServiceType();
       })
       .catch((err) => {
         this.popUp.showError(err);

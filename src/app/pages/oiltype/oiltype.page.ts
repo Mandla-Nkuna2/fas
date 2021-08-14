@@ -21,6 +21,7 @@ export class OiltypePage implements OnInit {
   oilMake: any[];
   oilGrade: any[];
   oilClass: any[];
+  returnedUser: any;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -107,6 +108,7 @@ export class OiltypePage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onTableRep();
       this.onOilMake();
@@ -117,6 +119,14 @@ export class OiltypePage implements OnInit {
 
   onAdd() {
     this.oilType.OilGuid = uuidv4();
+    this.oilType.CapName = this.returnedUser.UserFirstName;
+
+    if (this.oilType.OilMakeGuid)
+      this.oilType.OilMakeGuid = this.oilType.OilMakeGuid['OilMakeGuid'];
+    if (this.oilType.OilGradeGuid)
+      this.oilType.OilGradeGuid = this.oilType.OilGradeGuid['OilGradeGuid'];
+    if (this.oilType.OilClassGuid)
+      this.oilType.OilClassGuid = this.oilType.OilClassGuid['OilClassGuid'];
 
     this.firebaseService
       .writeData(
@@ -126,7 +136,9 @@ export class OiltypePage implements OnInit {
         this.oilType.OilGuid,
       )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.oilType = new OilType();
       })
       .catch((err) => {
         this.popUp.showError(err);

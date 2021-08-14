@@ -18,6 +18,7 @@ export class FirstautoytdComponent implements OnInit {
 
   level: any;
   levels = ['0', '1', '2', '3', '4'];
+  returnedUser: any;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -39,6 +40,7 @@ export class FirstautoytdComponent implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onLocation();
     });

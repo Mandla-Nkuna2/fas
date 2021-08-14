@@ -15,6 +15,7 @@ export class DriverslicensePage implements OnInit {
   staff: any[] = [];
 
   staffCats: any[];
+  returnedUser: any;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -37,6 +38,7 @@ export class DriverslicensePage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onTableRep();
     });

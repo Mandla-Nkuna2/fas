@@ -26,6 +26,7 @@ export class MaintainceventPage implements OnInit {
   supplier: any[];
   requestedBy: any[];
   costCentre: any[];
+  returnedUser: any;
 
   constructor(
     private navCtrl: NavController,
@@ -178,6 +179,7 @@ export class MaintainceventPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onTableRep();
       this.onJobCardNo();
@@ -192,6 +194,29 @@ export class MaintainceventPage implements OnInit {
 
   onAdd() {
     this.maintenanceEvent.MaintEvntGuid = uuidv4();
+    this.maintenanceEvent.CaptureName = this.returnedUser.UserFirstName;
+
+    if (this.maintenanceEvent.JobCardGuid)
+      this.maintenanceEvent.JobCardGuid =
+        this.maintenanceEvent.JobCardGuid['JobCardGuid'];
+    if (this.maintenanceEvent.ItemGuid)
+      this.maintenanceEvent.ItemGuid =
+        this.maintenanceEvent.ItemGuid['ItemGuid'];
+    if (this.maintenanceEvent.MaintTypeGuid)
+      this.maintenanceEvent.MaintTypeGuid =
+        this.maintenanceEvent.MaintTypeGuid['MaintTypeGuid'];
+    if (this.maintenanceEvent.MaintReasonGuid)
+      this.maintenanceEvent.MaintReasonGuid =
+        this.maintenanceEvent.MaintReasonGuid['MaintReasonGuid'];
+    if (this.maintenanceEvent.SuppGuid)
+      this.maintenanceEvent.SuppGuid =
+        this.maintenanceEvent.SuppGuid['SuppGuid'];
+    if (this.maintenanceEvent.RequestByGuid)
+      this.maintenanceEvent.RequestByGuid =
+        this.maintenanceEvent.RequestByGuid['StaffGuid'];
+    if (this.maintenanceEvent.CostCentGuid)
+      this.maintenanceEvent.CostCentGuid =
+        this.maintenanceEvent.CostCentGuid['CostCentGuid'];
 
     this.firebaseService
       .writeData(
@@ -201,7 +226,9 @@ export class MaintainceventPage implements OnInit {
         this.maintenanceEvent.MaintEvntGuid,
       )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.maintenanceEvent = new MaintenanceEvent();
       })
       .catch((err) => {
         this.popUp.showError(err);

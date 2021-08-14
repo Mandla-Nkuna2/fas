@@ -22,6 +22,7 @@ export class FixedcostdetailsPage implements OnInit {
   currentDate = new Date();
   registration: any[];
   calcPeriod = ['Annum', 'Monthly'];
+  returnedUser: any;
 
   constructor(
     private navCtrl: NavController,
@@ -89,6 +90,7 @@ export class FixedcostdetailsPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onTableRep();
       this.onFixedCostType();
@@ -98,6 +100,13 @@ export class FixedcostdetailsPage implements OnInit {
 
   onAdd() {
     this.fixedCost.FixedCostGuid = uuidv4();
+    this.fixedCost.CaptureName = this.returnedUser.UserFirstName;
+
+    if (this.fixedCost.FixedCostType)
+      this.fixedCost.FixedCostType =
+        this.fixedCost.FixedCostType['UserFixedCostTypeGuidGroupGuid'];
+    if (this.fixedCost.ItemGuid)
+      this.fixedCost.ItemGuid = this.fixedCost.ItemGuid['ItemGuid'];
 
     this.firebaseService
       .writeData(
@@ -107,7 +116,9 @@ export class FixedcostdetailsPage implements OnInit {
         this.fixedCost.FixedCostGuid,
       )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.fixedCost = new FixedCostsDet();
       })
       .catch((err) => {
         this.popUp.showError(err);

@@ -26,6 +26,7 @@ export class LosscontrolPage implements OnInit {
   reportedBy: any[];
   driver: any[];
   lossCntrlAction: any[];
+  returnedUser: any;
 
   constructor(
     private navCtrl: NavController,
@@ -166,6 +167,7 @@ export class LosscontrolPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onTableRep();
       this.onAgent();
@@ -179,6 +181,23 @@ export class LosscontrolPage implements OnInit {
 
   onAdd() {
     this.lossControl.LossContGuid = uuidv4();
+    this.lossControl.Capturename = this.returnedUser.UserFirstName;
+
+    if (this.lossControl.Agentguid)
+      this.lossControl.Agentguid = this.lossControl.Agentguid['StaffGuid'];
+    if (this.lossControl.Itemguid)
+      this.lossControl.Itemguid = this.lossControl.Itemguid['ItemGuid'];
+    if (this.lossControl.LossTypeguid)
+      this.lossControl.LossTypeguid =
+        this.lossControl.LossTypeguid['LossContTypeguid'];
+    if (this.lossControl.Reportbyguid)
+      this.lossControl.Reportbyguid =
+        this.lossControl.Reportbyguid['StaffGuid'];
+    if (this.lossControl.DriverGuid)
+      this.lossControl.DriverGuid = this.lossControl.DriverGuid['StaffGuid'];
+    if (this.lossControl.LossContActguid)
+      this.lossControl.LossContActguid =
+        this.lossControl.LossContActguid['LossContActGuid'];
 
     this.firebaseService
       .writeData(
@@ -188,7 +207,9 @@ export class LosscontrolPage implements OnInit {
         this.lossControl.LossContGuid,
       )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.lossControl = new LossControl();
       })
       .catch((err) => {
         this.popUp.showError(err);

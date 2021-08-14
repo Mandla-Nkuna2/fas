@@ -32,7 +32,7 @@
               <ion-label>Item make and model</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="itemMakModel"
+                  [(ngModel)]="servschedule.itemMakeModelGuid"
                   [items]="itemMakModels"
                   itemValueField="ItemMakModGuid"
                   itemTextField="ItemMakMod"
@@ -48,7 +48,7 @@
               <ion-label>Service type</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="serviceType"
+                  [(ngModel)]="servschedule.servTypeGuid"
                   [items]="serviceTypes"
                   itemValueField="ServTypeGuid"
                   itemTextField="ServType"

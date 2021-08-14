@@ -20,6 +20,7 @@ export class StafftimesheetsPage implements OnInit {
 
   currentDate = new Date();
   staffMember: any[];
+  returnedUser: any;
 
   constructor(
     private navCtrl: NavController,
@@ -103,6 +104,7 @@ export class StafftimesheetsPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onTableRep();
       this.onStaffMember();
@@ -111,6 +113,11 @@ export class StafftimesheetsPage implements OnInit {
 
   onAdd() {
     this.staffTimesheet.Staff_TrnGuid = uuidv4();
+    this.staffTimesheet.CaptureName = this.returnedUser.UserFirstName;
+
+    if (this.staffTimesheet.StaffGuid)
+      this.staffTimesheet.StaffGuid =
+        this.staffTimesheet.StaffGuid['StaffGuid'];
 
     this.firebaseService
       .writeData(
@@ -120,7 +127,9 @@ export class StafftimesheetsPage implements OnInit {
         this.staffTimesheet.Staff_TrnGuid,
       )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.staffTimesheet = new StaffTimesheet();
       })
       .catch((err) => {
         this.popUp.showError(err);

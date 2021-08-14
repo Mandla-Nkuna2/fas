@@ -21,6 +21,7 @@ export class OverheadtransPage implements OnInit {
 
   overheadType: any[];
   costCentre: any[];
+  returnedUser: any;
 
   constructor(
     private navCtrl: NavController,
@@ -104,6 +105,7 @@ export class OverheadtransPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onTableRep();
       this.onOverheadType();
@@ -113,6 +115,14 @@ export class OverheadtransPage implements OnInit {
 
   onAdd() {
     this.overheadTrans.OverheadGuid = uuidv4();
+    this.overheadTrans.CaptureName = this.returnedUser.UserFirstName;
+
+    if (this.overheadTrans.OverheadTypeGuid)
+      this.overheadTrans.OverheadTypeGuid =
+        this.overheadTrans.OverheadTypeGuid['OverheadTypeGuid'];
+    if (this.overheadTrans.CostCentGuid)
+      this.overheadTrans.CostCentGuid =
+        this.overheadTrans.CostCentGuid['CostCentGuid'];
 
     this.firebaseService
       .writeData(
@@ -122,7 +132,9 @@ export class OverheadtransPage implements OnInit {
         this.overheadTrans.OverheadGuid,
       )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.overheadTrans = new OverheadTransaction();
       })
       .catch((err) => {
         this.popUp.showError(err);

@@ -15,6 +15,7 @@ export class LocationPage implements OnInit {
   organization = 'InnTee';
   location: LocationModel;
   locations: any[];
+  returnedUser: any;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -52,6 +53,7 @@ export class LocationPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onLocation();
     });
@@ -60,6 +62,7 @@ export class LocationPage implements OnInit {
   onAdd() {
     this.location.LocGuid = uuidv4();
     this.location.LocItemCode = uuidv4();
+    this.location.captureName = this.returnedUser.UserFirstName;
 
     this.firebaseService
       .writeData(
@@ -69,7 +72,8 @@ export class LocationPage implements OnInit {
         this.location.LocGuid,
       )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+        this.popUp.showToast('Data saved successfully :-)');
+        this.location = new LocationModel();
       })
       .catch((err) => {
         this.popUp.showError(err);

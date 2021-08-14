@@ -23,6 +23,7 @@ export class LicensecorPage implements OnInit {
   registration: any[];
   costCentre: any[];
   yesNo = ['Y', 'N'];
+  returnedUser: any;
 
   constructor(
     private navCtrl: NavController,
@@ -88,6 +89,7 @@ export class LicensecorPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onTableRep();
       this.onRegistration();
@@ -97,6 +99,14 @@ export class LicensecorPage implements OnInit {
 
   onAdd() {
     this.licCorAndSafInspec.LicHistIndex = uuidv4();
+    this.licCorAndSafInspec.Capturename = this.returnedUser.UserFirstName;
+
+    if (this.licCorAndSafInspec.Itemguid)
+      this.licCorAndSafInspec.Itemguid =
+        this.licCorAndSafInspec.Itemguid['ItemGuid'];
+    if (this.licCorAndSafInspec.LicCostCentGuid)
+      this.licCorAndSafInspec.LicCostCentGuid =
+        this.licCorAndSafInspec.LicCostCentGuid['CostCentGuid'];
 
     this.firebaseService
       .writeData(
@@ -106,7 +116,8 @@ export class LicensecorPage implements OnInit {
         this.licCorAndSafInspec.LicHistIndex,
       )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+        this.popUp.showToast('Data saved successfully :-)');
+        this.licCorAndSafInspec = new LicCorAndSafInspcDates();
       })
       .catch((err) => {
         this.popUp.showError(err);

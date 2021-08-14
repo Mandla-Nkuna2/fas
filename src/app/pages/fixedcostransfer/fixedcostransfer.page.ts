@@ -20,6 +20,7 @@ export class FixedcostransferPage implements OnInit {
   registration: any[];
   currentDate = new Date();
   costCentre: any[];
+  returnedUser: any;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -96,6 +97,7 @@ export class FixedcostransferPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onTableRep();
       this.onRegistration();
@@ -105,6 +107,13 @@ export class FixedcostransferPage implements OnInit {
 
   onAdd() {
     this.fixedCostTransf.FixedcostTransGuid = uuidv4();
+    this.fixedCostTransf.CaptureName = this.returnedUser.UserFirstName;
+
+    if (this.fixedCostTransf.ItemGuid)
+      this.fixedCostTransf.ItemGuid = this.fixedCostTransf.ItemGuid['ItemGuid'];
+    if (this.fixedCostTransf.CostCentGuid)
+      this.fixedCostTransf.CostCentGuid =
+        this.fixedCostTransf.CostCentGuid['CostCentGuid'];
 
     this.firebaseService
       .writeData(
@@ -114,7 +123,9 @@ export class FixedcostransferPage implements OnInit {
         this.fixedCostTransf.FixedcostTransGuid,
       )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.fixedCostTransf = new FixedCostTransfer();
       })
       .catch((err) => {
         this.popUp.showError(err);

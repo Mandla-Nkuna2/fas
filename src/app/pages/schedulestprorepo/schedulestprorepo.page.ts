@@ -17,6 +17,7 @@ export class SchedulestprorepoPage implements OnInit {
   staffCodes: any[];
   registrations: any[];
   maintReasons: any[];
+  returnedUser: any;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -39,6 +40,7 @@ export class SchedulestprorepoPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onTableRep();
     });

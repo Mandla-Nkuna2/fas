@@ -21,6 +21,7 @@ export class BrowsertransferPage implements OnInit {
   voucherNo: any[];
   costCentre: any;
   bowsers: any[];
+  returnedUser: any;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -91,6 +92,7 @@ export class BrowsertransferPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onTableRep();
       this.onCostCentre();
@@ -99,6 +101,7 @@ export class BrowsertransferPage implements OnInit {
 
   onAdd() {
     this.bowserTransfer.FuelTransferGuid = uuidv4();
+    this.bowserTransfer.CaptureName = this.returnedUser.UserFirstName;
 
     this.firebaseService
       .writeData(
@@ -108,7 +111,9 @@ export class BrowsertransferPage implements OnInit {
         this.bowserTransfer.FuelTransferGuid,
       )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.bowserTransfer = new BowserTransfer();
       })
       .catch((err) => {
         this.popUp.showError(err);

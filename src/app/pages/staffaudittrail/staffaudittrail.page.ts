@@ -11,6 +11,7 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 export class StaffaudittrailPage implements OnInit {
   organization = 'InnTee';
   staffAuditTrails: any[] = [];
+  returnedUser: any;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -32,6 +33,7 @@ export class StaffaudittrailPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onTableRep();
     });

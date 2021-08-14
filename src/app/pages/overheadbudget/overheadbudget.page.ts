@@ -20,6 +20,7 @@ export class OverheadbudgetPage implements OnInit {
   currentDate = new Date();
   ohTypes: any[];
   finYear = ['2020', '2021', '2022', '2023'];
+  returnedUser: any;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -76,6 +77,7 @@ export class OverheadbudgetPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onTableRep();
       this.onOhbType();
@@ -84,6 +86,11 @@ export class OverheadbudgetPage implements OnInit {
 
   onAdd() {
     this.oheadbudget.OverheadBudGuid = uuidv4();
+    this.oheadbudget.captureName = this.returnedUser.UserFirstName;
+
+    if (this.oheadbudget.OverheadTypeGuid)
+      this.oheadbudget.OverheadTypeGuid =
+        this.oheadbudget.OverheadTypeGuid['OverheadTypeGuid'];
 
     this.firebaseService
       .writeData(
@@ -93,7 +100,9 @@ export class OverheadbudgetPage implements OnInit {
         this.oheadbudget.OverheadBudGuid,
       )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.oheadbudget = new OverheadBudget();
       })
       .catch((err) => {
         this.popUp.showError(err);

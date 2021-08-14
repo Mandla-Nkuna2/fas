@@ -13,6 +13,7 @@ export class RepairhistoryPage implements OnInit {
   organization = 'InnTee';
   vehicleReps: any = [];
   currentDate = new Date();
+  returnedUser: any;
 
   constructor(
     private navCtrl: NavController,
@@ -35,6 +36,7 @@ export class RepairhistoryPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onTableRep();
     });

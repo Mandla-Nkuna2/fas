@@ -5,4 +5,5 @@ export default class ServiceTask {
   Checked: string;
   ServSchComment: string;
   MaintEvntGuid: string;
+  captureName: string;
 }

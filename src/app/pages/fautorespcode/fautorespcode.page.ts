@@ -16,6 +16,7 @@ export class FautorespcodePage implements OnInit {
   fautorespcode: FAutoRespCode;
   fautorespcodes: FAutoRespCode[] = [];
   currentDate = new Date();
+  returnedUser: any;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -56,6 +57,7 @@ export class FautorespcodePage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onTableRep();
     });
@@ -63,6 +65,7 @@ export class FautorespcodePage implements OnInit {
 
   onAdd() {
     this.fautorespcode.ResponseGuid = uuidv4();
+    this.fautorespcode.CapName = this.returnedUser.UserFirstName;
 
     this.firebaseService
       .writeData(
@@ -72,7 +75,8 @@ export class FautorespcodePage implements OnInit {
         this.fautorespcode.ResponseGuid,
       )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+        this.popUp.showToast('Data saved successfully :-)');
+        this.fautorespcode = new FAutoRespCode();
       })
       .catch((err) => {
         this.popUp.showError(err);

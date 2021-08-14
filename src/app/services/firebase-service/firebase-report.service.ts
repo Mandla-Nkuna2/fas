@@ -549,7 +549,8 @@ export class FirebaseReportService {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection(organization + '/Mst_Users/tables')
-        .ref.limit(limVal)
+        .ref.orderBy('CaptureDate', 'desc')
+        .limit(limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -569,7 +570,8 @@ export class FirebaseReportService {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection(organization + '/Mst_Client/tables')
-        .ref.limit(limVal)
+        .ref.orderBy('CaptureDate', 'desc')
+        .limit(limVal)
         .get()
         .then((obj) => {
           let data = [];

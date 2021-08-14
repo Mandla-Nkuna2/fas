@@ -29,6 +29,7 @@ export class OilissuesPage implements OnInit {
   oilMakes: any[];
   oilGrades: any[];
   oilClasses: any[];
+  returnedUser: any;
 
   constructor(
     private navCtrl: NavController,
@@ -247,6 +248,7 @@ export class OilissuesPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onTableRep();
       this.onRegistration();
@@ -261,6 +263,22 @@ export class OilissuesPage implements OnInit {
 
   onAdd() {
     this.oilIssue.OilIssueGuid = uuidv4();
+    this.oilIssue.CaptureName = this.returnedUser.UserFirstName;
+
+    if (this.oilIssue.ItemGuid)
+      this.oilIssue.ItemGuid = this.oilIssue.ItemGuid['ItemGuid'];
+    if (this.oilIssue.ItemCompGuid)
+      this.oilIssue.ItemCompGuid = this.oilIssue.ItemCompGuid['CompNameGuid'];
+    if (this.oilIssue.OilStoreGuid)
+      this.oilIssue.OilStoreGuid = this.oilIssue.OilStoreGuid['OilStoreGuid'];
+    if (this.oilIssue.SupplierGuid)
+      this.oilIssue.SupplierGuid = this.oilIssue.SupplierGuid['SuppGuid'];
+    if (this.oilIssue.OilTypeGuid)
+      this.oilIssue.OilTypeGuid = this.oilIssue.OilTypeGuid['OilGuid'];
+    if (this.oilIssue.CostCentGuid)
+      this.oilIssue.CostCentGuid = this.oilIssue.CostCentGuid['CostCentGuid'];
+    if (this.oilIssue.StaffGuid)
+      this.oilIssue.StaffGuid = this.oilIssue.StaffGuid['StaffGuids'];
 
     this.firebaseService
       .writeData(
@@ -270,7 +288,9 @@ export class OilissuesPage implements OnInit {
         this.oilIssue.OilIssueGuid,
       )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.oilIssue = new OilIssue();
       })
       .catch((err) => {
         this.popUp.showError(err);

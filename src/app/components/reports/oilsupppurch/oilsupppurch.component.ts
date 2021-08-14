@@ -21,6 +21,7 @@ export class OilsupppurchComponent implements OnInit {
 
   supplier: any;
   suppliers: any[];
+  returnedUser: any;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -42,6 +43,7 @@ export class OilsupppurchComponent implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onSupplier();
     });

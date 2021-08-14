@@ -1,5 +1,6 @@
 export default class className {
-  UserGroupGuid : string
-  UserGroupTitle: string
-  Active: string
-};
+  UserGroupGuid: string;
+  UserGroupTitle: string;
+  Active: string;
+  captureName: string;
+}

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import ServiceTask from 'src/app/models/supportdata/ServiceTask.model';
-import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
 import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 import { FirebaseService } from 'src/app/services/firebase-service/firebase-service.service';
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
@@ -21,6 +20,7 @@ export class ServschedultaskPage implements OnInit {
   servSchTaskDesc: any;
   maintEvents: any[];
   jobcards: any;
+  returnedUser: any;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -95,6 +95,7 @@ export class ServschedultaskPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onTableRep();
     });
@@ -102,6 +103,7 @@ export class ServschedultaskPage implements OnInit {
 
   onAdd() {
     this.serviceSchTask.ServHistGuid = uuidv4();
+    this.serviceSchTask.captureName = this.returnedUser.UserFirstName;
 
     this.firebaseService
       .writeData(
@@ -111,7 +113,9 @@ export class ServschedultaskPage implements OnInit {
         this.serviceSchTask.ServHistGuid,
       )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.serviceSchTask = new ServiceTask();
       })
       .catch((err) => {
         this.popUp.showError(err);

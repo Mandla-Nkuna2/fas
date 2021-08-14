@@ -17,6 +17,7 @@ export class ServicingPage implements OnInit {
 
   itemTypes: any[];
   itemMakeMods: any[];
+  returnedUser: any;
 
   constructor(
     private navCtrl: NavController,
@@ -40,6 +41,7 @@ export class ServicingPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onTableRep();
     });

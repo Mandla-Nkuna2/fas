@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseGetService } from './../../services/firebase-service/firebase-get.service';
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 import { FirebaseService } from './../../services/firebase-service/firebase-service.service';
 import ClientDetails from 'src/app/models/supportdata/ClientDetails.model';
@@ -17,6 +16,7 @@ export class ClientdetailsPage implements OnInit {
   client: ClientDetails;
   clients: ClientDetails[] = [];
   currentDate = new Date();
+  returnedUser: any;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -57,6 +57,7 @@ export class ClientdetailsPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onTableRep();
     });
@@ -64,16 +65,19 @@ export class ClientdetailsPage implements OnInit {
 
   onAdd() {
     this.client.ClientGuid = uuidv4();
+    this.client.capturename = this.returnedUser.UserFirstName;
 
     this.firebaseService
-      .writeData(
+      .write(
         this.organization,
         'Mst_Client',
         Object.assign({}, this.client),
         this.client.ClientGuid,
       )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.client = new ClientDetails();
       })
       .catch((err) => {
         this.popUp.showError(err);

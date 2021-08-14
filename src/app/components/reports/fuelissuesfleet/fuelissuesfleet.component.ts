@@ -35,6 +35,7 @@ export class FuelissuesfleetComponent implements OnInit {
     'Location',
     'Registration',
   ];
+  returnedUser: any;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -56,6 +57,7 @@ export class FuelissuesfleetComponent implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onLocation();
       this.onItemType();

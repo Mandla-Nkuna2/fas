@@ -43,6 +43,7 @@ export class ServiceplanningComponent implements OnInit {
 
   registration: any;
   registrations: any[];
+  returnedUser: any;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -64,6 +65,7 @@ export class ServiceplanningComponent implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onLocation();
       this.onItemType();

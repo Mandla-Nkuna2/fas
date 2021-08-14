@@ -18,6 +18,7 @@ export class AssetdetailPage implements OnInit {
   assetTypes: any[];
   assetTypeNames: any[];
   makesAndMods: any[];
+  returnedUser: any;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -40,6 +41,7 @@ export class AssetdetailPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onTableRep();
     });

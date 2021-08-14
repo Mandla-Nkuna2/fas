@@ -19,6 +19,7 @@ export class DailyoperationsPage implements OnInit {
 
   registrations: any[];
   costCentre: any[];
+  returnedUser: any;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -94,6 +95,7 @@ export class DailyoperationsPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onTableRep();
     });
@@ -101,6 +103,7 @@ export class DailyoperationsPage implements OnInit {
 
   onAdd() {
     this.dailyOpRec.Itemguid = uuidv4();
+    this.dailyOpRec.CaptureName = this.returnedUser.UserFirstName;
 
     this.firebaseService
       .writeData(
@@ -110,7 +113,8 @@ export class DailyoperationsPage implements OnInit {
         this.dailyOpRec.Itemguid,
       )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+        this.popUp.showToast('Data saved successfully :-)');
+        this.dailyOpRec = new DailyOperationRec();
       })
       .catch((err) => {
         this.popUp.showError(err);

@@ -21,6 +21,7 @@ export class StaffdetailsPage implements OnInit {
   staffCats: any[];
   addLicView = false;
   licCodes = ['A', 'A1', 'B', 'C', 'C1', 'EB', 'EC', 'EC1'];
+  returnedUser: any;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -92,6 +93,7 @@ export class StaffdetailsPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onTableRep();
       this.onStaffCat();
@@ -100,6 +102,10 @@ export class StaffdetailsPage implements OnInit {
 
   onAdd() {
     this.staff.StaffGuid = uuidv4();
+    this.staff.CaptureName = this.returnedUser.UserFirstName;
+
+    if (this.staff.StaffCatgGuid)
+      this.staff.StaffCatgGuid = this.staff.StaffCatgGuid['StaffCatgGuid'];
 
     this.firebaseService
       .writeData(
@@ -109,7 +115,9 @@ export class StaffdetailsPage implements OnInit {
         this.staff.StaffGuid,
       )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.staff = new Staff();
       })
       .catch((err) => {
         this.popUp.showError(err);

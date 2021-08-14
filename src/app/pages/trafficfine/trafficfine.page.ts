@@ -78,7 +78,8 @@ export class TrafficfinePage implements OnInit {
         this.trafficfine.TrafficFineGuid,
       )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+        this.popUp.showToast('Data saved successfully :-)');
+        this.trafficfine = new Trafficfine();
       })
       .catch((err) => {
         this.popUp.showError(err);

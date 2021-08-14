@@ -16,6 +16,7 @@ export class CostcentrePage implements OnInit {
   costcentre: CostCentre;
   costcentres: CostCentre[] = [];
   currentDate = new Date();
+  returnedUser: any;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -56,6 +57,7 @@ export class CostcentrePage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onTableRep();
     });
@@ -63,6 +65,7 @@ export class CostcentrePage implements OnInit {
 
   onAdd() {
     this.costcentre.CostCentGuid = uuidv4();
+    this.costcentre.Capturename = this.returnedUser.UserFirstName;
 
     this.firebaseService
       .writeData(
@@ -72,7 +75,9 @@ export class CostcentrePage implements OnInit {
         this.costcentre.CostCentGuid,
       )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.costcentre = new CostCentre();
       })
       .catch((err) => {
         this.popUp.showError(err);

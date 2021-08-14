@@ -20,6 +20,7 @@ export class BrowsertransactionsPage implements OnInit {
   currentDate = new Date();
 
   costCentre: any[];
+  returnedUser: any;
 
   constructor(
     private navCtrl: NavController,
@@ -83,6 +84,7 @@ export class BrowsertransactionsPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onTableRep();
     });
@@ -90,6 +92,7 @@ export class BrowsertransactionsPage implements OnInit {
 
   onAdd() {
     this.bowserTransaction.BowserTrnGuid = uuidv4();
+    this.bowserTransaction.CaptureName = this.returnedUser.UserFirstName;
 
     this.firebaseService
       .writeData(
@@ -99,7 +102,9 @@ export class BrowsertransactionsPage implements OnInit {
         this.bowserTransaction.BowserTrnGuid,
       )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.bowserTransaction = new BowserTransaction();
       })
       .catch((err) => {
         this.popUp.showError(err);

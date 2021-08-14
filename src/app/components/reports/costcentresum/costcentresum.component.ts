@@ -34,6 +34,7 @@ export class CostcentresumComponent implements OnInit {
     'Oil costs',
     'Traffic fine costs',
   ];
+  returnedUser: any;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -55,6 +56,7 @@ export class CostcentresumComponent implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onCostCentre();
     });

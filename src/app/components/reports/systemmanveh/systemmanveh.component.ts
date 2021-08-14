@@ -35,6 +35,7 @@ export class SystemmanvehComponent implements OnInit {
 
   maintType: any;
   maintTypes = ['Accident', 'G.E.T', 'Repair', 'Service', 'Tyre / Track'];
+  returnedUser: any;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -56,6 +57,7 @@ export class SystemmanvehComponent implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onLocation();
       this.onItemType();

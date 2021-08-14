@@ -23,6 +23,7 @@ export class StoreissuePage implements OnInit {
   MaintEvRefNo: any[];
   supplier: any;
   storeItem: any;
+  returnedUser: any;
 
   constructor(
     private navCtrl: NavController,
@@ -132,6 +133,7 @@ export class StoreissuePage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onTableRep();
       this.onRegistration();
@@ -143,6 +145,18 @@ export class StoreissuePage implements OnInit {
 
   onAdd() {
     this.storeIssue.StoreIssueGuid = uuidv4();
+    this.storeIssue.CaptureName = this.returnedUser.UserFirstName;
+
+    if (this.storeIssue.ItemGuid)
+      this.storeIssue.ItemGuid = this.storeIssue.ItemGuid['ItemGuid'];
+    if (this.storeIssue.MaintEvntGuid)
+      this.storeIssue.MaintEvntGuid =
+        this.storeIssue.MaintEvntGuid['MaintEvntGuid'];
+    if (this.storeIssue.SuppGuid)
+      this.storeIssue.SuppGuid = this.storeIssue.SuppGuid['SuppGuid'];
+    if (this.storeIssue.StoreCatgItemGuid)
+      this.storeIssue.StoreCatgItemGuid =
+        this.storeIssue.StoreCatgItemGuid['StoreCatgGuid'];
 
     this.firebaseService
       .writeData(
@@ -152,7 +166,9 @@ export class StoreissuePage implements OnInit {
         this.storeIssue.StoreIssueGuid,
       )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.storeIssue = new StoreIssue();
       })
       .catch((err) => {
         this.popUp.showError(err);

@@ -23,6 +23,7 @@ export class DailyoperationrecordPage implements OnInit {
   location: any[];
   costCentre: any[];
   operator: any[];
+  returnedUser: any;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -131,6 +132,7 @@ export class DailyoperationrecordPage implements OnInit {
     this.firebaseRepServ.getUser(email).then((mNm) => {
       let user: any = mNm;
       this.organization = user.organization;
+      this.returnedUser = user;
 
       this.onTableRep();
       this.onRegistration();
@@ -142,6 +144,17 @@ export class DailyoperationrecordPage implements OnInit {
 
   onAdd() {
     this.dOpsRec.PlantSheetguid = uuidv4();
+    this.dOpsRec.CaptureName = this.returnedUser.UserFirstName;
+
+    if (this.dOpsRec.Itemguid)
+      this.dOpsRec.Itemguid = this.dOpsRec.Itemguid['ItemGuid'];
+    if (this.dOpsRec.LocItemCode)
+      this.dOpsRec.LocItemCode = this.dOpsRec.LocItemCode['LocGuid'];
+    if (this.dOpsRec.CostCentreguid)
+      this.dOpsRec.CostCentreguid = this.dOpsRec.CostCentreguid['CostCentGuid'];
+    if (this.dOpsRec.operator.StaffGuid)
+      this.dOpsRec.operator.StaffGuid =
+        this.dOpsRec.operator.StaffGuid['StaffGuid'];
 
     this.firebaseService
       .writeData(
@@ -151,7 +164,9 @@ export class DailyoperationrecordPage implements OnInit {
         this.dOpsRec.PlantSheetguid,
       )
       .then(() => {
-        this.popUp.showAlert('Success', 'Data saved successfully :-)');
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.dOpsRec = new DailyOperationRec();
       })
       .catch((err) => {
         this.popUp.showError(err);
