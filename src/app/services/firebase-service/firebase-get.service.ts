@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 
 const limVal = 10;
@@ -6,29 +6,15 @@ const limVal = 10;
   providedIn: 'root',
 })
 export class FirebaseGetService {
-  constructor(private afs: AngularFirestore) {}
+  menuEmitter: EventEmitter<boolean>;
 
-  // getDynamic(dataLink: string){
-  //   const promise = new Promise((resolve, reject) => {
-  //     this.afs.collection(dataLink).ref.limit(3).get().then((mNm) => {
-  //       let data = [];
-  //       mNm.docs.forEach((mNm) => {
-  //         data.push(
-  //           {
-  //             ItemMake:mNm.get('ItemMake'),
-  //             ItemModel:mNm.get('ItemModel'),
-  //             ItemMakMod:mNm.get('ItemMake') +" "+mNm.get('ItemModel'),
-  //             ItemMakModGuid: mNm.get('ItemMakModGuid')
-  //           }
-  //           )
-  //       })
-  //       resolve(data)
-  //     }).catch((err) => {
-  //       reject(err)
-  //     })
-  //   })
-  //   return promise
-  // }
+  constructor(private afs: AngularFirestore) {
+    this.menuEmitter = new EventEmitter();
+  }
+
+  public setloggedInState(value: boolean) {
+    this.menuEmitter.emit(value);
+  }
 
   getAssetMakenModel(organization) {
     const promise = new Promise((resolve, reject) => {

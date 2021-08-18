@@ -5,6 +5,7 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Storage } from '@ionic/storage';
+import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -24,6 +25,7 @@ export class SignInPage implements OnInit {
     private afs: AngularFirestore,
     private storage: Storage,
     private nav: NavController,
+    private firebaseGetServ: FirebaseGetService,
   ) {}
 
   ngOnInit() {}
@@ -46,6 +48,7 @@ export class SignInPage implements OnInit {
             .then((user) => {
               this.storage.set('user', user.data()).then(() => {
                 this.popUp.dismissLoading().then(() => {
+                  this.firebaseGetServ.setloggedInState(true);
                   this.popUp.showToast('Welcome...');
                   this.password = '';
                   this.nav.navigateForward('dashboard');

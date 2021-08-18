@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { NavController } from '@ionic/angular';
+import { FirebaseGetService } from './services/firebase-service/firebase-get.service';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -24,299 +25,89 @@ export class AppComponent {
       url: 'assetdetail',
       icon: 'assets/imgs/asts.svg',
       icona: 'assets/imgs/astsa.svg',
-      // children:[
-      //   {
-      //     title: 'Asset Details',
-      //     url: 'assetdetail',
-      //   },
-      //   {
-      //     title: 'Information',
-      //     url: 'assetsinfo',
-      //   },
-      //   {
-      //     title: 'Add Assets',
-      //     url: 'addassets',
-      //   },
-      //   {
-      //     title: 'Add Information',
-      //     url: 'addassetsinfo',
-      //   },
-      //   {
-      //     title: 'Asset components',
-      //     url: 'itemcomponents',
-      //   },
-      //   {
-      //     title: 'Loss control',
-      //     url: 'losscontrol',
-      //   },
-      // ]
     },
     {
       title: 'Vehicles',
       url: 'monthlyvehiclereport',
       icon: 'assets/imgs/vehicles.svg',
       icona: 'assets/imgs/vehiclesa.svg',
-      // children:[
-      //   {
-      //     title: 'Fleet',
-      //     url: 'fleet',
-      //   },
-      //   {
-      //     title: 'Daily Operations',
-      //     url: 'dailyoperations',
-      //   },
-      //   {
-      //     title: 'dailyoperationrecord',
-      //     url: 'dailyoperationrecord',
-      //   },
-      //   {
-      //     title: 'System Management',
-      //     url: 'systemmanagement',
-      //   },
-      // ]
     },
-    // {
-    //   title: 'Trips',
-    //   url: '',
-    //   icon:'assets/imgs/trips.svg',
-    //   icona:'assets/imgs/tripsa.svg',
-    //   // children:[
-    //   //   {
-    //   //     title: 'Send Messege',
-    //   //     url: 'sendmsg',
-    //   //   },
-    //   // ]
-    // },
     {
       title: 'Inspections',
       icon: 'assets/imgs/inspections.svg',
       icona: 'assets/imgs/inspectionsa.svg',
       url: 'licensecor',
-      // children:[
-      //   {
-      //     title: 'Monthly Vehicle Report',
-      //     url: 'monthlyvehiclereport',
-      //   },
-      //   {
-      //     title: 'Tyre Tracking',
-      //     url: 'tiretracking',
-      //   },
-      //   {
-      //     title: 'licensecor',
-      //     url: 'licensecor',
-      //   },
-      // ]
     },
     {
       title: 'Maintenance',
       icon: 'assets/imgs/maintain.svg',
       icona: 'assets/imgs/maintaina.svg',
       url: 'repairhistory',
-      // children:[
-      //   {
-      //     title: 'Repair History',
-      //     url: 'repairhistory',
-      //   },
-      //   {
-      //     title: 'Job Card',
-      //     url: 'jobcard',
-      //   },
-      //   {
-      //     title: 'maintaincevent',
-      //     url: 'maintaincevent',
-      //   },
-      //   {
-      //     title: 'Servicing',
-      //     url: 'servicing',
-      //   },
-      // ]
     },
     {
       title: 'Revenue',
       icon: 'assets/imgs/revenue.svg',
       icona: 'assets/imgs/revenuea.svg',
       url: 'revenue',
-      // children:[
-      //   {
-      //     title: 'Revenue Earned',
-      //     url: 'revenueearned',
-      //   },
-      // ]
     },
     {
       title: 'Costs',
       icon: 'assets/imgs/revenue.svg',
       icona: 'assets/imgs/revenuea.svg',
       url: 'revenucosts',
-      // children:[
-      //   {
-      //     title: 'fixedcostdetails',
-      //     url: 'fixedcostdetails',
-      //   },
-      //   {
-      //     title: 'fixedcostransfer',
-      //     url: 'fixedcostransfer',
-      //   },
-      //   {
-      //     title: 'overheadtrans',
-      //     url: 'overheadtrans',
-      //   },
-      //   {
-      //     title: 'Additional Costs',
-      //     url: 'additionalcosts',
-      //   },
-      //   {
-      //     title: 'supdeposit',
-      //     url: 'supdeposit',
-      //   },
-      //   {
-      //     title: 'Traffic Fines',
-      //     url: 'trafficfine',
-      //   },
-      // ]
     },
     {
       title: 'Issues',
       icon: 'assets/imgs/issues.svg',
       icona: 'assets/imgs/issuesa.svg',
       url: 'storeissue',
-      // children:[
-      //   {
-      //     title: 'storeissue',
-      //     url: 'storeissue',
-      //   },
-      //   {
-      //     title: 'Add Information',
-      //     url: 'addissuesinfo',
-      //   },
-      //   {
-      //     title: 'Accident Management',
-      //     url: 'accidentmanagement',
-      //   },
-      //   {
-      //     title: 'oilissues',
-      //     url: 'oilissues',
-      //   },
-      //   {
-      //     title: 'fuelissues',
-      //     url: 'fuelissues',
-      //   },
-      //   {
-      //     title: 'oilstoretrans',
-      //     url: 'oilstoretrans',
-      //   },
-      //   {
-      //     title: 'oiltransafer',
-      //     url: 'oiltransafer',
-      //   },
-      //   {
-      //     title: 'bowsertransactions',
-      //     url: 'browsertransactions',
-      //   },
-      //   {
-      //     title: 'bowsertransfer',
-      //     url: 'browsertransfer',
-      //   },
-      // ]
     },
     {
       title: 'Staff',
       icon: 'assets/imgs/users.svg',
       icona: 'assets/imgs/usersa.svg',
       url: 'stafftimesheets',
-      // children:[
-      //   {
-      //     title: 'Staff Audit Trail',
-      //     url: 'staffaudittrail',
-      //   },
-      //   {
-      //     title: 'Staff Productivity Report',
-      //     url: 'staffproreport',
-      //   },
-      //   {
-      //     title: 'Schedule',
-      //     url: 'schedulestprorepo',
-      //   },
-      //   {
-      //     title: 'Drivers Licence',
-      //     url: 'driverslicense',
-      //   },
-      // ]
     },
     {
       title: 'Imports',
       url: 'absaimport',
       icon: 'assets/imgs/asts.svg',
       icona: 'assets/imgs/astsa.svg',
-      // children:[
-      //   {
-      //     title: 'absaimport',
-      //     url: 'absaimport',
-      //   },
-      //   {
-      //     title: 'fueltransimport',
-      //     url: 'fueltransimport',
-      //   },
-      //   {
-      //     title: 'importlogtransfor',
-      //     url: 'importlogtransfor',
-      //   },
-      //   {
-      //     title: 'importfirstautotrans',
-      //     url: 'importfirstautotrans',
-      //   },
-      //   {
-      //     title: 'importgeotab',
-      //     url: 'importgeotab',
-      //   },
-      //   {
-      //     title: 'stannicimport',
-      //     url: 'stannicimport',
-      //   },
-      // ]
     },
-    // {
-    //   title: 'Fuel',
-    //   icon:'assets/imgs/fuel.svg',
-    //   icona:'assets/imgs/fuela.svg',
-    //   children:[
-    //     {
-    //       title: 'Fuel Consumption',
-    //       url: 'fuelconsumption',
-    //     },
-    //     {
-    //       title: 'Fuel Bowser & Oil Store Control',
-    //       url: 'fuelbrowsenoilctrl',
-    //     }
-    //   ]
-    // },
   ];
 
   showMenu = true;
 
-  constructor(private auth: AngularFireAuth, private nav: NavController) {}
+  constructor(
+    private auth: AngularFireAuth,
+    private nav: NavController,
+    private firebaseService: FirebaseGetService,
+  ) {}
 
   ngOnInit(): void {
     this.loginCheck();
   }
 
-  loginCheck() {
-    let x = this.auth.authState;
-    x.subscribe((rand) => {
+  async loginCheck() {
+    this.getUserEmail();
+    this.firebaseService.menuEmitter.subscribe((rand) => {
       if (!rand) {
         this.showMenu = false;
         this.nav.navigateRoot('sign-in');
       } else {
-        this.showMenu = true;
-        this.getUserEmail();
         this.getUserName();
+        this.getUserEmail();
+        this.showMenu = true;
+        setTimeout(() => {
+          window.location.reload();
+        }, 500);
       }
     });
   }
 
   getUserEmail() {
-    this.auth.currentUser.then((cu) => {
-      this.userEmail = cu.email;
+    this.auth.user.subscribe((cUser) => {
+      this.userEmail = cUser.email;
     });
   }
 
@@ -326,6 +117,7 @@ export class AppComponent {
 
   logout() {
     let x = this.auth.signOut();
+    this.firebaseService.setloggedInState(false);
   }
 
   goAddAssetsInfo() {
