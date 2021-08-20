@@ -6,14 +6,11 @@ import { FirebaseService } from './../../services/firebase-service/firebase-serv
 import { AngularFireAuth } from '@angular/fire/auth';
 import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 import { v4 as uuidv4 } from 'uuid';
-import { firebaseConfig } from '../../app.firebase.config';
-import firebase from 'firebase/app';
 import 'firebase/functions';
 import { HttpClient } from '@angular/common/http';
 
-// firebase.initializeApp(firebaseConfig);
 const apiUrl =
-  'https://us-central1-fleet-administration-system.cloudfunctions.net/testOnReq';
+  'https://us-central1-fleet-administration-system.cloudfunctions.net/';
 
 @Component({
   selector: 'app-users',
@@ -127,22 +124,15 @@ export class UsersPage implements OnInit {
     if (this.user.LocUserCode)
       this.user.LocUserCode = this.user.LocUserCode['LocGuid'];
 
-    return new Promise<any>((resolve, reject) => {
-      this.afAuth
-        .createUserWithEmailAndPassword(
-          this.user.UserLogin,
-          this.user.UserPassword,
-        )
-        .then((res) => {
-          resolve(res);
-          this.onAdd();
-          // this.add();
-        })
-        .catch((err) => {
-          reject(err.message);
-          this.popUp.showAlert('Failed', err.message);
-        });
-    });
+    this.http.post(apiUrl + 'registerUser', this.user).subscribe(
+      (res) => {
+        this.onAdd();
+        // this.add();
+      },
+      (err) => {
+        this.popUp.showAlert('Failed', err);
+      },
+    );
   }
 
   onAdd() {
@@ -206,57 +196,7 @@ export class UsersPage implements OnInit {
         console.log('err: ', err.message);
       });
   }
-
-  onTest() {
-    // const testOnReq = firebase.functions().httpsCallable('testOnReq');
-    // testOnReq({ email: 'a@a.com', password: 'qwe123' }).then((result) => {
-    //   console.log('result: ', result);
-    //   console.log('called cf and created acc');
-    // }),
-    //   (error) => {
-    //     console.log('called cf but couldnt create acc', error.message);
-    //   };
-
-    this.http.post(apiUrl, { message: 'testing writing' }).subscribe((res) => {
-      console.log(res);
-    });
-  }
-
-  // public registerPhone(number: string) {
-  //   return new Promise((resolve, reject) => {
-  //     let mainUl =
-  //       'https://us-central1-swiftmeetapp.cloudfunctions.net/sendOTPcode';
-  //     let corsUrl: 'https://102.223.196.138:9998/';
-  //     this.setVerificationCode().then((code: string) => {
-  //       this.http
-  //         .post(
-  //           mainUl,
-  //           {
-  //             number,
-  //             code,
-  //           },
-  //           {},
-  //         )
-  //         .then((res) => {
-  //           resolve('code sent');
-  //         })
-  //         .catch((error) => {
-  //           reject(error);
-  //         });
-  //     });
-  //   });
-  // }
-
-  // onTest1() {
-  //   testOncall({ message: 'testing writing' }).then((result) => {
-  //     console.log('result: ', result);
-  //     console.log('called cf and wrote');
-  //   }),
-  //     (error) => {
-  //       console.log('called cf but couldnt write', error.message);
-  //     };
-  // }
-
+  //testing PR process
   onModify() {}
   onDeActivate() {}
   onClear() {}

@@ -1,8 +1,12 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { NavController } from '@ionic/angular';
 import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
+
+const apiUrl =
+  'https://us-central1-fleet-administration-system.cloudfunctions.net/';
 
 @Component({
   selector: 'app-repairhistory',
@@ -20,10 +24,25 @@ export class RepairhistoryPage implements OnInit {
     private firebaseRepServ: FirebaseReportService,
     private popUp: PopupHelper,
     public afAuth: AngularFireAuth,
+    private http: HttpClient,
   ) {}
 
   ngOnInit() {
     this.getCurrentUser();
+  }
+
+  test() {
+    this.http
+      .post(apiUrl + 'getVehiclesCount', { organisation: 'PMB_ELEC' })
+      .subscribe(
+        (res) => {
+          console.log(res);
+        },
+        (err) => {
+          console.log(err);
+          this.popUp.showAlert('Failed', err);
+        },
+      );
   }
 
   getCurrentUser() {
