@@ -107,7 +107,9 @@ export class AppComponent {
 
   getUserEmail() {
     this.auth.user.subscribe((cUser) => {
-      this.userEmail = cUser.email;
+      if (cUser) {
+        this.userEmail = cUser.email;
+      }
     });
   }
 

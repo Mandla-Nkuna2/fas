@@ -1,9 +1,14 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Chart } from 'chart.js';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
 import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
+
+const apiUrl =
+  'https://us-central1-fleet-administration-system.cloudfunctions.net/';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.page.html',
@@ -46,6 +51,7 @@ export class DashboardPage implements OnInit {
     private firebaseGetServ: FirebaseGetService,
     private popUp: PopupHelper,
     public afAuth: AngularFireAuth,
+    private http: HttpClient,
   ) {}
 
   ngOnInit() {
@@ -157,11 +163,16 @@ export class DashboardPage implements OnInit {
   }
 
   onVehiclesCount() {
-    this.firebaseRepServ
-      .getVehiclesCount(this.organization)
-      .then((mNm: any) => {
-        this.vehiclesCount = mNm;
-      });
+    this.http
+      .post(apiUrl + 'getVehiclesCount', { organisation: this.organization })
+      .subscribe(
+        (res) => {
+          this.vehiclesCount = res['val'];
+        },
+        (err) => {
+          this.popUp.showAlert('Failed', err);
+        },
+      );
   }
 
   onVehicles() {

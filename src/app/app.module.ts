@@ -22,7 +22,6 @@ import { SignaturePadModule } from 'angular2-signaturepad';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { ComponentsModule } from './components/components.module';
 import { IonicSelectableModule } from 'ionic-selectable';
-// import { AngularFireFunctionsModule, REGION } from '@angular/fire/functions';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -50,7 +49,6 @@ import { HttpClientModule } from '@angular/common/http';
     FirebaseGetService,
     FirebaseReportService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    // { provide: REGION, useValue: 'Iowa' },
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
