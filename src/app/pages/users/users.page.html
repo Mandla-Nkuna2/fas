@@ -1,4 +1,4 @@
-<ion-content class="ion-padding">
+<ion-content class="ion-padding" #content>
   <div class="title-holder flex al-center">
     <h2>Users</h2>
     <div class="date-holder">
@@ -21,7 +21,7 @@
   <div class="navbar" class="ion-text-center">
     <ion-button
       fill="clear"
-      routerLink="/usergroups"
+      routerLink="../usergroups"
       routerDirection="root"
       routerLinkActive="active-link"
       class="link"
@@ -30,7 +30,7 @@
     </ion-button>
     <ion-button
       fill="clear"
-      routerLink="/parameters"
+      routerLink="../parameters"
       routerDirection="root"
       routerLinkActive="active-link"
       class="link"
@@ -39,8 +39,8 @@
     </ion-button>
   </div>
 
-  <div class="section">
-    <div class="grid-holder">
+  <section class="common-img-bg">
+    <div class="grid-holder" *ngIf="tableVu">
       <div class="top-toolbar flex al-center jc-between">
         <h3>Users</h3>
         <div class="btns-holder flex al-center">
@@ -97,110 +97,791 @@
         </div>
       </ion-grid>
     </div>
-  </div>
 
-  <div class="section">
-    <div class="the-form">
-      <ion-grid fixed>
-        <ion-row>
-          <ion-col size="3.5">
-            <div class="item-input">
-              <ion-label>First name</ion-label>
-              <ion-item lines="none">
-                <ion-input
-                  type="text"
-                  [(ngModel)]="user.UserFirstName"
-                ></ion-input>
-              </ion-item>
-            </div>
-          </ion-col>
-
-          <ion-col size="3.5">
-            <div class="item-input">
-              <ion-label>Surname</ion-label>
-              <ion-item lines="none">
-                <ion-input
-                  type="text"
-                  [(ngModel)]="user.UserSurname"
-                ></ion-input>
-              </ion-item>
-            </div>
-          </ion-col>
-
-          <ion-col size="3.5">
-            <div class="item-input">
-              <ion-label>User Email</ion-label>
-              <ion-item lines="none">
-                <ion-input type="text" [(ngModel)]="user.UserLogin"></ion-input>
-              </ion-item>
-            </div>
-          </ion-col>
-
-          <ion-col size="3.5">
-            <div class="item-input">
-              <ion-label>Phone number</ion-label>
-              <ion-item lines="none">
-                <ion-input
-                  type="text"
-                  [(ngModel)]="user.phoneNumber"
-                ></ion-input>
-              </ion-item>
-            </div>
-          </ion-col>
-
-          <ion-col size="3.5">
-            <div class="item-input">
-              <ion-label>User password</ion-label>
-              <ion-item lines="none">
-                <ion-input
-                  type="text"
-                  [(ngModel)]="user.UserPassword"
-                ></ion-input>
-              </ion-item>
-            </div>
-          </ion-col>
-
-          <ion-col size="3.5">
-            <div class="item-input">
-              <ion-label>User group</ion-label>
-              <ion-item>
-                <ionic-selectable
-                  [(ngModel)]="user.UserGroupGuid"
-                  [items]="userGroups"
-                  itemValueField="UserGroupGuid"
-                  itemTextField="UserGroupTitle"
-                  [canSearch]="true"
-                  [hasInfiniteScroll]="true"
+    <div class="container">
+      <div>
+        <div>
+          <div class="login-card card-block auth-body mr-auto ml-auto">
+            <div class="md-float-material">
+              <div class="auth-box">
+                <ion-slides
+                  #slides
+                  pager="false"
+                  [options]="{autoHeight: true}"
                 >
-                </ionic-selectable>
-              </ion-item>
-            </div>
-          </ion-col>
+                  <ion-slide>
+                    <div class="the-form">
+                      <ion-grid fixed>
+                        <ion-row>
+                          <ion-col size="3.5">
+                            <div class="item-input">
+                              <ion-label>First name</ion-label>
+                              <ion-item lines="none">
+                                <ion-input
+                                  type="text"
+                                  [(ngModel)]="user.UserFirstName"
+                                ></ion-input>
+                              </ion-item>
+                            </div>
+                          </ion-col>
 
-          <ion-col size="3.5">
-            <div class="item-input">
-              <ion-label>User location</ion-label>
-              <ion-item>
-                <ionic-selectable
-                  [(ngModel)]="user.LocUserCode"
-                  [items]="locations"
-                  itemValueField="LocGuid"
-                  itemTextField="LocDesc"
-                  [canSearch]="true"
-                  [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onLocationLeft()"
-                >
-                </ionic-selectable>
-              </ion-item>
-            </div>
-          </ion-col>
-        </ion-row>
+                          <ion-col size="3.5">
+                            <div class="item-input">
+                              <ion-label>Surname</ion-label>
+                              <ion-item lines="none">
+                                <ion-input
+                                  type="text"
+                                  [(ngModel)]="user.UserSurname"
+                                ></ion-input>
+                              </ion-item>
+                            </div>
+                          </ion-col>
 
-        <ion-row>
-          <ion-col size="12" class="flex al-center jc-end">
-            <div class="btn-holder flex al-center">
-              <ion-button (click)="registerUser()"> Add </ion-button>
-              <!-- <ion-button (click)="onModify()" color="medium">
+                          <ion-col size="3.5">
+                            <div class="item-input">
+                              <ion-label>User Email</ion-label>
+                              <ion-item lines="none">
+                                <ion-input
+                                  type="text"
+                                  [(ngModel)]="user.UserLogin"
+                                ></ion-input>
+                              </ion-item>
+                            </div>
+                          </ion-col>
+
+                          <ion-col size="3.5">
+                            <div class="item-input">
+                              <ion-label>Phone number</ion-label>
+                              <ion-item lines="none">
+                                <ion-input
+                                  type="text"
+                                  [(ngModel)]="user.phoneNumber"
+                                ></ion-input>
+                              </ion-item>
+                            </div>
+                          </ion-col>
+
+                          <ion-col size="3.5">
+                            <div class="item-input">
+                              <ion-label>User password</ion-label>
+                              <ion-item lines="none">
+                                <ion-input
+                                  type="text"
+                                  [(ngModel)]="user.UserPassword"
+                                ></ion-input>
+                              </ion-item>
+                            </div>
+                          </ion-col>
+
+                          <ion-col size="3.5">
+                            <div class="item-input">
+                              <ion-label>User group</ion-label>
+                              <ion-item>
+                                <ionic-selectable
+                                  [(ngModel)]="user.UserGroupGuid"
+                                  [items]="userGroups"
+                                  itemValueField="UserGroupGuid"
+                                  itemTextField="UserGroupTitle"
+                                  [canSearch]="true"
+                                  [hasInfiniteScroll]="true"
+                                >
+                                </ionic-selectable>
+                              </ion-item>
+                            </div>
+                          </ion-col>
+
+                          <ion-col size="3.5">
+                            <div class="item-input">
+                              <ion-label>User location</ion-label>
+                              <ion-item>
+                                <ionic-selectable
+                                  [(ngModel)]="user.LocUserCode"
+                                  [items]="locations"
+                                  itemValueField="LocGuid"
+                                  itemTextField="LocDesc"
+                                  [canSearch]="true"
+                                  [hasInfiniteScroll]="true"
+                                  (onInfiniteScroll)="onLocationLeft()"
+                                >
+                                </ionic-selectable>
+                              </ion-item>
+                            </div>
+                          </ion-col>
+                        </ion-row>
+                      </ion-grid>
+                    </div>
+                  </ion-slide>
+
+                  <ion-slide>
+                    <ion-row style="display: contents">
+                      <ion-col>
+                        <ion-row>
+                          <ion-col>
+                            <h4>User Projects</h4>
+                          </ion-col>
+                        </ion-row>
+
+                        <ion-row>
+                          <ion-col>
+                            <ion-item class="ion-text-right">
+                              <ion-label>All Projects</ion-label>
+                              <ion-toggle
+                                color="dark"
+                                [(ngModel)]="allProjs"
+                                (click)="selectAllProjects()"
+                              ></ion-toggle>
+                            </ion-item>
+                          </ion-col>
+                        </ion-row>
+
+                        <ion-row class="grid-header">
+                          <ion-col class="grid-header-item">
+                            <h4>Project Name</h4>
+                          </ion-col>
+                          <ion-col> <h4>Selected</h4> </ion-col>
+                        </ion-row>
+                        <ion-row
+                          class="grid-row"
+                          *ngFor="let project of allProjects"
+                        >
+                          <ion-col
+                            class="grid-row-item"
+                            style="text-align: left"
+                          >
+                            <p>{{project.name}}</p>
+                          </ion-col>
+                          <ion-col class="last-col" size="4">
+                            <ion-checkbox [(ngModel)]="project.checked">
+                            </ion-checkbox>
+                          </ion-col>
+                        </ion-row>
+                      </ion-col>
+                    </ion-row>
+                  </ion-slide>
+
+                  <ion-slide>
+                    <h4>User Permissions</h4>
+
+                    <ion-grid>
+                      <ion-row class="grid-row1">
+                        <ion-col size="2" class="grid-row-item1"></ion-col>
+                        <ion-col class="grid-row-item1"> Users </ion-col>
+                        <ion-col size="2" class="grid-row-item1">
+                          <ion-button
+                            fill="clear"
+                            color="primary"
+                            (click)="view('users')"
+                          >
+                            <ion-icon name="chevron-down-outline"></ion-icon>
+                          </ion-button>
+                        </ion-col>
+                      </ion-row>
+
+                      <div *ngIf="users">
+                        <ion-row class="grid-row2">
+                          <ion-col class="grid-row-item2"> Add Users </ion-col>
+                          <ion-col class="grid-row-item2">
+                            <ion-toggle
+                              color="dark"
+                              [(ngModel)]="displayPerm.addUser"
+                            ></ion-toggle>
+                          </ion-col>
+                        </ion-row>
+                        <ion-row class="grid-row2">
+                          <ion-col class="grid-row-item2"> Edit Users </ion-col>
+                          <ion-col class="grid-row-item2">
+                            <ion-toggle
+                              color="dark"
+                              [(ngModel)]="displayPerm.editUser"
+                            ></ion-toggle>
+                          </ion-col>
+                        </ion-row>
+                        <ion-row class="grid-row2">
+                          <ion-col class="grid-row-item2">
+                            Delete Users
+                          </ion-col>
+                          <ion-col class="grid-row-item2">
+                            <ion-toggle
+                              color="dark"
+                              [(ngModel)]="displayPerm.deleletUser"
+                            ></ion-toggle>
+                          </ion-col>
+                        </ion-row>
+                        <ion-row class="grid-row2">
+                          <ion-col class="grid-row-item2"> View Users </ion-col>
+                          <ion-col class="grid-row-item2">
+                            <ion-toggle
+                              color="dark"
+                              [(ngModel)]="displayPerm.viewUser"
+                            ></ion-toggle>
+                          </ion-col>
+                        </ion-row>
+                      </div>
+                    </ion-grid>
+
+                    <ion-grid>
+                      <ion-row class="grid-row1">
+                        <ion-col size="2" class="grid-row-item1"></ion-col>
+                        <ion-col class="grid-row-item1">
+                          Service Providers
+                        </ion-col>
+                        <ion-col size="2" class="grid-row-item1">
+                          <ion-button
+                            fill="clear"
+                            color="primary"
+                            (click)="view('sps')"
+                          >
+                            <ion-icon name="chevron-down-outline"></ion-icon>
+                          </ion-button>
+                        </ion-col>
+                      </ion-row>
+
+                      <div *ngIf="sps">
+                        <ion-row class="grid-row2">
+                          <ion-col class="grid-row-item2">
+                            Add Servive Provider
+                          </ion-col>
+                          <ion-col class="grid-row-item2">
+                            <ion-toggle
+                              color="dark"
+                              [(ngModel)]="displayPerm.addSP"
+                            ></ion-toggle>
+                          </ion-col>
+                        </ion-row>
+                        <ion-row class="grid-row2">
+                          <ion-col class="grid-row-item2">
+                            Edit Servive Provider
+                          </ion-col>
+                          <ion-col class="grid-row-item2">
+                            <ion-toggle
+                              color="dark"
+                              [(ngModel)]="displayPerm.editSP"
+                            ></ion-toggle>
+                          </ion-col>
+                        </ion-row>
+                        <ion-row class="grid-row2">
+                          <ion-col class="grid-row-item2">
+                            Delete Servive Provider
+                          </ion-col>
+                          <ion-col class="grid-row-item2">
+                            <ion-toggle
+                              color="dark"
+                              [(ngModel)]="displayPerm.deleteSP"
+                            ></ion-toggle>
+                          </ion-col>
+                        </ion-row>
+                        <ion-row class="grid-row2">
+                          <ion-col class="grid-row-item2">
+                            View Servive Provider
+                          </ion-col>
+                          <ion-col class="grid-row-item2">
+                            <ion-toggle
+                              color="dark"
+                              [(ngModel)]="displayPerm.viewSP"
+                            ></ion-toggle>
+                          </ion-col>
+                        </ion-row>
+                      </div>
+                    </ion-grid>
+
+                    <ion-grid>
+                      <ion-row class="grid-row1">
+                        <ion-col size="2" class="grid-row-item1"></ion-col>
+                        <ion-col class="grid-row-item1"> Projects </ion-col>
+                        <ion-col size="2" class="grid-row-item1">
+                          <ion-button
+                            fill="clear"
+                            color="primary"
+                            (click)="view('projects')"
+                          >
+                            <ion-icon name="chevron-down-outline"></ion-icon>
+                          </ion-button>
+                        </ion-col>
+                      </ion-row>
+
+                      <div *ngIf="project">
+                        <ion-row class="grid-row2">
+                          <ion-col class="grid-row-item2">
+                            View All Projects
+                          </ion-col>
+                          <ion-col class="grid-row-item2">
+                            <ion-toggle
+                              (click)="projView('all')"
+                              color="dark"
+                              [(ngModel)]="displayPerm.allProj"
+                            ></ion-toggle>
+                          </ion-col>
+                        </ion-row>
+                        <ion-row class="grid-row2">
+                          <ion-col class="grid-row-item2">
+                            View Only Assigned Projects
+                          </ion-col>
+                          <ion-col class="grid-row-item2">
+                            <ion-toggle
+                              (click)="projView('selected')"
+                              color="dark"
+                              [(ngModel)]="displayPerm.selectProj"
+                            ></ion-toggle>
+                          </ion-col>
+                        </ion-row>
+                        <ion-row class="grid-row2">
+                          <ion-col class="grid-row-item2">
+                            Add Project
+                          </ion-col>
+                          <ion-col class="grid-row-item2">
+                            <ion-toggle
+                              color="dark"
+                              [(ngModel)]="displayPerm.addProj"
+                            ></ion-toggle>
+                          </ion-col>
+                        </ion-row>
+                        <ion-row class="grid-row2">
+                          <ion-col class="grid-row-item2">
+                            Edit Project
+                          </ion-col>
+                          <ion-col class="grid-row-item2">
+                            <ion-toggle
+                              color="dark"
+                              [(ngModel)]="displayPerm.editProj"
+                            ></ion-toggle>
+                          </ion-col>
+                        </ion-row>
+                        <ion-row class="grid-row2">
+                          <ion-col class="grid-row-item2">
+                            Delete Project
+                          </ion-col>
+                          <ion-col class="grid-row-item2">
+                            <ion-toggle
+                              color="dark"
+                              [(ngModel)]="displayPerm.deleteProj"
+                            ></ion-toggle>
+                          </ion-col>
+                        </ion-row>
+                        <ion-row class="grid-row2">
+                          <ion-col class="grid-row-item2">
+                            View Project
+                          </ion-col>
+                          <ion-col class="grid-row-item2">
+                            <ion-toggle
+                              color="dark"
+                              [(ngModel)]="displayPerm.viewProj"
+                            ></ion-toggle>
+                          </ion-col>
+                        </ion-row>
+                      </div>
+                    </ion-grid>
+
+                    <ion-grid>
+                      <ion-row class="grid-row1">
+                        <ion-col size="2" class="grid-row-item1"></ion-col>
+                        <ion-col class="grid-row-item1"> Claims </ion-col>
+                        <ion-col size="2" class="grid-row-item1">
+                          <ion-button
+                            fill="clear"
+                            color="primary"
+                            (click)="view('claims')"
+                          >
+                            <ion-icon name="chevron-down-outline"></ion-icon>
+                          </ion-button>
+                        </ion-col>
+                      </ion-row>
+
+                      <div *ngIf="claims">
+                        <ion-row class="grid-row2">
+                          <ion-col class="grid-row-item2"> Add Claims </ion-col>
+                          <ion-col class="grid-row-item2">
+                            <ion-toggle
+                              color="dark"
+                              [(ngModel)]="displayPerm.addClaim"
+                            ></ion-toggle>
+                          </ion-col>
+                        </ion-row>
+                        <ion-row class="grid-row2">
+                          <ion-col class="grid-row-item2">
+                            Edit Claims
+                          </ion-col>
+                          <ion-col class="grid-row-item2">
+                            <ion-toggle
+                              color="dark"
+                              [(ngModel)]="displayPerm.editClaim"
+                            ></ion-toggle>
+                          </ion-col>
+                        </ion-row>
+                        <ion-row class="grid-row2">
+                          <ion-col class="grid-row-item2">
+                            Download Claims
+                          </ion-col>
+                          <ion-col class="grid-row-item2">
+                            <ion-toggle
+                              color="dark"
+                              [(ngModel)]="displayPerm.downloadClaim"
+                            ></ion-toggle>
+                          </ion-col>
+                        </ion-row>
+                        <ion-row class="grid-row2">
+                          <ion-col class="grid-row-item2">
+                            Delete Claims
+                          </ion-col>
+                          <ion-col class="grid-row-item2">
+                            <ion-toggle
+                              color="dark"
+                              [(ngModel)]="displayPerm.deleteClaim"
+                            ></ion-toggle>
+                          </ion-col>
+                        </ion-row>
+                        <ion-row class="grid-row2">
+                          <ion-col class="grid-row-item2">
+                            View Claims
+                          </ion-col>
+                          <ion-col class="grid-row-item2">
+                            <ion-toggle
+                              color="dark"
+                              [(ngModel)]="displayPerm.viewClaim"
+                            ></ion-toggle>
+                          </ion-col>
+                        </ion-row>
+                      </div>
+                    </ion-grid>
+
+                    <ion-grid>
+                      <ion-row class="grid-row1">
+                        <ion-col size="2" class="grid-row-item1"></ion-col>
+                        <ion-col class="grid-row-item1"> Documents </ion-col>
+                        <ion-col size="2" class="grid-row-item1">
+                          <ion-button
+                            fill="clear"
+                            color="primary"
+                            (click)="view('docs')"
+                          >
+                            <ion-icon name="chevron-down-outline"></ion-icon>
+                          </ion-button>
+                        </ion-col>
+                      </ion-row>
+
+                      <div *ngIf="documents">
+                        <ion-row class="grid-row2">
+                          <ion-col class="grid-row-item2">
+                            Add Documents
+                          </ion-col>
+                          <ion-col class="grid-row-item2">
+                            <ion-toggle
+                              color="dark"
+                              [(ngModel)]="displayPerm.addDoc"
+                            ></ion-toggle>
+                          </ion-col>
+                        </ion-row>
+                        <ion-row class="grid-row2">
+                          <ion-col class="grid-row-item2">
+                            Edit Documents
+                          </ion-col>
+                          <ion-col class="grid-row-item2">
+                            <ion-toggle
+                              color="dark"
+                              [(ngModel)]="displayPerm.editDoc"
+                            ></ion-toggle>
+                          </ion-col>
+                        </ion-row>
+                        <ion-row class="grid-row2">
+                          <ion-col class="grid-row-item2">
+                            Download Documents
+                          </ion-col>
+                          <ion-col class="grid-row-item2">
+                            <ion-toggle
+                              color="dark"
+                              [(ngModel)]="displayPerm.downloadDoc"
+                            ></ion-toggle>
+                          </ion-col>
+                        </ion-row>
+                        <ion-row class="grid-row2">
+                          <ion-col class="grid-row-item2">
+                            Delete Documents
+                          </ion-col>
+                          <ion-col class="grid-row-item2">
+                            <ion-toggle
+                              color="dark"
+                              [(ngModel)]="displayPerm.deleteDoc"
+                            ></ion-toggle>
+                          </ion-col>
+                        </ion-row>
+                        <ion-row class="grid-row2">
+                          <ion-col class="grid-row-item2">
+                            View Documents
+                          </ion-col>
+                          <ion-col class="grid-row-item2">
+                            <ion-toggle
+                              color="dark"
+                              [(ngModel)]="displayPerm.viewDoc"
+                            ></ion-toggle>
+                          </ion-col>
+                        </ion-row>
+                      </div>
+                    </ion-grid>
+
+                    <ion-grid>
+                      <ion-row class="grid-row1">
+                        <ion-col size="2" class="grid-row-item1"></ion-col>
+                        <ion-col class="grid-row-item1"> Progress </ion-col>
+                        <ion-col size="2" class="grid-row-item1">
+                          <ion-button
+                            fill="clear"
+                            color="primary"
+                            (click)="view('progress')"
+                          >
+                            <ion-icon name="chevron-down-outline"></ion-icon>
+                          </ion-button>
+                        </ion-col>
+                      </ion-row>
+
+                      <div *ngIf="progress">
+                        <ion-row class="grid-row2">
+                          <ion-col class="grid-row-item2">
+                            Add Progress
+                          </ion-col>
+                          <ion-col class="grid-row-item2">
+                            <ion-toggle
+                              color="dark"
+                              [(ngModel)]="displayPerm.addProg"
+                            ></ion-toggle>
+                          </ion-col>
+                        </ion-row>
+                        <ion-row class="grid-row2">
+                          <ion-col class="grid-row-item2">
+                            Download Stage Document
+                          </ion-col>
+                          <ion-col class="grid-row-item2">
+                            <ion-toggle
+                              color="dark"
+                              [(ngModel)]="displayPerm.downloadStage"
+                            ></ion-toggle>
+                          </ion-col>
+                        </ion-row>
+                        <ion-row class="grid-row2">
+                          <ion-col class="grid-row-item2">
+                            Add Comments
+                          </ion-col>
+                          <ion-col class="grid-row-item2">
+                            <ion-toggle
+                              color="dark"
+                              [(ngModel)]="displayPerm.editProg"
+                            ></ion-toggle>
+                          </ion-col>
+                        </ion-row>
+                        <ion-row class="grid-row2">
+                          <ion-col class="grid-row-item2">
+                            View Progress
+                          </ion-col>
+                          <ion-col class="grid-row-item2">
+                            <ion-toggle
+                              color="dark"
+                              [(ngModel)]="displayPerm.viewProg"
+                            ></ion-toggle>
+                          </ion-col>
+                        </ion-row>
+                      </div>
+                    </ion-grid>
+
+                    <ion-grid>
+                      <ion-row class="grid-row1">
+                        <ion-col size="2" class="grid-row-item1"></ion-col>
+                        <ion-col class="grid-row-item1"> Photos </ion-col>
+                        <ion-col size="2" class="grid-row-item1">
+                          <ion-button
+                            fill="clear"
+                            color="primary"
+                            (click)="view('photos')"
+                          >
+                            <ion-icon name="chevron-down-outline"></ion-icon>
+                          </ion-button>
+                        </ion-col>
+                      </ion-row>
+
+                      <div *ngIf="photo">
+                        <ion-row class="grid-row2">
+                          <ion-col class="grid-row-item2"> Add Photos </ion-col>
+                          <ion-col class="grid-row-item2">
+                            <ion-toggle
+                              color="dark"
+                              [(ngModel)]="displayPerm.addPhoto"
+                            ></ion-toggle>
+                          </ion-col>
+                        </ion-row>
+                        <ion-row class="grid-row2">
+                          <ion-col class="grid-row-item2">
+                            View Photos
+                          </ion-col>
+                          <ion-col class="grid-row-item2">
+                            <ion-toggle
+                              color="dark"
+                              [(ngModel)]="displayPerm.viewPhoto"
+                            ></ion-toggle>
+                          </ion-col>
+                        </ion-row>
+                      </div>
+                    </ion-grid>
+
+                    <ion-grid>
+                      <ion-row class="grid-row1">
+                        <ion-col size="2" class="grid-row-item1"></ion-col>
+                        <ion-col class="grid-row-item1"> Labour Stats </ion-col>
+                        <ion-col size="2" class="grid-row-item1">
+                          <ion-button
+                            fill="clear"
+                            color="primary"
+                            (click)="view('stats')"
+                          >
+                            <ion-icon name="chevron-down-outline"></ion-icon>
+                          </ion-button>
+                        </ion-col>
+                      </ion-row>
+
+                      <div *ngIf="stats">
+                        <ion-row class="grid-row2">
+                          <ion-col class="grid-row-item2">
+                            Edit Labour Stats
+                          </ion-col>
+                          <ion-col class="grid-row-item2">
+                            <ion-toggle
+                              color="dark"
+                              [(ngModel)]="displayPerm.addStats"
+                            ></ion-toggle>
+                          </ion-col>
+                        </ion-row>
+                        <ion-row class="grid-row2">
+                          <ion-col class="grid-row-item2">
+                            View Labout Stats
+                          </ion-col>
+                          <ion-col class="grid-row-item2">
+                            <ion-toggle
+                              color="dark"
+                              [(ngModel)]="displayPerm.viewStats"
+                            ></ion-toggle>
+                          </ion-col>
+                        </ion-row>
+                      </div>
+                    </ion-grid>
+
+                    <ion-grid>
+                      <ion-row class="grid-row1">
+                        <ion-col size="2" class="grid-row-item1"></ion-col>
+                        <ion-col class="grid-row-item1">
+                          Project Communication
+                        </ion-col>
+                        <ion-col size="2" class="grid-row-item1">
+                          <ion-button
+                            fill="clear"
+                            color="primary"
+                            (click)="view('notes')"
+                          >
+                            <ion-icon name="chevron-down-outline"></ion-icon>
+                          </ion-button>
+                        </ion-col>
+                      </ion-row>
+
+                      <div *ngIf="notes">
+                        <ion-row class="grid-row2">
+                          <ion-col class="grid-row-item2">
+                            Add Project Notes
+                          </ion-col>
+                          <ion-col class="grid-row-item2">
+                            <ion-toggle
+                              color="dark"
+                              [(ngModel)]="displayPerm.addNote"
+                            ></ion-toggle>
+                          </ion-col>
+                        </ion-row>
+                        <ion-row class="grid-row2">
+                          <ion-col class="grid-row-item2">
+                            View Project Notes
+                          </ion-col>
+                          <ion-col class="grid-row-item2">
+                            <ion-toggle
+                              color="dark"
+                              [(ngModel)]="displayPerm.viewNote"
+                            ></ion-toggle>
+                          </ion-col>
+                        </ion-row>
+                      </div>
+                    </ion-grid>
+
+                    <ion-grid>
+                      <ion-row class="grid-row1">
+                        <ion-col size="2" class="grid-row-item1"></ion-col>
+                        <ion-col class="grid-row-item1"> Reports </ion-col>
+                        <ion-col size="2" class="grid-row-item1">
+                          <ion-button
+                            fill="clear"
+                            color="primary"
+                            (click)="view('notes')"
+                          >
+                            <ion-icon name="chevron-down-outline"></ion-icon>
+                          </ion-button>
+                        </ion-col>
+                      </ion-row>
+
+                      <div *ngIf="notes">
+                        <ion-row class="grid-row2">
+                          <ion-col class="grid-row-item2">
+                            Download Reports
+                          </ion-col>
+                          <ion-col class="grid-row-item2">
+                            <ion-toggle
+                              color="dark"
+                              [(ngModel)]="displayPerm.downloadReports"
+                            ></ion-toggle>
+                          </ion-col>
+                        </ion-row>
+                        <ion-row class="grid-row2">
+                          <ion-col class="grid-row-item2">
+                            Download Action Logs
+                          </ion-col>
+                          <ion-col class="grid-row-item2">
+                            <ion-toggle
+                              color="dark"
+                              [(ngModel)]="displayPerm.downloadLogs"
+                            ></ion-toggle>
+                          </ion-col>
+                        </ion-row>
+                      </div>
+                    </ion-grid>
+
+                    <ion-row>
+                      <ion-col class="ion-text-center">
+                        <ion-button
+                          shape="round"
+                          color="success"
+                          (click)="add()"
+                        >
+                          <ion-icon name="save-outline" slot="start"></ion-icon>
+                          Save User
+                        </ion-button>
+                      </ion-col>
+                    </ion-row>
+                  </ion-slide>
+                </ion-slides>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ion-row>
+    <ion-col size="12" class="flex al-center jc-end">
+      <div class="btn-holder flex al-center">
+        <ion-buttons slot="start">
+          <ion-button *ngIf="prevButton" (click)="prev()">
+            <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
+          </ion-button>
+          <ion-back-button *ngIf="exitButton"></ion-back-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+          <ion-button *ngIf="nxtButton" (click)="next()">
+            <ion-icon name="arrow-forward" slot="icon-only"> </ion-icon>
+          </ion-button>
+        </ion-buttons>
+        <ion-button (click)="registerUser()"> Add </ion-button>
+        <!-- <ion-button (click)="onModify()" color="medium">
                 Modify
               </ion-button>
               <ion-button (click)="onDeActivate()" color="danger">
@@ -209,10 +890,7 @@
               <ion-button (click)="onClear()" fill="outline">
                 Clear
               </ion-button> -->
-            </div>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </div>
-  </div>
+      </div>
+    </ion-col>
+  </ion-row>
 </ion-content>

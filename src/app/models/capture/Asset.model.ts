@@ -1,11 +1,4 @@
 export class Asset {
-  generalInformation: GeneralInformation;
-  meterInformation: MeterInformation;
-  rateInformation: RateInformation;
-  otherInformation: OtherInformation;
-}
-
-export class GeneralInformation {
   ItemGuid: string;
   Reg: string;
   Old_Reg: string;
@@ -38,32 +31,23 @@ export class GeneralInformation {
   LicCost: number;
   LicAddCost: number;
   LicCostCentGuid: string;
-}
-
-export class MeterInformation {
   MeterType: string;
   MeterRead: number;
   MeterReadDate: string;
   MeterOffset: number;
   LicenceDate: string;
-}
-
-export class RateInformation {
   HourRate: number;
   KmRate: number;
   DailyRate: number;
   StandbyRate: number;
-}
-
-export class OtherInformation {
   ManufYear: string;
   TerminalYear: string;
   Votecode: string;
   ItemBud: number;
   MechAvail: number;
   MonthlyAveKM: number;
-  Refurb: boolean;
-  Autocard: boolean;
-  rentalVehicle: boolean;
-  govSubsidisedVeh: boolean;
+  Refurb = false;
+  Autocard = false;
+  rentalVehicle = false;
+  govSubsidisedVeh = false;
 }

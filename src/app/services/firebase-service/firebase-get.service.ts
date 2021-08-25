@@ -1268,6 +1268,8 @@ export class FirebaseGetService {
             data.push({
               ItemTypeGuid: mNm.get('ItemTypeGuid'),
               ItemTypeNameGuid: mNm.get('ItemTypeNameGuid'),
+              ItemTypeClassGuid: mNm.get('ItemTypeClassGuid'),
+              ItemTypeCapGuid: mNm.get('ItemTypeCapGuid'),
             });
           });
           resolve(data);

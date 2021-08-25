@@ -31,20 +31,6 @@ export class RepairhistoryPage implements OnInit {
     this.getCurrentUser();
   }
 
-  test() {
-    this.http
-      .post(apiUrl + 'getVehiclesCount', { organisation: 'PMB_ELEC' })
-      .subscribe(
-        (res) => {
-          console.log(res);
-        },
-        (err) => {
-          console.log(err);
-          this.popUp.showAlert('Failed', err);
-        },
-      );
-  }
-
   getCurrentUser() {
     this.afAuth.user.subscribe((cUser) => {
       this.getCurrentUserOrg(cUser.email);

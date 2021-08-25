@@ -1,5 +1,4 @@
-
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import * as moment from 'moment';
 import { AlertController } from '@ionic/angular';
 import { AngularFireStorage } from '@angular/fire/storage';
@@ -8,33 +7,38 @@ import { finalize } from 'rxjs/operators';
 @Injectable()
 export class Helpers {
   alert: HTMLIonAlertElement;
-  constructor(private alertController: AlertController,private angularFireStorage:AngularFireStorage) { }
-
+  constructor(
+    private alertController: AlertController,
+    private angularFireStorage: AngularFireStorage,
+  ) {}
 
   async uploadDocument(docInformation) {
-    if (docInformation == undefined)
-      return false;
+    if (docInformation == undefined) return false;
     var name = 'supplier-logos/' + docInformation.name;
     const fileRef = await this.angularFireStorage.ref(name);
     return new Promise<any>((resolve, reject) => {
-      this.angularFireStorage.upload(name, docInformation.data).snapshotChanges()
+      this.angularFireStorage
+        .upload(name, docInformation.data)
+        .snapshotChanges()
         .pipe(
           finalize(() => {
-            fileRef.getDownloadURL().subscribe((url) => { 
-              resolve({url:url});
-            })
-          })
-        ).subscribe(res => {
-        }, err => {
-          reject(false)
-        });
+            fileRef.getDownloadURL().subscribe((url) => {
+              resolve({ url: url });
+            });
+          }),
+        )
+        .subscribe(
+          (res) => {},
+          (err) => {
+            reject(false);
+          },
+        );
     });
-
   }
 
   private setAll(obj, val) {
     Object.keys(obj).forEach(function (index) {
-      obj[index] = val
+      obj[index] = val;
     });
   }
   setObjectKeysNull(obj) {
@@ -42,10 +46,10 @@ export class Helpers {
   }
 
   dateFormat(date?: any) {
-    return moment().format('DD-MM-YYYY')
+    return moment().format('DD-MM-YYYY');
   }
   timeFormat(date) {
-    return moment(date).format("hh:mm")
+    return moment(date).format('hh:mm');
   }
   getAge(birthDate) {
     var now = new Date();
@@ -54,8 +58,10 @@ export class Helpers {
       return year % 4 == 0 && (year % 100 != 0 || year % 400 == 0);
     }
 
-    // days since the birthdate    
-    var days = Math.floor((now.getTime() - birthDate.getTime()) / 1000 / 60 / 60 / 24);
+    // days since the birthdate
+    var days = Math.floor(
+      (now.getTime() - birthDate.getTime()) / 1000 / 60 / 60 / 24,
+    );
     var age = 0;
     // iterate the years
     for (var y = birthDate.getFullYear(); y <= now.getFullYear(); y++) {
@@ -88,20 +94,18 @@ export class Helpers {
           cssClass: 'secondary',
           handler: () => {
             return;
-          }
+          },
         },
         {
           text: 'Ok',
           handler: (data) => {
-            if (callbackConfirm)
-              callbackConfirm(data);
-          }
-        }
-      ]
+            if (callbackConfirm) callbackConfirm(data);
+          },
+        },
+      ],
     });
     await this.alert.present();
   }
-
 }
 
 /**

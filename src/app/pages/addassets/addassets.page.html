@@ -1,7 +1,7 @@
 <ion-content class="ion-padding">
   <div class="title-holder flex al-center">
     <ion-back-button
-      defaultHref="assetdetail"
+      defaultHref="main/assetdetail"
       mode="ios"
       text=""
     ></ion-back-button>
@@ -47,10 +47,7 @@
               <div class="item-input">
                 <ion-label>Registration</ion-label>
                 <ion-item lines="none">
-                  <ion-input
-                    disabled
-                    [(ngModel)]="asset.generalInformation.ItemGuid"
-                  ></ion-input>
+                  <ion-input [(ngModel)]="asset.Reg"></ion-input>
                 </ion-item>
               </div>
             </ion-col>
@@ -59,7 +56,7 @@
                 <ion-label>Make and Model</ion-label>
                 <ion-item>
                   <ionic-selectable
-                    [(ngModel)]="asset.generalInformation.ItemMakModGuid"
+                    [(ngModel)]="asset.ItemMakModGuid"
                     [items]="makesAndModels"
                     itemValueField="ItemMakModGuid"
                     itemTextField="ItemMakMod"
@@ -76,8 +73,10 @@
                 <ion-label>Type</ion-label>
                 <ion-item>
                   <ionic-selectable
-                    [(ngModel)]="asset.generalInformation.ItemTypeGuid"
-                    [items]="meterTypes"
+                    [(ngModel)]="asset.ItemTypeGuid"
+                    [items]="assetTypes"
+                    itemValueField="ItemTypeGuid"
+                    itemTextField="displayName"
                     [canSearch]="true"
                   >
                   </ionic-selectable>
@@ -89,7 +88,7 @@
                 <ion-label>Category</ion-label>
                 <ion-item>
                   <ionic-selectable
-                    [(ngModel)]="asset.generalInformation.ItemCatg"
+                    [(ngModel)]="asset.ItemCatg"
                     [items]="categories"
                   >
                   </ionic-selectable>
@@ -101,7 +100,7 @@
                 <ion-label>Color</ion-label>
                 <ion-item>
                   <ionic-selectable
-                    [(ngModel)]="asset.generalInformation.ColourGuid"
+                    [(ngModel)]="asset.ColourGuid"
                     [items]="colors"
                     itemValueField="ColourGuid"
                     itemTextField="Colour"
@@ -117,9 +116,7 @@
               <div class="item-input">
                 <ion-label>Chassie Number</ion-label>
                 <ion-item lines="none">
-                  <ion-input
-                    [(ngModel)]="asset.generalInformation.ChassisNo"
-                  ></ion-input>
+                  <ion-input [(ngModel)]="asset.ChassisNo"></ion-input>
                 </ion-item>
               </div>
             </ion-col>
@@ -127,9 +124,7 @@
               <div class="item-input">
                 <ion-label>Engine Number</ion-label>
                 <ion-item lines="none">
-                  <ion-input
-                    [(ngModel)]="asset.generalInformation.EngineNo"
-                  ></ion-input>
+                  <ion-input [(ngModel)]="asset.EngineNo"></ion-input>
                 </ion-item>
               </div>
             </ion-col>
@@ -138,7 +133,7 @@
                 <ion-label>Battery</ion-label>
                 <ion-item>
                   <ionic-selectable
-                    [(ngModel)]="asset.generalInformation.BatteryGuid"
+                    [(ngModel)]="asset.BatteryGuid"
                     [items]="batteries"
                     itemValueField="BatteryGuid"
                     itemTextField="BatteryText"
@@ -155,7 +150,7 @@
                 <ion-label>Driver</ion-label>
                 <ion-item>
                   <ionic-selectable
-                    [(ngModel)]="asset.generalInformation.StaffGuid"
+                    [(ngModel)]="asset.StaffGuid"
                     [items]="drivers"
                     itemValueField="StaffGuid"
                     itemTextField="StaffCode"
@@ -172,7 +167,7 @@
                 <ion-label>Front Tyres</ion-label>
                 <ion-item>
                   <ionic-selectable
-                    [(ngModel)]="asset.generalInformation.FrontTyreGuid"
+                    [(ngModel)]="asset.FrontTyreGuid"
                     [items]="tyreSizes"
                     itemValueField="TyreSizeGuid"
                     itemTextField="TyreSize"
@@ -189,7 +184,7 @@
                 <ion-label>Rear Tyres</ion-label>
                 <ion-item>
                   <ionic-selectable
-                    [(ngModel)]="asset.generalInformation.RearTyreGuid"
+                    [(ngModel)]="asset.RearTyreGuid"
                     [items]="tyreSizes"
                     itemValueField="TyreSizeGuid"
                     itemTextField="TyreSize"
@@ -219,7 +214,7 @@
                 <ion-label>Meter type</ion-label>
                 <ion-item>
                   <ionic-selectable
-                    [(ngModel)]="asset.meterInformation.MeterType"
+                    [(ngModel)]="asset.MeterType"
                     [items]="meterTypes"
                   >
                   </ionic-selectable>
@@ -230,9 +225,7 @@
               <div class="item-input">
                 <ion-label>Meter Reading</ion-label>
                 <ion-item lines="none">
-                  <ion-input
-                    [(ngModel)]="asset.meterInformation.MeterRead"
-                  ></ion-input>
+                  <ion-input [(ngModel)]="asset.MeterRead"></ion-input>
                 </ion-item>
               </div>
             </ion-col>
@@ -242,7 +235,7 @@
                 <ion-item lines="none">
                   <ion-datetime
                     display-format="MMM DD YYYY hh:mm a"
-                    [(ngModel)]="asset.meterInformation.MeterReadDate"
+                    [(ngModel)]="asset.MeterReadDate"
                   ></ion-datetime>
                 </ion-item>
               </div>
@@ -252,9 +245,7 @@
               <div class="item-input">
                 <ion-label>Meter Offset</ion-label>
                 <ion-item lines="none">
-                  <ion-input
-                    [(ngModel)]="asset.meterInformation.MeterOffset"
-                  ></ion-input>
+                  <ion-input [(ngModel)]="asset.MeterOffset"></ion-input>
                 </ion-item>
               </div>
             </ion-col>
@@ -266,7 +257,7 @@
                   <ion-datetime
                     display-format="MMM DD YYYY hh:mm a"
                     max="2025"
-                    [(ngModel)]="asset.meterInformation.LicenceDate"
+                    [(ngModel)]="asset.LicenceDate"
                   ></ion-datetime>
                 </ion-item>
               </div>
@@ -290,7 +281,7 @@
                 <ion-item lines="none" class="end">
                   <ion-input
                     type="text"
-                    [(ngModel)]="asset.rateInformation.HourRate"
+                    [(ngModel)]="asset.HourRate"
                   ></ion-input>
                   <div class="end-slot flex al-center jc-center" slot="end">
                     <p>R</p>
@@ -303,10 +294,7 @@
               <div class="item-input">
                 <ion-label>KM Rate</ion-label>
                 <ion-item lines="none" class="end">
-                  <ion-input
-                    type="text"
-                    [(ngModel)]="asset.rateInformation.KmRate"
-                  ></ion-input>
+                  <ion-input type="text" [(ngModel)]="asset.KmRate"></ion-input>
                   <div class="end-slot flex al-center jc-center" slot="end">
                     <p>R</p>
                   </div>
@@ -320,7 +308,7 @@
                 <ion-item lines="none" class="end">
                   <ion-input
                     type="text"
-                    [(ngModel)]="asset.rateInformation.DailyRate"
+                    [(ngModel)]="asset.DailyRate"
                   ></ion-input>
                   <div class="end-slot flex al-center jc-center" slot="end">
                     <p>R</p>
@@ -335,7 +323,7 @@
                 <ion-item lines="none" class="end">
                   <ion-input
                     type="text"
-                    [(ngModel)]="asset.rateInformation.StandbyRate"
+                    [(ngModel)]="asset.StandbyRate"
                   ></ion-input>
                   <div class="end-slot flex al-center jc-center" slot="end">
                     <p>R</p>
@@ -361,8 +349,8 @@
                 <ion-label>Date of Manufacture</ion-label>
                 <ion-item lines="none">
                   <ion-datetime
-                    display-format="MMM DD YYYY hh:mm a"
-                    [(ngModel)]="asset.otherInformation.ManufYear"
+                    display-format="MMM DD YYYY"
+                    [(ngModel)]="asset.ManufYear"
                   ></ion-datetime>
                 </ion-item>
               </div>
@@ -373,9 +361,9 @@
                 <ion-label>Terminal Year</ion-label>
                 <ion-item lines="none">
                   <ion-datetime
-                    display-format="MMM DD YYYY hh:mm a"
+                    display-format="YYYY"
                     max="2025"
-                    [(ngModel)]="asset.otherInformation.TerminalYear"
+                    [(ngModel)]="asset.TerminalYear"
                   ></ion-datetime>
                 </ion-item>
               </div>
@@ -387,7 +375,7 @@
                 <ion-item lines="none">
                   <ion-input
                     type="text"
-                    [(ngModel)]="asset.otherInformation.Votecode"
+                    [(ngModel)]="asset.Votecode"
                   ></ion-input>
                 </ion-item>
               </div>
@@ -399,7 +387,7 @@
                 <ion-item lines="none">
                   <ion-input
                     type="text"
-                    [(ngModel)]="asset.otherInformation.ItemBud"
+                    [(ngModel)]="asset.ItemBud"
                   ></ion-input>
                 </ion-item>
               </div>
@@ -411,7 +399,7 @@
                 <ion-item lines="none">
                   <ion-input
                     type="text"
-                    [(ngModel)]="asset.otherInformation.MechAvail"
+                    [(ngModel)]="asset.MechAvail"
                   ></ion-input>
                 </ion-item>
               </div>
@@ -423,7 +411,7 @@
                 <ion-item lines="none">
                   <ion-input
                     type="text"
-                    [(ngModel)]="asset.otherInformation.MonthlyAveKM"
+                    [(ngModel)]="asset.MonthlyAveKM"
                   ></ion-input>
                 </ion-item>
               </div>
@@ -440,28 +428,28 @@
             <ion-item lines="none">
               <ion-label>Autocard</ion-label>
               <ion-checkbox
-                [(ngModel)]="asset.otherInformation.Autocard"
+                [(ngModel)]="asset.Autocard"
                 slot="start"
               ></ion-checkbox>
             </ion-item>
             <ion-item lines="none">
               <ion-label>Refurbished</ion-label>
               <ion-checkbox
-                [(ngModel)]="asset.otherInformation.Refurb"
+                [(ngModel)]="asset.Refurb"
                 slot="start"
               ></ion-checkbox>
             </ion-item>
             <ion-item lines="none">
               <ion-label>Rental Vehicle</ion-label>
               <ion-checkbox
-                [(ngModel)]="asset.otherInformation.rentalVehicle"
+                [(ngModel)]="asset.rentalVehicle"
                 slot="start"
               ></ion-checkbox>
             </ion-item>
             <ion-item lines="none">
               <ion-label>Government Subsidised Vehicle</ion-label>
               <ion-checkbox
-                [(ngModel)]="asset.otherInformation.govSubsidisedVeh"
+                [(ngModel)]="asset.govSubsidisedVeh"
                 slot="start"
               ></ion-checkbox>
             </ion-item>

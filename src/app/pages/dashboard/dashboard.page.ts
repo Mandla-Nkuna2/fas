@@ -74,8 +74,8 @@ export class DashboardPage implements OnInit {
       this.organization = user.organization;
       this.returnedUser = user;
 
-      this.onRevenue();
       this.onVehiclesCount();
+      this.onRevenue();
       this.onTableReps();
       this.onVehicles();
     });
@@ -97,21 +97,11 @@ export class DashboardPage implements OnInit {
   }
 
   onTableReps() {
-    this.popUp.showLoading('loading...').then(() => {
-      this.firebaseRepServ
-        .getAssetLeft(this.organization)
-        .then((mNm: any) => {
-          this.assets = mNm;
-          this.onAssetType();
-          this.onMakeAndMod();
-          this.onCaptureDate();
-          this.popUp.dismissLoading();
-        })
-        .catch((err) => {
-          this.popUp.dismissLoading().then(() => {
-            this.popUp.showError(err);
-          });
-        });
+    this.firebaseRepServ.getAssetLeft(this.organization).then((mNm: any) => {
+      this.assets = mNm;
+      this.onAssetType();
+      this.onMakeAndMod();
+      this.onCaptureDate();
     });
   }
 
@@ -163,16 +153,21 @@ export class DashboardPage implements OnInit {
   }
 
   onVehiclesCount() {
-    this.http
-      .post(apiUrl + 'getVehiclesCount', { organisation: this.organization })
-      .subscribe(
-        (res) => {
-          this.vehiclesCount = res['val'];
-        },
-        (err) => {
-          this.popUp.showAlert('Failed', err);
-        },
-      );
+    this.popUp.showLoading('loading...').then(() => {
+      this.http
+        .post(apiUrl + 'getVehiclesCount', { organisation: this.organization })
+        .subscribe(
+          (res) => {
+            this.popUp.dismissLoading();
+            this.vehiclesCount = res['val'];
+          },
+          (err) => {
+            this.popUp.dismissLoading().then(() => {
+              this.popUp.showAlert('Failed', err);
+            });
+          },
+        );
+    });
   }
 
   onVehicles() {
@@ -242,17 +237,27 @@ export class DashboardPage implements OnInit {
   }
 
   onRevenue() {
-    this.firebaseRepServ.getRevenue(this.organization).then((mNm: any) => {
-      mNm.sort((a, b) => {
-        return <any>new Date(a.RevenueDate) - <any>new Date(b.RevenueDate);
-      });
+    this.http
+      .post(apiUrl + 'getRevenue', { organisation: this.organization })
+      .subscribe(
+        (res) => {
+          let data: any;
+          data = res;
 
-      mNm.forEach((elm) => {
-        this.revenueVs.push(elm.Total);
-        this.revenueDates.push(elm.RevenueDate);
-      });
-      this.lineChartMethod3();
-    });
+          data.sort((a, b) => {
+            return <any>new Date(a.RevenueDate) - <any>new Date(b.RevenueDate);
+          });
+
+          data.forEach((elm) => {
+            this.revenueVs.push(elm.Total);
+            this.revenueDates.push(elm.RevenueDate);
+          });
+          this.lineChartMethod3();
+        },
+        (err) => {
+          this.popUp.showAlert('Failed', err);
+        },
+      );
   }
 
   lineChartMethod() {

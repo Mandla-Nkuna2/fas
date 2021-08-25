@@ -1,5 +1,10 @@
 <ion-content class="ion-padding">
   <div class="title-holder flex al-center">
+    <ion-back-button
+      defaultHref="main/monthlyvehiclereport"
+      mode="ios"
+      text=""
+    ></ion-back-button>
     <h2>Fleet Details</h2>
     <div class="date-holder">
       <ion-item lines="none">
@@ -31,7 +36,8 @@
           </ion-button>
         </div>
       </div>
-      <ion-grid fixed>
+      <ng-template #noItems> No items. </ng-template>
+      <ion-grid fixed *ngIf="fleet.length; else noItems">
         <ion-row class="title-row">
           <ion-col size="0.5" class="flex al-center jc-center"> </ion-col>
           <ion-col size="1.5" class="flex al-center jc-center">

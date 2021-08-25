@@ -6,6 +6,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Storage } from '@ionic/storage';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
@@ -26,6 +27,7 @@ export class SignInPage implements OnInit {
     private storage: Storage,
     private nav: NavController,
     private firebaseGetServ: FirebaseGetService,
+    private router: Router,
   ) {}
 
   ngOnInit() {}
@@ -51,7 +53,7 @@ export class SignInPage implements OnInit {
                   this.firebaseGetServ.setloggedInState(true);
                   this.popUp.showToast('Welcome...');
                   this.password = '';
-                  this.nav.navigateForward('dashboard');
+                  this.nav.navigateForward('main/dashboard');
                 });
               });
             });

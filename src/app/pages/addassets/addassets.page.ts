@@ -1,13 +1,7 @@
 import { FirebaseGetService } from './../../services/firebase-service/firebase-get.service';
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 import { FirebaseService } from './../../services/firebase-service/firebase-service.service';
-import {
-  Asset,
-  GeneralInformation,
-  MeterInformation,
-  OtherInformation,
-  RateInformation,
-} from './../../models/capture/Asset.model';
+import { Asset } from './../../models/capture/Asset.model';
 import { Component, OnInit } from '@angular/core';
 import { v4 as uuidv4 } from 'uuid';
 import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
@@ -26,6 +20,7 @@ export class AddassetsPage implements OnInit {
 
   loadingComplete = false;
   makesAndModels: any = [];
+  assetTypes: any = [];
   colors: any = [];
   tyreSizes: any = [];
   batteries: any = [];
@@ -45,14 +40,31 @@ export class AddassetsPage implements OnInit {
     public afAuth: AngularFireAuth,
   ) {
     this.asset = new Asset();
-    this.asset.generalInformation = Object.assign({}, new GeneralInformation());
-    this.asset.meterInformation = Object.assign({}, new MeterInformation());
-    this.asset.rateInformation = Object.assign({}, new RateInformation());
-    this.asset.otherInformation = Object.assign({}, new OtherInformation());
   }
 
   ngOnInit() {
     this.getCurrentUser();
+  }
+
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+      this.returnedUser = user;
+
+      this.onMakeAndModel();
+      this.onAssetType();
+      this.onColor();
+      this.onBattery();
+      this.onDriver();
+      this.onTireSizes();
+    });
   }
 
   onlyUnique(value, index, self) {
@@ -72,6 +84,70 @@ export class AddassetsPage implements OnInit {
       .then((mNm: any) => {
         this.makesAndModels = mNm;
       });
+  }
+
+  onAssetType() {
+    this.firebaseGetServ.getItemType(this.organization).then((mNm: any) => {
+      this.assetTypes = mNm;
+      this.onTypeNameLeft();
+    });
+  }
+
+  onTypeNameLeft() {
+    this.firebaseGetServ
+      .getAssetTypeNameLeft(this.organization)
+      .then((mNm: any) => {
+        mNm.forEach((elm) => {
+          this.assetTypes.forEach((obj) => {
+            if (elm.ItemTypeNameGuid == obj.ItemTypeNameGuid) {
+              obj.ItemTypeName = elm.ItemTypeName;
+            }
+          });
+        });
+        this.onTypeClassLeft();
+      });
+  }
+
+  onTypeClassLeft() {
+    this.firebaseGetServ
+      .getItemTypeClassLeft(this.organization)
+      .then((mNm: any) => {
+        mNm.forEach((elm) => {
+          this.assetTypes.forEach((obj) => {
+            if (elm.ItemTypeClassGuid == obj.ItemTypeClassGuid) {
+              obj.ItemTypeClass = elm.ItemTypeClass;
+            }
+          });
+        });
+        this.onTypeCapacityLeft();
+      });
+  }
+
+  onTypeCapacityLeft() {
+    this.firebaseGetServ
+      .getTypeCapacityLeft(this.organization)
+      .then((mNm: any) => {
+        mNm.forEach((elm) => {
+          this.assetTypes.forEach((obj) => {
+            if (elm.ItemTypeCapGuid == obj.ItemTypeCapGuid) {
+              obj.ItemTypeCap = elm.ItemTypeCap;
+            }
+          });
+        });
+        this.onTypeDsplyName();
+      });
+  }
+
+  onTypeDsplyName() {
+    this.assetTypes.forEach((obj) => {
+      obj.displayName = obj.ItemTypeName;
+
+      if (obj.ItemTypeClass)
+        obj.displayName = obj.ItemTypeName + ' / ' + obj.ItemTypeClass;
+
+      if (obj.ItemTypeCap)
+        obj.displayName = obj.ItemTypeName + ' / ' + obj.ItemTypeCap;
+    });
   }
 
   onColor() {
@@ -140,55 +216,29 @@ export class AddassetsPage implements OnInit {
       });
   }
 
-  getCurrentUser() {
-    this.afAuth.user.subscribe((cUser) => {
-      this.getCurrentUserOrg(cUser.email);
-    });
-  }
-
-  getCurrentUserOrg(email) {
-    this.firebaseRepServ.getUser(email).then((mNm) => {
-      let user: any = mNm;
-      this.organization = user.organization;
-      this.returnedUser = user;
-
-      this.onMakeAndModel();
-      this.onColor();
-      this.onBattery();
-      this.onDriver();
-      this.onTireSizes();
-    });
-  }
-
   onAdd() {
-    this.asset.generalInformation.ItemGuid = uuidv4();
+    this.asset.ItemGuid = uuidv4();
 
-    this.asset.generalInformation.CaptureName = this.returnedUser.UserFirstName;
-    if (this.asset.generalInformation.ItemMakModGuid)
-      this.asset.generalInformation.ItemMakModGuid =
-        this.asset.generalInformation.ItemMakModGuid['ItemMakModGuid'];
-    if (this.asset.generalInformation.ColourGuid)
-      this.asset.generalInformation.ColourGuid =
-        this.asset.generalInformation.ColourGuid['ColourGuid'];
-    if (this.asset.generalInformation.BatteryGuid)
-      this.asset.generalInformation.BatteryGuid =
-        this.asset.generalInformation.BatteryGuid['BatteryGuid'];
-    if (this.asset.generalInformation.StaffGuid)
-      this.asset.generalInformation.StaffGuid =
-        this.asset.generalInformation.StaffGuid['StaffGuid'];
-    if (this.asset.generalInformation.FrontTyreGuid)
-      this.asset.generalInformation.FrontTyreGuid =
-        this.asset.generalInformation.FrontTyreGuid['TyreSizeGuid'];
-    if (this.asset.generalInformation.RearTyreGuid)
-      this.asset.generalInformation.RearTyreGuid =
-        this.asset.generalInformation.RearTyreGuid['TyreSizeGuid'];
+    this.asset.CaptureName = this.returnedUser.UserFirstName;
+    if (this.asset.ItemMakModGuid)
+      this.asset.ItemMakModGuid = this.asset.ItemMakModGuid['ItemMakModGuid'];
+    if (this.asset.ColourGuid)
+      this.asset.ColourGuid = this.asset.ColourGuid['ColourGuid'];
+    if (this.asset.BatteryGuid)
+      this.asset.BatteryGuid = this.asset.BatteryGuid['BatteryGuid'];
+    if (this.asset.StaffGuid)
+      this.asset.StaffGuid = this.asset.StaffGuid['StaffGuid'];
+    if (this.asset.FrontTyreGuid)
+      this.asset.FrontTyreGuid = this.asset.FrontTyreGuid['TyreSizeGuid'];
+    if (this.asset.RearTyreGuid)
+      this.asset.RearTyreGuid = this.asset.RearTyreGuid['TyreSizeGuid'];
 
     this.firebaseService
       .writeData(
         this.organization,
         'Mst_Item',
         Object.assign({}, this.asset),
-        this.asset.generalInformation.ItemGuid,
+        this.asset.ItemGuid,
       )
       .then(() => {
         this.popUp.showToast('Data saved successfully :-)');

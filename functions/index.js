@@ -13,9 +13,9 @@ const db = admin.firestore();
 
 exports.testRead = functions.https.onRequest((rqst, resp) => {
   return corsHandler(rqst, resp, () => {
-    const data = [];
     db.collection("test1")
         .get().then((col) => {
+          const data = [];
           if (col.empty) {
             resp.status(200).send(data);
           }
@@ -52,15 +52,14 @@ exports.registerUser = functions.https.onRequest((rqst, resp) => {
       uid: rqst.body.UserGuid,
       email: rqst.body.UserLogin,
       emailVerified: false,
-      phoneNumber: rqst.body.phoneNumber,
       password: rqst.body.UserPassword,
       displayName: rqst.body.UserFirstName +
       " " + rqst.body.UserSurname,
     })
         .then((userRecord) => {
-          resp.status(200).send({displayName: userRecord.displayName});
+          resp.send({displayName: userRecord.displayName});
         }, (rej) => resp.send(rej)).catch((err) => {
-          resp.status(500).send(err.message);
+          resp.status(500).send(err);
           console.log("Error creating new user:", err.message);
         });
   });
@@ -84,3 +83,27 @@ exports.getVehiclesCount = functions.https.onRequest((rqst, resp) => {
         });
   });
 });
+
+exports.getRevenue = functions.https.onRequest((rqst, resp) => {
+  return corsHandler(rqst, resp, () => {
+    db.collection(rqst.body.organisation + "/Trn_Revenue/tables")
+        .limit(4)
+        .get().then((col) => {
+          const data = [];
+          if (col.empty) {
+            resp.status(200).send(data);
+          }
+          col.docs.forEach((doc, i) => {
+            data.push(doc.data());
+            if (i+1 === col.docs.length) {
+              resp.status(200).send(data);
+            }
+          });
+        }, (rej) => resp.send(rej))
+        .catch((err) => {
+          resp.status(500).send(err.message);
+          functions.logger.error(err.message);
+        });
+  });
+});
+

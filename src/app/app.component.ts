@@ -16,19 +16,19 @@ export class AppComponent {
   public appPages = [
     {
       title: 'Dashboard',
-      url: 'dashboard',
+      url: 'main/dashboard',
       icon: 'assets/imgs/dash.svg',
       icona: 'assets/imgs/dasha.svg',
     },
     {
       title: 'Assets',
-      url: 'assetdetail',
+      url: 'main/assetdetail',
       icon: 'assets/imgs/asts.svg',
       icona: 'assets/imgs/astsa.svg',
     },
     {
       title: 'Vehicles',
-      url: 'monthlyvehiclereport',
+      url: 'main/monthlyvehiclereport',
       icon: 'assets/imgs/vehicles.svg',
       icona: 'assets/imgs/vehiclesa.svg',
     },
@@ -36,41 +36,41 @@ export class AppComponent {
       title: 'Inspections',
       icon: 'assets/imgs/inspections.svg',
       icona: 'assets/imgs/inspectionsa.svg',
-      url: 'licensecor',
+      url: 'main/licensecor',
     },
     {
       title: 'Maintenance',
       icon: 'assets/imgs/maintain.svg',
       icona: 'assets/imgs/maintaina.svg',
-      url: 'repairhistory',
+      url: 'main/repairhistory',
     },
     {
       title: 'Revenue',
       icon: 'assets/imgs/revenue.svg',
       icona: 'assets/imgs/revenuea.svg',
-      url: 'revenue',
+      url: 'main/revenue',
     },
     {
       title: 'Costs',
       icon: 'assets/imgs/revenue.svg',
       icona: 'assets/imgs/revenuea.svg',
-      url: 'revenucosts',
+      url: 'main/revenucosts',
     },
     {
       title: 'Issues',
       icon: 'assets/imgs/issues.svg',
       icona: 'assets/imgs/issuesa.svg',
-      url: 'storeissue',
+      url: 'main/storeissue',
     },
     {
       title: 'Staff',
       icon: 'assets/imgs/users.svg',
       icona: 'assets/imgs/usersa.svg',
-      url: 'stafftimesheets',
+      url: 'main/stafftimesheets',
     },
     {
       title: 'Imports',
-      url: 'absaimport',
+      url: 'main/absaimport',
       icon: 'assets/imgs/asts.svg',
       icona: 'assets/imgs/astsa.svg',
     },
@@ -89,18 +89,18 @@ export class AppComponent {
   }
 
   async loginCheck() {
-    this.getUserEmail();
-    this.firebaseService.menuEmitter.subscribe((rand) => {
-      if (!rand) {
-        this.showMenu = false;
-        this.nav.navigateRoot('sign-in');
-      } else {
-        this.getUserName();
+    this.auth.authState.subscribe((menu) => {
+      if (menu) {
         this.getUserEmail();
         this.showMenu = true;
-        setTimeout(() => {
-          window.location.reload();
-        }, 500);
+        this.firebaseService.menuEmitter.subscribe((rand) => {
+          setTimeout(() => {
+            window.location.reload();
+          }, 500);
+        });
+      } else {
+        this.showMenu = false;
+        this.nav.navigateRoot('main/sign-in');
       }
     });
   }
@@ -118,39 +118,7 @@ export class AppComponent {
   }
 
   logout() {
-    let x = this.auth.signOut();
     this.firebaseService.setloggedInState(false);
-  }
-
-  goAddAssetsInfo() {
-    this.nav.navigateForward('assetdetail');
-  }
-
-  goFleet() {
-    this.nav.navigateForward('fleet');
-  }
-
-  goMaintanance() {
-    this.nav.navigateForward('jobcard');
-  }
-
-  goRevenue() {
-    this.nav.navigateForward('revenue');
-  }
-
-  goCosts() {
-    this.nav.navigateForward('revenucosts');
-  }
-
-  goIssues() {
-    this.nav.navigateForward('addissuesinfo');
-  }
-
-  goStaff() {
-    this.nav.navigateForward('stafftimesheets');
-  }
-
-  goImports() {
-    this.nav.navigateForward('autocardetails');
+    this.auth.signOut();
   }
 }
