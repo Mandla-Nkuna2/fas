@@ -124,6 +124,7 @@ export class RevenucostsPage implements OnInit {
         this.onTypeCapacityLeft();
         this.onItemMakMod();
         this.onLocationLeft();
+        this.onAssetCategory();
       });
   }
 
@@ -152,6 +153,21 @@ export class RevenucostsPage implements OnInit {
       if (obj.ItemTypeCap)
         obj.displayName = obj.displayName + ' / ' + obj.ItemTypeCap;
     });
+  }
+
+  onAssetCategory() {
+    console.log(this.runningCosts);
+    this.firebaseGetServ
+      .getAssetCategoryLeft(this.organization)
+      .then((mNm: any) => {
+        mNm.forEach((elm) => {
+          this.runningCosts.forEach((obj) => {
+            if (elm.assetCatUuid == obj.ItemCatg) {
+              obj.catName = elm.assetCatName;
+            }
+          });
+        });
+      });
   }
 
   onLocationLeft() {
