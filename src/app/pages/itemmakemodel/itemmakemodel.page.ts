@@ -65,36 +65,6 @@ export class ItemmakemodelPage implements OnInit {
     });
   }
 
-  onMake() {
-    this.firebaseGetServ
-      .getAssetMakeModMake(this.organization)
-      .then((mNm: any) => {
-        this.makes = mNm;
-      });
-  }
-  onMakeLeft() {
-    this.firebaseGetServ
-      .getAssetMakeModMakeLeft(this.organization)
-      .then((mNm: any) => {
-        this.makes = mNm;
-      });
-  }
-
-  onModel() {
-    this.firebaseGetServ
-      .getAssetMakeModMod(this.organization)
-      .then((mNm: any) => {
-        this.models = mNm;
-      });
-  }
-  onModelLeft() {
-    this.firebaseGetServ
-      .getAssetMakeModModleft(this.organization)
-      .then((mNm: any) => {
-        this.models = mNm;
-      });
-  }
-
   onFuelType() {
     this.firebaseGetServ.getFuelType(this.organization).then((mNm: any) => {
       this.fuelTypes = mNm;
@@ -122,8 +92,6 @@ export class ItemmakemodelPage implements OnInit {
       this.returnedUser = user;
 
       this.onTableRep();
-      this.onMake();
-      this.onModel();
       this.onFuelType();
     });
   }
@@ -131,11 +99,8 @@ export class ItemmakemodelPage implements OnInit {
   onAdd() {
     this.item.ItemMakModGuid = uuidv4();
     this.item.CapName = this.returnedUser.UserFirstName;
+    this.item.Active = 'Y';
 
-    if (this.item.ItemMake)
-      this.item.ItemMake = this.item.ItemMake['ItemMakModGuid'];
-    if (this.item.ItemModel)
-      this.item.ItemModel = this.item.ItemModel['ItemMakModGuid'];
     if (this.item.FuelTypeGuid)
       this.item.FuelTypeGuid = this.item.FuelTypeGuid['FuelTypeGuid'];
 

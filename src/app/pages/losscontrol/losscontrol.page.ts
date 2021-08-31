@@ -183,6 +183,12 @@ export class LosscontrolPage implements OnInit {
     this.lossControl.LossContGuid = uuidv4();
     this.lossControl.Capturename = this.returnedUser.UserFirstName;
 
+    let count = 0;
+    this.lossControls.forEach((elm) => {
+      count = elm.LossControlNo;
+    });
+    this.lossControl.LossControlNo = count + 1;
+
     if (this.lossControl.Agentguid)
       this.lossControl.Agentguid = this.lossControl.Agentguid['StaffGuid'];
     if (this.lossControl.Itemguid)

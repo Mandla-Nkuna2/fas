@@ -546,6 +546,13 @@ const routes: Routes = [
             (m) => m.ServschedulePageModule,
           ),
       },
+      {
+        path: 'addstaffinfo',
+        loadChildren: () =>
+          import('../addstaffinfo/addstaffinfo.module').then(
+            (m) => m.AddstaffinfoPageModule,
+          ),
+      },
     ],
   },
   {

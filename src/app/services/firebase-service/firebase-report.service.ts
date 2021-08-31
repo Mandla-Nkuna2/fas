@@ -611,7 +611,8 @@ export class FirebaseReportService {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection(organization + '/Sup_ItemMakMod/tables')
-        .ref.limit(limVal)
+        .ref.orderBy('CapDate', 'desc')
+        .limit(limVal)
         .get()
         .then((obj) => {
           let data = [];

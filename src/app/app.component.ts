@@ -118,7 +118,6 @@ export class AppComponent {
   }
 
   logout() {
-    this.firebaseService.setloggedInState(false);
     this.auth.signOut();
   }
 }

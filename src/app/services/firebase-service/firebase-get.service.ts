@@ -64,6 +64,28 @@ export class FirebaseGetService {
     return promise;
   }
 
+  getAssetCategoryLeft(organization) {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection(organization + '/AssetCategory/tables')
+        .ref.get()
+        .then((mNm) => {
+          let data = [];
+          mNm.docs.forEach((mNm) => {
+            data.push({
+              assetCatUuid: mNm.get('assetCatUuid'),
+              assetCatName: mNm.get('assetCatName'),
+            });
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+
   getColor(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
@@ -241,6 +263,28 @@ export class FirebaseGetService {
             });
           });
           resolve(size);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+
+  getMeterTypeLeft(organization) {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection(organization + '/MeterTypes/tables')
+        .ref.get()
+        .then((mNm) => {
+          let data = [];
+          mNm.docs.forEach((mNm) => {
+            data.push({
+              meterTypeUuid: mNm.get('meterTypeUuid'),
+              meterTypeName: mNm.get('meterTypeName'),
+            });
+          });
+          resolve(data);
         })
         .catch((err) => {
           reject(err);
@@ -1270,6 +1314,7 @@ export class FirebaseGetService {
               ItemTypeNameGuid: mNm.get('ItemTypeNameGuid'),
               ItemTypeClassGuid: mNm.get('ItemTypeClassGuid'),
               ItemTypeCapGuid: mNm.get('ItemTypeCapGuid'),
+              ItemTypeUnit: mNm.get('ItemTypeUnit'),
             });
           });
           resolve(data);

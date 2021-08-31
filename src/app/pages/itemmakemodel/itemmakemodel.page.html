@@ -80,7 +80,7 @@
               <p>{{ item.Transmission }}</p>
             </ion-col>
             <ion-col size="1" class="flex al-center jc-center">
-              <p>{{ item.FuelConsump | number : '1.0-0' }}</p>
+              <p>{{ item.FuelConsump }}</p>
             </ion-col>
             <ion-col size="1" class="flex al-center jc-center">
               <p>{{ item.FuelCap | number : '1.0-0' }}</p>
@@ -114,39 +114,21 @@
             <div class="item-input">
               <ion-label>Make</ion-label>
               <ion-item>
-                <ionic-selectable
-                  [(ngModel)]="item.ItemMake"
-                  [items]="makes"
-                  itemValueField="ItemMakModGuid"
-                  itemTextField="ItemMake"
-                  [canSearch]="true"
-                  [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onMakeLeft()"
-                >
-                </ionic-selectable>
+                <ion-input [(ngModel)]="item.ItemMake"> </ion-input>
               </ion-item>
             </div>
           </ion-col>
 
-          <ion-col size="3.5">
+          <ion-col size="3.5" offset="0.5">
             <div class="item-input">
               <ion-label>Model</ion-label>
               <ion-item>
-                <ionic-selectable
-                  [(ngModel)]="item.ItemModel"
-                  [items]="models"
-                  itemValueField="ItemMakModGuid"
-                  itemTextField="ItemModel"
-                  [canSearch]="true"
-                  [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onModelLeft()"
-                >
-                </ionic-selectable>
+                <ion-input [(ngModel)]="item.ItemModel"> </ion-input>
               </ion-item>
             </div>
           </ion-col>
 
-          <ion-col size="3.5">
+          <ion-col size="3.5" offset="0.5">
             <div class="item-input">
               <ion-label>Fuel consumpt</ion-label>
               <ion-item lines="none">
@@ -206,7 +188,7 @@
             </div>
           </ion-col>
 
-          <ion-col size="2.6">
+          <ion-col size="2.6" offset="0.5">
             <div class="item-input">
               <ion-label>Power output</ion-label>
               <ion-item lines="none">

@@ -107,9 +107,6 @@
                   type="text"
                   [(ngModel)]="staff.StaffCode"
                 ></ion-input>
-                <div class="end-slot flex al-center jc-center" slot="end">
-                  <p>/unit</p>
-                </div>
               </ion-item>
             </div>
           </ion-col>
@@ -187,6 +184,7 @@
               <ion-item lines="none">
                 <ion-datetime
                   display-format="MMM DD YYYY"
+                  max="2026-12-31"
                   [(ngModel)]="staff.PDP_ExpDate"
                 ></ion-datetime>
               </ion-item>
@@ -316,6 +314,7 @@
               <ion-item lines="none">
                 <ion-datetime
                   display-format="MMM DD YYYY"
+                  max="2026-12-31"
                   [(ngModel)]="staff.Lic_ExpDate"
                 ></ion-datetime>
               </ion-item>

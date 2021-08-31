@@ -26,8 +26,9 @@ export class AddassetsPage implements OnInit {
   batteries: any = [];
   batteryMake: any = [];
   drivers: any = [];
-  meterTypes: any = ['HOUR', 'KM', 'N/A'];
-  categories: any = ['MAJOR EQUIPMENT', 'METERLESS EQUIPMENT', 'VEHICLES'];
+  meterTypes: any = [];
+  categories: any = [];
+  votecodes: any = [];
 
   drop: false;
   returnedUser: any;
@@ -60,10 +61,13 @@ export class AddassetsPage implements OnInit {
 
       this.onMakeAndModel();
       this.onAssetType();
+      this.onCategory();
       this.onColor();
       this.onBattery();
       this.onDriver();
       this.onTireSizes();
+      this.onMeterType();
+      this.onVotecode();
     });
   }
 
@@ -130,7 +134,7 @@ export class AddassetsPage implements OnInit {
         mNm.forEach((elm) => {
           this.assetTypes.forEach((obj) => {
             if (elm.ItemTypeCapGuid == obj.ItemTypeCapGuid) {
-              obj.ItemTypeCap = elm.ItemTypeCap;
+              obj.ItemTypeCap = elm.ItemTypeCap + ' ' + obj.ItemTypeUnit;
             }
           });
         });
@@ -143,11 +147,19 @@ export class AddassetsPage implements OnInit {
       obj.displayName = obj.ItemTypeName;
 
       if (obj.ItemTypeClass)
-        obj.displayName = obj.ItemTypeName + ' / ' + obj.ItemTypeClass;
+        obj.displayName = obj.displayName + ' / ' + obj.ItemTypeClass;
 
       if (obj.ItemTypeCap)
-        obj.displayName = obj.ItemTypeName + ' / ' + obj.ItemTypeCap;
+        obj.displayName = obj.displayName + ' / ' + obj.ItemTypeCap;
     });
+  }
+
+  onCategory() {
+    this.firebaseGetServ
+      .getAssetCategoryLeft(this.organization)
+      .then((mNm: any) => {
+        this.categories = mNm;
+      });
   }
 
   onColor() {
@@ -216,12 +228,37 @@ export class AddassetsPage implements OnInit {
       });
   }
 
+  onMeterType() {
+    this.firebaseGetServ
+      .getMeterTypeLeft(this.organization)
+      .then((mNm: any) => {
+        this.meterTypes = mNm;
+      });
+  }
+
+  onVotecode() {
+    this.firebaseGetServ.getVoteCodes(this.organization).then((mNm: any) => {
+      this.votecodes = mNm;
+    });
+  }
+  onVotecodeLeft() {
+    this.firebaseGetServ
+      .getVoteCodesLeft(this.organization)
+      .then((mNm: any) => {
+        this.votecodes = mNm;
+      });
+  }
+
   onAdd() {
     this.asset.ItemGuid = uuidv4();
 
     this.asset.CaptureName = this.returnedUser.UserFirstName;
     if (this.asset.ItemMakModGuid)
       this.asset.ItemMakModGuid = this.asset.ItemMakModGuid['ItemMakModGuid'];
+    if (this.asset.ItemTypeGuid)
+      this.asset.ItemTypeGuid = this.asset.ItemTypeGuid['ItemTypeGuid'];
+    if (this.asset.ItemCatg)
+      this.asset.ItemCatg = this.asset.ItemCatg['assetCatUuid'];
     if (this.asset.ColourGuid)
       this.asset.ColourGuid = this.asset.ColourGuid['ColourGuid'];
     if (this.asset.BatteryGuid)
@@ -232,6 +269,10 @@ export class AddassetsPage implements OnInit {
       this.asset.FrontTyreGuid = this.asset.FrontTyreGuid['TyreSizeGuid'];
     if (this.asset.RearTyreGuid)
       this.asset.RearTyreGuid = this.asset.RearTyreGuid['TyreSizeGuid'];
+    if (this.asset.MeterType)
+      this.asset.MeterType = this.asset.MeterType['meterTypeUuid'];
+    if (this.asset.Votecode)
+      this.asset.Votecode = this.asset.Votecode['VoteCodeGuid'];
 
     this.firebaseService
       .writeData(

@@ -86,9 +86,7 @@ export class ComponentnamePage implements OnInit {
   onAdd() {
     this.componentName.CompNameGuid = uuidv4();
     this.componentName.CapName = this.returnedUser.UserFirstName;
-
-    // if (this.componentName.UserGroupGuid)
-    //   this.componentName.UserGroupGuid = this.componentName.UserGroupGuid['UserGroupGuid'];
+    this.componentName.Active = 'Y';
 
     this.firebaseService
       .writeData(

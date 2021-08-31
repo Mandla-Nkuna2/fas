@@ -29,17 +29,6 @@
         <h3>General Information</h3>
       </div>
 
-      <!-- <ion-item>
-          <ion-label>Port</ion-label>
-          <ionic-selectable
-            [items]="colors"
-            itemTextField="color"
-            [canSearch]="true"
-            (onChange)="onDropChange($event)"
-          >
-          </ionic-selectable>
-        </ion-item> -->
-
       <div class="the-form">
         <ion-grid fixed>
           <ion-row>
@@ -90,6 +79,9 @@
                   <ionic-selectable
                     [(ngModel)]="asset.ItemCatg"
                     [items]="categories"
+                    itemValueField="assetCatUuid"
+                    itemTextField="assetCatName"
+                    [canSearch]="true"
                   >
                   </ionic-selectable>
                 </ion-item>
@@ -164,7 +156,7 @@
             </ion-col>
             <ion-col size="3.5">
               <div class="item-input">
-                <ion-label>Front Tyres</ion-label>
+                <ion-label>Front Tyre Size</ion-label>
                 <ion-item>
                   <ionic-selectable
                     [(ngModel)]="asset.FrontTyreGuid"
@@ -181,7 +173,7 @@
             </ion-col>
             <ion-col size="3.5" offset="0.5">
               <div class="item-input">
-                <ion-label>Rear Tyres</ion-label>
+                <ion-label>Rear Tyre Size</ion-label>
                 <ion-item>
                   <ionic-selectable
                     [(ngModel)]="asset.RearTyreGuid"
@@ -216,6 +208,9 @@
                   <ionic-selectable
                     [(ngModel)]="asset.MeterType"
                     [items]="meterTypes"
+                    itemValueField="meterTypeUuid"
+                    itemTextField="meterTypeName"
+                    [canSearch]="true"
                   >
                   </ionic-selectable>
                 </ion-item>
@@ -255,7 +250,7 @@
                 <ion-label>Licence Expiry Date</ion-label>
                 <ion-item lines="none">
                   <ion-datetime
-                    display-format="MMM DD YYYY hh:mm a"
+                    display-format="MMM DD YYYY"
                     max="2025"
                     [(ngModel)]="asset.LicenceDate"
                   ></ion-datetime>
@@ -373,10 +368,16 @@
               <div class="item-input">
                 <ion-label>Votecode</ion-label>
                 <ion-item lines="none">
-                  <ion-input
-                    type="text"
+                  <ionic-selectable
                     [(ngModel)]="asset.Votecode"
-                  ></ion-input>
+                    [items]="votecodes"
+                    itemValueField="VoteCodeGuid"
+                    itemTextField="Votecode"
+                    [canSearch]="true"
+                    [hasInfiniteScroll]="true"
+                    (onInfiniteScroll)="onVotecodeLeft()"
+                  >
+                  </ionic-selectable>
                 </ion-item>
               </div>
             </ion-col>

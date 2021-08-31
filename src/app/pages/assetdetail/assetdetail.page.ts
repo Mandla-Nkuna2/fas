@@ -18,6 +18,7 @@ export class AssetdetailPage implements OnInit {
   assetTypes: any[];
   assetTypeNames: any[];
   makesAndMods: any[];
+  categories: any[];
   returnedUser: any;
 
   constructor(
@@ -55,6 +56,7 @@ export class AssetdetailPage implements OnInit {
           this.assets = mNm;
           this.onAssetType();
           this.onMakeAndMod();
+          this.onAssetCategory();
           this.popUp.dismissLoading();
         })
         .catch((err) => {
@@ -72,12 +74,15 @@ export class AssetdetailPage implements OnInit {
       mNm.forEach((elm) => {
         this.assets.forEach((obj) => {
           if (elm.ItemTypeGuid == obj.ItemTypeGuid) {
-            obj.ItemType = elm.ItemTypeNameGuid;
+            obj.ItemTypeNameGuid = elm.ItemTypeNameGuid;
+            obj.ItemTypeClassGuid = elm.ItemTypeClassGuid;
+            obj.ItemTypeCapGuid = elm.ItemTypeCapGuid;
+            obj.ItemTypeUnit = elm.ItemTypeUnit;
           }
         });
       });
+      this.onAssetTypeName();
     });
-    this.onAssetTypeName();
   }
 
   onAssetTypeName() {
@@ -88,8 +93,65 @@ export class AssetdetailPage implements OnInit {
 
         mNm.forEach((elm) => {
           this.assets.forEach((obj) => {
-            if (elm.ItemTypeNameGuid == obj.ItemType) {
+            if (elm.ItemTypeNameGuid == obj.ItemTypeNameGuid) {
               obj.ItemTypeName = elm.ItemTypeName;
+            }
+          });
+        });
+        this.onTypeClassLeft();
+      });
+  }
+
+  onTypeClassLeft() {
+    this.firebaseGetServ
+      .getItemTypeClassLeft(this.organization)
+      .then((mNm: any) => {
+        mNm.forEach((elm) => {
+          this.assets.forEach((obj) => {
+            if (elm.ItemTypeClassGuid == obj.ItemTypeClassGuid) {
+              obj.ItemTypeClass = elm.ItemTypeClass;
+            }
+          });
+        });
+        this.onTypeCapacityLeft();
+      });
+  }
+
+  onTypeCapacityLeft() {
+    this.firebaseGetServ
+      .getTypeCapacityLeft(this.organization)
+      .then((mNm: any) => {
+        mNm.forEach((elm) => {
+          this.assets.forEach((obj) => {
+            if (elm.ItemTypeCapGuid == obj.ItemTypeCapGuid) {
+              obj.ItemTypeCap = elm.ItemTypeCap + ' ' + obj.ItemTypeUnit;
+            }
+          });
+        });
+        this.onTypeDsplyName();
+      });
+  }
+
+  onTypeDsplyName() {
+    this.assets.forEach((obj) => {
+      obj.displayName = obj.ItemTypeName;
+
+      if (obj.ItemTypeClass)
+        obj.displayName = obj.displayName + ' / ' + obj.ItemTypeClass;
+
+      if (obj.ItemTypeCap)
+        obj.displayName = obj.displayName + ' / ' + obj.ItemTypeCap;
+    });
+  }
+
+  onAssetCategory() {
+    this.firebaseGetServ
+      .getAssetCategoryLeft(this.organization)
+      .then((mNm: any) => {
+        mNm.forEach((elm) => {
+          this.assets.forEach((obj) => {
+            if (elm.assetCatUuid == obj.ItemCatg) {
+              obj.catName = elm.assetCatName;
             }
           });
         });

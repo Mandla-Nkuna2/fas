@@ -50,9 +50,7 @@ export class RevenucostsPage implements OnInit {
         .getAsset(this.organization)
         .then((mNm: any) => {
           this.runningCosts = mNm;
-          this.onItemTypeLeft();
-          this.onItemMakMod();
-          this.onLocationLeft();
+          this.onAssetType();
           this.popUp.dismissLoading();
         })
         .catch((err) => {
@@ -79,43 +77,87 @@ export class RevenucostsPage implements OnInit {
       });
   }
 
-  onItemTypeLeft() {
+  onAssetType() {
     this.firebaseGetServ.getItemType(this.organization).then((mNm: any) => {
       this.itemTypes = mNm;
 
       mNm.forEach((elm) => {
         this.runningCosts.forEach((obj) => {
           if (elm.ItemTypeGuid == obj.ItemTypeGuid) {
-            obj.ItemType = elm.ItemTypeNameGuid;
+            obj.ItemTypeNameGuid = elm.ItemTypeNameGuid;
+            obj.ItemTypeClassGuid = elm.ItemTypeClassGuid;
+            obj.ItemTypeCapGuid = elm.ItemTypeCapGuid;
+            obj.ItemTypeUnit = elm.ItemTypeUnit;
           }
         });
       });
+      this.onAssetTypeName();
     });
-    this.onItemTypeNameLeft();
   }
 
-  onItemTypeNameLeft() {
+  onAssetTypeName() {
     this.firebaseGetServ
       .getAssetTypeNameLeft(this.organization)
       .then((mNm: any) => {
-        this.itemTypes = mNm;
-
         mNm.forEach((elm) => {
           this.runningCosts.forEach((obj) => {
-            if (elm.ItemTypeNameGuid == obj.ItemType) {
+            if (elm.ItemTypeNameGuid == obj.ItemTypeNameGuid) {
               obj.ItemTypeName = elm.ItemTypeName;
             }
           });
         });
+        this.onTypeClassLeft();
       });
+  }
+
+  onTypeClassLeft() {
+    this.firebaseGetServ
+      .getItemTypeClassLeft(this.organization)
+      .then((mNm: any) => {
+        mNm.forEach((elm) => {
+          this.runningCosts.forEach((obj) => {
+            if (elm.ItemTypeClassGuid == obj.ItemTypeClassGuid) {
+              obj.ItemTypeClass = elm.ItemTypeClass;
+            }
+          });
+        });
+        this.onTypeCapacityLeft();
+        this.onItemMakMod();
+        this.onLocationLeft();
+      });
+  }
+
+  onTypeCapacityLeft() {
+    this.firebaseGetServ
+      .getTypeCapacityLeft(this.organization)
+      .then((mNm: any) => {
+        mNm.forEach((elm) => {
+          this.runningCosts.forEach((obj) => {
+            if (elm.ItemTypeCapGuid == obj.ItemTypeCapGuid) {
+              obj.ItemTypeCap = elm.ItemTypeCap + ' ' + obj.ItemTypeUnit;
+            }
+          });
+        });
+        this.onTypeDsplyName();
+      });
+  }
+
+  onTypeDsplyName() {
+    this.runningCosts.forEach((obj) => {
+      obj.displayName = obj.ItemTypeName;
+
+      if (obj.ItemTypeClass)
+        obj.displayName = obj.displayName + ' / ' + obj.ItemTypeClass;
+
+      if (obj.ItemTypeCap)
+        obj.displayName = obj.displayName + ' / ' + obj.ItemTypeCap;
+    });
   }
 
   onLocationLeft() {
     this.firebaseRepServ
       .getLocationsLeft(this.organization)
       .then((mNm: any) => {
-        this.locations = mNm;
-
         mNm.forEach((elm) => {
           this.runningCosts.forEach((obj) => {
             if (elm.LocItemCode == obj.LocItemCode) {

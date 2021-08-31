@@ -1,5 +1,10 @@
 <ion-content class="ion-padding">
   <div class="title-holder flex al-center">
+    <ion-back-button
+      defaultHref="main/assetdetail"
+      mode="ios"
+      text=""
+    ></ion-back-button>
     <h2>Add Information</h2>
   </div>
 
@@ -41,82 +46,134 @@
       <div class="item-input">
         <ion-row>
           <ion-col size="10">
-            <ion-label>Add Type</ion-label>
+            <ion-label>Add Asset Type Name</ion-label>
             <ion-row>
               <ion-col>
                 <ion-label>Name</ion-label>
                 <ion-item>
                   <ion-input
-                    [(ngModel)]="itemType.ItemTypeNameGuid"
+                    [(ngModel)]="itemTypeName.ItemTypeName"
                   ></ion-input>
-                </ion-item>
-              </ion-col>
-              <ion-col>
-                <ion-label>Class</ion-label>
-                <ion-item>
-                  <ionic-selectable
-                    [(ngModel)]="itemType.ItemTypeClassGuid"
-                    [items]="classes"
-                    itemValueField="ItemTypeClassGuid"
-                    itemTextField="ItemTypeClass"
-                    [canSearch]="true"
-                    [hasInfiniteScroll]="true"
-                    (onInfiniteScroll)="onClassLeft()"
-                  >
-                  </ionic-selectable>
                 </ion-item>
               </ion-col>
             </ion-row>
           </ion-col>
           <ion-col size="2" class="flex al-end jc-end">
-            <ion-button expand="block" (click)="onAddItemType()">
+            <ion-button expand="block" (click)="onAddAssetTypeName()">
               Add
             </ion-button>
           </ion-col>
         </ion-row>
       </div>
 
-      <!-- <div class="item-input">
+      <div class="item-input">
+        <ion-row>
+          <ion-col size="10">
+            <ion-label>Add Asset Type Class</ion-label>
+            <ion-row>
+              <ion-col>
+                <ion-label>Class</ion-label>
+                <ion-item>
+                  <ion-input
+                    [(ngModel)]="itemTypeClass.ItemTypeClass"
+                  ></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+          <ion-col size="2" class="flex al-end jc-end">
+            <ion-button expand="block" (click)="onAddAssetTypeClass()">
+              Add
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </div>
+
+      <div class="item-input">
+        <ion-row>
+          <ion-col size="10">
+            <ion-label>Add Asset Type Capacity</ion-label>
+            <ion-row>
+              <ion-col>
+                <ion-label>Capacity</ion-label>
+                <ion-item>
+                  <ion-input [(ngModel)]="itemTypeCap.ItemTypeCap"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+          <ion-col size="2" class="flex al-end jc-end">
+            <ion-button expand="block" (click)="onAddAssetTypeCap()">
+              Add
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </div>
+
+      <div class="item-input">
         <ion-row>
           <ion-col size="10">
             <ion-label>Add Category</ion-label>
             <ion-item lines="none">
-              <ion-input value="Vehicles"> </ion-input>
+              <ion-input [(ngModel)]="assetCat.assetCatName"></ion-input>
             </ion-item>
           </ion-col>
 
           <ion-col size="2" class="flex al-end jc-end">
-            <ion-button expand="block"> Add </ion-button>
+            <ion-button expand="block" (click)="onAddAssetCat()">
+              Add
+            </ion-button>
           </ion-col>
         </ion-row>
-      </div> -->
-
-      <!-- <div class="item-input">
-        <ion-row>
-          <ion-col size="10">
-            <ion-label>Add Meter Type</ion-label>
-            <ion-item lines="none">
-              <ion-input value="KM"> </ion-input>
-            </ion-item>
-          </ion-col>
-
-          <ion-col size="2" class="flex al-end jc-end">
-            <ion-button expand="block"> Add </ion-button>
-          </ion-col>
-        </ion-row>
-      </div> -->
+      </div>
 
       <div class="item-input">
         <ion-row>
           <ion-col size="10">
             <ion-label>Add Colour</ion-label>
             <ion-item lines="none">
-              <ion-input value="Red" [(ngModel)]="itemColor.Colour">
-              </ion-input>
+              <ion-input [(ngModel)]="itemColor.Colour"> </ion-input>
             </ion-item>
           </ion-col>
           <ion-col size="2" class="flex al-end jc-end">
             <ion-button expand="block" (click)="onAddItemColor()">
+              Add
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </div>
+
+      <div class="item-input">
+        <ion-row>
+          <ion-col size="10">
+            <ion-label>Add Meter Type</ion-label>
+            <ion-item lines="none">
+              <ion-input [(ngModel)]="meterType.meterTypeName"> </ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="2" class="flex al-end jc-end">
+            <ion-button expand="block" (click)="onAddMeterType()">
+              Add
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </div>
+
+      <div class="item-input">
+        <ion-row>
+          <ion-col size="10">
+            <ion-label>Add Fuel Type</ion-label>
+            <ion-row>
+              <ion-col>
+                <ion-label>Fuel Type</ion-label>
+                <ion-item>
+                  <ion-input [(ngModel)]="fuelType.FuelType"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+          <ion-col size="2" class="flex al-end jc-end">
+            <ion-button expand="block" (click)="onAddFuelType()">
               Add
             </ion-button>
           </ion-col>
@@ -157,17 +214,18 @@
         </ion-row>
       </div>
 
-      <!-- <div class="item-input">
+      <div class="item-input">
         <ion-row>
           <ion-col size="10">
-            <ion-label>Add Front Tyres</ion-label>
+            <ion-label>Add Tyre Size</ion-label>
             <ion-item lines="none">
-              <ion-input value="165X13 / RADIAL / CONTINENTAL"> </ion-input>
+              <ion-input [(ngModel)]="tyreSize.TyreSize"> </ion-input>
             </ion-item>
           </ion-col>
-
           <ion-col size="2" class="flex al-end jc-end">
-            <ion-button expand="block"> Add </ion-button>
+            <ion-button expand="block" (click)="onAddTyreSize()">
+              Add
+            </ion-button>
           </ion-col>
         </ion-row>
       </div>
@@ -175,51 +233,27 @@
       <div class="item-input">
         <ion-row>
           <ion-col size="10">
-            <ion-label>Add Rear Tyres</ion-label>
-            <ion-item lines="none">
-              <ion-input value="165X13 / RADIAL / CONTINENTAL"> </ion-input>
-            </ion-item>
-          </ion-col>
-
-          <ion-col size="2" class="flex al-end jc-end">
-            <ion-button expand="block"> Add </ion-button>
-          </ion-col>
-        </ion-row>
-      </div> -->
-
-      <!-- <div class="item-input">
-        <ion-row>
-          <ion-col size="10">
-            <ion-label>Add Driver</ion-label>
-            <ion-item lines="none">
-              <ion-input value="Botha T"> </ion-input>
-            </ion-item>
-          </ion-col>
-
-          <ion-col size="2" class="flex al-end jc-end">
-            <ion-button expand="block"> Add </ion-button>
-          </ion-col>
-        </ion-row>
-      </div> -->
-
-      <div class="item-input">
-        <ion-row>
-          <ion-col size="10">
             <ion-label>Add Votecode</ion-label>
             <ion-row>
-              <ion-col>
+              <ion-col size="2.2">
                 <ion-label>Votecode</ion-label>
                 <ion-item>
                   <ion-input [(ngModel)]="voteCode.Votecode"></ion-input>
                 </ion-item>
               </ion-col>
-              <ion-col>
+              <ion-col size="3.2">
+                <ion-label>Comment</ion-label>
+                <ion-item>
+                  <ion-input [(ngModel)]="voteCode.Comment"></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col size="2.2">
                 <ion-label>Votecode budget</ion-label>
                 <ion-item>
                   <ion-input [(ngModel)]="voteCode.VotecodeBud"></ion-input>
                 </ion-item>
               </ion-col>
-              <ion-col>
+              <ion-col size="2.2">
                 <ion-label>Votecode date</ion-label>
                 <ion-item lines="none">
                   <ion-datetime
@@ -229,7 +263,7 @@
                   ></ion-datetime>
                 </ion-item>
               </ion-col>
-              <ion-col>
+              <ion-col size="2.2">
                 <ion-label>Min Balance</ion-label>
                 <ion-item>
                   <ion-input [(ngModel)]="voteCode.MinBal"></ion-input>
@@ -239,6 +273,163 @@
           </ion-col>
           <ion-col size="2" class="flex al-end jc-end">
             <ion-button expand="block" (click)="onAddVotecode()">
+              Add
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </div>
+
+      <div class="item-input">
+        <ion-row>
+          <ion-col size="10">
+            <ion-label>Add Component Make</ion-label>
+            <ion-row>
+              <ion-col size="7.6">
+                <ion-label>Make</ion-label>
+                <ion-item>
+                  <ion-input [(ngModel)]="compMake.CompMake"></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col>
+                <ion-label>Active</ion-label>
+                <ion-item>
+                  <ionic-selectable
+                    [(ngModel)]="compMake.Active"
+                    [items]="yesNo"
+                  >
+                  </ionic-selectable>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+          <ion-col size="2" class="flex al-end jc-end">
+            <ion-button expand="block" (click)="onAddCompMake()">
+              Add
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </div>
+
+      <div class="item-input">
+        <ion-row>
+          <ion-col size="10">
+            <ion-label>Add Component Model</ion-label>
+            <ion-row>
+              <ion-col size="7.6">
+                <ion-label>Model</ion-label>
+                <ion-item>
+                  <ion-input [(ngModel)]="compModel.CompModel"></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col>
+                <ion-label>Active</ion-label>
+                <ion-item>
+                  <ionic-selectable
+                    [(ngModel)]="compModel.Active"
+                    [items]="yesNo"
+                  >
+                  </ionic-selectable>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+          <ion-col size="2" class="flex al-end jc-end">
+            <ion-button expand="block" (click)="onAddCompModel()">
+              Add
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </div>
+
+      <div class="item-input">
+        <ion-row>
+          <ion-col size="10">
+            <ion-label>Add Service Interval</ion-label>
+            <ion-row>
+              <ion-col size="7.6">
+                <ion-label>Interval</ion-label>
+                <ion-item>
+                  <ion-input [(ngModel)]="servIntvl.ServIntval"></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col>
+                <ion-label>Active</ion-label>
+                <ion-item>
+                  <ionic-selectable
+                    [(ngModel)]="servIntvl.Active"
+                    [items]="yesNo"
+                  >
+                  </ionic-selectable>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+          <ion-col size="2" class="flex al-end jc-end">
+            <ion-button expand="block" (click)="onAddServIntvl()">
+              Add
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </div>
+
+      <div class="item-input">
+        <ion-row>
+          <ion-col size="10">
+            <ion-label>Add Loss Control Type</ion-label>
+            <ion-row>
+              <ion-col size="7.6">
+                <ion-label>Loss Control Type</ion-label>
+                <ion-item>
+                  <ion-input
+                    [(ngModel)]="lossContType.LossContType"
+                  ></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col>
+                <ion-label>Active</ion-label>
+                <ion-item>
+                  <ionic-selectable
+                    [(ngModel)]="lossContType.Active"
+                    [items]="yesNo"
+                  >
+                  </ionic-selectable>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+          <ion-col size="2" class="flex al-end jc-end">
+            <ion-button expand="block" (click)="onAddLossContType()">
+              Add
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </div>
+
+      <div class="item-input">
+        <ion-row>
+          <ion-col size="10">
+            <ion-label>Add Loss Control Action</ion-label>
+            <ion-row>
+              <ion-col size="7.6">
+                <ion-label>Loss Control Action</ion-label>
+                <ion-item>
+                  <ion-input [(ngModel)]="lossContAct.LossContAct"></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col>
+                <ion-label>Active</ion-label>
+                <ion-item>
+                  <ionic-selectable
+                    [(ngModel)]="lossContAct.Active"
+                    [items]="yesNo"
+                  >
+                  </ionic-selectable>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+          <ion-col size="2" class="flex al-end jc-end">
+            <ion-button expand="block" (click)="onAddLossContAct()">
               Add
             </ion-button>
           </ion-col>

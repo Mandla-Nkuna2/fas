@@ -106,26 +106,6 @@
     <div class="the-form">
       <ion-grid fixed>
         <ion-row>
-          <!-- <ion-col size="5">
-            <div class="item-input">
-              <ion-row>
-                <ion-col size="8.5" class="ion-no-padding">
-                  <ion-label>Loss Control No.</ion-label>
-                  <ion-item lines="none">
-                    <ion-input
-                      [(ngModel)]="lossControl.LossControlNo"
-                      disabled
-                    ></ion-input>
-                  </ion-item>
-                </ion-col>
-
-                <ion-col size="3" offset="0.5" class="flex al-end jc-end">
-                  <ion-button expand="block" id="inline"> Generate </ion-button>
-                </ion-col>
-              </ion-row>
-            </div>
-          </ion-col> -->
-
           <ion-col size="3.5">
             <div class="item-input">
               <ion-label>Date Record Opened</ion-label>
@@ -138,7 +118,7 @@
             </div>
           </ion-col>
 
-          <ion-col size="3" offset="0.5">
+          <ion-col size="3.5" offset="0.5">
             <div class="item-input">
               <ion-label>Date Record Closed</ion-label>
               <ion-item lines="none">
@@ -168,7 +148,7 @@
             </div>
           </ion-col>
 
-          <ion-col size="4">
+          <ion-col size="3.5">
             <div class="item-input">
               <!-- <ion-row>
                 <ion-col size="7" class="ion-no-padding"> -->
@@ -196,7 +176,7 @@
             </div>
           </ion-col>
 
-          <ion-col size="3.5">
+          <ion-col size="3.5" offset="0.5">
             <div class="item-input">
               <ion-label>Loss Type</ion-label>
               <ion-item>
@@ -217,14 +197,12 @@
               <ion-label>Loss Date</ion-label>
               <ion-item lines="none">
                 <ion-datetime
-                  display-format="MMM DD YYYY hh:mm a"
+                  display-format="MMM DD YYYY"
                   [(ngModel)]="lossControl.LossDate"
                 ></ion-datetime>
               </ion-item>
             </div>
           </ion-col>
-
-          <ion-col size="3.5" offset="0.5"> </ion-col>
 
           <ion-col size="12">
             <div class="item-input">
@@ -245,9 +223,6 @@
                 <ionic-selectable
                   [(ngModel)]="lossControl.Reported"
                   [items]="yesNo"
-                  [canSearch]="true"
-                  [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onRegistrationLeft()"
                 >
                 </ionic-selectable>
               </ion-item>
@@ -277,7 +252,7 @@
                   itemTextField="StaffCode"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onRegistrationLeft()"
+                  (onInfiniteScroll)="onAgentLeft()"
                 >
                 </ionic-selectable>
               </ion-item>
@@ -323,8 +298,6 @@
                     <ionic-selectable
                       [(ngModel)]="lossControl.TripAut"
                       [items]="yesNo"
-                      [canSearch]="true"
-                      [hasInfiniteScroll]="true"
                     >
                     </ionic-selectable>
                   </ion-item>
@@ -345,7 +318,7 @@
               <ion-item lines="none">
                 <ion-datetime
                   display-format="MMM DD YYYY"
-                  [(ngModel)]="lossControl.DateReported"
+                  [(ngModel)]="lossControl.Policerepdate"
                 ></ion-datetime>
               </ion-item>
             </div>

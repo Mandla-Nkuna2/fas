@@ -21,8 +21,8 @@ export class ItemtypePage implements OnInit {
   typeNames: any[];
   typeClass: any[];
   typeCapacity: any[];
-
-  typeUnit = [
+  typeUnit: string;
+  typeUnits = [
     'cc',
     'cfm',
     'kg',

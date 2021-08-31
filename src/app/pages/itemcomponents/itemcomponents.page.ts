@@ -191,9 +191,8 @@ export class ItemcomponentsPage implements OnInit {
     this.itemComponent.ItemCompGuid = uuidv4();
     this.itemComponent.Capturename = this.returnedUser.UserFirstName;
 
-    if (this.itemComponent.ItemCompGuid)
-      this.itemComponent.ItemCompGuid =
-        this.itemComponent.ItemCompGuid['ItemGuid'];
+    if (this.itemComponent.ItemGuid)
+      this.itemComponent.ItemGuid = this.itemComponent.ItemGuid['ItemGuid'];
     if (this.itemComponent.CompNameGuid)
       this.itemComponent.CompNameGuid =
         this.itemComponent.CompNameGuid['CompNameGuid'];

@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 const cors = require("cors");
@@ -68,7 +69,7 @@ exports.registerUser = functions.https.onRequest((rqst, resp) => {
 exports.getVehiclesCount = functions.https.onRequest((rqst, resp) => {
   return corsHandler(rqst, resp, () => {
     db.collection(rqst.body.organisation + "/Mst_Item/tables")
-        .where("ItemCatg", "==", "VEHICLES")
+        // .where("ItemCatg", "==", "VEHICLES")
         .get().then((col) => {
           const count = {val: 0};
           if (col.empty) {

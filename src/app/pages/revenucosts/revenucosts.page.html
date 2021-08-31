@@ -101,7 +101,7 @@
           <ion-col size="1.5" class="flex al-center jc-center">
             <h4>Registration</h4>
           </ion-col>
-          <ion-col size="2" class="flex al-center jc-center">
+          <ion-col size="3" class="flex al-center jc-center">
             <h4>Type</h4>
           </ion-col>
           <ion-col size="2" class="flex al-center jc-center">
@@ -110,10 +110,10 @@
           <ion-col size="2" class="flex al-center jc-center">
             <h4>Make & Mod.</h4>
           </ion-col>
-          <ion-col size="2" class="flex al-center jc-center">
+          <ion-col size="1.5" class="flex al-center jc-center">
             <h4>Meter Offset</h4>
           </ion-col>
-          <ion-col size="2" class="flex al-center jc-center">
+          <ion-col size="1.5" class="flex al-center jc-center">
             <h4>Meter read</h4>
           </ion-col>
         </ion-row>
@@ -128,8 +128,8 @@
             <ion-col size="1.5" class="flex al-center jc-center">
               <p>{{ item.Reg }}</p>
             </ion-col>
-            <ion-col size="2" class="flex al-center jc-center">
-              <p>{{ item.ItemTypeName }}</p>
+            <ion-col size="3" class="flex al-center jc-center">
+              <p>{{ item.displayName }}</p>
             </ion-col>
             <ion-col size="2" class="flex al-center jc-center">
               <p>{{ item.LocItem }}</p>
@@ -137,10 +137,10 @@
             <ion-col size="2" class="flex al-center jc-center">
               <p>{{ item.ItemMakMod }}</p>
             </ion-col>
-            <ion-col size="2" class="flex al-center jc-center">
+            <ion-col size="1.5" class="flex al-center jc-center">
               <p>{{ item.MeterOffset }}</p>
             </ion-col>
-            <ion-col size="2" class="flex al-center jc-center">
+            <ion-col size="1.5" class="flex al-center jc-center">
               <p>{{ item.MeterRead }}</p>
             </ion-col>
           </ion-row>
@@ -257,7 +257,7 @@
         </div>
       </ion-grid>
     </div>
-    <div class="nav-holder">
+    <!-- <div class="nav-holder">
       <ion-row>
         <ion-col size="8"></ion-col>
         <ion-col size="4">
@@ -273,6 +273,6 @@
           </div>
         </ion-col>
       </ion-row>
-    </div>
+    </div> -->
   </div>
 </ion-content>

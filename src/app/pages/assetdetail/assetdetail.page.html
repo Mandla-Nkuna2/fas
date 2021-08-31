@@ -75,10 +75,10 @@
       <ion-grid fixed *ngIf="assets.length; else noItems">
         <ion-row class="title-row">
           <ion-col size="0.5" class="flex al-center jc-center"> </ion-col>
-          <ion-col size="1.5" class="flex al-center jc-center">
+          <ion-col size="1" class="flex al-center jc-center">
             <h4>Item No.</h4>
           </ion-col>
-          <ion-col size="2" class="flex al-center jc-center">
+          <ion-col size="2.5" class="flex al-center jc-center">
             <h4>Asset type</h4>
           </ion-col>
           <ion-col size="2" class="flex al-center jc-center">
@@ -99,14 +99,14 @@
             <ion-col size="0.5" class="flex al-center jc-center">
               <ion-checkbox></ion-checkbox>
             </ion-col>
-            <ion-col size="1.5" class="flex al-center jc-center">
+            <ion-col size="1" class="flex al-center jc-center">
               <p>{{ asset.Reg }}</p>
             </ion-col>
-            <ion-col size="2" class="flex al-center jc-center">
-              <p>{{ asset.ItemTypeName }}</p>
+            <ion-col size="2.5" class="flex al-center jc-center">
+              <p>{{ asset.displayName }}</p>
             </ion-col>
             <ion-col size="2" class="flex al-center jc-center">
-              <p>{{ asset.ItemCatg }}</p>
+              <p>{{ asset.catName }}</p>
             </ion-col>
             <ion-col size="2" class="flex al-center jc-center">
               <p>{{ asset.ItemMakMod }}</p>

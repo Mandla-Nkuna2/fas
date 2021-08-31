@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FleetPage implements OnInit {
   fleet: any = [];
+  currentDate = new Date();
 
   constructor() {}
 
