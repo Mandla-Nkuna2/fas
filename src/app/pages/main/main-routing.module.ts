@@ -528,11 +528,6 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'oiltype',
-        loadChildren: () =>
-          import('../oiltype/oiltype.module').then((m) => m.OiltypePageModule),
-      },
-      {
         path: 'fautorespcode',
         loadChildren: () =>
           import('../fautorespcode/fautorespcode.module').then(
@@ -551,6 +546,20 @@ const routes: Routes = [
         loadChildren: () =>
           import('../addstaffinfo/addstaffinfo.module').then(
             (m) => m.AddstaffinfoPageModule,
+          ),
+      },
+      {
+        path: 'addcostsinfo',
+        loadChildren: () =>
+          import('../addcostsinfo/addcostsinfo.module').then(
+            (m) => m.AddcostsinfoPageModule,
+          ),
+      },
+      {
+        path: 'addsupportdatainfo',
+        loadChildren: () =>
+          import('../addsupportdatainfo/addsupportdatainfo.module').then(
+            (m) => m.AddsupportdatainfoPageModule,
           ),
       },
     ],

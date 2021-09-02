@@ -1,0 +1,159 @@
+<ion-content class="ion-padding">
+  <div class="title-holder flex al-center">
+    <ion-back-button
+      defaultHref="main/clientdetails"
+      mode="ios"
+      text=""
+    ></ion-back-button>
+    <h2>Add Information</h2>
+  </div>
+
+  <div class="the-list">
+    <div class="the-form">
+      <div class="item-input">
+        <ion-row>
+          <ion-col size="10">
+            <ion-label>Add Supplier Category</ion-label>
+            <ion-row>
+              <ion-col>
+                <ion-label>Supplier Category</ion-label>
+                <ion-item>
+                  <ion-input [(ngModel)]="suppCat.SuppCategory"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+          <ion-col size="2" class="flex al-end jc-end">
+            <ion-button expand="block" (click)="AddSuppCat()"> Add </ion-button>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="10">
+            <ion-label>Add Oil Make</ion-label>
+            <ion-row>
+              <ion-col>
+                <ion-label>Oil Make</ion-label>
+                <ion-item>
+                  <ion-input [(ngModel)]="oilMake.OilMake"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+          <ion-col size="2" class="flex al-end jc-end">
+            <ion-button expand="block" (click)="AddOilMake()"> Add </ion-button>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="10">
+            <ion-label>Add Oil Grade</ion-label>
+            <ion-row>
+              <ion-col>
+                <ion-label>Oil Grade</ion-label>
+                <ion-item>
+                  <ion-input [(ngModel)]="oilGrade.OilGrade"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+          <ion-col size="2" class="flex al-end jc-end">
+            <ion-button expand="block" (click)="AddOilGrade()">
+              Add
+            </ion-button>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="10">
+            <ion-label>Add Oil Class</ion-label>
+            <ion-row>
+              <ion-col>
+                <ion-label>Oil Class</ion-label>
+                <ion-item>
+                  <ion-input [(ngModel)]="oilClass.OilClass"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+          <ion-col size="2" class="flex al-end jc-end">
+            <ion-button expand="block" (click)="AddOilClass()">
+              Add
+            </ion-button>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="2.5">
+            <ion-label>Add Oil Type</ion-label>
+            <div class="item-input">
+              <ion-label>Oil make</ion-label>
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="oilType.OilMakeGuid"
+                  [items]="oilMakes"
+                  itemValueField="OilMakeGuid"
+                  itemTextField="OilMake"
+                  [canSearch]="true"
+                >
+                </ionic-selectable>
+              </ion-item>
+            </div>
+          </ion-col>
+
+          <ion-col size="2.5" offset="0.3">
+            <ion-label>.</ion-label>
+            <div class="item-input">
+              <ion-label>Oil grade</ion-label>
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="oilType.OilGradeGuid"
+                  [items]="oilGrades"
+                  itemValueField="OilGradeGuid"
+                  itemTextField="OilGrade"
+                  [canSearch]="true"
+                >
+                </ionic-selectable>
+              </ion-item>
+            </div>
+          </ion-col>
+
+          <ion-col size="2.5" offset="0.3">
+            <ion-label>.</ion-label>
+            <div class="item-input">
+              <ion-label>Oil classification</ion-label>
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="oilType.OilClassGuid"
+                  [items]="oilClasses"
+                  itemValueField="OilClassGuid"
+                  itemTextField="OilClass"
+                  [canSearch]="true"
+                >
+                </ionic-selectable>
+              </ion-item>
+            </div>
+          </ion-col>
+
+          <ion-col size="1.5" offset="0.3">
+            <ion-label>.</ion-label>
+            <div class="item-input">
+              <ion-label>Active</ion-label>
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="oilType.active"
+                  [items]="['Y', 'N']"
+                >
+                </ionic-selectable>
+              </ion-item>
+            </div>
+          </ion-col>
+
+          <ion-col size="2" class="flex al-end jc-end" offset="0.1">
+            <ion-button expand="block" (click)="AddOilType()"> Add </ion-button>
+          </ion-col>
+        </ion-row>
+      </div>
+    </div>
+  </div>
+</ion-content>

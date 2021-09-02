@@ -18,13 +18,17 @@ export class ItemcomponentsPage implements OnInit {
   itemComponent: ItemComponent;
   itemComponents: any[] = [];
 
-  registrations: any[];
+  returnedUser: any;
   currentDate = new Date();
+  registrations: any[];
   assetCompName: any[];
   assetCompMake: any[];
   assetCompModel: any[];
   servIntvl: any[];
-  returnedUser: any;
+  oilTypes: any[];
+  oilMakes: any[];
+  oilGrades: any[];
+  oilClasses: any[];
 
   constructor(
     private navCtrl: NavController,
@@ -41,17 +45,39 @@ export class ItemcomponentsPage implements OnInit {
     this.getCurrentUser();
   }
 
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+      this.returnedUser = user;
+
+      this.onTableRep();
+      this.onRegistration();
+      this.onCompName();
+      this.onComponentMake();
+      this.onComponentModel();
+      this.onServiceIntv();
+    });
+  }
+
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
         .getItemComponents(this.organization)
         .then((mNm: any) => {
+          this.popUp.dismissLoading();
           this.itemComponents = mNm;
           this.onRegistrationLeft();
           this.onCompNameLeft();
           this.onComponentMakeLeft();
           this.onComponentModelLeft();
-          this.popUp.dismissLoading();
+          this.onOilType();
         })
         .catch((err) => {
           this.popUp.dismissLoading().then(() => {
@@ -166,24 +192,68 @@ export class ItemcomponentsPage implements OnInit {
       });
   }
 
-  getCurrentUser() {
-    this.afAuth.user.subscribe((cUser) => {
-      this.getCurrentUserOrg(cUser.email);
+  onOilType() {
+    this.firebaseGetServ.getOilMake(this.organization).then((mNm: any) => {
+      this.oilMakes = mNm;
+    });
+    this.firebaseGetServ.getOilGrade(this.organization).then((mNm: any) => {
+      this.oilGrades = mNm;
+    });
+    this.firebaseGetServ.getOilClass(this.organization).then((mNm: any) => {
+      this.oilClasses = mNm;
+    });
+
+    this.firebaseGetServ.getOilType(this.organization).then((mNm: any) => {
+      mNm.forEach((oilObj) => {
+        this.oilMakes.forEach((oilM) => {
+          if (oilM.OilMakeGuid == oilObj.OilMakeGuid) {
+            oilObj.OilMake = oilM.OilMake;
+          }
+        });
+
+        this.oilGrades.forEach((oilG) => {
+          if (oilG.OilGradeGuid == oilObj.OilGradeGuid) {
+            oilObj.OilGrade = oilG.OilGrade;
+          }
+        });
+
+        this.oilClasses.forEach((oilC) => {
+          if (oilC.OilClassGuid == oilObj.OilClassGuid) {
+            oilObj.OilClass = oilC.OilClass;
+          }
+        });
+
+        oilObj.OilText =
+          oilObj.OilMake + ' / ' + oilObj.OilGrade + ' / ' + oilObj.OilClass;
+      });
+      this.oilTypes = mNm;
     });
   }
+  onOilTypeLeft() {
+    this.firebaseGetServ.getOilTypeLeft(this.organization).then((mNm: any) => {
+      mNm.forEach((oilObj) => {
+        this.oilMakes.forEach((oilM) => {
+          if (oilM.OilMakeGuid == oilObj.OilMakeGuid) {
+            oilObj.OilMake = oilM.OilMake;
+          }
+        });
 
-  getCurrentUserOrg(email) {
-    this.firebaseRepServ.getUser(email).then((mNm) => {
-      let user: any = mNm;
-      this.organization = user.organization;
-      this.returnedUser = user;
+        this.oilGrades.forEach((oilG) => {
+          if (oilG.OilGradeGuid == oilObj.OilGradeGuid) {
+            oilObj.OilGrade = oilG.OilGrade;
+          }
+        });
 
-      this.onTableRep();
-      this.onRegistration();
-      this.onCompName();
-      this.onComponentMake();
-      this.onComponentModel();
-      this.onServiceIntv();
+        this.oilClasses.forEach((oilC) => {
+          if (oilC.OilClassGuid == oilObj.OilClassGuid) {
+            oilObj.OilClass = oilC.OilClass;
+          }
+        });
+
+        oilObj.OilText =
+          oilObj.OilMake + ' / ' + oilObj.OilGrade + ' / ' + oilObj.OilClass;
+      });
+      this.oilTypes = mNm;
     });
   }
 

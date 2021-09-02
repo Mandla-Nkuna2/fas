@@ -17,6 +17,7 @@ export class FixedcostdetailsPage implements OnInit {
   organization = 'InnTee';
   fixedCost: FixedCostsDet;
   fixedCosts: any[] = [];
+  items: any[] = [];
 
   fixedCostType: any[];
   currentDate = new Date();
@@ -39,47 +40,6 @@ export class FixedcostdetailsPage implements OnInit {
     this.getCurrentUser();
   }
 
-  onTableRep() {
-    this.popUp.showLoading('loading...').then(() => {
-      this.firebaseRepServ
-        .getFixedCostDetails(this.organization)
-        .then((mNm: any) => {
-          this.fixedCosts = mNm;
-          this.popUp.dismissLoading();
-        })
-        .catch((err) => {
-          this.popUp.dismissLoading().then(() => {
-            this.popUp.showError(err);
-          });
-        });
-    });
-  }
-
-  goTransfer() {
-    this.navCtrl.navigateForward('fixedcostransfer');
-  }
-
-  onFixedCostType() {
-    this.firebaseGetServ
-      .getFixedCostType(this.organization)
-      .then((mNm: any) => {
-        this.fixedCostType = mNm;
-      });
-  }
-
-  onRegistraion() {
-    this.firebaseGetServ.getRegistration(this.organization).then((mNm: any) => {
-      this.registration = mNm;
-    });
-  }
-  onRegistraionLeft() {
-    this.firebaseGetServ
-      .getRegistrationLeft(this.organization)
-      .then((mNm: any) => {
-        this.registration = mNm;
-      });
-  }
-
   getCurrentUser() {
     this.afAuth.user.subscribe((cUser) => {
       this.getCurrentUserOrg(cUser.email);
@@ -94,8 +54,59 @@ export class FixedcostdetailsPage implements OnInit {
 
       this.onTableRep();
       this.onFixedCostType();
-      this.onRegistraion();
+      this.onRegistration();
     });
+  }
+
+  onTableRep() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getFixedCostDetails(this.organization)
+        .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          this.fixedCosts = mNm;
+          this.onRegistrationLeft();
+          this.onFixedCostType();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+
+  onRegistration() {
+    this.firebaseGetServ.getRegistration(this.organization).then((mNm: any) => {
+      this.registration = mNm;
+    });
+  }
+  onRegistrationLeft() {
+    this.firebaseGetServ
+      .getRegistrationLeft(this.organization)
+      .then((mNm: any) => {
+        this.registration = mNm;
+
+        mNm.forEach((elm) => {
+          this.fixedCosts.forEach((obj) => {
+            if (obj.ItemGuid == elm.ItemGuid) {
+              obj.Item = elm.Reg;
+            }
+          });
+        });
+      });
+  }
+
+  onFixedCostType() {
+    this.firebaseGetServ
+      .getFixedCostType(this.organization)
+      .then((mNm: any) => {
+        this.fixedCostType = mNm;
+      });
+  }
+
+  goTransfer() {
+    this.navCtrl.navigateForward('fixedcostransfer');
   }
 
   onAdd() {
@@ -104,7 +115,7 @@ export class FixedcostdetailsPage implements OnInit {
 
     if (this.fixedCost.FixedCostType)
       this.fixedCost.FixedCostType =
-        this.fixedCost.FixedCostType['UserFixedCostTypeGuidGroupGuid'];
+        this.fixedCost.FixedCostType['FixedCostType'];
     if (this.fixedCost.ItemGuid)
       this.fixedCost.ItemGuid = this.fixedCost.ItemGuid['ItemGuid'];
 

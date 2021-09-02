@@ -10,14 +10,24 @@
           ></ion-icon>
         </div>
         <ion-datetime
-          display-format="MMM DD YYYY hh:mm a"
-          value="Sep 16 2020, 12:02 "
+          style="color: green"
+          disabled
+          value="{{ currentDate |  date:'MM/dd/yyyy' }}"
         ></ion-datetime>
       </ion-item>
     </div>
   </div>
 
   <div class="navbar" class="ion-text-center">
+    <ion-button
+      fill="clear"
+      routerLink="../addcostsinfo"
+      routerDirection="root"
+      routerLinkActive="active-link"
+      class="link"
+    >
+      Add Information
+    </ion-button>
     <ion-button
       fill="clear"
       routerLink="../fixedcostdetails"
@@ -138,7 +148,7 @@
               <p>{{ item.LocItem }}</p>
             </ion-col> -->
             <ion-col size="2" class="flex al-center jc-center">
-              <p>{{ item.catName || item.ItemCatg }}</p>
+              <p>{{ item.ItemCatg }}</p>
             </ion-col>
             <ion-col size="2" class="flex al-center jc-center">
               <p>{{ item.ItemMakMod }}</p>

@@ -17,6 +17,7 @@ export class ServicetypesPage implements OnInit {
   serviceType: ServiceType;
   serviceTypes: ServiceType[] = [];
 
+  currentDate = new Date();
   compNames: any[];
   compServType = false;
   returnedUser: any;

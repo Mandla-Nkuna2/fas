@@ -16,6 +16,6 @@ export class Trafficfine {
   Driverguid: string;
   TrialDate: string;
   Comment: string;
-  RegIndex: string[] = ['You', 'Me'];
+  RegIndex: string;
   CostCentGuid: string;
 }

@@ -17,6 +17,7 @@ export class OilissuesPage implements OnInit {
   oilIssue: OilIssue;
   oilIssues: any[] = [];
 
+  returnedUser: any;
   currentDate = new Date();
   voucherNo: any[];
   registration: any[];
@@ -29,7 +30,6 @@ export class OilissuesPage implements OnInit {
   oilMakes: any[];
   oilGrades: any[];
   oilClasses: any[];
-  returnedUser: any;
 
   constructor(
     private navCtrl: NavController,
@@ -165,7 +165,7 @@ export class OilissuesPage implements OnInit {
         });
 
         oilObj.OilText =
-          oilObj.OilMake + ' ' + oilObj.OilGrade + ' ' + oilObj.OilClass;
+          oilObj.OilMake + ' / ' + oilObj.OilGrade + ' / ' + oilObj.OilClass;
       });
       this.oilTypes = mNm;
     });
@@ -192,7 +192,7 @@ export class OilissuesPage implements OnInit {
         });
 
         oilObj.OilText =
-          oilObj.OilMake + ' ' + oilObj.OilGrade + ' ' + oilObj.OilClass;
+          oilObj.OilMake + ' / ' + oilObj.OilGrade + ' / ' + oilObj.OilClass;
       });
       this.oilTypes = mNm;
     });

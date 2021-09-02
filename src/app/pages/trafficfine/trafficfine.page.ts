@@ -4,6 +4,8 @@ import { Trafficfine } from './../../models/capture/Trafficfine.model';
 import { Component, OnInit } from '@angular/core';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
 import { v4 as uuidv4 } from 'uuid';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 
 @Component({
   selector: 'app-trafficfine',
@@ -14,22 +16,44 @@ export class TrafficfinePage implements OnInit {
   organization = 'InnTee';
   trafficfine: Trafficfine;
 
+  returnedUser: any;
+  currentDate = new Date();
   supervisor: any[];
   registration: any[];
   driver: any[];
+  spvActions: any[];
 
   constructor(
+    private firebaseRepServ: FirebaseReportService,
     private firebaseService: FirebaseService,
     private popUp: PopupHelper,
     private firebaseGetServ: FirebaseGetService,
+    public afAuth: AngularFireAuth,
   ) {
     this.trafficfine = new Trafficfine();
   }
 
   ngOnInit() {
-    this.onSupervisor();
-    this.onRegistration();
-    this.onDriver();
+    this.getCurrentUser();
+  }
+
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+      this.returnedUser = user;
+
+      this.onSupervisor();
+      this.onSpvAction();
+      this.onRegistration();
+      this.onDriver();
+    });
   }
 
   onSupervisor() {
@@ -40,6 +64,12 @@ export class TrafficfinePage implements OnInit {
   onSupervisorLeft() {
     this.firebaseGetServ.getStaffLeft(this.organization).then((mNm: any) => {
       this.supervisor = mNm;
+    });
+  }
+
+  onSpvAction() {
+    this.firebaseGetServ.getTraffFineAct(this.organization).then((mNm: any) => {
+      this.spvActions = mNm;
     });
   }
 
@@ -67,8 +97,20 @@ export class TrafficfinePage implements OnInit {
     });
   }
 
-  onMarkAsComplete() {
+  onAdd() {
     this.trafficfine.TrafficFineGuid = uuidv4();
+
+    if (this.trafficfine.ItemGuid) {
+      this.trafficfine.RegIndex = this.trafficfine.ItemGuid['Reg'];
+      this.trafficfine.ItemGuid = this.trafficfine.ItemGuid['ItemGuid'];
+    }
+    if (this.trafficfine.SuperGuid)
+      this.trafficfine.SuperGuid = this.trafficfine.SuperGuid['StaffGuid'];
+    if (this.trafficfine.SuperAction)
+      this.trafficfine.SuperAction =
+        this.trafficfine.SuperAction['TrafFineActGuid'];
+    if (this.trafficfine.Driverguid)
+      this.trafficfine.Driverguid = this.trafficfine.Driverguid['StaffGuid'];
 
     this.firebaseService
       .writeData(

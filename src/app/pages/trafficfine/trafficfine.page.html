@@ -15,8 +15,9 @@
           ></ion-icon>
         </div>
         <ion-datetime
-          display-format="MMM DD YYYY hh:mm a"
-          value="Sep 16 2020, 12:02 "
+          style="color: green"
+          disabled
+          value="{{ currentDate |  date:'MM/dd/yyyy' }}"
         ></ion-datetime>
       </ion-item>
     </div>
@@ -35,10 +36,7 @@
               <div class="item-input">
                 <ion-label>Fine Number</ion-label>
                 <ion-item lines="none">
-                  <ion-input
-                    disabled
-                    [(ngModel)]="trafficfine.Fineno"
-                  ></ion-input>
+                  <ion-input [(ngModel)]="trafficfine.Fineno"></ion-input>
                 </ion-item>
               </div>
             </ion-col>
@@ -47,7 +45,6 @@
                 <ion-label>Date Fine Received</ion-label>
                 <ion-item lines="none">
                   <ion-datetime
-                    disabled
                     display-format="MMM DD YYYY hh:mm a"
                     [(ngModel)]="trafficfine.FineRecDate"
                   >
@@ -87,7 +84,14 @@
               <div class="item-input">
                 <ion-label>Action taken by Supervisor</ion-label>
                 <ion-item lines="none">
-                  <ion-input [(ngModel)]="trafficfine.SuperAction"></ion-input>
+                  <ionic-selectable
+                    [(ngModel)]="trafficfine.SuperAction"
+                    [items]="spvActions"
+                    itemValueField="TrafFineActGuid"
+                    itemTextField="TrafficFineAction"
+                    [canSearch]="true"
+                  >
+                  </ionic-selectable>
                 </ion-item>
               </div>
             </ion-col>
@@ -133,7 +137,7 @@
                 <ion-label>Date of Offense</ion-label>
                 <ion-item lines="none">
                   <ion-datetime
-                    display-format="MMM DD YYYY hh:mm a"
+                    display-format="MMM DD YYYY"
                     [(ngModel)]="trafficfine.OffenceDate"
                   ></ion-datetime>
                 </ion-item>
@@ -145,7 +149,7 @@
                 <ion-label>Time of offense</ion-label>
                 <ion-item lines="none">
                   <ion-datetime
-                    display-format="MMM DD YYYY hh:mm a"
+                    display-format="hh:mm a"
                     [(ngModel)]="trafficfine.offenceTime"
                   ></ion-datetime>
                 </ion-item>
@@ -207,10 +211,10 @@
             <ion-col size="11.5" class="ion-text-right">
               <ion-button
                 id="btn"
-                (click)="onMarkAsComplete()"
+                (click)="onAdd()"
                 style="width: fit-content !important"
               >
-                Mark as Completed
+                Add
               </ion-button>
             </ion-col>
           </ion-row>

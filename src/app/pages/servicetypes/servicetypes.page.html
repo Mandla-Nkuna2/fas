@@ -2,7 +2,7 @@
   <div *ngIf="!compServType">
     <div class="title-holder flex al-center">
       <ion-back-button
-        defaultHref="clientdetails"
+        defaultHref="main/clientdetails"
         mode="ios"
         text=""
       ></ion-back-button>
@@ -16,13 +16,9 @@
             ></ion-icon>
           </div>
           <ion-datetime
-            display-format="MMM DD YYYY"
-            value="Sep 16 2020, 12:02 "
-          ></ion-datetime>
-          <p>to</p>
-          <ion-datetime
-            display-format="MMM DD YYYY"
-            value="Sep 16 2020, 12:02 "
+            style="color: green"
+            disabled
+            value="{{ currentDate |  date:'MM/dd/yyyy' }}"
           ></ion-datetime>
         </div>
       </div>

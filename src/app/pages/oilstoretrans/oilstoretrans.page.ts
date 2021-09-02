@@ -112,7 +112,7 @@ export class OilstoretransPage implements OnInit {
         });
 
         oilObj.OilText =
-          oilObj.OilMake + ' ' + oilObj.OilGrade + ' ' + oilObj.OilClass;
+          oilObj.OilMake + ' / ' + oilObj.OilGrade + ' / ' + oilObj.OilClass;
       });
       this.oilTypes = mNm;
     });
@@ -139,7 +139,7 @@ export class OilstoretransPage implements OnInit {
         });
 
         oilObj.OilText =
-          oilObj.OilMake + ' ' + oilObj.OilGrade + ' ' + oilObj.OilClass;
+          oilObj.OilMake + ' / ' + oilObj.OilGrade + ' / ' + oilObj.OilClass;
       });
       this.oilTypes = mNm;
 

@@ -72,10 +72,7 @@ export class FirebaseGetService {
         .then((mNm) => {
           let data = [];
           mNm.docs.forEach((mNm) => {
-            data.push({
-              assetCatUuid: mNm.get('assetCatUuid'),
-              assetCatName: mNm.get('assetCatName'),
-            });
+            data.push(mNm.get('assetCatName'));
           });
           resolve(data);
         })
@@ -1070,6 +1067,28 @@ export class FirebaseGetService {
             data.push({
               AddCostDescGuid: obj.get('AddCostDescGuid'),
               AddCostDesc: obj.get('AddCostDesc'),
+            });
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+
+  getTraffFineAct(organization) {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection(organization + '/Sup_TrafFineAct/tables')
+        .ref.get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obj) => {
+            data.push({
+              TrafFineActGuid: obj.get('TrafFineActGuid'),
+              TrafficFineAction: obj.get('TrafficFineAction'),
             });
           });
           resolve(data);

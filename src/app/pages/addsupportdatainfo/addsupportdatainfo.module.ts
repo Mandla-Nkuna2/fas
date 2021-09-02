@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { OiltypePageRoutingModule } from './oiltype-routing.module';
+import { AddsupportdatainfoPageRoutingModule } from './addsupportdatainfo-routing.module';
 
-import { OiltypePage } from './oiltype.page';
+import { AddsupportdatainfoPage } from './addsupportdatainfo.page';
 import { IonicSelectableModule } from 'ionic-selectable';
 
 @NgModule({
@@ -14,9 +14,9 @@ import { IonicSelectableModule } from 'ionic-selectable';
     CommonModule,
     FormsModule,
     IonicModule,
-    OiltypePageRoutingModule,
+    AddsupportdatainfoPageRoutingModule,
     IonicSelectableModule,
   ],
-  declarations: [OiltypePage]
+  declarations: [AddsupportdatainfoPage],
 })
-export class OiltypePageModule {}
+export class AddsupportdatainfoPageModule {}

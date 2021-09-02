@@ -17,10 +17,11 @@ export class AutocardetailsPage implements OnInit {
   organization = 'InnTee';
   autocard: AutoCard;
   autocards: any[] = [];
-  currentDate = new Date();
 
-  registration: any[];
   returnedUser: any;
+  currentDate = new Date();
+  registration: any[];
+  yesNo = ['Y', 'N'];
 
   constructor(
     private navCtrl: NavController,

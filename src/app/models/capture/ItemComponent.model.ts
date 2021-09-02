@@ -5,7 +5,7 @@ export default class ItemComponent {
   CompMakeGuid: string;
   CompModelGuid: string;
   ServIntvalGuid: string;
-  OilWetted: boolean;
+  OilWetted: boolean = false;
   OilCap: number;
   OilTypeGuid: string;
   SerialNo: string;

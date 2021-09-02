@@ -7,45 +7,40 @@ admin.initializeApp();
 
 const db = admin.firestore();
 
-// exports.helloWorld = functions.https.onRequest((req, resp) => {
-//   functions.logger.info("Hello logs!", {structuredData: true});
-//   resp.send("Hello from Firebase!");
+// exports.testRead = functions.https.onRequest((rqst, resp) => {
+//   return corsHandler(rqst, resp, () => {
+//     db.collection("test1")
+//         .get().then((col) => {
+//           const data = [];
+//           if (col.empty) {
+//             resp.status(200).send(data);
+//           }
+//           col.docs.forEach((doc, i) => {
+//             data.push(doc.data());
+//             if (i+1 === col.docs.length) {
+//               resp.status(200).send(data);
+//             }
+//           });
+//         }, (rej) => resp.send(rej))
+//         .catch((err) => {
+//           resp.status(500).send(err.message);
+//           functions.logger.error(err.message);
+//         });
+//   });
 // });
 
-exports.testRead = functions.https.onRequest((rqst, resp) => {
-  return corsHandler(rqst, resp, () => {
-    db.collection("test1")
-        .get().then((col) => {
-          const data = [];
-          if (col.empty) {
-            resp.status(200).send(data);
-          }
-          col.docs.forEach((doc, i) => {
-            data.push(doc.data());
-            if (i+1 === col.docs.length) {
-              resp.status(200).send(data);
-            }
-          });
-        }, (rej) => resp.send(rej))
-        .catch((err) => {
-          resp.status(500).send(err.message);
-          functions.logger.error(err.message);
-        });
-  });
-});
-
-exports.testWrite = functions.https.onRequest((rqst, resp) => {
-  return corsHandler(rqst, resp, () => {
-    db.collection("test1")
-        .add(rqst.body).then((snapshot) => {
-          resp.send(snapshot);
-        })
-        .catch((err) => {
-          resp.status(500).send(err.message);
-          functions.logger.error(err.message);
-        });
-  });
-});
+// exports.testWrite = functions.https.onRequest((rqst, resp) => {
+//   return corsHandler(rqst, resp, () => {
+//     db.collection("test1")
+//         .add(rqst.body).then((snapshot) => {
+//           resp.send(snapshot);
+//         })
+//         .catch((err) => {
+//           resp.status(500).send(err.message);
+//           functions.logger.error(err.message);
+//         });
+//   });
+// });
 
 exports.registerUser = functions.https.onRequest((rqst, resp) => {
   return corsHandler(rqst, resp, () => {
@@ -69,7 +64,8 @@ exports.registerUser = functions.https.onRequest((rqst, resp) => {
 exports.getVehiclesCount = functions.https.onRequest((rqst, resp) => {
   return corsHandler(rqst, resp, () => {
     db.collection(rqst.body.organisation + "/Mst_Item/tables")
-        // .where("ItemCatg", "==", "VEHICLES")
+        // eslint-disable-next-line quotes
+        .where('ItemCatg', 'in', ['VEHICLES', 'LIGHT LOAD VEHICLE'])
         .get().then((col) => {
           const count = {val: 0};
           if (col.empty) {

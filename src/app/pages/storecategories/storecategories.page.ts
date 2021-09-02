@@ -17,6 +17,7 @@ export class StorecategoriesPage implements OnInit {
   storeCat: StoreCategory;
   storeCats: StoreCategory[] = [];
 
+  currentDate = new Date();
   storeCatItemsView = false;
   returnedUser: any;
 

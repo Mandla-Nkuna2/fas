@@ -16,6 +16,7 @@ export class RevenucostsPage implements OnInit {
   itemTypes: any[];
   locations: any;
   returnedUser: any;
+  currentDate = new Date();
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -59,22 +60,6 @@ export class RevenucostsPage implements OnInit {
           });
         });
     });
-  }
-
-  onItemMakMod() {
-    this.firebaseGetServ
-      .getAssetMakenModelLeft(this.organization)
-      .then((mNm: any) => {
-        this.itemTypes = mNm;
-
-        mNm.forEach((elm) => {
-          this.runningCosts.forEach((obj) => {
-            if (elm.ItemMakModGuid == obj.ItemMakModGuid) {
-              obj.ItemMakMod = elm.ItemMakMod;
-            }
-          });
-        });
-      });
   }
 
   onAssetType() {
@@ -124,7 +109,6 @@ export class RevenucostsPage implements OnInit {
         this.onTypeCapacityLeft();
         this.onItemMakMod();
         this.onLocationLeft();
-        this.onAssetCategory();
       });
   }
 
@@ -155,15 +139,16 @@ export class RevenucostsPage implements OnInit {
     });
   }
 
-  onAssetCategory() {
-    console.log(this.runningCosts);
+  onItemMakMod() {
     this.firebaseGetServ
-      .getAssetCategoryLeft(this.organization)
+      .getAssetMakenModelLeft(this.organization)
       .then((mNm: any) => {
+        this.itemTypes = mNm;
+
         mNm.forEach((elm) => {
           this.runningCosts.forEach((obj) => {
-            if (elm.assetCatUuid == obj.ItemCatg) {
-              obj.catName = elm.assetCatName;
+            if (elm.ItemMakModGuid == obj.ItemMakModGuid) {
+              obj.ItemMakMod = elm.ItemMakMod;
             }
           });
         });

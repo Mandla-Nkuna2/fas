@@ -227,7 +227,6 @@ export class AddassetsinfoPage implements OnInit {
   }
 
   onAddAssetCat() {
-    this.assetCat.assetCatUuid = uuidv4();
     this.assetCat.Active = 'Y';
     this.assetCat.CapName = this.returnedUser.UserFirstName;
 
@@ -236,7 +235,7 @@ export class AddassetsinfoPage implements OnInit {
         this.organization,
         'AssetCategory',
         Object.assign({}, this.assetCat),
-        this.assetCat.assetCatUuid,
+        uuidv4(),
       )
       .then(() => {
         this.popUp.showToast('Data saved successfully :-)');

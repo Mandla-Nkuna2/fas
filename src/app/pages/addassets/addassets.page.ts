@@ -257,8 +257,6 @@ export class AddassetsPage implements OnInit {
       this.asset.ItemMakModGuid = this.asset.ItemMakModGuid['ItemMakModGuid'];
     if (this.asset.ItemTypeGuid)
       this.asset.ItemTypeGuid = this.asset.ItemTypeGuid['ItemTypeGuid'];
-    if (this.asset.ItemCatg)
-      this.asset.ItemCatg = this.asset.ItemCatg['assetCatUuid'];
     if (this.asset.ColourGuid)
       this.asset.ColourGuid = this.asset.ColourGuid['ColourGuid'];
     if (this.asset.BatteryGuid)

@@ -151,37 +151,17 @@
             </div>
           </ion-col>
 
-          <!-- <ion-col size="3.5" offset="0.5">
-          <div class="item-input">
+          <ion-col size="3.5" offset="0.5">
+            <div class="item-input">
               <ion-label>Make & Model</ion-label>
               <ion-item>
-                <ionic-selectable
-                  [(ngModel)]="itemComponent"
-                  [items]="registration"
-                  itemValueField="ColourGuid"
-                  itemTextField="Colour"
-                  [canSearch]="true"
-                  [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onRegistrationLeft()"
-                >
-                </ionic-selectable>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="itemComponent.SerialNo"
+                ></ion-input>
               </ion-item>
             </div>
-          </ion-col> -->
-
-          <!-- <ion-col size="4" offset="0.5">
-            <div class="item-input">
-              <ion-label>Date</ion-label>
-              <ion-item lines="none">
-                <ion-datetime
-                  display-format="MMM DD YYYY HH MM"
-                  [(ngModel)]="itemComponent.CaptureDate"
-                ></ion-datetime>
-              </ion-item>
-            </div>
-          </ion-col> -->
-
-          <!-- <ion-col size="3.5" offset="0.5"> </ion-col> -->
+          </ion-col>
 
           <ion-col size="3.5" offset="0.5">
             <div class="item-input">
@@ -201,7 +181,7 @@
             </div>
           </ion-col>
 
-          <ion-col size="3.5" offset="0.5">
+          <ion-col size="3.5">
             <div class="item-input">
               <ion-label>Componanent Make</ion-label>
               <ion-item>
@@ -219,7 +199,7 @@
             </div>
           </ion-col>
 
-          <ion-col size="3.5">
+          <ion-col size="3.5" offset="0.5">
             <div class="item-input">
               <ion-label>Component Model</ion-label>
               <ion-item>
@@ -237,7 +217,9 @@
             </div>
           </ion-col>
 
-          <ion-col size="2" offset="0.5">
+          <ion-col size="3.5" offset="0.5"> </ion-col>
+
+          <ion-col size="3.5">
             <div class="item-input">
               <ion-label>Serial No.</ion-label>
               <ion-item lines="none">
@@ -249,7 +231,7 @@
             </div>
           </ion-col>
 
-          <ion-col size="2" offset="0.5">
+          <ion-col size="3.5" offset="0.5">
             <div class="item-input">
               <ion-label>Service Interval</ion-label>
               <ion-item>
@@ -276,6 +258,39 @@
                 ></ion-checkbox>
               </ion-item>
             </div>
+          </ion-col>
+
+          <ion-col size="3.5" *ngIf="itemComponent.OilWetted">
+            <div class="item-input">
+              <ion-label>Oil capacity</ion-label>
+              <ion-item lines="none">
+                <ion-input
+                  type="text"
+                  [(ngModel)]="itemComponent.OilCap"
+                ></ion-input>
+              </ion-item>
+            </div>
+          </ion-col>
+
+          <ion-col size="3.5" offset="0.5" *ngIf="itemComponent.OilWetted">
+            <div class="item-input">
+              <ion-label>OIl Make, Grade, Classiffication</ion-label>
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="itemComponent.OilTypeGuid"
+                  [items]="oilTypes"
+                  itemValueField="OilGuid"
+                  itemTextField="OilText"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onOilTypeLeft()"
+                >
+                </ionic-selectable>
+              </ion-item>
+            </div>
+          </ion-col>
+
+          <ion-col size="3.5" offset="0.5" *ngIf="itemComponent.OilWetted">
           </ion-col>
 
           <ion-col size="2.6">

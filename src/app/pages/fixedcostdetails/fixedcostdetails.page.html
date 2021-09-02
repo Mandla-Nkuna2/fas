@@ -22,6 +22,7 @@
       </div>
     </div>
   </div>
+
   <div class="section">
     <div class="grid-holder">
       <div class="top-toolbar flex al-center jc-between">
@@ -65,7 +66,7 @@
               <ion-checkbox></ion-checkbox>
             </ion-col>
             <ion-col size="1.5" class="flex al-center jc-center">
-              <p>{{ item.RegIndex }}</p>
+              <p>{{ item.Item }}</p>
             </ion-col>
             <ion-col size="2" class="flex al-center jc-center">
               <p>{{ item.FixedCostType }}</p>
@@ -124,7 +125,7 @@
                   itemTextField="Reg"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onRegistraionLeft()"
+                  (onInfiniteScroll)="onRegistrationLeft()"
                 >
                 </ionic-selectable>
               </ion-item>

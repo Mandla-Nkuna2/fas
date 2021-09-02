@@ -41,6 +41,27 @@ export class AdditionalcostsPage implements OnInit {
     this.getCurrentUser();
   }
 
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+      this.returnedUser = user;
+
+      this.onTableRep();
+      this.onRegistration();
+      this.onAdditionalCostDesc();
+      this.onCostCentre();
+      this.onStaffCode();
+      this.onSupplier();
+    });
+  }
+
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
@@ -49,6 +70,7 @@ export class AdditionalcostsPage implements OnInit {
           this.additionalCosts = mNm;
           this.onAdditionalCostDesc();
           this.onCostCentreLeft();
+          this.onStaffCodeLeft();
           this.onSupplierLeft();
           this.popUp.dismissLoading();
         })
@@ -122,6 +144,14 @@ export class AdditionalcostsPage implements OnInit {
   onStaffCodeLeft() {
     this.firebaseGetServ.getStaffLeft(this.organization).then((mNm: any) => {
       this.staffcode = mNm;
+
+      mNm.forEach((elm) => {
+        this.additionalCosts.forEach((obj) => {
+          if (elm.StaffGuid == obj.StaffGuid) {
+            obj.StaffCode = elm.StaffCode;
+          }
+        });
+      });
     });
   }
 
@@ -144,44 +174,25 @@ export class AdditionalcostsPage implements OnInit {
     });
   }
 
-  getCurrentUser() {
-    this.afAuth.user.subscribe((cUser) => {
-      this.getCurrentUserOrg(cUser.email);
-    });
-  }
-
-  getCurrentUserOrg(email) {
-    this.firebaseRepServ.getUser(email).then((mNm) => {
-      let user: any = mNm;
-      this.organization = user.organization;
-      this.returnedUser = user;
-
-      this.onTableRep();
-      this.onRegistration();
-      this.onAdditionalCostDesc();
-      this.onCostCentre();
-      this.onStaffCode();
-      this.onSupplier();
-    });
-  }
-
   onAdd() {
     this.additionalCost.AddCostGuid = uuidv4();
     this.additionalCost.Capturename = this.returnedUser.UserFirstName;
 
     if (this.additionalCost.Itemguid)
-      this.additionalCost.Itemguid = this.additionalCost.Itemguid['Itemguid'];
+      this.additionalCost.RegIndex = this.additionalCost.Itemguid['Reg'];
+    if (this.additionalCost.Itemguid)
+      this.additionalCost.Itemguid = this.additionalCost.Itemguid['ItemGuid'];
     if (this.additionalCost.AddCostDescGuid)
       this.additionalCost.AddCostDescGuid =
         this.additionalCost.AddCostDescGuid['AddCostDescGuid'];
     if (this.additionalCost.CostCentreGuid)
       this.additionalCost.CostCentreGuid =
-        this.additionalCost.CostCentreGuid['CostCentreGuid'];
+        this.additionalCost.CostCentreGuid['CostCentGuid'];
     if (this.additionalCost.StaffGuid)
       this.additionalCost.StaffGuid =
         this.additionalCost.StaffGuid['StaffGuid'];
     if (this.additionalCost.Suppguid)
-      this.additionalCost.Suppguid = this.additionalCost.Suppguid['Suppguid'];
+      this.additionalCost.Suppguid = this.additionalCost.Suppguid['SuppGuid'];
 
     this.firebaseService
       .writeData(

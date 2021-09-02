@@ -56,7 +56,6 @@ export class AssetdetailPage implements OnInit {
           this.assets = mNm;
           this.onAssetType();
           this.onMakeAndMod();
-          this.onAssetCategory();
           this.popUp.dismissLoading();
         })
         .catch((err) => {
@@ -142,20 +141,6 @@ export class AssetdetailPage implements OnInit {
       if (obj.ItemTypeCap)
         obj.displayName = obj.displayName + ' / ' + obj.ItemTypeCap;
     });
-  }
-
-  onAssetCategory() {
-    this.firebaseGetServ
-      .getAssetCategoryLeft(this.organization)
-      .then((mNm: any) => {
-        mNm.forEach((elm) => {
-          this.assets.forEach((obj) => {
-            if (elm.assetCatUuid == obj.ItemCatg) {
-              obj.catName = elm.assetCatName;
-            }
-          });
-        });
-      });
   }
 
   onMakeAndMod() {

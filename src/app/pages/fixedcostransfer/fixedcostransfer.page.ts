@@ -36,12 +36,31 @@ export class FixedcostransferPage implements OnInit {
     this.getCurrentUser();
   }
 
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+      this.returnedUser = user;
+
+      this.onTableRep();
+      this.onRegistration();
+      this.onCostCentre();
+    });
+  }
+
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
         .getFixedCostTransfer(this.organization)
         .then((mNm: any) => {
           this.fixedCostTransfs = mNm;
+          this.onRegistrationLeft();
           this.onCostCentreLeft();
           this.popUp.dismissLoading();
         })
@@ -63,6 +82,13 @@ export class FixedcostransferPage implements OnInit {
       .getRegistrationLeft(this.organization)
       .then((mNm: any) => {
         this.registration = mNm;
+        mNm.forEach((elm) => {
+          this.fixedCostTransfs.forEach((obj) => {
+            if (obj.ItemGuid == elm.ItemGuid) {
+              obj.Item = elm.Reg;
+            }
+          });
+        });
       });
   }
 
@@ -85,24 +111,6 @@ export class FixedcostransferPage implements OnInit {
           });
         });
       });
-  }
-
-  getCurrentUser() {
-    this.afAuth.user.subscribe((cUser) => {
-      this.getCurrentUserOrg(cUser.email);
-    });
-  }
-
-  getCurrentUserOrg(email) {
-    this.firebaseRepServ.getUser(email).then((mNm) => {
-      let user: any = mNm;
-      this.organization = user.organization;
-      this.returnedUser = user;
-
-      this.onTableRep();
-      this.onRegistration();
-      this.onCostCentre();
-    });
   }
 
   onAdd() {
