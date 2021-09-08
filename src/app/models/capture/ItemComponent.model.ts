@@ -22,4 +22,6 @@ export default class ItemComponent {
   ServParts10: string;
   ItemMakeModelGuid: string;
   Capturename: string;
+  warranty: number;
+  expDate: string;
 }

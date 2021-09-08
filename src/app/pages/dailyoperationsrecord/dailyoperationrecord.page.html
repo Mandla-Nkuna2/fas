@@ -142,7 +142,7 @@
             </div>
           </ion-col>
 
-          <ion-col size="8" offset="0.5">
+          <ion-col size="3.5" offset="0.5">
             <div class="item-input">
               <ion-label>Location</ion-label>
               <ion-item>
@@ -160,7 +160,7 @@
             </div>
           </ion-col>
 
-          <ion-col size="3.5">
+          <ion-col size="3.5" offset="0.5">
             <div class="item-input">
               <ion-label>Date</ion-label>
               <ion-item lines="none">
@@ -173,19 +173,7 @@
             </div>
           </ion-col>
 
-          <!-- <ion-col size="3.5" offset="0.5">
-            <div class="item-input">
-              <ion-label>Date</ion-label>
-              <ion-item lines="none" class="end">
-                <ion-input type="text" value="0.00"></ion-input>
-                <div class="end-slot flex al-center jc-center" slot="end">
-                  <p>R</p>
-                </div>
-              </ion-item>
-            </div>
-          </ion-col> -->
-
-          <ion-col size="4" offset="0.5">
+          <ion-col size="3.5">
             <div class="item-input">
               <ion-label>Voucher No.</ion-label>
               <ion-item lines="none" class="end">
@@ -197,7 +185,7 @@
             </div>
           </ion-col>
 
-          <ion-col size="3.5">
+          <ion-col size="3.5" offset="0.5">
             <div class="item-input">
               <ion-label>Order No.</ion-label>
               <ion-item lines="none" class="end">
@@ -209,7 +197,7 @@
             </div>
           </ion-col>
 
-          <ion-col size="3.5">
+          <ion-col size="3.5" offset="0.5">
             <div class="item-input">
               <ion-label>Ref. No.</ion-label>
               <ion-item lines="none">
@@ -221,7 +209,7 @@
             </div>
           </ion-col>
 
-          <ion-col size="4" offset="0.5">
+          <ion-col size="3.5">
             <div class="item-input">
               <ion-label>Open Meter Reading</ion-label>
               <ion-item lines="none">
@@ -233,7 +221,7 @@
             </div>
           </ion-col>
 
-          <ion-col size="3.5">
+          <ion-col size="3.5" offset="0.5">
             <div class="item-input">
               <ion-label>Close Meter Reading</ion-label>
               <ion-item lines="none">
@@ -245,7 +233,7 @@
             </div>
           </ion-col>
 
-          <ion-col size="3.5">
+          <!-- <ion-col size="3.5">
             <div class="item-input">
               <ion-label>Diff. Btw Meter Reading</ion-label>
               <ion-item lines="none">
@@ -255,9 +243,9 @@
                 ></ion-input>
               </ion-item>
             </div>
-          </ion-col>
+          </ion-col> -->
 
-          <ion-col size="4" offset="0.5">
+          <ion-col size="3.5" offset="0.5">
             <div class="item-input">
               <ion-label>Cost Center</ion-label>
               <ion-item>
@@ -274,7 +262,7 @@
             </div>
           </ion-col>
 
-          <ion-col size="3">
+          <ion-col size="2.5">
             <div class="item-input">
               <ion-label>Rain Hrs.</ion-label>
               <ion-item lines="none">
@@ -286,7 +274,7 @@
             </div>
           </ion-col>
 
-          <ion-col size="2.5">
+          <ion-col size="2.5" offset="0.5">
             <div class="item-input">
               <ion-label>Standby Hrs.</ion-label>
               <ion-item lines="none">
@@ -359,9 +347,23 @@
             <div class="item-input">
               <ion-label>Load Capacity</ion-label>
               <ion-item lines="none">
-                <ion-select multiple="false" [(ngModel)]="dOpsRec.LoadCapacity">
-                  <ion-select-option value="Voucher">Voucher</ion-select-option>
-                </ion-select>
+                <ion-input
+                  type="text"
+                  [(ngModel)]="dOpsRec.LoadCapacity"
+                ></ion-input>
+              </ion-item>
+            </div>
+          </ion-col>
+          <ion-col size="2">
+            <div class="item-input">
+              <ion-label>Type unit</ion-label>
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="dOpsRec.LoadUnit"
+                  [items]="typeUnits"
+                  [canSearch]="true"
+                >
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>
@@ -401,7 +403,7 @@
               <ion-label>Name</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="dOpsRec.operator.StaffGuid"
+                  [(ngModel)]="dOpsRec.StaffGuid"
                   [items]="operator"
                   itemValueField="StaffGuid"
                   itemTextField="StaffCode"
@@ -420,7 +422,7 @@
               <ion-item lines="none">
                 <ion-datetime
                   display-format="HH mm"
-                  [(ngModel)]="dOpsRec.operator.Starttime"
+                  [(ngModel)]="dOpsRec.Starttime"
                 >
                 </ion-datetime>
               </ion-item>
@@ -433,7 +435,7 @@
               <ion-item lines="none">
                 <ion-datetime
                   display-format="HH mm"
-                  [(ngModel)]="dOpsRec.operator.Endtime"
+                  [(ngModel)]="dOpsRec.Endtime"
                 >
                 </ion-datetime>
               </ion-item>
@@ -446,7 +448,7 @@
               <ion-item lines="none">
                 <ion-input
                   type="text"
-                  [(ngModel)]="dOpsRec.operator.BreakTime"
+                  [(ngModel)]="dOpsRec.BreakTime"
                 ></ion-input>
               </ion-item>
             </div>

@@ -18,9 +18,10 @@ export class ServicetypesPage implements OnInit {
   serviceTypes: ServiceType[] = [];
 
   currentDate = new Date();
+  returnedUser: any;
   compNames: any[];
   compServType = false;
-  returnedUser: any;
+  yesNo = ['Y', 'N'];
 
   constructor(
     private firebaseRepServ: FirebaseReportService,

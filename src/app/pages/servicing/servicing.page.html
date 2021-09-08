@@ -39,16 +39,16 @@
       <ion-grid fixed *ngIf="vehicleReps.length; else noItems">
         <ion-row class="title-row">
           <ion-col size="0.5" class="flex al-center jc-center"> </ion-col>
-          <ion-col size="2.5" class="flex al-center jc-center">
+          <ion-col size="1.5" class="flex al-center jc-center">
             <h4>Vehicle</h4>
           </ion-col>
-          <ion-col size="2.5" class="flex al-center jc-center">
+          <ion-col size="4" class="flex al-center jc-center">
             <h4>Type</h4>
           </ion-col>
-          <ion-col size="3" class="flex al-center jc-center">
+          <ion-col size="2" class="flex al-center jc-center">
             <h4>category</h4>
           </ion-col>
-          <ion-col size="3.5" class="flex al-center jc-center">
+          <ion-col size="3" class="flex al-center jc-center">
             <h4>Last Service Date</h4>
           </ion-col>
         </ion-row>
@@ -61,16 +61,16 @@
             <ion-col size="0.5" class="flex al-center jc-center">
               <ion-checkbox></ion-checkbox>
             </ion-col>
-            <ion-col size="2.5" class="flex al-center jc-center">
-              <p>{{ item.ItemMakMod }}</p>
+            <ion-col size="1.5" class="flex al-center jc-center">
+              <p>{{ item.Reg }}</p>
             </ion-col>
-            <ion-col size="2.5" class="flex al-center jc-center">
-              <p>{{ item.ItemTypeName }}</p>
+            <ion-col size="4" class="flex al-center jc-center">
+              <p>{{ item.displayName }}</p>
             </ion-col>
-            <ion-col size="3" class="flex al-center jc-center">
+            <ion-col size="2" class="flex al-center jc-center">
               <p>{{ item.ItemCatg }}</p>
             </ion-col>
-            <ion-col size="2.5" class="flex al-center jc-center">
+            <ion-col size="3" class="flex al-center jc-center">
               <p>{{ item.Inspectiondate }}</p>
             </ion-col>
             <ion-col size="1" class="flex al-center jc-start">

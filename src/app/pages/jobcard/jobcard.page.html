@@ -16,13 +16,9 @@
             ></ion-icon>
           </div>
           <ion-datetime
-            display-format="MMM DD YYYY"
-            value="Sep 16 2020, 12:02 "
-          ></ion-datetime>
-          <p>to</p>
-          <ion-datetime
-            display-format="MMM DD YYYY"
-            value="Sep 16 2020, 12:02 "
+            style="color: green"
+            disabled
+            value="{{ currentDate |  date:'MM/dd/yyyy' }}"
           ></ion-datetime>
         </div>
       </div>
@@ -44,7 +40,7 @@
                 <ion-item lines="none">
                   <ion-datetime
                     display-format="MMM DD YYYY hh:mm a"
-                    [(ngModel)]="jobCard.generalInformation.ReportedDate"
+                    [(ngModel)]="jobCard.ReportedDate"
                   ></ion-datetime>
                 </ion-item>
               </div>
@@ -55,7 +51,7 @@
                 <ion-item lines="none">
                   <ion-datetime
                     display-format="MMM DD YYYY hh:mm a"
-                    [(ngModel)]="jobCard.generalInformation.StartedDate"
+                    [(ngModel)]="jobCard.StartedDate"
                   ></ion-datetime>
                 </ion-item>
               </div>
@@ -66,7 +62,7 @@
                 <ion-item lines="none">
                   <ion-datetime
                     display-format="MMM DD YYYY hh:mm a"
-                    [(ngModel)]="jobCard.generalInformation.CompletedDate"
+                    [(ngModel)]="jobCard.CompletedDate"
                   ></ion-datetime>
                 </ion-item>
               </div>
@@ -76,7 +72,7 @@
                 <ion-label>Reported By</ion-label>
                 <ion-item>
                   <ionic-selectable
-                    [(ngModel)]="jobCard.generalInformation.StaffGuid"
+                    [(ngModel)]="jobCard.StaffGuid"
                     [items]="staff"
                     itemValueField="StaffGuid"
                     itemTextField="StaffCode"
@@ -93,7 +89,7 @@
                 <ion-label>Driver / Operator</ion-label>
                 <ion-item>
                   <ionic-selectable
-                    [(ngModel)]="jobCard.generalInformation.driverOrOpGuid"
+                    [(ngModel)]="jobCard.driverOrOpGuid"
                     [items]="driver"
                     itemValueField="StaffGuid"
                     itemTextField="StaffCode"
@@ -122,9 +118,16 @@
               <div class="item-input">
                 <ion-label>Registration No.</ion-label>
                 <ion-item lines="none">
-                  <ion-input
-                    [(ngModel)]="jobCard.vehicleInformation.registrationNo"
-                  ></ion-input>
+                  <ionic-selectable
+                    [(ngModel)]="jobCard.registrationNo"
+                    [items]="registrations"
+                    itemValueField="ItemGuid"
+                    itemTextField="Reg"
+                    [canSearch]="true"
+                    [hasInfiniteScroll]="true"
+                    (onInfiniteScroll)="onRegistrationLeft()"
+                  >
+                  </ionic-selectable>
                 </ion-item>
               </div>
             </ion-col>
@@ -132,19 +135,31 @@
               <div class="item-input">
                 <ion-label>Make & Model</ion-label>
                 <ion-item lines="none">
-                  <ion-input
-                    [(ngModel)]="jobCard.vehicleInformation.makeAndModel"
-                  ></ion-input>
+                  <ionic-selectable
+                    [(ngModel)]="jobCard.makeAndModel"
+                    [items]="makesAndModels"
+                    itemValueField="ItemMakModGuid"
+                    itemTextField="itemMakMod"
+                    [canSearch]="true"
+                    [hasInfiniteScroll]="true"
+                    (onInfiniteScroll)="onMakeAndModelLeft()"
+                  >
+                  </ionic-selectable>
                 </ion-item>
               </div>
             </ion-col>
             <ion-col size="3.5" offset="0.5">
               <div class="item-input">
                 <ion-label>Type</ion-label>
-                <ion-item lines="none">
-                  <ion-input
-                    [(ngModel)]="jobCard.vehicleInformation.type"
-                  ></ion-input>
+                <ion-item>
+                  <ionic-selectable
+                    [(ngModel)]="jobCard.assetType"
+                    [items]="assetTypes"
+                    itemValueField="ItemTypeGuid"
+                    itemTextField="displayName"
+                    [canSearch]="true"
+                  >
+                  </ionic-selectable>
                 </ion-item>
               </div>
             </ion-col>
@@ -153,9 +168,7 @@
               <div class="item-input">
                 <ion-label>Engine No.</ion-label>
                 <ion-item lines="none">
-                  <ion-input
-                    [(ngModel)]="jobCard.vehicleInformation.engineNo"
-                  ></ion-input>
+                  <ion-input [(ngModel)]="jobCard.engineNo"></ion-input>
                 </ion-item>
               </div>
             </ion-col>
@@ -163,9 +176,7 @@
               <div class="item-input">
                 <ion-label>Chassie No.</ion-label>
                 <ion-item lines="none">
-                  <ion-input
-                    [(ngModel)]="jobCard.vehicleInformation.chassieNo"
-                  ></ion-input>
+                  <ion-input [(ngModel)]="jobCard.chassieNo"></ion-input>
                 </ion-item>
               </div>
             </ion-col>
@@ -173,9 +184,7 @@
               <div class="item-input">
                 <ion-label>Meter Reading</ion-label>
                 <ion-item lines="none">
-                  <ion-input
-                    [(ngModel)]="jobCard.vehicleInformation.meterReading"
-                  ></ion-input>
+                  <ion-input [(ngModel)]="jobCard.meterReading"></ion-input>
                 </ion-item>
               </div>
             </ion-col>
@@ -186,7 +195,7 @@
                 <ion-item lines="none">
                   <ion-datetime
                     display-format="MMM DD YYYY hh:mm a"
-                    [(ngModel)]="jobCard.vehicleInformation.meterReadingDate"
+                    [(ngModel)]="jobCard.meterReadingDate"
                   ></ion-datetime>
                 </ion-item>
               </div>
@@ -197,8 +206,8 @@
                 <ion-label>Manufacture Date</ion-label>
                 <ion-item lines="none">
                   <ion-datetime
-                    display-format="MMM DD YYYY hh:mm a"
-                    [(ngModel)]="jobCard.vehicleInformation.manufacturerDate"
+                    display-format="MMM YYYY"
+                    [(ngModel)]="jobCard.manufacturerDate"
                   ></ion-datetime>
                 </ion-item>
               </div>
@@ -208,9 +217,7 @@
               <div class="item-input">
                 <ion-label>Warranty Period</ion-label>
                 <ion-item lines="none">
-                  <ion-input
-                    [(ngModel)]="jobCard.vehicleInformation.warrantyPeriod"
-                  ></ion-input>
+                  <ion-input [(ngModel)]="jobCard.warrantyPeriod"></ion-input>
                 </ion-item>
               </div>
             </ion-col>
@@ -220,8 +227,9 @@
                 <ion-label>Warranty Expiry Date</ion-label>
                 <ion-item lines="none">
                   <ion-datetime
-                    display-format="MMM DD YYYY hh:mm a"
-                    [(ngModel)]="jobCard.vehicleInformation.warrantyExpiryDate"
+                    max="2027"
+                    display-format="MMM DD YYYY"
+                    [(ngModel)]="jobCard.warrantyExpiryDate"
                   ></ion-datetime>
                 </ion-item>
               </div>
@@ -231,9 +239,7 @@
               <div class="item-input">
                 <ion-label>Alternate ID 1</ion-label>
                 <ion-item lines="none">
-                  <ion-input
-                    [(ngModel)]="jobCard.vehicleInformation.alternateId1"
-                  ></ion-input>
+                  <ion-input [(ngModel)]="jobCard.alternateId1"></ion-input>
                 </ion-item>
               </div>
             </ion-col>
@@ -242,9 +248,17 @@
               <div class="item-input">
                 <ion-label>Location</ion-label>
                 <ion-item lines="none">
-                  <ion-input
-                    [(ngModel)]="jobCard.vehicleInformation.location"
-                  ></ion-input>
+                  <ion-input [(ngModel)]="jobCard.location"></ion-input>
+                  <ionic-selectable
+                    [(ngModel)]="jobCard.location"
+                    [items]="locations"
+                    itemValueField="LocGuid"
+                    itemTextField="LocDesc"
+                    [canSearch]="true"
+                    [hasInfiniteScroll]="true"
+                    (onInfiniteScroll)="onLocationLeft()"
+                  >
+                  </ionic-selectable>
                 </ion-item>
               </div>
             </ion-col>
@@ -267,7 +281,7 @@
                 <ion-item lines="none">
                   <ion-textarea
                     rows="5"
-                    [(ngModel)]="jobCard.serviceInformation.Defects"
+                    [(ngModel)]="jobCard.Defects"
                   ></ion-textarea>
                 </ion-item>
               </div>
@@ -275,69 +289,64 @@
 
             <ion-col size="3.5">
               <div class="item-input">
-                <ion-label>Service Type</ion-label>
-                <ion-item lines="none">
-                  <ion-input
-                    [(ngModel)]="jobCard.serviceInformation.serviceType"
-                  ></ion-input>
+                <ion-label>Service type</ion-label>
+                <ion-item>
+                  <ionic-selectable
+                    [(ngModel)]="jobCard.serviceType"
+                    [items]="serviceTypes"
+                    itemValueField="ServTypeGuid"
+                    itemTextField="ServType"
+                    [canSearch]="true"
+                  >
+                  </ionic-selectable>
                 </ion-item>
               </div>
             </ion-col>
 
-            <ion-col size="3.5" offset="0.5">
+            <!-- <ion-col size="3.5" offset="0.5">
               <div class="item-input">
                 <ion-label>Type</ion-label>
                 <ion-item lines="none">
-                  <ion-input
-                    [(ngModel)]="jobCard.serviceInformation.type"
-                  ></ion-input>
+                  <ion-input [(ngModel)]="jobCard.type"></ion-input>
                 </ion-item>
               </div>
-            </ion-col>
+            </ion-col> -->
           </ion-row>
 
           <ion-row>
             <ion-col size="11.5" class="ion-no-padding">
-              <div class="grid-holder">
+              <ng-template #noItems> No items. </ng-template>
+              <div
+                class="grid-holder"
+                *ngIf="itemComponents.length; else noItems"
+              >
                 <ion-row class="header">
-                  <ion-col size="4">
+                  <ion-col size="4" class="flex al-center jc-center">
                     <h4>Component Name</h4>
                   </ion-col>
-                  <ion-col size="4">
+                  <ion-col size="4" class="flex al-center jc-center">
                     <h4>Warranty</h4>
                   </ion-col>
-                  <ion-col size="4">
+                  <ion-col size="4" class="flex al-center jc-center">
                     <h4>Expiry Date</h4>
                   </ion-col>
                 </ion-row>
 
-                <ion-row class="values">
-                  <ion-col size="4">
-                    <p>INJECTOR PUMP</p>
+                <ion-row
+                  class="values"
+                  *ngFor="let item of itemComponents; let i = index"
+                >
+                  <ion-col size="4" class="flex al-center jc-center">
+                    <p>{{ item.CompName }}</p>
                   </ion-col>
-                  <ion-col size="4">
-                    <p>12</p>
+                  <ion-col size="4" class="flex al-center jc-center">
+                    <p>{{ item.warranty }}</p>
                   </ion-col>
-                  <ion-col size="4">
-                    <p>13 JAN 2005</p>
-                  </ion-col>
-                </ion-row>
-                <ion-row class="values">
-                  <ion-col size="4">
-                    <p>ALTERNATOR</p>
-                  </ion-col>
-                  <ion-col size="4">
-                    <p>12</p>
-                  </ion-col>
-                  <ion-col size="4">
-                    <p>13 JAN 2005</p>
+                  <ion-col size="4" class="flex al-center jc-center">
+                    <p>{{ item.expDate }}</p>
                   </ion-col>
                 </ion-row>
               </div>
-
-              <!-- <div class="btn-holder ion-text-right">
-                <ion-button> Add More Componenets </ion-button>
-              </div> -->
             </ion-col>
           </ion-row>
 
@@ -346,10 +355,16 @@
               <div class="item-input">
                 <ion-label>Component</ion-label>
                 <ion-item lines="none">
-                  <ion-input
-                    type="text"
-                    [(ngModel)]="jobCard.serviceInformation.componentOfCar.componentName"
-                  ></ion-input>
+                  <ionic-selectable
+                    [(ngModel)]="jobCard.componentName"
+                    [items]="assetCompName"
+                    itemValueField="CompNameGuid"
+                    itemTextField="CompName"
+                    [canSearch]="true"
+                    [hasInfiniteScroll]="true"
+                    (onInfiniteScroll)="onCompNameLeft()"
+                  >
+                  </ionic-selectable>
                 </ion-item>
               </div>
             </ion-col>
@@ -360,7 +375,7 @@
                 <ion-item lines="none">
                   <ion-input
                     type="text"
-                    [(ngModel)]="jobCard.serviceInformation.componentOfCar.engine"
+                    [(ngModel)]="jobCard.engine"
                   ></ion-input>
                 </ion-item>
               </div>
@@ -370,10 +385,12 @@
               <div class="item-input">
                 <ion-label>Transmission</ion-label>
                 <ion-item lines="none">
-                  <ion-input
-                    type="text"
-                    [(ngModel)]="jobCard.serviceInformation.componentOfCar.transmission"
-                  ></ion-input>
+                  <ionic-selectable
+                    [(ngModel)]="jobCard.transmission"
+                    [items]="transmissions"
+                    [canSearch]="true"
+                  >
+                  </ionic-selectable>
                 </ion-item>
               </div>
             </ion-col>
@@ -382,10 +399,14 @@
               <div class="item-input">
                 <ion-label>Oil grade</ion-label>
                 <ion-item lines="none">
-                  <ion-input
-                    type="text"
-                    [(ngModel)]="jobCard.serviceInformation.componentOfCar.oilGrade"
-                  ></ion-input>
+                  <ionic-selectable
+                    [(ngModel)]="jobCard.oilGrade"
+                    [items]="oilGrades"
+                    itemValueField="OilGradeGuid"
+                    itemTextField="OilGrade"
+                    [canSearch]="true"
+                  >
+                  </ionic-selectable>
                 </ion-item>
               </div>
             </ion-col>
@@ -396,17 +417,18 @@
                 <ion-item lines="none">
                   <ion-input
                     type="text"
-                    [(ngModel)]="jobCard.serviceInformation.componentOfCar.oilCapLtrs"
+                    [(ngModel)]="jobCard.oilCapLtrs"
                   ></ion-input>
                 </ion-item>
               </div>
             </ion-col>
 
-            <!-- <ion-col size="3.5" offset="0.5" class="flex al-end jc-end">
+            <ion-col size="3.5" class="ion-no-padding">
+              <ion-label>.</ion-label>
               <div class="btn-holder ion-text-right">
-                <ion-button> Add More </ion-button>
+                <ion-button (click)="onAddComponent()">Add more</ion-button>
               </div>
-            </ion-col> -->
+            </ion-col>
           </ion-row>
           <ion-row>
             <ion-col size="2">
@@ -415,7 +437,7 @@
                 <ion-item lines="none">
                   <ion-input
                     type="text"
-                    [(ngModel)]="jobCard.serviceInformation.partsForServType[0]"
+                    [(ngModel)]="jobCard.partsForServType[0]"
                   ></ion-input>
                 </ion-item>
               </div>
@@ -427,7 +449,7 @@
                 <ion-item lines="none">
                   <ion-input
                     type="text"
-                    [(ngModel)]="jobCard.serviceInformation.partsForServType[1]"
+                    [(ngModel)]="jobCard.partsForServType[1]"
                   ></ion-input>
                 </ion-item>
               </div>
@@ -439,7 +461,7 @@
                 <ion-item lines="none">
                   <ion-input
                     type="text"
-                    [(ngModel)]="jobCard.serviceInformation.partsForServType[2]"
+                    [(ngModel)]="jobCard.partsForServType[2]"
                   ></ion-input>
                 </ion-item>
               </div>
@@ -451,7 +473,7 @@
                 <ion-item lines="none">
                   <ion-input
                     type="text"
-                    [(ngModel)]="jobCard.serviceInformation.partsForServType[3]"
+                    [(ngModel)]="jobCard.partsForServType[3]"
                   ></ion-input>
                 </ion-item>
               </div>
@@ -463,20 +485,14 @@
                 <ion-item lines="none">
                   <ion-input
                     type="text"
-                    [(ngModel)]="jobCard.serviceInformation.partsForServType[4]"
+                    [(ngModel)]="jobCard.partsForServType[4]"
                   ></ion-input>
                 </ion-item>
               </div>
             </ion-col>
-
-            <!-- <ion-col size="11.5">
-              <div class="btn-holder ion-text-left">
-                <ion-button> Add More </ion-button>
-              </div>
-            </ion-col> -->
           </ion-row>
 
-          <ion-row>
+          <!-- <ion-row>
             <div class="title">
               <h3>Outwork</h3>
             </div>
@@ -536,13 +552,10 @@
                 </ion-row>
               </div>
 
-              <!-- <div class="btn-holder ion-text-right">
-                <ion-button> Add More </ion-button>
-              </div> -->
             </ion-col>
-          </ion-row>
+          </ion-row> -->
 
-          <ion-row>
+          <!-- <ion-row>
             <div class="title">
               <h3>Parts and Consumables Issued</h3>
             </div>
@@ -582,13 +595,9 @@
                   </ion-col>
                 </ion-row>
               </div>
-
-              <!-- <div class="btn-holder ion-text-right">
-                <ion-button> Add More </ion-button>
-              </div> -->
             </ion-col>
-          </ion-row>
-
+          </ion-row> -->
+          <!--
           <ion-row>
             <div class="title">
               <h3>Work Done / Mechanics Report</h3>
@@ -620,12 +629,8 @@
                   </ion-col>
                 </ion-row>
               </div>
-
-              <!-- <div class="btn-holder ion-text-right">
-                <ion-button> Add More </ion-button>
-              </div> -->
             </ion-col>
-          </ion-row>
+          </ion-row> -->
         </ion-grid>
       </div>
     </div>
@@ -640,7 +645,7 @@
                 <ion-item lines="none">
                   <ion-input
                     type="text"
-                    [(ngModel)]="jobCard.serviceInformation.workDone_MechanicsReport.meterReading"
+                    [(ngModel)]="jobCard.meterReadingUnt"
                   ></ion-input>
                 </ion-item>
               </div>
@@ -652,7 +657,7 @@
                 <ion-item lines="none">
                   <ion-input
                     type="text"
-                    [(ngModel)]="jobCard.serviceInformation.workDone_MechanicsReport.totalHours"
+                    [(ngModel)]="jobCard.totalHours"
                   ></ion-input>
                 </ion-item>
               </div>
@@ -670,7 +675,7 @@
                 <ion-item lines="none">
                   <signature-pad
                     ngDefaultControl
-                    #signatureCanvas
+                    #signatureCanvas1
                     [options]="signaturePadOptions"
                     (onEndEvent)="onMechSig()"
                   ></signature-pad>
@@ -688,7 +693,7 @@
                 <ion-item lines="none">
                   <signature-pad
                     ngDefaultControl
-                    #signatureCanvas
+                    #signatureCanvas2
                     [options]="signaturePadOptions"
                     (onEndEvent)="onForemanSig()"
                   ></signature-pad>
@@ -702,7 +707,7 @@
                 <ion-item lines="none">
                   <signature-pad
                     ngDefaultControl
-                    #signatureCanvas
+                    #signatureCanvas3
                     [options]="signaturePadOptions"
                     (onEndEvent)="onOperatorSig()"
                   ></signature-pad>

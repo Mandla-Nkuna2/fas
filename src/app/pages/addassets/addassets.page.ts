@@ -16,8 +16,8 @@ export class AddassetsPage implements OnInit {
   organization = 'InnTee';
   asset: Asset;
   assets: any = [];
-  currentDate = new Date();
 
+  currentDate = new Date();
   loadingComplete = false;
   makesAndModels: any = [];
   assetTypes: any = [];
@@ -79,6 +79,10 @@ export class AddassetsPage implements OnInit {
     this.firebaseGetServ
       .getAssetMakenModel(this.organization)
       .then((mNm: any) => {
+        mNm.forEach((elm) => {
+          elm.itemMakMod = elm.ItemMake;
+          if (elm.ItemModel) elm.itemMakMod += ' ' + elm.ItemModel;
+        });
         this.makesAndModels = mNm;
       });
   }
@@ -86,6 +90,10 @@ export class AddassetsPage implements OnInit {
     this.firebaseGetServ
       .getAssetMakenModelLeft(this.organization)
       .then((mNm: any) => {
+        mNm.forEach((elm) => {
+          elm.itemMakMod = elm.ItemMake;
+          if (elm.ItemModel) elm.itemMakMod += ' ' + elm.ItemModel;
+        });
         this.makesAndModels = mNm;
       });
   }

@@ -165,6 +165,18 @@
 
           <ion-col size="3.5" offset="0.5">
             <div class="item-input">
+              <ion-label>Date</ion-label>
+              <ion-item lines="none">
+                <ion-datetime
+                  display-format="MMM DD YYYY hh:mm a"
+                  [(ngModel)]="itemComponent.expDate"
+                ></ion-datetime>
+              </ion-item>
+            </div>
+          </ion-col>
+
+          <ion-col size="3.5">
+            <div class="item-input">
               <ion-label>Component Name</ion-label>
               <ion-item>
                 <ionic-selectable
@@ -181,7 +193,7 @@
             </div>
           </ion-col>
 
-          <ion-col size="3.5">
+          <ion-col size="3.5" offset="0.5">
             <div class="item-input">
               <ion-label>Componanent Make</ion-label>
               <ion-item>
@@ -216,8 +228,6 @@
               </ion-item>
             </div>
           </ion-col>
-
-          <ion-col size="3.5" offset="0.5"> </ion-col>
 
           <ion-col size="3.5">
             <div class="item-input">
@@ -260,7 +270,19 @@
             </div>
           </ion-col>
 
-          <ion-col size="3.5" *ngIf="itemComponent.OilWetted">
+          <ion-col size="3.5">
+            <div class="item-input">
+              <ion-label>Waranty</ion-label>
+              <ion-item lines="none">
+                <ion-input
+                  type="text"
+                  [(ngModel)]="itemComponent.warranty"
+                ></ion-input>
+              </ion-item>
+            </div>
+          </ion-col>
+
+          <ion-col size="3.5" offset="0.5" *ngIf="itemComponent.OilWetted">
             <div class="item-input">
               <ion-label>Oil capacity</ion-label>
               <ion-item lines="none">
@@ -289,10 +311,8 @@
               </ion-item>
             </div>
           </ion-col>
-
-          <ion-col size="3.5" offset="0.5" *ngIf="itemComponent.OilWetted">
-          </ion-col>
-
+        </ion-row>
+        <ion-row>
           <ion-col size="2.6">
             <div class="item-input">
               <ion-label>Service Parts(Filters, Plugs etc.)</ion-label>

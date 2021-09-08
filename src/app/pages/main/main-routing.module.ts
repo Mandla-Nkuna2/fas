@@ -556,10 +556,29 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'additeminfo',
+        loadChildren: () =>
+          import('../additeminfo/additeminfo.module').then(
+            (m) => m.AdditeminfoPageModule,
+          ),
+      },
+      {
+        path: 'howto',
+        loadChildren: () =>
+          import('../howto/howto.module').then((m) => m.HowtoPageModule),
+      },
+      {
         path: 'addsupportdatainfo',
         loadChildren: () =>
           import('../addsupportdatainfo/addsupportdatainfo.module').then(
             (m) => m.AddsupportdatainfoPageModule,
+          ),
+      },
+      {
+        path: 'addmaintinfo',
+        loadChildren: () =>
+          import('../addmaintinfo/addmaintinfo.module').then(
+            (m) => m.AddmaintinfoPageModule,
           ),
       },
     ],

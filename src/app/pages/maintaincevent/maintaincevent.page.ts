@@ -43,6 +43,29 @@ export class MaintainceventPage implements OnInit {
     this.getCurrentUser();
   }
 
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+      this.returnedUser = user;
+
+      this.onTableRep();
+      this.onJobCardNo();
+      this.onRegistration();
+      this.onMaintType();
+      this.onMaintReason();
+      this.onSupplier();
+      this.onRequestedBy();
+      this.onCostCentre();
+    });
+  }
+
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
@@ -169,36 +192,16 @@ export class MaintainceventPage implements OnInit {
       });
   }
 
-  getCurrentUser() {
-    this.afAuth.user.subscribe((cUser) => {
-      this.getCurrentUserOrg(cUser.email);
-    });
-  }
-
-  getCurrentUserOrg(email) {
-    this.firebaseRepServ.getUser(email).then((mNm) => {
-      let user: any = mNm;
-      this.organization = user.organization;
-      this.returnedUser = user;
-
-      this.onTableRep();
-      this.onJobCardNo();
-      this.onRegistration();
-      this.onMaintType();
-      this.onMaintReason();
-      this.onSupplier();
-      this.onRequestedBy();
-      this.onCostCentre();
-    });
-  }
-
   onAdd() {
     this.maintenanceEvent.MaintEvntGuid = uuidv4();
+    this.maintenanceEvent.RefNo = uuidv4();
     this.maintenanceEvent.CaptureName = this.returnedUser.UserFirstName;
 
     if (this.maintenanceEvent.JobCardGuid)
       this.maintenanceEvent.JobCardGuid =
         this.maintenanceEvent.JobCardGuid['JobCardGuid'];
+    if (this.maintenanceEvent.ItemGuid)
+      this.maintenanceEvent.RegIndex = this.maintenanceEvent.ItemGuid['Reg'];
     if (this.maintenanceEvent.ItemGuid)
       this.maintenanceEvent.ItemGuid =
         this.maintenanceEvent.ItemGuid['ItemGuid'];

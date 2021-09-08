@@ -1,4 +1,3 @@
-import { Operator } from './../../models/capture/DailyOperationRec.model';
 import DailyOperationRec from 'src/app/models/capture/DailyOperationRec.model';
 import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from 'src/app/services/firebase-service/firebase-service.service';
@@ -18,13 +17,24 @@ export class DailyoperationrecordPage implements OnInit {
   dOpsRec: DailyOperationRec;
   dailyOpRecs: any[] = [];
 
-  registration: any[];
+  returnedUser: any;
   currentDate = new Date();
+  registration: any[];
   location: any[];
   costCentre: any[];
   operator: any[];
-  returnedUser: any;
-
+  typeUnits = [
+    'cc',
+    'cfm',
+    'kg',
+    'kVA',
+    'KW',
+    'l/hr',
+    'litres',
+    'm³',
+    'seats',
+    'ton',
+  ];
   constructor(
     private firebaseRepServ: FirebaseReportService,
     private firebaseService: FirebaseService,
@@ -33,7 +43,6 @@ export class DailyoperationrecordPage implements OnInit {
     public afAuth: AngularFireAuth,
   ) {
     this.dOpsRec = new DailyOperationRec();
-    this.dOpsRec.operator = Object.assign({}, new Operator());
   }
 
   ngOnInit() {
@@ -146,15 +155,16 @@ export class DailyoperationrecordPage implements OnInit {
     this.dOpsRec.PlantSheetguid = uuidv4();
     this.dOpsRec.CaptureName = this.returnedUser.UserFirstName;
 
+    if (this.dOpsRec.OpenOdo && this.dOpsRec.CloseOdo)
+      this.dOpsRec.CalWrkKmHr = this.dOpsRec.CloseOdo - this.dOpsRec.OpenOdo;
     if (this.dOpsRec.Itemguid)
       this.dOpsRec.Itemguid = this.dOpsRec.Itemguid['ItemGuid'];
     if (this.dOpsRec.LocItemCode)
       this.dOpsRec.LocItemCode = this.dOpsRec.LocItemCode['LocGuid'];
     if (this.dOpsRec.CostCentreguid)
       this.dOpsRec.CostCentreguid = this.dOpsRec.CostCentreguid['CostCentGuid'];
-    if (this.dOpsRec.operator.StaffGuid)
-      this.dOpsRec.operator.StaffGuid =
-        this.dOpsRec.operator.StaffGuid['StaffGuid'];
+    if (this.dOpsRec.StaffGuid)
+      this.dOpsRec.StaffGuid = this.dOpsRec.StaffGuid['StaffGuid'];
 
     this.firebaseService
       .writeData(

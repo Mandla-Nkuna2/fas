@@ -95,8 +95,21 @@
                 <ion-item lines="none">
                   <ion-input
                     type="text"
-                    [(ngModel)]="serviceType.ServTypeGuid"
+                    [(ngModel)]="serviceType.ServType"
                   ></ion-input>
+                </ion-item>
+              </div>
+            </ion-col>
+
+            <ion-col size="3.5" offset="0.5">
+              <div class="item-input">
+                <ion-label>Active</ion-label>
+                <ion-item>
+                  <ionic-selectable
+                    [(ngModel)]="serviceType.Active"
+                    [items]="yesNo"
+                  >
+                  </ionic-selectable>
                 </ion-item>
               </div>
             </ion-col>

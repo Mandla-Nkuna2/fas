@@ -22,10 +22,6 @@ export default class DailyOperationRec {
   OrdNumber: number;
   RefNumber: string;
   LocItemCode: string;
-  operator: Operator;
-}
-
-export class Operator {
   StaffGuid: string;
   Starttime: string;
   Endtime: string;

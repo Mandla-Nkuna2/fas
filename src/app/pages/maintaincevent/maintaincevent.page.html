@@ -52,14 +52,14 @@
           <ion-col size="1.4" class="flex al-center jc-center">
             <h4>maint. type</h4>
           </ion-col>
-          <ion-col size="1" class="flex al-center jc-center">
+          <ion-col size="1.2" class="flex al-center jc-center">
             <h4>start date</h4>
           </ion-col>
-          <ion-col size="1" class="flex al-center jc-center">
+          <ion-col size="1.2" class="flex al-center jc-center">
             <h4>comp. date</h4>
           </ion-col>
-          <ion-col size="1.4" class="flex al-center jc-center">
-            <h4>Cost</h4>
+          <ion-col size="1" class="flex al-center jc-center">
+            <h4>Meter read</h4>
           </ion-col>
           <ion-col size="1.4" class="flex al-center jc-center">
             <h4>Cost centre</h4>
@@ -86,14 +86,14 @@
             <ion-col size="1.4" class="flex al-center jc-center">
               <p>{{ item.MaintType }}</p>
             </ion-col>
-            <ion-col size="1" class="flex al-center jc-center">
+            <ion-col size="1.2" class="flex al-center jc-center">
               <p>{{ item.StartDate }}</p>
             </ion-col>
-            <ion-col size="1" class="flex al-center jc-center">
+            <ion-col size="1.2" class="flex al-center jc-center">
               <p>{{ item.CompleteDate }}</p>
             </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <p>{{ item.CostAct | number : '1.2-2' }}</p>
+            <ion-col size="1" class="flex al-center jc-center">
+              <p>{{ item.MeterRead }}</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
               <p>{{ item.CostCent }}</p>
@@ -132,18 +132,6 @@
 
           <ion-col size="3.5" offset="0.5">
             <div class="item-input">
-              <ion-label>Reference No.</ion-label>
-              <ion-item lines="none">
-                <ion-input
-                  type="text"
-                  [(ngModel)]="maintenanceEvent.RefNo"
-                ></ion-input>
-              </ion-item>
-            </div>
-          </ion-col>
-
-          <ion-col size="3.5" offset="0.5">
-            <div class="item-input">
               <ion-label>Registration</ion-label>
               <ion-item>
                 <ionic-selectable
@@ -160,7 +148,7 @@
             </div>
           </ion-col>
 
-          <ion-col size="3.5">
+          <ion-col size="3.5" offset="0.5">
             <div class="item-input">
               <ion-label>Maintenance Type</ion-label>
               <ion-item>
@@ -177,7 +165,7 @@
             </div>
           </ion-col>
 
-          <ion-col size="3.5" offset="0.5">
+          <ion-col size="3.5">
             <div class="item-input">
               <ion-label>Maintenance Reason</ion-label>
               <ion-item>
@@ -199,6 +187,7 @@
               <ion-label>Order Start Date</ion-label>
               <ion-item lines="none">
                 <ion-datetime
+                  max="2026"
                   display-format="MMM DD YYYY"
                   [(ngModel)]="maintenanceEvent.StartDate"
                 ></ion-datetime>
@@ -206,11 +195,12 @@
             </div>
           </ion-col>
 
-          <ion-col size="3.5">
+          <ion-col size="3.5" offset="0.5">
             <div class="item-input">
               <ion-label>Completion Date</ion-label>
               <ion-item lines="none">
                 <ion-datetime
+                  max="2026"
                   display-format="MMM DD YYYY"
                   [(ngModel)]="maintenanceEvent.CompleteDate"
                 ></ion-datetime>
@@ -218,7 +208,7 @@
             </div>
           </ion-col>
 
-          <ion-col size="3.5" offset="0.5">
+          <ion-col size="3.5">
             <div class="item-input">
               <ion-label>Meter Reading</ion-label>
               <ion-item lines="none">
@@ -242,7 +232,7 @@
             </div>
           </ion-col>
 
-          <ion-col size="3.5">
+          <ion-col size="3.5" offset="0.5">
             <div class="item-input">
               <ion-label>Supplier</ion-label>
               <ion-item>
@@ -260,7 +250,7 @@
             </div>
           </ion-col>
 
-          <ion-col size="3.5" offset="0.5">
+          <ion-col size="3.5">
             <div class="item-input">
               <ion-label>Requested By</ion-label>
               <ion-item>

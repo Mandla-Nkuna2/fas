@@ -92,30 +92,6 @@ export class AddassetsinfoPage implements OnInit {
       let user: any = mNm;
       this.organization = user.organization;
       this.returnedUser = user;
-
-      this.onClass();
-      this.onBattery();
-    });
-  }
-
-  onClass() {
-    this.firebaseGetServ
-      .getItemTypeClass(this.organization)
-      .then((size: any) => {
-        this.classes = size;
-      });
-  }
-  onClassLeft() {
-    this.firebaseGetServ
-      .getItemTypeClassLeft(this.organization)
-      .then((size: any) => {
-        this.classes = size;
-      });
-  }
-
-  onBattery() {
-    this.firebaseGetServ.getBatteryMake(this.organization).then((size: any) => {
-      this.batteryMakes = size;
     });
   }
 
@@ -136,69 +112,6 @@ export class AddassetsinfoPage implements OnInit {
       .then(() => {
         this.popUp.showToast('Data saved successfully :-)');
         this.itemMakeMod = new ItemMakeAndModel();
-      })
-      .catch((err) => {
-        this.popUp.showError(err);
-      });
-  }
-
-  onAddAssetTypeName() {
-    this.itemTypeName.ItemTypeNameGuid = uuidv4();
-    this.itemTypeName.Active = 'Y';
-    this.itemTypeName.CapName = this.returnedUser.UserFirstName;
-
-    this.firebaseSevice
-      .writeData(
-        this.organization,
-        'Sup_ItemTypeName',
-        Object.assign({}, this.itemTypeName),
-        this.itemTypeName.ItemTypeNameGuid,
-      )
-      .then(() => {
-        this.popUp.showToast('Data saved successfully :-)');
-        this.itemTypeName = new AssetTypeName();
-      })
-      .catch((err) => {
-        this.popUp.showError(err);
-      });
-  }
-
-  onAddAssetTypeClass() {
-    this.itemTypeClass.ItemTypeClassGuid = uuidv4();
-    this.itemTypeClass.Active = 'Y';
-    this.itemTypeClass.CapName = this.returnedUser.UserFirstName;
-
-    this.firebaseSevice
-      .writeData(
-        this.organization,
-        'Sup_ItemTypeClass',
-        Object.assign({}, this.itemTypeClass),
-        this.itemTypeClass.ItemTypeClassGuid,
-      )
-      .then(() => {
-        this.popUp.showToast('Data saved successfully :-)');
-        this.itemTypeClass = new AssetTypeClass();
-      })
-      .catch((err) => {
-        this.popUp.showError(err);
-      });
-  }
-
-  onAddAssetTypeCap() {
-    this.itemTypeCap.ItemTypeCapGuid = uuidv4();
-    this.itemTypeCap.Active = 'Y';
-    this.itemTypeCap.CapName = this.returnedUser.UserFirstName;
-
-    this.firebaseSevice
-      .writeData(
-        this.organization,
-        'Sup_ItemTypeCap',
-        Object.assign({}, this.itemTypeCap),
-        this.itemTypeCap.ItemTypeCapGuid,
-      )
-      .then(() => {
-        this.popUp.showToast('Data saved successfully :-)');
-        this.itemTypeCap = new AssetTypeCap();
       })
       .catch((err) => {
         this.popUp.showError(err);

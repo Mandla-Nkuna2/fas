@@ -29,7 +29,6 @@ export class FirebaseGetService {
               ItemMakModGuid: mNm.get('ItemMakModGuid'),
               ItemMake: mNm.get('ItemMake'),
               ItemModel: mNm.get('ItemModel'),
-              ItemMakMod: mNm.get('ItemMake') + ' ' + mNm.get('ItemModel'),
             });
           });
           resolve(makeAndModel);
@@ -49,10 +48,9 @@ export class FirebaseGetService {
           let makeAndModel = [];
           mNm.docs.forEach((mNm) => {
             makeAndModel.push({
+              ItemMakModGuid: mNm.get('ItemMakModGuid'),
               ItemMake: mNm.get('ItemMake'),
               ItemModel: mNm.get('ItemModel'),
-              ItemMakMod: mNm.get('ItemMake') + ' ' + mNm.get('ItemModel'),
-              ItemMakModGuid: mNm.get('ItemMakModGuid'),
             });
           });
           resolve(makeAndModel);

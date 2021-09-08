@@ -64,8 +64,8 @@ exports.registerUser = functions.https.onRequest((rqst, resp) => {
 exports.getVehiclesCount = functions.https.onRequest((rqst, resp) => {
   return corsHandler(rqst, resp, () => {
     db.collection(rqst.body.organisation + "/Mst_Item/tables")
-        // eslint-disable-next-line quotes
-        .where('ItemCatg', 'in', ['VEHICLES', 'LIGHT LOAD VEHICLE'])
+        .where("ItemCatg", "in", ["VEHICLES",
+          "LIGHT LOAD VEHICLE", "HEAVY LOAD VEHICLE"])
         .get().then((col) => {
           const count = {val: 0};
           if (col.empty) {
