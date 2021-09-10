@@ -49,6 +49,26 @@ export class DailyoperationrecordPage implements OnInit {
     this.getCurrentUser();
   }
 
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+      this.returnedUser = user;
+
+      this.onTableRep();
+      this.onRegistration();
+      this.onLocation();
+      this.onCostCentre();
+      this.onOperatorName();
+    });
+  }
+
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
@@ -128,26 +148,6 @@ export class DailyoperationrecordPage implements OnInit {
   onOperatorNameLeft() {
     this.firebaseGetServ.getStaffLeft(this.organization).then((mNm: any) => {
       this.operator = mNm;
-    });
-  }
-
-  getCurrentUser() {
-    this.afAuth.user.subscribe((cUser) => {
-      this.getCurrentUserOrg(cUser.email);
-    });
-  }
-
-  getCurrentUserOrg(email) {
-    this.firebaseRepServ.getUser(email).then((mNm) => {
-      let user: any = mNm;
-      this.organization = user.organization;
-      this.returnedUser = user;
-
-      this.onTableRep();
-      this.onRegistration();
-      this.onLocation();
-      this.onCostCentre();
-      this.onOperatorName();
     });
   }
 

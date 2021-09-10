@@ -36,6 +36,18 @@
           <ion-row>
             <ion-col size="3.5">
               <div class="item-input">
+                <ion-label>Jobcard No.</ion-label>
+                <ion-item lines="none">
+                  <ion-input
+                    disabled
+                    [(ngModel)]="jobCard.JobCardNo"
+                  ></ion-input>
+                </ion-item>
+              </div>
+            </ion-col>
+
+            <ion-col size="3.5" offset="0.5">
+              <div class="item-input">
                 <ion-label>Reported Date</ion-label>
                 <ion-item lines="none">
                   <ion-datetime
@@ -56,7 +68,7 @@
                 </ion-item>
               </div>
             </ion-col>
-            <ion-col size="3.5" offset="0.5">
+            <ion-col size="3.5">
               <div class="item-input">
                 <ion-label>Complete Date</ion-label>
                 <ion-item lines="none">
@@ -67,7 +79,7 @@
                 </ion-item>
               </div>
             </ion-col>
-            <ion-col size="3.5">
+            <ion-col size="3.5" offset="0.5">
               <div class="item-input">
                 <ion-label>Reported By</ion-label>
                 <ion-item>

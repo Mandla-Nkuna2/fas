@@ -13,6 +13,8 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 export class RevenueearnedPage implements OnInit {
   organization = 'InnTee';
   revenuee: any[] = [];
+
+  currentDate = new Date();
   clientNames: any[];
   returnedUser: any;
 

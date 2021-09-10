@@ -15,8 +15,8 @@ import { v4 as uuidv4 } from 'uuid';
 })
 export class MaintainceventPage implements OnInit {
   organization = 'InnTee';
-  maintenanceEvent: MaintenanceEvent;
-  maintenanceEvents: any[] = [];
+  maintEvnt: MaintenanceEvent;
+  maintEvnts: any[] = [];
 
   currentDate = new Date();
   jobCardNo: any[];
@@ -36,7 +36,7 @@ export class MaintainceventPage implements OnInit {
     private firebaseGetServ: FirebaseGetService,
     public afAuth: AngularFireAuth,
   ) {
-    this.maintenanceEvent = new MaintenanceEvent();
+    this.maintEvnt = new MaintenanceEvent();
   }
 
   ngOnInit() {
@@ -56,6 +56,7 @@ export class MaintainceventPage implements OnInit {
       this.returnedUser = user;
 
       this.onTableRep();
+      this.getMaintEvntCount();
       this.onJobCardNo();
       this.onRegistration();
       this.onMaintType();
@@ -71,7 +72,7 @@ export class MaintainceventPage implements OnInit {
       this.firebaseRepServ
         .getMaintEvent(this.organization)
         .then((mNm: any) => {
-          this.maintenanceEvents = mNm;
+          this.maintEvnts = mNm;
           this.onJobCardNoLeft();
           this.onMaintType();
           this.onCostCentreLeft();
@@ -89,6 +90,16 @@ export class MaintainceventPage implements OnInit {
     this.navCtrl.navigateForward('oilissues');
   }
 
+  getMaintEvntCount() {
+    let c = 0;
+    this.firebaseRepServ
+      .getDocsCount(this.organization, 'Trn_MaintEvnt')
+      .then((mNm: number) => {
+        c = mNm;
+        this.maintEvnt.RefNo = 'REF00' + (c + 1);
+      });
+  }
+
   onJobCardNo() {
     this.firebaseGetServ.getJobCardNos(this.organization).then((staff: any) => {
       this.jobCardNo = staff;
@@ -101,7 +112,7 @@ export class MaintainceventPage implements OnInit {
         this.jobCardNo = staff;
 
         staff.forEach((elm) => {
-          this.maintenanceEvents.forEach((obj) => {
+          this.maintEvnts.forEach((obj) => {
             if (elm.JobCardGuid == obj.JobCardGuid) {
               obj.JobCard = elm.JobCardNo;
             }
@@ -130,7 +141,7 @@ export class MaintainceventPage implements OnInit {
       this.maintanceType = staff;
 
       staff.forEach((elm) => {
-        this.maintenanceEvents.forEach((obj) => {
+        this.maintEvnts.forEach((obj) => {
           if (elm.MaintTypeGuid == obj.MaintTypeGuid) {
             obj.MaintType = elm.MaintType;
           }
@@ -183,7 +194,7 @@ export class MaintainceventPage implements OnInit {
         this.costCentre = staff;
 
         staff.forEach((elm) => {
-          this.maintenanceEvents.forEach((obj) => {
+          this.maintEvnts.forEach((obj) => {
             if (elm.CostCentGuid == obj.CostCentGuid) {
               obj.CostCent = elm.CostCentName;
             }
@@ -193,45 +204,40 @@ export class MaintainceventPage implements OnInit {
   }
 
   onAdd() {
-    this.maintenanceEvent.MaintEvntGuid = uuidv4();
-    this.maintenanceEvent.RefNo = uuidv4();
-    this.maintenanceEvent.CaptureName = this.returnedUser.UserFirstName;
+    this.maintEvnt.MaintEvntGuid = uuidv4();
+    this.maintEvnt.CaptureName = this.returnedUser.UserFirstName;
 
-    if (this.maintenanceEvent.JobCardGuid)
-      this.maintenanceEvent.JobCardGuid =
-        this.maintenanceEvent.JobCardGuid['JobCardGuid'];
-    if (this.maintenanceEvent.ItemGuid)
-      this.maintenanceEvent.RegIndex = this.maintenanceEvent.ItemGuid['Reg'];
-    if (this.maintenanceEvent.ItemGuid)
-      this.maintenanceEvent.ItemGuid =
-        this.maintenanceEvent.ItemGuid['ItemGuid'];
-    if (this.maintenanceEvent.MaintTypeGuid)
-      this.maintenanceEvent.MaintTypeGuid =
-        this.maintenanceEvent.MaintTypeGuid['MaintTypeGuid'];
-    if (this.maintenanceEvent.MaintReasonGuid)
-      this.maintenanceEvent.MaintReasonGuid =
-        this.maintenanceEvent.MaintReasonGuid['MaintReasonGuid'];
-    if (this.maintenanceEvent.SuppGuid)
-      this.maintenanceEvent.SuppGuid =
-        this.maintenanceEvent.SuppGuid['SuppGuid'];
-    if (this.maintenanceEvent.RequestByGuid)
-      this.maintenanceEvent.RequestByGuid =
-        this.maintenanceEvent.RequestByGuid['StaffGuid'];
-    if (this.maintenanceEvent.CostCentGuid)
-      this.maintenanceEvent.CostCentGuid =
-        this.maintenanceEvent.CostCentGuid['CostCentGuid'];
+    if (this.maintEvnt.JobCardGuid)
+      this.maintEvnt.JobCardGuid = this.maintEvnt.JobCardGuid['JobCardGuid'];
+    if (this.maintEvnt.ItemGuid)
+      this.maintEvnt.RegIndex = this.maintEvnt.ItemGuid['Reg'];
+    if (this.maintEvnt.ItemGuid)
+      this.maintEvnt.ItemGuid = this.maintEvnt.ItemGuid['ItemGuid'];
+    if (this.maintEvnt.MaintTypeGuid)
+      this.maintEvnt.MaintTypeGuid =
+        this.maintEvnt.MaintTypeGuid['MaintTypeGuid'];
+    if (this.maintEvnt.MaintReasonGuid)
+      this.maintEvnt.MaintReasonGuid =
+        this.maintEvnt.MaintReasonGuid['MaintReasonGuid'];
+    if (this.maintEvnt.SuppGuid)
+      this.maintEvnt.SuppGuid = this.maintEvnt.SuppGuid['SuppGuid'];
+    if (this.maintEvnt.RequestByGuid)
+      this.maintEvnt.RequestByGuid = this.maintEvnt.RequestByGuid['StaffGuid'];
+    if (this.maintEvnt.CostCentGuid)
+      this.maintEvnt.CostCentGuid = this.maintEvnt.CostCentGuid['CostCentGuid'];
 
     this.firebaseService
       .writeData(
         this.organization,
         'Trn_MaintEvnt',
-        Object.assign({}, this.maintenanceEvent),
-        this.maintenanceEvent.MaintEvntGuid,
+        Object.assign({}, this.maintEvnt),
+        this.maintEvnt.MaintEvntGuid,
       )
       .then(() => {
         this.onTableRep();
         this.popUp.showToast('Data saved successfully :-)');
-        this.maintenanceEvent = new MaintenanceEvent();
+        this.maintEvnt = new MaintenanceEvent();
+        this.getMaintEvntCount();
       })
       .catch((err) => {
         this.popUp.showError(err);

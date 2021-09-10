@@ -1,6 +1,10 @@
 <ion-content class="ion-padding">
   <div class="title-holder flex al-center">
-    <ion-back-button defaultHref="revenue" mode="ios" text=""></ion-back-button>
+    <ion-back-button
+      defaultHref="main/revenue"
+      mode="ios"
+      text=""
+    ></ion-back-button>
     <h2>Revenue Report</h2>
     <div class="date-holder">
       <ion-item lines="none">
@@ -11,8 +15,9 @@
           ></ion-icon>
         </div>
         <ion-datetime
-          display-format="MMM DD YYYY hh:mm a"
-          value="Sep 16 2020, 12:02 "
+          style="color: green"
+          disabled
+          value="{{ currentDate |  date:'MM/dd/yyyy' }}"
         ></ion-datetime>
       </ion-item>
     </div>

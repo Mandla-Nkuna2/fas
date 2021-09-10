@@ -110,7 +110,7 @@
               <p>{{ item.NoOvertime | number : '1.2-2' }}</p>
             </ion-col>
             <ion-col size="2" class="flex al-center jc-center">
-              <p>{{ item.comment }}</p>
+              <p>{{ item.OtherRevenueComm }}</p>
             </ion-col>
           </ion-row>
         </div>
@@ -443,12 +443,14 @@
 
           <ion-col size="2.8" offset="0.25">
             <div class="item-input">
-              <ion-label>Include in Total?</ion-label>
+              <ion-label>Included in Total?</ion-label>
               <ion-item lines="none" class="end">
-                <ion-input type="text" [(ngModel)]="revenue.IncVat"></ion-input>
-                <div class="end-slot flex al-center jc-center" slot="end">
-                  <p>%</p>
-                </div>
+                <ionic-selectable
+                  [(ngModel)]="revenue.IncVat"
+                  [items]="yesNo"
+                  [canSearch]="true"
+                >
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>
@@ -457,9 +459,13 @@
             <div class="item-input">
               <ion-label>Total</ion-label>
               <ion-item lines="none" class="end">
-                <ion-input type="text" [(ngModel)]="revenue.Total"></ion-input>
+                <ion-input
+                  type="text"
+                  disabled
+                  [(ngModel)]="revenue.Total"
+                ></ion-input>
                 <div class="end-slot flex al-center jc-center" slot="end">
-                  <p>%</p>
+                  <p>R</p>
                 </div>
               </ion-item>
             </div>

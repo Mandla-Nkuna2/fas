@@ -73,6 +73,7 @@ export class JobcardPage implements OnInit {
       this.organization = user.organization;
       this.returnedUser = user;
 
+      this.getJobcardsCount();
       this.onReportedBy();
       this.onDriver();
       this.onRegistration();
@@ -118,6 +119,16 @@ export class JobcardPage implements OnInit {
     let operatorSig = this.signaturePad3.toDataURL();
     // .substring('data:image/png;base64,'.length);
     this.jobCard.operatorSignature = operatorSig;
+  }
+
+  getJobcardsCount() {
+    let c = 0;
+    this.firebaseRepServ
+      .getDocsCount(this.organization, 'Trn_JobCards')
+      .then((mNm: number) => {
+        c = mNm;
+        this.jobCard.JobCardNo = '00' + (c + 1);
+      });
   }
 
   onReportedBy() {
@@ -306,7 +317,6 @@ export class JobcardPage implements OnInit {
 
   onAdd() {
     this.jobCard.JobCardGuid = uuidv4();
-    this.jobCard.JobCardNo = uuidv4();
     this.jobCard.CaptureName = this.returnedUser.UserFirstName;
 
     if (this.jobCard.registrationNo)
@@ -329,6 +339,7 @@ export class JobcardPage implements OnInit {
         this.signaturePad2.clear();
         this.signaturePad3.clear();
         this.jobCard = new JobCard();
+        this.getJobcardsCount();
       })
       .catch((err) => {
         this.popUp.showError(err);

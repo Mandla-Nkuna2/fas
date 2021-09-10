@@ -37,7 +37,7 @@
         </div>
       </div>
       <ng-template #noItems> No items. </ng-template>
-      <ion-grid fixed *ngIf="maintenanceEvents.length; else noItems">
+      <ion-grid fixed *ngIf="maintEvnts.length; else noItems">
         <ion-row class="title-row">
           <ion-col size="0.5" class="flex al-center jc-center"> </ion-col>
           <ion-col size="1.4" class="flex al-center jc-center">
@@ -68,7 +68,7 @@
         <div class="values">
           <ion-row
             class="value-row"
-            *ngFor="let item of maintenanceEvents; let i = index"
+            *ngFor="let item of maintEvnts; let i = index"
             (click)="goOilIssues()"
           >
             <ion-col size="0.5" class="flex al-center jc-center">
@@ -114,10 +114,19 @@
         <ion-row>
           <ion-col size="3.5">
             <div class="item-input">
+              <ion-label>Reference No.</ion-label>
+              <ion-item lines="none">
+                <ion-input disabled [(ngModel)]="maintEvnt.RefNo"></ion-input>
+              </ion-item>
+            </div>
+          </ion-col>
+
+          <ion-col size="3.5" offset="0.5">
+            <div class="item-input">
               <ion-label>Job Card No.</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="maintenanceEvent.JobCardGuid"
+                  [(ngModel)]="maintEvnt.JobCardGuid"
                   [items]="jobCardNo"
                   itemValueField="JobCardGuid"
                   itemTextField="JobCardNo"
@@ -135,7 +144,7 @@
               <ion-label>Registration</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="maintenanceEvent.ItemGuid"
+                  [(ngModel)]="maintEvnt.ItemGuid"
                   [items]="registration"
                   itemValueField="ItemGuid"
                   itemTextField="Reg"
@@ -148,12 +157,12 @@
             </div>
           </ion-col>
 
-          <ion-col size="3.5" offset="0.5">
+          <ion-col size="3.5">
             <div class="item-input">
               <ion-label>Maintenance Type</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="maintenanceEvent.MaintTypeGuid"
+                  [(ngModel)]="maintEvnt.MaintTypeGuid"
                   [items]="maintanceType"
                   itemValueField="MaintTypeGuid"
                   itemTextField="MaintType"
@@ -165,12 +174,12 @@
             </div>
           </ion-col>
 
-          <ion-col size="3.5">
+          <ion-col size="3.5" offset="0.5">
             <div class="item-input">
               <ion-label>Maintenance Reason</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="maintenanceEvent.MaintReasonGuid"
+                  [(ngModel)]="maintEvnt.MaintReasonGuid"
                   [items]="maintanceReason"
                   itemValueField="MaintReasonGuid"
                   itemTextField="MaintReason"
@@ -189,20 +198,7 @@
                 <ion-datetime
                   max="2026"
                   display-format="MMM DD YYYY"
-                  [(ngModel)]="maintenanceEvent.StartDate"
-                ></ion-datetime>
-              </ion-item>
-            </div>
-          </ion-col>
-
-          <ion-col size="3.5" offset="0.5">
-            <div class="item-input">
-              <ion-label>Completion Date</ion-label>
-              <ion-item lines="none">
-                <ion-datetime
-                  max="2026"
-                  display-format="MMM DD YYYY"
-                  [(ngModel)]="maintenanceEvent.CompleteDate"
+                  [(ngModel)]="maintEvnt.StartDate"
                 ></ion-datetime>
               </ion-item>
             </div>
@@ -210,11 +206,24 @@
 
           <ion-col size="3.5">
             <div class="item-input">
+              <ion-label>Completion Date</ion-label>
+              <ion-item lines="none">
+                <ion-datetime
+                  max="2026"
+                  display-format="MMM DD YYYY"
+                  [(ngModel)]="maintEvnt.CompleteDate"
+                ></ion-datetime>
+              </ion-item>
+            </div>
+          </ion-col>
+
+          <ion-col size="3.5" offset="0.5">
+            <div class="item-input">
               <ion-label>Meter Reading</ion-label>
               <ion-item lines="none">
                 <ion-input
                   type="text"
-                  [(ngModel)]="maintenanceEvent.MeterRead"
+                  [(ngModel)]="maintEvnt.MeterRead"
                 ></ion-input>
               </ion-item>
             </div>
@@ -226,18 +235,18 @@
               <ion-item lines="none">
                 <ion-datetime
                   display-format="MMM DD YYYY hh:mm a"
-                  [(ngModel)]="maintenanceEvent.MeterReadDate"
+                  [(ngModel)]="maintEvnt.MeterReadDate"
                 ></ion-datetime>
               </ion-item>
             </div>
           </ion-col>
 
-          <ion-col size="3.5" offset="0.5">
+          <ion-col size="3.5">
             <div class="item-input">
               <ion-label>Supplier</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="maintenanceEvent.SuppGuid"
+                  [(ngModel)]="maintEvnt.SuppGuid"
                   [items]="supplier"
                   itemValueField="SuppGuid"
                   itemTextField="SuppName"
@@ -250,12 +259,12 @@
             </div>
           </ion-col>
 
-          <ion-col size="3.5">
+          <ion-col size="3.5" offset="0.5">
             <div class="item-input">
               <ion-label>Requested By</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="maintenanceEvent.RequestByGuid"
+                  [(ngModel)]="maintEvnt.RequestByGuid"
                   [items]="requestedBy"
                   itemValueField="StaffGuid"
                   itemTextField="StaffCode"
@@ -273,7 +282,7 @@
               <ion-label>Cost Center</ion-label>
               <ion-item>
                 <ionic-selectable
-                  [(ngModel)]="maintenanceEvent.CostCentGuid"
+                  [(ngModel)]="maintEvnt.CostCentGuid"
                   [items]="costCentre"
                   itemValueField="CostCentGuid"
                   itemTextField="CostCentName"
@@ -292,7 +301,7 @@
               <ion-item lines="none">
                 <ion-textarea
                   rows="5"
-                  [(ngModel)]="maintenanceEvent.Workdone"
+                  [(ngModel)]="maintEvnt.Workdone"
                 ></ion-textarea>
               </ion-item>
             </div>

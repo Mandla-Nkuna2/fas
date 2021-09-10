@@ -18,11 +18,12 @@ export class RevenuePage implements OnInit {
   revenue: Revenue;
   revenuee: any[] = [];
 
+  returnedUser: any;
   currentDate = new Date();
   registration: any[];
   clients: any[];
   costCentre: any[];
-  returnedUser: any;
+  yesNo = ['Y', 'N'];
 
   constructor(
     private navCtrl: NavController,
@@ -119,12 +120,15 @@ export class RevenuePage implements OnInit {
     this.revenue.CaptureName = this.returnedUser.UserFirstName;
 
     if (this.revenue.ItemGuid)
+      this.revenue.RegIndex = this.revenue.ItemGuid['Reg'];
+    if (this.revenue.ItemGuid)
       this.revenue.ItemGuid = this.revenue.ItemGuid['ItemGuid'];
     if (this.revenue.ClientGuid)
       this.revenue.ClientGuid = this.revenue.ClientGuid['ClientGuid'];
     if (this.revenue.CostCentguid)
       this.revenue.CostCentguid = this.revenue.CostCentguid['CostCentGuid'];
 
+    this.onTotalRev();
     this.firebaseService
       .writeData(
         this.organization,
@@ -140,5 +144,24 @@ export class RevenuePage implements OnInit {
       .catch((err) => {
         this.popUp.showError(err);
       });
+  }
+
+  onTotalRev() {
+    let ttlRev = 0;
+    let rev =
+      this.revenue.NoHours * this.revenue.HourRate +
+      this.revenue.NoOvertime * this.revenue.OvertimeRate +
+      this.revenue.NoWeekend * this.revenue.WeekendRate +
+      this.revenue.NoRain * this.revenue.RainRate +
+      this.revenue.StandbyHours * this.revenue.StandbyRate +
+      this.revenue.NoDays * this.revenue.DailyRate +
+      +this.revenue.OtherRevenue -
+      this.revenue.Deductions;
+
+    let disc = (rev / 100) * this.revenue.Discount;
+    ttlRev = rev - disc;
+    let vat = (ttlRev / 100) * this.revenue.Vat;
+    if (this.revenue.IncVat == 'Y') ttlRev += vat;
+    this.revenue.Total = ttlRev;
   }
 }

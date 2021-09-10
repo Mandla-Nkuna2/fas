@@ -1,6 +1,6 @@
 export default class MaintenanceEvent {
   MaintEvntGuid: string;
-  RefNo: number;
+  RefNo: string;
   ItemGuid: string;
   StartDate: string;
   CompleteDate: string;

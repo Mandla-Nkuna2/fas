@@ -1004,4 +1004,21 @@ export class FirebaseReportService {
     });
     return promise;
   }
+
+  getDocsCount(organization, coll) {
+    const promise = new Promise((resolve, reject) => {
+      let count = 0;
+      this.afs
+        .collection(organization + '/' + coll + '/tables')
+        .ref.get()
+        .then((obj) => {
+          count = obj.size;
+          resolve(count);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
 }
