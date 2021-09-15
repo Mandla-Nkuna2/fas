@@ -154,12 +154,12 @@
               <ion-item>
                 <ionic-selectable
                   [(ngModel)]="oilIssue.ItemCompGuid"
-                  [items]="compNames"
-                  itemValueField="CompNameGuid"
-                  itemTextField="CompName"
+                  [items]="itemComps"
+                  itemValueField="ItemCompGuid"
+                  itemTextField="ItemCompName"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onComponentLeft()"
+                  (onInfiniteScroll)="onCompNameLeft()"
                 >
                 </ionic-selectable>
               </ion-item>
@@ -231,15 +231,6 @@
             </div>
           </ion-col>
 
-          <!-- <ion-col size="3.5" offset="0.5">
-            <div class="item-input">
-              <ion-label>Oil Quantity</ion-label>
-              <ion-item lines="none">
-                <ion-input type="text" placeholder="Oil Quantity"></ion-input>
-              </ion-item>
-            </div>
-          </ion-col> -->
-
           <ion-col size="3.5" offset="0.5" class="check-holder flex al-center">
             <ion-radio-group [(ngModel)]="oilIssue.Top_Serv">
               <ion-row>
@@ -266,14 +257,7 @@
             </ion-radio-group>
           </ion-col>
 
-          <ion-col size="3.5" offset="0.5">
-            <!-- <div class="item-input">
-              <ion-label>Oil Quantity</ion-label>
-              <ion-item lines="none">
-                <ion-input type="text" placeholder="Oil Quantity"></ion-input>
-              </ion-item>
-            </div> -->
-          </ion-col>
+          <ion-col size="3.5" offset="0.5"> </ion-col>
 
           <ion-col size="3.5">
             <div class="item-input">

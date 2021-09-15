@@ -43,6 +43,26 @@ export class OilstoretransPage implements OnInit {
     this.getCurrentUser();
   }
 
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+      this.returnedUser = user;
+
+      this.onTableRep();
+      this.onOilStore();
+      this.onOilType();
+      this.onSupplier();
+      this.onCostCentre();
+    });
+  }
+
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
@@ -185,26 +205,6 @@ export class OilstoretransPage implements OnInit {
       });
   }
 
-  getCurrentUser() {
-    this.afAuth.user.subscribe((cUser) => {
-      this.getCurrentUserOrg(cUser.email);
-    });
-  }
-
-  getCurrentUserOrg(email) {
-    this.firebaseRepServ.getUser(email).then((mNm) => {
-      let user: any = mNm;
-      this.organization = user.organization;
-      this.returnedUser = user;
-
-      this.onTableRep();
-      this.onOilStore();
-      this.onOilType();
-      this.onSupplier();
-      this.onCostCentre();
-    });
-  }
-
   onAdd() {
     this.oilstoreTrans.OilStoreTrnGuid = uuidv4();
     this.oilstoreTrans.CaptureName = this.returnedUser.UserFirstName;
@@ -224,13 +224,14 @@ export class OilstoretransPage implements OnInit {
     this.firebaseService
       .writeData(
         this.organization,
-        'Trn_OilStoreTransfer',
+        'Trn_OilStores',
         Object.assign({}, this.oilstoreTrans),
         this.oilstoreTrans.OilStoreTrnGuid,
       )
       .then(() => {
         this.popUp.showToast('Data saved successfully :-)');
         this.oilstoreTrans = new OilStoreTransaction();
+        this.onTableRep();
       })
       .catch((err) => {
         this.popUp.showError(err);

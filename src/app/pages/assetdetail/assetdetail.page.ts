@@ -55,7 +55,6 @@ export class AssetdetailPage implements OnInit {
         .then((mNm: any) => {
           this.assets = mNm;
           this.onAssetType();
-          this.onMakeAndMod();
           this.popUp.dismissLoading();
         })
         .catch((err) => {
@@ -113,6 +112,7 @@ export class AssetdetailPage implements OnInit {
           });
         });
         this.onTypeCapacityLeft();
+        this.onMakeAndMod();
       });
   }
 
@@ -152,7 +152,8 @@ export class AssetdetailPage implements OnInit {
         mNm.forEach((elm) => {
           this.assets.forEach((obj) => {
             if (elm.ItemMakModGuid == obj.ItemMakModGuid) {
-              obj.ItemMakMod = elm.ItemMakMod;
+              obj.ItemMakMod = elm.ItemMake;
+              if (elm.ItemModel) obj.ItemMakMod += ' ' + elm.ItemModel;
             }
           });
         });

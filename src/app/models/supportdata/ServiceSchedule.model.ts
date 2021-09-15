@@ -1,6 +1,10 @@
 export default class ServiceSchedule {
-  id: string;
-  itemMakeModelGuid: string;
-  servTypeGuid: string;
-  captureName: string;
+  ServHistGuid: string;
+  JobcardGuid: string;
+  ServSchTask: string;
+  Checked: string;
+  ServSchComment: string;
+  MaintEvntGuid: string;
+  CapName: string;
+  CapDate = new Date().toString();
 }

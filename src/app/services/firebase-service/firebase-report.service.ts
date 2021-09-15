@@ -611,7 +611,7 @@ export class FirebaseReportService {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection(organization + '/Sup_ItemMakMod/tables')
-        .ref.orderBy('CapDate', 'desc')
+        .ref //.orderBy('CapDate', 'desc')
         .limit(limVal)
         .get()
         .then((obj) => {
@@ -690,7 +690,7 @@ export class FirebaseReportService {
   public getServiceScheduleTasks(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
-        .collection(organization + '/Trn_ServScheduleHistory/tables')
+        .collection(organization + '/Sup_Checklist/tables')
         .ref.limit(limVal)
         .get()
         .then((obj) => {

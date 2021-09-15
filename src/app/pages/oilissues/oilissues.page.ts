@@ -21,6 +21,7 @@ export class OilissuesPage implements OnInit {
   currentDate = new Date();
   voucherNo: any[];
   registration: any[];
+  itemComps: any[];
   compNames: any[];
   oilStore: any[];
   supplier: any[];
@@ -44,6 +45,29 @@ export class OilissuesPage implements OnInit {
 
   ngOnInit() {
     this.getCurrentUser();
+  }
+
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+      this.returnedUser = user;
+
+      this.onTableRep();
+      this.onRegistration();
+      this.onCompName();
+      this.onOilStore();
+      this.onSupplier();
+      this.onOilType();
+      this.onCostCentre();
+      this.onStaffCode();
+    });
   }
 
   onTableRep() {
@@ -84,7 +108,7 @@ export class OilissuesPage implements OnInit {
 
   onItemCompLeft() {
     this.firebaseGetServ.getItemCompLeft(this.organization).then((mNm: any) => {
-      this.compNames = mNm;
+      this.itemComps = mNm;
 
       mNm.forEach((elm) => {
         this.oilIssues.forEach((obj) => {
@@ -93,22 +117,28 @@ export class OilissuesPage implements OnInit {
           }
         });
       });
-      this.onComponentLeft();
+      this.onCompNameLeft();
     });
   }
 
-  onComponent() {
+  onCompName() {
     this.firebaseGetServ.getCompName(this.organization).then((mNm: any) => {
       this.compNames = mNm;
     });
   }
-  onComponentLeft() {
+  onCompNameLeft() {
     this.firebaseGetServ.getCompNameLeft(this.organization).then((mNm: any) => {
       this.compNames = mNm;
 
       mNm.forEach((elm) => {
         this.oilIssues.forEach((obj) => {
           if (elm.CompNameGuid == obj.ItemComp) {
+            obj.ItemCompName = elm.CompName;
+          }
+        });
+
+        this.itemComps.forEach((obj) => {
+          if (elm.CompNameGuid == obj.CompNameGuid) {
             obj.ItemCompName = elm.CompName;
           }
         });
@@ -238,37 +268,16 @@ export class OilissuesPage implements OnInit {
     });
   }
 
-  getCurrentUser() {
-    this.afAuth.user.subscribe((cUser) => {
-      this.getCurrentUserOrg(cUser.email);
-    });
-  }
-
-  getCurrentUserOrg(email) {
-    this.firebaseRepServ.getUser(email).then((mNm) => {
-      let user: any = mNm;
-      this.organization = user.organization;
-      this.returnedUser = user;
-
-      this.onTableRep();
-      this.onRegistration();
-      this.onComponent();
-      this.onOilStore();
-      this.onSupplier();
-      this.onOilType();
-      this.onCostCentre();
-      this.onStaffCode();
-    });
-  }
-
   onAdd() {
     this.oilIssue.OilIssueGuid = uuidv4();
     this.oilIssue.CaptureName = this.returnedUser.UserFirstName;
 
     if (this.oilIssue.ItemGuid)
+      this.oilIssue.RegIndex = this.oilIssue.ItemGuid['Reg'];
+    if (this.oilIssue.ItemGuid)
       this.oilIssue.ItemGuid = this.oilIssue.ItemGuid['ItemGuid'];
     if (this.oilIssue.ItemCompGuid)
-      this.oilIssue.ItemCompGuid = this.oilIssue.ItemCompGuid['CompNameGuid'];
+      this.oilIssue.ItemCompGuid = this.oilIssue.ItemCompGuid['ItemCompGuid'];
     if (this.oilIssue.OilStoreGuid)
       this.oilIssue.OilStoreGuid = this.oilIssue.OilStoreGuid['OilStoreGuid'];
     if (this.oilIssue.SupplierGuid)
@@ -278,7 +287,7 @@ export class OilissuesPage implements OnInit {
     if (this.oilIssue.CostCentGuid)
       this.oilIssue.CostCentGuid = this.oilIssue.CostCentGuid['CostCentGuid'];
     if (this.oilIssue.StaffGuid)
-      this.oilIssue.StaffGuid = this.oilIssue.StaffGuid['StaffGuids'];
+      this.oilIssue.StaffGuid = this.oilIssue.StaffGuid['StaffGuid'];
 
     this.firebaseService
       .writeData(

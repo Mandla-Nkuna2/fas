@@ -575,6 +575,13 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'addstoreissueinfo',
+        loadChildren: () =>
+          import('../addstoreissueinfo/addstoreissueinfo.module').then(
+            (m) => m.AddstoreissueinfoPageModule,
+          ),
+      },
+      {
         path: 'addmaintinfo',
         loadChildren: () =>
           import('../addmaintinfo/addmaintinfo.module').then(

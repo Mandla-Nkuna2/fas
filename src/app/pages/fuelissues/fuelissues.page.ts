@@ -147,8 +147,10 @@ export class FuelissuesPage implements OnInit {
     this.fuelIssue.FuelIssueGuid = uuidv4();
     this.fuelIssue.CaptureName = this.returnedUser.UserFirstName;
 
-    if (this.fuelIssue.ItemGuid)
+    if (this.fuelIssue.ItemGuid) {
+      this.fuelIssue.RegIndex = this.fuelIssue.ItemGuid['Reg'];
       this.fuelIssue.ItemGuid = this.fuelIssue.ItemGuid['ItemGuid'];
+    }
     if (this.fuelIssue.BowserGuid)
       this.fuelIssue.BowserGuid = this.fuelIssue.BowserGuid['BowserGuid'];
     if (this.fuelIssue.SupplierGuid)

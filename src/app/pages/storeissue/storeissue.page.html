@@ -19,17 +19,17 @@
   </div>
 
   <div class="navbar" class="ion-text-center">
-    <!-- <ion-button
+    <ion-button
       fill="clear"
-      routerLink="../addissuesinfo"
+      routerLink="../addstoreissueinfo"
       routerDirection="root"
       routerLinkActive="active-link"
       class="link"
     >
       Add information
-    </ion-button> -->
+    </ion-button>
 
-    <ion-button
+    <!-- <ion-button
       fill="clear"
       routerLink="../accidentmanagement"
       routerDirection="root"
@@ -37,7 +37,7 @@
       class="link"
     >
       Accident management
-    </ion-button>
+    </ion-button> -->
 
     <ion-button
       fill="clear"
@@ -296,7 +296,7 @@
                 <ionic-selectable
                   [(ngModel)]="storeIssue.StoreCatgItemGuid"
                   [items]="storeItem"
-                  itemValueField="StoreCatgGuid"
+                  itemValueField="StoreCatgItemGuid"
                   itemTextField="StoreCatgItem"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"

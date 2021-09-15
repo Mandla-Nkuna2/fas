@@ -31,22 +31,6 @@ export class FautorespcodePage implements OnInit {
     this.getCurrentUser();
   }
 
-  onTableRep() {
-    this.popUp.showLoading('loading...').then(() => {
-      this.firebaseRepServ
-        .getFirstAutoRespCodes(this.organization)
-        .then((mNm: any) => {
-          this.fautorespcodes = mNm;
-          this.popUp.dismissLoading();
-        })
-        .catch((err) => {
-          this.popUp.dismissLoading().then(() => {
-            this.popUp.showError(err);
-          });
-        });
-    });
-  }
-
   getCurrentUser() {
     this.afAuth.user.subscribe((cUser) => {
       this.getCurrentUserOrg(cUser.email);
@@ -60,6 +44,22 @@ export class FautorespcodePage implements OnInit {
       this.returnedUser = user;
 
       this.onTableRep();
+    });
+  }
+
+  onTableRep() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getFirstAutoRespCodes(this.organization)
+        .then((mNm: any) => {
+          this.fautorespcodes = mNm;
+          this.popUp.dismissLoading();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
     });
   }
 

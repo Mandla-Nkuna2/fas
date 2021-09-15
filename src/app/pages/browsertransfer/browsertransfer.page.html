@@ -47,7 +47,7 @@
             <h4>date</h4>
           </ion-col>
           <ion-col size="2" class="flex al-center jc-center">
-            <h4>Browse from</h4>
+            <h4>Bowser from</h4>
           </ion-col>
           <ion-col size="2" class="flex al-center jc-center">
             <h4>browse to</h4>
@@ -127,16 +127,23 @@
           <ion-col size="3.5">
             <div class="item-input">
               <ion-label>Bowser From</ion-label>
-              <ion-item lines="none">
-                <ion-input [(ngModel)]="bowserTransfer.BowserFromGuid">
-                </ion-input>
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="bowserTransfer.BowserFromGuid"
+                  [items]="bowsers"
+                  itemValueField="BowserGuid"
+                  itemTextField="BowserName"
+                  [canSearch]="true"
+                  [hasInfiniteScroll]="true"
+                >
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>
 
           <ion-col size="3.5" offset="0.5">
             <div class="item-input">
-              <ion-label>Browse from pump meter reading</ion-label>
+              <ion-label>Bowser from pump meter reading</ion-label>
               <ion-item lines="none" class="end">
                 <ion-input
                   type="text"
@@ -148,19 +155,23 @@
 
           <ion-col size="3.5" offset="0.5">
             <div class="item-input">
-              <ion-label>Browse to</ion-label>
-              <ion-item lines="none" class="end">
-                <ion-input
-                  type="text"
+              <ion-label>Bowser to</ion-label>
+              <ion-item>
+                <ionic-selectable
                   [(ngModel)]="bowserTransfer.BowserToGuid"
-                ></ion-input>
+                  [items]="bowsers"
+                  itemValueField="BowserGuid"
+                  itemTextField="BowserName"
+                  [canSearch]="true"
+                >
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>
 
           <ion-col size="3.5">
             <div class="item-input">
-              <ion-label>Browse to pump meter reading</ion-label>
+              <ion-label>Bowser to pump meter reading</ion-label>
               <ion-item lines="none" class="end">
                 <ion-input
                   type="text"

@@ -14,8 +14,9 @@ export class DriverslicensePage implements OnInit {
   organization = 'InnTee';
   staff: any[] = [];
 
-  staffCats: any[];
+  currentDate = new Date();
   returnedUser: any;
+  staffCats: any[];
 
   constructor(
     private firebaseRepServ: FirebaseReportService,

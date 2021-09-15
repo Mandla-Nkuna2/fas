@@ -33,8 +33,22 @@
               <ion-item lines="none">
                 <ion-input
                   type="text"
-                  [(ngModel)]="servSchTaskDesc"
+                  [(ngModel)]="serviceSchTask.ChecklistItemName"
                 ></ion-input>
+              </ion-item>
+            </div>
+          </ion-col>
+
+          <ion-col size="3.5" offset="0.5">
+            <div class="item-input">
+              <ion-label>Active</ion-label>
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="serviceSchTask.Active"
+                  [items]="yesNo"
+                  [canSearch]="true"
+                >
+                </ionic-selectable>
               </ion-item>
             </div>
           </ion-col>
@@ -76,20 +90,14 @@
       <ion-grid fixed *ngIf="serviceSchTasks.length; else noItems">
         <ion-row class="title-row">
           <ion-col size="0.5" class="flex al-center jc-center"> </ion-col>
-          <ion-col size="2" class="flex al-center jc-center">
-            <h4>Job card</h4>
+          <ion-col size="4" class="flex al-center jc-center">
+            <h4>Service Schedule Task</h4>
           </ion-col>
-          <ion-col size="3" class="flex al-center jc-center">
-            <h4>SS task</h4>
-          </ion-col>
-          <ion-col size="3" class="flex al-center jc-center">
-            <h4>SS comment</h4>
-          </ion-col>
-          <ion-col size="1.4" class="flex al-center jc-center">
-            <h4>Maint event</h4>
+          <ion-col size="6" class="flex al-center jc-center">
+            <h4>Capture date</h4>
           </ion-col>
           <ion-col size="1" class="flex al-center jc-center">
-            <h4>Checked</h4>
+            <h4>Active</h4>
           </ion-col>
         </ion-row>
         <div class="values" *ngFor="let item of serviceSchTasks; let i = index">
@@ -97,20 +105,14 @@
             <ion-col size="0.5" class="flex al-center jc-center">
               <ion-checkbox></ion-checkbox>
             </ion-col>
-            <ion-col size="2" class="flex al-center jc-center">
-              <p>{{ item.Jobcard }}</p>
+            <ion-col size="4" class="flex al-center jc-center">
+              <p>{{ item.ChecklistItemName }}</p>
             </ion-col>
-            <ion-col size="3" class="flex al-center jc-center">
-              <p>{{ item.ServSchTask }}</p>
-            </ion-col>
-            <ion-col size="3" class="flex al-center jc-center">
-              <p>{{ item.ServSchComment }}</p>
-            </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <p>{{ item.MaintEvnt }}</p>
+            <ion-col size="6" class="flex al-center jc-center">
+              <p>{{ item.CapDate }}</p>
             </ion-col>
             <ion-col size="1" class="flex al-center jc-center">
-              <p>{{ item.Checked }}</p>
+              <p>{{ item.Active }}</p>
             </ion-col>
           </ion-row>
         </div>

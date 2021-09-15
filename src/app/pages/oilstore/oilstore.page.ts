@@ -36,6 +36,23 @@ export class OilstorePage implements OnInit {
     this.getCurrentUser();
   }
 
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+      this.returnedUser = user;
+
+      this.onTableRep();
+      this.onOsLocation();
+    });
+  }
+
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
@@ -78,34 +95,18 @@ export class OilstorePage implements OnInit {
     });
   }
 
-  getCurrentUser() {
-    this.afAuth.user.subscribe((cUser) => {
-      this.getCurrentUserOrg(cUser.email);
-    });
-  }
-
-  getCurrentUserOrg(email) {
-    this.firebaseRepServ.getUser(email).then((mNm) => {
-      let user: any = mNm;
-      this.organization = user.organization;
-      this.returnedUser = user;
-
-      this.onTableRep();
-      this.onOsLocation();
-    });
-  }
-
   onAdd() {
     this.oilStore.OilStoreGuid = uuidv4();
     this.oilStore.CaptureName = this.returnedUser.UserFirstName;
+    this.oilStore.Active = 'Y';
 
     if (this.oilStore.OilStoreLoc)
-      this.oilStore.OilStoreLoc = this.oilStore.OilStoreLoc['LocGuid'];
+      this.oilStore.OilStoreLoc = this.oilStore.OilStoreLoc['LocItemCode'];
 
     this.firebaseService
       .writeData(
         this.organization,
-        'Trn_OilStores',
+        'Mst_OilStore',
         Object.assign({}, this.oilStore),
         this.oilStore.OilStoreGuid,
       )

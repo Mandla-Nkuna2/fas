@@ -17,9 +17,10 @@ export class ComponentnamePage implements OnInit {
   componentName: ComponentName;
   componentNames: ComponentName[] = [];
 
+  currentDate = new Date();
+  returnedUser: any;
   compSubCatView = false;
   compNames: any[];
-  returnedUser: any;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,

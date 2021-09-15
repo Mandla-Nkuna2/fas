@@ -15,12 +15,13 @@ import { v4 as uuidv4 } from 'uuid';
 })
 export class BrowsertransactionsPage implements OnInit {
   organization = 'InnTee';
-  bowserTransaction: BowserTransaction;
-  bowserTransactions: any[] = [];
-  currentDate = new Date();
+  bowserTransac: BowserTransaction;
+  bowserTransacs: any[] = [];
 
-  costCentre: any[];
+  currentDate = new Date();
   returnedUser: any;
+  suppliers: any[];
+  costCentre: any[];
 
   constructor(
     private navCtrl: NavController,
@@ -30,48 +31,11 @@ export class BrowsertransactionsPage implements OnInit {
     private popUp: PopupHelper,
     public afAuth: AngularFireAuth,
   ) {
-    this.bowserTransaction = new BowserTransaction();
+    this.bowserTransac = new BowserTransaction();
   }
 
   ngOnInit() {
     this.getCurrentUser();
-  }
-
-  onTableRep() {
-    this.popUp.showLoading('loading...').then(() => {
-      this.firebaseRepServ
-        .getBowserTransactions(this.organization)
-        .then((mNm: any) => {
-          this.bowserTransactions = mNm;
-          this.onCostCentreLeft();
-          this.popUp.dismissLoading();
-        })
-        .catch((err) => {
-          this.popUp.dismissLoading().then(() => {
-            this.popUp.showError(err);
-          });
-        });
-    });
-  }
-
-  goBrowserTransfer() {
-    this.navCtrl.navigateForward('browsertransfer');
-  }
-
-  onCostCentreLeft() {
-    this.firebaseGetServ
-      .getCostCentreLeft(this.organization)
-      .then((staff: any) => {
-        this.costCentre = staff;
-
-        staff.forEach((elm) => {
-          this.bowserTransactions.forEach((obj) => {
-            if (elm.CostCentGuid == obj.CostCentGuid) {
-              obj.CostCent = elm.CostCentName;
-            }
-          });
-        });
-      });
   }
 
   getCurrentUser() {
@@ -90,21 +54,74 @@ export class BrowsertransactionsPage implements OnInit {
     });
   }
 
+  onTableRep() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getBowserTransactions(this.organization)
+        .then((mNm: any) => {
+          this.bowserTransacs = mNm;
+          this.onSupplier();
+          this.onCostCentreLeft();
+          this.popUp.dismissLoading();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+
+  goBrowserTransfer() {
+    this.navCtrl.navigateForward('browsertransfer');
+  }
+
+  onSupplier() {
+    this.firebaseGetServ.getSupplier(this.organization).then((mNm: any) => {
+      this.suppliers = mNm;
+    });
+  }
+  onSupplierLeft() {
+    this.firebaseGetServ.getSupplierLeft(this.organization).then((mNm: any) => {
+      this.suppliers = mNm;
+    });
+  }
+
+  onCostCentreLeft() {
+    this.firebaseGetServ
+      .getCostCentreLeft(this.organization)
+      .then((staff: any) => {
+        this.costCentre = staff;
+
+        staff.forEach((elm) => {
+          this.bowserTransacs.forEach((obj) => {
+            if (elm.CostCentGuid == obj.CostCentGuid) {
+              obj.CostCent = elm.CostCentName;
+            }
+          });
+        });
+      });
+  }
+
   onAdd() {
-    this.bowserTransaction.BowserTrnGuid = uuidv4();
-    this.bowserTransaction.CaptureName = this.returnedUser.UserFirstName;
+    this.bowserTransac.BowserTrnGuid = uuidv4();
+    this.bowserTransac.CaptureName = this.returnedUser.UserFirstName;
+
+    if (this.bowserTransac.CostCentGuid)
+      this.bowserTransac.CostCentGuid =
+        this.bowserTransac.CostCentGuid['CostCentGuid'];
 
     this.firebaseService
       .writeData(
         this.organization,
         'Trn_Bowsers',
-        Object.assign({}, this.bowserTransaction),
-        this.bowserTransaction.BowserTrnGuid,
+        Object.assign({}, this.bowserTransac),
+        this.bowserTransac.BowserTrnGuid,
       )
       .then(() => {
         this.onTableRep();
         this.popUp.showToast('Data saved successfully :-)');
-        this.bowserTransaction = new BowserTransaction();
+        this.bowserTransac = new BowserTransaction();
       })
       .catch((err) => {
         this.popUp.showError(err);

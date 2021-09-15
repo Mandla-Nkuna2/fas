@@ -43,12 +43,35 @@ export class LosscontrolPage implements OnInit {
     this.getCurrentUser();
   }
 
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+      this.returnedUser = user;
+
+      this.onTableRep();
+      this.onAgent();
+      this.onRegistration();
+      this.onLossType();
+      this.onReportedBy();
+      this.onDriverName();
+      this.onActionTaken();
+    });
+  }
+
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
         .getLossControls(this.organization)
         .then((mNm: any) => {
           this.lossControls = mNm;
+          this.onLossContNo();
           this.onAgentLeft();
           this.onRegistrationLeft();
           this.onLossType();
@@ -61,6 +84,14 @@ export class LosscontrolPage implements OnInit {
           });
         });
     });
+  }
+
+  onLossContNo() {
+    let count = 0;
+    this.lossControls.forEach((elm) => {
+      count = elm.LossControlNo;
+    });
+    this.lossControl.LossControlNo = count + 1;
   }
 
   goMEvent() {
@@ -157,37 +188,9 @@ export class LosscontrolPage implements OnInit {
     });
   }
 
-  getCurrentUser() {
-    this.afAuth.user.subscribe((cUser) => {
-      this.getCurrentUserOrg(cUser.email);
-    });
-  }
-
-  getCurrentUserOrg(email) {
-    this.firebaseRepServ.getUser(email).then((mNm) => {
-      let user: any = mNm;
-      this.organization = user.organization;
-      this.returnedUser = user;
-
-      this.onTableRep();
-      this.onAgent();
-      this.onRegistration();
-      this.onLossType();
-      this.onReportedBy();
-      this.onDriverName();
-      this.onActionTaken();
-    });
-  }
-
   onAdd() {
     this.lossControl.LossContGuid = uuidv4();
     this.lossControl.Capturename = this.returnedUser.UserFirstName;
-
-    let count = 0;
-    this.lossControls.forEach((elm) => {
-      count = elm.LossControlNo;
-    });
-    this.lossControl.LossControlNo = count + 1;
 
     if (this.lossControl.Agentguid)
       this.lossControl.Agentguid = this.lossControl.Agentguid['StaffGuid'];

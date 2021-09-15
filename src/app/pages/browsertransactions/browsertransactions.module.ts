@@ -7,14 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { BrowsertransactionsPageRoutingModule } from './browsertransactions-routing.module';
 
 import { BrowsertransactionsPage } from './browsertransactions.page';
+import { IonicSelectableModule } from 'ionic-selectable';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    BrowsertransactionsPageRoutingModule
+    BrowsertransactionsPageRoutingModule,
+    IonicSelectableModule,
   ],
-  declarations: [BrowsertransactionsPage]
+  declarations: [BrowsertransactionsPage],
 })
 export class BrowsertransactionsPageModule {}

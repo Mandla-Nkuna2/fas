@@ -778,6 +778,7 @@ export class FirebaseGetService {
             data.push({
               LocGuid: obj.get('LocGuid'),
               LocDesc: obj.get('LocDesc'),
+              LocItemCode: obj.get('LocItemCode'),
               //LocFullName: obj.get('LocFullName'),
             });
           });
@@ -800,6 +801,7 @@ export class FirebaseGetService {
             data.push({
               LocGuid: obj.get('LocGuid'),
               LocDesc: obj.get('LocDesc'),
+              LocItemCode: obj.get('LocItemCode'),
               //LocFullName: obj.get('LocFullName'),
             });
           });
@@ -1152,7 +1154,7 @@ export class FirebaseGetService {
           let data = [];
           obj.docs.forEach((obj) => {
             data.push({
-              StoreCatgGuid: obj.get('StoreCatgGuid'),
+              StoreCatgItemGuid: obj.get('StoreCatgItemGuid'),
               StoreCatgItem: obj.get('StoreCatgItem'),
             });
           });
@@ -1173,7 +1175,7 @@ export class FirebaseGetService {
           let data = [];
           obj.docs.forEach((obj) => {
             data.push({
-              StoreCatgGuid: obj.get('StoreCatgGuid'),
+              StoreCatgItemGuid: obj.get('StoreCatgItemGuid'),
               StoreCatgItem: obj.get('StoreCatgItem'),
             });
           });

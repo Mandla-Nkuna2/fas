@@ -23,7 +23,7 @@
     </div>
   </div>
 
-  <div class="section">
+  <!-- <div class="section">
     <div class="the-form">
       <ion-grid fixed>
         <ion-row>
@@ -35,7 +35,7 @@
                   [(ngModel)]="servschedule.itemMakeModelGuid"
                   [items]="itemMakModels"
                   itemValueField="ItemMakModGuid"
-                  itemTextField="ItemMakMod"
+                  itemTextField="makeModel"
                   [canSearch]="true"
                 >
                 </ionic-selectable>
@@ -58,30 +58,15 @@
               </ion-item>
             </div>
           </ion-col>
-
-          <ion-col size="12" class="flex al-center jc-end">
-            <div class="btn-holder flex al-center">
-              <ion-button (click)="onAdd()"> Add </ion-button>
-              <!-- <ion-button (click)="onModify()" color="medium">
-                Modify
-              </ion-button>
-              <ion-button (click)="onDeActivate()" color="danger">
-                De-activate
-              </ion-button>
-              <ion-button (click)="onClear()" fill="outline">
-                Clear
-              </ion-button> -->
-            </div>
-          </ion-col>
         </ion-row>
       </ion-grid>
     </div>
-  </div>
+  </div> -->
 
   <div class="section">
     <div class="grid-holder">
       <div class="top-toolbar flex al-center jc-between">
-        <h3>Service schedule</h3>
+        <h3>Service schedule tasks</h3>
         <div class="btns-holder flex al-center">
           <ion-button>
             <ion-icon slot="icon-only" name="options-outline"></ion-icon>
@@ -96,20 +81,14 @@
       <ion-grid fixed *ngIf="servschedules.length; else noItems">
         <ion-row class="title-row">
           <ion-col size="0.5" class="flex al-center jc-center"> </ion-col>
-          <ion-col size="1.4" class="flex al-center jc-center">
-            <h4>Job card</h4>
+          <ion-col size="4" class="flex al-center jc-center">
+            <h4>Service Schedule Task</h4>
           </ion-col>
-          <ion-col size="1.4" class="flex al-center jc-center">
-            <h4>SS task</h4>
+          <ion-col size="6" class="flex al-center jc-center">
+            <h4>Capture date</h4>
           </ion-col>
-          <ion-col size="1.4" class="flex al-center jc-center">
-            <h4>SS comment</h4>
-          </ion-col>
-          <ion-col size="1.4" class="flex al-center jc-center">
-            <h4>Maint event</h4>
-          </ion-col>
-          <ion-col size="1.4" class="flex al-center jc-center">
-            <h4>Checked</h4>
+          <ion-col size="1" class="flex al-center jc-center">
+            <h4>Active</h4>
           </ion-col>
         </ion-row>
         <div class="values" *ngFor="let item of servschedules; let i = index">
@@ -117,20 +96,14 @@
             <ion-col size="0.5" class="flex al-center jc-center">
               <ion-checkbox></ion-checkbox>
             </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <p>NP117354</p>
+            <ion-col size="4" class="flex al-center jc-center">
+              <p>{{ item.ChecklistItemName }}</p>
             </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <p class="ion-text-wrap">0215112</p>
+            <ion-col size="6" class="flex al-center jc-center">
+              <p>{{ item.CapDate }}</p>
             </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <p>02541</p>
-            </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <p>01 Jan 2006</p>
-            </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <p>02 Jan 2006</p>
+            <ion-col size="1" class="flex al-center jc-center">
+              <p>{{ item.Active }}</p>
             </ion-col>
           </ion-row>
         </div>

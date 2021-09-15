@@ -111,7 +111,7 @@
             </div>
           </ion-col>
 
-          <ion-col size="3.5">
+          <ion-col size="3.5" offset="0.5">
             <div class="item-input">
               <ion-label>Bowser Name</ion-label>
               <ion-item lines="none">
@@ -123,7 +123,7 @@
             </div>
           </ion-col>
 
-          <ion-col size="3.5">
+          <ion-col size="3.5" offset="0.5">
             <div class="item-input">
               <ion-label>Bowser Capacity</ion-label>
               <ion-item lines="none">
@@ -135,14 +135,14 @@
             </div>
           </ion-col>
 
-          <ion-col size="3.5" offset="0.5">
+          <ion-col size="3.5">
             <div class="item-input">
               <ion-label>bowser location</ion-label>
               <ion-item>
                 <ionic-selectable
                   [(ngModel)]="bowser.BowserLoc"
                   [items]="bowserLoc"
-                  itemValueField="LocGuid"
+                  itemValueField="LocItemCode"
                   itemTextField="LocDesc"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"

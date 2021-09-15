@@ -13,11 +13,12 @@ export class SchedulestprorepoPage implements OnInit {
   organization = 'InnTee';
   schStProRep: any[] = [];
 
+  currentDate = new Date();
+  returnedUser: any;
   costCentre: any[];
   staffCodes: any[];
   registrations: any[];
   maintReasons: any[];
-  returnedUser: any;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,

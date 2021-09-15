@@ -36,13 +36,30 @@ export class BowserPage implements OnInit {
     this.getCurrentUser();
   }
 
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+      this.returnedUser = user;
+
+      this.onTableRep();
+      this.onFuelType();
+    });
+  }
+
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
         .getBowsers(this.organization)
         .then((mNm: any) => {
           this.bowsers = mNm;
-          this.onBowserLocCodeLeft();
+          this.onBowserLocLeft();
           this.onFuelType();
           this.popUp.dismissLoading();
         })
@@ -54,19 +71,8 @@ export class BowserPage implements OnInit {
     });
   }
 
-  onBowserLoc() {
-    this.firebaseGetServ.getLocation(this.organization).then((mNm: any) => {
-      this.bowserLoc = mNm;
-    });
-  }
   onBowserLocLeft() {
     this.firebaseGetServ.getLocationLeft(this.organization).then((mNm: any) => {
-      this.bowserLoc = mNm;
-    });
-  }
-
-  onBowserLocCodeLeft() {
-    this.firebaseRepServ.getLocationLeft(this.organization).then((mNm: any) => {
       this.bowserLoc = mNm;
 
       mNm.forEach((elm) => {
@@ -93,29 +99,13 @@ export class BowserPage implements OnInit {
     });
   }
 
-  getCurrentUser() {
-    this.afAuth.user.subscribe((cUser) => {
-      this.getCurrentUserOrg(cUser.email);
-    });
-  }
-
-  getCurrentUserOrg(email) {
-    this.firebaseRepServ.getUser(email).then((mNm) => {
-      let user: any = mNm;
-      this.organization = user.organization;
-      this.returnedUser = user;
-
-      this.onTableRep();
-      this.onBowserLoc();
-      this.onFuelType();
-    });
-  }
-
   onAdd() {
     this.bowser.BowserGuid = uuidv4();
     this.bowser.CaptureName = this.returnedUser.UserFirstName;
+    this.bowser.Active = 'Y';
+
     if (this.bowser.BowserLoc)
-      this.bowser.BowserLoc = this.bowser.BowserLoc['LocGuid'];
+      this.bowser.BowserLoc = this.bowser.BowserLoc['LocItemCode'];
     if (this.bowser.FuelTypeGuid)
       this.bowser.FuelTypeGuid = this.bowser.FuelTypeGuid['FuelTypeGuid'];
 

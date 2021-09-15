@@ -15,8 +15,9 @@
           ></ion-icon>
         </div>
         <ion-datetime
-          display-format="MMM DD YYYY hh:mm a"
-          value="Sep 16 2020, 12:02 "
+          style="color: green"
+          disabled
+          value="{{ currentDate |  date:'MM/dd/yyyy' }}"
         ></ion-datetime>
       </ion-item>
     </div>
@@ -52,9 +53,6 @@
         <ion-row class="title-row">
           <ion-col size="1.2" class="ion-text-center flex al-center jc-center">
             <h4>Staff Identifier</h4>
-          </ion-col>
-          <ion-col size="0.8" class="ion-text-center flex al-center jc-center">
-            <h4>Staff Category</h4>
           </ion-col>
           <ion-col size="0.6" class="ion-text-center flex al-center jc-center">
             <h4>Prod Hrs</h4>
@@ -102,10 +100,7 @@
           *ngFor="let item of staffproreports; let i = index"
         >
           <ion-col size="1.2" class="flex al-center jc-center">
-            <p>{{ item.StaffGuid }}</p>
-          </ion-col>
-          <ion-col size="0.8" class="ion-text-center flex al-center jc-center">
-            <p>{{ item.StaffGuid }}</p>
+            <p>{{ item.staffCode }}</p>
           </ion-col>
           <ion-col size="0.6" class="flex al-center jc-center">
             <p>{{ item.Productive }}</p>
@@ -132,43 +127,20 @@
             <p>{{ item.AWOL }}</p>
           </ion-col>
           <ion-col size="0.8" class="flex al-center jc-center">
-            <p>{{ item.Productive + item.Overtime }}</p>
+            <p>{{ item.ttlHrs }}</p>
           </ion-col>
           <ion-col size="0.8" class="flex al-center jc-center">
-            <p>
-              {{ item.Travel + item.Sick_leave + item.Leave + item.OTTravel1 +
-              item.OTTravel2 }}
-            </p>
+            <p>{{ item.ttlPossHrs }}</p>
           </ion-col>
           <ion-col size="1" class="flex al-center jc-center">
-            <p
-              *ngIf="!isNumber((item.Productive - item.Non_Productive) / item.Productive * 100)"
-            >
-              {{ (item.Productive - item.Non_Productive) / item.Productive * 100
-              | number : '1.0-0' }}
-            </p>
+            <p>{{ item.prod }}</p>
+          </ion-col>
+          <ion-col size="1" class="flex al-center jc-center">
+            <p>{{ item.prod_trv }}</p>
             <p></p>
           </ion-col>
           <ion-col size="1" class="flex al-center jc-center">
-            <p
-              *ngIf="!isNumber((item.Productive - item.Non_Productive + item.Travel + item.OTTravel1 + item.OTTravel2) / (item.Productive + item.Travel + item.OTTravel1 + item.OTTravel2) * 100)"
-            >
-              {{ (item.Productive - item.Non_Productive + item.Travel +
-              item.OTTravel1 + item.OTTravel2) / (item.Productive + item.Travel
-              + item.OTTravel1 + item.OTTravel2) * 100 | number : '1.0-0' }}
-            </p>
-            <p></p>
-          </ion-col>
-          <ion-col size="1" class="flex al-center jc-center">
-            <p
-              *ngIf="!isNumber((((item.Productive - item.Non_Productive) / item.Productive * 100) + ((item.Productive - item.Non_Productive + item.Travel + item.OTTravel1 + item.OTTravel2) / (item.Productive + item.Travel + item.OTTravel1 + item.OTTravel2) * 100)) / 2)"
-            >
-              {{ (((item.Productive - item.Non_Productive) / item.Productive *
-              100) + ((item.Productive - item.Non_Productive + item.Travel +
-              item.OTTravel1 + item.OTTravel2) / (item.Productive + item.Travel
-              + item.OTTravel1 + item.OTTravel2) * 100)) / 2 | number : '1.0-0'
-              }}
-            </p>
+            <p>{{item.ttl }}</p>
             <p></p>
           </ion-col>
         </ion-row>

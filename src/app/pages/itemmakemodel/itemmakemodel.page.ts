@@ -48,37 +48,6 @@ export class ItemmakemodelPage implements OnInit {
     this.getCurrentUser();
   }
 
-  onTableRep() {
-    this.popUp.showLoading('loading...').then(() => {
-      this.firebaseRepServ
-        .getItemMakeMod(this.organization)
-        .then((mNm: any) => {
-          this.items = mNm;
-          this.onFuelType();
-          this.popUp.dismissLoading();
-        })
-        .catch((err) => {
-          this.popUp.dismissLoading().then(() => {
-            this.popUp.showError(err);
-          });
-        });
-    });
-  }
-
-  onFuelType() {
-    this.firebaseGetServ.getFuelType(this.organization).then((mNm: any) => {
-      this.fuelTypes = mNm;
-
-      mNm.forEach((elm) => {
-        this.items.forEach((obj) => {
-          if (elm.FuelTypeGuid == obj.FuelTypeGuid) {
-            obj.FuelType = elm.FuelType;
-          }
-        });
-      });
-    });
-  }
-
   getCurrentUser() {
     this.afAuth.user.subscribe((cUser) => {
       this.getCurrentUserOrg(cUser.email);
@@ -93,6 +62,45 @@ export class ItemmakemodelPage implements OnInit {
 
       this.onTableRep();
       this.onFuelType();
+    });
+  }
+
+  onTableRep() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getItemMakeMod(this.organization)
+        .then((mNm: any) => {
+          this.items = mNm;
+          this.onItemMakeModel();
+          this.onFuelType();
+          this.popUp.dismissLoading();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+
+  onItemMakeModel() {
+    this.items.forEach((obj) => {
+      obj.makeModel = obj.ItemMake;
+      if (obj.ItemModel) obj.makeModel += ' ' + obj.ItemModel;
+    });
+  }
+
+  onFuelType() {
+    this.firebaseGetServ.getFuelType(this.organization).then((mNm: any) => {
+      this.fuelTypes = mNm;
+
+      mNm.forEach((elm) => {
+        this.items.forEach((obj) => {
+          if (elm.FuelTypeGuid == obj.FuelTypeGuid) {
+            obj.FuelType = elm.FuelType;
+          }
+        });
+      });
     });
   }
 

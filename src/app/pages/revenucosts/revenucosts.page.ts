@@ -148,7 +148,8 @@ export class RevenucostsPage implements OnInit {
         mNm.forEach((elm) => {
           this.runningCosts.forEach((obj) => {
             if (elm.ItemMakModGuid == obj.ItemMakModGuid) {
-              obj.ItemMakMod = elm.ItemMakMod;
+              obj.ItemMakMod = elm.ItemMake;
+              if (elm.ItemModel) obj.ItemMakMod += ' ' + elm.ItemModel;
             }
           });
         });

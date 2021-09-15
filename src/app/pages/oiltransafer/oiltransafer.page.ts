@@ -214,13 +214,14 @@ export class OiltransaferPage implements OnInit {
     this.firebaseService
       .writeData(
         this.organization,
-        'Trn_OilIssue',
+        'Trn_OilStoreTransfer',
         Object.assign({}, this.oilStoreTransf),
         this.oilStoreTransf.OilStoreTrnGuid,
       )
       .then(() => {
         this.popUp.showToast('Data saved successfully :-)');
         this.oilStoreTransf = new OilStoreTransfer();
+        this.onTableRep();
       })
       .catch((err) => {
         this.popUp.showError(err);

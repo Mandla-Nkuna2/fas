@@ -40,6 +40,26 @@ export class StoreissuePage implements OnInit {
     this.getCurrentUser();
   }
 
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+      this.returnedUser = user;
+
+      this.onTableRep();
+      this.onRegistration();
+      this.onMaintEvRefNo();
+      this.onSupplier();
+      this.onStoreItem();
+    });
+  }
+
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
@@ -115,7 +135,7 @@ export class StoreissuePage implements OnInit {
 
         mNm.forEach((elm) => {
           this.storeIssues.forEach((obj) => {
-            if (elm.StoreCatgGuid == obj.StoreCatgItemGuid) {
+            if (elm.StoreCatgItemGuid == obj.StoreCatgItemGuid) {
               obj.StoreCatgItem = elm.StoreCatgItem;
             }
           });
@@ -123,30 +143,12 @@ export class StoreissuePage implements OnInit {
       });
   }
 
-  getCurrentUser() {
-    this.afAuth.user.subscribe((cUser) => {
-      this.getCurrentUserOrg(cUser.email);
-    });
-  }
-
-  getCurrentUserOrg(email) {
-    this.firebaseRepServ.getUser(email).then((mNm) => {
-      let user: any = mNm;
-      this.organization = user.organization;
-      this.returnedUser = user;
-
-      this.onTableRep();
-      this.onRegistration();
-      this.onMaintEvRefNo();
-      this.onSupplier();
-      this.onStoreItem();
-    });
-  }
-
   onAdd() {
     this.storeIssue.StoreIssueGuid = uuidv4();
     this.storeIssue.CaptureName = this.returnedUser.UserFirstName;
 
+    if (this.storeIssue.ItemGuid)
+      this.storeIssue.RegIndex = this.storeIssue.ItemGuid['Reg'];
     if (this.storeIssue.ItemGuid)
       this.storeIssue.ItemGuid = this.storeIssue.ItemGuid['ItemGuid'];
     if (this.storeIssue.MaintEvntGuid)
@@ -156,8 +158,9 @@ export class StoreissuePage implements OnInit {
       this.storeIssue.SuppGuid = this.storeIssue.SuppGuid['SuppGuid'];
     if (this.storeIssue.StoreCatgItemGuid)
       this.storeIssue.StoreCatgItemGuid =
-        this.storeIssue.StoreCatgItemGuid['StoreCatgGuid'];
+        this.storeIssue.StoreCatgItemGuid['StoreCatgItemGuid'];
 
+    console.log(this.storeIssue);
     this.firebaseService
       .writeData(
         this.organization,

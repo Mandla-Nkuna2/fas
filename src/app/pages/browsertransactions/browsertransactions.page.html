@@ -37,7 +37,7 @@
         </div>
       </div>
       <ng-template #noItems> No items. </ng-template>
-      <ion-grid fixed *ngIf="bowserTransactions.length; else noItems">
+      <ion-grid fixed *ngIf="bowserTransacs.length; else noItems">
         <ion-row class="title-row">
           <ion-col size="0.5" class="flex al-center jc-center"> </ion-col>
           <ion-col size="1" class="flex al-center jc-center">
@@ -68,7 +68,7 @@
         <div class="values">
           <ion-row
             class="value-row"
-            *ngFor="let item of bowserTransactions; let i = index"
+            *ngFor="let item of bowserTransacs; let i = index"
           >
             <ion-col size="0.5" class="flex al-center jc-center">
               <ion-checkbox></ion-checkbox>
@@ -122,7 +122,7 @@
                 <ion-item lines="none">
                   <ion-datetime
                     display-format="DD MMM YYYY"
-                    [(ngModel)]="bowserTransaction.BowserTrnDate"
+                    [(ngModel)]="bowserTransac.BowserTrnDate"
                   >
                   </ion-datetime>
                 </ion-item>
@@ -133,7 +133,7 @@
               <div class="item-input"></div>
             </ion-col>
 
-            <ion-radio-group [(ngModel)]="bowserTransaction.Purc_or_Dip">
+            <ion-radio-group [(ngModel)]="bowserTransac.Purc_or_Dip">
               <ion-row>
                 <ion-col>
                   <ion-item>
@@ -171,35 +171,32 @@
                 <ion-item lines="none">
                   <ion-input
                     type="text"
-                    [(ngModel)]="bowserTransaction.PumpReading"
+                    [(ngModel)]="bowserTransac.PumpReading"
                   ></ion-input>
                 </ion-item>
               </div>
             </ion-col>
 
-            <ion-col size="8" *ngIf="bowserTransaction.Purc_or_Dip === 'D'">
+            <ion-col size="8" *ngIf="bowserTransac.Purc_or_Dip === 'D'">
               <div class="item-input"></div>
             </ion-col>
 
-            <ion-col size="3.5" *ngIf="bowserTransaction.Purc_or_Dip === 'D'">
+            <ion-col size="3.5" *ngIf="bowserTransac.Purc_or_Dip === 'D'">
               <div class="item-input">
                 <ion-label>Fuel Quantity in Bowser</ion-label>
                 <ion-item lines="none">
                   <ion-input
                     type="text"
-                    [(ngModel)]="bowserTransaction.FuelQtyatDip"
+                    [(ngModel)]="bowserTransac.FuelQtyatDip"
                   ></ion-input>
                 </ion-item>
               </div>
             </ion-col>
           </ion-col>
 
-          <ion-col
-            size="1"
-            *ngIf="bowserTransaction.Purc_or_Dip === 'P'"
-          ></ion-col>
+          <ion-col size="1" *ngIf="bowserTransac.Purc_or_Dip === 'P'"></ion-col>
 
-          <ion-col size="4" *ngIf="bowserTransaction.Purc_or_Dip === 'P'">
+          <ion-col size="4" *ngIf="bowserTransac.Purc_or_Dip === 'P'">
             <h6>Fuel purchase information:</h6>
 
             <ion-col size="3.5">
@@ -208,7 +205,7 @@
                 <ion-item lines="none">
                   <ion-input
                     type="text"
-                    [(ngModel)]="bowserTransaction.FuelQtyPurc"
+                    [(ngModel)]="bowserTransac.FuelQtyPurc"
                   ></ion-input>
                 </ion-item>
               </div>
@@ -220,7 +217,7 @@
                 <ion-item lines="none">
                   <ion-input
                     type="text"
-                    [(ngModel)]="bowserTransaction.FuelCost"
+                    [(ngModel)]="bowserTransac.FuelCost"
                   ></ion-input>
                 </ion-item>
               </div>
@@ -232,7 +229,7 @@
                 <ion-item lines="none">
                   <ion-input
                     type="text"
-                    [(ngModel)]="bowserTransaction.OrderNo"
+                    [(ngModel)]="bowserTransac.OrderNo"
                   ></ion-input>
                 </ion-item>
               </div>
@@ -241,11 +238,17 @@
             <ion-col size="3.5">
               <div class="item-input">
                 <ion-label>Supplier</ion-label>
-                <ion-item lines="none">
-                  <ion-input
-                    type="text"
-                    [(ngModel)]="bowserTransaction.SuppGuid"
-                  ></ion-input>
+                <ion-item>
+                  <ionic-selectable
+                    [(ngModel)]="bowserTransac.SuppGuid"
+                    [items]="suppliers"
+                    itemValueField="SuppGuid"
+                    itemTextField="SuppName"
+                    [canSearch]="true"
+                    [hasInfiniteScroll]="true"
+                    (onInfiniteScroll)="onSupplierLeft()"
+                  >
+                  </ionic-selectable>
                 </ion-item>
               </div>
             </ion-col>
@@ -253,11 +256,15 @@
             <ion-col size="3.5">
               <div class="item-input">
                 <ion-label>Cost centre</ion-label>
-                <ion-item lines="none">
-                  <ion-input
-                    type="text"
-                    [(ngModel)]="bowserTransaction.CostCentGuid"
-                  ></ion-input>
+                <ion-item>
+                  <ionic-selectable
+                    [(ngModel)]="bowserTransac.CostCentGuid"
+                    [items]="costCentre"
+                    itemValueField="CostCentGuid"
+                    itemTextField="CostCentName"
+                    [canSearch]="true"
+                  >
+                  </ionic-selectable>
                 </ion-item>
               </div>
             </ion-col>

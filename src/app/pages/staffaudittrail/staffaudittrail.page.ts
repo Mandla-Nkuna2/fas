@@ -11,6 +11,8 @@ import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 export class StaffaudittrailPage implements OnInit {
   organization = 'InnTee';
   staffAuditTrails: any[] = [];
+
+  currentDate = new Date();
   returnedUser: any;
 
   constructor(

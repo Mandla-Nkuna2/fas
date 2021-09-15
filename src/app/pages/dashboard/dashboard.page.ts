@@ -145,7 +145,8 @@ export class DashboardPage implements OnInit {
         mNm.forEach((elm) => {
           this.assets.forEach((obj) => {
             if (elm.ItemMakModGuid == obj.ItemMakModGuid) {
-              obj.ItemMakMod = elm.ItemMakMod;
+              obj.ItemMakMod = elm.ItemMake;
+              if (elm.ItemModel) obj.ItemMakMod += ' ' + elm.ItemModel;
             }
           });
         });
@@ -208,7 +209,8 @@ export class DashboardPage implements OnInit {
         mNm.forEach((elm) => {
           this.vehicles.forEach((obj) => {
             if (elm.ItemMakModGuid == obj.ItemMakModGuid) {
-              obj.ItemMakMod = elm.ItemMakMod;
+              obj.ItemMakMod = elm.ItemMake;
+              if (elm.ItemModel) obj.ItemMakMod += ' ' + elm.ItemModel;
             }
           });
         });

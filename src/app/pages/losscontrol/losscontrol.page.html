@@ -106,7 +106,19 @@
     <div class="the-form">
       <ion-grid fixed>
         <ion-row>
-          <ion-col size="3.5">
+          <ion-col size="2.8">
+            <div class="item-input">
+              <ion-label>Loss Control No.</ion-label>
+              <ion-item lines="none">
+                <ion-input
+                  disabled
+                  [(ngModel)]="lossControl.LossControlNo"
+                ></ion-input>
+              </ion-item>
+            </div>
+          </ion-col>
+
+          <ion-col size="2.8" offset="0.25">
             <div class="item-input">
               <ion-label>Date Record Opened</ion-label>
               <ion-item lines="none">
@@ -118,7 +130,7 @@
             </div>
           </ion-col>
 
-          <ion-col size="3.5" offset="0.5">
+          <ion-col size="2.8" offset="0.25">
             <div class="item-input">
               <ion-label>Date Record Closed</ion-label>
               <ion-item lines="none">
@@ -130,7 +142,7 @@
             </div>
           </ion-col>
 
-          <ion-col size="3.5" offset="0.5">
+          <ion-col size="2.8" offset="0.25">
             <div class="item-input">
               <ion-label>Agent</ion-label>
               <ion-item>
@@ -147,11 +159,11 @@
               </ion-item>
             </div>
           </ion-col>
+        </ion-row>
 
-          <ion-col size="3.5">
+        <ion-row>
+          <ion-col size="2.8">
             <div class="item-input">
-              <!-- <ion-row>
-                <ion-col size="7" class="ion-no-padding"> -->
               <ion-label>Registration</ion-label>
               <ion-item>
                 <ionic-selectable
@@ -165,18 +177,10 @@
                 >
                 </ionic-selectable>
               </ion-item>
-              <!-- </ion-col> -->
-
-              <!-- <ion-col size="4.5" offset="0.5" class="flex al-end jc-end">
-                  <ion-button expand="block" id="inline">
-                    Check Make & Model and Location
-                  </ion-button>
-                </ion-col> -->
-              <!-- </ion-row> -->
             </div>
           </ion-col>
 
-          <ion-col size="3.5" offset="0.5">
+          <ion-col size="2.8" offset="0.25">
             <div class="item-input">
               <ion-label>Loss Type</ion-label>
               <ion-item>
@@ -192,7 +196,7 @@
             </div>
           </ion-col>
 
-          <ion-col size="3.5" offset="0.5">
+          <ion-col size="2.8" offset="0.25">
             <div class="item-input">
               <ion-label>Loss Date</ion-label>
               <ion-item lines="none">
@@ -203,7 +207,9 @@
               </ion-item>
             </div>
           </ion-col>
+        </ion-row>
 
+        <ion-row>
           <ion-col size="12">
             <div class="item-input">
               <ion-label>Loss details / comment</ion-label>
@@ -215,8 +221,10 @@
               </ion-item>
             </div>
           </ion-col>
+        </ion-row>
 
-          <ion-col size="2.8">
+        <ion-row>
+          <ion-col size="2.8" offset="0.5">
             <div class="item-input">
               <ion-label>Reported</ion-label>
               <ion-item>
@@ -229,7 +237,7 @@
             </div>
           </ion-col>
 
-          <ion-col size="2.8" offset="0.25">
+          <ion-col size="2.8" offset="0.5">
             <div class="item-input">
               <ion-label>Reported Date</ion-label>
               <ion-item lines="none">
@@ -241,7 +249,7 @@
             </div>
           </ion-col>
 
-          <ion-col size="2.8" offset="0.25">
+          <ion-col size="2.8" offset="0.5">
             <div class="item-input">
               <ion-label>Reported By</ion-label>
               <ion-item>
@@ -259,7 +267,7 @@
             </div>
           </ion-col>
 
-          <ion-col size="2.8" offset="0.25">
+          <ion-col size="2.8" offset="0.5">
             <div class="item-input">
               <ion-label>Driver Name</ion-label>
               <ion-item>
@@ -277,7 +285,7 @@
             </div>
           </ion-col>
 
-          <ion-col size="2.8">
+          <ion-col size="2.8" offset="0.5">
             <div class="item-input">
               <ion-label>Driver's ID No.</ion-label>
               <ion-item lines="none">
@@ -289,29 +297,21 @@
             </div>
           </ion-col>
 
-          <ion-col size="6.5" offset="0.25">
+          <ion-col size="2.8" offset="0.5">
             <div class="item-input">
-              <ion-row>
-                <ion-col size="5" class="ion-no-padding">
-                  <ion-label>Trip Authority</ion-label>
-                  <ion-item>
-                    <ionic-selectable
-                      [(ngModel)]="lossControl.TripAut"
-                      [items]="yesNo"
-                    >
-                    </ionic-selectable>
-                  </ion-item>
-                </ion-col>
-
-                <!-- <ion-col size="5.5" offset="0.5" class="flex al-end jc-end">
-                  <ion-button expand="block" id="inline">
-                    Check Employee No.
-                  </ion-button>
-                </ion-col> -->
-              </ion-row>
+              <ion-label>Trip Authority</ion-label>
+              <ion-item>
+                <ionic-selectable
+                  [(ngModel)]="lossControl.TripAut"
+                  [items]="yesNo"
+                >
+                </ionic-selectable>
+              </ion-item>
             </div>
           </ion-col>
+        </ion-row>
 
+        <ion-row>
           <ion-col size="3.5">
             <div class="item-input">
               <ion-label>Date Reported to Police</ion-label>
@@ -346,76 +346,83 @@
             </div>
           </ion-col>
 
+          <ion-col size="8">
+            <ion-row>
+              <ion-col size="5.5">
+                <div class="item-input">
+                  <ion-label>Accident/Incident Report</ion-label>
+                  <ion-item>
+                    <ionic-selectable
+                      [(ngModel)]="lossControl.AccidentRep"
+                      [items]="yesNo"
+                      [canSearch]="true"
+                      [hasInfiniteScroll]="true"
+                    >
+                    </ionic-selectable>
+                  </ion-item>
+                </div>
+              </ion-col>
+              <ion-col size="5.5" offset="0.5">
+                <div class="item-input">
+                  <ion-label>Date report received</ion-label>
+                  <ion-item lines="none">
+                    <ion-datetime
+                      display-format="MMM DD YYYY hh:mm a"
+                      [(ngModel)]="lossControl.AccRepDate"
+                    ></ion-datetime>
+                  </ion-item>
+                </div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="5.5">
+                <div class="item-input">
+                  <ion-label>Forefeiture</ion-label>
+                  <ion-item>
+                    <ionic-selectable
+                      [(ngModel)]="lossControl.Forfeiture"
+                      [items]="yesNo"
+                      [canSearch]="true"
+                      [hasInfiniteScroll]="true"
+                    >
+                    </ionic-selectable>
+                  </ion-item>
+                </div>
+              </ion-col>
+              <ion-col size="5.5" offset="0.5">
+                <div class="item-input">
+                  <ion-label>Determination of liability</ion-label>
+                  <ion-item>
+                    <ionic-selectable
+                      [(ngModel)]="lossControl.Det_Liability"
+                      [items]="yesNo"
+                      [canSearch]="true"
+                      [hasInfiniteScroll]="true"
+                    >
+                    </ionic-selectable>
+                  </ion-item>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+
           <ion-col size="3.5">
-            <div class="item-input">
-              <ion-label>Accident / Incident Reported</ion-label>
-              <ion-item>
-                <ionic-selectable
-                  [(ngModel)]="lossControl.AccidentRep"
-                  [items]="yesNo"
-                  [canSearch]="true"
-                  [hasInfiniteScroll]="true"
-                >
-                </ionic-selectable>
-              </ion-item>
-            </div>
+            <ion-row>
+              <ion-col size="12">
+                <div class="item-input">
+                  <ion-label>Other Vehicle Party</ion-label>
+                  <ion-item lines="none">
+                    <ion-textarea
+                      rows="7"
+                      [(ngModel)]="lossControl.OtherVeh_Party"
+                    ></ion-textarea>
+                  </ion-item>
+                </div>
+              </ion-col>
+            </ion-row>
           </ion-col>
 
-          <ion-col size="3.5" offset="0.5">
-            <div class="item-input">
-              <ion-label>Date Report Received</ion-label>
-              <ion-item lines="none">
-                <ion-datetime
-                  display-format="MMM DD YYYY"
-                  [(ngModel)]="lossControl.AccRepDate"
-                ></ion-datetime>
-              </ion-item>
-            </div>
-          </ion-col>
-
-          <ion-col size="3.5" offset="0.5">
-            <div class="item-input">
-              <ion-label>Other Vehicle / Party</ion-label>
-              <ion-item lines="none">
-                <ion-input
-                  type="text"
-                  [(ngModel)]="lossControl.OtherVeh_Party"
-                ></ion-input>
-              </ion-item>
-            </div>
-          </ion-col>
-
-          <ion-col size="2.7">
-            <div class="item-input">
-              <ion-label>Forifeiture</ion-label>
-              <ion-item>
-                <ionic-selectable
-                  [(ngModel)]="lossControl.Forfeiture"
-                  [items]="yesNo"
-                  [canSearch]="true"
-                  [hasInfiniteScroll]="true"
-                >
-                </ionic-selectable>
-              </ion-item>
-            </div>
-          </ion-col>
-
-          <ion-col size="2.7" offset="0.3">
-            <div class="item-input">
-              <ion-label>Determination of liability</ion-label>
-              <ion-item>
-                <ionic-selectable
-                  [(ngModel)]="lossControl.Det_Liability"
-                  [items]="yesNo"
-                  [canSearch]="true"
-                  [hasInfiniteScroll]="true"
-                >
-                </ionic-selectable>
-              </ion-item>
-            </div>
-          </ion-col>
-
-          <ion-col size="2.8" offset="0.3">
+          <ion-col size="3.5">
             <div class="item-input">
               <ion-label>Costing Documents</ion-label>
               <ion-item>
@@ -430,7 +437,7 @@
             </div>
           </ion-col>
 
-          <ion-col size="2.8" offset="0.3">
+          <ion-col size="3.5" offset="0.5">
             <div class="item-input">
               <ion-label>Action Taken</ion-label>
               <ion-item>
@@ -446,7 +453,7 @@
             </div>
           </ion-col>
 
-          <ion-col size="3.5">
+          <ion-col size="3.5" offset="0.5">
             <div class="item-input">
               <ion-label>Amount</ion-label>
               <ion-item lines="none" class="end">
@@ -461,7 +468,7 @@
             </div>
           </ion-col>
 
-          <ion-col size="3.5" offset="0.5">
+          <ion-col size="3.5">
             <div class="item-input">
               <ion-label>Amount Recovered</ion-label>
               <ion-item>
@@ -476,24 +483,20 @@
             </div>
           </ion-col>
 
-          <ion-col size="4" offset="0.25">
+          <ion-col size="3.5" offset="0.5">
             <div class="item-input">
-              <ion-row>
-                <ion-col size="7" class="ion-no-padding">
-                  <ion-label>File Number</ion-label>
-                  <ion-item lines="none">
-                    <ion-input type="text" [(ngModel)]="lossControl.FileNumber">
-                    </ion-input>
-                  </ion-item>
-                </ion-col>
-
-                <ion-col size="4.5" offset="0.5" class="flex al-end jc-end">
-                  <ion-button expand="block" id="inline" (click)="onAdd()">
-                    Add
-                  </ion-button>
-                </ion-col>
-              </ion-row>
+              <ion-label>File Number</ion-label>
+              <ion-item lines="none">
+                <ion-input type="text" [(ngModel)]="lossControl.FileNumber">
+                </ion-input>
+              </ion-item>
             </div>
+          </ion-col>
+
+          <ion-col size="2" offset="1.5" class="flex al-end jc-end">
+            <ion-button expand="block" id="inline" (click)="onAdd()">
+              Add
+            </ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>

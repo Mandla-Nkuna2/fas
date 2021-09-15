@@ -37,51 +37,6 @@ export class BrowsertransferPage implements OnInit {
     this.getCurrentUser();
   }
 
-  onTableRep() {
-    this.popUp.showLoading('loading...').then(() => {
-      this.firebaseRepServ
-        .getBowserTransfers(this.organization)
-        .then((mNm: any) => {
-          this.bowserTransfers = mNm;
-          this.onBowserFromAnTo();
-          this.popUp.dismissLoading();
-        })
-        .catch((err) => {
-          this.popUp.dismissLoading().then(() => {
-            this.popUp.showError(err);
-          });
-        });
-    });
-  }
-
-  onBowserFromAnTo() {
-    this.firebaseGetServ.getBowserLeft(this.organization).then((staff: any) => {
-      this.bowsers = staff;
-
-      staff.forEach((elm) => {
-        this.bowserTransfers.forEach((obj) => {
-          if (elm.BowserGuid == obj.BowserFromGuid) {
-            obj.BowserFrom = elm.BowserName;
-          }
-        });
-      });
-
-      staff.forEach((elm) => {
-        this.bowserTransfers.forEach((obj) => {
-          if (elm.BowserGuid == obj.BowserToGuid) {
-            obj.BowserTo = elm.BowserName;
-          }
-        });
-      });
-    });
-  }
-
-  onCostCentre() {
-    this.firebaseGetServ.getCostCentre(this.organization).then((mNm: any) => {
-      this.costCentre = mNm;
-    });
-  }
-
   getCurrentUser() {
     this.afAuth.user.subscribe((cUser) => {
       this.getCurrentUserOrg(cUser.email);
@@ -99,9 +54,65 @@ export class BrowsertransferPage implements OnInit {
     });
   }
 
+  onTableRep() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getBowserTransfers(this.organization)
+        .then((mNm: any) => {
+          this.bowserTransfers = mNm;
+          console.log(mNm);
+          this.onBowserFromAnTo();
+          this.popUp.dismissLoading();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+
+  onBowserFromAnTo() {
+    this.firebaseGetServ.getBowserLeft(this.organization).then((mNm: any) => {
+      this.bowsers = mNm;
+
+      mNm.forEach((elm) => {
+        this.bowserTransfers.forEach((obj) => {
+          if (elm.BowserGuid == obj.BowserFromGuid) {
+            obj.BowserFrom = elm.BowserName;
+          }
+        });
+      });
+
+      mNm.forEach((elm) => {
+        this.bowserTransfers.forEach((obj) => {
+          if (elm.BowserGuid == obj.BowserToGuid) {
+            obj.BowserTo = elm.BowserName;
+          }
+        });
+      });
+    });
+  }
+
+  onCostCentre() {
+    this.firebaseGetServ.getCostCentre(this.organization).then((mNm: any) => {
+      this.costCentre = mNm;
+    });
+  }
+
   onAdd() {
     this.bowserTransfer.FuelTransferGuid = uuidv4();
     this.bowserTransfer.CaptureName = this.returnedUser.UserFirstName;
+
+    if (this.bowserTransfer.BowserFromGuid)
+      this.bowserTransfer.BowserFromGuid =
+        this.bowserTransfer.BowserFromGuid['BowserGuid'];
+    if (this.bowserTransfer.BowserToGuid)
+      this.bowserTransfer.BowserToGuid =
+        this.bowserTransfer.BowserToGuid['BowserGuid'];
+    if (this.bowserTransfer.CostCentGuid)
+      this.bowserTransfer.CostCentGuid =
+        this.bowserTransfer.CostCentGuid['CostCentGuid'];
 
     this.firebaseService
       .writeData(
