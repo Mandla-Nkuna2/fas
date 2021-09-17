@@ -14,8 +14,10 @@ import { FirebaseReportService } from 'src/app/services/firebase-service/firebas
 export class UsergroupsPage implements OnInit {
   organization = 'InnTee';
   userGroup: UserGroup;
-  userGroups: UserGroup[];
+  userGroups: UserGroup[] = [];
+
   returnedUser: any;
+  currentDate = new Date();
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -31,12 +33,6 @@ export class UsergroupsPage implements OnInit {
     this.getCurrentUser();
   }
 
-  onUserGroups() {
-    this.firebaseGetServ.getUserGroup(this.organization).then((mNm: any) => {
-      this.userGroups = mNm;
-    });
-  }
-
   getCurrentUser() {
     this.afAuth.user.subscribe((cUser) => {
       this.getCurrentUserOrg(cUser.email);
@@ -49,7 +45,23 @@ export class UsergroupsPage implements OnInit {
       this.organization = user.organization;
       this.returnedUser = user;
 
-      this.onUserGroups();
+      this.onTableRep();
+    });
+  }
+
+  onTableRep() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getUserGroups(this.organization)
+        .then((mNm: any) => {
+          this.userGroups = mNm;
+          this.popUp.dismissLoading();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
     });
   }
 

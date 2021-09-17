@@ -166,6 +166,26 @@ export class FirebaseReportService {
     return promise;
   }
 
+  getLocation(organization) {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection(organization + '/Mst_Location/tables')
+        .ref.limit(limVal)
+        .get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obj) => {
+            data.push(obj.data());
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+
   getLocationsLeft(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
@@ -566,6 +586,26 @@ export class FirebaseReportService {
     return promise;
   }
 
+  public getUserGroups(organization) {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection(organization + '/Sys_UserGroup/tables')
+        .ref.limit(limVal)
+        .get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obElem) => {
+            data.push(obElem.data());
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+
   public getClients(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
@@ -634,25 +674,6 @@ export class FirebaseReportService {
         .collection(organization + '/Mst_Bowser/tables')
         .ref.limit(limVal)
         .get()
-        .then((obj) => {
-          let data = [];
-          obj.docs.forEach((obElem) => {
-            data.push(obElem.data());
-          });
-          resolve(data);
-        })
-        .catch((err) => {
-          reject(err);
-        });
-    });
-    return promise;
-  }
-
-  public getLocationLeft(organization) {
-    const promise = new Promise((resolve, reject) => {
-      this.afs
-        .collection(organization + '/Mst_Location/tables')
-        .ref.get()
         .then((obj) => {
           let data = [];
           obj.docs.forEach((obElem) => {

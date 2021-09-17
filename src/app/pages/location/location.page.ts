@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseGetService } from './../../services/firebase-service/firebase-get.service';
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 import { FirebaseService } from './../../services/firebase-service/firebase-service.service';
 import LocationModel from 'src/app/models/supportdata/Location.model';
@@ -14,13 +13,14 @@ import { FirebaseReportService } from 'src/app/services/firebase-service/firebas
 export class LocationPage implements OnInit {
   organization = 'InnTee';
   location: LocationModel;
-  locations: any[];
+  locations: any[] = [];
+
   returnedUser: any;
+  currentDate = new Date();
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
     private firebaseService: FirebaseService,
-    private firebaseGetServ: FirebaseGetService,
     private popUp: PopupHelper,
     public afAuth: AngularFireAuth,
   ) {
@@ -43,19 +43,23 @@ export class LocationPage implements OnInit {
       this.organization = user.organization;
       this.returnedUser = user;
 
-      this.onLocation();
+      this.onTableRep();
     });
   }
 
-  onLocation() {
-    this.firebaseGetServ.getLocation(this.organization).then((mNm: any) => {
-      this.locations = mNm;
-    });
-  }
-
-  onLocationLeft() {
-    this.firebaseGetServ.getLocationLeft(this.organization).then((mNm: any) => {
-      this.locations = mNm;
+  onTableRep() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getLocation(this.organization)
+        .then((mNm: any) => {
+          this.locations = mNm;
+          this.popUp.dismissLoading();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
     });
   }
 

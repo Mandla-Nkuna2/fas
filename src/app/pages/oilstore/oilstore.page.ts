@@ -82,17 +82,19 @@ export class OilstorePage implements OnInit {
   }
 
   onLocationLeft() {
-    this.firebaseRepServ.getLocationLeft(this.organization).then((mNm: any) => {
-      this.locObjs = mNm;
+    this.firebaseRepServ
+      .getLocationsLeft(this.organization)
+      .then((mNm: any) => {
+        this.locObjs = mNm;
 
-      mNm.forEach((elm) => {
-        this.oilStores.forEach((obj) => {
-          if (elm.LocItemCode == obj.OilStoreLoc) {
-            obj.loc = elm.LocDesc;
-          }
+        mNm.forEach((elm) => {
+          this.oilStores.forEach((obj) => {
+            if (elm.LocItemCode == obj.OilStoreLoc) {
+              obj.loc = elm.LocDesc;
+            }
+          });
         });
       });
-    });
   }
 
   onAdd() {

@@ -9,12 +9,7 @@ import { HowtoPageRoutingModule } from './howto-routing.module';
 import { HowtoPage } from './howto.page';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    HowtoPageRoutingModule
-  ],
-  declarations: [HowtoPage]
+  imports: [CommonModule, FormsModule, IonicModule, HowtoPageRoutingModule],
+  declarations: [HowtoPage],
 })
 export class HowtoPageModule {}

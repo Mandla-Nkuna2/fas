@@ -90,7 +90,7 @@ export class VotecodesPage implements OnInit {
     this.voteCode.CaptureName = this.returnedUser.UserFirstName;
 
     if (this.voteCode.Votecode)
-      this.voteCode.Votecode = this.voteCode.Votecode['VoteCodeGuid'];
+      this.voteCode.Votecode = this.voteCode.Votecode['Votecode'];
 
     this.firebaseService
       .writeData(

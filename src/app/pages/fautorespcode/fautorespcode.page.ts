@@ -15,6 +15,7 @@ export class FautorespcodePage implements OnInit {
   organization = 'InnTee';
   fautorespcode: FAutoRespCode;
   fautorespcodes: FAutoRespCode[] = [];
+
   currentDate = new Date();
   returnedUser: any;
 
@@ -75,6 +76,7 @@ export class FautorespcodePage implements OnInit {
         this.fautorespcode.ResponseGuid,
       )
       .then(() => {
+        this.onTableRep();
         this.popUp.showToast('Data saved successfully :-)');
         this.fautorespcode = new FAutoRespCode();
       })
