@@ -1,0 +1,21 @@
+ion-content {
+  .title-holder {
+    ion-back-button {
+      margin-right: 10px !important;
+    }
+  }
+  .section {
+    margin-top: 20px;
+
+    .grid-holder {
+      .value-row {
+        ion-button {
+          --background: transparent;
+          --box-shadow: none;
+          --color: #7d91af;
+          width: fit-content !important;
+        }
+      }
+    }
+  }
+}

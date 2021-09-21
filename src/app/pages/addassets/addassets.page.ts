@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { v4 as uuidv4 } from 'uuid';
 import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 import { AngularFireAuth } from '@angular/fire/auth';
+import DataService from 'src/app/services/shared/data.service';
 
 @Component({
   selector: 'app-addassets',
@@ -18,6 +19,7 @@ export class AddassetsPage implements OnInit {
   assets: any = [];
 
   currentDate = new Date();
+  returnedUser: any;
   loadingComplete = false;
   makesAndModels: any = [];
   assetTypes: any = [];
@@ -29,9 +31,7 @@ export class AddassetsPage implements OnInit {
   meterTypes: any = [];
   categories: any = [];
   votecodes: any = [];
-
-  drop: false;
-  returnedUser: any;
+  editBool = false;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -39,12 +39,18 @@ export class AddassetsPage implements OnInit {
     private firebaseGetServ: FirebaseGetService,
     private popUp: PopupHelper,
     public afAuth: AngularFireAuth,
+    public ds: DataService,
   ) {
     this.asset = new Asset();
   }
 
   ngOnInit() {
     this.getCurrentUser();
+    this.ds.assetSubj.subscribe((item) => {
+      item.ItemGuid ? (this.editBool = true) : (this.editBool = false);
+      console.log(item.ItemGuid);
+      this.asset = item;
+    });
   }
 
   getCurrentUser() {
@@ -290,6 +296,52 @@ export class AddassetsPage implements OnInit {
       .then(() => {
         this.popUp.showToast('Data saved successfully :-)');
         this.asset = new Asset();
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
+  }
+
+  onModify() {
+    if (this.asset.ItemMakModGuid)
+      if (this.asset.ItemMakModGuid['ItemMakModGuid'])
+        this.asset.ItemMakModGuid = this.asset.ItemMakModGuid['ItemMakModGuid'];
+    if (this.asset.ItemTypeGuid)
+      if (this.asset.ItemTypeGuid['ItemTypeGuid'])
+        this.asset.ItemTypeGuid = this.asset.ItemTypeGuid['ItemTypeGuid'];
+    if (this.asset.ColourGuid)
+      if (this.asset.ColourGuid['ColourGuid'])
+        this.asset.ColourGuid = this.asset.ColourGuid['ColourGuid'];
+    if (this.asset.BatteryGuid)
+      if (this.asset.BatteryGuid['BatteryGuid'])
+        this.asset.BatteryGuid = this.asset.BatteryGuid['BatteryGuid'];
+    if (this.asset.StaffGuid)
+      if (this.asset.StaffGuid['StaffGuid'])
+        this.asset.StaffGuid = this.asset.StaffGuid['StaffGuid'];
+    if (this.asset.FrontTyreGuid)
+      if (this.asset.FrontTyreGuid['TyreSizeGuid'])
+        this.asset.FrontTyreGuid = this.asset.FrontTyreGuid['TyreSizeGuid'];
+    if (this.asset.RearTyreGuid)
+      if (this.asset.RearTyreGuid['TyreSizeGuid'])
+        this.asset.RearTyreGuid = this.asset.RearTyreGuid['TyreSizeGuid'];
+    if (this.asset.MeterType)
+      if (this.asset.MeterType['meterTypeUuid'])
+        this.asset.MeterType = this.asset.MeterType['meterTypeUuid'];
+    if (this.asset.Votecode)
+      if (this.asset.Votecode['VoteCodeGuid'])
+        this.asset.Votecode = this.asset.Votecode['VoteCodeGuid'];
+
+    this.firebaseService
+      .writeData(
+        this.organization,
+        'Mst_Item',
+        Object.assign({}, this.asset),
+        this.asset.ItemGuid,
+      )
+      .then(() => {
+        this.asset = new Asset();
+        this.ds.assetSubj.next(this.asset);
+        this.popUp.showToast('Data saved successfully :-)');
       })
       .catch((err) => {
         this.popUp.showError(err);

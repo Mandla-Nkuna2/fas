@@ -19,6 +19,7 @@ export class LosscontrolPage implements OnInit {
   lossControls: any[] = [];
 
   currentDate = new Date();
+  returnedUser: any;
   agent: any[];
   registration: any[];
   lossType: any[];
@@ -26,7 +27,7 @@ export class LosscontrolPage implements OnInit {
   reportedBy: any[];
   driver: any[];
   lossCntrlAction: any[];
-  returnedUser: any;
+  editBool = false;
 
   constructor(
     private navCtrl: NavController,
@@ -95,7 +96,7 @@ export class LosscontrolPage implements OnInit {
   }
 
   goMEvent() {
-    this.navCtrl.navigateForward('maintaincevent');
+    this.navCtrl.navigateForward('main/maintaincevent');
   }
 
   onAgent() {
@@ -216,6 +217,53 @@ export class LosscontrolPage implements OnInit {
         this.lossControl.LossContGuid,
       )
       .then(() => {
+        this.editBool = false;
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.lossControl = new LossControl();
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
+  }
+
+  onEdit(item) {
+    this.lossControl = item;
+    this.editBool = true;
+  }
+
+  onModify() {
+    if (this.lossControl.Agentguid)
+      if (this.lossControl.Agentguid['StaffGuid'])
+        this.lossControl.Agentguid = this.lossControl.Agentguid['StaffGuid'];
+    if (this.lossControl.Itemguid)
+      if (this.lossControl.Itemguid['ItemGuid'])
+        this.lossControl.Itemguid = this.lossControl.Itemguid['ItemGuid'];
+    if (this.lossControl.LossTypeguid)
+      if (this.lossControl.LossTypeguid['LossContTypeguid'])
+        this.lossControl.LossTypeguid =
+          this.lossControl.LossTypeguid['LossContTypeguid'];
+    if (this.lossControl.Reportbyguid)
+      if (this.lossControl.Reportbyguid['StaffGuid'])
+        this.lossControl.Reportbyguid =
+          this.lossControl.Reportbyguid['StaffGuid'];
+    if (this.lossControl.DriverGuid)
+      if (this.lossControl.DriverGuid['StaffGuid'])
+        this.lossControl.DriverGuid = this.lossControl.DriverGuid['StaffGuid'];
+    if (this.lossControl.LossContActguid)
+      if (this.lossControl.LossContActguid['LossContActGuid'])
+        this.lossControl.LossContActguid =
+          this.lossControl.LossContActguid['LossContActGuid'];
+
+    this.firebaseService
+      .writeData(
+        this.organization,
+        'Trn_LossControl',
+        Object.assign({}, this.lossControl),
+        this.lossControl.LossContGuid,
+      )
+      .then(() => {
+        this.editBool = false;
         this.onTableRep();
         this.popUp.showToast('Data saved successfully :-)');
         this.lossControl = new LossControl();

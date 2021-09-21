@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { NavController } from '@ionic/angular';
+import DataService from 'src/app/services/shared/data.service';
 
 @Component({
   selector: 'app-assetdetail',
@@ -22,10 +24,12 @@ export class AssetdetailPage implements OnInit {
   returnedUser: any;
 
   constructor(
+    private navCtrl: NavController,
     private firebaseRepServ: FirebaseReportService,
     private firebaseGetServ: FirebaseGetService,
     private popUp: PopupHelper,
     public afAuth: AngularFireAuth,
+    public ds: DataService,
   ) {}
 
   ngOnInit() {
@@ -158,5 +162,10 @@ export class AssetdetailPage implements OnInit {
           });
         });
       });
+  }
+
+  onEdit(item) {
+    this.ds.assetSubj.next(item);
+    this.navCtrl.navigateForward('main/addassets');
   }
 }

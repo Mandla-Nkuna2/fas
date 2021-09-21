@@ -1,19 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
-import data from './metadata.json';
+import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
 @Component({
   selector: 'app-howto',
   templateUrl: './howto.page.html',
   styleUrls: ['./howto.page.scss'],
 })
 export class HowtoPage implements OnInit {
-  vidObjs = data;
+  vidObjs: any = [];
 
-  constructor(private sanitizer: DomSanitizer) {}
+  constructor(private firebaseGetServ: FirebaseGetService) {}
 
   ngOnInit() {
-    this.vidObjs.forEach((elm) => {
-      elm.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(elm.url);
+    this.getStorageFiles();
+  }
+
+  getStorageFiles() {
+    this.firebaseGetServ.getStorageFiles().then((mNm: any) => {
+      this.vidObjs = mNm;
     });
   }
 }

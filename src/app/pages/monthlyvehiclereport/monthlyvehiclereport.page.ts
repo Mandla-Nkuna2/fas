@@ -156,6 +156,6 @@ export class MonthlyvehiclereportPage implements OnInit {
   }
 
   goDetails() {
-    this.navCtrl.navigateForward('monthlyvrdetail');
+    this.navCtrl.navigateForward('main/monthlyvrdetail');
   }
 }

@@ -18,9 +18,9 @@ export class VotecodesPage implements OnInit {
   voteCodes: Votecodes[] = [];
 
   currentDate = new Date();
-  descriptions = ['DONATED VEHICLES'];
-  finYear = ['2019/2020', '2020/2021', '2021/2022', '2022/2023'];
   returnedUser: any;
+  voteCodesSel: any[] = [];
+  finYear = ['2019/2020', '2020/2021', '2021/2022', '2022/2023'];
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -72,14 +72,14 @@ export class VotecodesPage implements OnInit {
 
   onVoteCodes() {
     this.firebaseGetServ.getVoteCodes(this.organization).then((mNm: any) => {
-      this.voteCodes = mNm;
+      this.voteCodesSel = mNm;
     });
   }
   onVoteCodesLeft() {
     this.firebaseGetServ
       .getVoteCodesLeft(this.organization)
       .then((mNm: any) => {
-        this.voteCodes = mNm;
+        this.voteCodesSel = mNm;
       });
   }
 

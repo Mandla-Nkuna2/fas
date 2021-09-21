@@ -21,6 +21,7 @@ export class ItemcomponentsPage implements OnInit {
   returnedUser: any;
   currentDate = new Date();
   registrations: any[];
+  maknmod: any;
   assetCompName: any[];
   assetCompMake: any[];
   assetCompModel: any[];
@@ -29,6 +30,7 @@ export class ItemcomponentsPage implements OnInit {
   oilMakes: any[];
   oilGrades: any[];
   oilClasses: any[];
+  editBool = false;
 
   constructor(
     private navCtrl: NavController,
@@ -60,8 +62,8 @@ export class ItemcomponentsPage implements OnInit {
       this.onTableRep();
       this.onRegistration();
       this.onCompName();
-      this.onComponentMake();
-      this.onComponentModel();
+      this.onCompMake();
+      this.onCompModel();
       this.onServiceIntv();
     });
   }
@@ -75,8 +77,8 @@ export class ItemcomponentsPage implements OnInit {
           this.itemComponents = mNm;
           this.onRegistrationLeft();
           this.onCompNameLeft();
-          this.onComponentMakeLeft();
-          this.onComponentModelLeft();
+          this.onCompMakeLeft();
+          this.onCompModelLeft();
           this.onOilType();
         })
         .catch((err) => {
@@ -112,6 +114,21 @@ export class ItemcomponentsPage implements OnInit {
       });
   }
 
+  onMakenModel() {
+    this.itemComponent.ItemMakeModelGuid =
+      this.itemComponent.ItemGuid['ItemMakModGuid'];
+    this.firebaseGetServ
+      .getAssetMakenModelLeft(this.organization)
+      .then((mNm: any) => {
+        mNm.forEach((elm) => {
+          if (elm.ItemMakModGuid == this.itemComponent.ItemMakeModelGuid) {
+            this.maknmod = elm.ItemMake;
+            if (elm.ItemModel) this.maknmod += ' ' + elm.ItemModel;
+          }
+        });
+      });
+  }
+
   onCompName() {
     this.firebaseGetServ.getCompName(this.organization).then((mNm: any) => {
       this.assetCompName = mNm;
@@ -131,12 +148,12 @@ export class ItemcomponentsPage implements OnInit {
     });
   }
 
-  onComponentMake() {
+  onCompMake() {
     this.firebaseGetServ.getItemCompMake(this.organization).then((mNm: any) => {
       this.assetCompMake = mNm;
     });
   }
-  onComponentMakeLeft() {
+  onCompMakeLeft() {
     this.firebaseGetServ
       .getItemCompMakeLeft(this.organization)
       .then((mNm: any) => {
@@ -152,14 +169,14 @@ export class ItemcomponentsPage implements OnInit {
       });
   }
 
-  onComponentModel() {
+  onCompModel() {
     this.firebaseGetServ
       .getItemCompModel(this.organization)
       .then((mNm: any) => {
         this.assetCompModel = mNm;
       });
   }
-  onComponentModelLeft() {
+  onCompModelLeft() {
     this.firebaseGetServ
       .getItemCompModelLeft(this.organization)
       .then((mNm: any) => {
@@ -275,6 +292,9 @@ export class ItemcomponentsPage implements OnInit {
     if (this.itemComponent.ServIntvalGuid)
       this.itemComponent.ServIntvalGuid =
         this.itemComponent.ServIntvalGuid['ServIntvalGuid'];
+    if (this.itemComponent.OilTypeGuid)
+      this.itemComponent.OilTypeGuid =
+        this.itemComponent.OilTypeGuid['OilGuid'];
 
     this.firebaseService
       .writeData(
@@ -284,6 +304,58 @@ export class ItemcomponentsPage implements OnInit {
         this.itemComponent.ItemCompGuid,
       )
       .then(() => {
+        this.editBool = false;
+        this.maknmod = null;
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.itemComponent = new ItemComponent();
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
+  }
+
+  onEdit(item) {
+    console.log(item);
+    this.itemComponent = item;
+    this.editBool = true;
+  }
+
+  onModify() {
+    if (this.itemComponent.ItemGuid)
+      if (this.itemComponent.ItemGuid['ItemGuid'])
+        this.itemComponent.ItemGuid = this.itemComponent.ItemGuid['ItemGuid'];
+    if (this.itemComponent.CompNameGuid)
+      if (this.itemComponent.CompNameGuid['CompNameGuid'])
+        this.itemComponent.CompNameGuid =
+          this.itemComponent.CompNameGuid['CompNameGuid'];
+    if (this.itemComponent.CompMakeGuid)
+      if (this.itemComponent.CompMakeGuid['CompMakeGuid'])
+        this.itemComponent.CompMakeGuid =
+          this.itemComponent.CompMakeGuid['CompMakeGuid'];
+    if (this.itemComponent.CompModelGuid)
+      if (this.itemComponent.CompModelGuid['CompModelGuid'])
+        this.itemComponent.CompModelGuid =
+          this.itemComponent.CompModelGuid['CompModelGuid'];
+    if (this.itemComponent.ServIntvalGuid)
+      if (this.itemComponent.ServIntvalGuid['ServIntvalGuid'])
+        this.itemComponent.ServIntvalGuid =
+          this.itemComponent.ServIntvalGuid['ServIntvalGuid'];
+    if (this.itemComponent.OilTypeGuid)
+      if (this.itemComponent.OilTypeGuid['OilGuid'])
+        this.itemComponent.OilTypeGuid =
+          this.itemComponent.OilTypeGuid['OilGuid'];
+
+    this.firebaseService
+      .writeData(
+        this.organization,
+        'Mst_ItemComponents',
+        Object.assign({}, this.itemComponent),
+        this.itemComponent.ItemCompGuid,
+      )
+      .then(() => {
+        this.editBool = false;
+        this.maknmod = null;
         this.onTableRep();
         this.popUp.showToast('Data saved successfully :-)');
         this.itemComponent = new ItemComponent();

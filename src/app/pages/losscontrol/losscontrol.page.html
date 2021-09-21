@@ -39,7 +39,6 @@
       <ng-template #noItems> No items. </ng-template>
       <ion-grid fixed *ngIf="lossControls.length; else noItems">
         <ion-row class="title-row">
-          <ion-col size="0.5" class="flex al-center jc-center"> </ion-col>
           <ion-col size="1.4" class="flex al-center jc-center">
             <h4>Loss Cont. No.</h4>
           </ion-col>
@@ -61,16 +60,13 @@
           <ion-col size="1.4" class="flex al-center jc-center">
             <h4>driver</h4>
           </ion-col>
+          <ion-col size="0.5" class="flex al-center jc-center"> </ion-col>
         </ion-row>
         <div class="values">
           <ion-row
             class="value-row"
             *ngFor="let item of lossControls; let i = index"
-            (click)="goMEvent()"
           >
-            <ion-col size="0.5" class="flex al-center jc-center">
-              <ion-checkbox></ion-checkbox>
-            </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
               <p>{{ item.LossControlNo }}</p>
             </ion-col>
@@ -91,6 +87,14 @@
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
               <p>{{ item.Driver }}</p>
+            </ion-col>
+            <ion-col size="0.5" class="flex al-center jc-start">
+              <ion-button (click)="onEdit(item)">
+                <ion-icon
+                  slot="icon-only"
+                  name="ellipsis-vertical-outline"
+                ></ion-icon>
+              </ion-button>
             </ion-col>
           </ion-row>
         </div>
@@ -494,8 +498,16 @@
           </ion-col>
 
           <ion-col size="2" offset="1.5" class="flex al-end jc-end">
-            <ion-button expand="block" id="inline" (click)="onAdd()">
+            <ion-button id="inline" *ngIf="!editBool" (click)="onAdd()">
               Add
+            </ion-button>
+            <ion-button
+              id="inline"
+              *ngIf="editBool"
+              (click)="onModify()"
+              color="medium"
+            >
+              Modify
             </ion-button>
           </ion-col>
         </ion-row>

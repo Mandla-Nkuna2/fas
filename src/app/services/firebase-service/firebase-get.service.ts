@@ -1,5 +1,8 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { DomSanitizer } from '@angular/platform-browser';
+import firebase from 'firebase/app';
+import 'firebase/storage';
 
 const limVal = 10;
 @Injectable({
@@ -8,7 +11,7 @@ const limVal = 10;
 export class FirebaseGetService {
   menuEmitter: EventEmitter<boolean>;
 
-  constructor(private afs: AngularFirestore) {
+  constructor(private afs: AngularFirestore, private sanitizer: DomSanitizer) {
     this.menuEmitter = new EventEmitter();
   }
 
@@ -382,6 +385,7 @@ export class FirebaseGetService {
             data.push({
               ItemGuid: obj.get('ItemGuid'),
               Reg: obj.get('Reg'),
+              ItemMakModGuid: obj.get('ItemMakModGuid'),
             });
           });
           resolve(data);
@@ -403,6 +407,7 @@ export class FirebaseGetService {
             data.push({
               ItemGuid: obj.get('ItemGuid'),
               Reg: obj.get('Reg'),
+              ItemMakModGuid: obj.get('ItemMakModGuid'),
             });
           });
           resolve(data);
@@ -1837,6 +1842,35 @@ export class FirebaseGetService {
             });
           });
           resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+
+  getStorageFiles() {
+    let storage = firebase.storage();
+    let storageRef = storage.ref();
+
+    const promise = new Promise((resolve, reject) => {
+      storageRef
+        .listAll()
+        .then((res) => {
+          let itemz = [];
+          res.items.forEach((itemRef) => {
+            itemRef.getMetadata().then((data) => {
+              itemRef.getDownloadURL().then((url) => {
+                itemz.push({
+                  name: data.name,
+                  url: url,
+                  safeUrl: this.sanitizer.bypassSecurityTrustResourceUrl(url),
+                });
+              });
+            });
+          });
+          resolve(itemz);
         })
         .catch((err) => {
           reject(err);

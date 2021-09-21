@@ -456,7 +456,17 @@
           <ion-col size="1"> </ion-col>
           <ion-col size="2.6">
             <div class="btn-holder ion-text-right">
-              <ion-button (click)="onAdd()" expand="block"> Add </ion-button>
+              <ion-button *ngIf="!editBool" (click)="onAdd()" expand="block"
+                >Add</ion-button
+              >
+              <ion-button
+                *ngIf="editBool"
+                (click)="onModify()"
+                expand="block"
+                color="medium"
+              >
+                Modify
+              </ion-button>
             </div>
           </ion-col>
           <ion-col size="0.4"> </ion-col>
