@@ -19,7 +19,6 @@ ion-content {
       ion-grid {
         border: none !important;
         padding: 0 !important;
-        // margin: 0 !important;
       }
       .title-row {
         border: 1px solid #b3c6e2;
@@ -34,6 +33,12 @@ ion-content {
         border-right: 1px solid #b3c6e2;
         p {
           font-size: 13px !important;
+        }
+        ion-button {
+          --background: transparent;
+          --box-shadow: none;
+          --color: #7d91af;
+          width: fit-content !important;
         }
       }
     }

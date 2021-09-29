@@ -17,14 +17,15 @@ export class AdditionalcostsPage implements OnInit {
   organization = 'InnTee';
   additionalCost: AdditionalCost;
   additionalCosts: any[] = [];
-  currentDate = new Date();
 
+  currentDate = new Date();
+  returnedUser: any;
   additionalCostDesc: any[];
   registration: any;
   costCentre: any;
   staffcode: any;
   supplier: any;
-  returnedUser: any;
+  editBool = false;
 
   constructor(
     private navCtrl: NavController,
@@ -83,7 +84,7 @@ export class AdditionalcostsPage implements OnInit {
   }
 
   goAutoCard() {
-    this.navCtrl.navigateForward('autocardetails');
+    this.navCtrl.navigateForward('main/autocardetails');
   }
 
   onRegistration() {
@@ -211,9 +212,49 @@ export class AdditionalcostsPage implements OnInit {
       });
   }
 
-  onDelete() {}
+  onEdit(item) {
+    this.additionalCost = item;
+    this.editBool = true;
+  }
 
-  onClear() {}
+  onModify() {
+    if (this.additionalCost.Itemguid)
+      if (this.additionalCost.Itemguid['Reg'])
+        this.additionalCost.RegIndex = this.additionalCost.Itemguid['Reg'];
+    if (this.additionalCost.Itemguid)
+      if (this.additionalCost.Itemguid['ItemGuid'])
+        this.additionalCost.Itemguid = this.additionalCost.Itemguid['ItemGuid'];
+    if (this.additionalCost.AddCostDescGuid)
+      if (this.additionalCost.AddCostDescGuid['AddCostDescGuid'])
+        this.additionalCost.AddCostDescGuid =
+          this.additionalCost.AddCostDescGuid['AddCostDescGuid'];
+    if (this.additionalCost.CostCentreGuid)
+      if (this.additionalCost.CostCentreGuid['CostCentGuid'])
+        this.additionalCost.CostCentreGuid =
+          this.additionalCost.CostCentreGuid['CostCentGuid'];
+    if (this.additionalCost.StaffGuid)
+      if (this.additionalCost.StaffGuid['StaffGuid'])
+        this.additionalCost.StaffGuid =
+          this.additionalCost.StaffGuid['StaffGuid'];
+    if (this.additionalCost.Suppguid)
+      if (this.additionalCost.Suppguid['SuppGuid'])
+        this.additionalCost.Suppguid = this.additionalCost.Suppguid['SuppGuid'];
 
-  onModify() {}
+    this.firebaseService
+      .writeData(
+        this.organization,
+        'Trn_AdditionalCosts',
+        Object.assign({}, this.additionalCost),
+        this.additionalCost.AddCostGuid,
+      )
+      .then(() => {
+        this.editBool = false;
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.additionalCost = new AdditionalCost();
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
+  }
 }

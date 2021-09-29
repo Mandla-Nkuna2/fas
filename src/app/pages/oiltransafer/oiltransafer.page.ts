@@ -17,8 +17,9 @@ export class OiltransaferPage implements OnInit {
   organization = 'InnTee';
   oilStoreTransf: OilStoreTransfer;
   oilStoreTransfs: any[] = [];
-  currentDate = new Date();
 
+  currentDate = new Date();
+  returnedUser: any;
   voucherNo: any[];
   oilMakes: any[];
   oilGrades: any[];
@@ -27,7 +28,7 @@ export class OiltransaferPage implements OnInit {
   oilStoreFrom: any[];
   oilStoreTo: any[];
   costCentre: any[];
-  returnedUser: any;
+  editBool = false;
 
   constructor(
     private navCtrl: NavController,
@@ -42,6 +43,26 @@ export class OiltransaferPage implements OnInit {
 
   ngOnInit() {
     this.getCurrentUser();
+  }
+
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+      this.returnedUser = user;
+
+      this.onTableRep();
+      this.onOilType();
+      this.onOilStoreFrom();
+      this.onOilStoreTo();
+      this.onCostCentre();
+    });
   }
 
   onTableRep() {
@@ -64,7 +85,7 @@ export class OiltransaferPage implements OnInit {
   }
 
   goOverhead() {
-    this.navCtrl.navigateForward('overheadtrans');
+    this.navCtrl.navigateForward('main/overheadtrans');
   }
 
   onOilType() {
@@ -174,26 +195,6 @@ export class OiltransaferPage implements OnInit {
     });
   }
 
-  getCurrentUser() {
-    this.afAuth.user.subscribe((cUser) => {
-      this.getCurrentUserOrg(cUser.email);
-    });
-  }
-
-  getCurrentUserOrg(email) {
-    this.firebaseRepServ.getUser(email).then((mNm) => {
-      let user: any = mNm;
-      this.organization = user.organization;
-      this.returnedUser = user;
-
-      this.onTableRep();
-      this.onOilType();
-      this.onOilStoreFrom();
-      this.onOilStoreTo();
-      this.onCostCentre();
-    });
-  }
-
   onAdd() {
     this.oilStoreTransf.OilStoreTrnGuid = uuidv4();
     this.oilStoreTransf.CaptureName = this.returnedUser.UserFirstName;
@@ -222,6 +223,47 @@ export class OiltransaferPage implements OnInit {
         this.popUp.showToast('Data saved successfully :-)');
         this.oilStoreTransf = new OilStoreTransfer();
         this.onTableRep();
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
+  }
+
+  onEdit(item) {
+    this.oilStoreTransf = item;
+    this.editBool = true;
+  }
+
+  onModify() {
+    if (this.oilStoreTransf.OilTypeGuid)
+      if (this.oilStoreTransf.OilTypeGuid['OilGuid'])
+        this.oilStoreTransf.OilTypeGuid =
+          this.oilStoreTransf.OilTypeGuid['OilGuid'];
+    if (this.oilStoreTransf.OilStoreFromGuid)
+      if (this.oilStoreTransf.OilStoreFromGuid['OilStoreGuid'])
+        this.oilStoreTransf.OilStoreFromGuid =
+          this.oilStoreTransf.OilStoreFromGuid['OilStoreGuid'];
+    if (this.oilStoreTransf.OilStoreToGuid)
+      if (this.oilStoreTransf.OilStoreToGuid['OilStoreGuid'])
+        this.oilStoreTransf.OilStoreToGuid =
+          this.oilStoreTransf.OilStoreToGuid['OilStoreGuid'];
+    if (this.oilStoreTransf.CostCentGuid)
+      if (this.oilStoreTransf.CostCentGuid['CostCentGuid'])
+        this.oilStoreTransf.CostCentGuid =
+          this.oilStoreTransf.CostCentGuid['CostCentGuid'];
+
+    this.firebaseService
+      .writeData(
+        this.organization,
+        'Trn_OilStoreTransfer',
+        Object.assign({}, this.oilStoreTransf),
+        this.oilStoreTransf.OilStoreTrnGuid,
+      )
+      .then(() => {
+        this.editBool = false;
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.oilStoreTransf = new OilStoreTransfer();
       })
       .catch((err) => {
         this.popUp.showError(err);

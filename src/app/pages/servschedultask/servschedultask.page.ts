@@ -20,6 +20,7 @@ export class ServschedultaskPage implements OnInit {
   returnedUser: any;
   servSchTaskDesc: any;
   yesNo = ['Y', 'N'];
+  editBool = false;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -87,7 +88,28 @@ export class ServschedultaskPage implements OnInit {
       });
   }
 
-  onModify() {}
-  onDeActivate() {}
-  onClear() {}
+    onEdit(item) {
+    this.serviceSchTask = item;
+    this.editBool = true;
+  }
+
+
+   onModify() {
+    this.firebaseService
+      .writeData(
+        this.organization,
+        'Sup_Checklist',
+        Object.assign({}, this.serviceSchTask),
+        this.serviceSchTask.CheckListItemGuid,
+      )
+      .then(() => {
+        this.editBool = false;
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.serviceSchTask = new ServiceSchTask();
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
+  }
 }

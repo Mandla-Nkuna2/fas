@@ -18,8 +18,9 @@ export class StorecategoriesPage implements OnInit {
   storeCats: StoreCategory[] = [];
 
   currentDate = new Date();
-  storeCatItemsView = false;
   returnedUser: any;
+  storeCatItemsView = false;
+  editBool = false;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -34,6 +35,23 @@ export class StorecategoriesPage implements OnInit {
   ngOnInit() {
     this.getCurrentUser();
   }
+
+    getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+      this.returnedUser = user;
+
+      this.onTableRep();
+    });
+  }
+
 
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
@@ -61,30 +79,9 @@ export class StorecategoriesPage implements OnInit {
     });
   }
 
-  getCurrentUser() {
-    this.afAuth.user.subscribe((cUser) => {
-      this.getCurrentUserOrg(cUser.email);
-    });
-  }
-
-  getCurrentUserOrg(email) {
-    this.firebaseRepServ.getUser(email).then((mNm) => {
-      let user: any = mNm;
-      this.organization = user.organization;
-      this.returnedUser = user;
-
-      this.onTableRep();
-    });
-  }
-
   onAdd() {
     this.storeCat.StoreCatgGuid = uuidv4();
     this.storeCat.CapName = this.returnedUser.UserFirstName;
-
-    //  if (this.storeCat.UserGroupGuid)
-    //    this.storeCat.UserGroupGuid = this.storeCat.UserGroupGuid['UserGroupGuid'];
-    //  if (this.storeCat.LocUserCode)
-    //    this.storeCat.LocUserCode = this.storeCat.LocstoreCatCode['LocGuid'];
 
     this.firebaseService
       .writeData(
@@ -102,7 +99,28 @@ export class StorecategoriesPage implements OnInit {
         this.popUp.showError(err);
       });
   }
-  onModify() {}
-  onDeActivate() {}
-  onClear() {}
+
+    onEdit(item) {
+    this.storeCat = item;
+    this.editBool = true;
+  }
+
+  onModify() {
+    this.firebaseService
+      .writeData(
+        this.organization,
+        'Sup_StoreCatg',
+        Object.assign({}, this.storeCat),
+        this.storeCat.StoreCatgGuid,
+      )
+      .then(() => {
+        this.editBool = false;
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.storeCat = new StoreCategory();
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
+  }
 }

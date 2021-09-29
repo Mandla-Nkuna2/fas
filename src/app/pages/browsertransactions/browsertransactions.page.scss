@@ -34,6 +34,12 @@ ion-content {
         p {
           font-size: 13px !important;
         }
+        ion-button {
+          --background: transparent;
+          --box-shadow: none;
+          --color: #7d91af;
+          width: fit-content !important;
+        }
       }
     }
 

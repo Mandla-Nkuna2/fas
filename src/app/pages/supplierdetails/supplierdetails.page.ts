@@ -18,8 +18,9 @@ export class SupplierdetailsPage implements OnInit {
   suppliers: any[] = [];
 
   currentDate = new Date();
-  suppCat: any[];
   returnedUser: any;
+  suppCat: any[];
+  editBool = false;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -33,6 +34,23 @@ export class SupplierdetailsPage implements OnInit {
 
   ngOnInit() {
     this.getCurrentUser();
+  }
+
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+      this.returnedUser = user;
+
+      this.onTableRep();
+      this.onCategory();
+    });
   }
 
   onTableRep() {
@@ -71,23 +89,6 @@ export class SupplierdetailsPage implements OnInit {
     });
   }
 
-  getCurrentUser() {
-    this.afAuth.user.subscribe((cUser) => {
-      this.getCurrentUserOrg(cUser.email);
-    });
-  }
-
-  getCurrentUserOrg(email) {
-    this.firebaseRepServ.getUser(email).then((mNm) => {
-      let user: any = mNm;
-      this.organization = user.organization;
-      this.returnedUser = user;
-
-      this.onTableRep();
-      this.onCategory();
-    });
-  }
-
   onAdd() {
     this.supplier.SuppGuid = uuidv4();
     this.supplier.CaptureName = this.returnedUser.UserFirstName;
@@ -112,7 +113,33 @@ export class SupplierdetailsPage implements OnInit {
         this.popUp.showError(err);
       });
   }
-  onModify() {}
-  onDeActivate() {}
-  onClear() {}
+
+  onEdit(item) {
+    this.supplier = item;
+    this.editBool = true;
+  }
+
+  onModify() {
+    if (this.supplier.SuppCategoryGuid)
+      if (this.supplier.SuppCategoryGuid['SuppCategoryGuid'])
+        this.supplier.SuppCategoryGuid =
+          this.supplier.SuppCategoryGuid['SuppCategoryGuid'];
+
+    this.firebaseService
+      .writeData(
+        this.organization,
+        'Mst_Supplier',
+        Object.assign({}, this.supplier),
+        this.supplier.SuppGuid,
+      )
+      .then(() => {
+        this.editBool = false;
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.supplier = new SupplierDetails();
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
+  }
 }

@@ -15,6 +15,11 @@ ion-content {
       .the-form {
         ion-col {
           margin-bottom: 10px !important;
+          a {
+            color: white;
+            text-decoration: none;
+            font-size: 90%;
+          }
         }
       }
     }

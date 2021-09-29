@@ -1,3 +1,42 @@
 mark {
   background-color: #b5b9c4;
 }
+.section {
+  margin-top: 20px;
+
+  .grid-holder {
+    .top-toolbar {
+      padding: 5px 20px !important;
+    }
+
+    .values {
+      border-bottom: 0 !important;
+      padding: 0 !important;
+    }
+    ion-grid {
+      border: none !important;
+      padding: 0 !important;
+    }
+    .title-row {
+      border: 1px solid #b3c6e2;
+      h4 {
+        font-size: 13px !important;
+      }
+    }
+
+    .value-row {
+      border-bottom: 1px solid #b3c6e2;
+      border-left: 1px solid #b3c6e2;
+      border-right: 1px solid #b3c6e2;
+      p {
+        font-size: 12px !important;
+      }
+      ion-button {
+        --background: transparent;
+        --box-shadow: none;
+        --color: #7d91af;
+        width: fit-content !important;
+      }
+    }
+  }
+}

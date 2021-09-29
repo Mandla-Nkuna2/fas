@@ -35,6 +35,8 @@ export class DailyoperationrecordPage implements OnInit {
     'seats',
     'ton',
   ];
+  editBool = false;
+
   constructor(
     private firebaseRepServ: FirebaseReportService,
     private firebaseService: FirebaseService,
@@ -174,6 +176,46 @@ export class DailyoperationrecordPage implements OnInit {
         this.dOpsRec.PlantSheetguid,
       )
       .then(() => {
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.dOpsRec = new DailyOperationRec();
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
+  }
+
+  onEdit(item) {
+    this.dOpsRec = item;
+    this.editBool = true;
+  }
+
+  onModify() {
+    if (this.dOpsRec.OpenOdo && this.dOpsRec.CloseOdo)
+      this.dOpsRec.CalWrkKmHr = this.dOpsRec.CloseOdo - this.dOpsRec.OpenOdo;
+    if (this.dOpsRec.Itemguid)
+      if (this.dOpsRec.Itemguid['ItemGuid'])
+        this.dOpsRec.Itemguid = this.dOpsRec.Itemguid['ItemGuid'];
+    if (this.dOpsRec.LocItemCode)
+      if (this.dOpsRec.LocItemCode['LocGuid'])
+        this.dOpsRec.LocItemCode = this.dOpsRec.LocItemCode['LocGuid'];
+    if (this.dOpsRec.CostCentreguid)
+      if (this.dOpsRec.CostCentreguid['CostCentGuid'])
+        this.dOpsRec.CostCentreguid =
+          this.dOpsRec.CostCentreguid['CostCentGuid'];
+    if (this.dOpsRec.StaffGuid)
+      if (this.dOpsRec.StaffGuid['StaffGuid'])
+        this.dOpsRec.StaffGuid = this.dOpsRec.StaffGuid['StaffGuid'];
+
+    this.firebaseService
+      .writeData(
+        this.organization,
+        'Trn_PlantSheets',
+        Object.assign({}, this.dOpsRec),
+        this.dOpsRec.PlantSheetguid,
+      )
+      .then(() => {
+        this.editBool = false;
         this.onTableRep();
         this.popUp.showToast('Data saved successfully :-)');
         this.dOpsRec = new DailyOperationRec();

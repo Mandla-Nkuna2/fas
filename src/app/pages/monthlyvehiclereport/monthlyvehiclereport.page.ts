@@ -50,7 +50,7 @@ export class MonthlyvehiclereportPage implements OnInit {
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
-        .getAsset(this.organization)
+        .getVehicles(this.organization)
         .then((mNm: any) => {
           this.assets = mNm;
           this.onAssetType();

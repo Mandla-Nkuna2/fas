@@ -17,14 +17,15 @@ export class FuelissuesPage implements OnInit {
   organization = 'InnTee';
   fuelIssue: FuelIssue;
   fuelIssues: any[] = [];
-  currentDate = new Date();
 
+  currentDate = new Date();
+  returnedUser: any;
   registration: any[];
   supplier: any[];
   staffCode: any[];
   costCentre: any[];
   bowser: any[];
-  returnedUser: any;
+  editBool = false;
 
   constructor(
     private navCtrl: NavController,
@@ -39,6 +40,27 @@ export class FuelissuesPage implements OnInit {
 
   ngOnInit() {
     this.getCurrentUser();
+  }
+
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+      this.returnedUser = user;
+
+      this.onTableRep();
+      this.onRegistration();
+      this.onBowser();
+      this.onSupplier();
+      this.onStaffCode();
+      this.onCostCentre();
+    });
   }
 
   onTableRep() {
@@ -59,7 +81,7 @@ export class FuelissuesPage implements OnInit {
   }
 
   goItemCompo() {
-    this.navCtrl.navigateForward('itemcomponents');
+    this.navCtrl.navigateForward('main/itemcomponents');
   }
 
   onRegistration() {
@@ -122,27 +144,6 @@ export class FuelissuesPage implements OnInit {
     });
   }
 
-  getCurrentUser() {
-    this.afAuth.user.subscribe((cUser) => {
-      this.getCurrentUserOrg(cUser.email);
-    });
-  }
-
-  getCurrentUserOrg(email) {
-    this.firebaseRepServ.getUser(email).then((mNm) => {
-      let user: any = mNm;
-      this.organization = user.organization;
-      this.returnedUser = user;
-
-      this.onTableRep();
-      this.onRegistration();
-      this.onBowser();
-      this.onSupplier();
-      this.onStaffCode();
-      this.onCostCentre();
-    });
-  }
-
   onAdd() {
     this.fuelIssue.FuelIssueGuid = uuidv4();
     this.fuelIssue.CaptureName = this.returnedUser.UserFirstName;
@@ -168,6 +169,50 @@ export class FuelissuesPage implements OnInit {
         this.fuelIssue.FuelIssueGuid,
       )
       .then(() => {
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.fuelIssue = new FuelIssue();
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
+  }
+
+  onEdit(item) {
+    this.fuelIssue = item;
+    this.editBool = true;
+  }
+
+  onModify() {
+    if (this.fuelIssue.ItemGuid)
+      if (this.fuelIssue.ItemGuid['Reg'])
+        this.fuelIssue.RegIndex = this.fuelIssue.ItemGuid['Reg'];
+    if (this.fuelIssue.ItemGuid)
+      if (this.fuelIssue.ItemGuid['ItemGuid'])
+        this.fuelIssue.ItemGuid = this.fuelIssue.ItemGuid['ItemGuid'];
+    if (this.fuelIssue.BowserGuid)
+      if (this.fuelIssue.BowserGuid['BowserGuid'])
+        this.fuelIssue.BowserGuid = this.fuelIssue.BowserGuid['BowserGuid'];
+    if (this.fuelIssue.SupplierGuid)
+      if (this.fuelIssue.SupplierGuid['SuppGuid'])
+        this.fuelIssue.SupplierGuid = this.fuelIssue.SupplierGuid['SuppGuid'];
+    if (this.fuelIssue.StaffGuid)
+      if (this.fuelIssue.StaffGuid['StaffGuid'])
+        this.fuelIssue.StaffGuid = this.fuelIssue.StaffGuid['StaffGuid'];
+    if (this.fuelIssue.CostCentGuid)
+      if (this.fuelIssue.CostCentGuid['CostCentGuid'])
+        this.fuelIssue.CostCentGuid =
+          this.fuelIssue.CostCentGuid['CostCentGuid'];
+
+    this.firebaseService
+      .writeData(
+        this.organization,
+        'Trn_FuelIssue',
+        Object.assign({}, this.fuelIssue),
+        this.fuelIssue.FuelIssueGuid,
+      )
+      .then(() => {
+        this.editBool = false;
         this.onTableRep();
         this.popUp.showToast('Data saved successfully :-)');
         this.fuelIssue = new FuelIssue();

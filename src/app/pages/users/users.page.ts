@@ -38,6 +38,7 @@ export class UsersPage implements OnInit {
   userGroup: any;
   userGroups: any[];
   locations: any[];
+  editBool = false;
   tableVu = true;
 
   userObject;
@@ -305,6 +306,42 @@ export class UsersPage implements OnInit {
         this.getCurrentUser();
         this.popUp.showAlert('Success', 'User added successfully :-)');
         this.user = new User();
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+        console.log('err: ', err.message);
+      });
+  }
+
+  onEdit(item) {
+    this.user = item;
+    this.editBool = true;
+  }
+
+  onModify() {
+    if (this.user.UserGroupGuid)
+      if (this.user.UserGroupGuid['UserGroupGuid'])
+        this.user.UserGroupGuid = this.user.UserGroupGuid['UserGroupGuid'];
+    if (this.user.LocUserCode)
+      if (this.user.LocUserCode['LocGuid'])
+        this.user.LocUserCode = this.user.LocUserCode['LocGuid'];
+
+    this.firebaseService
+      .write(
+        this.organization,
+        'Mst_Users',
+        Object.assign({}, this.user),
+        this.user.UserGuid,
+      )
+      .then(() => {
+        this.editBool = false;
+        if (this.user.organization != 'InnTee') {
+          this.captureUsers();
+        } else {
+          this.getCurrentUser();
+          this.popUp.showToast('User modified successfully...');
+          this.user = new User();
+        }
       })
       .catch((err) => {
         this.popUp.showError(err);

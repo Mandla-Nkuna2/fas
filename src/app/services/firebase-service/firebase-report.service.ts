@@ -107,6 +107,26 @@ export class FirebaseReportService {
     return promise;
   }
 
+  public getLicHistory(organization) {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection(organization + '/Trn_LicHistory/tables')
+        .ref.limit(limVal)
+        .get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obElem) => {
+            data.push(obElem.data());
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+
   public getMaintEvent(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
@@ -947,16 +967,23 @@ export class FirebaseReportService {
     return promise;
   }
 
-  getVehiclesCount(organization) {
+  getVehicles(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection(organization + '/Mst_Item/tables')
-        .ref.where('ItemCatg', '==', 'VEHICLES')
+        .ref.where('ItemCatg', 'in', [
+          'VEHICLES',
+          'LIGHT LOAD VEHICLE',
+          'HEAVY LOAD VEHICLE',
+        ])
+        .limit(limVal)
         .get()
         .then((obj) => {
-          let count = 0;
-          count = obj.size;
-          resolve(count);
+          let data = [];
+          obj.docs.forEach((obElem) => {
+            data.push(obElem.data());
+          });
+          resolve(data);
         })
         .catch((err) => {
           reject(err);

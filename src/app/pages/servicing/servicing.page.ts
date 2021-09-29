@@ -14,6 +14,7 @@ export class ServicingPage implements OnInit {
   organization = 'InnTee';
   vehicleReps: any[] = [];
 
+  currentDate = new Date();
   returnedUser: any;
   itemTypes: any = [];
 
@@ -51,7 +52,6 @@ export class ServicingPage implements OnInit {
         .getAsset(this.organization)
         .then((mNm: any) => {
           this.vehicleReps = mNm;
-          console.log(mNm);
           this.onAssetType();
           this.popUp.dismissLoading();
         })
@@ -139,6 +139,6 @@ export class ServicingPage implements OnInit {
   }
 
   goDetails() {
-    this.navCtrl.navigateForward('servicingdetail');
+    this.navCtrl.navigateForward('main/servicingdetail');
   }
 }

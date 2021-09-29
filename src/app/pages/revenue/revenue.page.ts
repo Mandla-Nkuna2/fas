@@ -18,12 +18,13 @@ export class RevenuePage implements OnInit {
   revenue: Revenue;
   revenuee: any[] = [];
 
-  returnedUser: any;
   currentDate = new Date();
+  returnedUser: any;
   registration: any[];
   clients: any[];
   costCentre: any[];
   yesNo = ['Y', 'N'];
+  editBool = false;
 
   constructor(
     private navCtrl: NavController,
@@ -38,6 +39,25 @@ export class RevenuePage implements OnInit {
 
   ngOnInit() {
     this.getCurrentUser();
+  }
+
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+      this.returnedUser = user;
+
+      this.onTableRep();
+      this.onRegistration();
+      this.onClient();
+      this.onCostCentre();
+    });
   }
 
   onTableRep() {
@@ -58,7 +78,7 @@ export class RevenuePage implements OnInit {
   }
 
   storeIssue() {
-    this.navCtrl.navigateForward('storeissue');
+    this.navCtrl.navigateForward('main/storeissue');
   }
 
   onRegistration() {
@@ -96,23 +116,23 @@ export class RevenuePage implements OnInit {
     });
   }
 
-  getCurrentUser() {
-    this.afAuth.user.subscribe((cUser) => {
-      this.getCurrentUserOrg(cUser.email);
-    });
-  }
+  onTotalRev() {
+    let ttlRev = 0;
+    let rev =
+      this.revenue.NoHours * this.revenue.HourRate +
+      this.revenue.NoOvertime * this.revenue.OvertimeRate +
+      this.revenue.NoWeekend * this.revenue.WeekendRate +
+      this.revenue.NoRain * this.revenue.RainRate +
+      this.revenue.StandbyHours * this.revenue.StandbyRate +
+      this.revenue.NoDays * this.revenue.DailyRate +
+      +this.revenue.OtherRevenue -
+      this.revenue.Deductions;
 
-  getCurrentUserOrg(email) {
-    this.firebaseRepServ.getUser(email).then((mNm) => {
-      let user: any = mNm;
-      this.organization = user.organization;
-      this.returnedUser = user;
-
-      this.onTableRep();
-      this.onRegistration();
-      this.onClient();
-      this.onCostCentre();
-    });
+    let disc = (rev / 100) * this.revenue.Discount;
+    ttlRev = rev - disc;
+    let vat = (ttlRev / 100) * this.revenue.Vat;
+    if (this.revenue.IncVat == 'Y') ttlRev += vat;
+    this.revenue.Total = ttlRev;
   }
 
   onAdd() {
@@ -146,22 +166,41 @@ export class RevenuePage implements OnInit {
       });
   }
 
-  onTotalRev() {
-    let ttlRev = 0;
-    let rev =
-      this.revenue.NoHours * this.revenue.HourRate +
-      this.revenue.NoOvertime * this.revenue.OvertimeRate +
-      this.revenue.NoWeekend * this.revenue.WeekendRate +
-      this.revenue.NoRain * this.revenue.RainRate +
-      this.revenue.StandbyHours * this.revenue.StandbyRate +
-      this.revenue.NoDays * this.revenue.DailyRate +
-      +this.revenue.OtherRevenue -
-      this.revenue.Deductions;
+  onEdit(item) {
+    this.revenue = item;
+    this.editBool = true;
+  }
 
-    let disc = (rev / 100) * this.revenue.Discount;
-    ttlRev = rev - disc;
-    let vat = (ttlRev / 100) * this.revenue.Vat;
-    if (this.revenue.IncVat == 'Y') ttlRev += vat;
-    this.revenue.Total = ttlRev;
+  onModify() {
+    if (this.revenue.ItemGuid)
+      if (this.revenue.ItemGuid['Reg'])
+        this.revenue.RegIndex = this.revenue.ItemGuid['Reg'];
+    if (this.revenue.ItemGuid)
+      if (this.revenue.ItemGuid['ItemGuid'])
+        this.revenue.ItemGuid = this.revenue.ItemGuid['ItemGuid'];
+    if (this.revenue.ClientGuid)
+      if (this.revenue.ClientGuid['ClientGuid'])
+        this.revenue.ClientGuid = this.revenue.ClientGuid['ClientGuid'];
+    if (this.revenue.CostCentguid)
+      if (this.revenue.CostCentguid['CostCentGuid'])
+        this.revenue.CostCentguid = this.revenue.CostCentguid['CostCentGuid'];
+
+    this.onTotalRev();
+    this.firebaseService
+      .writeData(
+        this.organization,
+        'Trn_Revenue',
+        Object.assign({}, this.revenue),
+        this.revenue.RevenueGuid,
+      )
+      .then(() => {
+        this.editBool = false;
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.revenue = new Revenue();
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
   }
 }

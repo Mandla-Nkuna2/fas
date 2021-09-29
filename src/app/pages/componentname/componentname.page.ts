@@ -21,6 +21,7 @@ export class ComponentnamePage implements OnInit {
   returnedUser: any;
   compSubCatView = false;
   compNames: any[];
+  editBool = false;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -34,6 +35,23 @@ export class ComponentnamePage implements OnInit {
 
   ngOnInit() {
     this.getCurrentUser();
+  }
+
+    getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+      this.returnedUser = user;
+
+      this.onTableRep();
+      this.onCompName();
+    });
   }
 
   onTableRep() {
@@ -67,23 +85,6 @@ export class ComponentnamePage implements OnInit {
     });
   }
 
-  getCurrentUser() {
-    this.afAuth.user.subscribe((cUser) => {
-      this.getCurrentUserOrg(cUser.email);
-    });
-  }
-
-  getCurrentUserOrg(email) {
-    this.firebaseRepServ.getUser(email).then((mNm) => {
-      let user: any = mNm;
-      this.organization = user.organization;
-      this.returnedUser = user;
-
-      this.onTableRep();
-      this.onCompName();
-    });
-  }
-
   onAdd() {
     this.componentName.CompNameGuid = uuidv4();
     this.componentName.CapName = this.returnedUser.UserFirstName;
@@ -105,7 +106,28 @@ export class ComponentnamePage implements OnInit {
         this.popUp.showError(err);
       });
   }
-  onModify() {}
-  onDeActivate() {}
-  onClear() {}
+
+    onEdit(item) {
+    this.componentName = item;
+    this.editBool = true;
+  }
+
+ onModify() {
+    this.firebaseService
+      .writeData(
+        this.organization,
+        'Sup_CompName',
+        Object.assign({}, this.componentName),
+        this.componentName.CompNameGuid,
+      )
+      .then(() => {
+        this.editBool = false;
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.componentName = new ComponentName();
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
+  }
 }

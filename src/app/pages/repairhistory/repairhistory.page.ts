@@ -64,6 +64,6 @@ export class RepairhistoryPage implements OnInit {
   }
 
   goDetail() {
-    this.navCtrl.navigateForward('repairhistorydetail');
+    this.navCtrl.navigateForward('main/repairhistorydetail');
   }
 }

@@ -39,26 +39,25 @@
       <ng-template #noItems> No items. </ng-template>
       <ion-grid fixed *ngIf="oilIssues.length; else noItems">
         <ion-row class="title-row">
-          <ion-col size="0.5" class="flex al-center jc-center"> </ion-col>
           <ion-col size="1.4" class="flex al-center jc-center">
             <h4>Registration</h4>
           </ion-col>
-          <ion-col size="1.2" class="flex al-center jc-center">
+          <ion-col size="1" class="flex al-center jc-center">
             <h4>date</h4>
           </ion-col>
-          <ion-col size="1" class="flex al-center jc-center">
+          <ion-col size="0.8" class="flex al-center jc-center">
             <h4>met read</h4>
           </ion-col>
           <ion-col size="1.4" class="flex al-center jc-center">
             <h4>Voucher No.</h4>
           </ion-col>
-          <ion-col size="1" class="flex al-center jc-center">
+          <ion-col size="2" class="flex al-center jc-center">
             <h4>Component</h4>
           </ion-col>
-          <ion-col size="1" class="flex al-center jc-center">
+          <ion-col size="0.4" class="flex al-center jc-center">
             <h4>t/s</h4>
           </ion-col>
-          <ion-col size="1.4" class="flex al-center jc-center">
+          <ion-col size="1" class="flex al-center jc-center">
             <h4>Oil Total Cost</h4>
           </ion-col>
           <ion-col size="1.4" class="flex al-center jc-center">
@@ -67,35 +66,32 @@
           <ion-col size="1.6" class="flex al-center jc-center">
             <h4>cost center</h4>
           </ion-col>
+          <ion-col size="0.5" class="flex al-center jc-center"> </ion-col>
         </ion-row>
         <div class="values">
           <ion-row
             class="value-row"
             *ngFor="let item of oilIssues; let i = index"
-            (click)="goOilTransactions()"
           >
-            <ion-col size="0.5" class="flex al-center jc-center">
-              <ion-checkbox></ion-checkbox>
-            </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
               <p>{{ item.RegIndex }}</p>
             </ion-col>
-            <ion-col size="1.2" class="flex al-center jc-center">
-              <p>{{ item.OilIssueDate }}</p>
-            </ion-col>
             <ion-col size="1" class="flex al-center jc-center">
+              <p>{{ item.OilIssueDate | date: 'mediumDate' }}</p>
+            </ion-col>
+            <ion-col size="0.8" class="flex al-center jc-center">
               <p>{{ item.MeterRead }}</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
               <p>{{ item.VoucherNo }}</p>
             </ion-col>
-            <ion-col size="1" class="flex al-center jc-center">
+            <ion-col size="2" class="flex al-center jc-center">
               <p>{{ item.ItemCompName }}</p>
             </ion-col>
-            <ion-col size="1" class="flex al-center jc-center">
+            <ion-col size="0.4" class="flex al-center jc-center">
               <p>{{ item.Top_Serv }}</p>
             </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
+            <ion-col size="1" class="flex al-center jc-center">
               <p>{{ item.OilTotalCost | number : '1.2-2' }}</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
@@ -103,6 +99,14 @@
             </ion-col>
             <ion-col size="1.6" class="flex al-center jc-center">
               <p>{{ item.CostCent }}</p>
+            </ion-col>
+            <ion-col size="0.5" class="flex al-center jc-start">
+              <ion-button (click)="onEdit(item)">
+                <ion-icon
+                  slot="icon-only"
+                  name="ellipsis-vertical-outline"
+                ></ion-icon>
+              </ion-button>
             </ion-col>
           </ion-row>
         </div>
@@ -352,7 +356,10 @@
         <ion-row>
           <ion-col size="12" class="ion-no-padding">
             <div class="btn-holder ion-text-right">
-              <ion-button (click)="onAdd()"> Add </ion-button>
+              <ion-button *ngIf="!editBool" (click)="onAdd()">Add</ion-button>
+              <ion-button *ngIf="editBool" (click)="onModify()" color="medium">
+                Modify
+              </ion-button>
             </div>
           </ion-col>
         </ion-row>

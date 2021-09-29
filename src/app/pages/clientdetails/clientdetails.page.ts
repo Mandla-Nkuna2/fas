@@ -15,8 +15,10 @@ export class ClientdetailsPage implements OnInit {
   organization = 'InnTee';
   client: ClientDetails;
   clients: ClientDetails[] = [];
+
   currentDate = new Date();
   returnedUser: any;
+  editBool = false;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -29,22 +31,6 @@ export class ClientdetailsPage implements OnInit {
 
   ngOnInit() {
     this.getCurrentUser();
-  }
-
-  onTableRep() {
-    this.popUp.showLoading('loading...').then(() => {
-      this.firebaseRepServ
-        .getClients(this.organization)
-        .then((mNm: any) => {
-          this.clients = mNm;
-          this.popUp.dismissLoading();
-        })
-        .catch((err) => {
-          this.popUp.dismissLoading().then(() => {
-            this.popUp.showError(err);
-          });
-        });
-    });
   }
 
   getCurrentUser() {
@@ -60,6 +46,22 @@ export class ClientdetailsPage implements OnInit {
       this.returnedUser = user;
 
       this.onTableRep();
+    });
+  }
+
+  onTableRep() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getClients(this.organization)
+        .then((mNm: any) => {
+          this.clients = mNm;
+          this.popUp.dismissLoading();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
     });
   }
 
@@ -83,7 +85,28 @@ export class ClientdetailsPage implements OnInit {
         this.popUp.showError(err);
       });
   }
-  onModify() {}
-  onDeActivate() {}
-  onClear() {}
+
+  onEdit(item) {
+    this.client = item;
+    this.editBool = true;
+  }
+
+  onModify() {
+    this.firebaseService
+      .write(
+        this.organization,
+        'Mst_Client',
+        Object.assign({}, this.client),
+        this.client.ClientGuid,
+      )
+      .then(() => {
+        this.editBool = false;
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.client = new ClientDetails();
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
+  }
 }

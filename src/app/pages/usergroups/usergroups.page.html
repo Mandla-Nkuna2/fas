@@ -43,7 +43,6 @@
       <ng-template #noItems> No items. </ng-template>
       <ion-grid fixed *ngIf="userGroups.length; else noItems">
         <ion-row class="title-row">
-          <ion-col size="0.5" class="flex al-center jc-center"> </ion-col>
           <ion-col class="flex al-center jc-center">
             <h4>User groups</h4>
           </ion-col>
@@ -53,9 +52,6 @@
             class="value-row"
             *ngFor="let item of userGroups; let i = index"
           >
-            <ion-col size="0.5" class="flex al-center jc-center">
-              <ion-checkbox></ion-checkbox>
-            </ion-col>
             <ion-col class="flex al-center jc-center">
               <p>{{ item.UserGroupTitle }}</p>
             </ion-col>

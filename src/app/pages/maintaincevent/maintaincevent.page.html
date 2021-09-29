@@ -39,7 +39,6 @@
       <ng-template #noItems> No items. </ng-template>
       <ion-grid fixed *ngIf="maintEvnts.length; else noItems">
         <ion-row class="title-row">
-          <ion-col size="0.5" class="flex al-center jc-center"> </ion-col>
           <ion-col size="1.4" class="flex al-center jc-center">
             <h4>ref. no.</h4>
           </ion-col>
@@ -64,16 +63,13 @@
           <ion-col size="1.4" class="flex al-center jc-center">
             <h4>Cost centre</h4>
           </ion-col>
+          <ion-col size="0.5" class="flex al-center jc-center"> </ion-col>
         </ion-row>
         <div class="values">
           <ion-row
             class="value-row"
             *ngFor="let item of maintEvnts; let i = index"
-            (click)="goOilIssues()"
           >
-            <ion-col size="0.5" class="flex al-center jc-center">
-              <ion-checkbox></ion-checkbox>
-            </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
               <p>{{ item.RefNo }}</p>
             </ion-col>
@@ -87,16 +83,24 @@
               <p>{{ item.MaintType }}</p>
             </ion-col>
             <ion-col size="1.2" class="flex al-center jc-center">
-              <p>{{ item.StartDate }}</p>
+              <p>{{ item.StartDate | date: 'mediumDate' }}</p>
             </ion-col>
             <ion-col size="1.2" class="flex al-center jc-center">
-              <p>{{ item.CompleteDate }}</p>
+              <p>{{ item.CompleteDate | date: 'mediumDate' }}</p>
             </ion-col>
             <ion-col size="1" class="flex al-center jc-center">
               <p>{{ item.MeterRead }}</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
               <p>{{ item.CostCent }}</p>
+            </ion-col>
+            <ion-col size="0.5" class="flex al-center jc-start">
+              <ion-button (click)="onEdit(item)">
+                <ion-icon
+                  slot="icon-only"
+                  name="ellipsis-vertical-outline"
+                ></ion-icon>
+              </ion-button>
             </ion-col>
           </ion-row>
         </div>
@@ -295,6 +299,18 @@
             </div>
           </ion-col>
 
+          <ion-col size="3.5">
+            <div class="item-input">
+              <ion-label>Outsource cost</ion-label>
+              <ion-item lines="none">
+                <ion-input
+                  type="text"
+                  [(ngModel)]="maintEvnt.CostAct"
+                ></ion-input>
+              </ion-item>
+            </div>
+          </ion-col>
+
           <ion-col size="12">
             <div class="item-input">
               <ion-label>Work Done</ion-label>
@@ -311,7 +327,10 @@
         <ion-row>
           <ion-col size="12" class="ion-no-padding">
             <div class="btn-holder ion-text-right">
-              <ion-button (click)="onAdd()">Add</ion-button>
+              <ion-button *ngIf="!editBool" (click)="onAdd()">Add</ion-button>
+              <ion-button *ngIf="editBool" (click)="onModify()" color="medium">
+                Modify
+              </ion-button>
             </div>
           </ion-col>
         </ion-row>

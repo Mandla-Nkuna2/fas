@@ -74,7 +74,6 @@
       <ng-template #noItems> No items. </ng-template>
       <ion-grid fixed *ngIf="assets.length; else noItems">
         <ion-row class="title-row">
-          <ion-col size="0.5" class="flex al-center jc-center"> </ion-col>
           <ion-col size="1.5" class="flex al-center jc-center">
             <h4>Registration</h4>
           </ion-col>
@@ -90,9 +89,6 @@
         </ion-row>
         <div class="values" *ngFor="let asset of assets; let i = index">
           <ion-row class="value-row">
-            <ion-col size="0.5" class="flex al-center jc-center">
-              <ion-checkbox></ion-checkbox>
-            </ion-col>
             <ion-col size="1.5" class="flex al-center jc-center">
               <p>{{ asset.Reg }}</p>
             </ion-col>
@@ -104,14 +100,6 @@
             </ion-col>
             <ion-col size="3" class="flex al-center jc-center">
               <p>{{ asset.ItemMakMod }}</p>
-            </ion-col>
-            <ion-col size="1" class="flex al-center jc-start">
-              <ion-button>
-                <ion-icon
-                  slot="icon-only"
-                  name="ellipsis-vertical-outline"
-                ></ion-icon>
-              </ion-button>
             </ion-col>
           </ion-row>
         </div>

@@ -47,7 +47,6 @@
       <ng-template #noItems> No items. </ng-template>
       <ion-grid fixed *ngIf="revenuee.length; else noItems">
         <ion-row class="title-row">
-          <ion-col size="0.5" class="flex al-center jc-center"> </ion-col>
           <ion-col size="1.4" class="flex al-center jc-center">
             <h4>Registration</h4>
           </ion-col>
@@ -75,16 +74,13 @@
           <ion-col size="1.8" class="flex al-center jc-center">
             <h4>Comment</h4>
           </ion-col>
+          <ion-col size="0.5" class="flex al-center jc-center"> </ion-col>
         </ion-row>
         <div class="values">
           <ion-row
             class="value-row"
-            (click)="storeIssue()"
             *ngFor="let item of revenuee; let i = index"
           >
-            <ion-col size="0.5" class="flex al-center jc-center">
-              <ion-checkbox></ion-checkbox>
-            </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
               <p>{{ item.RegIndex }}</p>
             </ion-col>
@@ -111,6 +107,14 @@
             </ion-col>
             <ion-col size="2" class="flex al-center jc-center">
               <p>{{ item.OtherRevenueComm }}</p>
+            </ion-col>
+            <ion-col size="0.5" class="flex al-center jc-start">
+              <ion-button (click)="onEdit(item)">
+                <ion-icon
+                  slot="icon-only"
+                  name="ellipsis-vertical-outline"
+                ></ion-icon>
+              </ion-button>
             </ion-col>
           </ion-row>
         </div>
@@ -478,7 +482,10 @@
               class="btn-holder ion-text-right"
               style="margin-top: 10px !important"
             >
-              <ion-button (click)="onAdd()">Add</ion-button>
+              <ion-button *ngIf="!editBool" (click)="onAdd()">Add</ion-button>
+              <ion-button *ngIf="editBool" (click)="onModify()" color="medium">
+                Modify
+              </ion-button>
             </div>
           </ion-col>
         </ion-row>

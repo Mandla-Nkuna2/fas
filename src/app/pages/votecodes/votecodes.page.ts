@@ -21,6 +21,7 @@ export class VotecodesPage implements OnInit {
   returnedUser: any;
   voteCodesSel: any[] = [];
   finYear = ['2019/2020', '2020/2021', '2021/2022', '2022/2023'];
+  editBool = false;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -108,7 +109,32 @@ export class VotecodesPage implements OnInit {
         this.popUp.showError(err);
       });
   }
-  onModify() {}
-  onDeActivate() {}
-  onClear() {}
+
+  onEdit(item) {
+    this.voteCode = item;
+    this.editBool = true;
+  }
+
+  onModify() {
+    if (this.voteCode.Votecode)
+    if (this.voteCode.Votecode['Votecode'])
+      this.voteCode.Votecode = this.voteCode.Votecode['Votecode'];
+
+    this.firebaseService
+      .writeData(
+        this.organization,
+        'Trn_Votecodes',
+        Object.assign({}, this.voteCode),
+        this.voteCode.VoteCodeGuid,
+      )
+      .then(() => {
+        this.editBool = false;
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.voteCode = new Votecodes();
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
+  }
 }

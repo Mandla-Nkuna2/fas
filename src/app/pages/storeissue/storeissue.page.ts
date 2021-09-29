@@ -19,11 +19,12 @@ export class StoreissuePage implements OnInit {
   storeIssues: any[] = [];
 
   currentDate = new Date();
+  returnedUser: any;
   registration: any[];
   MaintEvRefNo: any[];
   supplier: any;
   storeItem: any;
-  returnedUser: any;
+  editBool = false;
 
   constructor(
     private navCtrl: NavController,
@@ -78,7 +79,7 @@ export class StoreissuePage implements OnInit {
   }
 
   goSupplierDeposit() {
-    this.navCtrl.navigateForward('supdeposit');
+    this.navCtrl.navigateForward('main/supdeposit');
   }
 
   isNumber(value) {
@@ -169,6 +170,49 @@ export class StoreissuePage implements OnInit {
         this.storeIssue.StoreIssueGuid,
       )
       .then(() => {
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.storeIssue = new StoreIssue();
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
+  }
+
+  onEdit(item) {
+    this.storeIssue = item;
+    this.editBool = true;
+  }
+
+  onModify() {
+    if (this.storeIssue.ItemGuid)
+      if (this.storeIssue.ItemGuid['Reg'])
+        this.storeIssue.RegIndex = this.storeIssue.ItemGuid['Reg'];
+    if (this.storeIssue.ItemGuid)
+      if (this.storeIssue.ItemGuid['ItemGuid'])
+        this.storeIssue.ItemGuid = this.storeIssue.ItemGuid['ItemGuid'];
+    if (this.storeIssue.MaintEvntGuid)
+      if (this.storeIssue.MaintEvntGuid['MaintEvntGuid'])
+        this.storeIssue.MaintEvntGuid =
+          this.storeIssue.MaintEvntGuid['MaintEvntGuid'];
+    if (this.storeIssue.SuppGuid)
+      if (this.storeIssue.SuppGuid['SuppGuid'])
+        this.storeIssue.SuppGuid = this.storeIssue.SuppGuid['SuppGuid'];
+    if (this.storeIssue.StoreCatgItemGuid)
+      if (this.storeIssue.StoreCatgItemGuid['StoreCatgItemGuid'])
+        this.storeIssue.StoreCatgItemGuid =
+          this.storeIssue.StoreCatgItemGuid['StoreCatgItemGuid'];
+
+    console.log(this.storeIssue);
+    this.firebaseService
+      .writeData(
+        this.organization,
+        'Trn_StoreIssue',
+        Object.assign({}, this.storeIssue),
+        this.storeIssue.StoreIssueGuid,
+      )
+      .then(() => {
+        this.editBool = false;
         this.onTableRep();
         this.popUp.showToast('Data saved successfully :-)');
         this.storeIssue = new StoreIssue();

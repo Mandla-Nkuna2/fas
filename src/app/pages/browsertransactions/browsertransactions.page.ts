@@ -22,6 +22,7 @@ export class BrowsertransactionsPage implements OnInit {
   returnedUser: any;
   suppliers: any[];
   costCentre: any[];
+  editBool = false;
 
   constructor(
     private navCtrl: NavController,
@@ -73,7 +74,7 @@ export class BrowsertransactionsPage implements OnInit {
   }
 
   goBrowserTransfer() {
-    this.navCtrl.navigateForward('browsertransfer');
+    this.navCtrl.navigateForward('main/browsertransfer');
   }
 
   onSupplier() {
@@ -119,6 +120,35 @@ export class BrowsertransactionsPage implements OnInit {
         this.bowserTransac.BowserTrnGuid,
       )
       .then(() => {
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.bowserTransac = new BowserTransaction();
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
+  }
+
+  onEdit(item) {
+    this.bowserTransac = item;
+    this.editBool = true;
+  }
+
+  onModify() {
+    if (this.bowserTransac.CostCentGuid)
+      if (this.bowserTransac.CostCentGuid['CostCentGuid'])
+        this.bowserTransac.CostCentGuid =
+          this.bowserTransac.CostCentGuid['CostCentGuid'];
+
+    this.firebaseService
+      .writeData(
+        this.organization,
+        'Trn_Bowsers',
+        Object.assign({}, this.bowserTransac),
+        this.bowserTransac.BowserTrnGuid,
+      )
+      .then(() => {
+        this.editBool = false;
         this.onTableRep();
         this.popUp.showToast('Data saved successfully :-)');
         this.bowserTransac = new BowserTransaction();

@@ -43,6 +43,7 @@
             <ion-col size="3.5" offset="0.5">
               <div class="item-input">
                 <ion-label>Make and Model</ion-label>
+                <!-- <a href="main/addassetsinfo">Make and Model</a> -->
                 <ion-item>
                   <ionic-selectable
                     [(ngModel)]="asset.ItemMakModGuid"
@@ -60,6 +61,7 @@
             <ion-col size="3.5" offset="0.5">
               <div class="item-input">
                 <ion-label>Type</ion-label>
+                <!-- <a href="main/itemtype">Type</a> -->
                 <ion-item>
                   <ionic-selectable
                     [(ngModel)]="asset.ItemTypeGuid"
@@ -153,6 +155,23 @@
               </div>
             </ion-col>
             <ion-col size="3.5">
+              <div class="item-input">
+                <ion-label>Location</ion-label>
+                <ion-item>
+                  <ionic-selectable
+                    [(ngModel)]="asset.LocItemCode"
+                    [items]="locations"
+                    itemValueField="LocItemCode"
+                    itemTextField="LocDesc"
+                    [canSearch]="true"
+                    [hasInfiniteScroll]="true"
+                    (onInfiniteScroll)="onLocationLeft()"
+                  >
+                  </ionic-selectable>
+                </ion-item>
+              </div>
+            </ion-col>
+            <ion-col size="3.5" offset="0.5">
               <div class="item-input">
                 <ion-label>Front Tyre Size</ion-label>
                 <ion-item>

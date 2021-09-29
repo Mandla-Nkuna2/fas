@@ -8,8 +8,8 @@ export default class ItemMakeAndModel {
   FuelTypeGuid: string;
   Mass: number;
   PowerOutput: number;
-  Lic: string;
-  COF: string;
+  Lic: any;
+  COF: any;
   Active: string;
   CapName: string;
   CapDate = new Date().toString();

@@ -16,12 +16,13 @@ export class BrowsertransferPage implements OnInit {
   organization = 'InnTee';
   bowserTransfer: BowserTransfer;
   bowserTransfers: any[] = [];
-  currentDate = new Date();
 
+  currentDate = new Date();
+  returnedUser: any;
   voucherNo: any[];
   costCentre: any;
   bowsers: any[];
-  returnedUser: any;
+  editBool = false;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -122,6 +123,43 @@ export class BrowsertransferPage implements OnInit {
         this.bowserTransfer.FuelTransferGuid,
       )
       .then(() => {
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.bowserTransfer = new BowserTransfer();
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
+  }
+
+  onEdit(item) {
+    this.bowserTransfer = item;
+    this.editBool = true;
+  }
+
+  onModify() {
+    if (this.bowserTransfer.BowserFromGuid)
+      if (this.bowserTransfer.BowserFromGuid['BowserGuid'])
+        this.bowserTransfer.BowserFromGuid =
+          this.bowserTransfer.BowserFromGuid['BowserGuid'];
+    if (this.bowserTransfer.BowserToGuid)
+      if (this.bowserTransfer.BowserToGuid['BowserGuid'])
+        this.bowserTransfer.BowserToGuid =
+          this.bowserTransfer.BowserToGuid['BowserGuid'];
+    if (this.bowserTransfer.CostCentGuid)
+      if (this.bowserTransfer.CostCentGuid['CostCentGuid'])
+        this.bowserTransfer.CostCentGuid =
+          this.bowserTransfer.CostCentGuid['CostCentGuid'];
+
+    this.firebaseService
+      .writeData(
+        this.organization,
+        'Trn_BowserTransfer',
+        Object.assign({}, this.bowserTransfer),
+        this.bowserTransfer.FuelTransferGuid,
+      )
+      .then(() => {
+        this.editBool = false;
         this.onTableRep();
         this.popUp.showToast('Data saved successfully :-)');
         this.bowserTransfer = new BowserTransfer();

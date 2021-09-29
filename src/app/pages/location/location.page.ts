@@ -17,6 +17,7 @@ export class LocationPage implements OnInit {
 
   returnedUser: any;
   currentDate = new Date();
+  editBool = false;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -83,7 +84,28 @@ export class LocationPage implements OnInit {
         this.popUp.showError(err);
       });
   }
-  onModify() {}
-  onDeActivate() {}
-  onClear() {}
+
+    onEdit(item) {
+    this.location = item;
+    this.editBool = true;
+  }
+
+  onModify() {
+    this.firebaseService
+      .writeData(
+        this.organization,
+        'Mst_Location',
+        Object.assign({}, this.location),
+        this.location.LocGuid,
+      )
+      .then(() => {
+        this.editBool = false;
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.location = new LocationModel();
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
+  }
 }

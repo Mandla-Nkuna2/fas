@@ -17,10 +17,12 @@ export class ItemmakemodelPage implements OnInit {
   item: ItemMakeAndModel;
   items: any[] = [];
 
-  makes: any[];
   currentDate = new Date();
+  returnedUser: any;
+  makes: any[];
   models: any[];
   fuelTypes: any[];
+  editBool = false;
   transmissions = [
     'AUTOMATIC',
     'ELECTRIC',
@@ -32,7 +34,6 @@ export class ItemmakemodelPage implements OnInit {
     'POWERSHIFT',
     'SEMI AUTOMATIC',
   ];
-  returnedUser: any;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -104,7 +105,15 @@ export class ItemmakemodelPage implements OnInit {
     });
   }
 
+  check() {
+    if (this.item.Lic === true) this.item.Lic = 'Y';
+    else this.item.Lic = 'N';
+    if (this.item.COF === true) this.item.COF = 'Y';
+    else this.item.COF = 'N';
+  }
+
   onAdd() {
+    this.check();
     this.item.ItemMakModGuid = uuidv4();
     this.item.CapName = this.returnedUser.UserFirstName;
     this.item.Active = 'Y';
@@ -128,7 +137,37 @@ export class ItemmakemodelPage implements OnInit {
         this.popUp.showError(err);
       });
   }
-  onModify() {}
-  onDeActivate() {}
-  onClear() {}
+
+  onEdit(item) {
+    this.item = item;
+    if (this.item.Lic === 'Y') this.item.Lic = true;
+    else this.item.Lic = false;
+    if (this.item.COF === 'Y') this.item.COF = true;
+    else this.item.COF = false;
+    this.editBool = true;
+  }
+
+  onModify() {
+    this.check();
+    if (this.item.FuelTypeGuid)
+      if (this.item.FuelTypeGuid['FuelTypeGuid'])
+        this.item.FuelTypeGuid = this.item.FuelTypeGuid['FuelTypeGuid'];
+
+    this.firebaseService
+      .writeData(
+        this.organization,
+        'Sup_ItemMakMod',
+        Object.assign({}, this.item),
+        this.item.ItemMakModGuid,
+      )
+      .then(() => {
+        this.editBool = false;
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.item = new ItemMakeAndModel();
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
+  }
 }

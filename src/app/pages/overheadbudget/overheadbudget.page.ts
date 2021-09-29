@@ -18,10 +18,11 @@ export class OverheadbudgetPage implements OnInit {
   oheadbudgets: any[] = [];
 
   currentDate = new Date();
+  returnedUser: any;
   ohTypes: any[];
   finYear = ['2020', '2021', '2022', '2023'];
-  returnedUser: any;
-
+  editBool = false;
+  
   constructor(
     private firebaseRepServ: FirebaseReportService,
     private firebaseService: FirebaseService,
@@ -34,6 +35,23 @@ export class OverheadbudgetPage implements OnInit {
 
   ngOnInit() {
     this.getCurrentUser();
+  }
+
+    getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+      this.returnedUser = user;
+
+      this.onTableRep();
+      this.onOhbType();
+    });
   }
 
   onTableRep() {
@@ -67,23 +85,6 @@ export class OverheadbudgetPage implements OnInit {
     });
   }
 
-  getCurrentUser() {
-    this.afAuth.user.subscribe((cUser) => {
-      this.getCurrentUserOrg(cUser.email);
-    });
-  }
-
-  getCurrentUserOrg(email) {
-    this.firebaseRepServ.getUser(email).then((mNm) => {
-      let user: any = mNm;
-      this.organization = user.organization;
-      this.returnedUser = user;
-
-      this.onTableRep();
-      this.onOhbType();
-    });
-  }
-
   onAdd() {
     this.oheadbudget.OverheadBudGuid = uuidv4();
     this.oheadbudget.captureName = this.returnedUser.UserFirstName;
@@ -108,7 +109,33 @@ export class OverheadbudgetPage implements OnInit {
         this.popUp.showError(err);
       });
   }
-  onModify() {}
-  onDeActivate() {}
-  onClear() {}
+
+    onEdit(item) {
+    this.oheadbudget = item;
+    this.editBool = true;
+  }
+
+  onModify() {
+    if (this.oheadbudget.OverheadTypeGuid)
+    if (this.oheadbudget.OverheadTypeGuid['OverheadTypeGuid'])
+      this.oheadbudget.OverheadTypeGuid =
+        this.oheadbudget.OverheadTypeGuid['OverheadTypeGuid'];
+
+    this.firebaseService
+      .writeData(
+        this.organization,
+        'Trn_OverheadBud',
+        Object.assign({}, this.oheadbudget),
+        this.oheadbudget.OverheadBudGuid,
+      )
+      .then(() => {
+        this.editBool = false;
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.oheadbudget = new OverheadBudget();
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
+  }
 }

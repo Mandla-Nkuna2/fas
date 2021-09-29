@@ -28,6 +28,7 @@ export class AddassetsPage implements OnInit {
   batteries: any = [];
   batteryMake: any = [];
   drivers: any = [];
+  locations: any = [];
   meterTypes: any = [];
   categories: any = [];
   votecodes: any = [];
@@ -48,7 +49,6 @@ export class AddassetsPage implements OnInit {
     this.getCurrentUser();
     this.ds.assetSubj.subscribe((item) => {
       item.ItemGuid ? (this.editBool = true) : (this.editBool = false);
-      console.log(item.ItemGuid);
       this.asset = item;
     });
   }
@@ -71,6 +71,7 @@ export class AddassetsPage implements OnInit {
       this.onColor();
       this.onBattery();
       this.onDriver();
+      this.onLocation();
       this.onTireSizes();
       this.onMeterType();
       this.onVotecode();
@@ -229,6 +230,17 @@ export class AddassetsPage implements OnInit {
     });
   }
 
+  onLocation() {
+    this.firebaseGetServ.getLocation(this.organization).then((mNm: any) => {
+      this.locations = mNm;
+    });
+  }
+  onLocationLeft() {
+    this.firebaseGetServ.getLocationLeft(this.organization).then((mNm: any) => {
+      this.locations = mNm;
+    });
+  }
+
   onTireSizes() {
     this.firebaseGetServ.getTyreSize(this.organization).then((size: any) => {
       this.tyreSizes = size;
@@ -275,6 +287,8 @@ export class AddassetsPage implements OnInit {
       this.asset.ColourGuid = this.asset.ColourGuid['ColourGuid'];
     if (this.asset.BatteryGuid)
       this.asset.BatteryGuid = this.asset.BatteryGuid['BatteryGuid'];
+    if (this.asset.LocItemCode)
+      this.asset.LocItemCode = this.asset.LocItemCode['LocItemCode'];
     if (this.asset.StaffGuid)
       this.asset.StaffGuid = this.asset.StaffGuid['StaffGuid'];
     if (this.asset.FrontTyreGuid)
@@ -315,6 +329,9 @@ export class AddassetsPage implements OnInit {
     if (this.asset.BatteryGuid)
       if (this.asset.BatteryGuid['BatteryGuid'])
         this.asset.BatteryGuid = this.asset.BatteryGuid['BatteryGuid'];
+    if (this.asset.LocItemCode)
+      if (this.asset.LocItemCode['LocItemCode'])
+        this.asset.LocItemCode = this.asset.LocItemCode['LocItemCode'];
     if (this.asset.StaffGuid)
       if (this.asset.StaffGuid['StaffGuid'])
         this.asset.StaffGuid = this.asset.StaffGuid['StaffGuid'];

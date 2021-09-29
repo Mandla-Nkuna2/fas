@@ -18,10 +18,12 @@ export class ItemtypePage implements OnInit {
   itemTypes: any[] = [];
 
   currentDate = new Date();
+  returnedUser: any;
   typeNames: any[];
   typeClass: any[];
   typeCapacity: any[];
   typeUnit: string;
+  editBool = false;
   typeUnits = [
     'cc',
     'cfm',
@@ -34,7 +36,6 @@ export class ItemtypePage implements OnInit {
     'seats',
     'ton',
   ];
-  returnedUser: any;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -185,7 +186,41 @@ export class ItemtypePage implements OnInit {
         this.popUp.showError(err);
       });
   }
-  onModify() {}
-  onDeActivate() {}
-  onClear() {}
+
+  onEdit(item) {
+    this.itemType = item;
+    this.editBool = true;
+  }
+
+  onModify() {
+    if (this.itemType.ItemTypeNameGuid)
+      if (this.itemType.ItemTypeNameGuid['ItemTypeNameGuid'])
+        this.itemType.ItemTypeNameGuid =
+          this.itemType.ItemTypeNameGuid['ItemTypeNameGuid'];
+    if (this.itemType.ItemTypeClassGuid)
+      if (this.itemType.ItemTypeClassGuid['ItemTypeClassGuid'])
+        this.itemType.ItemTypeClassGuid =
+          this.itemType.ItemTypeClassGuid['ItemTypeClassGuid'];
+    if (this.itemType.ItemTypeCapGuid)
+      if (this.itemType.ItemTypeCapGuid['ItemTypeCapGuid'])
+        this.itemType.ItemTypeCapGuid =
+          this.itemType.ItemTypeCapGuid['ItemTypeCapGuid'];
+
+    this.firebaseService
+      .writeData(
+        this.organization,
+        'Sup_ItemType',
+        Object.assign({}, this.itemType),
+        this.itemType.ItemTypeGuid,
+      )
+      .then(() => {
+        this.editBool = false;
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.itemType = new ItemType();
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
+  }
 }

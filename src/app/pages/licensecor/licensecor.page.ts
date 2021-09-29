@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { NavController } from '@ionic/angular';
-import { Asset } from 'src/app/models/capture/Asset.model';
 import LicCorAndSafInspcDates from 'src/app/models/capture/LicCorAndSafInspcDates.model';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
 import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
@@ -20,10 +19,11 @@ export class LicensecorPage implements OnInit {
   licCorAndSafInspecs: any[] = [];
 
   currentDate = new Date();
+  returnedUser: any;
   registration: any[];
   costCentre: any[];
   yesNo = ['Y', 'N'];
-  returnedUser: any;
+  editBool = false;
 
   constructor(
     private navCtrl: NavController,
@@ -40,11 +40,29 @@ export class LicensecorPage implements OnInit {
     this.getCurrentUser();
   }
 
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+      this.returnedUser = user;
+
+      this.onTableRep();
+    });
+  }
+
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
-        .getAsset(this.organization)
+        .getLicHistory(this.organization)
         .then((mNm: any) => {
+          this.onRegistration();
+          this.onCostCentre();
           this.licCorAndSafInspecs = mNm;
           this.popUp.dismissLoading();
         })
@@ -57,7 +75,7 @@ export class LicensecorPage implements OnInit {
   }
 
   goLossControl() {
-    this.navCtrl.navigateForward('losscontrol');
+    this.navCtrl.navigateForward('main/losscontrol');
   }
 
   onRegistration() {
@@ -79,28 +97,13 @@ export class LicensecorPage implements OnInit {
     });
   }
 
-  getCurrentUser() {
-    this.afAuth.user.subscribe((cUser) => {
-      this.getCurrentUserOrg(cUser.email);
-    });
-  }
-
-  getCurrentUserOrg(email) {
-    this.firebaseRepServ.getUser(email).then((mNm) => {
-      let user: any = mNm;
-      this.organization = user.organization;
-      this.returnedUser = user;
-
-      this.onTableRep();
-      this.onRegistration();
-      this.onCostCentre();
-    });
-  }
-
   onAdd() {
     this.licCorAndSafInspec.LicHistIndex = uuidv4();
     this.licCorAndSafInspec.Capturename = this.returnedUser.UserFirstName;
 
+    if (this.licCorAndSafInspec.Itemguid)
+      this.licCorAndSafInspec.RegIndex =
+        this.licCorAndSafInspec.Itemguid['Reg'];
     if (this.licCorAndSafInspec.Itemguid)
       this.licCorAndSafInspec.Itemguid =
         this.licCorAndSafInspec.Itemguid['ItemGuid'];
@@ -111,11 +114,47 @@ export class LicensecorPage implements OnInit {
     this.firebaseService
       .writeData(
         this.organization,
-        'Mst_Licence',
+        'Trn_LicHistory',
         Object.assign({}, this.licCorAndSafInspec),
         this.licCorAndSafInspec.LicHistIndex,
       )
       .then(() => {
+        this.popUp.showToast('Data saved successfully :-)');
+        this.licCorAndSafInspec = new LicCorAndSafInspcDates();
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
+  }
+
+  onEdit(item) {
+    this.licCorAndSafInspec = item;
+    this.editBool = true;
+  }
+
+  onModify() {
+    if (this.licCorAndSafInspec.Itemguid)
+      if (this.licCorAndSafInspec.Itemguid['Reg'])
+        this.licCorAndSafInspec.RegIndex =
+          this.licCorAndSafInspec.Itemguid['Reg'];
+    if (this.licCorAndSafInspec.Itemguid)
+      if (this.licCorAndSafInspec.Itemguid['ItemGuid'])
+        this.licCorAndSafInspec.Itemguid =
+          this.licCorAndSafInspec.Itemguid['ItemGuid'];
+    if (this.licCorAndSafInspec.LicCostCentGuid)
+      if (this.licCorAndSafInspec.LicCostCentGuid['CostCentGuid'])
+        this.licCorAndSafInspec.LicCostCentGuid =
+          this.licCorAndSafInspec.LicCostCentGuid['CostCentGuid'];
+
+    this.firebaseService
+      .writeData(
+        this.organization,
+        'Trn_LicHistory',
+        Object.assign({}, this.licCorAndSafInspec),
+        this.licCorAndSafInspec.LicHistIndex,
+      )
+      .then(() => {
+        this.editBool = false;
         this.popUp.showToast('Data saved successfully :-)');
         this.licCorAndSafInspec = new LicCorAndSafInspcDates();
       })

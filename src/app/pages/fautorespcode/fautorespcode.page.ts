@@ -18,6 +18,7 @@ export class FautorespcodePage implements OnInit {
 
   currentDate = new Date();
   returnedUser: any;
+  editBool = false;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -84,7 +85,28 @@ export class FautorespcodePage implements OnInit {
         this.popUp.showError(err);
       });
   }
-  onModify() {}
-  onDeActivate() {}
-  onClear() {}
+
+   onEdit(item) {
+    this.fautorespcode = item;
+    this.editBool = true;
+  }
+
+  onModify() {
+    this.firebaseService
+      .writeData(
+        this.organization,
+        'Sup_Response',
+        Object.assign({}, this.fautorespcode),
+        this.fautorespcode.ResponseGuid,
+      )
+      .then(() => {
+        this.editBool = false;
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.fautorespcode = new FAutoRespCode();
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
+  }
 }

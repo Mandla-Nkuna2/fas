@@ -17,11 +17,12 @@ export class OverheadtransPage implements OnInit {
   organization = 'InnTee';
   overheadTrans: OverheadTransaction;
   overheadTranss: any[] = [];
-  currentDate = new Date();
 
+  currentDate = new Date();
+  returnedUser: any;
   overheadType: any[];
   costCentre: any[];
-  returnedUser: any;
+  editBool = false;
 
   constructor(
     private navCtrl: NavController,
@@ -36,6 +37,24 @@ export class OverheadtransPage implements OnInit {
 
   ngOnInit() {
     this.getCurrentUser();
+  }
+
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+      this.returnedUser = user;
+
+      this.onTableRep();
+      this.onOverheadType();
+      this.onCostCentre();
+    });
   }
 
   onTableRep() {
@@ -57,7 +76,7 @@ export class OverheadtransPage implements OnInit {
   }
 
   goStaffTimeSheet() {
-    this.navCtrl.navigateForward('stafftimesheets');
+    this.navCtrl.navigateForward('main/stafftimesheets');
   }
 
   onOverheadType() {
@@ -95,24 +114,6 @@ export class OverheadtransPage implements OnInit {
       });
   }
 
-  getCurrentUser() {
-    this.afAuth.user.subscribe((cUser) => {
-      this.getCurrentUserOrg(cUser.email);
-    });
-  }
-
-  getCurrentUserOrg(email) {
-    this.firebaseRepServ.getUser(email).then((mNm) => {
-      let user: any = mNm;
-      this.organization = user.organization;
-      this.returnedUser = user;
-
-      this.onTableRep();
-      this.onOverheadType();
-      this.onCostCentre();
-    });
-  }
-
   onAdd() {
     this.overheadTrans.OverheadGuid = uuidv4();
     this.overheadTrans.CaptureName = this.returnedUser.UserFirstName;
@@ -132,6 +133,39 @@ export class OverheadtransPage implements OnInit {
         this.overheadTrans.OverheadGuid,
       )
       .then(() => {
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.overheadTrans = new OverheadTransaction();
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
+  }
+
+  onEdit(item) {
+    this.overheadTrans = item;
+    this.editBool = true;
+  }
+
+  onModify() {
+    if (this.overheadTrans.OverheadTypeGuid)
+      if (this.overheadTrans.OverheadTypeGuid['OverheadTypeGuid'])
+        this.overheadTrans.OverheadTypeGuid =
+          this.overheadTrans.OverheadTypeGuid['OverheadTypeGuid'];
+    if (this.overheadTrans.CostCentGuid)
+      if (this.overheadTrans.CostCentGuid['CostCentGuid'])
+        this.overheadTrans.CostCentGuid =
+          this.overheadTrans.CostCentGuid['CostCentGuid'];
+
+    this.firebaseService
+      .writeData(
+        this.organization,
+        'Trn_Overheads',
+        Object.assign({}, this.overheadTrans),
+        this.overheadTrans.OverheadGuid,
+      )
+      .then(() => {
+        this.editBool = false;
         this.onTableRep();
         this.popUp.showToast('Data saved successfully :-)');
         this.overheadTrans = new OverheadTransaction();

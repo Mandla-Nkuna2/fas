@@ -19,6 +19,7 @@ export class MaintainceventPage implements OnInit {
   maintEvnts: any[] = [];
 
   currentDate = new Date();
+  returnedUser: any;
   jobCardNo: any[];
   registration: any[];
   maintanceType: any[];
@@ -26,7 +27,7 @@ export class MaintainceventPage implements OnInit {
   supplier: any[];
   requestedBy: any[];
   costCentre: any[];
-  returnedUser: any;
+  editBool = false;
 
   constructor(
     private navCtrl: NavController,
@@ -87,7 +88,7 @@ export class MaintainceventPage implements OnInit {
   }
 
   goOilIssues() {
-    this.navCtrl.navigateForward('oilissues');
+    this.navCtrl.navigateForward('main/oilissues');
   }
 
   getMaintEvntCount() {
@@ -234,6 +235,60 @@ export class MaintainceventPage implements OnInit {
         this.maintEvnt.MaintEvntGuid,
       )
       .then(() => {
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.maintEvnt = new MaintenanceEvent();
+        this.getMaintEvntCount();
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
+  }
+
+  onEdit(item) {
+    this.maintEvnt = item;
+    this.editBool = true;
+  }
+
+  onModify() {
+    if (this.maintEvnt.JobCardGuid)
+      if (this.maintEvnt.JobCardGuid['JobCardGuid'])
+        this.maintEvnt.JobCardGuid = this.maintEvnt.JobCardGuid['JobCardGuid'];
+    if (this.maintEvnt.ItemGuid)
+      if (this.maintEvnt.ItemGuid['Reg'])
+        this.maintEvnt.RegIndex = this.maintEvnt.ItemGuid['Reg'];
+    if (this.maintEvnt.ItemGuid)
+      if (this.maintEvnt.ItemGuid['ItemGuid'])
+        this.maintEvnt.ItemGuid = this.maintEvnt.ItemGuid['ItemGuid'];
+    if (this.maintEvnt.MaintTypeGuid)
+      if (this.maintEvnt.MaintTypeGuid['MaintTypeGuid'])
+        this.maintEvnt.MaintTypeGuid =
+          this.maintEvnt.MaintTypeGuid['MaintTypeGuid'];
+    if (this.maintEvnt.MaintReasonGuid)
+      if (this.maintEvnt.MaintReasonGuid['MaintReasonGuid'])
+        this.maintEvnt.MaintReasonGuid =
+          this.maintEvnt.MaintReasonGuid['MaintReasonGuid'];
+    if (this.maintEvnt.SuppGuid)
+      if (this.maintEvnt.SuppGuid['SuppGuid'])
+        this.maintEvnt.SuppGuid = this.maintEvnt.SuppGuid['SuppGuid'];
+    if (this.maintEvnt.RequestByGuid)
+      if (this.maintEvnt.RequestByGuid['StaffGuid'])
+        this.maintEvnt.RequestByGuid =
+          this.maintEvnt.RequestByGuid['StaffGuid'];
+    if (this.maintEvnt.CostCentGuid)
+      if (this.maintEvnt.CostCentGuid['CostCentGuid'])
+        this.maintEvnt.CostCentGuid =
+          this.maintEvnt.CostCentGuid['CostCentGuid'];
+
+    this.firebaseService
+      .writeData(
+        this.organization,
+        'Trn_MaintEvnt',
+        Object.assign({}, this.maintEvnt),
+        this.maintEvnt.MaintEvntGuid,
+      )
+      .then(() => {
+        this.editBool = false;
         this.onTableRep();
         this.popUp.showToast('Data saved successfully :-)');
         this.maintEvnt = new MaintenanceEvent();

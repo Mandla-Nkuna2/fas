@@ -45,19 +45,15 @@
       <ng-template #noItems> No items. </ng-template>
       <ion-grid fixed *ngIf="componentNames.length; else noItems">
         <ion-row class="title-row">
-          <ion-col size="0.5" class="flex al-center jc-center"> </ion-col>
           <ion-col class="flex al-center jc-center">
             <h4>Component name</h4>
           </ion-col>
         </ion-row>
         <div class="values">
-          <ion-row
+          <ion-row (click)="onEdit(item)"
             class="value-row"
             *ngFor="let item of componentNames; let i = index"
           >
-            <ion-col size="0.5" class="flex al-center jc-center">
-              <ion-checkbox></ion-checkbox>
-            </ion-col>
             <ion-col class="flex al-center jc-center">
               <p>{{ item.CompName }}</p>
             </ion-col>
@@ -84,23 +80,21 @@
   <ion-row>
     <ion-col size="12" class="flex al-center jc-end">
       <div class="btn-holder flex al-center">
-        <ion-button (click)="onAdd()"> Add </ion-button>
-        <!-- <ion-button (click)="onModify()" color="medium"> Modify </ion-button>
-          <ion-button (click)="onDeActivate()" color="danger">
-            De-activate
+         <ion-button *ngIf="!editBool" (click)="onAdd()">Add</ion-button>
+          <ion-button *ngIf="editBool" (click)="onModify()" color="medium">
+            Modify
           </ion-button>
-          <ion-button (click)="onClear()" fill="outline"> Clear </ion-button> -->
       </div>
     </ion-col>
   </ion-row>
 
-  <ion-row>
+  <!-- <ion-row>
     <ion-col size="3.5">
       <ion-button (click)="onCompSubCatView()"
         >Component sub categories</ion-button
       >
     </ion-col>
-  </ion-row>
+  </ion-row> -->
 
   <div *ngIf="compSubCatView">
     <div class="title-holder flex al-center">
@@ -145,11 +139,6 @@
       <ion-col size="12" class="flex al-center jc-end">
         <div class="btn-holder flex al-center">
           <ion-button (click)="onAdd()"> Add </ion-button>
-          <!-- <ion-button (click)="onModify()" color="medium"> Modify </ion-button>
-          <ion-button (click)="onDeActivate()" color="danger">
-            De-activate
-          </ion-button>
-          <ion-button (click)="onClear()" fill="outline"> Clear </ion-button> -->
           <ion-button (click)="onCompSubCatView()" color="danger"
             >Close</ion-button
           >

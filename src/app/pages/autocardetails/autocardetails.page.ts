@@ -18,10 +18,11 @@ export class AutocardetailsPage implements OnInit {
   autocard: AutoCard;
   autocards: any[] = [];
 
-  returnedUser: any;
   currentDate = new Date();
+  returnedUser: any;
   registration: any[];
   yesNo = ['Y', 'N'];
+  editBool = false;
 
   constructor(
     private navCtrl: NavController,
@@ -36,6 +37,23 @@ export class AutocardetailsPage implements OnInit {
 
   ngOnInit() {
     this.getCurrentUser();
+  }
+
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+      this.returnedUser = user;
+
+      this.onTableRep();
+      this.onRegistration();
+    });
   }
 
   onTableRep() {
@@ -56,7 +74,7 @@ export class AutocardetailsPage implements OnInit {
   }
 
   goBrowserTransactions() {
-    this.navCtrl.navigateForward('browsertransactions');
+    this.navCtrl.navigateForward('main/browsertransactions');
   }
 
   onRegistration() {
@@ -80,26 +98,10 @@ export class AutocardetailsPage implements OnInit {
       });
   }
 
-  getCurrentUser() {
-    this.afAuth.user.subscribe((cUser) => {
-      this.getCurrentUserOrg(cUser.email);
-    });
-  }
-
-  getCurrentUserOrg(email) {
-    this.firebaseRepServ.getUser(email).then((mNm) => {
-      let user: any = mNm;
-      this.organization = user.organization;
-      this.returnedUser = user;
-
-      this.onTableRep();
-      this.onRegistration();
-    });
-  }
-
   onAdd() {
     this.autocard.AutoCardGuid = uuidv4();
     this.autocard.CaptureName = this.returnedUser.UserFirstName;
+
     if (this.autocard.ItemGuid)
       this.autocard.ItemGuid = this.autocard.ItemGuid['ItemGuid'];
 
@@ -111,6 +113,34 @@ export class AutocardetailsPage implements OnInit {
         this.autocard.AutoCardGuid,
       )
       .then(() => {
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.autocard = new AutoCard();
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
+  }
+
+  onEdit(item) {
+    this.autocard = item;
+    this.editBool = true;
+  }
+
+  onModify() {
+    if (this.autocard.ItemGuid)
+      if (this.autocard.ItemGuid['ItemGuid'])
+        this.autocard.ItemGuid = this.autocard.ItemGuid['ItemGuid'];
+
+    this.firebaseService
+      .writeData(
+        this.organization,
+        'Mst_Autocard',
+        Object.assign({}, this.autocard),
+        this.autocard.AutoCardGuid,
+      )
+      .then(() => {
+        this.editBool = false;
         this.onTableRep();
         this.popUp.showToast('Data saved successfully :-)');
         this.autocard = new AutoCard();

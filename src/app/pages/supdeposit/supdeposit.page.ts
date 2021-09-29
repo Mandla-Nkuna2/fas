@@ -19,8 +19,9 @@ export class SupdepositPage implements OnInit {
   supplierDeposits: any[];
 
   currentDate = new Date();
-  supplier: any[];
   returnedUser: any;
+  supplier: any[];
+  editBool = false;
 
   constructor(
     private navCtrl: NavController,
@@ -37,11 +38,29 @@ export class SupdepositPage implements OnInit {
     this.getCurrentUser();
   }
 
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+      this.returnedUser = user;
+
+      this.onTableRep();
+      this.onSupplierName();
+    });
+  }
+
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
         .getSupplierDeposits(this.organization)
         .then((mNm: any) => {
+          console.log(mNm);
           this.supplierDeposits = mNm;
           this.onSupplierNameLeft();
           this.popUp.dismissLoading();
@@ -55,7 +74,7 @@ export class SupdepositPage implements OnInit {
   }
 
   goFuelnOilPrice() {
-    this.navCtrl.navigateForward('fuelnoilprice');
+    this.navCtrl.navigateForward('main/fuelnoilprice');
   }
 
   onSupplierName() {
@@ -77,23 +96,6 @@ export class SupdepositPage implements OnInit {
     });
   }
 
-  getCurrentUser() {
-    this.afAuth.user.subscribe((cUser) => {
-      this.getCurrentUserOrg(cUser.email);
-    });
-  }
-
-  getCurrentUserOrg(email) {
-    this.firebaseRepServ.getUser(email).then((mNm) => {
-      let user: any = mNm;
-      this.organization = user.organization;
-      this.returnedUser = user;
-
-      this.onTableRep();
-      this.onSupplierName();
-    });
-  }
-
   onAdd() {
     this.supplierDeposit.SupBalguid = uuidv4();
     this.supplierDeposit.Capturename = this.returnedUser.UserFirstName;
@@ -109,6 +111,35 @@ export class SupdepositPage implements OnInit {
         this.supplierDeposit.SupBalguid,
       )
       .then(() => {
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.supplierDeposit = new SupplierDeposit();
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
+  }
+
+  onEdit(item) {
+    this.supplierDeposit = item;
+    this.editBool = true;
+  }
+
+  onModify() {
+    if (this.supplierDeposit.SuppGuid)
+      if (this.supplierDeposit.SuppGuid['SuppGuid'])
+        this.supplierDeposit.SuppGuid =
+          this.supplierDeposit.SuppGuid['SuppGuid'];
+
+    this.firebaseService
+      .writeData(
+        this.organization,
+        'Trn_SuppBalance',
+        Object.assign({}, this.supplierDeposit),
+        this.supplierDeposit.SupBalguid,
+      )
+      .then(() => {
+        this.editBool = false;
         this.onTableRep();
         this.popUp.showToast('Data saved successfully :-)');
         this.supplierDeposit = new SupplierDeposit();

@@ -22,6 +22,7 @@ export class ServicetypesPage implements OnInit {
   compNames: any[];
   compServType = false;
   yesNo = ['Y', 'N'];
+  editBool = false;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -35,6 +36,22 @@ export class ServicetypesPage implements OnInit {
 
   ngOnInit() {
     this.getCurrentUser();
+  }
+
+    getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+      this.returnedUser = user;
+
+      this.onTableRep();
+    });
   }
 
   onTableRep() {
@@ -74,30 +91,9 @@ export class ServicetypesPage implements OnInit {
     });
   }
 
-  getCurrentUser() {
-    this.afAuth.user.subscribe((cUser) => {
-      this.getCurrentUserOrg(cUser.email);
-    });
-  }
-
-  getCurrentUserOrg(email) {
-    this.firebaseRepServ.getUser(email).then((mNm) => {
-      let user: any = mNm;
-      this.organization = user.organization;
-      this.returnedUser = user;
-
-      this.onTableRep();
-    });
-  }
-
   onAdd() {
     this.serviceType.ServTypeGuid = uuidv4();
     this.serviceType.CapName = this.returnedUser.UserFirstName;
-
-    //  if (this.serviceType.UserGroupGuid)
-    //    this.serviceType.UserGroupGuid = this.serviceType.UserGroupGuid['UserGroupGuid'];
-    //  if (this.serviceType.LocUserCode)
-    //    this.serviceType.LocUserCode = this.serviceType.LocUserCode['LocGuid'];
 
     this.firebaseService
       .writeData(
@@ -115,7 +111,28 @@ export class ServicetypesPage implements OnInit {
         this.popUp.showError(err);
       });
   }
-  onModify() {}
-  onDeActivate() {}
-  onClear() {}
+
+   onEdit(item) {
+    this.serviceType = item;
+    this.editBool = true;
+  }
+
+   onModify() {
+    this.firebaseService
+      .writeData(
+        this.organization,
+        'Sup_ServType',
+        Object.assign({}, this.serviceType),
+        this.serviceType.ServTypeGuid,
+      )
+      .then(() => {
+        this.editBool = false;
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.serviceType = new ServiceType();
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
+  }
 }

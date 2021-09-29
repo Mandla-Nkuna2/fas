@@ -19,8 +19,9 @@ export class StafftimesheetsPage implements OnInit {
   staffTimesheets: any[] = [];
 
   currentDate = new Date();
-  staffMember: any[];
   returnedUser: any;
+  staffMember: any[];
+  editBool = false;
 
   constructor(
     private navCtrl: NavController,
@@ -37,12 +38,29 @@ export class StafftimesheetsPage implements OnInit {
     this.getCurrentUser();
   }
 
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+      this.returnedUser = user;
+
+      this.onTableRep();
+    });
+  }
+
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
         .getStaffTimesheets(this.organization)
         .then((mNm: any) => {
           this.staffTimesheets = mNm;
+          this.onDailyTot();
           this.onStaffRate();
           this.onStaffMemberLeft();
           this.popUp.dismissLoading();
@@ -75,11 +93,6 @@ export class StafftimesheetsPage implements OnInit {
     this.navCtrl.navigateForward('revenue');
   }
 
-  onStaffMember() {
-    this.firebaseGetServ.getStaff(this.organization).then((mNm: any) => {
-      this.staffMember = mNm;
-    });
-  }
   onStaffMemberLeft() {
     this.firebaseGetServ.getStaffLeft(this.organization).then((mNm: any) => {
       this.staffMember = mNm;
@@ -94,20 +107,18 @@ export class StafftimesheetsPage implements OnInit {
     });
   }
 
-  getCurrentUser() {
-    this.afAuth.user.subscribe((cUser) => {
-      this.getCurrentUserOrg(cUser.email);
-    });
-  }
-
-  getCurrentUserOrg(email) {
-    this.firebaseRepServ.getUser(email).then((mNm) => {
-      let user: any = mNm;
-      this.organization = user.organization;
-      this.returnedUser = user;
-
-      this.onTableRep();
-      this.onStaffMember();
+  onDailyTot() {
+    this.staffTimesheets.forEach((elm) => {
+      if (elm.OTTravel1) {
+        elm.OTTravel1 = +elm.OTTravel1;
+        elm.dailyTot = elm.OTTravel1;
+      }
+      if (elm.OTTravel2) {
+        elm.OTTravel2 = +elm.OTTravel2;
+        elm.dailyTot = elm.OTTravel2;
+      }
+      if (elm.OTTravel1 && elm.OTTravel2)
+        elm.dailyTot = elm.OTTravel1 + elm.OTTravel2;
     });
   }
 
@@ -127,6 +138,35 @@ export class StafftimesheetsPage implements OnInit {
         this.staffTimesheet.Staff_TrnGuid,
       )
       .then(() => {
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.staffTimesheet = new StaffTimesheet();
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
+  }
+
+  onEdit(item) {
+    this.staffTimesheet = item;
+    this.editBool = true;
+  }
+
+  onModify() {
+    if (this.staffTimesheet.StaffGuid)
+      if (this.staffTimesheet.StaffGuid['StaffGuid'])
+        this.staffTimesheet.StaffGuid =
+          this.staffTimesheet.StaffGuid['StaffGuid'];
+
+    this.firebaseService
+      .writeData(
+        this.organization,
+        'Trn_StaffTime',
+        Object.assign({}, this.staffTimesheet),
+        this.staffTimesheet.Staff_TrnGuid,
+      )
+      .then(() => {
+        this.editBool = false;
         this.onTableRep();
         this.popUp.showToast('Data saved successfully :-)');
         this.staffTimesheet = new StaffTimesheet();

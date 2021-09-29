@@ -16,11 +16,12 @@ export class BowserPage implements OnInit {
   organization = 'InnTee';
   bowser: Bowser;
   bowsers: any[] = [];
-  currentDate = new Date();
 
+  currentDate = new Date();
+  returnedUser: any;
   bowserLoc: any[];
   fuelType: any[];
-  returnedUser: any;
+  editBool = false;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -126,7 +127,34 @@ export class BowserPage implements OnInit {
       });
   }
 
-  onModify() {}
-  onDeActivate() {}
-  onClear() {}
+  onEdit(item) {
+    this.bowser = item;
+    this.editBool = true;
+  }
+
+  onModify() {
+    if (this.bowser.BowserLoc)
+      if (this.bowser.BowserLoc['LocItemCode'])
+        this.bowser.BowserLoc = this.bowser.BowserLoc['LocItemCode'];
+    if (this.bowser.FuelTypeGuid)
+      if (this.bowser.FuelTypeGuid['FuelTypeGuid'])
+        this.bowser.FuelTypeGuid = this.bowser.FuelTypeGuid['FuelTypeGuid'];
+
+    this.firebaseService
+      .writeData(
+        this.organization,
+        'Mst_Bowser',
+        Object.assign({}, this.bowser),
+        this.bowser.BowserGuid,
+      )
+      .then(() => {
+        this.editBool = false;
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.bowser = new Bowser();
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
+  }
 }

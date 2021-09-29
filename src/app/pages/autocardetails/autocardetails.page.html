@@ -39,11 +39,10 @@
       <ng-template #noItems> No items. </ng-template>
       <ion-grid fixed *ngIf="autocards.length; else noItems">
         <ion-row class="title-row">
-          <ion-col size="0.5" class="flex al-center jc-center"> </ion-col>
           <ion-col size="1" class="flex al-center jc-center">
             <h4>Registration</h4>
           </ion-col>
-          <ion-col size="1.4" class="flex al-center jc-center">
+          <ion-col size="1.8" class="flex al-center jc-center">
             <h4>Card No.</h4>
           </ion-col>
           <ion-col size="1.4" class="flex al-center jc-center">
@@ -64,39 +63,44 @@
           <ion-col size="1" class="flex al-center jc-center">
             <h4>Comments</h4>
           </ion-col>
+          <ion-col size="0.5" class="flex al-center jc-center"> </ion-col>
         </ion-row>
         <div class="values">
           <ion-row
             class="value-row"
             *ngFor="let item of autocards; let i = index"
-            (click)="goBrowserTransactions()"
           >
-            <ion-col size="0.5" class="flex al-center jc-center">
-              <ion-checkbox></ion-checkbox>
-            </ion-col>
             <ion-col size="1" class="flex al-center jc-center">
               <p>{{ item.Item }}</p>
             </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
+            <ion-col size="1.8" class="flex al-center jc-center">
               <p>{{ item.CardNo }}</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
               <p>{{ item.SeqNo }}</p>
             </ion-col>
             <ion-col size="1" class="flex al-center jc-center">
-              <p>{{ item.IssueDate }}</p>
+              <p>{{ item.IssueDate | date: 'mediumDate' }}</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
-              <p>{{ item.ExpiryDate }}</p>
+              <p>{{ item.ExpiryDate | date: 'mediumDate' }}</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
               <p>{{ item.Cancelled }}</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
-              <p>{{ item.CancelDate }}</p>
+              <p>{{ item.CancelDate | date: 'mediumDate' }}</p>
             </ion-col>
             <ion-col size="1" class="flex al-center jc-center">
               <p>{{ item.Comments }}</p>
+            </ion-col>
+            <ion-col size="0.5" class="flex al-center jc-start">
+              <ion-button (click)="onEdit(item)">
+                <ion-icon
+                  slot="icon-only"
+                  name="ellipsis-vertical-outline"
+                ></ion-icon>
+              </ion-button>
             </ion-col>
           </ion-row>
         </div>
@@ -226,7 +230,10 @@
     <ion-row>
       <ion-col size="12" class="ion-no-padding">
         <div class="btn-holder ion-text-right">
-          <ion-button (click)="onAdd()">Add</ion-button>
+          <ion-button *ngIf="!editBool" (click)="onAdd()">Add</ion-button>
+          <ion-button *ngIf="editBool" (click)="onModify()" color="medium">
+            Modify
+          </ion-button>
         </div>
       </ion-col>
     </ion-row>

@@ -17,8 +17,9 @@ export class OilstoretransPage implements OnInit {
   organization = 'InnTee';
   oilstoreTrans: OilStoreTransaction;
   oilstoreTranss: any[] = [];
-  currentDate = new Date();
 
+  currentDate = new Date();
+  returnedUser: any;
   oilStores: any[];
   oilTypes: any[];
   oilMakes: any[];
@@ -26,7 +27,7 @@ export class OilstoretransPage implements OnInit {
   oilClasses: any[];
   suppliers: any[];
   costCentre: any[];
-  returnedUser: any;
+  editBool = false;
 
   constructor(
     private navCtrl: NavController,
@@ -83,7 +84,7 @@ export class OilstoretransPage implements OnInit {
   }
 
   goOilTransfer() {
-    this.navCtrl.navigateForward('oiltransafer');
+    this.navCtrl.navigateForward('main/oiltransafer');
   }
 
   onOilStore() {
@@ -232,6 +233,46 @@ export class OilstoretransPage implements OnInit {
         this.popUp.showToast('Data saved successfully :-)');
         this.oilstoreTrans = new OilStoreTransaction();
         this.onTableRep();
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
+  }
+
+  onEdit(item) {
+    this.oilstoreTrans = item;
+    this.editBool = true;
+  }
+
+  onModify() {
+    if (this.oilstoreTrans.OilStoreGuid)
+      if (this.oilstoreTrans.OilStoreGuid['OilStoreGuid'])
+        this.oilstoreTrans.OilStoreGuid =
+          this.oilstoreTrans.OilStoreGuid['OilStoreGuid'];
+    if (this.oilstoreTrans.OilTypeguid)
+      if (this.oilstoreTrans.OilTypeguid['OilGuid'])
+        this.oilstoreTrans.OilTypeguid =
+          this.oilstoreTrans.OilTypeguid['OilGuid'];
+    if (this.oilstoreTrans.SuppGuid)
+      if (this.oilstoreTrans.SuppGuid['SuppGuid'])
+        this.oilstoreTrans.SuppGuid = this.oilstoreTrans.SuppGuid['SuppGuid'];
+    if (this.oilstoreTrans.CostCentGuid)
+      if (this.oilstoreTrans.CostCentGuid['CostCentGuid'])
+        this.oilstoreTrans.CostCentGuid =
+          this.oilstoreTrans.CostCentGuid['CostCentGuid'];
+
+    this.firebaseService
+      .writeData(
+        this.organization,
+        'Trn_OilStores',
+        Object.assign({}, this.oilstoreTrans),
+        this.oilstoreTrans.OilStoreTrnGuid,
+      )
+      .then(() => {
+        this.editBool = false;
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.oilstoreTrans = new OilStoreTransaction();
       })
       .catch((err) => {
         this.popUp.showError(err);

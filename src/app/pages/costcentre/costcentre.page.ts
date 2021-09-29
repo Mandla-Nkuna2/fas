@@ -15,8 +15,10 @@ export class CostcentrePage implements OnInit {
   organization = 'InnTee';
   costcentre: CostCentre;
   costcentres: CostCentre[] = [];
+
   currentDate = new Date();
   returnedUser: any;
+  editBool = false;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -31,6 +33,23 @@ export class CostcentrePage implements OnInit {
     this.getCurrentUser();
   }
 
+    getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+      this.returnedUser = user;
+
+      this.onTableRep();
+    });
+  }
+
+
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
@@ -44,22 +63,6 @@ export class CostcentrePage implements OnInit {
             this.popUp.showError(err);
           });
         });
-    });
-  }
-
-  getCurrentUser() {
-    this.afAuth.user.subscribe((cUser) => {
-      this.getCurrentUserOrg(cUser.email);
-    });
-  }
-
-  getCurrentUserOrg(email) {
-    this.firebaseRepServ.getUser(email).then((mNm) => {
-      let user: any = mNm;
-      this.organization = user.organization;
-      this.returnedUser = user;
-
-      this.onTableRep();
     });
   }
 
@@ -83,7 +86,28 @@ export class CostcentrePage implements OnInit {
         this.popUp.showError(err);
       });
   }
-  onModify() {}
-  onDeActivate() {}
-  onClear() {}
+
+  onEdit(item) {
+    this.costcentre = item;
+    this.editBool = true;
+  }
+
+  onModify() {
+    this.firebaseService
+      .writeData(
+        this.organization,
+        'Sup_CostCentre',
+        Object.assign({}, this.costcentre),
+        this.costcentre.CostCentGuid,
+      )
+      .then(() => {
+        this.editBool = false;
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.costcentre = new CostCentre();
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
+  }
 }

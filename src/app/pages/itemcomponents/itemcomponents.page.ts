@@ -18,8 +18,8 @@ export class ItemcomponentsPage implements OnInit {
   itemComponent: ItemComponent;
   itemComponents: any[] = [];
 
-  returnedUser: any;
   currentDate = new Date();
+  returnedUser: any;
   registrations: any[];
   maknmod: any;
   assetCompName: any[];
@@ -304,7 +304,6 @@ export class ItemcomponentsPage implements OnInit {
         this.itemComponent.ItemCompGuid,
       )
       .then(() => {
-        this.editBool = false;
         this.maknmod = null;
         this.onTableRep();
         this.popUp.showToast('Data saved successfully :-)');
@@ -316,7 +315,6 @@ export class ItemcomponentsPage implements OnInit {
   }
 
   onEdit(item) {
-    console.log(item);
     this.itemComponent = item;
     this.editBool = true;
   }

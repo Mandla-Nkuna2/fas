@@ -55,16 +55,10 @@
 
           <ion-col size="12" class="flex al-center jc-end">
             <div class="btn-holder flex al-center">
-              <ion-button (click)="onAdd()"> Add </ion-button>
-              <!-- <ion-button (click)="onModify()" color="medium">
-                Modify
-              </ion-button>
-              <ion-button (click)="onDeActivate()" color="danger">
-                De-activate
-              </ion-button>
-              <ion-button (click)="onClear()" fill="outline">
-                Clear
-              </ion-button> -->
+              <ion-button *ngIf="!editBool" (click)="onAdd()">Add</ion-button>
+          <ion-button *ngIf="editBool" (click)="onModify()" color="medium">
+            Modify
+          </ion-button>
             </div>
           </ion-col>
         </ion-row>
@@ -89,7 +83,6 @@
       <ng-template #noItems> No items. </ng-template>
       <ion-grid fixed *ngIf="serviceSchTasks.length; else noItems">
         <ion-row class="title-row">
-          <ion-col size="0.5" class="flex al-center jc-center"> </ion-col>
           <ion-col size="4" class="flex al-center jc-center">
             <h4>Service Schedule Task</h4>
           </ion-col>
@@ -101,15 +94,12 @@
           </ion-col>
         </ion-row>
         <div class="values" *ngFor="let item of serviceSchTasks; let i = index">
-          <ion-row class="value-row">
-            <ion-col size="0.5" class="flex al-center jc-center">
-              <ion-checkbox></ion-checkbox>
-            </ion-col>
+          <ion-row class="value-row" (click)="onEdit(item)">
             <ion-col size="4" class="flex al-center jc-center">
               <p>{{ item.ChecklistItemName }}</p>
             </ion-col>
             <ion-col size="6" class="flex al-center jc-center">
-              <p>{{ item.CapDate }}</p>
+              <p>{{ item.CapDate | date: 'mediumDate' }}</p>
             </ion-col>
             <ion-col size="1" class="flex al-center jc-center">
               <p>{{ item.Active }}</p>

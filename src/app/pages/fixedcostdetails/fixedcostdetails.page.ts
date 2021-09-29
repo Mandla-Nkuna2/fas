@@ -19,11 +19,12 @@ export class FixedcostdetailsPage implements OnInit {
   fixedCosts: any[] = [];
   items: any[] = [];
 
-  fixedCostType: any[];
   currentDate = new Date();
+  returnedUser: any;
+  fixedCostType: any[];
   registration: any[];
   calcPeriod = ['Annum', 'Monthly'];
-  returnedUser: any;
+  editBool = false;
 
   constructor(
     private navCtrl: NavController,
@@ -106,7 +107,7 @@ export class FixedcostdetailsPage implements OnInit {
   }
 
   goTransfer() {
-    this.navCtrl.navigateForward('fixedcostransfer');
+    this.navCtrl.navigateForward('main/fixedcostransfer');
   }
 
   onAdd() {
@@ -127,6 +128,38 @@ export class FixedcostdetailsPage implements OnInit {
         this.fixedCost.FixedCostGuid,
       )
       .then(() => {
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.fixedCost = new FixedCostsDet();
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
+  }
+
+  onEdit(item) {
+    this.fixedCost = item;
+    this.editBool = true;
+  }
+
+  onModify() {
+    if (this.fixedCost.FixedCostType)
+      if (this.fixedCost.FixedCostType['FixedCostType'])
+        this.fixedCost.FixedCostType =
+          this.fixedCost.FixedCostType['FixedCostType'];
+    if (this.fixedCost.ItemGuid)
+      if (this.fixedCost.ItemGuid['ItemGuid'])
+        this.fixedCost.ItemGuid = this.fixedCost.ItemGuid['ItemGuid'];
+
+    this.firebaseService
+      .writeData(
+        this.organization,
+        'Mst_FixedCosts',
+        Object.assign({}, this.fixedCost),
+        this.fixedCost.FixedCostGuid,
+      )
+      .then(() => {
+        this.editBool = false;
         this.onTableRep();
         this.popUp.showToast('Data saved successfully :-)');
         this.fixedCost = new FixedCostsDet();

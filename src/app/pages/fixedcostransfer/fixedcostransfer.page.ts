@@ -17,10 +17,11 @@ export class FixedcostransferPage implements OnInit {
   fixedCostTransf: FixedCostTransfer;
   fixedCostTransfs: any[] = [];
 
-  registration: any[];
   currentDate = new Date();
-  costCentre: any[];
   returnedUser: any;
+  registration: any[];
+  costCentre: any[];
+  editBool = false;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -131,6 +132,39 @@ export class FixedcostransferPage implements OnInit {
         this.fixedCostTransf.FixedcostTransGuid,
       )
       .then(() => {
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.fixedCostTransf = new FixedCostTransfer();
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
+  }
+
+  onEdit(item) {
+    this.fixedCostTransf = item;
+    this.editBool = true;
+  }
+
+  onModify() {
+    if (this.fixedCostTransf.ItemGuid)
+      if (this.fixedCostTransf.ItemGuid['ItemGuid'])
+        this.fixedCostTransf.ItemGuid =
+          this.fixedCostTransf.ItemGuid['ItemGuid'];
+    if (this.fixedCostTransf.CostCentGuid)
+      if (this.fixedCostTransf.CostCentGuid['CostCentGuid'])
+        this.fixedCostTransf.CostCentGuid =
+          this.fixedCostTransf.CostCentGuid['CostCentGuid'];
+
+    this.firebaseService
+      .writeData(
+        this.organization,
+        'Trn_FixedCosts',
+        Object.assign({}, this.fixedCostTransf),
+        this.fixedCostTransf.FixedcostTransGuid,
+      )
+      .then(() => {
+        this.editBool = false;
         this.onTableRep();
         this.popUp.showToast('Data saved successfully :-)');
         this.fixedCostTransf = new FixedCostTransfer();

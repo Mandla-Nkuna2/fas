@@ -16,11 +16,12 @@ export class OilstorePage implements OnInit {
   oilStore: OilStore;
   oilStores: any[] = [];
 
-  loc: any[];
   currentDate = new Date();
+  returnedUser: any;
+  loc: any[];
   locObjs: any[];
   organization = 'InnTee';
-  returnedUser: any;
+  editBool = false;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -121,7 +122,32 @@ export class OilstorePage implements OnInit {
         this.popUp.showError(err);
       });
   }
-  onModify() {}
-  onDeActivate() {}
-  onClear() {}
+
+    onEdit(item) {
+    this.oilStore = item;
+    this.editBool = true;
+  }
+
+  onModify() {
+    if (this.oilStore.OilStoreLoc)
+    if (this.oilStore.OilStoreLoc['LocItemCode'])
+      this.oilStore.OilStoreLoc = this.oilStore.OilStoreLoc['LocItemCode'];
+
+    this.firebaseService
+      .writeData(
+        this.organization,
+        'Mst_OilStore',
+        Object.assign({}, this.oilStore),
+        this.oilStore.OilStoreGuid,
+      )
+      .then(() => {
+        this.editBool = false;
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.oilStore = new OilStore();
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
+  }
 }

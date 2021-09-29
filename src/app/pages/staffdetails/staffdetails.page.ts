@@ -18,10 +18,11 @@ export class StaffdetailsPage implements OnInit {
   staffs: any[] = [];
 
   currentDate = new Date();
+  returnedUser: any;
   staffCats: any[];
   addLicView = false;
   licCodes = ['A', 'A1', 'B', 'C', 'C1', 'EB', 'EC', 'EC1'];
-  returnedUser: any;
+  editBool = false;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -35,6 +36,23 @@ export class StaffdetailsPage implements OnInit {
 
   ngOnInit() {
     this.getCurrentUser();
+  }
+
+    getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+      this.returnedUser = user;
+
+      this.onTableRep();
+      this.onStaffCat();
+    });
   }
 
   onTableRep() {
@@ -83,23 +101,6 @@ export class StaffdetailsPage implements OnInit {
 
   onAddLic() {}
 
-  getCurrentUser() {
-    this.afAuth.user.subscribe((cUser) => {
-      this.getCurrentUserOrg(cUser.email);
-    });
-  }
-
-  getCurrentUserOrg(email) {
-    this.firebaseRepServ.getUser(email).then((mNm) => {
-      let user: any = mNm;
-      this.organization = user.organization;
-      this.returnedUser = user;
-
-      this.onTableRep();
-      this.onStaffCat();
-    });
-  }
-
   onAdd() {
     this.staff.StaffGuid = uuidv4();
     this.staff.CaptureName = this.returnedUser.UserFirstName;
@@ -123,7 +124,32 @@ export class StaffdetailsPage implements OnInit {
         this.popUp.showError(err);
       });
   }
-  onModify() {}
-  onDeActivate() {}
-  onClear() {}
+
+   onEdit(item) {
+    this.staff = item;
+    this.editBool = true;
+  }
+
+  onModify() {
+    if (this.staff.StaffCatgGuid)
+    if (this.staff.StaffCatgGuid['StaffCatgGuid'])
+      this.staff.StaffCatgGuid = this.staff.StaffCatgGuid['StaffCatgGuid'];
+
+    this.firebaseService
+      .writeData(
+        this.organization,
+        'Mst_StaffDetails',
+        Object.assign({}, this.staff),
+        this.staff.StaffGuid,
+      )
+      .then(() => {
+        this.editBool = false;
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.staff = new Staff();
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
+  }
 }

@@ -1853,9 +1853,10 @@ export class FirebaseGetService {
   getStorageFiles() {
     let storage = firebase.storage();
     let storageRef = storage.ref();
+    let filesRef = storageRef.child('howtovids');
 
     const promise = new Promise((resolve, reject) => {
-      storageRef
+      filesRef
         .listAll()
         .then((res) => {
           let itemz = [];

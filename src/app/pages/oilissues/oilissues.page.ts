@@ -17,8 +17,8 @@ export class OilissuesPage implements OnInit {
   oilIssue: OilIssue;
   oilIssues: any[] = [];
 
-  returnedUser: any;
   currentDate = new Date();
+  returnedUser: any;
   voucherNo: any[];
   registration: any[];
   itemComps: any[];
@@ -31,6 +31,7 @@ export class OilissuesPage implements OnInit {
   oilMakes: any[];
   oilGrades: any[];
   oilClasses: any[];
+  editBool = false;
 
   constructor(
     private navCtrl: NavController,
@@ -90,7 +91,7 @@ export class OilissuesPage implements OnInit {
   }
 
   goOilTransactions() {
-    this.navCtrl.navigateForward('oilstoretrans');
+    this.navCtrl.navigateForward('main/oilstoretrans');
   }
 
   onRegistration() {
@@ -297,6 +298,55 @@ export class OilissuesPage implements OnInit {
         this.oilIssue.OilIssueGuid,
       )
       .then(() => {
+        this.onTableRep();
+        this.popUp.showToast('Data saved successfully :-)');
+        this.oilIssue = new OilIssue();
+      })
+      .catch((err) => {
+        this.popUp.showError(err);
+      });
+  }
+
+  onEdit(item) {
+    this.oilIssue = item;
+    this.editBool = true;
+  }
+
+  onModify() {
+    if (this.oilIssue.ItemGuid)
+      if (this.oilIssue.ItemGuid['Reg'])
+        this.oilIssue.RegIndex = this.oilIssue.ItemGuid['Reg'];
+    if (this.oilIssue.ItemGuid)
+      if (this.oilIssue.ItemGuid['ItemGuid'])
+        this.oilIssue.ItemGuid = this.oilIssue.ItemGuid['ItemGuid'];
+    if (this.oilIssue.ItemCompGuid)
+      if (this.oilIssue.ItemCompGuid['ItemCompGuid'])
+        this.oilIssue.ItemCompGuid = this.oilIssue.ItemCompGuid['ItemCompGuid'];
+    if (this.oilIssue.OilStoreGuid)
+      if (this.oilIssue.OilStoreGuid['OilStoreGuid'])
+        this.oilIssue.OilStoreGuid = this.oilIssue.OilStoreGuid['OilStoreGuid'];
+    if (this.oilIssue.SupplierGuid)
+      if (this.oilIssue.SupplierGuid['SuppGuid'])
+        this.oilIssue.SupplierGuid = this.oilIssue.SupplierGuid['SuppGuid'];
+    if (this.oilIssue.OilTypeGuid)
+      if (this.oilIssue.OilTypeGuid['OilGuid'])
+        this.oilIssue.OilTypeGuid = this.oilIssue.OilTypeGuid['OilGuid'];
+    if (this.oilIssue.CostCentGuid)
+      if (this.oilIssue.CostCentGuid['CostCentGuid'])
+        this.oilIssue.CostCentGuid = this.oilIssue.CostCentGuid['CostCentGuid'];
+    if (this.oilIssue.StaffGuid)
+      if (this.oilIssue.StaffGuid['StaffGuid'])
+        this.oilIssue.StaffGuid = this.oilIssue.StaffGuid['StaffGuid'];
+
+    this.firebaseService
+      .writeData(
+        this.organization,
+        'Trn_OilIssue',
+        Object.assign({}, this.oilIssue),
+        this.oilIssue.OilIssueGuid,
+      )
+      .then(() => {
+        this.editBool = false;
         this.onTableRep();
         this.popUp.showToast('Data saved successfully :-)');
         this.oilIssue = new OilIssue();
