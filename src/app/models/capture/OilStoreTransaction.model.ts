@@ -1,7 +1,8 @@
+import moment from 'moment';
 export default class OilStoreTransaction {
   OilStoreTrnGuid: string;
   OilStoreTrnDate: string;
-  CaptureDate: string = new Date().toString();
+  CaptureDate = moment().format('YYYY-MM-DD HH:mm');
   OilStoreGuid: string;
   Purc_or_Count: string;
   OilTypeguid: string;

@@ -315,6 +315,7 @@ export class ItemcomponentsPage implements OnInit {
   }
 
   onEdit(item) {
+    this.maknmod = null;
     this.itemComponent = item;
     this.editBool = true;
   }

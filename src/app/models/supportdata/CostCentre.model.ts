@@ -1,3 +1,4 @@
+import moment from 'moment';
 export default class CostCentre {
   CostCentGuid: string;
   CostCentName: string;
@@ -5,7 +6,7 @@ export default class CostCentre {
   StartDate: string;
   EndDate: string;
   ACCCostCode: string;
-  Capturedate: string = new Date().toString();
+  Capturedate = moment().format('YYYY-MM-DD HH:mm');
   Capturename: string;
   Comment: string;
   Active: string;

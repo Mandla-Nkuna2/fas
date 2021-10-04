@@ -1,3 +1,4 @@
+import moment from 'moment';
 export default class AutoCard {
   AutoCardGuid: string;
   ItemGuid: string;
@@ -9,5 +10,5 @@ export default class AutoCard {
   ExpiryDate: string;
   Comments: string;
   CaptureName: string;
-  CaptureDate: string = new Date().toString();
+  CaptureDate = moment().format('YYYY-MM-DD HH:mm');
 }

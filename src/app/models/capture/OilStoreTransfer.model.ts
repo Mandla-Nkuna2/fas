@@ -1,7 +1,8 @@
+import moment from 'moment';
 export default class OilStoreTransfer {
   OilStoreTrnGuid: string;
   OilStoreTrnDate: string;
-  CaptureDate: string = new Date().toString();
+  CaptureDate = moment().format('YYYY-MM-DD HH:mm');
   VoucherNo: string;
   OilStoreFromGuid: string;
   OilStoreToGuid: string;

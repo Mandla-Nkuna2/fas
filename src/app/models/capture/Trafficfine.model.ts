@@ -1,3 +1,4 @@
+import moment from 'moment';
 export class Trafficfine {
   TrafficFineGuid: string;
   ItemGuid: string;
@@ -6,7 +7,7 @@ export class Trafficfine {
   PaymentDate: string;
   Cost: number;
   CaptureName: string;
-  CaptureDate: string = new Date().toString();
+  CaptureDate = moment().format('YYYY-MM-DD HH:mm');
   Fineno: string;
   FineRecDate: string;
   SuperDate: string;

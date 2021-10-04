@@ -1,3 +1,4 @@
+import moment from 'moment';
 export class JobCard {
   JobCardGuid: string;
   JobCardNo: string;
@@ -7,7 +8,7 @@ export class JobCard {
   StaffGuid: string;
   ItemGuid: string;
   CaptureName: string;
-  CaptureDate: string = new Date().toString();
+  CaptureDate = moment().format('YYYY-MM-DD HH:mm');
   ServTypeGuid: string;
   Item: string;
   RegIndex: string;

@@ -18,10 +18,10 @@ import OilClass from 'src/app/models/supportdata/OilClass.model';
 })
 export class AddsupportdatainfoPage implements OnInit {
   organization = 'InnTee';
-  returnedUser: any;
-
   oilType: OilType;
   oilTypes: any[] = [];
+
+  returnedUser: any;
   oilMakes: any[];
   oilGrades: any[];
   oilClasses: any[];

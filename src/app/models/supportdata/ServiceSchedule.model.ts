@@ -1,3 +1,4 @@
+import moment from 'moment';
 export default class ServiceSchedule {
   ServHistGuid: string;
   JobcardGuid: string;
@@ -6,5 +7,5 @@ export default class ServiceSchedule {
   ServSchComment: string;
   MaintEvntGuid: string;
   CapName: string;
-  CapDate = new Date().toString();
+  CapDate = moment().format('YYYY-MM-DD HH:mm');
 }

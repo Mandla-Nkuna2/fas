@@ -1,9 +1,10 @@
+import moment from 'moment';
 export class Asset {
   ItemGuid: string;
   Reg: string;
   Old_Reg: string;
   Reg_changeDate: string;
-  CaptureDate: string = new Date().toString();
+  CaptureDate = moment().format('YYYY-MM-DD HH:mm');
   DataCapturerName: string;
   ItemMakModGuid: string;
   ItemTypeGuid: string;
@@ -50,4 +51,5 @@ export class Asset {
   Autocard = false;
   rentalVehicle = false;
   govSubsidisedVeh = false;
+  purchDate: string;
 }

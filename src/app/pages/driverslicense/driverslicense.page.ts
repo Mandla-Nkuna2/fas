@@ -48,7 +48,7 @@ export class DriverslicensePage implements OnInit {
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
-        .getStaff(this.organization)
+        .getStaffDetails(this.organization)
         .then((mNm: any) => {
           this.staff = mNm;
           this.onStaffCategory();

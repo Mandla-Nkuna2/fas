@@ -1,3 +1,2 @@
-export default class StaffDet {
-
-};
+import moment from 'moment';
+export default class StaffDet {}

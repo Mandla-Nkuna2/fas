@@ -1,7 +1,8 @@
+import moment from 'moment';
 export default class StaffTimesheet {
   Staff_TrnGuid: string;
   Staff_TrnDate: string;
-  CaptureDate: string = new Date().toString();
+  CaptureDate = moment().format('YYYY-MM-DD HH:mm');
   StaffGuid: string;
   Supervisor: string;
   Productive: number;

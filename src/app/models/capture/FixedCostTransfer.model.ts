@@ -1,3 +1,4 @@
+import moment from 'moment';
 export default class FixedCostTransfer {
   FixedcostTransGuid: string;
   ItemGuid: string;
@@ -7,7 +8,7 @@ export default class FixedCostTransfer {
   Lic_Amt: number;
   TransDate: string;
   CaptureName: string;
-  CaptureDate: string = new Date().toString();
+  CaptureDate = moment().format('YYYY-MM-DD HH:mm');
   RegIndex: string;
   CostCentGuid: string;
 }

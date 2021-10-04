@@ -1,3 +1,4 @@
+import moment from 'moment';
 export default class MaintenanceEvent {
   MaintEvntGuid: string;
   RefNo: string;
@@ -5,7 +6,7 @@ export default class MaintenanceEvent {
   StartDate: string;
   CompleteDate: string;
   IncSuppBalance: string;
-  CaptureDate: string = new Date().toString();
+  CaptureDate = moment().format('YYYY-MM-DD HH:mm');
   MaintTypeGuid: string;
   MaintReasonGuid: string;
   MeterRead: number;

@@ -1,7 +1,8 @@
+import moment from 'moment';
 export default class FuelIssue {
   FuelIssueGuid: string;
   FuelIssuedate: string;
-  CaptureDate: string = new Date().toString();
+  CaptureDate = moment().format('YYYY-MM-DD HH:mm');
   VoucherNo: number;
   ItemGuid: string;
   FuelQty: number;

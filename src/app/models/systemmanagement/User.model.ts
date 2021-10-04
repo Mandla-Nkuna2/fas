@@ -1,3 +1,4 @@
+import moment from 'moment';
 export default class User {
   UserGuid: string;
   UserFirstName: string;
@@ -6,7 +7,7 @@ export default class User {
   UserGroupGuid: string;
   UserPassword: string;
   Active: string;
-  CaptureDate: string = new Date().toString();
+  CaptureDate = moment().format('YYYY-MM-DD HH:mm');
   LocUserCode: string;
   Capturename: string;
   phoneNumber: string;

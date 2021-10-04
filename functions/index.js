@@ -61,6 +61,30 @@ exports.registerUser = functions.https.onRequest((rqst, resp) => {
   });
 });
 
+exports.updateUser = functions.https.onRequest((rqst, resp) => {
+  return corsHandler(rqst, resp, () => {
+    admin
+        .auth()
+        .updateUser(rqst.body.UserGuid, {
+          email: rqst.body.UserLogin,
+          emailVerified: false,
+          password: rqst.body.UserPassword,
+          displayName: rqst.body.UserFirstName + " " + rqst.body.UserSurname,
+        })
+        .then(
+            (userRecord) => {
+              resp.send({displayName: userRecord.displayName});
+            },
+            (rej) => resp.send(rej)
+        )
+        .catch((err) => {
+          resp.status(500).send(err);
+          console.log("Error updating user:", err.message);
+        });
+  });
+});
+
+
 exports.getVehiclesCount = functions.https.onRequest((rqst, resp) => {
   return corsHandler(rqst, resp, () => {
     db.collection(rqst.body.organisation + "/Mst_Item/tables")
@@ -103,4 +127,5 @@ exports.getRevenue = functions.https.onRequest((rqst, resp) => {
         });
   });
 });
+
 

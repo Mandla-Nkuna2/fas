@@ -68,7 +68,7 @@
           <ion-col size="1" class="flex al-center jc-center">
             <h4>Item No.</h4>
           </ion-col>
-          <ion-col size="2.5" class="flex al-center jc-center">
+          <ion-col size="4" class="flex al-center jc-center">
             <h4>Asset type</h4>
           </ion-col>
           <ion-col size="2" class="flex al-center jc-center">
@@ -77,10 +77,10 @@
           <ion-col size="2" class="flex al-center jc-center">
             <h4>Make & Modal</h4>
           </ion-col>
-          <ion-col size="2" class="flex al-center jc-center">
+          <ion-col size="1" class="flex al-center jc-center">
             <h4>Purchase Date</h4>
           </ion-col>
-          <ion-col size="2" class="flex al-center jc-center">
+          <ion-col size="1" class="flex al-center jc-center">
             <h4>Licence Date</h4>
           </ion-col>
           <ion-col size="0.5" class="flex al-center jc-center"> </ion-col>
@@ -90,7 +90,7 @@
             <ion-col size="1" class="flex al-center jc-center">
               <p>{{ asset.Reg }}</p>
             </ion-col>
-            <ion-col size="2.5" class="flex al-center jc-center">
+            <ion-col size="4" class="flex al-center jc-center">
               <p>{{ asset.displayName }}</p>
             </ion-col>
             <ion-col size="2" class="flex al-center jc-center">
@@ -99,11 +99,11 @@
             <ion-col size="2" class="flex al-center jc-center">
               <p>{{ asset.ItemMakMod }}</p>
             </ion-col>
-            <ion-col size="2" class="flex al-center jc-center">
-              <p>{{ asset.CaptureDate }}</p>
+            <ion-col size="1" class="flex al-center jc-center">
+              <p>{{ asset.purchDate | date: 'mediumDate' }}</p>
             </ion-col>
-            <ion-col size="2" class="flex al-center jc-center">
-              <p>{{ asset.LicenceDate }}</p>
+            <ion-col size="1" class="flex al-center jc-center">
+              <p>{{ asset.LicenceDate | date: 'mediumDate' }}</p>
             </ion-col>
             <ion-col size="0.5" class="flex al-center jc-start">
               <ion-button (click)="onEdit(asset)">

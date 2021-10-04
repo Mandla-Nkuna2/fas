@@ -20,7 +20,7 @@ export class StoreissuePage implements OnInit {
 
   currentDate = new Date();
   returnedUser: any;
-  registration: any[];
+  registrations: any[];
   MaintEvRefNo: any[];
   supplier: any;
   storeItem: any;
@@ -55,7 +55,6 @@ export class StoreissuePage implements OnInit {
 
       this.onTableRep();
       this.onRegistration();
-      this.onMaintEvRefNo();
       this.onSupplier();
       this.onStoreItem();
     });
@@ -68,6 +67,7 @@ export class StoreissuePage implements OnInit {
         .then((mNm: any) => {
           this.storeIssues = mNm;
           this.onStoreItemLeft();
+          this.onMaintEvRefNoLeft();
           this.popUp.dismissLoading();
         })
         .catch((err) => {
@@ -88,22 +88,17 @@ export class StoreissuePage implements OnInit {
 
   onRegistration() {
     this.firebaseGetServ.getRegistration(this.organization).then((mNm: any) => {
-      this.registration = mNm;
+      this.registrations = mNm;
     });
   }
   onRegistrationLeft() {
     this.firebaseGetServ
       .getRegistrationLeft(this.organization)
       .then((mNm: any) => {
-        this.registration = mNm;
+        this.registrations = mNm;
       });
   }
 
-  onMaintEvRefNo() {
-    this.firebaseGetServ.getMaintEvRefNo(this.organization).then((mNm: any) => {
-      this.MaintEvRefNo = mNm;
-    });
-  }
   onMaintEvRefNoLeft() {
     this.firebaseGetServ
       .getMaintEvRefNoLeft(this.organization)
@@ -180,6 +175,28 @@ export class StoreissuePage implements OnInit {
   }
 
   onEdit(item) {
+    item.ItemGuid = { ItemGuid: item.ItemGuid, Reg: item.RegIndex };
+    item.StoreCatgItemGuid = {
+      StoreCatgItemGuid: item.StoreCatgItemGuid,
+      StoreCatgItem: item.StoreCatgItem,
+    };
+
+    this.MaintEvRefNo.forEach((elm) => {
+      if (elm.MaintEvntGuid == item.MaintEvntGuid)
+        item.MaintEvntGuid = {
+          MaintEvntGuid: item.MaintEvntGuid,
+          RefNo: elm.RefNo,
+        };
+    });
+
+    this.supplier.forEach((elm) => {
+      if (elm.SuppGuid == item.SuppGuid)
+        item.SuppGuid = {
+          SuppGuid: item.SuppGuid,
+          SuppName: elm.SuppName,
+        };
+    });
+
     this.storeIssue = item;
     this.editBool = true;
   }

@@ -1,3 +1,4 @@
+import moment from 'moment';
 export default class ItemComponent {
   ItemCompGuid: string;
   ItemGuid: string;
@@ -9,7 +10,7 @@ export default class ItemComponent {
   OilCap: number;
   OilTypeGuid: string;
   SerialNo: string;
-  CaptureDate: string = new Date().toString();
+  CaptureDate = moment().format('YYYY-MM-DD HH:mm');
   ServParts1: string;
   ServParts2: string;
   ServParts3: string;

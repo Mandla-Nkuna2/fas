@@ -2,9 +2,9 @@ import { FirebaseReportService } from './../../services/firebase-service/firebas
 import { Component, OnInit } from '@angular/core';
 import { PopupHelper } from 'src/app/services/helpers/popup-helper';
 import { FirebaseGetService } from 'src/app/services/firebase-service/firebase-get.service';
+import { FirebaseService } from './../../services/firebase-service/firebase-service.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { NavController } from '@ionic/angular';
-import DataService from 'src/app/services/shared/data.service';
 
 @Component({
   selector: 'app-assetdetail',
@@ -14,14 +14,14 @@ import DataService from 'src/app/services/shared/data.service';
 export class AssetdetailPage implements OnInit {
   organization = 'InnTee';
   assets: any[] = [];
-  currentDate = new Date();
 
+  currentDate = new Date();
+  returnedUser: any;
   moreDet = false;
   assetTypes: any[];
   assetTypeNames: any[];
   makesAndMods: any[];
   categories: any[];
-  returnedUser: any;
 
   constructor(
     private navCtrl: NavController,
@@ -29,7 +29,7 @@ export class AssetdetailPage implements OnInit {
     private firebaseGetServ: FirebaseGetService,
     private popUp: PopupHelper,
     public afAuth: AngularFireAuth,
-    public ds: DataService,
+    private firebaseService: FirebaseService,
   ) {}
 
   ngOnInit() {
@@ -165,7 +165,7 @@ export class AssetdetailPage implements OnInit {
   }
 
   onEdit(item) {
-    this.ds.assetSubj.next(item);
+    this.firebaseService.assetSubj.next(item);
     this.navCtrl.navigateForward('main/addassets');
   }
 }

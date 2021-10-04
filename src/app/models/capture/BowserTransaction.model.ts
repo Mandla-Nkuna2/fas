@@ -1,8 +1,9 @@
+import moment from 'moment';
 export default class BowserTransaction {
   BowserTrnGuid: string;
   BowserGuid: string;
   BowserTrnDate: string;
-  CaptureDate: string = new Date().toString();
+  CaptureDate = moment().format('YYYY-MM-DD HH:mm');
   Purc_or_Dip: string;
   PumpReading: number;
   FuelQtyatDip: number;

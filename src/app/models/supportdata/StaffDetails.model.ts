@@ -1,3 +1,4 @@
+import moment from 'moment';
 export default class StaffDetails {
   StaffGuid: string;
   StaffCode: string;
@@ -14,7 +15,7 @@ export default class StaffDetails {
   Lic_ExpDate: string;
   Active: string;
   CaptureName: string;
-  CaptureDate: string = new Date().toString();
+  CaptureDate = moment().format('YYYY-MM-DD HH:mm');
   EmployDate: string;
   IDno: string;
   Lic_No0: string;

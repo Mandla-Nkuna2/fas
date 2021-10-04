@@ -52,7 +52,7 @@
       <ng-template #noItems> No items. </ng-template>
       <ion-grid fixed *ngIf="licCorAndSafInspecs.length; else noItems">
         <ion-row class="title-row">
-          <ion-col size="1.4" class="flex al-center jc-center">
+          <ion-col size="2" class="flex al-center jc-center">
             <h4>Registration</h4>
           </ion-col>
           <ion-col size="1.6" class="flex al-center jc-center">
@@ -67,10 +67,10 @@
           <ion-col size="1" class="flex al-center jc-center">
             <h4>disk rec.</h4>
           </ion-col>
-          <ion-col size="1" class="flex al-center jc-center">
+          <ion-col size="1.2" class="flex al-center jc-center">
             <h4>licence cost</h4>
           </ion-col>
-          <ion-col size="1.4" class="flex al-center jc-center">
+          <ion-col size="1" class="flex al-center jc-center">
             <h4>total cost</h4>
           </ion-col>
           <ion-col size="1.4" class="flex al-center jc-center">
@@ -82,25 +82,25 @@
           *ngFor="let item of licCorAndSafInspecs; let i = index"
         >
           <ion-row class="value-row">
-            <ion-col size="1.4" class="flex al-center jc-center">
+            <ion-col size="2" class="flex al-center jc-center">
               <p>{{ item.RegIndex }}</p>
             </ion-col>
             <ion-col size="1.6" class="flex al-center jc-center">
-              <p>{{ item.LicDate }}</p>
+              <p>{{ item.LicDate | date: 'mediumDate' }}</p>
             </ion-col>
             <ion-col size="1.6" class="flex al-center jc-center">
-              <p>{{ item.corInspecDate }}</p>
+              <p>{{ item.corInspecDate | date: 'mediumDate' }}</p>
             </ion-col>
             <ion-col size="1.6" class="flex al-center jc-center">
-              <p>{{ item.safetyInspecDate }}</p>
+              <p>{{ item.safetyInspecDate | date: 'mediumDate' }}</p>
             </ion-col>
             <ion-col size="1" class="flex al-center jc-center">
               <p>{{ item.diskFromLicBureau }}</p>
             </ion-col>
-            <ion-col size="1" class="flex al-center jc-center">
+            <ion-col size="1.2" class="flex al-center jc-center">
               <p>{{ item.LicCost | number : '1.2-2' }}</p>
             </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
+            <ion-col size="1" class="flex al-center jc-center">
               <p>{{ +item.LicCost + +item.LicAddCost | number : '1.2-2'}}</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">

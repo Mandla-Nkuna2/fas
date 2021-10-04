@@ -434,6 +434,18 @@
                 </ion-item>
               </div>
             </ion-col>
+
+            <ion-col size="3.5">
+              <div class="item-input">
+                <ion-label>Purchase date</ion-label>
+                <ion-item lines="none">
+                  <ion-datetime
+                    display-format="MMM DD YYYY"
+                    [(ngModel)]="asset.purchDate"
+                  ></ion-datetime>
+                </ion-item>
+              </div>
+            </ion-col>
           </ion-row>
         </ion-grid>
       </div>

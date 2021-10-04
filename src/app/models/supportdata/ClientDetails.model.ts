@@ -1,3 +1,4 @@
+import moment from 'moment';
 export default class ClientDetails {
   ClientGuid: string;
   ClientName: string;
@@ -9,6 +10,6 @@ export default class ClientDetails {
   ClientTel: string;
   ClientFax: string;
   Active: string;
-  CaptureDate: string = new Date().toString();
+  CaptureDate = moment().format('YYYY-MM-DD HH:mm');
   capturename: string;
 }

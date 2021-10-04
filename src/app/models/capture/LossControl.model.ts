@@ -1,3 +1,4 @@
+import moment from 'moment';
 export default class LossControl {
   LossContGuid: string;
   LossControlNo: number;
@@ -25,7 +26,7 @@ export default class LossControl {
   LossContActguid: string;
   amount: number;
   FileNumber: string;
-  CaptureDate: string = new Date().toString();
+  Capturedate = moment().format('YYYY-MM-DD HH:mm');
   Capturename: string;
   TripAut: boolean;
   AmountRec: number;

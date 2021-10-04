@@ -1,3 +1,4 @@
+import moment from 'moment';
 export default class Votecodes {
   VoteCodeGuid: string;
   Votecode: string;
@@ -5,7 +6,7 @@ export default class Votecodes {
   VotecodeDate: string;
   Comment: string;
   MinBal: string;
-  CaptureDate: string = new Date().toString();
+  CaptureDate = moment().format('YYYY-MM-DD HH:mm');
   Active: string;
   CaptureName: string;
 }

@@ -1,7 +1,8 @@
+import moment from 'moment';
 export default class Revenue {
   RevenueGuid: string;
   RevenueDate: string;
-  CaptureDate: string = new Date().toString();
+  CaptureDate = moment().format('YYYY-MM-DD HH:mm');
   Timeout: string;
   ClientGuid: string;
   RevenueRef: string;

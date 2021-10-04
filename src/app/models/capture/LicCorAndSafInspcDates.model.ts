@@ -1,3 +1,4 @@
+import moment from 'moment';
 export default class LicCorAndSafInspcDates {
   LicHistIndex: string;
   Itemguid: string;
@@ -9,6 +10,6 @@ export default class LicCorAndSafInspcDates {
   LicAddCost: number;
   RegIndex: string;
   Capturename: string;
-  CaptureDate: string = new Date().toString();
+  Capturedate = moment().format('YYYY-MM-DD HH:mm');
   LicCostCentGuid: string;
 }

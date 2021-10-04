@@ -1,3 +1,4 @@
+import moment from 'moment';
 export default class ItemMakeAndModel {
   ItemMakModGuid: string;
   ItemMake: string;
@@ -12,5 +13,5 @@ export default class ItemMakeAndModel {
   COF: any;
   Active: string;
   CapName: string;
-  CapDate = new Date().toString();
+  CapDate = moment().format('YYYY-MM-DD HH:mm');
 }

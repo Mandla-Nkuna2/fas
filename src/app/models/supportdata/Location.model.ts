@@ -1,3 +1,4 @@
+import moment from 'moment';
 export default class LocationModel {
   LocGuid: string;
   LocLevel1code: number;
@@ -7,7 +8,7 @@ export default class LocationModel {
   LocLevel: number;
   LocItemCode: string;
   LocDesc: string;
-  CaptureDate: string = new Date().toString();
+  CaptureDate = moment().format('YYYY-MM-DD HH:mm');
   Active: string;
   LocFullName: string;
   captureName: string;

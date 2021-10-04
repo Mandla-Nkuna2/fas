@@ -1,7 +1,8 @@
+import moment from 'moment';
 export default class StoreIssue {
   StoreIssueGuid: string;
   StoreIssuedate: string;
-  CaptureDate: string = new Date().toString();
+  CaptureDate = moment().format('YYYY-MM-DD HH:mm');
   StoreCatgGuid: string;
   ItemGuid: string;
   MaintEvntGuid: string;

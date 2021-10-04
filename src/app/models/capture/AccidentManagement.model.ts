@@ -1,3 +1,4 @@
+import moment from 'moment';
 export class AccidentManagement {
   LossContGuid: string;
   LossControlNo: string;
@@ -33,6 +34,6 @@ export class AccidentManagement {
   amount: number;
   AmountRec: number;
   FileNumber: string;
-  CaptureDate: string = new Date().toString();
+  CaptureDate = moment().format('YYYY-MM-DD HH:mm');
   Capturename: string;
 }

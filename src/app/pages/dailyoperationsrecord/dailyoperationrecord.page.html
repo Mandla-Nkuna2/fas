@@ -83,7 +83,7 @@
               <p>{{ item.Item }}</p>
             </ion-col>
             <ion-col size="1.2" class="flex al-center jc-center">
-              <p>{{ item.PlantSheetDate }}</p>
+              <p>{{ item.PlantSheetDate | date: 'mediumDate' }}</p>
             </ion-col>
             <ion-col size="1" class="flex al-center jc-center">
               <p>{{ item.OpenOdo }}</p>

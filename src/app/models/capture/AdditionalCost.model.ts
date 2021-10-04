@@ -1,6 +1,7 @@
+import moment from 'moment';
 export class AdditionalCost {
   AddCostGuid: string;
-  CaptureDate: string = new Date().toString();
+  Capturedate = moment().format('YYYY-MM-DD HH:mm');
   Capturename: string;
   Itemguid: string;
   RegIndex: string;

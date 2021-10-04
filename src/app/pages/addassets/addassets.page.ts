@@ -6,7 +6,6 @@ import { Component, OnInit } from '@angular/core';
 import { v4 as uuidv4 } from 'uuid';
 import { FirebaseReportService } from 'src/app/services/firebase-service/firebase-report.service';
 import { AngularFireAuth } from '@angular/fire/auth';
-import DataService from 'src/app/services/shared/data.service';
 
 @Component({
   selector: 'app-addassets',
@@ -40,14 +39,13 @@ export class AddassetsPage implements OnInit {
     private firebaseGetServ: FirebaseGetService,
     private popUp: PopupHelper,
     public afAuth: AngularFireAuth,
-    public ds: DataService,
   ) {
     this.asset = new Asset();
   }
 
   ngOnInit() {
     this.getCurrentUser();
-    this.ds.assetSubj.subscribe((item) => {
+    this.firebaseService.assetSubj.subscribe((item) => {
       item.ItemGuid ? (this.editBool = true) : (this.editBool = false);
       this.asset = item;
     });
@@ -357,7 +355,7 @@ export class AddassetsPage implements OnInit {
       )
       .then(() => {
         this.asset = new Asset();
-        this.ds.assetSubj.next(this.asset);
+        this.firebaseService.assetSubj.next(this.asset);
         this.popUp.showToast('Data saved successfully :-)');
       })
       .catch((err) => {

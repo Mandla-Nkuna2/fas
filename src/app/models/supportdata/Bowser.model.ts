@@ -1,3 +1,4 @@
+import moment from 'moment';
 export default class Bowser {
   BowserGuid: string;
   BowserHOCode: string;
@@ -5,7 +6,7 @@ export default class Bowser {
   BowserCap: string;
   BowserLoc: string;
   FuelTypeGuid: string;
-  CaptureDate: string = new Date().toString();
+  CaptureDate = moment().format('YYYY-MM-DD HH:mm');
   Active: string;
   CaptureName: string;
 }

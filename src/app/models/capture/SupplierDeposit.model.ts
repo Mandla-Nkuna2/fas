@@ -1,3 +1,4 @@
+import moment from 'moment';
 export default class SupplierDeposit {
   SupBalguid: string;
   SuppGuid: string;
@@ -7,6 +8,7 @@ export default class SupplierDeposit {
   AmtDeposit: number;
   AmtIssue: number;
   VoucherNo: string;
-  CaptureDate: string = new Date().toString();
+  Capturedate = moment().format('YYYY-MM-DD HH:mm');
   Capturename: string;
+  comm: string;
 }

@@ -1,3 +1,4 @@
+import moment from 'moment';
 export default class FixedCostsDet {
   FixedCostGuid: string;
   FixedCostType: string;
@@ -6,7 +7,7 @@ export default class FixedCostsDet {
   CostRate_no: number;
   Amount: number;
   StartDate: string;
-  CaptureDate: string = new Date().toString();
+  CaptureDate = moment().format('YYYY-MM-DD HH:mm');
   LeaseContact: string;
   LeaseStart: string;
   LeaseEnd: string;

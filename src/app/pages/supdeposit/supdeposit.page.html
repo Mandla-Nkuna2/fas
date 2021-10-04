@@ -38,7 +38,7 @@
       </div>
       <ion-grid fixed>
         <ion-row class="title-row">
-          <ion-col size="2.5" class="flex al-center jc-center">
+          <ion-col size="3" class="flex al-center jc-center">
             <h4>Supplier</h4>
           </ion-col>
           <ion-col size="1" class="flex al-center jc-center">
@@ -47,19 +47,13 @@
           <ion-col size="1" class="flex al-center jc-center">
             <h4>Deposit(R)</h4>
           </ion-col>
-          <ion-col size="1" class="flex al-center jc-center">
+          <ion-col size="1.4" class="flex al-center jc-center">
             <h4>Voucher No.</h4>
           </ion-col>
           <ion-col size="1.4" class="flex al-center jc-center">
-            <h4>purchase qty</h4>
+            <h4>Capture date</h4>
           </ion-col>
-          <ion-col size="1.4" class="flex al-center jc-center">
-            <h4>purchase cost</h4>
-          </ion-col>
-          <ion-col size="1" class="flex al-center jc-center">
-            <h4>capture date</h4>
-          </ion-col>
-          <ion-col size="1.2" class="flex al-center jc-center">
+          <ion-col size="3" class="flex al-center jc-center">
             <h4>Comments</h4>
           </ion-col>
           <ion-col size="0.5" class="flex al-center jc-center"> </ion-col>
@@ -69,7 +63,7 @@
           *ngFor="let item of supplierDeposits; let i = index"
         >
           <ion-row class="value-row">
-            <ion-col size="2.5" class="flex al-center jc-center">
+            <ion-col size="3" class="flex al-center jc-center">
               <p>{{ item.Supp }}</p>
             </ion-col>
             <ion-col size="1" class="flex al-center jc-center">
@@ -78,20 +72,14 @@
             <ion-col size="1" class="flex al-center jc-center">
               <p>{{ item.AmtDeposit }}</p>
             </ion-col>
-            <ion-col size="1" class="flex al-center jc-center">
+            <ion-col size="1.4" class="flex al-center jc-center">
               <p>{{ item.VoucherNo }}</p>
             </ion-col>
             <ion-col size="1.4" class="flex al-center jc-center">
-              <p>{{ item.SuppGuid }}</p>
+              <p>{{ item.Capturedate | date: 'mediumDate' }}</p>
             </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
-              <p>{{ item.SuppGuid }}</p>
-            </ion-col>
-            <ion-col size="1" class="flex al-center jc-center">
-              <p>{{ item.CaptureDate | date: 'mediumDate' }}</p>
-            </ion-col>
-            <ion-col size="1.2" class="flex al-center jc-center">
-              <p>{{ item.SuppGuid }}</p>
+            <ion-col size="3" class="flex al-center jc-center">
+              <p>{{ item.comm }}</p>
             </ion-col>
             <ion-col size="0.5" class="flex al-center jc-start">
               <ion-button (click)="onEdit(item)">
@@ -172,7 +160,17 @@
             </div>
           </ion-col>
 
-          <ion-col size="3.5" class="ion-no-padding" offset="0.5"></ion-col>
+          <ion-col size="8" offset="0.5">
+            <div class="item-input">
+              <ion-label>Comment</ion-label>
+              <ion-item lines="none">
+                <ion-input
+                  type="text"
+                  [(ngModel)]="supplierDeposit.comm"
+                ></ion-input>
+              </ion-item>
+            </div>
+          </ion-col>
 
           <ion-col size="3.5" offset="0.5" style="margin-top: 50px">
             <div class="btn-holder ion-text-right">

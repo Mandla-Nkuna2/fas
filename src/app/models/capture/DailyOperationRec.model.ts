@@ -1,3 +1,4 @@
+import moment from 'moment';
 export default class DailyOperationRec {
   PlantSheetguid: string;
   Voucherno: string;
@@ -16,7 +17,7 @@ export default class DailyOperationRec {
   CostCentreguid: string;
   LoadCapacity: number;
   RegIndex: string;
-  CaptureDate: string = new Date().toString();
+  Capturedate = moment().format('YYYY-MM-DD HH:mm');
   CaptureName: string;
   LoadUnit: string;
   OrdNumber: number;

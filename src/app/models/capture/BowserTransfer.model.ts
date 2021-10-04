@@ -1,7 +1,8 @@
+import moment from 'moment';
 export default class BowserTransfer {
   FuelTransferGuid: string;
   FuelTransferDate: string;
-  CaptureDate: string = new Date().toString();
+  CaptureDate = moment().format('YYYY-MM-DD HH:mm');
   VoucherNo: string;
   BowserFromGuid: string;
   BowserFromPump: number;

@@ -1,3 +1,4 @@
+import moment from 'moment';
 export default class StoreCatgItem {
   StoreCatgItemGuid: string;
   StoreCatgItem: string;
@@ -5,5 +6,5 @@ export default class StoreCatgItem {
   Rate: string;
   Active: string;
   CapName: string;
-  CapDate = new Date().toString();
+  CapDate = moment().format('YYYY-MM-DD HH:mm');
 }

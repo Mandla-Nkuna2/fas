@@ -284,7 +284,7 @@ export class UsersPage implements OnInit {
       )
       .then(() => {
         this.getCurrentUser();
-        this.popUp.showAlert('Success', 'User added successfully :-)');
+        this.popUp.showAlert('Success', 'Data saved successfully :-)');
         this.user = new User();
       })
       .catch((err) => {
@@ -326,27 +326,20 @@ export class UsersPage implements OnInit {
       if (this.user.LocUserCode['LocGuid'])
         this.user.LocUserCode = this.user.LocUserCode['LocGuid'];
 
-    this.firebaseService
-      .write(
-        this.organization,
-        'Mst_Users',
-        Object.assign({}, this.user),
-        this.user.UserGuid,
-      )
-      .then(() => {
-        this.editBool = false;
-        if (this.user.organization != 'InnTee') {
-          this.captureUsers();
-        } else {
-          this.getCurrentUser();
-          this.popUp.showToast('User modified successfully...');
-          this.user = new User();
-        }
-      })
-      .catch((err) => {
-        this.popUp.showError(err);
-        console.log('err: ', err.message);
-      });
+    this.popUp.showLoading('loading...').then(() => {
+      this.http.post(apiUrl + 'updateUser', this.user).subscribe(
+        (res) => {
+          this.popUp.dismissLoading();
+          this.onAdd();
+          console.log('updateUser res', res);
+        },
+        (err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        },
+      );
+    });
   }
 
   selectAllProjects() {}

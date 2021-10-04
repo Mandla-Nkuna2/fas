@@ -1,3 +1,4 @@
+import moment from 'moment';
 export default class SupplierDetails {
   SuppGuid: string;
   SuppName: string;
@@ -10,7 +11,7 @@ export default class SupplierDetails {
   SuppFax: string;
   SuppCategoryGuid: string;
   Active: string;
-  CaptureDate: string = new Date().toString();
+  CaptureDate = moment().format('YYYY-MM-DD HH:mm');
   SuppBal: string;
   AccNumber: string;
   CaptureName: string;

@@ -1879,4 +1879,23 @@ export class FirebaseGetService {
     });
     return promise;
   }
+
+  // getTables() {
+  //   const promise = new Promise((resolve, reject) => {
+  //     this.afs
+  //       .collection('PMB_ELEC')
+  //       .ref.get()
+  //       .then((obj) => {
+  //         let data = [];
+  //         obj.docs.forEach((obj) => {
+  //           data.push(obj.id);
+  //         });
+  //         resolve(data);
+  //       })
+  //       .catch((err) => {
+  //         reject(err);
+  //       });
+  //   });
+  //   return promise;
+  // }
 }

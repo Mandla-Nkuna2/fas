@@ -12,7 +12,8 @@ export class FirebaseReportService {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection(organization + '/Mst_Item/tables')
-        .ref.limit(limVal)
+        .ref.orderBy('CaptureDate', 'desc')
+        .limit(limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -51,7 +52,8 @@ export class FirebaseReportService {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection(organization + '/Mst_ItemComponents/tables')
-        .ref.limit(limVal)
+        .ref.orderBy('CaptureDate', 'desc')
+        .limit(limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -71,7 +73,8 @@ export class FirebaseReportService {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection(organization + '/Trn_LossControl/tables')
-        .ref.limit(limVal)
+        .ref.orderBy('Capturedate', 'desc')
+        .limit(limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -91,7 +94,8 @@ export class FirebaseReportService {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection(organization + '/Trn_PlantSheets/tables')
-        .ref.limit(limVal)
+        .ref.orderBy('Capturedate', 'desc')
+        .limit(limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -111,7 +115,8 @@ export class FirebaseReportService {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection(organization + '/Trn_LicHistory/tables')
-        .ref.limit(limVal)
+        .ref.orderBy('Capturedate', 'desc')
+        .limit(limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -131,7 +136,8 @@ export class FirebaseReportService {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection(organization + '/Trn_MaintEvnt/tables')
-        .ref.limit(limVal)
+        .ref.orderBy('CaptureDate', 'desc')
+        .limit(limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -170,7 +176,8 @@ export class FirebaseReportService {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection(organization + '/Trn_Revenue/tables')
-        .ref.limit(4)
+        .ref.orderBy('CaptureDate', 'desc')
+        .limit(4)
         .get()
         .then((obj) => {
           let data = [];
@@ -190,7 +197,8 @@ export class FirebaseReportService {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection(organization + '/Mst_Location/tables')
-        .ref.limit(limVal)
+        .ref.orderBy('CaptureDate', 'desc')
+        .limit(limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -229,7 +237,8 @@ export class FirebaseReportService {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection(organization + '/Mst_FixedCosts/tables')
-        .ref.limit(limVal)
+        .ref.orderBy('CaptureDate', 'desc')
+        .limit(limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -249,7 +258,8 @@ export class FirebaseReportService {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection(organization + '/Trn_FixedCosts/tables')
-        .ref.limit(limVal)
+        .ref.orderBy('CaptureDate', 'desc')
+        .limit(limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -269,7 +279,8 @@ export class FirebaseReportService {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection(organization + '/Trn_Overheads/tables')
-        .ref.limit(limVal)
+        .ref.orderBy('CaptureDate', 'desc')
+        .limit(limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -289,7 +300,8 @@ export class FirebaseReportService {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection(organization + '/Trn_AdditionalCosts/tables')
-        .ref.limit(limVal)
+        .ref.orderBy('Capturedate', 'desc')
+        .limit(limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -309,7 +321,8 @@ export class FirebaseReportService {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection(organization + '/Trn_SuppBalance/tables')
-        .ref.limit(limVal)
+        .ref.orderBy('Capturedate', 'desc')
+        .limit(limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -329,7 +342,8 @@ export class FirebaseReportService {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection(organization + '/Mst_Autocard/tables')
-        .ref.limit(limVal)
+        .ref.orderBy('CaptureDate', 'desc')
+        .limit(limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -349,7 +363,8 @@ export class FirebaseReportService {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection(organization + '/Trn_StoreIssue/tables')
-        .ref.limit(limVal)
+        .ref.orderBy('CaptureDate', 'desc')
+        .limit(limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -369,7 +384,8 @@ export class FirebaseReportService {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection(organization + '/Trn_OilIssue/tables')
-        .ref.limit(limVal)
+        .ref.orderBy('CaptureDate', 'desc')
+        .limit(limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -389,7 +405,8 @@ export class FirebaseReportService {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection(organization + '/Trn_FuelIssue/tables')
-        .ref.limit(limVal)
+        .ref.orderBy('CaptureDate', 'desc')
+        .limit(limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -409,7 +426,8 @@ export class FirebaseReportService {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection(organization + '/Trn_OilStores/tables')
-        .ref.limit(limVal)
+        .ref.orderBy('CaptureDate', 'desc')
+        .limit(limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -429,7 +447,8 @@ export class FirebaseReportService {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection(organization + '/Trn_OilStoreTransfer/tables')
-        .ref.limit(limVal)
+        .ref.orderBy('CaptureDate', 'desc')
+        .limit(limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -449,7 +468,8 @@ export class FirebaseReportService {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection(organization + '/Trn_Bowsers/tables')
-        .ref.limit(limVal)
+        .ref.orderBy('CaptureDate', 'desc')
+        .limit(limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -469,7 +489,8 @@ export class FirebaseReportService {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection(organization + '/Trn_BowserTransfer/tables')
-        .ref.limit(limVal)
+        .ref.orderBy('CaptureDate', 'desc')
+        .limit(limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -489,7 +510,8 @@ export class FirebaseReportService {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection(organization + '/Trn_StaffTime/tables')
-        .ref.limit(limVal)
+        .ref.orderBy('CaptureDate', 'desc')
+        .limit(limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -529,7 +551,8 @@ export class FirebaseReportService {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection(organization + '/Trn_StaffTime/tables')
-        .ref.limit(limVal)
+        .ref.orderBy('CaptureDate', 'desc')
+        .limit(limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -549,27 +572,8 @@ export class FirebaseReportService {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection(organization + '/Trn_StaffProdTime/tables')
-        .ref.limit(limVal)
-        .get()
-        .then((obj) => {
-          let data = [];
-          obj.docs.forEach((obElem) => {
-            data.push(obElem.data());
-          });
-          resolve(data);
-        })
-        .catch((err) => {
-          reject(err);
-        });
-    });
-    return promise;
-  }
-
-  public getStaff(organization) {
-    const promise = new Promise((resolve, reject) => {
-      this.afs
-        .collection(organization + '/Mst_StaffDetails/tables')
-        .ref.limit(limVal)
+        .ref.orderBy('CaptureDate', 'desc')
+        .limit(limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -610,7 +614,8 @@ export class FirebaseReportService {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection(organization + '/Sys_UserGroup/tables')
-        .ref.limit(limVal)
+        .ref.orderBy('CapDate', 'desc')
+        .limit(limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -651,7 +656,8 @@ export class FirebaseReportService {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection(organization + '/Sup_ItemType/tables')
-        .ref.limit(limVal)
+        .ref.orderBy('CapDate', 'desc')
+        .limit(limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -671,7 +677,7 @@ export class FirebaseReportService {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection(organization + '/Sup_ItemMakMod/tables')
-        .ref //.orderBy('CapDate', 'desc')
+        .ref.orderBy('CapDate', 'desc')
         .limit(limVal)
         .get()
         .then((obj) => {
@@ -692,7 +698,8 @@ export class FirebaseReportService {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection(organization + '/Mst_Bowser/tables')
-        .ref.limit(limVal)
+        .ref.orderBy('CaptureDate', 'desc')
+        .limit(limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -712,7 +719,8 @@ export class FirebaseReportService {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection(organization + '/Mst_Supplier/tables')
-        .ref.limit(limVal)
+        .ref.orderBy('CaptureDate', 'desc')
+        .limit(limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -732,7 +740,8 @@ export class FirebaseReportService {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection(organization + '/Sup_Checklist/tables')
-        .ref.limit(limVal)
+        .ref.orderBy('CapDate', 'desc')
+        .limit(limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -752,7 +761,8 @@ export class FirebaseReportService {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection(organization + '/Trn_JobCards/tables')
-        .ref.get()
+        .ref.orderBy('CaptureDate', 'desc')
+        .get()
         .then((obj) => {
           let data = [];
           obj.docs.forEach((obElem) => {
@@ -771,7 +781,28 @@ export class FirebaseReportService {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection(organization + '/Mst_StaffDetails/tables')
-        .ref.limit(limVal)
+        .ref.orderBy('CaptureDate', 'desc')
+        .limit(limVal)
+        .get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obElem) => {
+            data.push(obElem.data());
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+
+  public getStaffleft(organization) {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection(organization + '/Mst_StaffDetails/tables')
+        .ref.orderBy('CaptureDate', 'desc')
         .get()
         .then((obj) => {
           let data = [];
@@ -791,7 +822,8 @@ export class FirebaseReportService {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection(organization + '/Trn_OverheadBud/tables')
-        .ref.limit(limVal)
+        .ref.orderBy('CapDate', 'desc')
+        .limit(limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -811,7 +843,8 @@ export class FirebaseReportService {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection(organization + '/Trn_Votecodes/tables')
-        .ref.limit(limVal)
+        .ref.orderBy('CaptureDate', 'desc')
+        .limit(limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -831,7 +864,8 @@ export class FirebaseReportService {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection(organization + '/Sup_Response/tables')
-        .ref.limit(limVal)
+        .ref.orderBy('CapDate', 'desc')
+        .limit(limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -851,7 +885,8 @@ export class FirebaseReportService {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection(organization + '/Sup_Oiltype/tables')
-        .ref.limit(limVal)
+        .ref.orderBy('CapDate', 'desc')
+        .limit(limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -871,7 +906,8 @@ export class FirebaseReportService {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection(organization + '/Sup_CostCentre/tables')
-        .ref.limit(limVal)
+        .ref.orderBy('Capturedate', 'desc')
+        .limit(limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -891,7 +927,8 @@ export class FirebaseReportService {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection(organization + '/Mst_OilStore/tables')
-        .ref.limit(limVal)
+        .ref.orderBy('CaptureDate', 'desc')
+        .limit(limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -911,7 +948,8 @@ export class FirebaseReportService {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection(organization + '/Sup_CompName/tables')
-        .ref.limit(limVal)
+        .ref.orderBy('CapDate', 'desc')
+        .limit(limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -931,7 +969,8 @@ export class FirebaseReportService {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection(organization + '/Sup_StoreCatg/tables')
-        .ref.limit(limVal)
+        .ref.orderBy('CapDate', 'desc')
+        .limit(limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -951,7 +990,8 @@ export class FirebaseReportService {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection(organization + '/Sup_ServType/tables')
-        .ref.limit(limVal)
+        .ref.orderBy('CapDate', 'desc')
+        .limit(limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -998,27 +1038,9 @@ export class FirebaseReportService {
         .collection(organization + '/Mst_Item/tables')
         .ref //.where('StaffGuid', '!=', '')
         .where('ItemCatg', '==', 'VEHICLES')
+        .orderBy('CaptureDate', 'desc')
         .limit(limVal)
         .get()
-        .then((obj) => {
-          let data = [];
-          obj.docs.forEach((obElem) => {
-            data.push(obElem.data());
-          });
-          resolve(data);
-        })
-        .catch((err) => {
-          reject(err);
-        });
-    });
-    return promise;
-  }
-
-  public getStaffleft(organization) {
-    const promise = new Promise((resolve, reject) => {
-      this.afs
-        .collection(organization + '/Mst_StaffDetails/tables')
-        .ref.get()
         .then((obj) => {
           let data = [];
           obj.docs.forEach((obElem) => {
