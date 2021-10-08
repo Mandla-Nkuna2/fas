@@ -153,11 +153,9 @@
                 <ionic-selectable
                   [(ngModel)]="dOpsRec.LocItemCode"
                   [items]="location"
-                  itemValueField="LocGuid"
+                  itemValueField="LocItemCode"
                   itemTextField="LocDesc"
                   [canSearch]="true"
-                  [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onLocationLeft()"
                 >
                 </ionic-selectable>
               </ion-item>

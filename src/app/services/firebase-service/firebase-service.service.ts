@@ -7,8 +7,8 @@ import { Asset } from 'src/app/models/capture/Asset.model';
   providedIn: 'root',
 })
 export class FirebaseService {
-  asset: Asset;
-  assetSubj = new BehaviorSubject<Asset>(null);
+  asset: any;
+  assetSubj = new BehaviorSubject<any>(null);
 
   constructor(private afs: AngularFirestore, private loading: LoadingService) {
     this.asset = new Asset();

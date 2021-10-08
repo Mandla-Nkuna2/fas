@@ -45,16 +45,16 @@
           <ion-col size="1" class="flex al-center jc-center">
             <h4>date</h4>
           </ion-col>
-          <ion-col size="2" class="flex al-center jc-center">
+          <ion-col size="3" class="flex al-center jc-center">
             <h4>Oil type</h4>
           </ion-col>
-          <ion-col size="2" class="flex al-center jc-center">
+          <ion-col size="2.4" class="flex al-center jc-center">
             <h4>oil store from</h4>
           </ion-col>
-          <ion-col size="1.4" class="flex al-center jc-center">
+          <ion-col size="2.4" class="flex al-center jc-center">
             <h4>oil store to</h4>
           </ion-col>
-          <ion-col size="1.4" class="flex al-center jc-center">
+          <ion-col size="1" class="flex al-center jc-center">
             <h4>quantity</h4>
           </ion-col>
           <ion-col size="0.5" class="flex al-center jc-center"> </ion-col>
@@ -70,16 +70,16 @@
             <ion-col size="1" class="flex al-center jc-center">
               <p>{{ item.OilStoreTrnDate | date: 'mediumDate' }}</p>
             </ion-col>
-            <ion-col size="2" class="flex al-center jc-center">
+            <ion-col size="3" class="flex al-center jc-center">
               <p>{{ item.OilType }}</p>
             </ion-col>
-            <ion-col size="2" class="flex al-center jc-center">
+            <ion-col size="2.4" class="flex al-center jc-center">
               <p>{{ item.OilStoreFrom }}</p>
             </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
+            <ion-col size="2.4" class="flex al-center jc-center">
               <p>{{ item.OilStoreTo }}</p>
             </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
+            <ion-col size="1" class="flex al-center jc-center">
               <p>{{ item.OilQty }}</p>
             </ion-col>
             <ion-col size="0.5" class="flex al-center jc-start">
@@ -145,8 +145,6 @@
                   itemValueField="OilGuid"
                   itemTextField="OilText"
                   [canSearch]="true"
-                  [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onOilTypeLeft()"
                 >
                 </ionic-selectable>
               </ion-item>
@@ -159,7 +157,7 @@
               <ion-item>
                 <ionic-selectable
                   [(ngModel)]="oilStoreTransf.OilStoreFromGuid"
-                  [items]="oilStoreFrom"
+                  [items]="oilStore"
                   itemValueField="OilStoreGuid"
                   itemTextField="OilStoreName"
                   [canSearch]="true"
@@ -176,7 +174,7 @@
               <ion-item>
                 <ionic-selectable
                   [(ngModel)]="oilStoreTransf.OilStoreToGuid"
-                  [items]="oilStoreTo"
+                  [items]="oilStore"
                   itemValueField="OilStoreGuid"
                   itemTextField="OilStoreName"
                   [canSearch]="true"
@@ -198,6 +196,7 @@
                   itemTextField="CostCentName"
                   [canSearch]="true"
                   [hasInfiniteScroll]="true"
+                  (onInfiniteScroll)="onCostCentreLeft()"
                 >
                 </ionic-selectable>
               </ion-item>

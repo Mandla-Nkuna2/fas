@@ -61,7 +61,6 @@ export class BrowsertransferPage implements OnInit {
         .getBowserTransfers(this.organization)
         .then((mNm: any) => {
           this.bowserTransfers = mNm;
-          console.log(mNm);
           this.onBowserFromAnTo();
           this.popUp.dismissLoading();
         })
@@ -96,9 +95,11 @@ export class BrowsertransferPage implements OnInit {
   }
 
   onCostCentre() {
-    this.firebaseGetServ.getCostCentre(this.organization).then((mNm: any) => {
-      this.costCentre = mNm;
-    });
+    this.firebaseGetServ
+      .getCostCentreLeft(this.organization)
+      .then((mNm: any) => {
+        this.costCentre = mNm;
+      });
   }
 
   onAdd() {
@@ -133,6 +134,24 @@ export class BrowsertransferPage implements OnInit {
   }
 
   onEdit(item) {
+    item.BowserFromGuid = {
+      BowserGuid: item.BowserFromGuid,
+      BowserName: item.BowserFrom,
+    };
+    item.BowserToGuid = {
+      BowserGuid: item.BowserToGuid,
+      BowserName: item.BowserTo,
+    };
+
+    this.costCentre.forEach((elm) => {
+      if (elm.CostCentGuid == item.CostCentGuid) {
+        item.CostCentGuid = {
+          CostCentGuid: item.CostCentGuid,
+          CostCentName: elm.CostCentName,
+        };
+      }
+    });
+
     this.bowserTransfer = item;
     this.editBool = true;
   }

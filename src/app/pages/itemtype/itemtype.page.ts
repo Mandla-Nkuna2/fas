@@ -51,15 +51,31 @@ export class ItemtypePage implements OnInit {
     this.getCurrentUser();
   }
 
+  getCurrentUser() {
+    this.afAuth.user.subscribe((cUser) => {
+      this.getCurrentUserOrg(cUser.email);
+    });
+  }
+
+  getCurrentUserOrg(email) {
+    this.firebaseRepServ.getUser(email).then((mNm) => {
+      let user: any = mNm;
+      this.organization = user.organization;
+      this.returnedUser = user;
+
+      this.onTableRep();
+    });
+  }
+
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
         .getItemTypes(this.organization)
         .then((mNm: any) => {
           this.itemTypes = mNm;
-          this.onTypeNameLeft();
-          this.onTypeClassLeft();
-          this.onTypeCapacityLeft();
+          this.onTypeName();
+          this.onTypeClass();
+          this.onTypeCapacity();
           this.popUp.dismissLoading();
         })
         .catch((err) => {
@@ -71,13 +87,6 @@ export class ItemtypePage implements OnInit {
   }
 
   onTypeName() {
-    this.firebaseGetServ
-      .getAssetTypeName(this.organization)
-      .then((mNm: any) => {
-        this.typeNames = mNm;
-      });
-  }
-  onTypeNameLeft() {
     this.firebaseGetServ
       .getAssetTypeNameLeft(this.organization)
       .then((mNm: any) => {
@@ -95,13 +104,6 @@ export class ItemtypePage implements OnInit {
 
   onTypeClass() {
     this.firebaseGetServ
-      .getItemTypeClass(this.organization)
-      .then((mNm: any) => {
-        this.typeClass = mNm;
-      });
-  }
-  onTypeClassLeft() {
-    this.firebaseGetServ
       .getItemTypeClassLeft(this.organization)
       .then((mNm: any) => {
         this.typeClass = mNm;
@@ -117,11 +119,6 @@ export class ItemtypePage implements OnInit {
   }
 
   onTypeCapacity() {
-    this.firebaseGetServ.getTypeCapacity(this.organization).then((mNm: any) => {
-      this.typeCapacity = mNm;
-    });
-  }
-  onTypeCapacityLeft() {
     this.firebaseGetServ
       .getTypeCapacityLeft(this.organization)
       .then((mNm: any) => {
@@ -135,25 +132,6 @@ export class ItemtypePage implements OnInit {
           });
         });
       });
-  }
-
-  getCurrentUser() {
-    this.afAuth.user.subscribe((cUser) => {
-      this.getCurrentUserOrg(cUser.email);
-    });
-  }
-
-  getCurrentUserOrg(email) {
-    this.firebaseRepServ.getUser(email).then((mNm) => {
-      let user: any = mNm;
-      this.organization = user.organization;
-      this.returnedUser = user;
-
-      this.onTableRep();
-      this.onTypeName();
-      this.onTypeClass();
-      this.onTypeCapacity();
-    });
   }
 
   onAdd() {
@@ -188,6 +166,20 @@ export class ItemtypePage implements OnInit {
   }
 
   onEdit(item) {
+    console.log(item);
+    item.ItemTypeNameGuid = {
+      ItemTypeNameGuid: item.ItemTypeNameGuid,
+      ItemTypeName: item.ItemTypeName,
+    };
+    item.ItemTypeClassGuid = {
+      ItemTypeClassGuid: item.ItemTypeClassGuid,
+      ItemTypeClass: item.ItemTypeClass,
+    };
+    item.ItemTypeCapGuid = {
+      ItemTypeCapGuid: item.ItemTypeCapGuid,
+      ItemTypeCap: item.ItemTypeCap,
+    };
+
     this.itemType = item;
     this.editBool = true;
   }

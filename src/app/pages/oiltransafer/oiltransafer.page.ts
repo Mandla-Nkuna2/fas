@@ -25,8 +25,7 @@ export class OiltransaferPage implements OnInit {
   oilGrades: any[];
   oilClasses: any[];
   oilTypes: any[];
-  oilStoreFrom: any[];
-  oilStoreTo: any[];
+  oilStore: any[];
   costCentre: any[];
   editBool = false;
 
@@ -58,9 +57,6 @@ export class OiltransaferPage implements OnInit {
       this.returnedUser = user;
 
       this.onTableRep();
-      this.onOilType();
-      this.onOilStoreFrom();
-      this.onOilStoreTo();
       this.onCostCentre();
     });
   }
@@ -71,9 +67,8 @@ export class OiltransaferPage implements OnInit {
         .getOilStoreTransf(this.organization)
         .then((mNm: any) => {
           this.oilStoreTransfs = mNm;
-          this.onOilTypeLeft();
-          this.onOilStoreFrom();
-          this.onOilStoreTo();
+          this.onOilType();
+          this.onOilStore();
           this.popUp.dismissLoading();
         })
         .catch((err) => {
@@ -99,33 +94,6 @@ export class OiltransaferPage implements OnInit {
       this.oilClasses = mNm;
     });
 
-    this.firebaseGetServ.getOilType(this.organization).then((mNm: any) => {
-      mNm.forEach((oilObj) => {
-        this.oilMakes.forEach((oilM) => {
-          if (oilM.OilMakeGuid == oilObj.OilMakeGuid) {
-            oilObj.OilMake = oilM.OilMake;
-          }
-        });
-
-        this.oilGrades.forEach((oilG) => {
-          if (oilG.OilGradeGuid == oilObj.OilGradeGuid) {
-            oilObj.OilGrade = oilG.OilGrade;
-          }
-        });
-
-        this.oilClasses.forEach((oilC) => {
-          if (oilC.OilClassGuid == oilObj.OilClassGuid) {
-            oilObj.OilClass = oilC.OilClass;
-          }
-        });
-
-        oilObj.OilText =
-          oilObj.OilMake + ' / ' + oilObj.OilGrade + ' / ' + oilObj.OilClass;
-      });
-      this.oilTypes = mNm;
-    });
-  }
-  onOilTypeLeft() {
     this.firebaseGetServ.getOilTypeLeft(this.organization).then((mNm: any) => {
       mNm.forEach((oilObj) => {
         this.oilMakes.forEach((oilM) => {
@@ -161,26 +129,15 @@ export class OiltransaferPage implements OnInit {
     });
   }
 
-  onOilStoreFrom() {
+  onOilStore() {
     this.firebaseGetServ.getOilStore(this.organization).then((mNm: any) => {
-      this.oilStoreFrom = mNm;
+      this.oilStore = mNm;
 
       mNm.forEach((elm) => {
         this.oilStoreTransfs.forEach((obj) => {
           if (elm.OilStoreGuid == obj.OilStoreFromGuid) {
             obj.OilStoreFrom = elm.OilStoreName;
           }
-        });
-      });
-    });
-  }
-
-  onOilStoreTo() {
-    this.firebaseGetServ.getOilStore(this.organization).then((mNm: any) => {
-      this.oilStoreTo = mNm;
-
-      mNm.forEach((elm) => {
-        this.oilStoreTransfs.forEach((obj) => {
           if (elm.OilStoreGuid == obj.OilStoreToGuid) {
             obj.OilStoreTo = elm.OilStoreName;
           }
@@ -193,6 +150,13 @@ export class OiltransaferPage implements OnInit {
     this.firebaseGetServ.getCostCentre(this.organization).then((mNm: any) => {
       this.costCentre = mNm;
     });
+  }
+  onCostCentreLeft() {
+    this.firebaseGetServ
+      .getCostCentreLeft(this.organization)
+      .then((mNm: any) => {
+        this.costCentre = mNm;
+      });
   }
 
   onAdd() {
@@ -230,6 +194,28 @@ export class OiltransaferPage implements OnInit {
   }
 
   onEdit(item) {
+    item.OilTypeGuid = {
+      OilGuid: item.OilTypeGuid,
+      OilText: item.OilType,
+    };
+    item.OilStoreFromGuid = {
+      OilStoreGuid: item.OilStoreFromGuid,
+      OilStoreName: item.OilStoreFrom,
+    };
+    item.OilStoreToGuid = {
+      OilStoreGuid: item.OilStoreToGuid,
+      OilStoreName: item.OilStoreTo,
+    };
+
+    this.costCentre.forEach((elm) => {
+      if (elm.CostCentGuid == item.CostCentGuid) {
+        item.CostCentGuid = {
+          CostCentGuid: item.CostCentGuid,
+          CostCentName: elm.CostCentName,
+        };
+      }
+    });
+
     this.oilStoreTransf = item;
     this.editBool = true;
   }

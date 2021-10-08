@@ -52,7 +52,6 @@ export class AutocardetailsPage implements OnInit {
       this.returnedUser = user;
 
       this.onTableRep();
-      this.onRegistration();
     });
   }
 
@@ -62,7 +61,7 @@ export class AutocardetailsPage implements OnInit {
         .getAutocards(this.organization)
         .then((mNm: any) => {
           this.autocards = mNm;
-          this.onRegistrationLeft();
+          this.onRegistration();
           this.popUp.dismissLoading();
         })
         .catch((err) => {
@@ -78,11 +77,6 @@ export class AutocardetailsPage implements OnInit {
   }
 
   onRegistration() {
-    this.firebaseGetServ.getRegistration(this.organization).then((mNm: any) => {
-      this.registration = mNm;
-    });
-  }
-  onRegistrationLeft() {
     this.firebaseGetServ
       .getRegistrationLeft(this.organization)
       .then((mNm: any) => {
@@ -123,6 +117,11 @@ export class AutocardetailsPage implements OnInit {
   }
 
   onEdit(item) {
+    item.ItemGuid = {
+      ItemGuid: item.ItemGuid,
+      Reg: item.Item,
+    };
+
     this.autocard = item;
     this.editBool = true;
   }

@@ -57,10 +57,7 @@ export class OilstoretransPage implements OnInit {
       this.returnedUser = user;
 
       this.onTableRep();
-      this.onOilStore();
-      this.onOilType();
       this.onSupplier();
-      this.onCostCentre();
     });
   }
 
@@ -71,8 +68,8 @@ export class OilstoretransPage implements OnInit {
         .then((mNm: any) => {
           this.oilstoreTranss = mNm;
           this.onOilStore();
-          this.onOilTypeLeft();
-          this.onCostCentreLeft();
+          this.onOilType();
+          this.onCostCentre();
           this.popUp.dismissLoading();
         })
         .catch((err) => {
@@ -102,43 +99,6 @@ export class OilstoretransPage implements OnInit {
   }
 
   onOilType() {
-    this.firebaseGetServ.getOilMake(this.organization).then((mNm: any) => {
-      this.oilMakes = mNm;
-    });
-    this.firebaseGetServ.getOilGrade(this.organization).then((mNm: any) => {
-      this.oilGrades = mNm;
-    });
-    this.firebaseGetServ.getOilClass(this.organization).then((mNm: any) => {
-      this.oilClasses = mNm;
-    });
-
-    this.firebaseGetServ.getOilType(this.organization).then((mNm: any) => {
-      mNm.forEach((oilObj) => {
-        this.oilMakes.forEach((oilM) => {
-          if (oilM.OilMakeGuid == oilObj.OilMakeGuid) {
-            oilObj.OilMake = oilM.OilMake;
-          }
-        });
-
-        this.oilGrades.forEach((oilG) => {
-          if (oilG.OilGradeGuid == oilObj.OilGradeGuid) {
-            oilObj.OilGrade = oilG.OilGrade;
-          }
-        });
-
-        this.oilClasses.forEach((oilC) => {
-          if (oilC.OilClassGuid == oilObj.OilClassGuid) {
-            oilObj.OilClass = oilC.OilClass;
-          }
-        });
-
-        oilObj.OilText =
-          oilObj.OilMake + ' / ' + oilObj.OilGrade + ' / ' + oilObj.OilClass;
-      });
-      this.oilTypes = mNm;
-    });
-  }
-  onOilTypeLeft() {
     this.firebaseGetServ.getOilTypeLeft(this.organization).then((mNm: any) => {
       mNm.forEach((oilObj) => {
         this.oilMakes.forEach((oilM) => {
@@ -186,11 +146,6 @@ export class OilstoretransPage implements OnInit {
   }
 
   onCostCentre() {
-    this.firebaseGetServ.getCostCentre(this.organization).then((mNm: any) => {
-      this.costCentre = mNm;
-    });
-  }
-  onCostCentreLeft() {
     this.firebaseGetServ
       .getCostCentreLeft(this.organization)
       .then((mNm: any) => {
@@ -240,6 +195,28 @@ export class OilstoretransPage implements OnInit {
   }
 
   onEdit(item) {
+    item.OilStoreGuid = {
+      OilStoreGuid: item.OilStoreGuid,
+      OilStoreName: item.OilStore,
+    };
+    item.OilTypeguid = {
+      OilGuid: item.OilTypeguid,
+      OilText: item.OilType,
+    };
+    item.CostCentGuid = {
+      CostCentGuid: item.CostCentGuid,
+      CostCentName: item.CostCent,
+    };
+
+    this.suppliers.forEach((elm) => {
+      if (elm.SuppGuid == item.SuppGuid) {
+        item.SuppGuid = {
+          SuppGuid: item.SuppGuid,
+          SuppName: elm.SuppName,
+        };
+      }
+    });
+
     this.oilstoreTrans = item;
     this.editBool = true;
   }

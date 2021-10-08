@@ -50,7 +50,6 @@ export class BowserPage implements OnInit {
       this.returnedUser = user;
 
       this.onTableRep();
-      this.onFuelType();
     });
   }
 
@@ -128,6 +127,15 @@ export class BowserPage implements OnInit {
   }
 
   onEdit(item) {
+    item.BowserLoc = {
+      LocItemCode: item.BowserLoc,
+      LocDesc: item.Bowser,
+    };
+    item.FuelTypeGuid = {
+      FuelTypeGuid: item.FuelTypeGuid,
+      FuelType: item.FuelType,
+    };
+
     this.bowser = item;
     this.editBool = true;
   }

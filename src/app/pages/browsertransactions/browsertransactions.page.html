@@ -42,13 +42,13 @@
           <ion-col size="1" class="flex al-center jc-center">
             <h4>action</h4>
           </ion-col>
-          <ion-col size="1" class="flex al-center jc-center">
+          <ion-col size="1.2" class="flex al-center jc-center">
             <h4>date</h4>
           </ion-col>
-          <ion-col size="1" class="flex al-center jc-center">
+          <ion-col size="1.2" class="flex al-center jc-center">
             <h4>pump read</h4>
           </ion-col>
-          <ion-col size="1" class="flex al-center jc-center">
+          <ion-col size="1.2" class="flex al-center jc-center">
             <h4>dip qty</h4>
           </ion-col>
           <ion-col size="1.2" class="flex al-center jc-center">
@@ -57,10 +57,10 @@
           <ion-col size="1.3" class="flex al-center jc-center">
             <h4>purchase cost</h4>
           </ion-col>
-          <ion-col size="1.4" class="flex al-center jc-center">
+          <ion-col size="1.5" class="flex al-center jc-center">
             <h4>capture date</h4>
           </ion-col>
-          <ion-col size="2" class="flex al-center jc-center">
+          <ion-col size="2.5" class="flex al-center jc-center">
             <h4>Cost centre</h4>
           </ion-col>
           <ion-col size="0.5" class="flex al-center jc-center"> </ion-col>
@@ -70,20 +70,16 @@
             class="value-row"
             *ngFor="let item of bowserTransacs; let i = index"
           >
-            <ion-col
-              size="1"
-              class="flex al-center jc-center"
-              (click)="goBrowserTransfer()"
-            >
+            <ion-col size="1" class="flex al-center jc-center">
               <p>{{ item.Purc_or_Dip }}</p>
             </ion-col>
-            <ion-col size="1" class="flex al-center jc-center">
+            <ion-col size="1.2" class="flex al-center jc-center">
               <p>{{ item.BowserTrnDate | date: 'mediumDate' }}</p>
             </ion-col>
-            <ion-col size="1" class="flex al-center jc-center">
+            <ion-col size="1.2" class="flex al-center jc-center">
               <p>{{ item.PumpReading | number : '1.2-2' }}</p>
             </ion-col>
-            <ion-col size="1" class="flex al-center jc-center">
+            <ion-col size="1.2" class="flex al-center jc-center">
               <p>{{ item.FuelQtyatDip | number : '1.2-2' }}</p>
             </ion-col>
             <ion-col size="1.2" class="flex al-center jc-center">
@@ -92,10 +88,10 @@
             <ion-col size="1.3" class="flex al-center jc-center">
               <p>{{ item.FuelCost }}</p>
             </ion-col>
-            <ion-col size="1.4" class="flex al-center jc-center">
+            <ion-col size="1.5" class="flex al-center jc-center">
               <p>{{ item.CaptureDate | date: 'mediumDate' }}</p>
             </ion-col>
-            <ion-col size="2" class="flex al-center jc-center">
+            <ion-col size="2.5" class="flex al-center jc-center">
               <p>{{ item.CostCent }}</p>
             </ion-col>
             <ion-col size="0.5" class="flex al-center jc-start">
@@ -250,8 +246,6 @@
                     itemValueField="SuppGuid"
                     itemTextField="SuppName"
                     [canSearch]="true"
-                    [hasInfiniteScroll]="true"
-                    (onInfiniteScroll)="onSupplierLeft()"
                   >
                   </ionic-selectable>
                 </ion-item>

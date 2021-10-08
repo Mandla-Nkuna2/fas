@@ -58,13 +58,10 @@ export class MaintainceventPage implements OnInit {
 
       this.onTableRep();
       this.getMaintEvntCount();
-      this.onJobCardNo();
       this.onRegistration();
-      this.onMaintType();
       this.onMaintReason();
       this.onSupplier();
       this.onRequestedBy();
-      this.onCostCentre();
     });
   }
 
@@ -101,11 +98,6 @@ export class MaintainceventPage implements OnInit {
       });
   }
 
-  onJobCardNo() {
-    this.firebaseGetServ.getJobCardNos(this.organization).then((staff: any) => {
-      this.jobCardNo = staff;
-    });
-  }
   onJobCardNoLeft() {
     this.firebaseGetServ
       .getJobCardNosLeft(this.organization)
@@ -183,11 +175,6 @@ export class MaintainceventPage implements OnInit {
     });
   }
 
-  onCostCentre() {
-    this.firebaseGetServ.getCostCentre(this.organization).then((staff: any) => {
-      this.costCentre = staff;
-    });
-  }
   onCostCentreLeft() {
     this.firebaseGetServ
       .getCostCentreLeft(this.organization)
@@ -246,6 +233,49 @@ export class MaintainceventPage implements OnInit {
   }
 
   onEdit(item) {
+    console.log(item);
+    item.ItemGuid = {
+      ItemGuid: item.ItemGuid,
+      Reg: item.RegIndex,
+    };
+    item.JobCardGuid = {
+      JobCardGuid: item.JobCardGuid,
+      JobCardNo: item.JobCard,
+    };
+    item.MaintTypeGuid = {
+      MaintTypeGuid: item.MaintTypeGuid,
+      MaintType: item.MaintType,
+    };
+    item.CostCentGuid = {
+      CostCentGuid: item.CostCentGuid,
+      CostCentName: item.CostCent,
+    };
+
+    this.maintanceReason.forEach((elm) => {
+      if (elm.MaintReasonGuid == item.MaintReasonGuid) {
+        item.MaintReasonGuid = {
+          MaintReasonGuid: item.MaintReasonGuid,
+          MaintReason: elm.MaintReason,
+        };
+      }
+    });
+    this.supplier.forEach((elm) => {
+      if (elm.SuppGuid == item.SuppGuid) {
+        item.SuppGuid = {
+          SuppGuid: item.SuppGuid,
+          SuppName: elm.SuppName,
+        };
+      }
+    });
+    this.requestedBy.forEach((elm) => {
+      if (elm.StaffGuid == item.RequestByGuid) {
+        item.RequestByGuid = {
+          StaffGuid: item.RequestByGuid,
+          StaffCode: elm.StaffCode,
+        };
+      }
+    });
+
     this.maintEvnt = item;
     this.editBool = true;
   }

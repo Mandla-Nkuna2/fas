@@ -78,11 +78,6 @@ export class BrowsertransactionsPage implements OnInit {
   }
 
   onSupplier() {
-    this.firebaseGetServ.getSupplier(this.organization).then((mNm: any) => {
-      this.suppliers = mNm;
-    });
-  }
-  onSupplierLeft() {
     this.firebaseGetServ.getSupplierLeft(this.organization).then((mNm: any) => {
       this.suppliers = mNm;
     });
@@ -108,6 +103,8 @@ export class BrowsertransactionsPage implements OnInit {
     this.bowserTransac.BowserTrnGuid = uuidv4();
     this.bowserTransac.CaptureName = this.returnedUser.UserFirstName;
 
+    if (this.bowserTransac.SuppGuid)
+      this.bowserTransac.SuppGuid = this.bowserTransac.SuppGuid['SuppGuid'];
     if (this.bowserTransac.CostCentGuid)
       this.bowserTransac.CostCentGuid =
         this.bowserTransac.CostCentGuid['CostCentGuid'];
@@ -130,11 +127,28 @@ export class BrowsertransactionsPage implements OnInit {
   }
 
   onEdit(item) {
+    item.CostCentGuid = {
+      CostCentGuid: item.CostCentGuid,
+      CostCentName: item.CostCent,
+    };
+
+    this.suppliers.forEach((elm) => {
+      if (elm.SuppGuid == item.SuppGuid) {
+        item.SuppGuid = {
+          SuppGuid: item.SuppGuid,
+          SuppName: elm.SuppName,
+        };
+      }
+    });
+
     this.bowserTransac = item;
     this.editBool = true;
   }
 
   onModify() {
+    if (this.bowserTransac.SuppGuid)
+      if (this.bowserTransac.SuppGuid['SuppGuid'])
+        this.bowserTransac.SuppGuid = this.bowserTransac.SuppGuid['SuppGuid'];
     if (this.bowserTransac.CostCentGuid)
       if (this.bowserTransac.CostCentGuid['CostCentGuid'])
         this.bowserTransac.CostCentGuid =

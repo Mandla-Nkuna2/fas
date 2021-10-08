@@ -92,9 +92,11 @@ export class LicensecorPage implements OnInit {
   }
 
   onCostCentre() {
-    this.firebaseGetServ.getCostCentre(this.organization).then((mNm: any) => {
-      this.costCentre = mNm;
-    });
+    this.firebaseGetServ
+      .getCostCentreLeft(this.organization)
+      .then((mNm: any) => {
+        this.costCentre = mNm;
+      });
   }
 
   onAdd() {
@@ -128,6 +130,19 @@ export class LicensecorPage implements OnInit {
   }
 
   onEdit(item) {
+    item.Itemguid = {
+      ItemGuid: item.Itemguid,
+      Reg: item.RegIndex,
+    };
+    this.costCentre.forEach((elm) => {
+      if (elm.CostCentGuid == item.LicCostCentGuid) {
+        item.LicCostCentGuid = {
+          CostCentGuid: item.LicCostCentGuid,
+          CostCentName: elm.CostCentName,
+        };
+      }
+    });
+
     this.licCorAndSafInspec = item;
     this.editBool = true;
   }

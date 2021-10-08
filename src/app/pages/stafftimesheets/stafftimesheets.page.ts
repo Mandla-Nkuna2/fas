@@ -148,6 +148,11 @@ export class StafftimesheetsPage implements OnInit {
   }
 
   onEdit(item) {
+    item.StaffGuid = {
+      StaffGuid: item.StaffGuid,
+      StaffCode: item.Staff,
+    };
+
     this.staffTimesheet = item;
     this.editBool = true;
   }

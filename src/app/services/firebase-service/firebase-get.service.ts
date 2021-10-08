@@ -115,8 +115,8 @@ export class FirebaseGetService {
           let col = [];
           mNm.docs.forEach((mNm) => {
             col.push({
-              Colour: mNm.get('Colour'),
               ColourGuid: mNm.get('ColourGuid'),
+              Colour: mNm.get('Colour'),
             });
           });
           resolve(col);
@@ -256,8 +256,8 @@ export class FirebaseGetService {
           let size = [];
           mNm.docs.forEach((mNm) => {
             size.push({
-              TyreSize: mNm.get('TyreSize'),
               TyreSizeGuid: mNm.get('TyreSizeGuid'),
+              TyreSize: mNm.get('TyreSize'),
             });
           });
           resolve(size);
@@ -684,28 +684,6 @@ export class FirebaseGetService {
   }
 
   getServiceIntvl(organization) {
-    const promise = new Promise((resolve, reject) => {
-      this.afs
-        .collection(organization + '/Sup_ServIntval/tables')
-        .ref.limit(limVal)
-        .get()
-        .then((obj) => {
-          let data = [];
-          obj.docs.forEach((obj) => {
-            data.push({
-              ServIntvalGuid: obj.get('ServIntvalGuid'),
-              ServIntval: Number(obj.get('ServIntval')),
-            });
-          });
-          resolve(data);
-        })
-        .catch((err) => {
-          reject(err);
-        });
-    });
-    return promise;
-  }
-  getServiceIntvlLeft(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection(organization + '/Sup_ServIntval/tables')
@@ -1879,23 +1857,4 @@ export class FirebaseGetService {
     });
     return promise;
   }
-
-  // getTables() {
-  //   const promise = new Promise((resolve, reject) => {
-  //     this.afs
-  //       .collection('PMB_ELEC')
-  //       .ref.get()
-  //       .then((obj) => {
-  //         let data = [];
-  //         obj.docs.forEach((obj) => {
-  //           data.push(obj.id);
-  //         });
-  //         resolve(data);
-  //       })
-  //       .catch((err) => {
-  //         reject(err);
-  //       });
-  //   });
-  //   return promise;
-  // }
 }

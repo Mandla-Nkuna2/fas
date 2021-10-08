@@ -54,8 +54,6 @@ export class FixedcostdetailsPage implements OnInit {
       this.returnedUser = user;
 
       this.onTableRep();
-      this.onFixedCostType();
-      this.onRegistration();
     });
   }
 
@@ -65,6 +63,9 @@ export class FixedcostdetailsPage implements OnInit {
         .getFixedCostDetails(this.organization)
         .then((mNm: any) => {
           this.popUp.dismissLoading();
+          mNm.forEach((elm) => {
+            elm.FixedCostTyp = elm.FixedCostType;
+          });
           this.fixedCosts = mNm;
           this.onRegistrationLeft();
           this.onFixedCostType();
@@ -77,11 +78,6 @@ export class FixedcostdetailsPage implements OnInit {
     });
   }
 
-  onRegistration() {
-    this.firebaseGetServ.getRegistration(this.organization).then((mNm: any) => {
-      this.registration = mNm;
-    });
-  }
   onRegistrationLeft() {
     this.firebaseGetServ
       .getRegistrationLeft(this.organization)
@@ -138,6 +134,15 @@ export class FixedcostdetailsPage implements OnInit {
   }
 
   onEdit(item) {
+    item.FixedCostType = {
+      FixedCostTypeGuid: item.FixedCostGuid,
+      FixedCostType: item.FixedCostType,
+    };
+    item.ItemGuid = {
+      ItemGuid: item.ItemGuid,
+      Reg: item.Item,
+    };
+
     this.fixedCost = item;
     this.editBool = true;
   }

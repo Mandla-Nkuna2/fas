@@ -62,7 +62,6 @@ export class ItemmakemodelPage implements OnInit {
       this.returnedUser = user;
 
       this.onTableRep();
-      this.onFuelType();
     });
   }
 
@@ -139,6 +138,11 @@ export class ItemmakemodelPage implements OnInit {
   }
 
   onEdit(item) {
+    item.FuelTypeGuid = {
+      FuelTypeGuid: item.FuelTypeGuid,
+      FuelType: item.FuelType,
+    };
+
     this.item = item;
     if (this.item.Lic === 'Y') this.item.Lic = true;
     else this.item.Lic = false;

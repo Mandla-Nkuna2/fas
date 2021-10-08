@@ -142,6 +142,15 @@ export class FixedcostransferPage implements OnInit {
   }
 
   onEdit(item) {
+    item.ItemGuid = {
+      ItemGuid: item.ItemGuid,
+      Reg: item.Item,
+    };
+    item.CostCentGuid = {
+      CostCentGuid: item.CostCentGuid,
+      CostCentName: item.CostCent,
+    };
+
     this.fixedCostTransf = item;
     this.editBool = true;
   }

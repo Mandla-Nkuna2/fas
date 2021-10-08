@@ -14,7 +14,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 })
 export class AddassetsPage implements OnInit {
   organization = 'InnTee';
-  asset: Asset;
+  asset: any;
   assets: any = [];
 
   currentDate = new Date();
@@ -46,6 +46,15 @@ export class AddassetsPage implements OnInit {
   ngOnInit() {
     this.getCurrentUser();
     this.firebaseService.assetSubj.subscribe((item) => {
+      item.ItemMakModGuid = {
+        ItemMakModGuid: item.ItemMakModGuid,
+        itemMakMod: item.ItemMakMod,
+      };
+      item.ItemTypeGuid = {
+        ItemTypeGuid: item.ItemTypeGuid,
+        displayName: item.displayName,
+      };
+
       item.ItemGuid ? (this.editBool = true) : (this.editBool = false);
       this.asset = item;
     });
@@ -176,34 +185,21 @@ export class AddassetsPage implements OnInit {
   }
 
   onColor() {
-    this.firebaseGetServ.getColor(this.organization).then((col: any) => {
-      this.colors = col;
-    });
-  }
-  onColorLeft() {
     this.firebaseGetServ.getColorLeft(this.organization).then((col: any) => {
       this.colors = col;
+
+      col.forEach((elm) => {
+        if (elm.ColourGuid == this.asset.ColourGuid) {
+          this.asset.ColourGuid = {
+            ColourGuid: this.asset.ColourGuid,
+            Colour: elm.Colour,
+          };
+        }
+      });
     });
   }
 
   onBattery() {
-    this.firebaseGetServ.getBatteryMake(this.organization).then((col: any) => {
-      this.batteryMake = col;
-    });
-
-    this.firebaseGetServ.getBattery(this.organization).then((col: any) => {
-      col.forEach((batObj) => {
-        this.batteryMake.forEach((batMk) => {
-          if (batMk.BatteryMakeGuid == batObj.BatteryMakeGuid) {
-            batObj.BatteryMake = batMk.BatteryMake;
-          }
-        });
-        batObj.BatteryText = batObj.BatterySize + ' ' + batObj.BatteryMake;
-      });
-      this.batteries = col;
-    });
-  }
-  onBatteryLeft() {
     this.firebaseGetServ.getBatteryLeft(this.organization).then((col: any) => {
       col.forEach((batObj) => {
         this.batteryMake.forEach((batMk) => {
@@ -214,41 +210,69 @@ export class AddassetsPage implements OnInit {
         batObj.BatteryText = batObj.BatterySize + ' ' + batObj.BatteryMake;
       });
       this.batteries = col;
+
+      col.forEach((elm) => {
+        if (elm.BatteryGuid == this.asset.BatteryGuid) {
+          this.asset.BatteryGuid = {
+            BatteryGuid: this.asset.BatteryGuid,
+            BatteryText: elm.BatteryText,
+          };
+        }
+      });
     });
   }
 
   onDriver() {
-    this.firebaseGetServ.getStaff(this.organization).then((col: any) => {
-      this.drivers = col;
-    });
-  }
-  onDriverLeft() {
     this.firebaseGetServ.getStaffLeft(this.organization).then((col: any) => {
       this.drivers = col;
+
+      col.forEach((elm) => {
+        if (elm.StaffGuid == this.asset.StaffGuid) {
+          this.asset.StaffGuid = {
+            StaffGuid: this.asset.StaffGuid,
+            StaffCode: elm.StaffCode,
+          };
+        }
+      });
     });
   }
 
   onLocation() {
-    this.firebaseGetServ.getLocation(this.organization).then((mNm: any) => {
-      this.locations = mNm;
-    });
-  }
-  onLocationLeft() {
     this.firebaseGetServ.getLocationLeft(this.organization).then((mNm: any) => {
       this.locations = mNm;
+
+      mNm.forEach((elm) => {
+        if (elm.LocItemCode == this.asset.LocItemCode) {
+          this.asset.LocItemCode = {
+            LocItemCode: this.asset.LocItemCode,
+            LocDesc: elm.LocDesc,
+          };
+        }
+      });
     });
   }
 
   onTireSizes() {
-    this.firebaseGetServ.getTyreSize(this.organization).then((size: any) => {
-      this.tyreSizes = size;
-    });
-  }
-  onTireSizesLeft() {
     this.firebaseGetServ
       .getTyreSizeLeft(this.organization)
       .then((size: any) => {
         this.tyreSizes = size;
+
+        size.forEach((elm) => {
+          if (elm.TyreSizeGuid == this.asset.FrontTyreGuid) {
+            this.asset.FrontTyreGuid = {
+              TyreSizeGuid: this.asset.FrontTyreGuid,
+              TyreSize: elm.TyreSize,
+            };
+          }
+
+          if (elm.TyreSizeGuid == this.asset.RearTyreGuid) {
+            this.asset.RearTyreGuid = {
+              TyreSizeGuid: this.asset.RearTyreGuid,
+              TyreSize: elm.TyreSize,
+            };
+          }
+        });
       });
   }
 
@@ -257,19 +281,32 @@ export class AddassetsPage implements OnInit {
       .getMeterTypeLeft(this.organization)
       .then((mNm: any) => {
         this.meterTypes = mNm;
+
+        mNm.forEach((elm) => {
+          if (elm.meterTypeUuid == this.asset.MeterType) {
+            this.asset.MeterType = {
+              meterTypeUuid: this.asset.MeterType,
+              meterTypeName: elm.meterTypeName,
+            };
+          }
+        });
       });
   }
 
   onVotecode() {
-    this.firebaseGetServ.getVoteCodes(this.organization).then((mNm: any) => {
-      this.votecodes = mNm;
-    });
-  }
-  onVotecodeLeft() {
     this.firebaseGetServ
       .getVoteCodesLeft(this.organization)
       .then((mNm: any) => {
         this.votecodes = mNm;
+
+        mNm.forEach((elm) => {
+          if (elm.VoteCodeGuid == this.asset.Votecode) {
+            this.asset.Votecode = {
+              VoteCodeGuid: this.asset.Votecode,
+              Votecode: elm.Votecode,
+            };
+          }
+        });
       });
   }
 

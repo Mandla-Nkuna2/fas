@@ -66,8 +66,6 @@ export class OilissuesPage implements OnInit {
       this.onOilStore();
       this.onSupplier();
       this.onOilType();
-      this.onCostCentre();
-      this.onStaffCode();
     });
   }
 
@@ -78,8 +76,8 @@ export class OilissuesPage implements OnInit {
         .then((mNm: any) => {
           this.oilIssues = mNm;
           this.onItemCompLeft();
-          this.onCostCentreLft();
-          this.onStaffCodeLeft();
+          this.onCostCentre();
+          this.onStaffCode();
           this.popUp.dismissLoading();
         })
         .catch((err) => {
@@ -230,11 +228,6 @@ export class OilissuesPage implements OnInit {
   }
 
   onCostCentre() {
-    this.firebaseGetServ.getCostCentre(this.organization).then((mNm: any) => {
-      this.costCentre = mNm;
-    });
-  }
-  onCostCentreLft() {
     this.firebaseGetServ
       .getCostCentreLeft(this.organization)
       .then((mNm: any) => {
@@ -251,11 +244,6 @@ export class OilissuesPage implements OnInit {
   }
 
   onStaffCode() {
-    this.firebaseGetServ.getStaff(this.organization).then((mNm: any) => {
-      this.staffCode = mNm;
-    });
-  }
-  onStaffCodeLeft() {
     this.firebaseGetServ.getStaffLeft(this.organization).then((mNm: any) => {
       this.staffCode = mNm;
 
@@ -308,6 +296,48 @@ export class OilissuesPage implements OnInit {
   }
 
   onEdit(item) {
+    item.ItemGuid = {
+      ItemGuid: item.ItemGuid,
+      Reg: item.RegIndex,
+    };
+    item.ItemCompGuid = {
+      ItemCompGuid: item.ItemCompGuid,
+      ItemCompName: item.ItemCompName,
+    };
+    item.CostCentGuid = {
+      CostCentGuid: item.CostCentGuid,
+      CostCentName: item.CostCent,
+    };
+    item.StaffGuid = {
+      StaffGuid: item.StaffGuid,
+      StaffCode: item.Staff,
+    };
+
+    this.oilStore.forEach((elm) => {
+      if (elm.OilStoreGuid == item.OilStoreGuid) {
+        item.OilStoreGuid = {
+          OilStoreGuid: item.LocItemCode,
+          OilStoreName: elm.OilStoreName,
+        };
+      }
+    });
+    this.supplier.forEach((elm) => {
+      if (elm.SuppGuid == item.SupplierGuid) {
+        item.SupplierGuid = {
+          SuppGuid: item.SupplierGuid,
+          SuppName: elm.SuppName,
+        };
+      }
+    });
+    this.oilTypes.forEach((elm) => {
+      if (elm.OilGuid == item.OilTypeGuid) {
+        item.OilTypeGuid = {
+          OilGuid: item.OilTypeGuid,
+          OilText: elm.OilText,
+        };
+      }
+    });
+
     this.oilIssue = item;
     this.editBool = true;
   }

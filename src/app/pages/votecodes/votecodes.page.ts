@@ -15,7 +15,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 export class VotecodesPage implements OnInit {
   organization = 'InnTee';
   voteCode: Votecodes;
-  voteCodes: Votecodes[] = [];
+  voteCodes: any[] = [];
 
   currentDate = new Date();
   returnedUser: any;
@@ -60,6 +60,9 @@ export class VotecodesPage implements OnInit {
       this.firebaseRepServ
         .getVotecodes(this.organization)
         .then((mNm: any) => {
+          mNm.forEach((elm) => {
+            elm.vCode = elm.Votecode;
+          });
           this.voteCodes = mNm;
           this.popUp.dismissLoading();
         })
@@ -72,11 +75,6 @@ export class VotecodesPage implements OnInit {
   }
 
   onVoteCodes() {
-    this.firebaseGetServ.getVoteCodes(this.organization).then((mNm: any) => {
-      this.voteCodesSel = mNm;
-    });
-  }
-  onVoteCodesLeft() {
     this.firebaseGetServ
       .getVoteCodesLeft(this.organization)
       .then((mNm: any) => {
@@ -111,14 +109,20 @@ export class VotecodesPage implements OnInit {
   }
 
   onEdit(item) {
+    if (typeof item.Votecode != 'object')
+      item.Votecode = {
+        VoteCodeGuid: item.Votecode,
+        Votecode: item.Votecode,
+      };
+
     this.voteCode = item;
     this.editBool = true;
   }
 
   onModify() {
     if (this.voteCode.Votecode)
-    if (this.voteCode.Votecode['Votecode'])
-      this.voteCode.Votecode = this.voteCode.Votecode['Votecode'];
+      if (this.voteCode.Votecode['Votecode'])
+        this.voteCode.Votecode = this.voteCode.Votecode['Votecode'];
 
     this.firebaseService
       .writeData(

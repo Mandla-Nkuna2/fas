@@ -143,8 +143,6 @@
                   itemValueField="SuppCategoryGuid"
                   itemTextField="SuppCategory"
                   [canSearch]="true"
-                  [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onCategoryLeft()"
                 >
                 </ionic-selectable>
               </ion-item>
@@ -232,7 +230,7 @@
             </div>
           </ion-col>
 
-               <!-- <ion-col size="3.5">
+          <!-- <ion-col size="3.5">
             <div class="item-input">
               <ion-label>Ext.</ion-label>
               <ion-item lines="none">

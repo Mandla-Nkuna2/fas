@@ -51,7 +51,6 @@ export class SupdepositPage implements OnInit {
       this.returnedUser = user;
 
       this.onTableRep();
-      this.onSupplierName();
     });
   }
 
@@ -60,9 +59,8 @@ export class SupdepositPage implements OnInit {
       this.firebaseRepServ
         .getSupplierDeposits(this.organization)
         .then((mNm: any) => {
-          console.log(mNm);
           this.supplierDeposits = mNm;
-          this.onSupplierNameLeft();
+          this.onSupplierName();
           this.popUp.dismissLoading();
         })
         .catch((err) => {
@@ -78,11 +76,6 @@ export class SupdepositPage implements OnInit {
   }
 
   onSupplierName() {
-    this.firebaseGetServ.getSupplier(this.organization).then((mNm: any) => {
-      this.supplier = mNm;
-    });
-  }
-  onSupplierNameLeft() {
     this.firebaseGetServ.getSupplierLeft(this.organization).then((mNm: any) => {
       this.supplier = mNm;
 
@@ -121,6 +114,11 @@ export class SupdepositPage implements OnInit {
   }
 
   onEdit(item) {
+    item.SuppGuid = {
+      SuppGuid: item.SuppGuid,
+      SuppName: item.Supp,
+    };
+
     this.supplierDeposit = item;
     this.editBool = true;
   }

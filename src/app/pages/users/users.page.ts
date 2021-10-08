@@ -202,11 +202,6 @@ export class UsersPage implements OnInit {
   }
 
   onLocation() {
-    this.firebaseGetServ.getLocation(this.organization).then((mNm: any) => {
-      this.locations = mNm;
-    });
-  }
-  onLocationLeft() {
     this.firebaseGetServ.getLocationLeft(this.organization).then((mNm: any) => {
       this.locations = mNm;
     });
@@ -237,7 +232,7 @@ export class UsersPage implements OnInit {
     if (this.user.UserGroupGuid)
       this.user.UserGroupGuid = this.user.UserGroupGuid['UserGroupGuid'];
     if (this.user.LocUserCode)
-      this.user.LocUserCode = this.user.LocUserCode['LocGuid'];
+      this.user.LocUserCode = this.user.LocUserCode['LocItemCode'];
 
     this.http.post(apiUrl + 'registerUser', this.user).subscribe(
       (res) => {
@@ -314,6 +309,20 @@ export class UsersPage implements OnInit {
   }
 
   onEdit(item) {
+    item.UserGroupGuid = {
+      UserGroupGuid: item.UserGroupGuid,
+      UserGroupTitle: item.UserGroup,
+    };
+
+    this.locations.forEach((elm) => {
+      if (elm.LocItemCode == item.LocUserCode) {
+        item.LocUserCode = {
+          LocGuid: item.LocUserCode,
+          LocDesc: elm.LocDesc,
+        };
+      }
+    });
+
     this.user = item;
     this.editBool = true;
   }
@@ -323,8 +332,8 @@ export class UsersPage implements OnInit {
       if (this.user.UserGroupGuid['UserGroupGuid'])
         this.user.UserGroupGuid = this.user.UserGroupGuid['UserGroupGuid'];
     if (this.user.LocUserCode)
-      if (this.user.LocUserCode['LocGuid'])
-        this.user.LocUserCode = this.user.LocUserCode['LocGuid'];
+      if (this.user.LocUserCode['LocItemCode'])
+        this.user.LocUserCode = this.user.LocUserCode['LocItemCode'];
 
     this.popUp.showLoading('loading...').then(() => {
       this.http.post(apiUrl + 'updateUser', this.user).subscribe(

@@ -57,11 +57,7 @@ export class LosscontrolPage implements OnInit {
       this.returnedUser = user;
 
       this.onTableRep();
-      this.onAgent();
-      this.onRegistration();
-      this.onLossType();
       this.onReportedBy();
-      this.onDriverName();
       this.onActionTaken();
     });
   }
@@ -71,13 +67,13 @@ export class LosscontrolPage implements OnInit {
       this.firebaseRepServ
         .getLossControls(this.organization)
         .then((mNm: any) => {
+          this.popUp.dismissLoading();
           this.lossControls = mNm;
           this.onLossContNo();
           this.onAgentLeft();
           this.onRegistrationLeft();
           this.onLossType();
           this.onDriverNameLeft();
-          this.popUp.dismissLoading();
         })
         .catch((err) => {
           this.popUp.dismissLoading().then(() => {
@@ -88,22 +84,15 @@ export class LosscontrolPage implements OnInit {
   }
 
   onLossContNo() {
-    let count = 0;
-    this.lossControls.forEach((elm) => {
-      count = elm.LossControlNo;
+    this.firebaseRepServ.getLossCtrlCt(this.organization).then((mNm: any) => {
+      this.lossControl.LossControlNo = mNm + 1;
     });
-    this.lossControl.LossControlNo = count + 1;
   }
 
   goMEvent() {
     this.navCtrl.navigateForward('main/maintaincevent');
   }
 
-  onAgent() {
-    this.firebaseGetServ.getStaff(this.organization).then((mNm: any) => {
-      this.agent = mNm;
-    });
-  }
   onAgentLeft() {
     this.firebaseGetServ.getStaffLeft(this.organization).then((mNm: any) => {
       this.agent = mNm;
@@ -118,11 +107,6 @@ export class LosscontrolPage implements OnInit {
     });
   }
 
-  onRegistration() {
-    this.firebaseGetServ.getRegistration(this.organization).then((mNm: any) => {
-      this.registration = mNm;
-    });
-  }
   onRegistrationLeft() {
     this.firebaseGetServ
       .getRegistrationLeft(this.organization)
@@ -164,11 +148,6 @@ export class LosscontrolPage implements OnInit {
     });
   }
 
-  onDriverName() {
-    this.firebaseGetServ.getStaff(this.organization).then((mNm: any) => {
-      this.driver = mNm;
-    });
-  }
   onDriverNameLeft() {
     this.firebaseGetServ.getStaffLeft(this.organization).then((mNm: any) => {
       this.driver = mNm;
@@ -228,6 +207,38 @@ export class LosscontrolPage implements OnInit {
   }
 
   onEdit(item) {
+    item.Agentguid = {
+      Agentguid: item.Agentguid,
+      StaffCode: item.Agent,
+    };
+    item.Itemguid = {
+      ItemGuid: item.Itemguid,
+      Reg: item.Item,
+    };
+    item.LossTypeguid = {
+      LossTypeguid: item.LossTypeguid,
+      LossContType: item.LossType,
+    };
+    item.DriverGuid = {
+      DriverGuid: item.DriverGuid,
+      StaffCode: item.Driver,
+    };
+
+    this.reportedBy.forEach((elm) => {
+      if (elm.StaffGuid == item.Reportbyguid)
+        item.Reportbyguid = {
+          StaffGuid: item.Reportbyguid,
+          StaffCode: elm.StaffCode,
+        };
+    });
+    this.lossCntrlAction.forEach((elm) => {
+      if (elm.LossContActGuid == item.LossContActguid)
+        item.LossContActguid = {
+          LossContActguid: item.LossContActguid,
+          LossContAct: elm.LossContAct,
+        };
+    });
+
     this.lossControl = item;
     this.editBool = true;
   }

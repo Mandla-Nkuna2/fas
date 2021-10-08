@@ -49,7 +49,6 @@ export class SupplierdetailsPage implements OnInit {
       this.returnedUser = user;
 
       this.onTableRep();
-      this.onCategory();
     });
   }
 
@@ -59,7 +58,7 @@ export class SupplierdetailsPage implements OnInit {
         .getSuppliers(this.organization)
         .then((mNm: any) => {
           this.suppliers = mNm;
-          this.onCategoryLeft();
+          this.onCategory();
           this.popUp.dismissLoading();
         })
         .catch((err) => {
@@ -71,11 +70,6 @@ export class SupplierdetailsPage implements OnInit {
   }
 
   onCategory() {
-    this.firebaseGetServ.getSuppCat(this.organization).then((mNm: any) => {
-      this.suppCat = mNm;
-    });
-  }
-  onCategoryLeft() {
     this.firebaseGetServ.getSuppCatLeft(this.organization).then((mNm: any) => {
       this.suppCat = mNm;
 
@@ -115,6 +109,11 @@ export class SupplierdetailsPage implements OnInit {
   }
 
   onEdit(item) {
+    item.SuppCategoryGuid = {
+      SuppCategoryGuid: item.SuppCategoryGuid,
+      SuppCategory: item.SuppCategory,
+    };
+
     this.supplier = item;
     this.editBool = true;
   }

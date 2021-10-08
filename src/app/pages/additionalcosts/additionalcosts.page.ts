@@ -56,10 +56,6 @@ export class AdditionalcostsPage implements OnInit {
 
       this.onTableRep();
       this.onRegistration();
-      this.onAdditionalCostDesc();
-      this.onCostCentre();
-      this.onStaffCode();
-      this.onSupplier();
     });
   }
 
@@ -70,9 +66,9 @@ export class AdditionalcostsPage implements OnInit {
         .then((mNm: any) => {
           this.additionalCosts = mNm;
           this.onAdditionalCostDesc();
-          this.onCostCentreLeft();
-          this.onStaffCodeLeft();
-          this.onSupplierLeft();
+          this.onCostCentre();
+          this.onStaffCode();
+          this.onSupplier();
           this.popUp.dismissLoading();
         })
         .catch((err) => {
@@ -117,11 +113,6 @@ export class AdditionalcostsPage implements OnInit {
   }
 
   onCostCentre() {
-    this.firebaseGetServ.getCostCentre(this.organization).then((mNm: any) => {
-      this.costCentre = mNm;
-    });
-  }
-  onCostCentreLeft() {
     this.firebaseGetServ
       .getCostCentreLeft(this.organization)
       .then((mNm: any) => {
@@ -138,11 +129,6 @@ export class AdditionalcostsPage implements OnInit {
   }
 
   onStaffCode() {
-    this.firebaseGetServ.getStaff(this.organization).then((mNm: any) => {
-      this.staffcode = mNm;
-    });
-  }
-  onStaffCodeLeft() {
     this.firebaseGetServ.getStaffLeft(this.organization).then((mNm: any) => {
       this.staffcode = mNm;
 
@@ -157,11 +143,6 @@ export class AdditionalcostsPage implements OnInit {
   }
 
   onSupplier() {
-    this.firebaseGetServ.getSupplier(this.organization).then((mNm: any) => {
-      this.supplier = mNm;
-    });
-  }
-  onSupplierLeft() {
     this.firebaseGetServ.getSupplierLeft(this.organization).then((mNm: any) => {
       this.supplier = mNm;
 
@@ -213,6 +194,27 @@ export class AdditionalcostsPage implements OnInit {
   }
 
   onEdit(item) {
+    item.Itemguid = {
+      ItemGuid: item.Itemguid,
+      Reg: item.RegIndex,
+    };
+    item.AddCostDescGuid = {
+      AddCostDescGuid: item.AddCostDescGuid,
+      AddCostDesc: item.AddCostDesc,
+    };
+    item.CostCentreGuid = {
+      CostCentGuid: item.CostCentreGuid,
+      CostCentName: item.CostCentre,
+    };
+    item.StaffGuid = {
+      StaffGuid: item.StaffGuid,
+      StaffCode: item.StaffCode,
+    };
+    item.Suppguid = {
+      SuppGuid: item.Suppguid,
+      SuppName: item.Supp,
+    };
+
     this.additionalCost = item;
     this.editBool = true;
   }

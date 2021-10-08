@@ -60,10 +60,6 @@ export class ItemcomponentsPage implements OnInit {
       this.returnedUser = user;
 
       this.onTableRep();
-      this.onRegistration();
-      this.onCompName();
-      this.onCompMake();
-      this.onCompModel();
       this.onServiceIntv();
     });
   }
@@ -93,11 +89,6 @@ export class ItemcomponentsPage implements OnInit {
     this.navCtrl.navigateForward('items');
   }
 
-  onRegistration() {
-    this.firebaseGetServ.getRegistration(this.organization).then((mNm: any) => {
-      this.registrations = mNm;
-    });
-  }
   onRegistrationLeft() {
     this.firebaseGetServ
       .getRegistrationLeft(this.organization)
@@ -129,15 +120,9 @@ export class ItemcomponentsPage implements OnInit {
       });
   }
 
-  onCompName() {
-    this.firebaseGetServ.getCompName(this.organization).then((mNm: any) => {
-      this.assetCompName = mNm;
-    });
-  }
   onCompNameLeft() {
     this.firebaseGetServ.getCompNameLeft(this.organization).then((mNm: any) => {
       this.assetCompName = mNm;
-
       mNm.forEach((elm) => {
         this.itemComponents.forEach((obj) => {
           if (elm.CompNameGuid == obj.CompNameGuid) {
@@ -148,11 +133,6 @@ export class ItemcomponentsPage implements OnInit {
     });
   }
 
-  onCompMake() {
-    this.firebaseGetServ.getItemCompMake(this.organization).then((mNm: any) => {
-      this.assetCompMake = mNm;
-    });
-  }
   onCompMakeLeft() {
     this.firebaseGetServ
       .getItemCompMakeLeft(this.organization)
@@ -169,13 +149,6 @@ export class ItemcomponentsPage implements OnInit {
       });
   }
 
-  onCompModel() {
-    this.firebaseGetServ
-      .getItemCompModel(this.organization)
-      .then((mNm: any) => {
-        this.assetCompModel = mNm;
-      });
-  }
   onCompModelLeft() {
     this.firebaseGetServ
       .getItemCompModelLeft(this.organization)
@@ -198,15 +171,6 @@ export class ItemcomponentsPage implements OnInit {
         a.ServIntval > b.ServIntval ? 1 : -1,
       );
     });
-  }
-  onServiceIntvLeft() {
-    this.firebaseGetServ
-      .getServiceIntvlLeft(this.organization)
-      .then((mNm: any) => {
-        this.servIntvl = mNm.sort((a, b) =>
-          a.ServIntval > b.ServIntval ? 1 : -1,
-        );
-      });
   }
 
   onOilType() {
@@ -315,9 +279,43 @@ export class ItemcomponentsPage implements OnInit {
   }
 
   onEdit(item) {
-    this.maknmod = null;
+    item.ItemGuid = {
+      ItemGuid: item.ItemGuid,
+      Reg: item.Item,
+      ItemMakModGuid: item.ItemMakeModelGuid,
+    };
+    item.CompNameGuid = {
+      CompNameGuid: item.CompNameGuid,
+      CompName: item.CompName,
+    };
+    item.CompMakeGuid = {
+      CompMakeGuid: item.CompMakeGuid,
+      CompMake: item.CompMake,
+    };
+    item.CompModelGuid = {
+      CompModelGuid: item.CompModelGuid,
+      CompModel: item.CompModel,
+    };
+
+    this.servIntvl.forEach((elm) => {
+      if (elm.ServIntvalGuid == item.ServIntvalGuid)
+        item.ServIntvalGuid = {
+          ServIntvalGuid: item.ServIntvalGuid,
+          ServIntval: elm.ServIntval,
+        };
+    });
+
+    this.oilTypes.forEach((elm) => {
+      if (elm.OilGuid == item.OilTypeGuid)
+        item.OilTypeGuid = {
+          OilTypeGuid: item.OilTypeGuid,
+          OilText: elm.OilText,
+        };
+    });
+
     this.itemComponent = item;
     this.editBool = true;
+    this.onMakenModel();
   }
 
   onModify() {

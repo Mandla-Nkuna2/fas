@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 
-const limVal = 3;
 @Injectable({
   providedIn: 'root',
 })
 export class FirebaseReportService {
+  limVal = 3;
   constructor(private afs: AngularFirestore) {}
 
   public getAsset(organization) {
@@ -13,7 +13,7 @@ export class FirebaseReportService {
       this.afs
         .collection(organization + '/Mst_Item/tables')
         .ref.orderBy('CaptureDate', 'desc')
-        .limit(limVal)
+        .limit(this.limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -28,7 +28,6 @@ export class FirebaseReportService {
     });
     return promise;
   }
-
   public getAssetLeft(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
@@ -47,13 +46,47 @@ export class FirebaseReportService {
     });
     return promise;
   }
+  public getAssetMore(organization) {
+    const promise = new Promise((resolve, reject) => {
+      this.limVal += 3;
+      this.afs
+        .collection(organization + '/Mst_Item/tables')
+        .ref.orderBy('CaptureDate', 'desc')
+        .limit(this.limVal)
+        .get()
+        .then((obj) => {
+          let data = [];
+          obj.docs.forEach((obElem) => {
+            data.push(obElem.data());
+          });
+          resolve(data);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+  // onInfiniteScroll(event) {
+  //   this.limit += 10; // or however many more you want to load
+  //   this.itemRef.limitToFirst(limit).once('value', (itemList) => {
+  //     let items = [];
+  //     itemList.forEach((item) => {
+  //       items.push(item.val());
+  //       return false;
+  //     });
+
+  //     this.itemList = items;
+  //     this.loadeditemList = items;
+  //   });
+  // }
 
   public getItemComponents(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection(organization + '/Mst_ItemComponents/tables')
         .ref.orderBy('CaptureDate', 'desc')
-        .limit(limVal)
+        .limit(this.limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -74,7 +107,7 @@ export class FirebaseReportService {
       this.afs
         .collection(organization + '/Trn_LossControl/tables')
         .ref.orderBy('Capturedate', 'desc')
-        .limit(limVal)
+        .limit(this.limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -90,12 +123,29 @@ export class FirebaseReportService {
     return promise;
   }
 
+  public getLossCtrlCt(organization) {
+    const promise = new Promise((resolve, reject) => {
+      this.afs
+        .collection(organization + '/Trn_LossControl/tables')
+        .ref.get()
+        .then((obj) => {
+          let count = 0;
+          count = obj.size;
+          resolve(count);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+    return promise;
+  }
+
   public getDailyOperations(organization) {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection(organization + '/Trn_PlantSheets/tables')
         .ref.orderBy('Capturedate', 'desc')
-        .limit(limVal)
+        .limit(this.limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -116,7 +166,7 @@ export class FirebaseReportService {
       this.afs
         .collection(organization + '/Trn_LicHistory/tables')
         .ref.orderBy('Capturedate', 'desc')
-        .limit(limVal)
+        .limit(this.limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -137,7 +187,7 @@ export class FirebaseReportService {
       this.afs
         .collection(organization + '/Trn_MaintEvnt/tables')
         .ref.orderBy('CaptureDate', 'desc')
-        .limit(limVal)
+        .limit(this.limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -198,7 +248,7 @@ export class FirebaseReportService {
       this.afs
         .collection(organization + '/Mst_Location/tables')
         .ref.orderBy('CaptureDate', 'desc')
-        .limit(limVal)
+        .limit(this.limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -238,7 +288,7 @@ export class FirebaseReportService {
       this.afs
         .collection(organization + '/Mst_FixedCosts/tables')
         .ref.orderBy('CaptureDate', 'desc')
-        .limit(limVal)
+        .limit(this.limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -259,7 +309,7 @@ export class FirebaseReportService {
       this.afs
         .collection(organization + '/Trn_FixedCosts/tables')
         .ref.orderBy('CaptureDate', 'desc')
-        .limit(limVal)
+        .limit(this.limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -280,7 +330,7 @@ export class FirebaseReportService {
       this.afs
         .collection(organization + '/Trn_Overheads/tables')
         .ref.orderBy('CaptureDate', 'desc')
-        .limit(limVal)
+        .limit(this.limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -301,7 +351,7 @@ export class FirebaseReportService {
       this.afs
         .collection(organization + '/Trn_AdditionalCosts/tables')
         .ref.orderBy('Capturedate', 'desc')
-        .limit(limVal)
+        .limit(this.limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -322,7 +372,7 @@ export class FirebaseReportService {
       this.afs
         .collection(organization + '/Trn_SuppBalance/tables')
         .ref.orderBy('Capturedate', 'desc')
-        .limit(limVal)
+        .limit(this.limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -343,7 +393,7 @@ export class FirebaseReportService {
       this.afs
         .collection(organization + '/Mst_Autocard/tables')
         .ref.orderBy('CaptureDate', 'desc')
-        .limit(limVal)
+        .limit(this.limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -364,7 +414,7 @@ export class FirebaseReportService {
       this.afs
         .collection(organization + '/Trn_StoreIssue/tables')
         .ref.orderBy('CaptureDate', 'desc')
-        .limit(limVal)
+        .limit(this.limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -385,7 +435,7 @@ export class FirebaseReportService {
       this.afs
         .collection(organization + '/Trn_OilIssue/tables')
         .ref.orderBy('CaptureDate', 'desc')
-        .limit(limVal)
+        .limit(this.limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -406,7 +456,7 @@ export class FirebaseReportService {
       this.afs
         .collection(organization + '/Trn_FuelIssue/tables')
         .ref.orderBy('CaptureDate', 'desc')
-        .limit(limVal)
+        .limit(this.limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -427,7 +477,7 @@ export class FirebaseReportService {
       this.afs
         .collection(organization + '/Trn_OilStores/tables')
         .ref.orderBy('CaptureDate', 'desc')
-        .limit(limVal)
+        .limit(this.limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -448,7 +498,7 @@ export class FirebaseReportService {
       this.afs
         .collection(organization + '/Trn_OilStoreTransfer/tables')
         .ref.orderBy('CaptureDate', 'desc')
-        .limit(limVal)
+        .limit(this.limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -469,7 +519,7 @@ export class FirebaseReportService {
       this.afs
         .collection(organization + '/Trn_Bowsers/tables')
         .ref.orderBy('CaptureDate', 'desc')
-        .limit(limVal)
+        .limit(this.limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -490,7 +540,7 @@ export class FirebaseReportService {
       this.afs
         .collection(organization + '/Trn_BowserTransfer/tables')
         .ref.orderBy('CaptureDate', 'desc')
-        .limit(limVal)
+        .limit(this.limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -511,7 +561,7 @@ export class FirebaseReportService {
       this.afs
         .collection(organization + '/Trn_StaffTime/tables')
         .ref.orderBy('CaptureDate', 'desc')
-        .limit(limVal)
+        .limit(this.limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -531,7 +581,7 @@ export class FirebaseReportService {
     const promise = new Promise((resolve, reject) => {
       this.afs
         .collection(organization + '/Trn_AuditTrail/tables')
-        .ref.limit(limVal)
+        .ref.limit(this.limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -552,7 +602,7 @@ export class FirebaseReportService {
       this.afs
         .collection(organization + '/Trn_StaffTime/tables')
         .ref.orderBy('CaptureDate', 'desc')
-        .limit(limVal)
+        .limit(this.limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -573,7 +623,7 @@ export class FirebaseReportService {
       this.afs
         .collection(organization + '/Trn_StaffProdTime/tables')
         .ref.orderBy('CaptureDate', 'desc')
-        .limit(limVal)
+        .limit(this.limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -594,7 +644,7 @@ export class FirebaseReportService {
       this.afs
         .collection(organization + '/Mst_Users/tables')
         .ref.orderBy('CaptureDate', 'desc')
-        .limit(limVal)
+        .limit(this.limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -615,7 +665,7 @@ export class FirebaseReportService {
       this.afs
         .collection(organization + '/Sys_UserGroup/tables')
         .ref.orderBy('CapDate', 'desc')
-        .limit(limVal)
+        .limit(this.limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -636,7 +686,7 @@ export class FirebaseReportService {
       this.afs
         .collection(organization + '/Mst_Client/tables')
         .ref.orderBy('CaptureDate', 'desc')
-        .limit(limVal)
+        .limit(this.limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -657,7 +707,7 @@ export class FirebaseReportService {
       this.afs
         .collection(organization + '/Sup_ItemType/tables')
         .ref.orderBy('CapDate', 'desc')
-        .limit(limVal)
+        .limit(this.limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -678,7 +728,7 @@ export class FirebaseReportService {
       this.afs
         .collection(organization + '/Sup_ItemMakMod/tables')
         .ref.orderBy('CapDate', 'desc')
-        .limit(limVal)
+        .limit(this.limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -699,7 +749,7 @@ export class FirebaseReportService {
       this.afs
         .collection(organization + '/Mst_Bowser/tables')
         .ref.orderBy('CaptureDate', 'desc')
-        .limit(limVal)
+        .limit(this.limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -720,7 +770,7 @@ export class FirebaseReportService {
       this.afs
         .collection(organization + '/Mst_Supplier/tables')
         .ref.orderBy('CaptureDate', 'desc')
-        .limit(limVal)
+        .limit(this.limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -741,7 +791,7 @@ export class FirebaseReportService {
       this.afs
         .collection(organization + '/Sup_Checklist/tables')
         .ref.orderBy('CapDate', 'desc')
-        .limit(limVal)
+        .limit(this.limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -782,7 +832,7 @@ export class FirebaseReportService {
       this.afs
         .collection(organization + '/Mst_StaffDetails/tables')
         .ref.orderBy('CaptureDate', 'desc')
-        .limit(limVal)
+        .limit(this.limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -823,7 +873,7 @@ export class FirebaseReportService {
       this.afs
         .collection(organization + '/Trn_OverheadBud/tables')
         .ref.orderBy('CapDate', 'desc')
-        .limit(limVal)
+        .limit(this.limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -844,7 +894,7 @@ export class FirebaseReportService {
       this.afs
         .collection(organization + '/Trn_Votecodes/tables')
         .ref.orderBy('CaptureDate', 'desc')
-        .limit(limVal)
+        .limit(this.limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -865,7 +915,7 @@ export class FirebaseReportService {
       this.afs
         .collection(organization + '/Sup_Response/tables')
         .ref.orderBy('CapDate', 'desc')
-        .limit(limVal)
+        .limit(this.limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -886,7 +936,7 @@ export class FirebaseReportService {
       this.afs
         .collection(organization + '/Sup_Oiltype/tables')
         .ref.orderBy('CapDate', 'desc')
-        .limit(limVal)
+        .limit(this.limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -907,7 +957,7 @@ export class FirebaseReportService {
       this.afs
         .collection(organization + '/Sup_CostCentre/tables')
         .ref.orderBy('Capturedate', 'desc')
-        .limit(limVal)
+        .limit(this.limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -928,7 +978,7 @@ export class FirebaseReportService {
       this.afs
         .collection(organization + '/Mst_OilStore/tables')
         .ref.orderBy('CaptureDate', 'desc')
-        .limit(limVal)
+        .limit(this.limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -949,7 +999,7 @@ export class FirebaseReportService {
       this.afs
         .collection(organization + '/Sup_CompName/tables')
         .ref.orderBy('CapDate', 'desc')
-        .limit(limVal)
+        .limit(this.limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -970,7 +1020,7 @@ export class FirebaseReportService {
       this.afs
         .collection(organization + '/Sup_StoreCatg/tables')
         .ref.orderBy('CapDate', 'desc')
-        .limit(limVal)
+        .limit(this.limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -991,7 +1041,7 @@ export class FirebaseReportService {
       this.afs
         .collection(organization + '/Sup_ServType/tables')
         .ref.orderBy('CapDate', 'desc')
-        .limit(limVal)
+        .limit(this.limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -1016,7 +1066,7 @@ export class FirebaseReportService {
           'LIGHT LOAD VEHICLE',
           'HEAVY LOAD VEHICLE',
         ])
-        .limit(limVal)
+        .limit(this.limVal)
         .get()
         .then((obj) => {
           let data = [];
@@ -1039,7 +1089,7 @@ export class FirebaseReportService {
         .ref //.where('StaffGuid', '!=', '')
         .where('ItemCatg', '==', 'VEHICLES')
         .orderBy('CaptureDate', 'desc')
-        .limit(limVal)
+        .limit(this.limVal)
         .get()
         .then((obj) => {
           let data = [];

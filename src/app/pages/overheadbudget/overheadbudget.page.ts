@@ -22,7 +22,7 @@ export class OverheadbudgetPage implements OnInit {
   ohTypes: any[];
   finYear = ['2020', '2021', '2022', '2023'];
   editBool = false;
-  
+
   constructor(
     private firebaseRepServ: FirebaseReportService,
     private firebaseService: FirebaseService,
@@ -37,7 +37,7 @@ export class OverheadbudgetPage implements OnInit {
     this.getCurrentUser();
   }
 
-    getCurrentUser() {
+  getCurrentUser() {
     this.afAuth.user.subscribe((cUser) => {
       this.getCurrentUserOrg(cUser.email);
     });
@@ -50,7 +50,6 @@ export class OverheadbudgetPage implements OnInit {
       this.returnedUser = user;
 
       this.onTableRep();
-      this.onOhbType();
     });
   }
 
@@ -110,16 +109,21 @@ export class OverheadbudgetPage implements OnInit {
       });
   }
 
-    onEdit(item) {
+  onEdit(item) {
+    item.OverheadTypeGuid = {
+      OverheadTypeGuid: item.OverheadTypeGuid,
+      OverheadType: item.OverheadType,
+    };
+
     this.oheadbudget = item;
     this.editBool = true;
   }
 
   onModify() {
     if (this.oheadbudget.OverheadTypeGuid)
-    if (this.oheadbudget.OverheadTypeGuid['OverheadTypeGuid'])
-      this.oheadbudget.OverheadTypeGuid =
-        this.oheadbudget.OverheadTypeGuid['OverheadTypeGuid'];
+      if (this.oheadbudget.OverheadTypeGuid['OverheadTypeGuid'])
+        this.oheadbudget.OverheadTypeGuid =
+          this.oheadbudget.OverheadTypeGuid['OverheadTypeGuid'];
 
     this.firebaseService
       .writeData(

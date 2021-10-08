@@ -123,15 +123,20 @@ export class OilstorePage implements OnInit {
       });
   }
 
-    onEdit(item) {
+  onEdit(item) {
+    item.OilStoreLoc = {
+      LocItemCode: item.OilStoreLoc,
+      LocDesc: item.OilStoreName,
+    };
+
     this.oilStore = item;
     this.editBool = true;
   }
 
   onModify() {
     if (this.oilStore.OilStoreLoc)
-    if (this.oilStore.OilStoreLoc['LocItemCode'])
-      this.oilStore.OilStoreLoc = this.oilStore.OilStoreLoc['LocItemCode'];
+      if (this.oilStore.OilStoreLoc['LocItemCode'])
+        this.oilStore.OilStoreLoc = this.oilStore.OilStoreLoc['LocItemCode'];
 
     this.firebaseService
       .writeData(

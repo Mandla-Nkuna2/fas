@@ -143,6 +143,15 @@ export class OverheadtransPage implements OnInit {
   }
 
   onEdit(item) {
+    item.OverheadTypeGuid = {
+      OverheadTypeGuid: item.OverheadTypeGuid,
+      OverheadType: item.OverheadType,
+    };
+    item.CostCentGuid = {
+      CostCentGuid: item.CostCentGuid,
+      CostCentName: item.CostCent,
+    };
+
     this.overheadTrans = item;
     this.editBool = true;
   }

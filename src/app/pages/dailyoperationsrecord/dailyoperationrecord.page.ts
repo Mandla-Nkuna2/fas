@@ -64,9 +64,7 @@ export class DailyoperationrecordPage implements OnInit {
       this.returnedUser = user;
 
       this.onTableRep();
-      this.onRegistration();
       this.onLocation();
-      this.onCostCentre();
       this.onOperatorName();
     });
   }
@@ -89,11 +87,6 @@ export class DailyoperationrecordPage implements OnInit {
     });
   }
 
-  onRegistration() {
-    this.firebaseGetServ.getRegistration(this.organization).then((mNm: any) => {
-      this.registration = mNm;
-    });
-  }
   onRegistrationLeft() {
     this.firebaseGetServ
       .getRegistrationLeft(this.organization)
@@ -111,21 +104,11 @@ export class DailyoperationrecordPage implements OnInit {
   }
 
   onLocation() {
-    this.firebaseGetServ.getLocation(this.organization).then((mNm: any) => {
-      this.location = mNm;
-    });
-  }
-  onLocationLeft() {
     this.firebaseGetServ.getLocationLeft(this.organization).then((mNm: any) => {
       this.location = mNm;
     });
   }
 
-  onCostCentre() {
-    this.firebaseGetServ.getCostCentre(this.organization).then((mNm: any) => {
-      this.costCentre = mNm;
-    });
-  }
   onCostCentreLeft() {
     this.firebaseGetServ
       .getCostCentreLeft(this.organization)
@@ -162,7 +145,7 @@ export class DailyoperationrecordPage implements OnInit {
     if (this.dOpsRec.Itemguid)
       this.dOpsRec.Itemguid = this.dOpsRec.Itemguid['ItemGuid'];
     if (this.dOpsRec.LocItemCode)
-      this.dOpsRec.LocItemCode = this.dOpsRec.LocItemCode['LocGuid'];
+      this.dOpsRec.LocItemCode = this.dOpsRec.LocItemCode['LocItemCode'];
     if (this.dOpsRec.CostCentreguid)
       this.dOpsRec.CostCentreguid = this.dOpsRec.CostCentreguid['CostCentGuid'];
     if (this.dOpsRec.StaffGuid)
@@ -186,6 +169,32 @@ export class DailyoperationrecordPage implements OnInit {
   }
 
   onEdit(item) {
+    item.Itemguid = {
+      ItemGuid: item.Itemguid,
+      Reg: item.Item,
+    };
+    item.CostCentreguid = {
+      CostCentGuid: item.CostCentreguid,
+      CostCentName: item.CostCentre,
+    };
+
+    this.location.forEach((elm) => {
+      if (elm.LocItemCode == item.LocItemCode) {
+        item.LocItemCode = {
+          LocItemCode: item.LocItemCode,
+          LocDesc: elm.LocDesc,
+        };
+      }
+    });
+    this.operator.forEach((elm) => {
+      if (elm.StaffGuid == item.StaffGuid) {
+        item.StaffGuid = {
+          StaffGuid: item.StaffGuid,
+          StaffCode: elm.StaffCode,
+        };
+      }
+    });
+
     this.dOpsRec = item;
     this.editBool = true;
   }
@@ -197,8 +206,8 @@ export class DailyoperationrecordPage implements OnInit {
       if (this.dOpsRec.Itemguid['ItemGuid'])
         this.dOpsRec.Itemguid = this.dOpsRec.Itemguid['ItemGuid'];
     if (this.dOpsRec.LocItemCode)
-      if (this.dOpsRec.LocItemCode['LocGuid'])
-        this.dOpsRec.LocItemCode = this.dOpsRec.LocItemCode['LocGuid'];
+      if (this.dOpsRec.LocItemCode['LocItemCode'])
+        this.dOpsRec.LocItemCode = this.dOpsRec.LocItemCode['LocItemCode'];
     if (this.dOpsRec.CostCentreguid)
       if (this.dOpsRec.CostCentreguid['CostCentGuid'])
         this.dOpsRec.CostCentreguid =

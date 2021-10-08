@@ -55,7 +55,6 @@ export class RevenuePage implements OnInit {
 
       this.onTableRep();
       this.onRegistration();
-      this.onClient();
       this.onCostCentre();
     });
   }
@@ -167,6 +166,24 @@ export class RevenuePage implements OnInit {
   }
 
   onEdit(item) {
+    item.ItemGuid = {
+      ItemGuid: item.ItemGuid,
+      Reg: item.RegIndex,
+    };
+    item.ClientGuid = {
+      ClientGuid: item.ClientGuid,
+      ClientName: item.Client,
+    };
+
+    this.costCentre.forEach((elm) => {
+      if (elm.CostCentGuid == item.CostCentguid) {
+        item.CostCentguid = {
+          CostCentGuid: item.CostCentguid,
+          CostCentName: elm.CostCentName,
+        };
+      }
+    });
+
     this.revenue = item;
     this.editBool = true;
   }

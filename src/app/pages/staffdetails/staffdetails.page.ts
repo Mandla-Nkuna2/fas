@@ -38,7 +38,7 @@ export class StaffdetailsPage implements OnInit {
     this.getCurrentUser();
   }
 
-    getCurrentUser() {
+  getCurrentUser() {
     this.afAuth.user.subscribe((cUser) => {
       this.getCurrentUserOrg(cUser.email);
     });
@@ -51,7 +51,6 @@ export class StaffdetailsPage implements OnInit {
       this.returnedUser = user;
 
       this.onTableRep();
-      this.onStaffCat();
     });
   }
 
@@ -72,13 +71,6 @@ export class StaffdetailsPage implements OnInit {
     });
   }
 
-  onStaffCat() {
-    this.firebaseGetServ
-      .getStaffCategory(this.organization)
-      .then((mNm: any) => {
-        this.staffCats = mNm;
-      });
-  }
   onStaffCatLeft() {
     this.firebaseGetServ
       .getStaffCategoryLeft(this.organization)
@@ -125,15 +117,20 @@ export class StaffdetailsPage implements OnInit {
       });
   }
 
-   onEdit(item) {
+  onEdit(item) {
+    item.StaffCatgGuid = {
+      StaffCatgGuid: item.StaffCatgGuid,
+      StaffCatg: item.StaffCatg,
+    };
+
     this.staff = item;
     this.editBool = true;
   }
 
   onModify() {
     if (this.staff.StaffCatgGuid)
-    if (this.staff.StaffCatgGuid['StaffCatgGuid'])
-      this.staff.StaffCatgGuid = this.staff.StaffCatgGuid['StaffCatgGuid'];
+      if (this.staff.StaffCatgGuid['StaffCatgGuid'])
+        this.staff.StaffCatgGuid = this.staff.StaffCatgGuid['StaffCatgGuid'];
 
     this.firebaseService
       .writeData(

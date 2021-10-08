@@ -57,7 +57,6 @@ export class FuelissuesPage implements OnInit {
       this.onTableRep();
       this.onRegistration();
       this.onBowser();
-      this.onSupplier();
       this.onStaffCode();
       this.onCostCentre();
     });
@@ -69,7 +68,7 @@ export class FuelissuesPage implements OnInit {
         .getFuelIssues(this.organization)
         .then((mNm: any) => {
           this.fuelIssues = mNm;
-          this.onSupplierLeft();
+          this.onSupplier();
           this.popUp.dismissLoading();
         })
         .catch((err) => {
@@ -109,11 +108,6 @@ export class FuelissuesPage implements OnInit {
   }
 
   onSupplier() {
-    this.firebaseGetServ.getSupplier(this.organization).then((mNm: any) => {
-      this.supplier = mNm;
-    });
-  }
-  onSupplierLeft() {
     this.firebaseGetServ.getSupplierLeft(this.organization).then((mNm: any) => {
       this.supplier = mNm;
 
@@ -179,6 +173,40 @@ export class FuelissuesPage implements OnInit {
   }
 
   onEdit(item) {
+    item.ItemGuid = {
+      ItemGuid: item.ItemGuid,
+      Reg: item.RegIndex,
+    };
+    item.SupplierGuid = {
+      SuppGuid: item.SupplierGuid,
+      SuppName: item.Supp,
+    };
+
+    this.bowser.forEach((elm) => {
+      if (elm.BowserGuid == item.BowserGuid) {
+        item.BowserGuid = {
+          BowserGuid: item.BowserGuid,
+          BowserName: elm.BowserName,
+        };
+      }
+    });
+    this.staffCode.forEach((elm) => {
+      if (elm.StaffGuid == item.StaffGuid) {
+        item.StaffGuid = {
+          StaffGuid: item.StaffGuid,
+          StaffCode: elm.StaffCode,
+        };
+      }
+    });
+    this.costCentre.forEach((elm) => {
+      if (elm.CostCentGuid == item.CostCentGuid) {
+        item.CostCentGuid = {
+          CostCentGuid: item.CostCentGuid,
+          CostCentName: elm.CostCentName,
+        };
+      }
+    });
+
     this.fuelIssue = item;
     this.editBool = true;
   }

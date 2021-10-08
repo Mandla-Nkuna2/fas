@@ -208,7 +208,6 @@
                   itemValueField="CostCentGuid"
                   itemTextField="CostCentName"
                   [canSearch]="true"
-                  [hasInfiniteScroll]="true"
                 >
                 </ionic-selectable>
               </ion-item>
@@ -225,8 +224,6 @@
                   itemValueField="StaffGuid"
                   itemTextField="StaffCode"
                   [canSearch]="true"
-                  [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onStaffCodeLeft()"
                 >
                 </ionic-selectable>
               </ion-item>
@@ -243,8 +240,6 @@
                   itemValueField="SuppGuid"
                   itemTextField="SuppName"
                   [canSearch]="true"
-                  [hasInfiniteScroll]="true"
-                  (onInfiniteScroll)="onSupplierLeft()"
                 >
                 </ionic-selectable>
               </ion-item>
