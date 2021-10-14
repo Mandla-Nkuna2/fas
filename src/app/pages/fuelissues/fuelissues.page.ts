@@ -26,6 +26,8 @@ export class FuelissuesPage implements OnInit {
   costCentre: any[];
   bowser: any[];
   editBool = false;
+  tblNext = true;
+  tblPrev = true;
 
   constructor(
     private navCtrl: NavController,
@@ -67,9 +69,76 @@ export class FuelissuesPage implements OnInit {
       this.firebaseRepServ
         .getFuelIssues(this.organization)
         .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblNext = true;
+            return;
+          }
+          this.tblPrev = true;
+          this.tblNext = false;
           this.fuelIssues = mNm;
           this.onSupplier();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onNext() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getFuelIssuesNext(this.organization)
+        .then((mNm: any) => {
           this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblNext = true;
+            return;
+          }
+          this.tblPrev = false;
+          this.fuelIssues = mNm;
+          this.onSupplier();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onPrev() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getFuelIssuesPrev(this.organization)
+        .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblPrev = true;
+            return;
+          }
+          this.tblNext = false;
+          this.fuelIssues = mNm;
+          this.onSupplier();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onLast() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getFuelIssuesLast(this.organization)
+        .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) return;
+          this.tblNext = true;
+          this.tblPrev = false;
+          this.fuelIssues = mNm;
+          this.onSupplier();
         })
         .catch((err) => {
           this.popUp.dismissLoading().then(() => {

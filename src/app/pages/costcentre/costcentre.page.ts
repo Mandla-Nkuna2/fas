@@ -19,6 +19,8 @@ export class CostcentrePage implements OnInit {
   currentDate = new Date();
   returnedUser: any;
   editBool = false;
+  tblNext = true;
+  tblPrev = true;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -33,7 +35,7 @@ export class CostcentrePage implements OnInit {
     this.getCurrentUser();
   }
 
-    getCurrentUser() {
+  getCurrentUser() {
     this.afAuth.user.subscribe((cUser) => {
       this.getCurrentUserOrg(cUser.email);
     });
@@ -49,14 +51,77 @@ export class CostcentrePage implements OnInit {
     });
   }
 
-
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
         .getCostcentre(this.organization)
         .then((mNm: any) => {
-          this.costcentres = mNm;
           this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblNext = true;
+            return;
+          }
+          this.tblPrev = true;
+          this.tblNext = false;
+          this.costcentres = mNm;
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onNext() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getCostcentreNext(this.organization)
+        .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblNext = true;
+            return;
+          }
+          this.tblPrev = false;
+          this.costcentres = mNm;
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onPrev() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getCostcentrePrev(this.organization)
+        .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblPrev = true;
+            return;
+          }
+          this.tblNext = false;
+          this.costcentres = mNm;
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onLast() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getCostcentreLast(this.organization)
+        .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) return;
+          this.tblNext = true;
+          this.tblPrev = false;
+          this.costcentres = mNm;
         })
         .catch((err) => {
           this.popUp.dismissLoading().then(() => {

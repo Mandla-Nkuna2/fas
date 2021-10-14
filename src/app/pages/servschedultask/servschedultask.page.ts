@@ -21,6 +21,8 @@ export class ServschedultaskPage implements OnInit {
   servSchTaskDesc: any;
   yesNo = ['Y', 'N'];
   editBool = false;
+  tblNext = true;
+  tblPrev = true;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -56,8 +58,72 @@ export class ServschedultaskPage implements OnInit {
       this.firebaseRepServ
         .getServiceScheduleTasks(this.organization)
         .then((mNm: any) => {
-          this.serviceSchTasks = mNm;
           this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblNext = true;
+            return;
+          }
+          this.tblPrev = true;
+          this.tblNext = false;
+          this.serviceSchTasks = mNm;
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onNext() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getServiceScheduleTasksNext(this.organization)
+        .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblNext = true;
+            return;
+          }
+          this.tblPrev = false;
+          this.serviceSchTasks = mNm;
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onPrev() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getServiceScheduleTasksPrev(this.organization)
+        .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblPrev = true;
+            return;
+          }
+          this.tblNext = false;
+          this.serviceSchTasks = mNm;
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onLast() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getServiceScheduleTasksLast(this.organization)
+        .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) return;
+          this.tblNext = true;
+          this.tblPrev = false;
+          this.serviceSchTasks = mNm;
         })
         .catch((err) => {
           this.popUp.dismissLoading().then(() => {
@@ -88,13 +154,12 @@ export class ServschedultaskPage implements OnInit {
       });
   }
 
-    onEdit(item) {
+  onEdit(item) {
     this.serviceSchTask = item;
     this.editBool = true;
   }
 
-
-   onModify() {
+  onModify() {
     this.firebaseService
       .writeData(
         this.organization,

@@ -18,6 +18,8 @@ export class LocationPage implements OnInit {
   returnedUser: any;
   currentDate = new Date();
   editBool = false;
+  tblNext = true;
+  tblPrev = true;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -53,8 +55,72 @@ export class LocationPage implements OnInit {
       this.firebaseRepServ
         .getLocation(this.organization)
         .then((mNm: any) => {
-          this.locations = mNm;
           this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblNext = true;
+            return;
+          }
+          this.tblPrev = true;
+          this.tblNext = false;
+          this.locations = mNm;
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onNext() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getLocationNext(this.organization)
+        .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblNext = true;
+            return;
+          }
+          this.tblPrev = false;
+          this.locations = mNm;
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onPrev() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getLocationPrev(this.organization)
+        .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblPrev = true;
+            return;
+          }
+          this.tblNext = false;
+          this.locations = mNm;
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onLast() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getLocationLast(this.organization)
+        .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) return;
+          this.tblNext = true;
+          this.tblPrev = false;
+          this.locations = mNm;
         })
         .catch((err) => {
           this.popUp.dismissLoading().then(() => {
@@ -85,7 +151,7 @@ export class LocationPage implements OnInit {
       });
   }
 
-    onEdit(item) {
+  onEdit(item) {
     this.location = item;
     this.editBool = true;
   }

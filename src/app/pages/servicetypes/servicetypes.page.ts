@@ -23,6 +23,8 @@ export class ServicetypesPage implements OnInit {
   compServType = false;
   yesNo = ['Y', 'N'];
   editBool = false;
+  tblNext = true;
+  tblPrev = true;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -38,7 +40,7 @@ export class ServicetypesPage implements OnInit {
     this.getCurrentUser();
   }
 
-    getCurrentUser() {
+  getCurrentUser() {
     this.afAuth.user.subscribe((cUser) => {
       this.getCurrentUserOrg(cUser.email);
     });
@@ -59,8 +61,72 @@ export class ServicetypesPage implements OnInit {
       this.firebaseRepServ
         .getServiceTypes(this.organization)
         .then((mNm: any) => {
-          this.serviceTypes = mNm;
           this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblNext = true;
+            return;
+          }
+          this.tblPrev = true;
+          this.tblNext = false;
+          this.serviceTypes = mNm;
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onNext() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getServiceTypesNext(this.organization)
+        .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblNext = true;
+            return;
+          }
+          this.tblPrev = false;
+          this.serviceTypes = mNm;
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onPrev() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getServiceTypesPrev(this.organization)
+        .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblPrev = true;
+            return;
+          }
+          this.tblNext = false;
+          this.serviceTypes = mNm;
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onLast() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getServiceTypesLast(this.organization)
+        .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) return;
+          this.tblNext = true;
+          this.tblPrev = false;
+          this.serviceTypes = mNm;
         })
         .catch((err) => {
           this.popUp.dismissLoading().then(() => {
@@ -112,12 +178,12 @@ export class ServicetypesPage implements OnInit {
       });
   }
 
-   onEdit(item) {
+  onEdit(item) {
     this.serviceType = item;
     this.editBool = true;
   }
 
-   onModify() {
+  onModify() {
     this.firebaseService
       .writeData(
         this.organization,

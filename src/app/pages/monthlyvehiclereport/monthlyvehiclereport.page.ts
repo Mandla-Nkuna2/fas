@@ -18,6 +18,8 @@ export class MonthlyvehiclereportPage implements OnInit {
   returnedUser: any;
   assetTypes: any[];
   assetTypeNames: any[];
+  tblNext = true;
+  tblPrev = true;
 
   constructor(
     private navCtrl: NavController,
@@ -52,9 +54,76 @@ export class MonthlyvehiclereportPage implements OnInit {
       this.firebaseRepServ
         .getVehicles(this.organization)
         .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblNext = true;
+            return;
+          }
+          this.tblPrev = true;
+          this.tblNext = false;
           this.assets = mNm;
           this.onAssetType();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onNext() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getVehiclesNext(this.organization)
+        .then((mNm: any) => {
           this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblNext = true;
+            return;
+          }
+          this.tblPrev = false;
+          this.assets = mNm;
+          this.onAssetType();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onPrev() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getVehiclesPrev(this.organization)
+        .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblPrev = true;
+            return;
+          }
+          this.tblNext = false;
+          this.assets = mNm;
+          this.onAssetType();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onLast() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getVehiclesLast(this.organization)
+        .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) return;
+          this.tblNext = true;
+          this.tblPrev = false;
+          this.assets = mNm;
+          this.onAssetType();
         })
         .catch((err) => {
           this.popUp.dismissLoading().then(() => {

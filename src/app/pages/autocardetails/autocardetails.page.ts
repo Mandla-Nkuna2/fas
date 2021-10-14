@@ -23,6 +23,8 @@ export class AutocardetailsPage implements OnInit {
   registration: any[];
   yesNo = ['Y', 'N'];
   editBool = false;
+  tblNext = true;
+  tblPrev = true;
 
   constructor(
     private navCtrl: NavController,
@@ -60,9 +62,76 @@ export class AutocardetailsPage implements OnInit {
       this.firebaseRepServ
         .getAutocards(this.organization)
         .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblNext = true;
+            return;
+          }
+          this.tblPrev = true;
+          this.tblNext = false;
           this.autocards = mNm;
           this.onRegistration();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onNext() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getAutocardsNext(this.organization)
+        .then((mNm: any) => {
           this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblNext = true;
+            return;
+          }
+          this.tblPrev = false;
+          this.autocards = mNm;
+          this.onRegistration();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onPrev() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getAutocardsPrev(this.organization)
+        .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblPrev = true;
+            return;
+          }
+          this.tblNext = false;
+          this.autocards = mNm;
+          this.onRegistration();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onLast() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getAutocardsLast(this.organization)
+        .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) return;
+          this.tblNext = true;
+          this.tblPrev = false;
+          this.autocards = mNm;
+          this.onRegistration();
         })
         .catch((err) => {
           this.popUp.dismissLoading().then(() => {

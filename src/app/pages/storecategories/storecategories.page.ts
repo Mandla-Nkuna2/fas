@@ -21,6 +21,8 @@ export class StorecategoriesPage implements OnInit {
   returnedUser: any;
   storeCatItemsView = false;
   editBool = false;
+  tblNext = true;
+  tblPrev = true;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -36,7 +38,7 @@ export class StorecategoriesPage implements OnInit {
     this.getCurrentUser();
   }
 
-    getCurrentUser() {
+  getCurrentUser() {
     this.afAuth.user.subscribe((cUser) => {
       this.getCurrentUserOrg(cUser.email);
     });
@@ -52,14 +54,78 @@ export class StorecategoriesPage implements OnInit {
     });
   }
 
-
   onTableRep() {
     this.popUp.showLoading('loading...').then(() => {
       this.firebaseRepServ
         .getStoreCategories(this.organization)
         .then((mNm: any) => {
-          this.storeCats = mNm;
           this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblNext = true;
+            return;
+          }
+          console.log(mNm);
+          this.tblPrev = true;
+          this.tblNext = false;
+          this.storeCats = mNm;
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onNext() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getStoreCategoriesNext(this.organization)
+        .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblNext = true;
+            return;
+          }
+          this.tblPrev = false;
+          this.storeCats = mNm;
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onPrev() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getStoreCategoriesPrev(this.organization)
+        .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblPrev = true;
+            return;
+          }
+          this.tblNext = false;
+          this.storeCats = mNm;
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onLast() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getStoreCategoriesLast(this.organization)
+        .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) return;
+          this.tblNext = true;
+          this.tblPrev = false;
+          this.storeCats = mNm;
         })
         .catch((err) => {
           this.popUp.dismissLoading().then(() => {
@@ -100,7 +166,7 @@ export class StorecategoriesPage implements OnInit {
       });
   }
 
-    onEdit(item) {
+  onEdit(item) {
     this.storeCat = item;
     this.editBool = true;
   }

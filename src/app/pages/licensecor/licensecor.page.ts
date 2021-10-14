@@ -24,6 +24,8 @@ export class LicensecorPage implements OnInit {
   costCentre: any[];
   yesNo = ['Y', 'N'];
   editBool = false;
+  tblNext = true;
+  tblPrev = true;
 
   constructor(
     private navCtrl: NavController,
@@ -61,10 +63,84 @@ export class LicensecorPage implements OnInit {
       this.firebaseRepServ
         .getLicHistory(this.organization)
         .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblNext = true;
+            return;
+          }
+          this.tblPrev = true;
+          this.tblNext = false;
+          this.licCorAndSafInspecs = mNm;
+
           this.onRegistration();
           this.onCostCentre();
-          this.licCorAndSafInspecs = mNm;
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onNext() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getLicHistoryNext(this.organization)
+        .then((mNm: any) => {
           this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblNext = true;
+            return;
+          }
+          this.tblPrev = false;
+          this.licCorAndSafInspecs = mNm;
+
+          this.onRegistration();
+          this.onCostCentre();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onPrev() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getLicHistoryPrev(this.organization)
+        .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblPrev = true;
+            return;
+          }
+          this.tblNext = false;
+          this.licCorAndSafInspecs = mNm;
+
+          this.onRegistration();
+          this.onCostCentre();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onLast() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getLicHistoryLast(this.organization)
+        .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) return;
+          this.tblNext = true;
+          this.tblPrev = false;
+          this.licCorAndSafInspecs = mNm;
+
+          this.onRegistration();
+          this.onCostCentre();
         })
         .catch((err) => {
           this.popUp.dismissLoading().then(() => {

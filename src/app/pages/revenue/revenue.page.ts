@@ -25,6 +25,8 @@ export class RevenuePage implements OnInit {
   costCentre: any[];
   yesNo = ['Y', 'N'];
   editBool = false;
+  tblNext = true;
+  tblPrev = true;
 
   constructor(
     private navCtrl: NavController,
@@ -64,9 +66,76 @@ export class RevenuePage implements OnInit {
       this.firebaseRepServ
         .getRevenue(this.organization)
         .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblNext = true;
+            return;
+          }
+          this.tblPrev = true;
+          this.tblNext = false;
           this.revenuee = mNm;
           this.onClient();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onNext() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getRevenueNext(this.organization)
+        .then((mNm: any) => {
           this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblNext = true;
+            return;
+          }
+          this.tblPrev = false;
+          this.revenuee = mNm;
+          this.onClient();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onPrev() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getRevenuePrev(this.organization)
+        .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblPrev = true;
+            return;
+          }
+          this.tblNext = false;
+          this.revenuee = mNm;
+          this.onClient();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onLast() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getRevenueLast(this.organization)
+        .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) return;
+          this.tblNext = true;
+          this.tblPrev = false;
+          this.revenuee = mNm;
+          this.onClient();
         })
         .catch((err) => {
           this.popUp.dismissLoading().then(() => {

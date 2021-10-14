@@ -19,6 +19,8 @@ export class FautorespcodePage implements OnInit {
   currentDate = new Date();
   returnedUser: any;
   editBool = false;
+  tblNext = true;
+  tblPrev = true;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -54,8 +56,72 @@ export class FautorespcodePage implements OnInit {
       this.firebaseRepServ
         .getFirstAutoRespCodes(this.organization)
         .then((mNm: any) => {
-          this.fautorespcodes = mNm;
           this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblNext = true;
+            return;
+          }
+          this.tblPrev = true;
+          this.tblNext = false;
+          this.fautorespcodes = mNm;
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onNext() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getFirstAutoRespCodesNext(this.organization)
+        .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblNext = true;
+            return;
+          }
+          this.tblPrev = false;
+          this.fautorespcodes = mNm;
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onPrev() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getFirstAutoRespCodesPrev(this.organization)
+        .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblPrev = true;
+            return;
+          }
+          this.tblNext = false;
+          this.fautorespcodes = mNm;
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onLast() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getFirstAutoRespCodesLast(this.organization)
+        .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) return;
+          this.tblNext = true;
+          this.tblPrev = false;
+          this.fautorespcodes = mNm;
         })
         .catch((err) => {
           this.popUp.dismissLoading().then(() => {
@@ -86,7 +152,7 @@ export class FautorespcodePage implements OnInit {
       });
   }
 
-   onEdit(item) {
+  onEdit(item) {
     this.fautorespcode = item;
     this.editBool = true;
   }

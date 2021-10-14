@@ -25,6 +25,8 @@ export class FixedcostdetailsPage implements OnInit {
   registration: any[];
   calcPeriod = ['Annum', 'Monthly'];
   editBool = false;
+  tblNext = true;
+  tblPrev = true;
 
   constructor(
     private navCtrl: NavController,
@@ -63,6 +65,85 @@ export class FixedcostdetailsPage implements OnInit {
         .getFixedCostDetails(this.organization)
         .then((mNm: any) => {
           this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblNext = true;
+            return;
+          }
+          this.tblPrev = true;
+          this.tblNext = false;
+          mNm.forEach((elm) => {
+            elm.FixedCostTyp = elm.FixedCostType;
+          });
+          this.fixedCosts = mNm;
+          this.onRegistrationLeft();
+          this.onFixedCostType();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onNext() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getFixedCostDetailsNext(this.organization)
+        .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblNext = true;
+            return;
+          }
+          this.tblPrev = false;
+          mNm.forEach((elm) => {
+            elm.FixedCostTyp = elm.FixedCostType;
+          });
+          this.fixedCosts = mNm;
+          this.onRegistrationLeft();
+          this.onFixedCostType();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onPrev() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getFixedCostDetailsPrev(this.organization)
+        .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblPrev = true;
+            return;
+          }
+          this.tblNext = false;
+          mNm.forEach((elm) => {
+            elm.FixedCostTyp = elm.FixedCostType;
+          });
+          this.fixedCosts = mNm;
+          this.onRegistrationLeft();
+          this.onFixedCostType();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onLast() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getFixedCostDetailsLast(this.organization)
+        .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) return;
+          this.tblNext = true;
+          this.tblPrev = false;
           mNm.forEach((elm) => {
             elm.FixedCostTyp = elm.FixedCostType;
           });

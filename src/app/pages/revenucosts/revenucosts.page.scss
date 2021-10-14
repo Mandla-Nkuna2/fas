@@ -1,115 +1,88 @@
-ion-content
-{
-    .grid-holder
-    {
-        margin-top: 20px;
+ion-content {
+  .grid-holder {
+    margin-top: 20px;
 
-        .values
-        {
-            margin: 0 !important;
-            border-top: none !important;
-        }
+    .values {
+      margin: 0 !important;
+      border-top: none !important;
     }
+  }
 
-    .more
-    {
-        margin-bottom: 10px;
-        .titleh
-        {
-            margin-top: 10px;
-        }
-        h4
-        {
-            margin: 0 0 0 10px;
-        }
-        ion-grid
-        {
-            border: none !important;
-            margin: 10px 10px 0 10px !important;
-            .sub-header
-            {
-               
-        
-                h5
-                {
-                    margin: 5px 0 !important;
-                    text-transform: uppercase !important;
-                }
-               ion-col
-               {
-                border: 1px solid #B3C6E2;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-               }
-            }
-            
-
-            #com1
-            {
-                border-left: 1px solid #B3C6E2;
-                border-bottom: 1px solid #B3C6E2;
-            }
-
-            #com2
-            {
-                border-right: 1px solid #B3C6E2;
-                border-bottom: 1px solid #B3C6E2;
-            }
-        
-            
-            .sub-values
-            {
-                border-bottom: 1px solid #B3C6E2 !important;
-                #first
-                {
-                    border: 1px solid #B3C6E2;
-                    border-top:none !important;
-                    border-bottom:none !important
-                }
-
-              
-                ion-col
-                {
-                    
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-        
-                    h5,p
-                    {
-                        font-size: 14px !important;
-                        margin: 5px 0;
-                    }
-                }
-            }
-        }
+  .more {
+    margin-bottom: 10px;
+    .titleh {
+      margin-top: 10px;
     }
-
-    .nav-holder
-    {
-        margin-right: 25%;
-        .nav-btns
-        {
-
-            #active
-            {
-                --background:#C7D0E5;
-                --color: white;
-            }
-            ion-button
-            {
-                --background: transparent;
-                --border-color: #C7D0E5;
-                --border-style: solid;
-                --border-width: 1px;
-                --box-shadow: none;
-                --color: #C7D0E5;
-                height: 2rem;
-             
-                margin-right: 10px;
-
-            }
-        }
+    h4 {
+      margin: 0 0 0 10px;
     }
+    ion-grid {
+      border: none !important;
+      margin: 10px 10px 0 10px !important;
+      .sub-header {
+        h5 {
+          margin: 5px 0 !important;
+          text-transform: uppercase !important;
+        }
+        ion-col {
+          border: 1px solid #b3c6e2;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+
+      #com1 {
+        border-left: 1px solid #b3c6e2;
+        border-bottom: 1px solid #b3c6e2;
+      }
+
+      #com2 {
+        border-right: 1px solid #b3c6e2;
+        border-bottom: 1px solid #b3c6e2;
+      }
+
+      .sub-values {
+        border-bottom: 1px solid #b3c6e2 !important;
+        #first {
+          border: 1px solid #b3c6e2;
+          border-top: none !important;
+          border-bottom: none !important;
+        }
+
+        ion-col {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          h5,
+          p {
+            font-size: 14px !important;
+            margin: 5px 0;
+          }
+        }
+      }
+    }
+  }
+
+  .nav-holder {
+    margin-right: 25%;
+    .nav-btns {
+      #active {
+        --background: #c7d0e5;
+        --color: white;
+      }
+      ion-button {
+        --background: grey;
+        --border-color: #c7d0e5;
+        --border-style: solid;
+        --border-width: 1px;
+        --box-shadow: none;
+        --color: #c7d0e5;
+        height: 2rem;
+
+        margin-right: 10px;
+      }
+    }
+  }
 }

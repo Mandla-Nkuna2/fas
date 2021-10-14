@@ -270,7 +270,7 @@ export class JobcardPage implements OnInit {
 
   onComponentTable() {
     this.firebaseRepServ
-      .getItemComponents(this.organization)
+      .getItemComps(this.organization)
       .then((mNm: any) => {
         this.itemComponents = mNm;
         this.onCompNameLeft();

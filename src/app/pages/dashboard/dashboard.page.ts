@@ -30,7 +30,6 @@ export class DashboardPage implements OnInit {
   lineChart4: any;
 
   assets: any = [];
-  sAssets: any[] = [];
   assetTypes: any;
   assetTypeNames: any;
   makesAndMods: any;
@@ -86,22 +85,11 @@ export class DashboardPage implements OnInit {
     this.moreDetails = !this.moreDetails;
   }
 
-  onCaptureDate() {
-    this.assets.sort((a, b) => {
-      return <any>new Date(b.CaptureDate) - <any>new Date(a.CaptureDate);
-    });
-
-    for (let i = 0; i < 3; i++) {
-      this.sAssets.push(this.assets[i]);
-    }
-  }
-
   onTableReps() {
-    this.firebaseRepServ.getAssetLeft(this.organization).then((mNm: any) => {
+    this.firebaseRepServ.getAsset(this.organization).then((mNm: any) => {
       this.assets = mNm;
       this.onAssetType();
       this.onMakeAndMod();
-      this.onCaptureDate();
     });
   }
 

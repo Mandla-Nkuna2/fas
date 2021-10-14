@@ -22,6 +22,8 @@ export class VotecodesPage implements OnInit {
   voteCodesSel: any[] = [];
   finYear = ['2019/2020', '2020/2021', '2021/2022', '2022/2023'];
   editBool = false;
+  tblNext = true;
+  tblPrev = true;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -60,11 +62,84 @@ export class VotecodesPage implements OnInit {
       this.firebaseRepServ
         .getVotecodes(this.organization)
         .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblNext = true;
+            return;
+          }
+          this.tblPrev = true;
+          this.tblNext = false;
           mNm.forEach((elm) => {
             elm.vCode = elm.Votecode;
           });
           this.voteCodes = mNm;
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onNext() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getVotecodesNext(this.organization)
+        .then((mNm: any) => {
           this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblNext = true;
+            return;
+          }
+          this.tblPrev = false;
+          mNm.forEach((elm) => {
+            elm.vCode = elm.Votecode;
+          });
+          this.voteCodes = mNm;
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onPrev() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getVotecodesPrev(this.organization)
+        .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblPrev = true;
+            return;
+          }
+          this.tblNext = false;
+          mNm.forEach((elm) => {
+            elm.vCode = elm.Votecode;
+          });
+          this.voteCodes = mNm;
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onLast() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getVotecodesLast(this.organization)
+        .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) return;
+          this.tblNext = true;
+          this.tblPrev = false;
+          mNm.forEach((elm) => {
+            elm.vCode = elm.Votecode;
+          });
+          this.voteCodes = mNm;
         })
         .catch((err) => {
           this.popUp.dismissLoading().then(() => {

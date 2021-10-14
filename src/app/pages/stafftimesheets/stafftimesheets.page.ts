@@ -22,6 +22,8 @@ export class StafftimesheetsPage implements OnInit {
   returnedUser: any;
   staffMember: any[];
   editBool = false;
+  tblNext = true;
+  tblPrev = true;
 
   constructor(
     private navCtrl: NavController,
@@ -59,11 +61,84 @@ export class StafftimesheetsPage implements OnInit {
       this.firebaseRepServ
         .getStaffTimesheets(this.organization)
         .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblNext = true;
+            return;
+          }
+          this.tblPrev = true;
+          this.tblNext = false;
           this.staffTimesheets = mNm;
           this.onDailyTot();
           this.onStaffRate();
           this.onStaffMemberLeft();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onNext() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getStaffTimesheetsNext(this.organization)
+        .then((mNm: any) => {
           this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblNext = true;
+            return;
+          }
+          this.tblPrev = false;
+          this.staffTimesheets = mNm;
+          this.onDailyTot();
+          this.onStaffRate();
+          this.onStaffMemberLeft();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onPrev() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getStaffTimesheetsPrev(this.organization)
+        .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblPrev = true;
+            return;
+          }
+          this.tblNext = false;
+          this.staffTimesheets = mNm;
+          this.onDailyTot();
+          this.onStaffRate();
+          this.onStaffMemberLeft();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onLast() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getStaffTimesheetsLast(this.organization)
+        .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) return;
+          this.tblNext = true;
+          this.tblPrev = false;
+          this.staffTimesheets = mNm;
+          this.onDailyTot();
+          this.onStaffRate();
+          this.onStaffMemberLeft();
         })
         .catch((err) => {
           this.popUp.dismissLoading().then(() => {

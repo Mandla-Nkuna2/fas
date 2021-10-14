@@ -22,6 +22,8 @@ export class FixedcostransferPage implements OnInit {
   registration: any[];
   costCentre: any[];
   editBool = false;
+  tblNext = true;
+  tblPrev = true;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -60,10 +62,80 @@ export class FixedcostransferPage implements OnInit {
       this.firebaseRepServ
         .getFixedCostTransfer(this.organization)
         .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblNext = true;
+            return;
+          }
+          this.tblPrev = true;
+          this.tblNext = false;
           this.fixedCostTransfs = mNm;
           this.onRegistrationLeft();
           this.onCostCentreLeft();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onNext() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getFixedCostTransferNext(this.organization)
+        .then((mNm: any) => {
           this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblNext = true;
+            return;
+          }
+          this.tblPrev = false;
+          this.fixedCostTransfs = mNm;
+          this.onRegistrationLeft();
+          this.onCostCentreLeft();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onPrev() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getFixedCostTransferPrev(this.organization)
+        .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblPrev = true;
+            return;
+          }
+          this.tblNext = false;
+          this.fixedCostTransfs = mNm;
+          this.onRegistrationLeft();
+          this.onCostCentreLeft();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onLast() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getFixedCostTransferLast(this.organization)
+        .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) return;
+          this.tblNext = true;
+          this.tblPrev = false;
+          this.fixedCostTransfs = mNm;
+          this.onRegistrationLeft();
+          this.onCostCentreLeft();
         })
         .catch((err) => {
           this.popUp.dismissLoading().then(() => {

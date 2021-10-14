@@ -49,7 +49,7 @@
   <div class="section" style="margin-top: 50px">
     <div class="grid-holder">
       <div class="top-toolbar">
-        <h3>BERGVILLE</h3>
+        <h3>Revenue Report</h3>
       </div>
       <ng-template #noItems> No items. </ng-template>
       <ion-grid fixed *ngIf="revenuee.length; else noItems">
@@ -149,6 +149,23 @@
           </ion-col>
         </ion-row>
       </ion-grid>
+    </div>
+    <div class="nav-holder">
+      <ion-row>
+        <ion-col size="8"></ion-col>
+        <ion-col size="4">
+          <div class="nav-btns flex al-center">
+            <ion-button (click)="onTableRep()"> First </ion-button>
+            <ion-button [disabled]="tblPrev" (click)="onPrev()">
+              Previous
+            </ion-button>
+            <ion-button [disabled]="tblNext" (click)="onNext()">
+              Next
+            </ion-button>
+            <ion-button (click)="onLast()"> Last </ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
     </div>
   </div>
 </ion-content>

@@ -40,6 +40,8 @@ export class UsersPage implements OnInit {
   locations: any[];
   editBool = false;
   tableVu = true;
+  tblNext = true;
+  tblPrev = true;
 
   userObject;
 
@@ -179,12 +181,79 @@ export class UsersPage implements OnInit {
     this.firebaseRepServ
       .getUsers(this.organization)
       .then((mNm: any) => {
+        if (!mNm) {
+          this.tblNext = true;
+          return;
+        }
+        this.tblPrev = true;
+        this.tblNext = false;
         this.users = mNm;
         this.onUserGroup();
       })
       .catch((err) => {
         this.popUp.showError(err);
       });
+  }
+  onNext() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getUsersNext(this.organization)
+        .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblNext = true;
+            return;
+          }
+          this.tblPrev = false;
+          this.users = mNm;
+          this.onUserGroup();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onPrev() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getUsersPrev(this.organization)
+        .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblPrev = true;
+            return;
+          }
+          this.tblNext = false;
+          this.users = mNm;
+          this.onUserGroup();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onLast() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getUsersLast(this.organization)
+        .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) return;
+          this.tblNext = true;
+          this.tblPrev = false;
+          this.users = mNm;
+          this.onUserGroup();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
   }
 
   onUserGroup() {

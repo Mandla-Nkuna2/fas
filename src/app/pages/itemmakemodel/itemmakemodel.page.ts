@@ -23,6 +23,8 @@ export class ItemmakemodelPage implements OnInit {
   models: any[];
   fuelTypes: any[];
   editBool = false;
+  tblNext = true;
+  tblPrev = true;
   transmissions = [
     'AUTOMATIC',
     'ELECTRIC',
@@ -70,10 +72,80 @@ export class ItemmakemodelPage implements OnInit {
       this.firebaseRepServ
         .getItemMakeMod(this.organization)
         .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblNext = true;
+            return;
+          }
+          this.tblPrev = true;
+          this.tblNext = false;
           this.items = mNm;
           this.onItemMakeModel();
           this.onFuelType();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onNext() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getItemMakeModNext(this.organization)
+        .then((mNm: any) => {
           this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblNext = true;
+            return;
+          }
+          this.tblPrev = false;
+          this.items = mNm;
+          this.onItemMakeModel();
+          this.onFuelType();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onPrev() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getItemMakeModPrev(this.organization)
+        .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblPrev = true;
+            return;
+          }
+          this.tblNext = false;
+          this.items = mNm;
+          this.onItemMakeModel();
+          this.onFuelType();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onLast() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getItemMakeModLast(this.organization)
+        .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) return;
+          this.tblNext = true;
+          this.tblPrev = false;
+          this.items = mNm;
+          this.onItemMakeModel();
+          this.onFuelType();
         })
         .catch((err) => {
           this.popUp.dismissLoading().then(() => {

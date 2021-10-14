@@ -23,6 +23,9 @@ export class DailyoperationrecordPage implements OnInit {
   location: any[];
   costCentre: any[];
   operator: any[];
+  editBool = false;
+  tblNext = true;
+  tblPrev = true;
   typeUnits = [
     'cc',
     'cfm',
@@ -35,7 +38,6 @@ export class DailyoperationrecordPage implements OnInit {
     'seats',
     'ton',
   ];
-  editBool = false;
 
   constructor(
     private firebaseRepServ: FirebaseReportService,
@@ -74,10 +76,84 @@ export class DailyoperationrecordPage implements OnInit {
       this.firebaseRepServ
         .getDailyOperations(this.organization)
         .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblNext = true;
+            return;
+          }
+          this.tblPrev = true;
+          this.tblNext = false;
           this.dailyOpRecs = mNm;
+
           this.onRegistrationLeft();
           this.onCostCentreLeft();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onNext() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getDailyOperationsNext(this.organization)
+        .then((mNm: any) => {
           this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblNext = true;
+            return;
+          }
+          this.tblPrev = false;
+          this.dailyOpRecs = mNm;
+
+          this.onRegistrationLeft();
+          this.onCostCentreLeft();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onPrev() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getDailyOperationsPrev(this.organization)
+        .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblPrev = true;
+            return;
+          }
+          this.tblNext = false;
+          this.dailyOpRecs = mNm;
+
+          this.onRegistrationLeft();
+          this.onCostCentreLeft();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onLast() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getDailyOperationsLast(this.organization)
+        .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) return;
+          this.tblNext = true;
+          this.tblPrev = false;
+          this.dailyOpRecs = mNm;
+
+          this.onRegistrationLeft();
+          this.onCostCentreLeft();
         })
         .catch((err) => {
           this.popUp.dismissLoading().then(() => {

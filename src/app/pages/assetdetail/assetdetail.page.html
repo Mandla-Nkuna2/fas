@@ -157,82 +157,24 @@
             </ion-row>
           </div> -->
         </div>
-        <!-- <div class="values">
-          <ion-row class="value-row">
-            <ion-col size="0.5" class="flex al-center jc-center">
-              <ion-checkbox></ion-checkbox>
-            </ion-col>
-            <ion-col size="1.5" class="flex al-center jc-center">
-              <p>NPC7502</p>
-            </ion-col>
-            <ion-col size="2" class="flex al-center jc-center">
-              <p>Compressor</p>
-            </ion-col>
-            <ion-col size="2" class="flex al-center jc-center">
-              <p>Major Equipment</p>
-            </ion-col>
-            <ion-col size="2" class="flex al-center jc-center">
-              <p>Ingersoll Rand P180SD</p>
-            </ion-col>
-            <ion-col size="2" class="flex al-center jc-center">
-              <p>01 dec 2008</p>
-            </ion-col>
-            <ion-col size="2" class="flex al-center jc-center">
-              <p>31 Jan 2010</p>
-            </ion-col>
-          </ion-row>
-        </div>
-        <div class="values">
-          <ion-row class="value-row">
-            <ion-col size="0.5" class="flex al-center jc-center">
-              <ion-checkbox></ion-checkbox>
-            </ion-col>
-            <ion-col size="1.5" class="flex al-center jc-center">
-              <p>NPC7502</p>
-            </ion-col>
-            <ion-col size="2" class="flex al-center jc-center">
-              <p>Compressor</p>
-            </ion-col>
-            <ion-col size="2" class="flex al-center jc-center">
-              <p>Major Equipment</p>
-            </ion-col>
-            <ion-col size="2" class="flex al-center jc-center">
-              <p>Ingersoll Rand P180SD</p>
-            </ion-col>
-            <ion-col size="2" class="flex al-center jc-center">
-              <p>01 dec 2008</p>
-            </ion-col>
-            <ion-col size="2" class="flex al-center jc-center">
-              <p>31 Jan 2010</p>
-            </ion-col>
-          </ion-row>
-        </div>
-        <div class="values">
-          <ion-row class="value-row">
-            <ion-col size="0.5" class="flex al-center jc-center">
-              <ion-checkbox></ion-checkbox>
-            </ion-col>
-            <ion-col size="1.5" class="flex al-center jc-center">
-              <p>NPC7502</p>
-            </ion-col>
-            <ion-col size="2" class="flex al-center jc-center">
-              <p>Compressor</p>
-            </ion-col>
-            <ion-col size="2" class="flex al-center jc-center">
-              <p>Major Equipment</p>
-            </ion-col>
-            <ion-col size="2" class="flex al-center jc-center">
-              <p>Ingersoll Rand P180SD</p>
-            </ion-col>
-            <ion-col size="2" class="flex al-center jc-center">
-              <p>01 dec 2008</p>
-            </ion-col>
-            <ion-col size="2" class="flex al-center jc-center">
-              <p>31 Jan 2010</p>
-            </ion-col>
-          </ion-row>
-        </div> -->
       </ion-grid>
+    </div>
+    <div class="nav-holder">
+      <ion-row>
+        <ion-col size="8"></ion-col>
+        <ion-col size="4">
+          <div class="nav-btns flex al-center">
+            <ion-button (click)="onTableRep()"> First </ion-button>
+            <ion-button [disabled]="tblPrev" (click)="onPrev()">
+              Previous
+            </ion-button>
+            <ion-button [disabled]="tblNext" (click)="onNext()">
+              Next
+            </ion-button>
+            <ion-button (click)="onLast()"> Last </ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
     </div>
   </div>
 </ion-content>

@@ -39,4 +39,25 @@ mark {
       }
     }
   }
+  .nav-holder {
+    margin-right: 18%;
+    .nav-btns {
+      #active {
+        --background: #c7d0e5;
+        --color: white;
+      }
+      ion-button {
+        --background: grey;
+        --border-color: #c7d0e5;
+        --border-style: solid;
+        --border-width: 1px;
+        --box-shadow: none;
+        --color: #c7d0e5;
+        font-size: 0.8rem;
+        height: 1.5rem;
+
+        margin-right: 10px;
+      }
+    }
+  }
 }

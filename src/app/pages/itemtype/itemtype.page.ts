@@ -24,6 +24,8 @@ export class ItemtypePage implements OnInit {
   typeCapacity: any[];
   typeUnit: string;
   editBool = false;
+  tblNext = true;
+  tblPrev = true;
   typeUnits = [
     'cc',
     'cfm',
@@ -72,11 +74,84 @@ export class ItemtypePage implements OnInit {
       this.firebaseRepServ
         .getItemTypes(this.organization)
         .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblNext = true;
+            return;
+          }
+          this.tblPrev = true;
+          this.tblNext = false;
           this.itemTypes = mNm;
           this.onTypeName();
           this.onTypeClass();
           this.onTypeCapacity();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onNext() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getItemTypesNext(this.organization)
+        .then((mNm: any) => {
           this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblNext = true;
+            return;
+          }
+          this.tblPrev = false;
+          this.itemTypes = mNm;
+          this.onTypeName();
+          this.onTypeClass();
+          this.onTypeCapacity();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onPrev() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getItemTypesPrev(this.organization)
+        .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblPrev = true;
+            return;
+          }
+          this.tblNext = false;
+          this.itemTypes = mNm;
+          this.onTypeName();
+          this.onTypeClass();
+          this.onTypeCapacity();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onLast() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getItemTypesLast(this.organization)
+        .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) return;
+          this.tblNext = true;
+          this.tblPrev = false;
+          this.itemTypes = mNm;
+          this.onTypeName();
+          this.onTypeClass();
+          this.onTypeCapacity();
         })
         .catch((err) => {
           this.popUp.dismissLoading().then(() => {

@@ -28,6 +28,8 @@ export class OilstoretransPage implements OnInit {
   suppliers: any[];
   costCentre: any[];
   editBool = false;
+  tblNext = true;
+  tblPrev = true;
 
   constructor(
     private navCtrl: NavController,
@@ -66,11 +68,84 @@ export class OilstoretransPage implements OnInit {
       this.firebaseRepServ
         .getOilStoreTrans(this.organization)
         .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblNext = true;
+            return;
+          }
+          this.tblPrev = true;
+          this.tblNext = false;
           this.oilstoreTranss = mNm;
           this.onOilStore();
           this.onOilType();
           this.onCostCentre();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onNext() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getOilStoreTransNext(this.organization)
+        .then((mNm: any) => {
           this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblNext = true;
+            return;
+          }
+          this.tblPrev = false;
+          this.oilstoreTranss = mNm;
+          this.onOilStore();
+          this.onOilType();
+          this.onCostCentre();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onPrev() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getOilStoreTransPrev(this.organization)
+        .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblPrev = true;
+            return;
+          }
+          this.tblNext = false;
+          this.oilstoreTranss = mNm;
+          this.onOilStore();
+          this.onOilType();
+          this.onCostCentre();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onLast() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getOilStoreTransLast(this.organization)
+        .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) return;
+          this.tblNext = true;
+          this.tblPrev = false;
+          this.oilstoreTranss = mNm;
+          this.onOilStore();
+          this.onOilType();
+          this.onCostCentre();
         })
         .catch((err) => {
           this.popUp.dismissLoading().then(() => {

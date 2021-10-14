@@ -28,6 +28,8 @@ export class LosscontrolPage implements OnInit {
   driver: any[];
   lossCntrlAction: any[];
   editBool = false;
+  tblNext = true;
+  tblPrev = true;
 
   constructor(
     private navCtrl: NavController,
@@ -68,7 +70,90 @@ export class LosscontrolPage implements OnInit {
         .getLossControls(this.organization)
         .then((mNm: any) => {
           this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblNext = true;
+            return;
+          }
+          this.tblPrev = true;
+          this.tblNext = false;
           this.lossControls = mNm;
+
+          this.onLossContNo();
+          this.onAgentLeft();
+          this.onRegistrationLeft();
+          this.onLossType();
+          this.onDriverNameLeft();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onNext() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getLossControlsNext(this.organization)
+        .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblNext = true;
+            return;
+          }
+          this.tblPrev = false;
+          this.lossControls = mNm;
+
+          this.onLossContNo();
+          this.onAgentLeft();
+          this.onRegistrationLeft();
+          this.onLossType();
+          this.onDriverNameLeft();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onPrev() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getLossControlsPrev(this.organization)
+        .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) {
+            this.tblPrev = true;
+            return;
+          }
+          this.tblNext = false;
+          this.lossControls = mNm;
+
+          this.onLossContNo();
+          this.onAgentLeft();
+          this.onRegistrationLeft();
+          this.onLossType();
+          this.onDriverNameLeft();
+        })
+        .catch((err) => {
+          this.popUp.dismissLoading().then(() => {
+            this.popUp.showError(err);
+          });
+        });
+    });
+  }
+  onLast() {
+    this.popUp.showLoading('loading...').then(() => {
+      this.firebaseRepServ
+        .getLossControlsLast(this.organization)
+        .then((mNm: any) => {
+          this.popUp.dismissLoading();
+          if (!mNm) return;
+          this.tblNext = true;
+          this.tblPrev = false;
+          this.lossControls = mNm;
+
           this.onLossContNo();
           this.onAgentLeft();
           this.onRegistrationLeft();
